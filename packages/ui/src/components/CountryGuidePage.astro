@@ -109,6 +109,16 @@ const webpageLd = {
   // lue à l'écran ferait passer pour périmée une information contrôlée le jour même.
   ...(verifiedDate ? { lastReviewed: verifiedDate } : {}),
   ...(g.reviewer ? { reviewedBy: { "@type": "Person", name: g.reviewer } } : {}),
+  /* LES SOURCES OFFICIELLES, CITÉES POUR LA MACHINE AUSSI (13/09/2026).
+   *
+   * Le bloc « Sources officielles » en bas de page énumère depuis toujours les textes sur
+   * lesquels la fiche repose — ministères, douanes, autorités sanitaires. Le balisage n'en
+   * portait aucune trace, si bien qu'un moteur de réponse voyait une fiche affirmative sans
+   * savoir sur quoi elle s'appuyait. C'est la MÊME liste, `g.sources`, qui alimente les deux :
+   * pas de seconde énumération à tenir à jour, donc pas de divergence possible. */
+  ...(g.sources?.length
+    ? { citation: g.sources.map((s) => ({ "@type": "WebPage" as const, url: s.url, name: t(s.label) })) }
+    : {}),
 };
 // FAQ dérivée de la fiche pays ; FAQPage seulement si des questions ont pu être construites.
 const faqItems = countryFaq(g, locale);

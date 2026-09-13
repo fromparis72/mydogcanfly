@@ -14,5 +14,15 @@ const { locale } = Astro.props as { locale: string };
 const T = inlineT(locale);
 const items = indexItems(loadKB(), "country", locale);
 const seoTitle = T("Dog entry requirements by country (2026)", "Formalités d'entrée par pays pour voyager avec ton chien", "Requisitos de entrada por país para viajar con tu perro");
+/* Voir EntityIndex.astro, `datasetLd` : une collection sourcée se déclare pour ce qu'elle est. */
+const dataset = {
+  name: T("Dog entry requirements by country", "Formalités d'entrée par pays pour un chien", "Requisitos de entrada por país para un perro"),
+  description: T(
+    "Microchip, rabies, antibody-test, treatment and banned-breed rules for bringing a dog into each country, with the official authority cited and the date the rules were verified.",
+    "Puce, rage, test sérologique, traitements et races interdites pour faire entrer un chien dans chaque pays, avec l'autorité officielle citée et la date de vérification des règles.",
+    "Microchip, rabia, prueba serológica, tratamientos y razas prohibidas para llevar un perro a cada país, con la autoridad oficial citada y la fecha de verificación.",
+  ),
+  keywords: ["pet import rules", "dog entry requirements", "rabies titre test", "banned dog breeds", "animal health certificate"],
+};
 ---
-<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.country")} title={t(locale, "index.countries.title")} blurb={t(locale, "index.countries.blurb")} items={items} locale={locale} showEmblem />
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.country")} title={t(locale, "index.countries.title")} blurb={t(locale, "index.countries.blurb")} items={items} locale={locale} dataset={dataset} showEmblem />

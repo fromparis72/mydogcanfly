@@ -7,10 +7,42 @@ interface Props { kind: string; title: string; /** Titre SEO « mots clés d'abo
    * volontairement PAS activé par défaut : ce composant est aussi utilisé par les pages aéroports
    * (`airports/index.astro`, `airports/pet-relief.astro`), hors du périmètre demandé (seulement
    * compagnies/destinations/races/outils, 4 pages précises, pas de sous-pages). */
-  showEmblem?: boolean }
-const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link, showEmblem = false } = Astro.props;
+  showEmblem?: boolean;
+  /** Déclare cet index comme jeu de données consultable. Voir le commentaire ci-dessous. */
+  dataset?: { name: string; description: string; keywords?: string[] } }
+const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link, showEmblem = false, dataset } = Astro.props;
+
+/* `Dataset` — DIRE À LA MACHINE CE QUE CETTE PAGE EST (13/09/2026).
+ *
+ * Un index de compagnies ou de destinations n'est pas une page de contenu : c'est l'entrée d'une
+ * collection structurée, tenue à jour selon une cadence annoncée, dont chaque élément porte sa
+ * source. `Dataset` est le seul vocabulaire qui dise exactement cela, et c'est ce que lisent les
+ * moteurs de réponse quand ils cherchent une référence à citer plutôt qu'un article à résumer.
+ *
+ * `distribution` n'est PAS déclaré, et ce n'est pas un oubli : `Dataset` admet un export
+ * téléchargeable, le site n'en publie aucun. Annoncer un CSV qui n'existe pas serait une promesse
+ * vérifiable en un clic — exactement le genre d'écart qui coûte la confiance qu'on vient chercher.
+ *
+ * `isAccessibleForFree` et `license` disent ce qui est vrai aujourd'hui : la consultation est
+ * libre, la réutilisation relève des conditions générales. */
+const datasetLd = dataset
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name: dataset.name,
+      description: dataset.description,
+      inLanguage: locale,
+      isAccessibleForFree: true,
+      creator: { "@id": "https://mydogcanfly.com/#org" },
+      publisher: { "@id": "https://mydogcanfly.com/#org" },
+      isPartOf: { "@id": "https://mydogcanfly.com/#website" },
+      license: "https://mydogcanfly.com/terms/",
+      ...(dataset.keywords?.length ? { keywords: dataset.keywords } : {}),
+      ...(items.length ? { size: `${items.length} entries` } : {}),
+    }
+  : null;
 ---
-<Base title={seoTitle ?? `${title} — MyDogCanFly`} description={metaDesc ?? blurb ?? title} locale={locale}>
+<Base title={seoTitle ?? `${title} — MyDogCanFly`} description={metaDesc ?? blurb ?? title} locale={locale} jsonLd={datasetLd ? [datasetLd] : undefined}>
   <section class={`mdcf-section${showEmblem ? " idx__hero" : ""}`}>
     {showEmblem && (
       /* Même emblème que la page d'accueil (packages/ui/public/brand/emblem.webp), repris ici en

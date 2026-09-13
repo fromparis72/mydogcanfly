@@ -135,6 +135,32 @@ const seoTitle = seoLong.length <= 65 ? seoLong : seoShort;
  * non rabattue sur l'anglais comme le ferait `inlineF`, dont la table portugaise est indexée par
  * la phrase anglaise. La MÊME chaîne sert les quatre zones publiques : une seule définition. */
 const metaDescription = tt(locale, "premium.meta_description").replace("{airline}", d.name);
+
+/* LES PREUVES DE LA FICHE, RASSEMBLÉES POUR LE BALISAGE (13/09/2026).
+ *
+ * La fiche AFFICHE déjà, canal par canal, la page officielle citée, la phrase retenue, la date de
+ * vérification et l'indice de confiance. Le `WebPage` du JSON-LD, lui, n'en disait rien : un moteur
+ * de réponse lisait une page sans date et sans source, alors que l'écran en portait jusqu'à trois.
+ * Ce qui est publié pour l'œil est désormais publié pour la machine, et depuis la MÊME lecture —
+ * `politiqueDuCanal` + `preuveAuditee`, les fonctions qui alimentent les cartes ci-dessous. Aucune
+ * date, aucune URL n'est ajoutée ici : elles sont RELUES là où elles étaient déjà.
+ *
+ * Conséquence assumée : une fiche dont aucun canal n'est audité ne porte ni `lastReviewed` ni
+ * `citation`. C'est le bon comportement — annoncer une fraîcheur qu'on ne peut pas produire est
+ * exactement ce que la frontière de confiance interdit à l'écran. */
+const preuvesDeLaFiche = d.channels
+  .map((c) => preuveAuditee(politiqueDuCanal(kbAir?.premium?.policy, c.placement, id)))
+  .filter((p): p is NonNullable<typeof p> => !!p);
+const datesVerif = preuvesDeLaFiche.map((p) => p.verified_date).filter((x): x is string => typeof x === "string");
+const derniereVerif = datesVerif.length ? datesVerif.slice().sort().at(-1) : null;
+/* Une même page officielle sert souvent deux canaux : on ne la cite qu'une fois. */
+const citations = [...new Map(preuvesDeLaFiche.map((p) => [p.url, p])).values()].map((p) => ({
+  "@type": "WebPage" as const,
+  url: p.url,
+  name: hote(p.url),
+  ...(p.verified_date ? { lastReviewed: p.verified_date } : {}),
+}));
+
 // WebPage about the airline (entity grounding for GEO / rich results).
 const webpageLd = {
   "@context": "https://schema.org",
@@ -144,6 +170,8 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airline", name: d.name },
+  ...(derniereVerif ? { lastReviewed: derniereVerif } : {}),
+  ...(citations.length ? { citation: citations } : {}),
 };
 /* FAQ construite sur la POLITIQUE CANONIQUE, la même que les cartes de canaux ci-dessous —
    `kbAir?.premium?.policy` lui est passée explicitement. Sans elle, `airlineFaq` ne produit
