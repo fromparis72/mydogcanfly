@@ -6,7 +6,7 @@ description: "Haz visible a tu perro de noche: collar LED, arnés reflectante, c
 summary: "Haz visible a tu perro de noche: collar LED, arnés reflectante, chapa identificativa y accesorios luminosos. Paseos nocturnos más seguros en casa y en viaje."
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "seguridad", "visibilidad"]
 enbref:

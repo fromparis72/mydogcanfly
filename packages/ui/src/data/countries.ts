@@ -69,6 +69,7 @@ export interface CountryGuide {
   seo: { title: LT; metaTitle: LT; metaDesc: LT; slug: string; shortDesc: LT };
   /** ISO date (YYYY-MM-DD) the official sources were last checked. */
   verified_date: string;
+  /** Piste d'audit interne uniquement — ne constitue pas l'identité d'un relecteur public. */
   reviewer: string;
   /** Reviewer confidence 1–5. */
   confidence: number;

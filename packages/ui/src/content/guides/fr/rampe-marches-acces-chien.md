@@ -5,7 +5,7 @@ description: "Rampe ou marches pour chien : protéger ses articulations pour mon
 summary: "Rampe ou marches pour chien : protéger ses articulations pour monter en voiture, sur le lit ou le canapé. Comment choisir et habituer son chien."
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "voiture", "articulations"]
 sourceUrl: "/rampe-marches-acces-chien/"

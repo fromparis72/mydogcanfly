@@ -6,7 +6,7 @@ description: "Toutes les façons de faire voyager un chien en avion : cabine, so
 summary: "Cabine, soute, fret, chien d'assistance, soutien émotionnel ou compagnies canines dédiées : il existe six grandes façons de faire voyager un chien en avion, chacune avec ses conditions."
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "cabine", "soute", "fret", "chien d'assistance"]
 sourceUrl: "/voyager-avion-chien-options/"

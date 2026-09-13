@@ -15,7 +15,7 @@ url: "/foxtails-danger-dogs/"
 frUrl: "/epillets-danger-ete-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "foxtails", "summer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1760243875500-321d130484cb?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBmaWVsZCUyMHRhbGwlMjBncmFzcyUyMHN1bW1lcnxlbnwxfDB8fHwxNzgyOTM5NDMxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Foxtails in dogs: these dry grass awns burrow into skin, ears, eyes and paws. Prevention, post-walk checks and when to see a vet urgently."
 cover:

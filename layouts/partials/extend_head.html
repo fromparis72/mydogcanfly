@@ -16,7 +16,7 @@
       "url": "https://mydogcanfly.com/",
       "logo": "https://mydogcanfly.com/images/mydogcanfly_logo.png",
       "description": "The reference guide to traveling the world with your dog — by plane, train and car.",
-      "founder": { "@id": "https://mydogcanfly.com/author/#person" }
+      "founder": { "@id": "https://mydogcanfly.com/#founder" }
     },
     {
       "@type": "WebSite",
@@ -33,12 +33,13 @@
     },
     {
       "@type": "Person",
-      "@id": "https://mydogcanfly.com/author/#person",
-      "name": "Camille Roussel",
-      "url": "https://mydogcanfly.com/author/",
-      "jobTitle": "Founder & editor",
+      "@id": "https://mydogcanfly.com/#founder",
+      "name": "Phil Albert-Benoist",
+      "url": "https://mydogcanfly.com/about/",
+      "jobTitle": "Founder & Director of Publication",
       "worksFor": { "@id": "https://mydogcanfly.com/#organization" },
-      "knowsAbout": ["traveling with a dog", "flying with a dog", "dog-friendly travel", "dog health on the road"]
+      "sameAs": ["https://www.linkedin.com/in/phil-e-albert-benoist-b6b876419"],
+      "knowsAbout": ["traveling with a dog", "flying with a dog", "airline pet policies", "structured data"]
     }
   ]
 }
@@ -60,7 +61,7 @@
 <meta name="google-site-verification" content="0CU8tUfYN4XGeWEqw4S-weSMbVGNpN4_WmyHtNzZu0Q">
 
 {{/* Extra GEO/SEO meta */}}
-<meta name="author" content="Camille Roussel">
+<meta name="author" content="Phil Albert-Benoist">
 <meta property="og:site_name" content="My Dog Can Fly">
 {{- /* Default social share image for the home page (no cover in front matter) */}}
 {{- if and .IsHome (not .Params.cover.image) }}

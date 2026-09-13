@@ -17,7 +17,7 @@ url: "/air-algerie-dog-policy/"
 frUrl: "/air-algerie-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Algérie", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1673034438689-34e564e2a40f?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Algérie accepts dogs in the cabin up to 6 kg (13 lb) for €50–120 (~$60–140) and in the hold up to 32 kg (70 lb) for €100–150 (~$115–175)."
 cover:

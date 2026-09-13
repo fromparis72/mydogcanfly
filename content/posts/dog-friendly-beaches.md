@@ -19,7 +19,7 @@ url: "/dog-friendly-beaches/"
 frUrl: "/mer-plages-avec-chien/"
 categories: ["Destinations"]
 tags: ["dog", "beach", "ocean", "summer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1718877399241-bec408ac6606?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBiZWFjaCUyMHNlYSUyMHN1bW1lcnxlbnwxfDB8fHwxNzgyNDk3NDIxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Many beaches welcome dogs off-season or in designated areas: always check the local rules first. Once there, think shade, fresh water, a rinse after every swim, and constant vigilance against heatstroke."
 cover:

@@ -5,7 +5,7 @@ description: "Prendre les transports en commun avec son chien : règles selon le
 summary: "Les règles varient selon les réseaux : petits chiens en sac, grands chiens tenus en laisse et parfois muselés, gratuité ou demi-tarif selon la ville. Vérifiez toujours le règlement local avant de monter."
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "transports en commun", "ville", "métro"]
 sourceUrl: "/transports-urbains-avec-chien/"

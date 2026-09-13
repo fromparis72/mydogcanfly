@@ -17,7 +17,7 @@ url: "/aegean-airlines-dog-policy/"
 frUrl: "/aegean-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Aegean Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxHcmVlY2UlMjBTYW50b3Jpbml8ZW58MXwwfHx8MTc4MjkxMjY5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Aegean Airlines accepts dogs in the cabin up to 8 kg (18 lb) for €35–65 (~$40–75) and in the hold up to 32 kg (70 lb) for €90–190 (~$105–220). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

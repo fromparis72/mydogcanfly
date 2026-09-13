@@ -6,7 +6,7 @@ description: "Diarreia e vômito do cachorro em viagem: causas (estresse, água 
 summary: "Diarreia e vômito do cachorro em viagem: causas (estresse, água nova, mudança de alimentação), prevenção e gestos simples. Quando se preocupar."
 date: "2026-06-02T08:00:00+02:00"
 lastmod: "2026-06-02T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "digestão", "viagem"]
 enbref:

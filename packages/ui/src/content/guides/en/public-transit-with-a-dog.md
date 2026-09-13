@@ -6,7 +6,7 @@ description: "Public transit with a dog: how rules vary by city, muzzle requirem
 summary: "Rules vary by network: small dogs in a carrier, large dogs on a leash and sometimes muzzled, free or half fare depending on the city. Always check the local regulations before boarding."
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "public transit", "city", "subway"]
 sourceUrl: "/public-transit-with-a-dog/"

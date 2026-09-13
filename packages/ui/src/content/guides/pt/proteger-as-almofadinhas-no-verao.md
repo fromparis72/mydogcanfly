@@ -6,7 +6,7 @@ description: "Proteger as almofadinhas do seu cachorro no verão: asfalto escald
 summary: "Proteger as almofadinhas do seu cachorro no verão: asfalto escaldante, teste dos 7 segundos, bálsamo e botinhas. Guia completo e produtos recomendados."
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "almofadinhas", "verão", "equipamento"]
 enbref:

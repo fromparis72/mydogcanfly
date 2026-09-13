@@ -19,7 +19,7 @@ url: "/dog-gps-trackers/"
 frUrl: "/gps-trackers-chien/"
 categories: ["Gear"]
 tags: ["dog", "GPS", "tracker", "safety"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1667716705760-233650f8f3fe?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjb2xsYXIlMjBjbG9zZXVwfGVufDF8MHx8fDE3ODI0OTc0NDR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A GPS tracker locates your dog in real time, unlike the identification microchip, which only identifies the dog once found. Battery life, coverage and subscription cost are the deciding criteria."
 cover:

@@ -6,7 +6,7 @@ description: "Frio e hipotermia no cachorro: cães de risco, sinais de alerta, c
 summary: "Frio e hipotermia no cachorro: cães de risco, sinais de alerta, como aquecer, prevenção no inverno e na montanha. Quando procurar um veterinário."
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "frio", "inverno"]
 enbref:

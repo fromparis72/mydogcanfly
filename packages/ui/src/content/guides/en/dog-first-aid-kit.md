@@ -6,7 +6,7 @@ description: "The dog first-aid kit for travel: essential contents, useful first
 summary: "A dog first-aid kit gathers what you need to disinfect, bandage, remove a tick and handle minor incidents. It never replaces the veterinarian but saves precious time."
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "first aid", "health", "travel"]
 sourceUrl: "/dog-first-aid-kit/"

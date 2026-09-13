@@ -6,7 +6,7 @@ description: "Caring for dog paw pads after a hike or the beach: inspection, cle
 summary: "Caring for dog paw pads after a hike or the beach: inspection, cleaning, repair balm, spotting a burn or a cut. Prevention tips."
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "paw pads", "hiking"]
 sourceUrl: "/dog-paw-pad-care/"

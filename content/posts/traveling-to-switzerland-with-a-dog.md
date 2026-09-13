@@ -15,7 +15,7 @@ url: "/traveling-to-switzerland-with-a-dog/"
 frUrl: "/voyager-chien-suisse/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Switzerland"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1622307053412-5404f0c427c0?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Switzerland: easy level, allow 21 days minimum (for a first rabies vaccination)."
 cover:

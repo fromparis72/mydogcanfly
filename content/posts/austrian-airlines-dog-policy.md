@@ -17,7 +17,7 @@ url: "/austrian-airlines-dog-policy/"
 frUrl: "/austrian-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Austrian Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1693820565751-9748b0d17dfd?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxBdXN0cmlhJTIwQWxwcyUyMFZpZW5uYXxlbnwxfDB8fHwxNzgyOTEyNjk1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Austrian Airlines accepts dogs in the cabin up to 8 kg / 18 lb (€65–125, ~$75–145) and in the hold (€80–380, ~$90–440). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

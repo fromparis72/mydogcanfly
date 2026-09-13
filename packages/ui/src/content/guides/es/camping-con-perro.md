@@ -6,7 +6,7 @@ description: "Ir de camping con tu perro: elegir un cámping dog-friendly, monta
 summary: "Elige un cámping que acepte perros, prevé una parcela con sombra y un sistema de amarre, respeta las horas de silencio y no dejes nunca a tu perro solo en la tienda con calor."
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "camping", "vacaciones", "aire libre"]
 enbref:

@@ -6,7 +6,7 @@ description: "Correa, collar y arnés para viajar con tu perro: qué tipo elegir
 summary: "Correa, collar y arnés para viajar con tu perro: qué tipo elegir, con qué materiales, cómo ajustarlos. Guía práctica para paseos seguros."
 date: "2026-06-08T08:00:00+02:00"
 lastmod: "2026-06-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "correa", "arnés", "collar"]
 enbref:

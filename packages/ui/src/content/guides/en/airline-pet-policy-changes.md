@@ -6,7 +6,7 @@ description: "Airline pet rules change with the season, the aircraft and the rou
 summary: "Pet policies are not stable documents: they move with temperature embargoes, aircraft swaps, route changes and breed rules. Verify the operating carrier, on your route, close to departure."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "flying", "airline", "policy"]
 cover:

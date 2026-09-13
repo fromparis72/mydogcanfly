@@ -21,7 +21,7 @@ url: "/airline-approved-dog-crate/"
 frUrl: "/caisse-transport-avion-homologuee-chien/"
 categories: ["Gear"]
 tags: ["dog", "travel crate", "airplane", "IATA"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["/images/caisse-iata.jpg"]
 summary: "Airline dog crate guide: IATA requirements, sizing method, materials, compliant models. The complete guide to flying with peace of mind."
 cover:

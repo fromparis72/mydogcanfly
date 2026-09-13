@@ -19,7 +19,7 @@ url: "/klm-dog-policy/"
 frUrl: "/klm-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "KLM", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1534351590666-13e3e96b5017?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxOZXRoZXJsYW5kcyUyMEFtc3RlcmRhbSUyMGNhbmFsfGVufDF8MHx8fDE3ODI5MTI3MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "KLM accepts dogs up to 8 kg (18 lb) in the cabin and up to 75 kg (165 lb) (dog + crate) in the hold, for €70–500 (~$80–575) depending on the destination. Brachycephalic breeds are banned from the hold."
 cover:

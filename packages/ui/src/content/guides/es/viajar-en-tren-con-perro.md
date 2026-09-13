@@ -6,7 +6,7 @@ description: "Viajar en tren con perro: cómo funcionan las normas de tamaño, c
 summary: "Casi todas las redes ferroviarias admiten perros, pero las normas siguen un mismo patrón: perros pequeños en transportín, perros grandes con correa (y a menudo bozal) y billete en muchos países. Así funciona, de la SNCF a Amtrak."
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "tren", "viaje en tren", "transporte"]
 enbref:

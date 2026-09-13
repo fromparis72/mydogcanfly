@@ -6,7 +6,7 @@ description: "Beach vacations with your dog: how to find dog-friendly beaches, h
 summary: "Many beaches welcome dogs off-season or in designated areas: always check the local rules first. Once there, think shade, fresh water, a rinse after every swim, and constant vigilance against heatstroke."
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "beach", "ocean", "summer"]
 sourceUrl: "/dog-friendly-beaches/"

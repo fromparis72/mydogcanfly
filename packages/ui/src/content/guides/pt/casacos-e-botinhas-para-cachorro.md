@@ -6,7 +6,7 @@ description: "Casacos, capas de chuva e botinhas para cachorro: proteger o seu c
 summary: "Nem todo cachorro precisa de casaco, mas as raças pequenas, os cães idosos e os de pelo curto agradecem uma proteção extra quando faz muito frio. As botinhas protegem as almofadinhas do sal de degelo, da neve e do asfalto escaldante."
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "casaco", "botinhas", "tempo"]
 enbref:

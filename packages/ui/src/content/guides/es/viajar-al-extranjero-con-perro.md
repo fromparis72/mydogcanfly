@@ -6,7 +6,7 @@ description: "Viajar al extranjero con perro: microchip, vacuna antirrábica, pa
 summary: "Para viajar dentro de la UE, tu perro necesita pasaporte europeo, microchip y vacuna antirrábica en vigor. Fuera de la UE suelen exigirse pruebas adicionales (test serológico de rabia) y plazos de espera: empieza con varios meses de antelación."
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "viaje internacional", "pasaporte", "papeleo"]
 enbref:

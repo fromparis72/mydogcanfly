@@ -15,7 +15,7 @@ url: "/aeromexico-dog-policy/"
 frUrl: "/aeromexico-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Aeromexico", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxNZXhpY28lMjBsYW5kbWFya3xlbnwxfDB8fHwxNzgyOTEyNjkzfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Aeromexico accepts dogs in the cabin up to 9 kg (20 lb) and in the hold up to 45 kg (99 lb). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

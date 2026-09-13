@@ -6,7 +6,7 @@ description: "El mareo del perro en el transporte: reconoce los síntomas, entie
 summary: "El mareo del perro suele venir de un oído interno inmaduro o del estrés. La habituación progresiva, una buena ventilación y el criterio veterinario lo reducen."
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "transporte", "coche"]
 enbref:

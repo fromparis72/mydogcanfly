@@ -5,7 +5,7 @@ description: "Chien qui tire en laisse : quel harnais anti-traction choisir ? Ty
 summary: "Chien qui tire en laisse : quel harnais anti-traction choisir ? Types, critères et modèles Julius-K9 et Ruffwear Front Range."
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "harnais", "éducation", "équipement"]
 sourceUrl: "/harnais-chien-qui-tire/"

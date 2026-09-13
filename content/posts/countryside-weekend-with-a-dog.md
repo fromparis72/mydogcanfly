@@ -19,7 +19,7 @@ url: "/countryside-weekend-with-a-dog/"
 frUrl: "/week-end-campagne-avec-chien/"
 categories: ["Destinations"]
 tags: ["dog", "countryside", "weekend", "vacation rental"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1761421084140-5b495d4ba16e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjb3VudHJ5c2lkZSUyMGZpZWxkJTIwZ3JlZW58ZW58MXwwfHx8MTc4MjQ5NzQyN3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The countryside is ideal for a dog: wide-open spaces, welcoming rentals and endless walks. Keep them leashed near livestock and crops, and check for ticks after every outing."
 cover:

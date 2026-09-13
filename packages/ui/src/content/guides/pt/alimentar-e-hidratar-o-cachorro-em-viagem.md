@@ -6,7 +6,7 @@ description: "Alimentar e hidratar o seu cachorro em viagem: quanta água, quand
 summary: "Em viagem, mantenha a mesma ração de casa, evite alimentar logo antes de sair e ofereça água com regularidade. A desidratação se instala rápido no calor ou em um trajeto longo."
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "hidratação", "alimentação", "viagem"]
 enbref:

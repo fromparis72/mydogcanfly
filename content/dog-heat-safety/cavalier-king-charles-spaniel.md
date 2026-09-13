@@ -18,7 +18,7 @@ slug: "cavalier-king-charles-spaniel"
 url: "/dog-heat-safety/cavalier-king-charles-spaniel/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Cavalier King Charles Spaniel", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1613210609371-455e3aa5fb8c?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Cavalier King Charles Spaniel has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

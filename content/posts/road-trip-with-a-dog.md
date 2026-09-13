@@ -19,7 +19,7 @@ url: "/road-trip-with-a-dog/"
 frUrl: "/road-trip-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "road trip", "car", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1711654783635-c65873cdae66?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjByb2FkJTIwdHJpcCUyMGNhciUyMHdpbmRvd3xlbnwxfDB8fHwxNzgyNDk3NDEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A good canine road trip takes planning: a break every 2 hours, water always available, a dog restrained or crated, and dog-friendly stops scouted in advance. Comfort and safety come before mileage."
 cover:

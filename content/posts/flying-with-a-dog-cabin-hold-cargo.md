@@ -19,7 +19,7 @@ url: "/flying-with-a-dog-cabin-hold-cargo/"
 frUrl: "/voyager-avion-chien-options/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "cabin", "hold", "cargo", "service dog"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["/images/pawair.jpg"]
 summary: "Cabin, hold, cargo, service dog, emotional support animal or dedicated dog airlines: there are six main ways to fly a dog, each with its own conditions."
 cover:

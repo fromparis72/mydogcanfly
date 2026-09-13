@@ -1911,11 +1911,14 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
      confirmer reçoivent une décision opposable — quatorze sous conditions et trois refusés.
      Quatre autres politiques IAG passent en `case_by_case` : `airline_approval` 4 → 8. Les
      causes restantes deviennent 76 `legacy_unreviewed` et 2 `official_source_unquoted`. */
-  check("répartition runtime : 0 allowed · 173 sous conditions · 43 denied · 86 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 173 && parStatut.denied === 43 && parStatut.confirmation_required === 86,
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : quatre canaux hérités deviennent
+     sous conditions et le fret Norwegian devient un refus documenté. Cinq causes
+     `legacy_unreviewed` disparaissent. */
+  check("répartition runtime : 0 allowed · 177 sous conditions · 44 denied · 81 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 177 && parStatut.denied === 44 && parStatut.confirmation_required === 81,
     JSON.stringify(parStatut));
-  check("causes : 76 legacy_unreviewed · 2 official_source_unquoted · 0 policy_unpublished · 8 airline_approval",
-    parCause.legacy_unreviewed === 76 && parCause.official_source_unquoted === 2
+  check("causes : 71 legacy_unreviewed · 2 official_source_unquoted · 0 policy_unpublished · 8 airline_approval",
+    parCause.legacy_unreviewed === 71 && parCause.official_source_unquoted === 2
       && !parCause.policy_unpublished && parCause.airline_approval === 8, JSON.stringify(parCause));
 }
 

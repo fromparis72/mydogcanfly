@@ -21,7 +21,7 @@ url: "/dog-first-aid-kit/"
 frUrl: "/trousse-premiers-secours-chien/"
 categories: ["Health"]
 tags: ["dog", "first aid", "health", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["/images/posts/trousse-premiers-secours.jpg"]
 summary: "A dog first-aid kit gathers what you need to disinfect, bandage, remove a tick and handle minor incidents. It never replaces the veterinarian but saves precious time."
 cover:

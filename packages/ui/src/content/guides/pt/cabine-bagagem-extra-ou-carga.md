@@ -6,7 +6,7 @@ description: "O mesmo cachorro na mesma aeronave pode viajar sob três contratos
 summary: "Cabine, porão como bagagem acompanhada e carga manifestada são três acordos distintos, não três classes. Diferem no canal de reserva, na base do preço, nos documentos e em quem manuseia o animal."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avião", "carga", "bagagem"]
 cover:

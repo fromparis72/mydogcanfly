@@ -6,7 +6,7 @@ description: "Dog coats, raincoats and boots: protect your dog from cold, rain, 
 summary: "Not every dog needs a coat, but small breeds, senior dogs and short-haired dogs appreciate extra protection in very cold weather. Boots protect paw pads from road salt, snow and scorching pavement."
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "coat", "boots", "weather"]
 sourceUrl: "/dog-coats-and-boots/"

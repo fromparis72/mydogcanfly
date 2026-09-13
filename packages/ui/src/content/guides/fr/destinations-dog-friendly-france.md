@@ -6,7 +6,7 @@ description: "Destinations dog-friendly en France : mer, montagne et campagne ac
 summary: "Les meilleures destinations dog-friendly en France allient nature, hébergements accueillants et plages autorisées : Bretagne, Auvergne, Alpes, Sud-Ouest et campagne francilienne en tête."
 date: "2026-06-26T14:00:00+02:00"
 lastmod: "2026-06-26T14:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "dog-friendly", "vacances", "France"]
 sourceUrl: "/destinations-dog-friendly-france/"

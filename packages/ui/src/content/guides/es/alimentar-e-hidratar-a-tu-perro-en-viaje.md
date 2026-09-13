@@ -6,7 +6,7 @@ description: "Alimentar e hidratar a tu perro en viaje: cuánta agua, cuándo da
 summary: "En viaje, mantén el mismo pienso que en casa, evita dar de comer justo antes de salir y ofrece agua con regularidad. La deshidratación se instala rápido con calor o en un trayecto largo."
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "hidratación", "alimentación", "viaje"]
 enbref:

@@ -5,7 +5,7 @@ description: "Sac, caisse ou cage de transport : critères de choix selon la tai
 summary: "Le bon contenant dépend du gabarit et du mode de transport : sac souple pour les petits chiens en cabine, caisse rigide conforme aux exigences applicables pour la voiture, l'avion ou le train. L'habituation progressive est la clé de l'acceptation."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "caisse de transport", "sac", "équipement"]
 sourceUrl: "/sac-caisse-transport-chien/"

@@ -6,7 +6,7 @@ description: "Bolsas de transporte para cães pequenos: critérios de conforto e
 summary: "Bolsas de transporte para cães pequenos: critérios de conforto e segurança, normas de cabine, e as Sleepypod e Trixie Madison como exemplos de categoria."
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "bolsa de transporte", "cachorro pequeno", "equipamento"]
 enbref:

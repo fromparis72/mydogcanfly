@@ -5,7 +5,7 @@ description: "Muselière pour le transport du chien : muselière-panier adaptée
 summary: "Muselière pour le transport du chien : muselière-panier adaptée, quand elle est exigée (train, transports), comment habituer son chien en douceur."
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "muselière", "transport"]
 sourceUrl: "/museliere-transport-chien/"

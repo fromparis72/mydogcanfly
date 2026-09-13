@@ -6,7 +6,7 @@ description: "Las cuatro medidas que las aerolíneas comprueban de verdad, cómo
 summary: "Cuatro medidas deciden el transportín: longitud, altura a la cruz, altura de pie con la cabeza alta y anchura. Tómalas con el perro de pie, añade los márgenes y contrasta el resultado con la aerolínea."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "avión", "transportín", "IATA"]
 cover:

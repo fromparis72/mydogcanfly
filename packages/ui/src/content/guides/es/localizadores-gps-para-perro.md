@@ -6,7 +6,7 @@ description: "Localizadores GPS para perro: en qué se diferencian del microchip
 summary: "Un localizador GPS sitúa a tu perro en tiempo real, al contrario que el microchip de identificación, que solo identifica al animal una vez encontrado. Autonomía, cobertura y coste de la suscripción son los criterios decisivos."
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "GPS", "localizador", "seguridad"]
 enbref:

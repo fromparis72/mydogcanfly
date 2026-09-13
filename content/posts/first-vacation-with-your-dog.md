@@ -21,7 +21,7 @@ url: "/first-vacation-with-your-dog/"
 frUrl: "/premiere-fois-vacances-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "checklist", "vacation", "preparation"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1581553738617-14ac063e3ba5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBzdWl0Y2FzZSUyMHRyYXZlbHxlbnwxfDB8fHwxNzgyNDgxMzAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A first trip with your dog rests on three pillars: up-to-date paperwork, the right gear, and accommodation that is genuinely dog-friendly. Follow the checklist step by step."
 cover:

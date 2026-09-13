@@ -17,7 +17,7 @@ url: "/air-transat-dog-policy/"
 frUrl: "/air-transat-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Transat", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1610141353646-14306dc6a9ab?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Transat accepts dogs in the cabin up to 8 kg (18 lb) for $40–60 and in the hold up to 45 kg (99 lb) for $75–230. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

@@ -6,7 +6,7 @@ description: "Visiter une ville avec son chien : repérer les lieux qui l'accept
 summary: "En ville, privilégiez les terrasses, parcs et boutiques dog-friendly, évitez le bitume brûlant aux heures chaudes et emportez de l'eau. Vérifiez l'accès aux transports et aux sites touristiques avant de partir."
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "ville", "visite", "tourisme"]
 sourceUrl: "/visiter-ville-avec-chien/"

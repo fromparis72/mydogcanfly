@@ -6,7 +6,7 @@ description: "El botiquín de primeros auxilios para perro en viaje: contenido e
 summary: "Un botiquín para perro reúne lo necesario para desinfectar, vendar, retirar una garrapata y afrontar incidentes menores. Nunca sustituye al veterinario, pero ahorra un tiempo precioso."
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "primeros auxilios", "salud", "viaje"]
 enbref:

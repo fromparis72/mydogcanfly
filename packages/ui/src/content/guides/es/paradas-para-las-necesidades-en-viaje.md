@@ -6,7 +6,7 @@ description: "Las necesidades del perro en viaje: cada cuánto parar, cómo mane
 summary: "Las necesidades del perro en viaje: cada cuánto parar, cómo manejar a un cachorro o a un perro ansioso, limpieza y accidentes. Un viaje limpio y sin estrés."
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "higiene", "viaje"]
 enbref:

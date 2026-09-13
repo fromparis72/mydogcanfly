@@ -15,7 +15,7 @@ url: "/traveling-to-the-uk-with-a-dog/"
 frUrl: "/voyager-chien-royaume-uni/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "United Kingdom"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to the UK: moderate difficulty, allow 21 days plus a tapeworm treatment 1 to 5 days before arrival."
 cover:

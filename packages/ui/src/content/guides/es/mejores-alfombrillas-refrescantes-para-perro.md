@@ -6,7 +6,7 @@ description: "Alfombrillas refrescantes para perro: cómo funcionan, cómo elegi
 summary: "Alfombrillas refrescantes para perro: cómo funcionan, cómo elegirlas (gel, tamaño, resistencia), con modelos Trixie y Flamingo para el calor del verano."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "alfombrilla refrescante", "ola de calor", "equipamiento"]
 enbref:

@@ -6,7 +6,7 @@ description: "Dog pulling on the leash: which no-pull harness to choose? Types, 
 summary: "Dog pulling on the leash: which no-pull harness to choose? Types, criteria, plus the Julius-K9 and Ruffwear Front Range as category examples."
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "harness", "training", "gear"]
 sourceUrl: "/no-pull-dog-harness/"

@@ -6,7 +6,7 @@ description: "O guia completo dos acessórios indispensáveis para viajar com ca
 summary: "Transporte, segurança, hidratação, localização, conforto, saúde: um panorama completo dos acessórios realmente úteis para viajar com o seu cachorro, com os nossos guias de compra detalhados para cada categoria."
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "acessórios", "viagem", "equipamento", "checklist"]
 enbref:

@@ -5,7 +5,7 @@ description: "Voyager en avion avec son chien : conditions en cabine ou en soute
 summary: "Voyager en avion avec son chien suppose une caisse de transport, un poids conforme à la compagnie et des démarches sanitaires anticipées plusieurs semaines à l'avance."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "voyage international"]
 sourceUrl: "/voyager-avion-avec-chien/"

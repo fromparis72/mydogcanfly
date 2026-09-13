@@ -21,7 +21,7 @@ url: "/no-pull-dog-harness/"
 frUrl: "/harnais-chien-qui-tire/"
 categories: ["Gear"]
 tags: ["dog", "harness", "training", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1580129518863-f00fcf1d6e68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBoYXJuZXNzJTIwd2Fsa2luZyUyMGxlYXNofGVufDF8MHx8fDE3ODI4MjM4NDF8MA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog pulling on the leash: which no-pull harness to choose? Types, criteria, plus the Julius-K9 and Ruffwear Front Range as category examples."
 cover:

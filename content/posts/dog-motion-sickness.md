@@ -21,7 +21,7 @@ url: "/dog-motion-sickness/"
 frUrl: "/mal-des-transports-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "transport", "car"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1762222924495-6112f7636404?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog motion sickness often comes from an immature inner ear or stress. Gradual conditioning, good ventilation and veterinary advice reduce it."
 cover:

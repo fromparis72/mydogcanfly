@@ -15,7 +15,7 @@ url: "/dog-travel-vaccinations/"
 frUrl: "/vaccins-vermifuge-antiparasitaires-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "vaccines", "deworming", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1630438994394-3deff7a591bf?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB2ZXRlcmluYXJpYW4lMjBjaGVja3VwfGVufDF8MHx8fDE3ODI5Mzk0Mjl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Getting your dog's health travel-ready: up-to-date vaccines, deworming, flea and tick prevention. The timeline to plan with your veterinarian."
 cover:

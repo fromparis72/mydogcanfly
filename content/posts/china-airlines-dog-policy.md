@@ -15,7 +15,7 @@ url: "/china-airlines-dog-policy/"
 frUrl: "/china-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "China Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1716929955955-f6ef9c1ca084?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "China Airlines accepts dogs in the hold up to 45 kg (99 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

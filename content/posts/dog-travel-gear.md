@@ -21,7 +21,7 @@ url: "/dog-travel-gear/"
 frUrl: "/materiel-voyage-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "safety", "transport"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1774790479490-dbf0f3a7fb60?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The right dog travel gear depends on your dog's size and your mode of transport: rigid crate, certified safety harness or carrier depending on the situation."
 cover:

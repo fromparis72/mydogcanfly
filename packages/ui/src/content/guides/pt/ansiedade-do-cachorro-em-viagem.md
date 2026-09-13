@@ -6,7 +6,7 @@ description: "Ansiedade do cachorro no carro, no trem ou no avião: aprenda a id
 summary: "Ofegação, tremores, salivação, choramingos: o estresse da viagem se trabalha com dessensibilização gradual, associações positivas e conforto. Em casos graves, o veterinário pode oferecer um acompanhamento adequado."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "ansiedade", "estresse", "viagem"]
 enbref:

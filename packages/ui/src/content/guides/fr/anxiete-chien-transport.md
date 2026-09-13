@@ -5,7 +5,7 @@ description: "Anxiété du chien en voiture, train ou avion : reconnaître les s
 summary: "Halètement, tremblements, bave, gémissements : le stress du transport se travaille par habituation progressive, associations positives et confort. En cas d'anxiété sévère, un vétérinaire peut proposer un accompagnement adapté."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "anxiété", "stress", "transport"]
 sourceUrl: "/anxiete-chien-transport/"

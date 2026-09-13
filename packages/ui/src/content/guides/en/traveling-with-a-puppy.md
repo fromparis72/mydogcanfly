@@ -6,7 +6,7 @@ description: "Traveling with a puppy: age and vaccines, trip length, potty break
 summary: "A puppy travels once its vaccines are in place: short trips, frequent breaks, a reassuring familiar item and strict hygiene. First trips, done well, lay the foundation for a calm adult travel companion."
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "puppy", "health", "travel"]
 sourceUrl: "/traveling-with-a-puppy/"

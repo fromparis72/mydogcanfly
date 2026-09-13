@@ -17,7 +17,7 @@ url: "/air-tahiti-nui-dog-policy/"
 frUrl: "/air-tahiti-nui-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Tahiti Nui", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1665904457714-df18e8c142a1?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Tahiti Nui accepts dogs in the cabin up to 8 kg (18 lb) for €117–201 (~$135–230); hold transport goes through the cargo service only. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

@@ -6,7 +6,7 @@ description: "Reservar um voo com cachorro não é reservar um assento e acresce
 summary: "A reserva do animal é um processo à parte, com a sua cota, o seu preço e a sua confirmação. Reserve o animal antes da passagem, obtenha tudo por escrito e confira de novo alguns dias antes da partida."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "reserva", "companhia aérea"]
 cover:

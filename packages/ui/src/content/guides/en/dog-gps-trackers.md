@@ -6,7 +6,7 @@ description: "GPS trackers for dogs: how they differ from a microchip, battery l
 summary: "A GPS tracker locates your dog in real time, unlike the identification microchip, which only identifies the dog once found. Battery life, coverage and subscription cost are the deciding criteria."
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "GPS", "tracker", "safety"]
 sourceUrl: "/dog-gps-trackers/"

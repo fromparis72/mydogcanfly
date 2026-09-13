@@ -5,7 +5,7 @@ description: "Que faire si son chien se blesse en balade : coupure d'un coussine
 summary: "Devant une coupure, un épillet ou une boiterie, nettoyez, protégez et évaluez la gravité avant de filer chez le vétérinaire. Une trousse de secours canine permet d'agir vite et bien sur le terrain."
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "premiers secours", "blessure", "balade"]
 sourceUrl: "/blessure-chien-balade-premiers-gestes/"

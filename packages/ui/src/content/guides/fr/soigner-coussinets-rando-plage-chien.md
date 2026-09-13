@@ -5,7 +5,7 @@ description: "Soigner les coussinets du chien après une rando ou la plage : ins
 summary: "Soigner les coussinets du chien après une rando ou la plage : inspection, nettoyage, baume réparateur, repérer une brûlure ou une coupure. Prévention."
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "coussinets", "randonnée"]
 sourceUrl: "/soigner-coussinets-rando-plage-chien/"

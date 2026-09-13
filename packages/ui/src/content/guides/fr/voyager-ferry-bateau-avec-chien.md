@@ -5,7 +5,7 @@ description: "Voyager en ferry ou en bateau avec son chien : réservation, cheni
 summary: "Sur la plupart des ferries, le chien voyage en cabine pet-friendly, en chenil de bord ou dans la voiture selon la compagnie. Réservez tôt, prévoyez eau et sortie avant l'embarquement, et anticipez le mal de mer."
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "ferry", "bateau", "traversée"]
 sourceUrl: "/voyager-ferry-bateau-avec-chien/"

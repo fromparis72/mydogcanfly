@@ -6,7 +6,7 @@ description: "Golpe de calor en perros: reconoce las señales de alarma, refresc
 summary: "El golpe de calor aparece cuando el perro ya no logra regular su temperatura. Por encima de 40,5 °C es una urgencia vital: refréscalo de forma progresiva y acude rápido al veterinario."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "ola de calor", "golpe de calor", "verano"]
 enbref:

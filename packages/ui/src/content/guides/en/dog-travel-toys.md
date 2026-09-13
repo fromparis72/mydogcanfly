@@ -6,7 +6,7 @@ description: "Keeping your dog busy on a long trip: chew toys, snuffle mats, tre
 summary: "Keeping your dog busy on a long trip: chew toys, snuffle mats, treat-dispensing toys. Reduce boredom and stress in the car, train or plane."
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "toys", "travel"]
 sourceUrl: "/dog-travel-toys/"

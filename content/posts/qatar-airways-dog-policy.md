@@ -15,7 +15,7 @@ url: "/qatar-airways-dog-policy/"
 frUrl: "/qatar-airways-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Qatar Airways", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1685113872064-de4180a0ea93?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxRYXRhciUyMERvaGElMjBza3lsaW5lfGVufDF8MHx8fDE3ODI5MTI3MTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Qatar Airways accepts dogs in the hold up to 75 kg (165 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

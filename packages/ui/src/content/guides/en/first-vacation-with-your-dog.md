@@ -6,7 +6,7 @@ description: "First vacation with your dog: the complete checklist — paperwork
 summary: "A first trip with your dog rests on three pillars: up-to-date paperwork, the right gear, and accommodation that is genuinely dog-friendly. Follow the checklist step by step."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "checklist", "vacation", "preparation"]
 sourceUrl: "/first-vacation-with-your-dog/"

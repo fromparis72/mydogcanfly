@@ -6,7 +6,7 @@ description: "Choisir un harnais de sécurité voiture pour son chien : normes e
 summary: "Un harnais de voiture doit être crash-testé, à la bonne taille et relié à la ceinture par une attache courte. C'est, avec la caisse de transport, la seule manière de sécuriser un chien en voiture et de respecter le Code de la route."
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "harnais", "sécurité routière", "voiture"]
 sourceUrl: "/harnais-securite-voiture-chien/"

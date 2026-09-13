@@ -6,7 +6,7 @@ description: "Cómo lograr una buena parada en el área de descanso con tu perro
 summary: "Una parada cada 2 horas: saca al perro con correa, ofrécele agua, deja que estire las patas y haga sus necesidades en las zonas verdes previstas. Nunca lo dejes solo en el coche en verano."
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "autopista", "área de descanso", "viaje"]
 enbref:

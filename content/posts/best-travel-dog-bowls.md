@@ -21,7 +21,7 @@ url: "/best-travel-dog-bowls/"
 frUrl: "/meilleures-gamelles-voyage-chien/"
 categories: ["Gear"]
 tags: ["dog", "bowl", "travel", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1678783133022-89e103910f76?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBib3dsJTIwb3V0ZG9vciUyMHRyYXZlbHxlbnwxfDB8fHwxNzgyODIzODQ1fDA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Travel bowls and water bottles for dogs: collapsible, built-in dispensers, easy to clean. Key criteria plus Kurgo and H2O4K9 models."
 cover:

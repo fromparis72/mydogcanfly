@@ -6,7 +6,7 @@ description: "Microchip, vacinação antirrábica, atestado sanitário, titulaç
 summary: "A companhia decide como o seu animal voa; o destino decide se ele pode entrar. São duas autoridades distintas, duas listas distintas e dois calendários distintos."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avião", "documentos", "internacional"]
 cover:

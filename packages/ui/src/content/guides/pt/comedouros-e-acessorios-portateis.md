@@ -6,7 +6,7 @@ description: "Comedouros dobráveis, garrafas de água, tapetes de viagem e dema
 summary: "Uma vasilha dobrável, uma garrafa com dispensador integrado, um tapete enrolável e sacos para dejetos: bastam alguns acessórios portáteis bem escolhidos para viajar leve sem abrir mão do conforto do seu cachorro."
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "comedouro", "acessórios", "viagem"]
 enbref:

@@ -6,7 +6,7 @@ description: "Dog ear infections after swimming: moisture trapped in the ear pro
 summary: "Dog ear infections after swimming: moisture trapped in the ear promotes infection. Drying, prevention, warning signs and at-risk breeds."
 date: "2026-06-01T08:00:00+02:00"
 lastmod: "2026-06-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "ear infection", "swimming"]
 sourceUrl: "/dog-ear-infections-swimming/"

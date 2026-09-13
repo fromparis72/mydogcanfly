@@ -5,7 +5,7 @@ description: "Gamelles et gourdes de voyage pour chien : pliables, à abreuvoir 
 summary: "Gamelles et gourdes de voyage pour chien : pliables, à abreuvoir intégré, faciles à nettoyer. Critères et modèles Kurgo et H2O4K9."
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "gamelle", "voyage", "équipement"]
 sourceUrl: "/meilleures-gamelles-voyage-chien/"

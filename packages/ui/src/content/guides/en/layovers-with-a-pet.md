@@ -6,7 +6,7 @@ description: "Connections multiply the ways a pet itinerary can fail: two carrie
 summary: "Every stopover adds a set of rules, a temperature check and a handling operation. A direct flight is not merely more comfortable — it removes whole categories of failure."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["pet", "flying", "connection", "airport"]
 cover:

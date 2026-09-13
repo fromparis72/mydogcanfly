@@ -6,7 +6,7 @@ description: "Entretener a tu perro en un trayecto largo: juguetes para masticar
 summary: "Entretener a tu perro en un trayecto largo: juguetes para masticar, alfombras olfativas, juguetes dispensadores de premios. Reducir el aburrimiento y el estrés en coche, tren o avión."
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "juguetes", "viaje"]
 enbref:

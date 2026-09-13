@@ -6,7 +6,7 @@ description: "Viajar de carro com cachorro em segurança: sistemas de contençã
 summary: "No carro, o cachorro precisa estar preso ou contido pela segurança de todos. Uma caixa de transporte, um peitoral com crash test ou uma grade, paradas regulares e boa preparação fazem a viagem."
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "carro", "segurança viária", "viagem"]
 enbref:

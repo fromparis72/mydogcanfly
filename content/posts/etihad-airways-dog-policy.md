@@ -17,7 +17,7 @@ url: "/etihad-airways-dog-policy/"
 frUrl: "/etihad-airways-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Etihad Airways", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxEdWJhaSUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Etihad Airways accepts dogs in the cabin up to 8 kg (18 lb) ($430–1,650) and in the hold via its cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

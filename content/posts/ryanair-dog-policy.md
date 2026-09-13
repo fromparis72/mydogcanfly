@@ -15,7 +15,7 @@ url: "/ryanair-dog-policy/"
 frUrl: "/ryanair-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Ryanair", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1570875450638-044bca38ec92?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxJcmVsYW5kJTIwY2xpZmZzJTIwbGFuZHNjYXBlfGVufDF8MHx8fDE3ODI5MTI3MTZ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Ryanair does not accept dogs on board, apart from assistance dogs."
 cover:

@@ -5,7 +5,7 @@ description: "Réussir un road trip avec son chien : préparer l'itinéraire, ry
 summary: "Un bon road trip canin se prépare : une pause toutes les 2 heures, de l'eau à volonté, un chien attaché ou en caisse, et des étapes dog-friendly repérées à l'avance. Le confort et la sécurité priment sur les kilomètres."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "road trip", "voiture", "voyage"]
 sourceUrl: "/road-trip-avec-chien/"

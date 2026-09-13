@@ -5,7 +5,7 @@ description: "Anxiété de séparation du chien en vacances : reconnaître les s
 summary: "Anxiété de séparation du chien en vacances : reconnaître les signes, préparer les absences, aménager un lieu inconnu. Conseils pour un chien serein."
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "anxiété", "comportement"]
 sourceUrl: "/anxiete-separation-vacances-chien/"

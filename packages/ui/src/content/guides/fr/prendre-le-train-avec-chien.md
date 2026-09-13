@@ -6,7 +6,7 @@ description: "Prendre le train avec son chien : tarifs SNCF, muselière, taille 
 summary: "Prendre le train avec son chien est autorisé sur tout le réseau SNCF moyennant un billet. Les petits chiens voyagent en sac, les grands en laisse et muselière."
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "train", "SNCF", "transport"]
 sourceUrl: "/prendre-le-train-avec-chien/"

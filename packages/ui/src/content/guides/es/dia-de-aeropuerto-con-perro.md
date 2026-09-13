@@ -6,7 +6,7 @@ description: "Qué ocurre realmente el día del vuelo: mostradores de facturaci�
 summary: "El día de aeropuerto tiene una forma: llegar antes que si viajaras solo, facturar en un mostrador concreto, llevar al perro en brazos por el control y buscar una zona de alivio antes de embarcar."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "avión", "aeropuerto", "facturación"]
 cover:

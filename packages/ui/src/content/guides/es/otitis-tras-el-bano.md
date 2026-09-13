@@ -6,7 +6,7 @@ description: "Otitis del perro después del baño: la humedad retenida en la ore
 summary: "Otitis del perro después del baño: la humedad retenida en la oreja favorece la infección. Secado, prevención, señales de alerta y razas de riesgo."
 date: "2026-06-01T08:00:00+02:00"
 lastmod: "2026-06-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "otitis", "baño"]
 enbref:

@@ -19,7 +19,7 @@ url: "/portable-dog-feeding-gear/"
 frUrl: "/gamelles-accessoires-nomades-chien/"
 categories: ["Gear"]
 tags: ["dog", "bowl", "accessories", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1597475495184-7038d1cb7db2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB0cmF2ZWwlMjBib3dsJTIwb3V0ZG9vcnxlbnwxfDB8fHwxNzgyNDk3NDQyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A collapsible bowl, a water bottle with built-in dispenser, a roll-up sleeping mat and waste bags: a few well-chosen portable accessories are all it takes to travel light while keeping your dog comfortable."
 cover:

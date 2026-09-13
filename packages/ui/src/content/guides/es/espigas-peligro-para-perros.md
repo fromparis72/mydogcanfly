@@ -6,7 +6,7 @@ description: "Espigas en el perro: estas aristas secas de gramínea se clavan en
 summary: "Espigas en el perro: estas aristas secas de gramínea se clavan en la piel, las orejas, los ojos y las patas. Prevención, revisión tras el paseo y cuándo acudir de urgencia."
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "espigas", "verano"]
 enbref:

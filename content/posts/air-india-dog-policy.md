@@ -17,7 +17,7 @@ url: "/air-india-dog-policy/"
 frUrl: "/air-india-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air India", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1564507592333-c60657eea523?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxJbmRpYSUyMFRhaiUyME1haGFsfGVufDF8MHx8fDE3ODI5MTI2OTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air India accepts dogs in the cabin up to 10 kg (22 lb) for $150 and in the hold up to 32 kg (70 lb) for $370. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

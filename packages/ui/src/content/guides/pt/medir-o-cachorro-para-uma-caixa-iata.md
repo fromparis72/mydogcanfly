@@ -6,7 +6,7 @@ description: "As quatro medidas que as companhias realmente conferem, como tomá
 summary: "Quatro medidas decidem a caixa: comprimento, altura na cernelha, altura de pé com a cabeça erguida e largura. Tome-as com o cachorro de pé, acrescente as margens e confronte o resultado com a companhia."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "caixa de transporte", "IATA"]
 cover:

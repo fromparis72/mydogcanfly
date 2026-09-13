@@ -6,7 +6,7 @@ description: "Les correspondances multiplient les façons dont un itinéraire av
 summary: "Chaque escale ajoute un jeu de règles, un contrôle de température et une opération de manutention. Un vol direct n'est pas seulement plus confortable : il supprime des catégories entières de défaillance."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avion", "correspondance", "aéroport"]
 cover:

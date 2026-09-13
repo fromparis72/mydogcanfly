@@ -6,7 +6,7 @@ description: "Todas as formas de voar com um cachorro: cabine, porão despachado
 summary: "Cabine, porão, carga, cão de assistência, animal de apoio emocional ou companhias dedicadas: há seis formas principais de voar com um cachorro, cada uma com suas condições."
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "cabine", "porão", "carga", "cão de assistência"]
 enbref:

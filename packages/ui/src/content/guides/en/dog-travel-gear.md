@@ -6,7 +6,7 @@ description: "Dog travel gear: how to choose a crate, safety harness or carrier 
 summary: "The right dog travel gear depends on your dog's size and your mode of transport: rigid crate, certified safety harness or carrier depending on the situation."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "safety", "transport"]
 sourceUrl: "/dog-travel-gear/"

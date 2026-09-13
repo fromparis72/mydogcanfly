@@ -6,7 +6,7 @@ description: "Motion sickness in dogs: recognize the symptoms, understand the ca
 summary: "Dog motion sickness often comes from an immature inner ear or stress. Gradual conditioning, good ventilation and veterinary advice reduce it."
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "transport", "car"]
 sourceUrl: "/dog-motion-sickness/"

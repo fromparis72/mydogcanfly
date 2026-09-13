@@ -6,7 +6,7 @@ description: "Dog travel beds and mats: roll-up mattress, waterproof mat, famili
 summary: "Dog travel beds and mats: roll-up mattress, waterproof mat, familiar scent. A portable bed that reassures your dog anywhere."
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "bedding", "comfort"]
 sourceUrl: "/dog-travel-beds/"

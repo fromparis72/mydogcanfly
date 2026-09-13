@@ -6,7 +6,7 @@ description: "Proteger las almohadillas de tu perro en verano: asfalto ardiente,
 summary: "Proteger las almohadillas de tu perro en verano: asfalto ardiente, test de los 7 segundos, bálsamo y botitas. Guía completa y productos recomendados."
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "almohadillas", "verano", "equipamiento"]
 enbref:

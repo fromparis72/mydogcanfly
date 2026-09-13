@@ -6,7 +6,7 @@ description: "Escolher um peitoral de segurança de carro para o seu cachorro: n
 summary: "Um peitoral de carro precisa ter passado por crash test, estar bem ajustado e ser conectado ao cinto com uma amarra curta. Junto com a caixa de transporte, é o único sistema confiável para prender um cachorro no carro — e para cumprir a lei."
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "peitoral", "segurança viária", "carro"]
 enbref:

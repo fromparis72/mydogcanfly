@@ -6,7 +6,7 @@ description: "Viajar de ferry com cachorro: reserva, canis a bordo, cabines pet-
 summary: "Na maioria dos ferries, o cachorro viaja em uma cabine pet-friendly, em um canil a bordo ou no carro, conforme a operadora. Reserve cedo, leve água e faça uma parada antes de embarcar, e antecipe-se ao enjoo."
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "ferry", "barco", "travessia"]
 enbref:

@@ -6,7 +6,7 @@ description: "Traveling by car with a dog safely: crash-tested restraints, break
 summary: "In the car, a dog must be restrained or contained for everyone's safety. A crate, a crash-tested harness or a barrier, regular breaks and good preparation make the trip a success."
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "car", "road safety", "travel"]
 sourceUrl: "/traveling-by-car-with-a-dog/"

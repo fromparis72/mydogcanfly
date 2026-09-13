@@ -18,7 +18,7 @@ slug: "english-bulldog"
 url: "/dog-heat-safety/english-bulldog/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "English Bulldog", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1611611158876-41699b77a059?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The English Bulldog has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

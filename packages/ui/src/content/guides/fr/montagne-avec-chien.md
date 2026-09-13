@@ -5,7 +5,7 @@ description: "Randonner à la montagne avec son chien : préparer l'effort, gér
 summary: "La montagne se savoure progressivement : entraînez votre chien, emportez eau et en-cas, protégez ses coussinets sur les pierriers, tenez-le en laisse près des troupeaux et de la faune, et surveillez les signes de fatigue."
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "montagne", "randonnée", "nature"]
 sourceUrl: "/montagne-avec-chien/"

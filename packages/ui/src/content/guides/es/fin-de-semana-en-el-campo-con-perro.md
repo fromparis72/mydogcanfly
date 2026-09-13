@@ -6,7 +6,7 @@ description: "Un fin de semana en el campo con perro: elegir la casa rural, disf
 summary: "El campo es ideal para un perro: espacios abiertos, casas acogedoras y paseos sin fin. Llévalo con correa cerca del ganado y de los cultivos, y revisa las garrapatas después de cada salida."
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "campo", "fin de semana", "casa rural"]
 enbref:

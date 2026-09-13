@@ -17,7 +17,7 @@ url: "/dog-travel-requirements-by-country/"
 frUrl: "/voyager-chien-etranger-pays/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "countries"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1580795478762-1f6b61f2fae7?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Every country sets its own entry requirements for a dog. This hub recaps, country by country and from official sources, the microchip, vaccine, travel documents, rabies titer test, tapeworm treatment, permits and timelines."
 cover:

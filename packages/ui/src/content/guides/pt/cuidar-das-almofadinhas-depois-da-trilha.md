@@ -6,7 +6,7 @@ description: "Cuidar das almofadinhas do cachorro depois de uma trilha ou da pra
 summary: "Cuidar das almofadinhas do cachorro depois de uma trilha ou da praia: inspeção, limpeza, bálsamo reparador, identificar uma queimadura ou um corte. Dicas de prevenção."
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "almofadinhas", "trilha"]
 enbref:

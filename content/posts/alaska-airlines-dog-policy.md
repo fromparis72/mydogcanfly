@@ -17,7 +17,7 @@ url: "/alaska-airlines-dog-policy/"
 frUrl: "/alaska-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Alaska Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1618414440968-e80b28bcf2c2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxVbml0ZWQlMjBTdGF0ZXMlMjBsYW5kbWFyayUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Alaska Airlines accepts dogs in the cabin ($100) and in the hold up to 68 kg / 150 lb ($150). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

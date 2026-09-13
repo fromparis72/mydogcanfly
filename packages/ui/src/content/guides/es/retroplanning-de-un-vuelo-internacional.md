@@ -6,7 +6,7 @@ description: "Algunas etapas del viaje internacional de un animal no se pueden c
 summary: "Son los plazos de espera, y no los papeles, los que deciden si un animal puede volar en una fecha dada. Parte de la fecha de salida y ve hacia atrás: el plazo antirrábico y la titulación fijan la salida más temprana posible."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avión", "organización", "internacional"]
 cover:

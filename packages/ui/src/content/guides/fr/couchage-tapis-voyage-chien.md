@@ -5,7 +5,7 @@ description: "Couchage et tapis de voyage pour chien : matelas roulable, tapis i
 summary: "Couchage et tapis de voyage pour chien : matelas roulable, tapis imperméable, repère olfactif. Un couchage nomade pour rassurer son chien partout."
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "couchage", "confort"]
 sourceUrl: "/couchage-tapis-voyage-chien/"

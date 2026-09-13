@@ -6,7 +6,7 @@ description: "As companhias suspendem o transporte de animais no porão acima de
 summary: "Um embargo por calor suspende o transporte no porão quando a temperatura ultrapassa um limite, medido na partida, na chegada e em cada escala. Decide o aeroporto mais quente da rota, e muitas vezes não é o que se imagina."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "calor", "porão"]
 cover:

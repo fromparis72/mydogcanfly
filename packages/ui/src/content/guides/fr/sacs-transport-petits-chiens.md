@@ -5,7 +5,7 @@ description: "Sac de transport pour petit chien : critères de confort et de sé
 summary: "Sac de transport pour petit chien : critères de confort et de sécurité, normes cabine avion, modèles Sleepypod et Trixie Madison."
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "sac de transport", "petit chien", "équipement"]
 sourceUrl: "/sacs-transport-petits-chiens/"

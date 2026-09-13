@@ -17,7 +17,7 @@ url: "/air-europa-dog-policy/"
 frUrl: "/air-europa-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Europa", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1567437890326-0084ea9d99e9?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTcGFpbiUyMFNldmlsbGUlMjBCYXJjZWxvbmElMjBhcmNoaXRlY3R1cmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Europa accepts dogs in the cabin up to 8 kg (18 lb) for €85–360 (~$100–415) and in the hold up to 50 kg (110 lb) for €90–330 (~$105–380). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

@@ -6,7 +6,7 @@ description: "Getting your dog's health travel-ready: up-to-date vaccines, dewor
 summary: "Getting your dog's health travel-ready: up-to-date vaccines, deworming, flea and tick prevention. The timeline to plan with your veterinarian."
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "vaccines", "deworming", "travel"]
 sourceUrl: "/dog-travel-vaccinations/"

@@ -17,7 +17,7 @@ url: "/ita-airways-dog-policy/"
 frUrl: "/ita-airways-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "ITA Airways", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxJdGFseSUyMFJvbWUlMjBsYW5kbWFya3xlbnwxfDB8fHwxNzgyOTEyNjk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "ITA Airways accepts dogs in the cabin up to 8 kg (18 lb) (€70–250 / ~$80–290) and in the hold up to 75 kg (165 lb) (€95–350 / ~$110–400). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

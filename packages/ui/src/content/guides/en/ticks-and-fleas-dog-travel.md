@@ -6,7 +6,7 @@ description: "Protecting your dog from ticks and fleas while traveling: preventi
 summary: "Up-to-date parasite prevention, a systematic check after every walk and quick tick removal with a hook: that's the best protection against tick-borne diseases (babesiosis, Lyme disease)."
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "ticks", "fleas", "prevention"]
 sourceUrl: "/ticks-and-fleas-dog-travel/"

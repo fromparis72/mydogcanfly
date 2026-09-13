@@ -6,7 +6,7 @@ description: "Protéger les coussinets de son chien contre le bitume chaud, le s
 summary: "Les coussinets du chien brûlent sur le bitume chaud et gèlent en hiver. Testez le sol avec votre main, promenez aux heures fraîches et inspectez régulièrement les pattes."
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "coussinets", "été", "soins"]
 sourceUrl: "/proteger-coussinets-chien/"

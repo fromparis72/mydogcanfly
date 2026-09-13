@@ -6,7 +6,7 @@ description: "Transporte público con perro: cómo varían las normas según la 
 summary: "Las normas varían según la red: perros pequeños en bolso, perros grandes con correa y a veces con bozal, gratis o media tarifa según la ciudad. Consulta siempre el reglamento local antes de subir."
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "transporte público", "ciudad", "metro"]
 enbref:

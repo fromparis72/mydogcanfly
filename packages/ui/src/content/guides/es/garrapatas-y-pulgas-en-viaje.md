@@ -6,7 +6,7 @@ description: "Proteger a tu perro de las garrapatas y las pulgas en viaje: preve
 summary: "Un antiparasitario al día, una revisión sistemática después de cada paseo y la retirada rápida de las garrapatas con un extractor: esa es la mejor protección frente a las enfermedades transmitidas (babesiosis, enfermedad de Lyme)."
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "garrapatas", "pulgas", "prevención"]
 enbref:

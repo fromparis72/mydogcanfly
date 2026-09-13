@@ -15,7 +15,7 @@ url: "/dog-hypothermia/"
 frUrl: "/coup-de-froid-hypothermie-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "cold", "winter"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1520741412100-24cd6c2832e5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBzbm93JTIwd2ludGVyJTIwY29sZHxlbnwxfDB8fHwxNzgyOTM5NDMyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Cold and hypothermia in dogs: at-risk dogs, warning signs, how to warm them up, prevention in winter and in the mountains. When to see a vet."
 cover:

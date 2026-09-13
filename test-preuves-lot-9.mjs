@@ -188,8 +188,10 @@ console.log("\n=== Clôture : les 102 compagnies examinées, ce que cela veut di
   /* MOUVEMENT NOMMÉ (13/09/2026, vague exhaustive puis lot fret) : 189 → 224 politiques citées ;
      78 des 302 politiques explicites restent sans phrase. Les quatre canaux sans bloc restent
      comptés séparément dans la réconciliation 306 = 102 × 3. */
-  check("224 politiques citées sur 302 — couverture fret accrue, 78 politiques restent sans phrase",
-    citees === 224 && politiques === 302, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq politiques gagnent leur
+     citation officielle ; 224 → 229 citées et 78 → 73 sans phrase. */
+  check("229 politiques citées sur 302 — 73 politiques restent sans phrase",
+    citees === 229 && politiques === 302, `${citees} / ${politiques}`);
   const neufLots = ["v3", "lots-2-3", "lot-4", "lot-5", "lot-6", "lot-7", "lot-8", "lot-9"].map((l) => `test-baselines/import-strict-${l}-apres.json`);
   check("la chaîne des baselines figées est complète, de l'import V3 au lot 9", neufLots.every((f) => { try { readFileSync(f); return true; } catch { return false; } }), neufLots.join(", "));
 }

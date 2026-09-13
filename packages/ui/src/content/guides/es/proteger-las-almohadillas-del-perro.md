@@ -6,7 +6,7 @@ description: "Protege las almohadillas de tu perro del asfalto caliente, la aren
 summary: "Las almohadillas del perro se queman con el asfalto caliente y se agrietan en invierno. Prueba el suelo con la mano, pasea en las horas frescas e inspecciona las patas con regularidad."
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "almohadillas", "verano", "cuidados"]
 enbref:

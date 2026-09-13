@@ -19,7 +19,7 @@ url: "/feeding-your-dog-while-traveling/"
 frUrl: "/hydratation-alimentation-chien-voyage/"
 categories: ["Health"]
 tags: ["dog", "hydration", "feeding", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1695023267262-7f4ab64152b2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBkcmlua2luZyUyMHdhdGVyfGVufDF8MHx8fDE3ODI0OTc0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "While traveling, keep the same kibble as at home, avoid feeding right before a trip, and offer water regularly. Dehydration sets in fast in hot weather or on a long journey."
 cover:

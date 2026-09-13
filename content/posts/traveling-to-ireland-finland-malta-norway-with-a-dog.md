@@ -15,7 +15,7 @@ url: "/traveling-to-ireland-finland-malta-norway-with-a-dog/"
 frUrl: "/voyager-chien-irlande-finlande-malte-norvege/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "Ireland, Finland, Malta, Norway"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1605822640211-55f4a9f04cbd?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to these countries: moderate difficulty, 21-day wait plus a tapeworm treatment 1 to 5 days before arrival."
 cover:

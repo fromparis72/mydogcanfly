@@ -6,7 +6,7 @@ description: "Stings and bites in dogs: wasp, bee, snake (viper), processionary 
 summary: "Stings and bites in dogs: wasp, bee, snake (viper), processionary caterpillar. How to judge the severity and react. Emergencies to know."
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "first aid", "summer"]
 sourceUrl: "/dog-stings-and-bites/"

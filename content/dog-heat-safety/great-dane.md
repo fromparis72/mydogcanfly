@@ -18,7 +18,7 @@ slug: "great-dane"
 url: "/dog-heat-safety/great-dane/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Great Dane"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1676290481911-c843118c8688?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Great Dane has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

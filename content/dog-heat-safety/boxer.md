@@ -18,7 +18,7 @@ slug: "boxer"
 url: "/dog-heat-safety/boxer/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Boxer", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1635787903007-8723d99c7825?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Boxer has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

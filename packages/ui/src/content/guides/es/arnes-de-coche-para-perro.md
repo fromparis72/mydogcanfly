@@ -6,7 +6,7 @@ description: "Elegir un arnés de seguridad de coche para tu perro: normas de cr
 summary: "Un arnés de coche debe estar sometido a crash test, bien ajustado y conectado al cinturón con una atadura corta. Junto con el transportín, es el único sistema fiable para sujetar a un perro en coche, y para cumplir la normativa."
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "arnés", "seguridad vial", "coche"]
 enbref:

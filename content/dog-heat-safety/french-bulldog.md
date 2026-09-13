@@ -18,7 +18,7 @@ slug: "french-bulldog"
 url: "/dog-heat-safety/french-bulldog/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "French Bulldog", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1521907236370-15adf2297445?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The French Bulldog is a flat-faced breed that overheats at surprisingly mild temperatures. Here is exactly when heat becomes dangerous and how to keep your Frenchie safe."
 cover:

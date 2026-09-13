@@ -19,7 +19,7 @@ url: "/transavia-dog-policy/"
 frUrl: "/transavia-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Transavia", "low-cost", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["/images/transavia-amsterdam.jpg"]
 summary: "Transavia accepts dogs up to 8 kg (18 lb) in the cabin (40 × 30 × 24 cm / 16 × 12 × 9.5 in carrier, 2 per flight) and — rare for a low-cost carrier — in a heated hold from about €77 (~$90) per crate."
 cover:

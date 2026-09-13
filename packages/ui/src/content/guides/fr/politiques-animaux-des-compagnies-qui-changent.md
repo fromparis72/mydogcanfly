@@ -6,7 +6,7 @@ description: "Les règles animaux des compagnies changent avec la saison, l'appa
 summary: "Une politique animaux n'est pas un document stable : elle bouge avec les embargos de température, les changements d'appareil, les lignes et les règles de race. Vérifiez le transporteur opérant, sur votre ligne, près du départ."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "compagnie aérienne", "réglementation"]
 cover:

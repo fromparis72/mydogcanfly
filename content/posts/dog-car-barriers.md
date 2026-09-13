@@ -15,7 +15,7 @@ url: "/dog-car-barriers/"
 frUrl: "/barriere-coffre-separation-voiture-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "car", "road safety"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1519592317156-7125c5d24af2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjYXIlMjB0cnVuayUyMGJvb3R8ZW58MXwwfHx8MTc4MjkzOTQyM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Cargo barriers and divider grilles for transporting your dog safely by car. Types, installation and how they pair with a crash-tested harness."
 cover:

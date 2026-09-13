@@ -15,7 +15,7 @@ url: "/dog-leashes-collars-harnesses/"
 frUrl: "/laisse-collier-harnais-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "leash", "harness", "collar"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1530700131180-d43d9b8cc41f?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBoYXJuZXNzJTIwbGVhc2glMjB3YWxrfGVufDF8MHx8fDE3ODI5Mzk0MjF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Leash, collar, and harness for traveling with your dog: which type to choose, which materials, how to fit them. A practical guide to safe walks."
 cover:

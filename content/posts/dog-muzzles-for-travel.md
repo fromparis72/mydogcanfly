@@ -15,7 +15,7 @@ url: "/dog-muzzles-for-travel/"
 frUrl: "/museliere-transport-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "muzzle", "transportation"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1765040448743-853f1802e4b3?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Muzzle for dog travel: the right basket muzzle, when it's required (trains, public transit), and how to get your dog used to it gently."
 cover:

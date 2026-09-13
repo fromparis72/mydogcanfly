@@ -21,7 +21,7 @@ url: "/protecting-dog-paw-pads/"
 frUrl: "/proteger-coussinets-chien/"
 categories: ["Health"]
 tags: ["dog", "paw pads", "summer", "care"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1624623534997-c7e88952cd68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXclMjBjbG9zZSUyMHVwfGVufDF8MHx8fDE3ODI0ODEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog paw pads burn on hot asphalt and crack in winter. Test the ground with your hand, walk during the cooler hours and inspect the paws regularly."
 cover:

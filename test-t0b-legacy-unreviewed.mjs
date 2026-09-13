@@ -316,8 +316,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      `legacy_unreviewed` sur une citation officielle. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel + Aerolíneas Argentinas) : 88 → 76 ;
      douze canaux fret quittent `legacy_unreviewed` sur une citation officielle dédiée. */
-  check("76 politiques émettent legacy_unreviewed après le lot fret officiel",
-    porteuses === 76, String(porteuses));
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 76 → 71 ; cinq canaux
+     quittent `legacy_unreviewed` sur les citations officielles transmises par l'éditeur. */
+  check("71 politiques émettent legacy_unreviewed après Air New Zealand et Norwegian",
+    porteuses === 71, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -426,9 +428,10 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
   const NON_REVUES_A_SOURCE_OFFICIELLE = [
     "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
     "airline_french_bee.cargo", "airline_malaysia_airlines.cargo",
-    "airline_norwegian.cargo",
     /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : Qantas soute et fret SORTENT de cette liste — citées
        (Conditions of Carriage § 8.8), elles ne sont plus « non revues ». 10 → 8, par identité. */
+    /* MOUVEMENT NOMMÉ (13/09/2026) : Norwegian fret SORT à son tour — sa page Cargo publie
+       explicitement le refus des animaux vivants et la phrase est désormais stockée. 7 → 6. */
     "airline_virgin_australia.hold",
   ];
   /* L'ensemble OBSERVÉ, recalculé sur la base — pas relu de la liste ci-dessus. */

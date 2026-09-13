@@ -6,7 +6,7 @@ description: "Bolso flexible, transportín rígido o jaula: cómo elegir según 
 summary: "El contenedor adecuado depende del tamaño de tu perro y de cómo viajas: bolso flexible para perros pequeños en cabina, transportín rígido conforme a los requisitos aplicables para coche, avión o tren. La habituación progresiva es la clave de la aceptación."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "transportín de viaje", "bolso", "equipamiento"]
 enbref:

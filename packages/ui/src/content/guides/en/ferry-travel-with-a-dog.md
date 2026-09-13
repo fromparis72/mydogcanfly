@@ -6,7 +6,7 @@ description: "Ferry travel with a dog: booking, onboard kennels, pet-friendly ca
 summary: "On most ferries, dogs travel in a pet-friendly cabin, an onboard kennel or the car, depending on the operator. Book early, plan water and a potty break before boarding, and be ready for seasickness."
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "ferry", "boat", "crossing"]
 sourceUrl: "/ferry-travel-with-a-dog/"

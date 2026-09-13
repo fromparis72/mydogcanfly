@@ -19,7 +19,7 @@ url: "/airline-pet-policies/"
 frUrl: "/comparatif-compagnies-aeriennes-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "comparison", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1696875135742-c3044510c9e2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBhaXJwb3J0JTIwdHJhdmVsfGVufDF8MHx8fDE3ODI4MjYxODB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Of 62 airlines reviewed, 46 accept small dogs in the cabin and 48 accept dogs in the hold as accompanied baggage. This comparison details, airline by airline, the weight limit, the price, how brachycephalic breeds are treated and the booking procedure."
 cover:

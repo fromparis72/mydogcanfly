@@ -6,7 +6,7 @@ description: "Dog anxiety in the car, train or plane: learn to spot the signs of
 summary: "Panting, trembling, drooling, whining: travel stress can be worked on through gradual desensitization, positive associations and comfort. For severe anxiety, a veterinarian can offer tailored support."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "anxiety", "stress", "travel"]
 sourceUrl: "/dog-travel-anxiety/"

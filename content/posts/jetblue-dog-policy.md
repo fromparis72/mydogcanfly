@@ -17,7 +17,7 @@ url: "/jetblue-dog-policy/"
 frUrl: "/jetblue-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "JetBlue", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1687806465114-93d0ac1fd199?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHw0fHxVbml0ZWQlMjBTdGF0ZXMlMjBsYW5kbWFyayUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "JetBlue accepts dogs in the cabin only, up to 9 kg (20 lb) carrier included, for $125 each way."
 cover:

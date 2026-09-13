@@ -19,7 +19,7 @@ url: "/traveling-to-the-eu-with-a-dog/"
 frUrl: "/voyager-chien-union-europeenne/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1583661047299-0fda75994262?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBBbXN0ZXJkYW0lMjBjYW5hbHxlbnwxfDB8fHwxNzgyODk5MTUwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog across the European Union: microchip, rabies vaccine and EU pet passport. No rabies titer test, no quarantine between member states."
 cover:

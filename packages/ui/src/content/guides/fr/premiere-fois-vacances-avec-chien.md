@@ -6,7 +6,7 @@ description: "Première fois en vacances avec son chien : checklist complète, p
 summary: "Partir pour la première fois avec son chien repose sur trois piliers : papiers à jour, matériel essentiel et un hébergement vraiment adapté. Suivez la checklist pas à pas."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "checklist", "vacances", "préparation"]
 sourceUrl: "/premiere-fois-vacances-avec-chien/"

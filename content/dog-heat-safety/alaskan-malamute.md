@@ -18,7 +18,7 @@ slug: "alaskan-malamute"
 url: "/dog-heat-safety/alaskan-malamute/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Alaskan Malamute"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1489924034176-2e678c29d4c6?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Alaskan Malamute has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

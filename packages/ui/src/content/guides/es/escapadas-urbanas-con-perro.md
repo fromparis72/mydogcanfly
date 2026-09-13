@@ -6,7 +6,7 @@ description: "Escapadas urbanas con perro: encontrar sitios que lo acojan, gesti
 summary: "En la ciudad, prioriza terrazas, parques y comercios dog-friendly, evita el asfalto ardiente en las horas de más calor y lleva agua. Comprueba antes el acceso al transporte y a los sitios turísticos."
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "ciudad", "visita", "turismo"]
 enbref:

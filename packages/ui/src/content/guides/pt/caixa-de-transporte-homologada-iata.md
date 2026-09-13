@@ -6,7 +6,7 @@ description: "Guia da caixa de avião para cachorro: exigências da IATA, métod
 summary: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "caixa de transporte", "avião", "IATA"]
 enbref:

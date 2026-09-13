@@ -6,7 +6,7 @@ description: "Collapsible bowls, water bottles, travel mats and other portable g
 summary: "A collapsible bowl, a water bottle with built-in dispenser, a roll-up sleeping mat and waste bags: a few well-chosen portable accessories are all it takes to travel light while keeping your dog comfortable."
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "bowl", "accessories", "travel"]
 sourceUrl: "/portable-dog-feeding-gear/"

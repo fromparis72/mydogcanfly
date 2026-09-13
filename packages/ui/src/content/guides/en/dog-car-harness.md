@@ -6,7 +6,7 @@ description: "Choosing a car safety harness for your dog: crash-test standards, 
 summary: "A car harness must be crash-tested, correctly sized and connected to the seat belt with a short tether. Along with a travel crate, it's the only reliable way to secure a dog in a car — and to stay on the right side of traffic laws."
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "harness", "road safety", "car"]
 sourceUrl: "/dog-car-harness/"

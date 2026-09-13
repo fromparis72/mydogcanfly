@@ -17,7 +17,7 @@ url: "/philippine-airlines-dog-policy/"
 frUrl: "/philippine-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Philippine Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxQaGlsaXBwaW5lcyUyMFBhbGF3YW4lMjBpc2xhbmR8ZW58MXwwfHx8MTc4Mjk2Nzg0MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Philippine Airlines carries dogs in the hold (checked baggage) up to 32 kg (71 lb) dog + crate. The cabin is reserved for service dogs; snub-nosed breeds are banned."
 cover:

@@ -15,7 +15,7 @@ url: "/turkish-airlines-dog-policy/"
 frUrl: "/turkish-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Turkish Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1559926629-2ac1c49b0257?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxUdXJrZXklMjBJc3RhbmJ1bCUyMENhcHBhZG9jaWF8ZW58MXwwfHx8MTc4MjkxMjcxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Turkish Airlines accepts dogs in the cabin up to 8 kg (18 lb) and in the hold. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

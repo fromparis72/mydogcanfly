@@ -6,7 +6,7 @@ description: "Vacaciones en la playa con tu perro: cómo encontrar playas dog-fr
 summary: "Muchas playas acogen perros fuera de temporada o en zonas señalizadas: comprueba siempre antes la normativa local. Sobre el terreno, piensa en sombra, agua fresca, un enjuague tras cada baño y vigilancia constante frente al golpe de calor."
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "playa", "mar", "verano"]
 enbref:

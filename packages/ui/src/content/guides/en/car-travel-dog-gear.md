@@ -6,7 +6,7 @@ description: "The gear that's genuinely useful for car travel with your dog: saf
 summary: "The gear that's genuinely useful for car travel with your dog: safety harness, seat cover, travel crate, hydration on the road."
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "car", "safety", "gear"]
 sourceUrl: "/car-travel-dog-gear/"

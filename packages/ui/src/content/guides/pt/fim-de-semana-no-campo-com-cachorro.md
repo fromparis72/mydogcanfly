@@ -6,7 +6,7 @@ description: "Um fim de semana no campo com cachorro: escolher a casa, aproveita
 summary: "O campo é ideal para um cachorro: espaços abertos, casas acolhedoras e passeios sem fim. Mantenha-o na guia perto do gado e das plantações, e confira os carrapatos depois de cada saída."
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "campo", "fim de semana", "casa de temporada"]
 enbref:

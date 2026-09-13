@@ -5,7 +5,7 @@ description: "Partir en camping avec son chien : choisir un camping dog-friendly
 summary: "Choisissez un camping qui accepte les chiens, prévoyez un coin ombragé et une attache, respectez le calme du voisinage et ne laissez jamais votre chien seul sous la tente par forte chaleur."
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "camping", "vacances", "plein air"]
 sourceUrl: "/camping-avec-chien/"

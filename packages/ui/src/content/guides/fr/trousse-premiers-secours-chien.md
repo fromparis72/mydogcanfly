@@ -5,7 +5,7 @@ description: "La trousse de premiers secours canine en voyage : contenu essentie
 summary: "Une trousse de premiers secours canine réunit de quoi désinfecter, panser, retirer une tique et gérer les petits incidents. Elle ne remplace jamais le vétérinaire mais fait gagner un temps précieux."
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "premiers secours", "santé", "voyage"]
 sourceUrl: "/trousse-premiers-secours-chien/"

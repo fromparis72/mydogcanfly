@@ -6,7 +6,7 @@ description: "Ansiedad por separación del perro en vacaciones: reconocer las se
 summary: "Ansiedad por separación del perro en vacaciones: reconocer las señales, preparar los momentos a solas, organizar un sitio desconocido. Consejos para un perro tranquilo."
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "ansiedad", "comportamiento"]
 enbref:

@@ -6,7 +6,7 @@ description: "Viagens urbanas com cachorro: encontrar lugares que o acolham, lid
 summary: "Na cidade, prefira terraços, parques e comércios dog-friendly, evite o asfalto escaldante nas horas mais quentes e leve água. Confira antes o acesso ao transporte e aos pontos turísticos."
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "cidade", "passeio", "turismo"]
 enbref:

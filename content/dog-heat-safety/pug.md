@@ -18,7 +18,7 @@ slug: "pug"
 url: "/dog-heat-safety/pug/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Pug", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1535909339361-ef56e179d637?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Pug has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

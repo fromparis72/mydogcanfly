@@ -15,7 +15,7 @@ url: "/air-mauritius-dog-policy/"
 frUrl: "/air-mauritius-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Mauritius", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1513415563383-4e580ed27a46?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxNYXVyaXRpdXMlMjBpc2xhbmQlMjBiZWFjaHxlbnwxfDB8fHwxNzgyOTEyNzEzfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Mauritius accepts dogs in the hold only. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

@@ -19,7 +19,7 @@ url: "/lufthansa-dog-policy/"
 frUrl: "/lufthansa-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Lufthansa", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1580677616212-2fa929e9c2cd?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxHZXJtYW55JTIwY2FzdGxlJTIwbGFuZG1hcmt8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Lufthansa accepts dogs up to 8 kg (18 lb) in the cabin and heavier dogs in the hold (billed as excess baggage). Brachycephalic breeds are banned from the hold. The fee depends on the itinerary."
 cover:

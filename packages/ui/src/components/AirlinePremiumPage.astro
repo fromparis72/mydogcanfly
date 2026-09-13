@@ -15,6 +15,7 @@ import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, 
 import { syntheseAttestee, nomDeLangue } from "../lib/syntheseAttestee";
 import { faitsAttestes } from "@mydogcanfly/knowledge";
 import { presentNumericFares } from "../lib/farePresentation";
+import { compagnieIndexable, preuvesDeCompagnie } from "../lib/compagnieEtat";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -151,9 +152,8 @@ const metaDescription = tt(locale, "premium.meta_description").replace("{airline
  * Conséquence assumée : une fiche dont aucun canal n'est audité ne porte ni `lastReviewed` ni
  * `citation`. C'est le bon comportement — annoncer une fraîcheur qu'on ne peut pas produire est
  * exactement ce que la frontière de confiance interdit à l'écran. */
-const preuvesDeLaFiche = d.channels
-  .map((c) => preuveAuditee(politiqueDuCanal(kbAir?.premium?.policy, c.placement, id)))
-  .filter((p): p is NonNullable<typeof p> => !!p);
+const preuvesDeLaFiche = preuvesDeCompagnie(kbAir, d);
+const indexable = compagnieIndexable(kbAir, d);
 const datesVerif = preuvesDeLaFiche.map((p) => p.verified_date).filter((x): x is string => typeof x === "string");
 const derniereVerif = datesVerif.length ? datesVerif.slice().sort().at(-1) : null;
 /* Une même page officielle sert souvent deux canaux : on ne la cite qu'une fois.
@@ -197,7 +197,7 @@ const webpageLd = {
 const faqItems = airlineFaq(d, locale, kbAir?.premium?.policy);
 const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 ---
-<Base title={seoTitle} description={metaDescription} locale={locale} ogType="article" jsonLd={jsonLd}>
+<Base title={seoTitle} description={metaDescription} locale={locale} ogType="article" jsonLd={jsonLd} noindex={!indexable}>
   <div class="mdcf-container afp">
     <Breadcrumb locale={locale} items={[
       { label: T("Home", "Accueil", "Inicio"), href: "/" },

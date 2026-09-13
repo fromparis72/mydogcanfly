@@ -6,7 +6,7 @@ description: "Flying with a dog: cabin or cargo hold rules, weight limits, the t
 summary: "Flying with a dog means a travel crate, a weight within your airline's limit and health paperwork started several weeks before departure."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "airplane", "international travel"]
 sourceUrl: "/flying-with-a-dog/"

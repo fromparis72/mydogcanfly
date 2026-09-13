@@ -21,7 +21,7 @@ url: "/dog-friendly-accommodation/"
 frUrl: "/choisir-hebergement-dog-friendly/"
 categories: ["Destinations"]
 tags: ["dog", "dog-friendly accommodation", "travel", "bed and breakfast"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1581888227599-779811939961?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjByZWxheGluZyUyMGNvenklMjBiZWR8ZW58MXwwfHx8MTc4MjQ4MTI5N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A good dog-friendly stay doesn't just tolerate your dog: it genuinely welcomes them, with a secure outdoor space, clear rules and zero hidden fees."
 cover:

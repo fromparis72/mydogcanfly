@@ -19,7 +19,7 @@ url: "/dog-injury-first-aid/"
 frUrl: "/blessure-chien-balade-premiers-gestes/"
 categories: ["Health"]
 tags: ["dog", "first aid", "injury", "walks"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1700665537604-412e89a285c3?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Faced with a cut, a foxtail or a limp: clean, protect and assess the severity before heading to the vet. A canine first aid kit lets you act quickly and effectively in the field."
 cover:

@@ -6,7 +6,7 @@ description: "Viajar com um cachorro idoso ou doente: check-up veterinário ante
 summary: "Viajar com um cachorro idoso ou doente: check-up veterinário antes da partida, trajeto adaptado, medicamentos e conforto. As precauções que tornam a viagem segura."
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "cachorro idoso", "viagem"]
 enbref:

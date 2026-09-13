@@ -15,7 +15,7 @@ url: "/traveling-to-thailand-with-a-dog/"
 frUrl: "/voyager-chien-thailande/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Thailand"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1762950297550-1d8d7cce12ae?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Thailand: demanding level, allow 1 to 2 months (import permit)."
 cover:

@@ -15,7 +15,7 @@ url: "/emirates-dog-policy/"
 frUrl: "/emirates-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Emirates", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/flagged/photo-1559717865-a99cac1c95d8?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxEdWJhaSUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Emirates accepts dogs in the cargo hold. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

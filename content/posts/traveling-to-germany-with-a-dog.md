@@ -15,7 +15,7 @@ url: "/traveling-to-germany-with-a-dog/"
 frUrl: "/voyager-chien-allemagne/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "Germany", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1662475114964-be4a8beeea4e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxHZXJtYW55JTIwQmF2YXJpYSUyMGNhc3RsZSUyMGxhbmRzY2FwZXxlbnwxfDB8fHwxNzgyOTM5NDE3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Requirements for traveling to Germany with a dog: microchip, rabies vaccination, EU pet passport. Standard EU rules — no rabies titer test, no quarantine. Verified 2026."
 cover:

@@ -17,7 +17,7 @@ url: "/norwegian-dog-policy/"
 frUrl: "/norwegian-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Norwegian", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1663428520845-056989f8a664?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxOb3J3YXklMjBmam9yZHxlbnwxfDB8fHwxNzgyOTEyNzAyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Norwegian accepts dogs in the cabin up to 8 kg (18 lb) (€55–85 / ~$63–98) and in the hold up to 14 kg (31 lb) (€150–200 / ~$170–230). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

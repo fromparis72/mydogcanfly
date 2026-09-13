@@ -19,7 +19,7 @@ url: "/iberia-dog-policy/"
 frUrl: "/iberia-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Iberia", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1578095172812-dcc191c5aed8?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxTcGFpbiUyMFNldmlsbGUlMjBCYXJjZWxvbmElMjBhcmNoaXRlY3R1cmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Iberia accepts dogs up to 8 kg (18 lb) in the cabin (€50–150 / ~$60–170) and up to 45 kg (99 lb) in the hold; above that, its Woof Airlines cargo service takes over. Brachycephalic breeds are banned from the hold."
 cover:

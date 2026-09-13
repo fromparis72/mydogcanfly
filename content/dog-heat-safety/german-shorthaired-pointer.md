@@ -18,7 +18,7 @@ slug: "german-shorthaired-pointer"
 url: "/dog-heat-safety/german-shorthaired-pointer/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "German Shorthaired Pointer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1670505496137-0cde81df1d6e?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The German Shorthaired Pointer has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

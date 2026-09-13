@@ -15,7 +15,7 @@ url: "/traveling-to-belgium-netherlands-with-a-dog/"
 frUrl: "/voyager-chien-belgique-pays-bas/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Belgium", "Netherlands", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1584003564911-a7a321c84e1c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxBbXN0ZXJkYW0lMjBjYW5hbCUyMGJpa2VzfGVufDF8MHx8fDE3ODI5Mzk0MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Entry requirements for traveling to Belgium & the Netherlands with a dog: microchip, rabies vaccination, European pet passport. EU rules — no rabies titer test, no quarantine. Verified 2026."
 cover:

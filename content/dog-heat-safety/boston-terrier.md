@@ -18,7 +18,7 @@ slug: "boston-terrier"
 url: "/dog-heat-safety/boston-terrier/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Boston Terrier", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1572297448250-ac6dcaedf2a7?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Boston Terrier has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

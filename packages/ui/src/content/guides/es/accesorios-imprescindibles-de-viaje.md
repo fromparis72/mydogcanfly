@@ -6,7 +6,7 @@ description: "La guía completa de los accesorios imprescindibles para viajar co
 summary: "Transporte, seguridad, hidratación, localización, confort, salud: un repaso completo a los accesorios realmente útiles para viajar con tu perro, con nuestras guías de compra detalladas para cada categoría."
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "accesorios", "viaje", "equipamiento", "checklist"]
 enbref:

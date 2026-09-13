@@ -5,7 +5,7 @@ description: "Rendre son chien visible la nuit : collier LED, harnais réfléchi
 summary: "Rendre son chien visible la nuit : collier LED, harnais réfléchissant, médaille et accessoires lumineux. Sécuriser les sorties du soir et en voyage."
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "sécurité", "visibilité"]
 sourceUrl: "/securite-visibilite-chien-nuit/"

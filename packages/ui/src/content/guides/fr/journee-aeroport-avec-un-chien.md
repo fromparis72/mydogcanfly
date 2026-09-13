@@ -6,7 +6,7 @@ description: "Ce qui se passe réellement le jour J : comptoirs d'enregistrement
 summary: "La journée d'aéroport a une forme : arriver plus tôt que seul, enregistrer à un comptoir précis, porter le chien au contrôle, puis trouver une zone de soulagement avant l'embarquement."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "aéroport", "enregistrement"]
 cover:

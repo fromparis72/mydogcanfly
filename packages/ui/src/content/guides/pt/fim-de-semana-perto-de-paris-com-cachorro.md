@@ -6,7 +6,7 @@ description: "Fim de semana perto de Paris com cachorro: passeios na floresta, m
 summary: "Para um fim de semana perto de Paris com cachorro, conte com as grandes florestas da Île-de-France, as margens do Sena e hospedagens dog-friendly a menos de uma hora da capital."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "Paris", "fim de semana", "dog-friendly"]
 enbref:

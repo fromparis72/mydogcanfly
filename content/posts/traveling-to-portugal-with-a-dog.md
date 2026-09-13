@@ -15,7 +15,7 @@ url: "/traveling-to-portugal-with-a-dog/"
 frUrl: "/voyager-chien-portugal/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "Portugal", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1548707309-23edbbbbd84c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxQb3J0dWdhbCUyMExpc2JvbiUyMHRyYW0lMjBzdHJlZXR8ZW58MXwwfHx8MTc4MjkzOTQxNnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Requirements for traveling to Portugal with a dog: microchip, rabies vaccine, EU pet passport. Standard EU rules — no rabies titer test, no quarantine. Verified 2026."
 cover:

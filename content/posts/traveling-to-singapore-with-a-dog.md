@@ -15,7 +15,7 @@ url: "/traveling-to-singapore-with-a-dog/"
 frUrl: "/voyager-chien-singapour/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Singapore", "international travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1620033263019-f2ec2c738a60?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTaW5nYXBvcmUlMjBNYXJpbmElMjBCYXklMjBza3lsaW5lfGVufDF8MHx8fDE3ODI5Mzk0MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Requirements for traveling to Singapore with a dog: AVS import license, rabies titer test, possible quarantine. A demanding process, verified 2026."
 cover:

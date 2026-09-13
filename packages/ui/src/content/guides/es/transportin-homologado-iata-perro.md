@@ -6,7 +6,7 @@ description: "Guía del transportín de avión para perro: requisitos IATA, mét
 summary: "Guía del transportín de avión para perro: requisitos IATA, método de medición, materiales, modelos conformes. La guía completa para volar con tranquilidad."
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "transportín de viaje", "avión", "IATA"]
 enbref:

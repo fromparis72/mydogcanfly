@@ -6,7 +6,7 @@ description: "Rampa ou degraus para cachorro: proteger as articulações dele ao
 summary: "Rampa ou degraus para cachorro: proteger as articulações dele ao subir no carro, na cama ou no sofá. Como escolher e acostumar o seu cachorro."
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "carro", "articulações"]
 enbref:

@@ -18,7 +18,7 @@ slug: "bichon-frise"
 url: "/dog-heat-safety/bichon-frise/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Bichon Frise"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1687632922201-164b5f753635?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Bichon Frise has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

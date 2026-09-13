@@ -6,7 +6,7 @@ description: "Certaines étapes du voyage international d'un animal ne se compri
 summary: "Ce sont les délais d'attente, et non les papiers, qui décident si un animal peut voler à une date donnée. Partez de la date de départ et remontez : le délai antirabique et le titrage fixent le départ le plus tôt possible."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avion", "organisation", "international"]
 cover:

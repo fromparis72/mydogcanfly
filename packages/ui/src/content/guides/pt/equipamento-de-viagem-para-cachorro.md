@@ -6,7 +6,7 @@ description: "Equipamento de viagem para cachorro: como escolher caixa de transp
 summary: "O equipamento certo depende do porte do cachorro e do meio de transporte: caixa rígida, peitoral de segurança de carro para cachorro ou bolsa, conforme a situação."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "segurança", "transporte"]
 enbref:

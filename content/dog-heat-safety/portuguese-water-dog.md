@@ -18,7 +18,7 @@ slug: "portuguese-water-dog"
 url: "/dog-heat-safety/portuguese-water-dog/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Portuguese Water Dog"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1704686837012-df48d4581bb2?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Portuguese Water Dog has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

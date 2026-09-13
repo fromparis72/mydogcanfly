@@ -6,7 +6,7 @@ description: "Rejillas y separadores de maletero para transportar a tu perro con
 summary: "Rejillas y separadores de maletero para transportar a tu perro con seguridad en coche. Tipos, instalación y cómo se combinan con un arnés crash-test."
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "coche", "seguridad vial"]
 enbref:

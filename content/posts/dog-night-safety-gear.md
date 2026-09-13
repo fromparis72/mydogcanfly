@@ -15,7 +15,7 @@ url: "/dog-night-safety-gear/"
 frUrl: "/securite-visibilite-chien-nuit/"
 categories: ["Gear"]
 tags: ["dog", "gear", "safety", "visibility"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1708000051310-6a7b1c475ff4?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB3YWxraW5nJTIwbmlnaHQlMjBjaXR5fGVufDF8MHx8fDE3ODI5Mzk0Mjh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Make your dog visible at night: LED collar, reflective harness, ID tag, and light-up accessories. Safer evening walks at home and on the road."
 cover:

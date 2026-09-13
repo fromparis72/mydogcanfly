@@ -6,7 +6,7 @@ description: "Comparativa de las mejores fuentes de agua para perro: capacidad, 
 summary: "Comparativa de las mejores fuentes de agua para perro: capacidad, filtración, ruido, mantenimiento. Modelos Catit Pixi y PetSafe Drinkwell analizados."
 date: "2026-06-29T09:00:00+02:00"
 lastmod: "2026-06-29T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "fuente de agua", "hidratación", "equipamiento"]
 enbref:

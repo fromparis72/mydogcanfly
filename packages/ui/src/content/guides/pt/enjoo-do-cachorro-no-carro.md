@@ -6,7 +6,7 @@ description: "O enjoo do cachorro no transporte: reconheça os sintomas, entenda
 summary: "O enjoo do cachorro costuma vir de um ouvido interno imaturo ou do estresse. A habituação gradual, uma boa ventilação e a orientação veterinária o reduzem."
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "transporte", "carro"]
 enbref:

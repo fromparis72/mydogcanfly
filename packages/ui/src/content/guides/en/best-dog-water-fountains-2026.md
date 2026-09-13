@@ -6,7 +6,7 @@ description: "Comparison of the best dog water fountains: capacity, filtration, 
 summary: "Comparison of the best dog water fountains: capacity, filtration, noise, maintenance. Catit Pixi and PetSafe Drinkwell models reviewed."
 date: "2026-06-29T09:00:00+02:00"
 lastmod: "2026-06-29T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "water fountain", "hydration", "gear"]
 sourceUrl: "/best-dog-water-fountains-2026/"

@@ -19,7 +19,7 @@ url: "/air-france-dog-policy/"
 frUrl: "/air-france-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air France", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1500039436846-25ae2f11882e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxGcmFuY2UlMjBQYXJpcyUyMGxhbmRtYXJrfGVufDF8MHx8fDE3ODI5MTI2ODh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air France accepts dogs up to 8 kg (18 lb) in the cabin (€70–250 / ~$80–290) and up to 75 kg (165 lb) in the hold (€100–750 / ~$115–860 depending on the zone). Brachycephalic breeds are banned from the hold."
 cover:

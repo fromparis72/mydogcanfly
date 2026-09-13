@@ -15,7 +15,7 @@ url: "/traveling-to-brazil-with-a-dog/"
 frUrl: "/voyager-chien-bresil/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Brazil", "international travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1544991337-95176b5233c4?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxSaW8lMjBkZSUyMEphbmVpcm8lMjBCcmF6aWwlMjBjb2FzdHxlbnwxfDB8fHwxNzgyOTM5NDE5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Entry requirements for traveling to Brazil with a dog: microchip, rabies vaccine, endorsed export health certificate, parasite treatments. Moderate difficulty, verified 2026."
 cover:

@@ -6,7 +6,7 @@ description: "Bozal para viajar con perro: el bozal tipo cesta adecuado, cuándo
 summary: "Bozal para viajar con perro: el bozal tipo cesta adecuado, cuándo es obligatorio (tren, transporte público) y cómo acostumbrar a tu perro con suavidad."
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "bozal", "transporte"]
 enbref:

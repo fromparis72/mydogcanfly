@@ -23,7 +23,7 @@ url: "/train-travel-with-a-dog/"
 frUrl: "/prendre-le-train-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "train", "rail travel", "transportation"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1770563181689-9609fcce408b?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB0cmFpbiUyMHN0YXRpb24lMjB0cmF2ZWx8ZW58MXwwfHx8MTc4MjQ4MTMwMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Most railways welcome dogs, but the rules follow a pattern: small dogs in a carrier, big dogs leashed (and often muzzled), and a ticket in many countries. Here's how it works from SNCF to Amtrak."
 cover:

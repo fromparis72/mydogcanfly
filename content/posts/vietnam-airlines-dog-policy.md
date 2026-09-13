@@ -17,7 +17,7 @@ url: "/vietnam-airlines-dog-policy/"
 frUrl: "/vietnam-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Vietnam Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1528127269322-539801943592?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxWaWV0bmFtJTIwSGFsb25nJTIwQmF5fGVufDF8MHx8fDE3ODI5MTI3MTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Vietnam Airlines accepts dogs in the cabin up to 6 kg (13 lb) ($53–210) and in the hold up to 32 kg (70 lb) ($105–580). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

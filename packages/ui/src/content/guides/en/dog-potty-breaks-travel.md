@@ -6,7 +6,7 @@ description: "Dog potty breaks while traveling: how often to stop, handling a pu
 summary: "Dog potty breaks while traveling: how often to stop, handling a puppy or an anxious dog, cleanup and accidents. A clean, stress-free trip."
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "potty training", "travel"]
 sourceUrl: "/dog-potty-breaks-travel/"

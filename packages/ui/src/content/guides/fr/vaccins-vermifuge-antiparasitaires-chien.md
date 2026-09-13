@@ -6,7 +6,7 @@ description: "Préparer la santé de son chien avant un voyage : vaccins à jour
 summary: "Préparer la santé de son chien avant un voyage : vaccins à jour, vermifuge, antiparasitaires externes. Le calendrier à anticiper avec son vétérinaire."
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "vaccins", "vermifuge", "voyage"]
 sourceUrl: "/vaccins-vermifuge-antiparasitaires-chien/"

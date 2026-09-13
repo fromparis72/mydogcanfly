@@ -18,7 +18,7 @@ slug: "miniature-schnauzer"
 url: "/dog-heat-safety/miniature-schnauzer/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Miniature Schnauzer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1563805899529-b76442afe490?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Miniature Schnauzer has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

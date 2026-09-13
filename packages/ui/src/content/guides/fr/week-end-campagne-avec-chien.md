@@ -5,7 +5,7 @@ description: "Un week-end à la campagne avec son chien : choisir son gîte, pro
 summary: "La campagne est idéale pour un chien : grands espaces, gîtes accueillants et balades à volonté. Tenez-le en laisse près des troupeaux et des cultures, et protégez-le des tiques au retour."
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "campagne", "week-end", "gîte"]
 sourceUrl: "/week-end-campagne-avec-chien/"

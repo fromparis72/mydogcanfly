@@ -18,7 +18,7 @@ slug: "australian-shepherd"
 url: "/dog-heat-safety/australian-shepherd/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Australian Shepherd"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1705624980194-6325687bb1aa?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Australian Shepherd has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

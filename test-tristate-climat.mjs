@@ -341,8 +341,12 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
   /* MOUVEMENT NOMMÉ (13/09/2026, dossier fret rev2) : six canaux fret de ce trajet reçoivent
      leur phrase officielle. Le nombre de canaux à confirmer reste 41 — les règles de race les
      retiennent encore — mais les causes de provenance passent de 22 à 16. */
-  check("carlin : 41 confirmations — 16 de provenance, 38 de race, 1 par règle non citée seule, aucune inexpliquée",
-    confirmations.length === 41 && provenance === 16 && race === 38 && parRegleSeule.length === 1 && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : leurs politiques cabine,
+     soute et fret reçoivent les phrases officielles fournies par l'éditeur. Norwegian fret est
+     explicitement refusé par sa page cargo. 41 → 39 confirmations, 16 → 13 de provenance et
+     38 → 37 de race ; la règle seule Air Algérie et l'absence d'inexpliquée restent inchangées. */
+  check("carlin : 39 confirmations — 13 de provenance, 37 de race, 1 par règle non citée seule, aucune inexpliquée",
+    confirmations.length === 39 && provenance === 13 && race === 37 && parRegleSeule.length === 1 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

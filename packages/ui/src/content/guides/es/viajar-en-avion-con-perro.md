@@ -6,7 +6,7 @@ description: "Viajar en avión con perro: normas de cabina o bodega, límites de
 summary: "Viajar en avión con perro exige un transportín, un peso dentro del límite de tu aerolínea y un papeleo sanitario iniciado varias semanas antes de salir."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "avión", "viaje internacional"]
 enbref:

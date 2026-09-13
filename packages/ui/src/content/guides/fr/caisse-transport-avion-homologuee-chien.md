@@ -5,7 +5,7 @@ description: "Caisse de transport avion pour chien : normes IATA, dimensionnemen
 summary: "Caisse de transport avion pour chien : normes IATA, dimensionnement, matériaux, modèles conformes aux exigences applicables. Le guide complet pour voyager sereinement."
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "caisse de transport", "avion", "IATA"]
 sourceUrl: "/caisse-transport-avion-homologuee-chien/"

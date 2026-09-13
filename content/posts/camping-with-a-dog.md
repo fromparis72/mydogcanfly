@@ -19,7 +19,7 @@ url: "/camping-with-a-dog/"
 frUrl: "/camping-avec-chien/"
 categories: ["Destinations"]
 tags: ["dog", "camping", "vacation", "outdoors"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjYW1waW5nJTIwdGVudCUyMG5hdHVyZXxlbnwxfDB8fHwxNzgyNDk3NDIzfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Pick a campground that accepts dogs, plan a shaded spot and a tie-out, respect quiet hours — and never leave your dog alone in the tent in hot weather."
 cover:

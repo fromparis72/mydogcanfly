@@ -6,7 +6,7 @@ description: "Pourquoi les compagnies restreignent ou refusent les races brachyc
 summary: "Les chiens brachycéphales respirent moins efficacement, et la chaleur ajoutée au stress aggrave le phénomène. La plupart des compagnies les restreignent ou les refusent en soute ; certaines restreignent aussi la cabine. La restriction vise le trait, pas une liste figée."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "races", "brachycéphale"]
 cover:

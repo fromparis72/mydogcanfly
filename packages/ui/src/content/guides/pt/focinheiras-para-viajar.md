@@ -6,7 +6,7 @@ description: "Focinheira para viajar com cachorro: a focinheira tipo cesta adequ
 summary: "Focinheira para viajar com cachorro: a focinheira tipo cesta adequada, quando é obrigatória (trem, transporte público) e como acostumar o seu cachorro com delicadeza."
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "focinheira", "transporte"]
 enbref:

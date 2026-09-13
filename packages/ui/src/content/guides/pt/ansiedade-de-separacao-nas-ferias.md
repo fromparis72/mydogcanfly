@@ -6,7 +6,7 @@ description: "Ansiedade de separação do cachorro nas férias: reconhecer os si
 summary: "Ansiedade de separação do cachorro nas férias: reconhecer os sinais, preparar os momentos sozinho, organizar um lugar desconhecido. Dicas para um cachorro tranquilo."
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "ansiedade", "comportamento"]
 enbref:

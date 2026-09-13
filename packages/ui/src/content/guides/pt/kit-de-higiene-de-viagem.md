@@ -6,7 +6,7 @@ description: "Kit de higiene de viagem para o seu cachorro: escova, toalha de mi
 summary: "Kit de higiene de viagem para o seu cachorro: escova, toalha de microfibra, lenços, cortador de unhas, sacos para dejetos. O essencial para um cachorro limpo em qualquer lugar."
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "higiene", "limpeza"]
 enbref:

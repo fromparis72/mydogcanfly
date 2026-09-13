@@ -6,7 +6,7 @@ description: "Every way to fly a dog: cabin, checked hold, cargo, service dogs, 
 summary: "Cabin, hold, cargo, service dog, emotional support animal or dedicated dog airlines: there are six main ways to fly a dog, each with its own conditions."
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "airplane", "cabin", "hold", "cargo", "service dog"]
 sourceUrl: "/flying-with-a-dog-cabin-hold-cargo/"

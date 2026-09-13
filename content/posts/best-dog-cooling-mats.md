@@ -21,7 +21,7 @@ url: "/best-dog-cooling-mats/"
 frUrl: "/meilleurs-tapis-rafraichissants-chien/"
 categories: ["Gear"]
 tags: ["dog", "cooling mat", "heat wave", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1771104775881-a9cd632a5d77?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBseWluZyUyMGNvb2xpbmclMjBzdW1tZXJ8ZW58MXwwfHx8MTc4MjgyMzg0Mnww&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog cooling mats: how they work, how to choose (gel, size, durability), with Trixie and Flamingo models for summer heat."
 cover:

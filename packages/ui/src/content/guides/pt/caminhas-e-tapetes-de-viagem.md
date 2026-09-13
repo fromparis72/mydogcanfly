@@ -6,7 +6,7 @@ description: "Caminhas e tapetes de viagem para cachorro: colchonete enrolável,
 summary: "Caminhas e tapetes de viagem para cachorro: colchonete enrolável, tapete impermeável, cheiro familiar. Uma caminha portátil que tranquiliza o seu cachorro em qualquer lugar."
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "descanso", "conforto"]
 enbref:

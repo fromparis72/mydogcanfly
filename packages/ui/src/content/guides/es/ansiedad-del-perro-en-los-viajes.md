@@ -6,7 +6,7 @@ description: "Ansiedad del perro en coche, tren o avión: aprende a detectar las
 summary: "Jadeo, temblores, babeo, gemidos: el estrés del viaje se trabaja con desensibilización progresiva, asociaciones positivas y comodidad. En casos graves, el veterinario puede ofrecer un acompañamiento adaptado."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "ansiedad", "estrés", "viaje"]
 enbref:

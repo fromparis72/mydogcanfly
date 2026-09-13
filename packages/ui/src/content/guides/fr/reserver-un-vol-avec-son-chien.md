@@ -6,7 +6,7 @@ description: "Réserver un vol avec un chien, ce n'est pas réserver un siège p
 summary: "La réservation de l'animal est un dossier à part, avec son quota, son tarif et sa confirmation. Réservez l'animal avant le billet, obtenez-le par écrit, et revérifiez quelques jours avant le départ."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "réservation", "compagnie aérienne"]
 cover:

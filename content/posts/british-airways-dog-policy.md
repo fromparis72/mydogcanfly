@@ -15,7 +15,7 @@ url: "/british-airways-dog-policy/"
 frUrl: "/british-airways-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "British Airways", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxMb25kb24lMjBFbmdsYW5kJTIwbGFuZG1hcmt8ZW58MXwwfHx8MTc4MjkxMjY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "British Airways accepts dogs in the hold via its cargo service only."
 cover:

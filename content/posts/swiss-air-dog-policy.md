@@ -15,7 +15,7 @@ url: "/swiss-air-dog-policy/"
 frUrl: "/swiss-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "SWISS", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1521292270410-a8c4d716d518?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTd2l0emVybGFuZCUyMEFscHN8ZW58MXwwfHx8MTc4MjkxMjcxMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "SWISS accepts dogs in the cabin up to 8 kg (18 lb) and in the hold. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

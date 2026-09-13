@@ -6,7 +6,7 @@ description: "The four measurements airlines actually check, how to take them pr
 summary: "Four measurements decide the crate: length, height at the shoulder, height standing with the head up, and width. Take them on a standing dog, add the margins, then check the result against the airline."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "flying", "crate", "IATA"]
 cover:

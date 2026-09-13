@@ -240,12 +240,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (13/09/2026, fret officiel des principales compagnies) : 21 politiques fret
      reçoivent une phrase citée. Dix-sept deviennent décisives, dont trois refus documentés
      (Delta, United, Virgin Atlantic), et quatre restent `case_by_case`. */
-  check("216 décisions prouvées : 0 `allowed`, 173 sous conditions, 43 `denied`, 86 à confirmer",
-    allowed === 0 && sousConditions === 173 && denied === 43 && aConfirmer === 86, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq canaux hérités reçoivent
+     une citation officielle. Air New Zealand soute/fret et Norwegian cabine/soute deviennent
+     `accepted_with_conditions`; Norwegian fret devient un refus documenté. */
+  check("221 décisions prouvées : 0 `allowed`, 177 sous conditions, 44 `denied`, 81 à confirmer",
+    allowed === 0 && sousConditions === 177 && denied === 44 && aConfirmer === 81, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 86 && !("undefined" in causes), JSON.stringify(causes));
-  check("2 gardent une page officielle non citée, 76 n'ont rien à montrer, 8 demandent arbitrage compagnie",
-    causes.official_source_unquoted === 2 && causes.legacy_unreviewed === 76 && causes.airline_approval === 8, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 81 && !("undefined" in causes), JSON.stringify(causes));
+  check("2 gardent une page officielle non citée, 71 n'ont rien à montrer, 8 demandent arbitrage compagnie",
+    causes.official_source_unquoted === 2 && causes.legacy_unreviewed === 71 && causes.airline_approval === 8, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -287,6 +290,9 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_air_mauritius.cabin",
     "airline_air_mauritius.cargo",
     "airline_air_mauritius.hold",
+    /* Sources officielles transmises par Philippe le 13/09/2026. */
+    "airline_air_new_zealand.cargo",
+    "airline_air_new_zealand.hold",
     "airline_air_transat.cabin",
     "airline_air_transat.hold",
     "airline_alaska.cabin",
@@ -408,6 +414,9 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_edelweiss.cargo",
     "airline_neos.cabin",
     "airline_neos.hold",
+    "airline_norwegian.cabin",
+    "airline_norwegian.cargo",
+    "airline_norwegian.hold",
     "airline_tarom.cabin",
     "airline_tarom.hold",
     "airline_tarom.cargo",
@@ -510,7 +519,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_virgin_atlantic.cargo",
     "airline_vueling.cargo",
   ];
-  check("224 politiques d'auteur portent une phrase citée — nominativement",
+  check("229 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
   /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
      être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
@@ -519,8 +528,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine) : 177 → 178, Air France cabine est une décision (sous conditions, borne stricte). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 178 → 176. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 176 → 177 décisions citées. */
-  check("et 216 d'elles sont des décisions (huit case_by_case restent prudentes)",
-    decideesCitees.length === 216 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
+  /* Air New Zealand et Norwegian ajoutent cinq décisions sourcées : 216 → 221. Les huit
+     `case_by_case` déjà cités restent prudents et inchangés. */
+  check("et 221 d'elles sont des décisions (huit case_by_case restent prudentes)",
+    decideesCitees.length === 221 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
       && !decideesCitees.includes("airline_virgin_australia.cabin")
       && !decideesCitees.includes("airline_china_southern.cabin")
       && !decideesCitees.includes("airline_south_african_airways.hold")

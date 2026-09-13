@@ -17,7 +17,7 @@ url: "/saudia-dog-policy/"
 frUrl: "/saudia-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Saudia", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1612899326681-66508905b4ce?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTYXVkaSUyMEFyYWJpYSUyMGRlc2VydHxlbnwxfDB8fHwxNzgyOTEyNzE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Saudia accepts dogs in the hold ($160–320)."
 cover:

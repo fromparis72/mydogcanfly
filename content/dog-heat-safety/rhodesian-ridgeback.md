@@ -18,7 +18,7 @@ slug: "rhodesian-ridgeback"
 url: "/dog-heat-safety/rhodesian-ridgeback/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Rhodesian Ridgeback"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1562054438-f789d60d03eb?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Rhodesian Ridgeback has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

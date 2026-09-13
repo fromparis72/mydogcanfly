@@ -6,7 +6,7 @@ description: "Destinos dog-friendly na França: litoral, montanha e campo que ac
 summary: "Os melhores destinos dog-friendly da França combinam natureza, hospedagens acolhedoras e praias abertas a cães: Bretanha, Auvérnia, Alpes, Sudoeste e o campo em torno de Paris lideram a lista."
 date: "2026-06-26T14:00:00+02:00"
 lastmod: "2026-06-26T14:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "dog-friendly", "férias", "França"]
 enbref:

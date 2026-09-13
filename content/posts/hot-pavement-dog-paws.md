@@ -21,7 +21,7 @@ url: "/hot-pavement-dog-paws/"
 frUrl: "/proteger-coussinets-chien-ete/"
 categories: ["Gear"]
 tags: ["dog", "paw pads", "summer", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1590218698340-28071ee6ab2d?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Protect your dog's paw pads in summer: scorching asphalt, the 7-second test, paw balm and boots. Full guide and recommended products."
 cover:
