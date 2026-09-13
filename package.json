@@ -44,7 +44,7 @@
     "test:porte": "node test-porte-lancement.mjs",
     "apercu:local": "tsx apercu-local.mjs",
     "test:apercu": "tsx test-apercu-navigateur.mjs",
-    "release": "node packages/knowledge/scripts/lib/require-node.mjs \"le déploiement de production (release)\" && npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true",
+    "release": "node packages/knowledge/scripts/lib/require-node.mjs \"le déploiement de production (release)\" && npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true && npm run purge:cache",
     "typecheck": "npm -w @mydogcanfly/knowledge run typecheck && npm -w @mydogcanfly/engine run typecheck && npm -w @mydogcanfly/workers run typecheck",
     "audit": "node packages/knowledge/scripts/audit-site.mjs",
     "test:ingest": "node test-ingest-check.mjs",
@@ -59,7 +59,8 @@
     "mesure:t0b3e": "node mesures/t0b3e-ce-que-le-site-montre/outils/reproduire.mjs",
     "mesure:t0b3f": "node mesures/t0b3f-ce-que-les-regles-affirment/outils/reproduire.mjs",
     "mesure:t0b3g": "node mesures/t0b3g-ce-que-les-outils-servent/outils/reproduire.mjs",
-    "mesure:t0b3h": "node mesures/t0b3h-ce-que-le-site-dit-en-portugais/outils/reproduire.mjs"
+    "mesure:t0b3h": "node mesures/t0b3h-ce-que-le-site-dit-en-portugais/outils/reproduire.mjs",
+    "purge:cache": "node packages/knowledge/scripts/purger-cache.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
