@@ -21,6 +21,7 @@ import RelatedTools from "../../../components/RelatedTools.astro";
 import { inlineT } from "@mydogcanfly/knowledge";
 import { decompose, guideHref, languesDe, formateurDeDate, GUIDE_LOCALES, type Guide } from "../../../lib/guides";
 import { LEGAL } from "../../../lib/legal";
+import { guideIndexable } from "../../../lib/guideEtat";
 
 export async function getStaticPaths() {
   const tous = await getCollection("guides");
@@ -92,6 +93,7 @@ if (d.faq.length)
   jsonLd={ld}
   altLangs={alt}
   switcherPath={hubHref}
+  noindex={!guideIndexable(entry)}
 >
   <article class="gd">
     <div class="mdcf-container">
