@@ -11,7 +11,8 @@
  */
 import { loadKB, slugFor, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { reliefIndexable } from "./reliefEtat";
-import { raceIndexable } from "./raceEtat";
+import { raceIndexable, faitsDeRace } from "./raceEtat";
+import { preuveAuditee } from "./decisionCanal";
 import { countryData } from "../data/countries";
 import { LOCALES, isPreviewLocale } from "./routes";
 
@@ -26,6 +27,23 @@ export interface Entry { path: string; meta: Meta }
  * hiérarchie simple : accueil > carrefours > outils > fiches > pages légales. */
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const isISO = (s: unknown): s is string => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
+
+/* LA DATE LA PLUS RÉCENTE D'UN JEU DE SOURCES, ou rien (13/09/2026).
+ *
+ * POURQUOI. `lastmod` retombait sur la date de construction partout où une vraie date de
+ * vérification n'était pas branchée : les 103 fiches compagnie et les 172 fiches de race
+ * annonçaient donc « modifiée aujourd'hui » à CHAQUE build, y compris quand rien n'avait bougé.
+ * Un `lastmod` toujours égal au jour courant n'est pas une information, c'est un bruit — et
+ * Google finit par cesser de le lire, ce qui pénalise aussi les pages pays, dont la date, elle,
+ * est juste.
+ *
+ * Les deux familles portent pourtant une date réelle, déjà affichée à l'écran : la vérification
+ * des preuves de canal pour les compagnies, celle des faits du registre pour les races. On la
+ * lit là où elle est, et on ne se rabat sur la date de construction que si elle n'existe pas. */
+const plusRecente = (dates: unknown[]): string | null => {
+  const valides = dates.filter(isISO).sort();
+  return valides.length ? valides[valides.length - 1] : null;
+};
 
 export function buildEntries(): Entry[] {
   const kb = loadKB();
@@ -53,7 +71,16 @@ export function buildEntries(): Entry[] {
     push(legal, "0.3", "yearly");
 
   // Fiches — vraie date par entité quand on l'a.
-  for (const a of kb.airlines.values()) push(`/airlines/${slugFor(a.id)}/`, "0.7", "monthly");
+  for (const a of kb.airlines.values()) {
+    /* La date affichée sur la fiche : la plus récente des vérifications de canal auditées. Une
+     * compagnie dont aucun canal n'est audité n'en a pas — elle retombe sur la date de
+     * construction, comme avant, et c'est alors exact : sa page n'a pas d'autre repère. */
+    const policy = (a as any).premium?.policy;
+    const d = plusRecente(
+      (["cabin", "hold", "cargo"] as const).map((c) => preuveAuditee(policy?.[c])?.verified_date),
+    );
+    push(`/airlines/${slugFor(a.id)}/`, "0.7", "monthly", d ?? BUILD_DATE);
+  }
   for (const c of kb.countries.values()) {
     // Même date que celle affichée sur la fiche : max(relecture éditoriale, contrôle des règles
     // d'entrée du pays). Une règle revérifiée change ce que la page dit — le `lastmod` doit le
@@ -75,7 +102,11 @@ export function buildEntries(): Entry[] {
    * qui l'ont motivé et la façon dont une race y revient sont en tête de `raceEtat.ts`. */
   for (const b of kb.breeds.values()) {
     if (!raceIndexable(kb, b)) continue;
-    push(`/breeds/${slugFor(b.id)}/`, "0.7", "monthly");
+    /* Même principe : la fiche est indexée PARCE QU'elle porte des faits datés, donc sa date de
+     * modification est celle de ces faits. La lecture est la même que celle qui ouvre la porte
+     * et que celle qui alimente `citation` dans le JSON-LD. */
+    const d = plusRecente(faitsDeRace(kb, b).map((f: any) => f?.source?.verified_date));
+    push(`/breeds/${slugFor(b.id)}/`, "0.7", "monthly", d ?? BUILD_DATE);
   }
 
   return entries;
