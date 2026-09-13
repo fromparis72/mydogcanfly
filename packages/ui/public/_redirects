@@ -6,8 +6,16 @@
 # — v1 → v2, relevé Search Console 08/08/2026 —
 
 # Outils renommés.
-/tools/can-my-dog-fly/                     /#flight-finder        301
-/tools/can-my-dog-fly                      /#flight-finder        301
+#
+# `can-my-dog-fly` visait `/#flight-finder` jusqu'au 13/09/2026, et la Search Console la
+# rangeait parmi les « erreurs de redirection ». Un fragment n'a pas de cible côté serveur :
+# Google le retire avant de suivre la redirection, si bien que l'en-tête `Location` qu'il lit
+# ne désigne plus une adresse complète. La cible est désormais la racine, qui EST la page du
+# comparateur — il en est la première section, juste sous la bannière, donc le visiteur
+# arrive au même endroit à un défilement près.
+# Ne pas réintroduire de fragment dans une cible de redirection, ici ou ailleurs.
+/tools/can-my-dog-fly/                     /                      301
+/tools/can-my-dog-fly                      /                      301
 /tools/dog-entry-requirements-by-country/  /countries/            301
 /tools/dog-entry-requirements-by-country   /countries/            301
 

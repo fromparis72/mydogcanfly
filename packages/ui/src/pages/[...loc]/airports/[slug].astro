@@ -80,6 +80,7 @@ const desc =
           "Nous n'avons pas encore vérifié si {0} ({1}) dispose d'un coin pipi. Compagnies documentées qui le desservent, et comment nous signaler ce que tu trouves.",
           "Aún no hemos verificado si {0} ({1}) tiene zona de alivio. Aerolíneas documentadas que operan allí y cómo contarnos lo que encuentres.",
           city, a?.iata ?? "");
+const srcRelief: any = (a as any)?.pet_relief?.source;
 const webpageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -88,6 +89,18 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airport", name, iataCode: a?.iata },
+  /* La date de vérification et la source du relief, dites aussi à la machine (13/09/2026). La
+   * page les AFFICHE déjà en pied — « Source : … · vérifié le … · confiance … » — et son
+   * balisage n'en portait rien. Une fiche non vérifiée n'en porte pas davantage : elle est en
+   * `noindex`, et c'est la même phrase dite deux fois.
+   * `license` ne vaut donc que là où il y a quelque chose à citer. */
+  ...(srcRelief?.verified_date
+    ? {
+        lastReviewed: srcRelief.verified_date,
+        citation: [{ "@type": "CreativeWork" as const, url: srcRelief.url, lastReviewed: srcRelief.verified_date }],
+        license: "https://mydogcanfly.com/citing/",
+      }
+    : {}),
 };
 ---
 <Base locale={locale} title={title} description={desc} ogType="article" jsonLd={[webpageLd]}

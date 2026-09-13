@@ -5,6 +5,7 @@ import BreedTravelPage from "../../../components/BreedTravelPage.astro";
 import { computeBreedTravel } from "../../../lib/breedTravel";
 import { loadKB, slugFor, inlineT, inlineF, localized } from "@mydogcanfly/knowledge";
 import { shardPaths } from "../../../lib/buildShard";
+import { raceIndexable, faitsDeRace } from "../../../lib/raceEtat";
 import { existsSync } from "node:fs";
 
 export function getStaticPaths() {
@@ -29,6 +30,14 @@ export function getStaticPaths() {
 
 const { id, locale, compare } = Astro.props as { id: string; locale: string; compare: { slug: string; name: string }[] };
 const profile = computeBreedTravel(id)!;
+/* La porte d'indexation des races — règle et mesures en tête de `lib/raceEtat.ts`. La même
+ * lecture sert le `noindex` de cette page et l'inclusion au sitemap : elles ne peuvent pas
+ * diverger. Et la même encore alimente les sources affichées dans la fiche, de sorte qu'une
+ * page indexée est toujours une page qui montre ce qu'elle cite. */
+const kbRaces: any = loadKB();
+const raceObj: any = kbRaces.breeds.get(id);
+const faits = faitsDeRace(kbRaces, raceObj);
+const indexable = raceIndexable(kbRaces, raceObj);
 const image = existsSync(`public/breeds/${profile.slug}.webp`) ? `/breeds/${profile.slug}.webp` : null;
 const fr = locale === "fr";
 const es = locale === "es";
@@ -95,7 +104,44 @@ const faqLd = profile.faq && profile.faq.length > 0 ? {
     acceptedAnswer: { "@type": "Answer", text: localized(locale, f.a) },
   })),
 } : null;
-const jsonLd = faqLd ? [faqLd] : [];
+/* ANCRAGE D'ENTITÉ POUR LA FICHE DE RACE (13/09/2026).
+ *
+ * Les fiches pays et compagnie portent un nœud `WebPage` depuis leur création ; les 172 fiches
+ * de race, non — elles n'émettaient qu'un `FAQPage`, si bien qu'un moteur de réponse lisait des
+ * questions sans savoir de QUOI la page traite, ni à quel site elle appartient.
+ *
+ * Ce nœud ne porte ni `lastReviewed` ni `citation`, et c'est délibéré : depuis les arbitrages des
+ * 2 et 6 septembre, cette page ne publie plus aucune affirmation datée et sourcée — les
+ * indicateurs physiologiques et la série de caisses ont été retirés faute de source publiable.
+ * Baliser une fraîcheur que la page ne montre pas reviendrait à promettre à la machine ce qu'on
+ * refuse de dire au lecteur. Les deux reviendront ensemble, quand la source reviendra. */
+const webpageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description: desc,
+  inLanguage: locale,
+  isPartOf: { "@id": "https://mydogcanfly.com/#website" },
+  about: { "@type": "Thing", name: bName },
+  /* Déclaré seulement là où il y a quelque chose à citer — voir le bloc `faits` juste en
+   * dessous : une fiche sans fait établi n'annonce pas de conditions de reprise, puisqu'elle ne
+   * publie aucune affirmation datée. */
+  ...(faits.length ? { license: "https://mydogcanfly.com/citing/" } : {}),
+  /* Les faits du registre sont affichés dans la fiche depuis le 13/09/2026 : ils peuvent donc
+   * être cités. Une fiche sans fait n'en porte aucun — et elle est `noindex`, ce qui est la
+   * même phrase dite deux fois. */
+  ...(faits.length
+    ? {
+        lastReviewed: faits.map((f: any) => f.source?.verified_date).filter(Boolean).sort().at(-1),
+        citation: faits.map((f: any) => ({
+          "@type": "CreativeWork" as const,
+          url: f.source?.url,
+          ...(f.source?.verified_date ? { lastReviewed: f.source.verified_date } : {}),
+        })),
+      }
+    : {}),
+};
+const jsonLd = faqLd ? [webpageLd, faqLd] : [webpageLd];
 ---
 <Base
   locale={locale}
@@ -106,6 +152,7 @@ const jsonLd = faqLd ? [faqLd] : [];
   imageWidth={image ? 800 : undefined}
   imageHeight={image ? 800 : undefined}
   jsonLd={jsonLd}
+  noindex={!indexable}
 >
-  <BreedTravelPage profile={profile} locale={locale} compare={compare} image={image} />
+  <BreedTravelPage profile={profile} locale={locale} compare={compare} image={image} faits={faits} />
 </Base>

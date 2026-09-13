@@ -2,6 +2,7 @@ import type { APIRoute, GetStaticPaths } from "astro";
 import { localizedPath } from "../lib/routes";
 import { buildEntries, PUBLIC_LOCALES, type Meta } from "../lib/sitemapEntries";
 import { guidesDe, decompose, guideHref, languesDe } from "../lib/guides";
+import { guideIndexable } from "../lib/guideEtat";
 
 /* /sitemap-en.xml, -fr, -es, -pt — les URL d'une seule langue.
  *
@@ -53,7 +54,11 @@ export const GET: APIRoute = async ({ site, params }) => {
    * en anglais. La boucle ci-dessus, qui déduit chaque URL du chemin, se tromperait donc deux
    * fois. Ici les adresses et les alternates sont CONSTATÉS sur les fichiers présents, jamais
    * calculés : le sitemap ne peut pas annoncer une page qui n'a pas été écrite. */
-  const guides = await guidesDe(lang);
+  /* Seuls entrent au sitemap les guides qui CITENT une source extérieure — même principe que
+   * les fiches d'aéroport et de race, et pour la même raison : proposer à Google une URL qu'on
+   * lui interdit par ailleurs en `noindex` est contradictoire. La règle et ce qu'elle écarte
+   * sont en tête de `lib/guideEtat.ts`. */
+  const guides = (await guidesDe(lang)).filter(guideIndexable);
   const blocsGuides = [];
   for (const g of guides) {
     const { slug } = decompose(g);

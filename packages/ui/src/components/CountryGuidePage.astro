@@ -109,6 +109,20 @@ const webpageLd = {
   // lue à l'écran ferait passer pour périmée une information contrôlée le jour même.
   ...(verifiedDate ? { lastReviewed: verifiedDate } : {}),
   ...(g.reviewer ? { reviewedBy: { "@type": "Person", name: g.reviewer } } : {}),
+  /* LES SOURCES OFFICIELLES, CITÉES POUR LA MACHINE AUSSI (13/09/2026).
+   *
+   * Le bloc « Sources officielles » en bas de page énumère depuis toujours les textes sur
+   * lesquels la fiche repose — ministères, douanes, autorités sanitaires. Le balisage n'en
+   * portait aucune trace, si bien qu'un moteur de réponse voyait une fiche affirmative sans
+   * savoir sur quoi elle s'appuyait. C'est la MÊME liste, `g.sources`, qui alimente les deux :
+   * pas de seconde énumération à tenir à jour, donc pas de divergence possible. */
+  /* Les conditions de reprise, déclarées pour la machine comme elles le sont pour l'œil dans la
+   * rangée « Emporte cette page ». Sans ce champ, rien n'indique à un moteur de réponse qu'il
+   * doit nommer la source ni transporter la date. */
+  license: "https://mydogcanfly.com/citing/",
+  ...(g.sources?.length
+    ? { citation: g.sources.map((s) => ({ "@type": "CreativeWork" as const, url: s.url, name: t(s.label) })) }
+    : {}),
 };
 // FAQ dérivée de la fiche pays ; FAQPage seulement si des questions ont pu être construites.
 const faqItems = countryFaq(g, locale);
@@ -380,7 +394,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
     </div>
 
-    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)} />
+    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)}
+      citeTitle={t(g.seo.metaTitle)} citeDate={verifiedDate ? fmtDate(verifiedDate) : undefined} />
   </div>
 </Base>
 

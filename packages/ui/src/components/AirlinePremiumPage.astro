@@ -138,6 +138,42 @@ const seoTitle = seoLong.length <= 65 ? seoLong : seoShort;
  * non rabattue sur l'anglais comme le ferait `inlineF`, dont la table portugaise est indexée par
  * la phrase anglaise. La MÊME chaîne sert les quatre zones publiques : une seule définition. */
 const metaDescription = tt(locale, "premium.meta_description").replace("{airline}", d.name);
+
+/* LES PREUVES DE LA FICHE, RASSEMBLÉES POUR LE BALISAGE (13/09/2026).
+ *
+ * La fiche AFFICHE déjà, canal par canal, la page officielle citée, la phrase retenue, la date de
+ * vérification et l'indice de confiance. Le `WebPage` du JSON-LD, lui, n'en disait rien : un moteur
+ * de réponse lisait une page sans date et sans source, alors que l'écran en portait jusqu'à trois.
+ * Ce qui est publié pour l'œil est désormais publié pour la machine, et depuis la MÊME lecture —
+ * `politiqueDuCanal` + `preuveAuditee`, les fonctions qui alimentent les cartes ci-dessous. Aucune
+ * date, aucune URL n'est ajoutée ici : elles sont RELUES là où elles étaient déjà.
+ *
+ * Conséquence assumée : une fiche dont aucun canal n'est audité ne porte ni `lastReviewed` ni
+ * `citation`. C'est le bon comportement — annoncer une fraîcheur qu'on ne peut pas produire est
+ * exactement ce que la frontière de confiance interdit à l'écran. */
+const preuvesDeLaFiche = d.channels
+  .map((c) => preuveAuditee(politiqueDuCanal(kbAir?.premium?.policy, c.placement, id)))
+  .filter((p): p is NonNullable<typeof p> => !!p);
+const datesVerif = preuvesDeLaFiche.map((p) => p.verified_date).filter((x): x is string => typeof x === "string");
+const derniereVerif = datesVerif.length ? datesVerif.slice().sort().at(-1) : null;
+/* Une même page officielle sert souvent deux canaux : on ne la cite qu'une fois.
+ *
+ * `CreativeWork` ET NON `WebPage`, et ce n'est pas un détail de vocabulaire. Ma première version
+ * typait chaque source citée en `WebPage` — sémantiquement acceptable, `WebPage` étant un
+ * `CreativeWork` — et le harnais des montants a rougi : « 3 nœud(s) WebPage dans le JSON-LD au
+ * lieu d'un seul », sur 372 phrases et la quasi-totalité des fiches. Il a raison. Une page porte
+ * UN nœud `WebPage`, celui qui la décrit ; tout autre nœud du même type la met en concurrence
+ * avec elle-même et brouille ce que la page dit être. `CreativeWork` est d'ailleurs le type que
+ * schema.org attend pour `citation` : ce qu'on cite est une œuvre publiée, pas une seconde page.
+ * Ne pas revenir à `WebPage` ici, ni dans les fiches pays, race et aéroport, qui portent la même
+ * correction pour la même raison. */
+const citations = [...new Map(preuvesDeLaFiche.map((p) => [p.url, p])).values()].map((p) => ({
+  "@type": "CreativeWork" as const,
+  url: p.url,
+  name: hote(p.url),
+  ...(p.verified_date ? { lastReviewed: p.verified_date } : {}),
+}));
+
 // WebPage about the airline (entity grounding for GEO / rich results).
 const webpageLd = {
   "@context": "https://schema.org",
@@ -147,6 +183,11 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airline", name: d.name },
+  /* Voir CountryGuidePage : ce que la page dit au lecteur sur la reprise, elle le dit aussi au
+   * moteur de réponse, qui ne lit pas les pieds de page. */
+  license: "https://mydogcanfly.com/citing/",
+  ...(derniereVerif ? { lastReviewed: derniereVerif } : {}),
+  ...(citations.length ? { citation: citations } : {}),
 };
 /* FAQ construite sur la POLITIQUE CANONIQUE, la même que les cartes de canaux ci-dessous —
    `kbAir?.premium?.policy` lui est passée explicitement. Sans elle, `airlineFaq` ne produit
@@ -509,7 +550,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <p class="muted codeshare">{tt(locale, "codeshare.notice")}</p>
     </div>
 
-    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle} />
+    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle}
+      citeTitle={seoTitle} citeDate={derniereVerif ? fmtDate(derniereVerif) : undefined} />
   </div>
 </Base>
 

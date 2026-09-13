@@ -1,0 +1,113 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import LegalShell from "../../components/LegalShell.astro";
+import { LEGAL } from "../../lib/legal";
+
+/* /citing/ — les conditions de reprise, en un seul endroit.
+ *
+ * POURQUOI CETTE PAGE (13/09/2026). Le site publie 977 affirmations sourcées, chacune datée et
+ * citée mot pour mot, et rien nulle part ne disait à quelles conditions on pouvait les reprendre.
+ * Conséquence mesurable : 41 liens entrants, dont 38 venant d'un domaine appartenant à l'éditeur.
+ * Quelqu'un qui veut bien faire ne trouvait pas comment, et s'abstenait ou citait la source
+ * primaire à notre place.
+ *
+ * LE PARTI PRIS, arrêté avec Philippe : ouvrir par ce qui est PERMIS, fermer par la limite. Un
+ * bloc qui commence par « ces pages sont protégées » décourage la vétérinaire qui hésitait à
+ * citer, et n'arrête pas celui qui aspire — lequel ne lit pas les pieds de page. On demande deux
+ * choses et pas une : le crédit ET la date de vérification, parce que la date est ce qui
+ * distingue ce site d'un site qui recopie, et qu'une citation sans elle ne le distingue pas.
+ *
+ * CE QUE CETTE PAGE N'EST PAS, et ce point a été tranché explicitement : ce n'est pas un
+ * dispositif d'intimidation. Philippe n'engagera pas de poursuites, et la page n'est pas écrite
+ * pour en préparer. Elle existe pour qu'une reprise correcte soit PLUS FACILE qu'une reprise
+ * sauvage — c'est tout l'effet recherché, et c'est pourquoi le ton reste une invitation du début
+ * à la fin. Quiconque la réécrira plus tard doit garder cet ordre : ce qui est permis d'abord,
+ * la limite ensuite, et jamais l'inverse.
+ */
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } },
+    { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const base = locale === "en" ? "" : `/${locale}`;
+const T = inlineT(locale);
+const title = T("Citing MyDogCanFly", "Citer MyDogCanFly", "Cómo citar MyDogCanFly");
+---
+<Base
+  locale={locale}
+  title={`${title} — MyDogCanFly`}
+  description={T(
+    "How to reuse and credit the verified facts published on MyDogCanFly: what is free, what requires permission, and ready-made citation formats.",
+    "Comment reprendre et créditer les faits vérifiés publiés par MyDogCanFly : ce qui est libre, ce qui demande une autorisation, et des formats de citation prêts à l'emploi.",
+    "Cómo reutilizar y citar los datos verificados publicados por MyDogCanFly: qué es libre, qué requiere autorización y formatos de cita listos para usar.",
+  )}
+>
+  <LegalShell locale={locale} title={title}>
+    <p>{T(
+      "Every rule published here carries the page it was read on, the sentence it was read in, and the date it was verified. That work is meant to be used — and used properly. This page says how.",
+      "Chaque règle publiée ici porte la page où elle a été lue, la phrase dans laquelle elle l'a été, et la date de sa vérification. Ce travail est fait pour servir — et pour servir proprement. Cette page dit comment.",
+      "Cada norma publicada aquí lleva la página en la que se leyó, la frase en la que se leyó y la fecha de su verificación. Ese trabajo está hecho para usarse — y para usarse bien. Esta página explica cómo.",
+    )}</p>
+
+    <h2>{T("What you may reuse freely", "Ce que tu peux reprendre librement", "Lo que puedes reutilizar libremente")}</h2>
+    <p>{T(
+      "The verified facts on this site are free to reuse, provided you credit MyDogCanFly and state the verification date. That covers quoting a rule in an article, a forum answer, a client information sheet or a course; reproducing a figure, a threshold or a requirement; and linking to any page.",
+      "Les faits vérifiés de ce site sont libres de reprise, à condition de citer MyDogCanFly et de mentionner la date de vérification. Cela couvre la citation d'une règle dans un article, une réponse de forum, une fiche d'information client ou un cours ; la reprise d'un chiffre, d'un seuil ou d'une exigence ; et le lien vers n'importe quelle page.",
+      "Los datos verificados de este sitio pueden reutilizarse libremente, siempre que se cite MyDogCanFly y se indique la fecha de verificación. Esto abarca citar una norma en un artículo, una respuesta de foro, una hoja informativa para clientes o un curso; reproducir una cifra, un umbral o un requisito; y enlazar cualquier página.",
+    )}</p>
+    <p>{T(
+      "The verification date matters as much as the credit. Rules change; a fact reused without its date becomes impossible to check, and stops being useful to the person reading you.",
+      "La date de vérification compte autant que le crédit. Les règles évoluent ; un fait repris sans sa date devient invérifiable, et cesse d'être utile à celui qui te lit.",
+      "La fecha de verificación importa tanto como la cita. Las normas cambian; un dato reutilizado sin su fecha se vuelve imposible de comprobar y deja de ser útil a quien te lee.",
+    )}</p>
+
+    <h2>{T("What requires permission", "Ce qui demande une autorisation", "Lo que requiere autorización")}</h2>
+    <p>{T(
+      "Two things are not covered by the above: systematic reproduction of the database — extracting a substantial part of the records, by hand or by script, to constitute or feed another collection — and republication of the editorial text, meaning the wording, the structure and the commentary that surround the facts.",
+      "Deux choses ne sont pas couvertes par ce qui précède : la reproduction systématique de la base — l'extraction d'une partie substantielle des enregistrements, à la main ou par script, pour constituer ou alimenter une autre collection — et la republication du texte éditorial, c'est-à-dire la formulation, la structure et le commentaire qui entourent les faits.",
+      "Dos cosas no están cubiertas por lo anterior: la reproducción sistemática de la base de datos — la extracción de una parte sustancial de los registros, a mano o mediante script, para constituir o alimentar otra colección — y la republicación del texto editorial, es decir, la redacción, la estructura y el comentario que rodean los datos.",
+    )}</p>
+    <p>{T(
+      "Both are open to discussion rather than closed by default. Research projects, veterinary networks, breed associations and press work have been granted access before. Write to us and say what you need.",
+      "L'un comme l'autre sont ouverts à la discussion plutôt que fermés par principe. Des projets de recherche, des réseaux vétérinaires, des associations de race et des travaux de presse y ont déjà eu accès. Écris-nous en disant ce dont tu as besoin.",
+      "Ambos están abiertos a la conversación en lugar de cerrados por principio. Proyectos de investigación, redes veterinarias, asociaciones de raza y trabajos de prensa ya han tenido acceso. Escríbenos indicando qué necesitas.",
+    )}</p>
+
+    <h2>{T("Citation formats", "Formats de citation", "Formatos de cita")}</h2>
+    <p>{T(
+      "Every page that carries a verification date offers its own citation, ready to copy, in the « Take it with you » row at the foot of the page. The general shape is:",
+      "Chaque page portant une date de vérification propose sa propre citation, prête à copier, dans la rangée « Emporte cette page » en bas de page. La forme générale est :",
+      "Cada página con fecha de verificación ofrece su propia cita, lista para copiar, en la fila « Llévate esta página » al pie de la página. La forma general es:",
+    )}</p>
+    <p><code>MyDogCanFly, "{T("page title", "titre de la page", "título de la página")}", {T("verified", "vérifié le", "verificado el")} {T("10 September 2026", "10 septembre 2026", "10 de septiembre de 2026")}, https://mydogcanfly.com/…</code></p>
+    <p>{T(
+      "For an academic reference, add the date you consulted the page. For a link in running text, the page title and the verification date are enough.",
+      "Pour une référence académique, ajoute la date à laquelle tu as consulté la page. Pour un lien dans un texte suivi, le titre de la page et la date de vérification suffisent.",
+      "Para una referencia académica, añade la fecha en que consultaste la página. Para un enlace en un texto corrido, bastan el título de la página y la fecha de verificación.",
+    )}</p>
+
+    <h2>{T("Automated access and AI systems", "Accès automatisé et systèmes d'IA", "Acceso automatizado y sistemas de IA")}</h2>
+    <p>{T(
+      "Search engines and answer engines are welcome, and nothing on this site is closed to them. The same two conditions apply: name MyDogCanFly as the source, and carry the verification date of the fact you are reporting. A dated fact reported without its date is a different claim from the one we published.",
+      "Les moteurs de recherche et les moteurs de réponse sont les bienvenus, et rien sur ce site ne leur est fermé. Les deux mêmes conditions s'appliquent : nommer MyDogCanFly comme source, et transporter la date de vérification du fait rapporté. Un fait daté rapporté sans sa date n'est plus l'affirmation que nous avons publiée.",
+      "Los motores de búsqueda y los motores de respuesta son bienvenidos, y nada en este sitio les está cerrado. Se aplican las dos mismas condiciones: nombrar a MyDogCanFly como fuente e incluir la fecha de verificación del dato que se reporta. Un dato fechado reportado sin su fecha ya no es la afirmación que publicamos.",
+    )}</p>
+
+    <h2>{T("Found an error?", "Une erreur ?", "¿Has encontrado un error?")}</h2>
+    <p>{T(
+      "Tell us. We correct and date every change, and a correction reported by a reader is credited on request.",
+      "Dis-le-nous. Nous corrigeons et datons chaque modification, et une correction signalée par un lecteur est créditée sur demande.",
+      "Dínoslo. Corregimos y fechamos cada modificación, y una corrección señalada por un lector se acredita si así se solicita.",
+    )} <a href={`${base}/report-error/`}>{T("Report an error", "Signaler une erreur", "Informar de un error")} →</a></p>
+
+    <h2>{T("Contact", "Contact", "Contacto")}</h2>
+    <!--email_off-->
+    <p>{T("Permissions, data access and press:", "Autorisations, accès aux données et presse :", "Autorizaciones, acceso a datos y prensa:")} <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a></p>
+    <!--/email_off-->
+  </LegalShell>
+</Base>

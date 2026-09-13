@@ -1,7 +1,6 @@
 ---
-import { t, loadKB } from "@mydogcanfly/knowledge";
+import { t } from "@mydogcanfly/knowledge";
 import { localizeHref, localizedPath, LOCALES, isPreviewLocale } from "../lib/routes";
-import { menuList } from "../lib/pagedata";
 import Logo from "./Logo.astro";
 
 /* `switcherPath` : chemin dont le sélecteur de langue doit dériver ses liens.
@@ -11,18 +10,21 @@ import Logo from "./Logo.astro";
 interface Props { locale?: string; switcherPath?: string }
 const { locale = "en", switcherPath } = Astro.props;
 
-const kb = loadKB();
-// Listes complètes et filtrables : décision de Philippe, 30/07/2026. Une variante « dix plus
-// consultés + lien vers l'index » a été essayée puis abandonnée — elle allégeait beaucoup
-// l'HTML mais retirait au visiteur la possibilité d'atteindre n'importe quelle fiche depuis
-// n'importe quelle page, qui est la raison d'être de ce menu.
-// Le panneau « aéroport » n'est pas reconstitué : il était calculé à chaque rendu alors
-// qu'aucune entrée de `nav` ne le référence, donc jamais affiché.
-const dropdowns: Record<string, { href: string; label: string; flag?: string; badge?: string }[]> = {
-  airline: menuList(kb, "airline", locale),
-  country: menuList(kb, "country", locale),
-  breed: menuList(kb, "breed", locale),
-};
+/* Listes complètes et filtrables : décision de Philippe, 30/07/2026, TOUJOURS EN VIGUEUR. Une
+   variante « dix plus consultés + lien vers l'index » avait été essayée puis abandonnée — elle
+   allégeait beaucoup l'HTML mais retirait au visiteur la possibilité d'atteindre n'importe
+   quelle fiche depuis n'importe quelle page, qui est la raison d'être de ce menu.
+
+   CE QUI CHANGE LE 13/09/2026, et qui ne touche pas à cette décision : les listes ne sont plus
+   ÉCRITES dans le HTML de chaque page, elles sont SERVIES à l'ouverture du panneau, depuis
+   /menu/<famille>-<langue>.json. Le visiteur reçoit exactement la même liste complète et la
+   filtre comme avant ; la page, elle, cesse de porter 466 liens répétés — mesurés sur le build
+   du 13/09 : 1 419 770 liens internes pour 3 121 pages, et une hiérarchie plate où Google ne
+   pouvait lire aucune importance relative.
+
+   Le chemin crawlable reste entier : le libellé du menu est un vrai lien vers l'index de la
+   famille, lequel liste toutes les fiches en HTML. Toute fiche reste à deux clics de l'accueil.
+   Le raisonnement complet est en tête de pages/menu/[kind]-[lang].json.ts. */
 
 const nav = [
   { key: "nav.flight_finder", href: "/#flight-finder" },
@@ -48,20 +50,12 @@ const langLinks = LOCALES
             <a class="hdr__drop-label" href={localizeHref(n.href, locale)}>
               {t(locale, n.key)}<span class="hdr__caret" aria-hidden="true">▾</span>
             </a>
-            <div class="hdr__panel" role="menu" aria-label={t(locale, n.key)}>
+            <div class="hdr__panel" role="menu" aria-label={t(locale, n.key)}
+                 data-src={`/menu/${n.drop}-${locale}.json`}
+                 data-badge={n.drop === "breed" ? t(locale, "breed.brachy_badge") : undefined}>
               <input type="search" class="hdr__panel-search" autocomplete="off"
                 placeholder={t(locale, "index.filter")} aria-label={t(locale, "index.filter")} />
-              <ul class="hdr__clist">
-                {dropdowns[n.drop].map((it) => (
-                  <li class="hdr__citem" data-name={it.label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()}>
-                    <a class="hdr__crow" href={it.href}>
-                      {it.flag && <span class="hdr__cflag" aria-hidden="true">{it.flag}</span>}
-                      <span class="hdr__cname">{it.label}</span>
-                      {it.badge && <span class="hdr__cbadge" title={t(locale, "breed.brachy_badge")} aria-label={t(locale, "breed.brachy_badge")}>{it.badge}</span>}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <ul class="hdr__clist" aria-busy="true"></ul>
             </div>
           </div>
         ) : (
@@ -98,14 +92,74 @@ const langLinks = LOCALES
       btn?.setAttribute("aria-expanded", "false");
     }
   });
-  // Filter each dropdown independently (desktop comfort).
+  /* Les listes arrivent à la PREMIÈRE ouverture du panneau, pas au chargement de la page :
+     une page n'a aucune raison de télécharger 172 races si personne n'ouvre le menu. Un seul
+     appel par famille et par visite — `chargee` garde la trace, et l'échec ne casse rien :
+     le libellé du menu reste un lien vers l'index, qui liste tout. */
+  type Entree = { h: string; l: string; n: string; f?: string; b?: string };
   nav?.querySelectorAll<HTMLElement>(".hdr__panel").forEach((panel) => {
     const search = panel.querySelector<HTMLInputElement>(".hdr__panel-search");
-    const items = [...panel.querySelectorAll<HTMLElement>(".hdr__citem")];
-    search?.addEventListener("input", () => {
-      const q = search.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
-      for (const el of items) el.hidden = !!q && !(el.dataset.name || "").includes(q);
-    });
+    const liste = panel.querySelector<HTMLUListElement>(".hdr__clist");
+    const src = panel.dataset.src;
+    const badgeLabel = panel.dataset.badge || "";
+    let chargee: Promise<void> | null = null;
+
+    const peupler = (entrees: Entree[]) => {
+      if (!liste) return;
+      const frag = document.createDocumentFragment();
+      for (const e of entrees) {
+        const li = document.createElement("li");
+        li.className = "hdr__citem";
+        li.dataset.name = e.n;
+        const a = document.createElement("a");
+        a.className = "hdr__crow";
+        a.href = e.h;
+        if (e.f) {
+          const f = document.createElement("span");
+          f.className = "hdr__cflag"; f.setAttribute("aria-hidden", "true"); f.textContent = e.f;
+          a.appendChild(f);
+        }
+        const nom = document.createElement("span");
+        nom.className = "hdr__cname"; nom.textContent = e.l;
+        a.appendChild(nom);
+        if (e.b) {
+          const b = document.createElement("span");
+          b.className = "hdr__cbadge"; b.textContent = e.b;
+          if (badgeLabel) { b.title = badgeLabel; b.setAttribute("aria-label", badgeLabel); }
+          a.appendChild(b);
+        }
+        li.appendChild(a);
+        frag.appendChild(li);
+      }
+      liste.appendChild(frag);
+      liste.setAttribute("aria-busy", "false");
+      filtrer();
+    };
+
+    const charger = () => {
+      if (chargee || !src) return chargee;
+      chargee = fetch(src)
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+        .then(peupler)
+        .catch(() => { liste?.setAttribute("aria-busy", "false"); });
+      return chargee;
+    };
+
+    const filtrer = () => {
+      const q = (search?.value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+      for (const el of panel.querySelectorAll<HTMLElement>(".hdr__citem"))
+        el.hidden = !!q && !(el.dataset.name || "").includes(q);
+    };
+
+    const drop = panel.closest<HTMLElement>(".hdr__drop");
+    /* Trois portes d'entrée, parce que le panneau s'ouvre au survol ET au focus clavier :
+       `pointerenter` pour la souris, `focusin` pour la tabulation, `touchstart` pour le
+       cas où un écran large tactile n'émet pas `pointerenter`. */
+    drop?.addEventListener("pointerenter", charger, { once: true });
+    drop?.addEventListener("focusin", charger, { once: true });
+    drop?.addEventListener("touchstart", charger, { once: true, passive: true });
+
+    search?.addEventListener("input", filtrer);
     search?.addEventListener("click", (e) => e.stopPropagation());
   });
   // Sélecteur de langue — on retient le choix explicite du lecteur. Depuis le 01/08/2026 ce

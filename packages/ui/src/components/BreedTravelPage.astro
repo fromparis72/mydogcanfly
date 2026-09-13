@@ -3,8 +3,14 @@ import { inlineT, localizer, localized, t as tt } from "@mydogcanfly/knowledge";
 import Breadcrumb from "./Breadcrumb.astro";
 import PageActions from "./PageActions.astro";
 import type { BreedTravelProfile, Bi, Level } from "../lib/breedTravel";
-interface Props { profile: BreedTravelProfile; locale: string; compare?: { slug: string; name: string }[]; image?: string | null }
-const { profile: p, locale, compare = [], image = null } = Astro.props as Props;
+interface Props { profile: BreedTravelProfile; locale: string; compare?: { slug: string; name: string }[]; image?: string | null;
+  /** Les faits du registre canonique qui s'appliquent à cette race. Voir `lib/raceEtat.ts`. */
+  faits?: any[] }
+const { profile: p, locale, compare = [], image = null, faits = [] } = Astro.props as Props;
+/* La date de la fiche : la plus récente des vérifications des faits du registre. Même lecture
+   que celle qui ouvre la porte d'indexation et qui alimente `citation` en JSON-LD. */
+const dateFaits = faits.map((f: any) => f?.source?.verified_date).filter((d: any) => typeof d === "string").sort().at(-1);
+const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
 const T = inlineT(locale);
 const fr = locale === "fr";
 const es = locale === "es";
@@ -190,6 +196,25 @@ const sub = [
     <section class="bt2-card">
       <h2 class="bt2-h2">🫁 {T("Snub-nosed breeds", "Races brachycéphales", "Razas braquicéfalas")}</h2>
       <p class="bt2-chandet">{tt(locale, "race.brachy_prudence")}</p>
+      {/* LES FAITS DU REGISTRE, MONTRÉS (13/09/2026).
+        * Cette section reposait sur la règle IATA du registre canonique sans jamais la citer :
+        * le lecteur lisait une recommandation de prudence sans savoir qui la formule ni quand
+        * elle a été vérifiée. C'est ce qui distingue cette fiche de celle d'une race sans fait
+        * établi — et c'est ce que la porte d'indexation regarde. Une page indexée doit donc
+        * MONTRER ce que son balisage cite ; les deux lisent la même liste. */}
+      {faits.length > 0 && (
+        <ul class="bt2-faits">
+          {faits.map((f: any) => (
+            <li class="bt2-fait">
+              <p class="bt2-faitxt">{localized(locale, f.detail)}</p>
+              <p class="bt2-faitsrc">
+                <a href={f.source?.url} rel="nofollow noopener" target="_blank">{hote(f.source?.url ?? "")}</a>
+                {f.source?.verified_date && <span class="bt2-faitd"> · {tt(locale, "premium.verified_on").replace("{date}", f.source.verified_date)}</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   )}
 
@@ -266,7 +291,7 @@ const sub = [
         : <a href={p.source.url} rel="nofollow">{new URL(p.source.url).host}</a>
     } · {T("verified", "vérifié", "verificado")} {p.source.date} · {T("confidence", "confiance", "confianza")} {p.source.confidence}/5. {T("Travel interpretation by MyDogCanFly.", "Interprétation voyage propre à MyDogCanFly.", "Interpretación de viaje por MyDogCanFly.")}</p>
   )}
-  <PageActions locale={locale} breedId={p.id} emailSubject={name} />
+  <PageActions locale={locale} breedId={p.id} emailSubject={name} citeTitle={name} citeDate={dateFaits} />
 </div>
 
 {/* Le contexte de race voyage avec le CLIC, jamais avec la simple lecture de la fiche.
@@ -307,6 +332,12 @@ document.addEventListener("DOMContentLoaded",function(){
   .bt2-cta { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 999px; background: var(--mdcf-surface); color: var(--mdcf-navy); border: 1.5px solid var(--mdcf-navy); font-weight: 600; font-size: 14px; text-decoration: none; transition: background .15s ease, color .15s ease, border-color .15s ease; }
   .bt2-cta:hover { background: var(--mdcf-navy); color: #fff; text-decoration: none; }
 
+  .bt2-faits { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .bt2-fait { border-left: 2px solid var(--mdcf-line, #e6ebf1); padding-left: 12px; }
+  .bt2-faitxt { margin: 0; font-size: 14.5px; }
+  .bt2-faitsrc { margin: 3px 0 0; font-size: 12.5px; color: var(--mdcf-muted, #64748b); }
+  .bt2-faitsrc a { color: inherit; }
+  .bt2-faitd { white-space: nowrap; }
   .bt2-card { border: 1px solid var(--mdcf-line); border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; background: var(--mdcf-surface); }
   .bt2-h2 { font-size: 18px; margin: 0 0 14px; color: var(--mdcf-ink); }
   /* La section vide qui s'explique : neutre, jamais rouge — une absence de preuve n'est pas un

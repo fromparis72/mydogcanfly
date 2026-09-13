@@ -14,5 +14,16 @@ const { locale } = Astro.props as { locale: string };
 const T = inlineT(locale);
 const items = indexItems(loadKB(), "airline", locale);
 const seoTitle = T("Airline pet policies: dogs in cabin & hold", "Politiques animaux des compagnies : chien en cabine ou soute", "Políticas de mascotas por aerolínea: perro en cabina o bodega");
+/* Cet index est l'entrée d'une collection, pas un article : il se déclare comme tel. Le détail
+ * du raisonnement est dans EntityIndex.astro, à `datasetLd`. */
+const dataset = {
+  name: T("Airline dog-travel policies", "Politiques des compagnies pour le voyage avec un chien", "Políticas de las aerolíneas para viajar con perro"),
+  description: T(
+    "Cabin, hold and cargo rules for travelling with a dog, airline by airline, each with the official page it was read on and the date it was verified.",
+    "Règles de cabine, de soute et de fret pour voyager avec un chien, compagnie par compagnie, avec la page officielle lue et la date de vérification.",
+    "Normas de cabina, bodega y carga para viajar con un perro, aerolínea por aerolínea, con la página oficial consultada y la fecha de verificación.",
+  ),
+  keywords: ["airline pet policy", "dog in cabin", "dog in hold", "pet cargo", "brachycephalic restrictions"],
+};
 ---
-<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.airline")} title={t(locale, "index.airlines.title")} blurb={t(locale, "index.airlines.blurb")} items={items} locale={locale} showEmblem />
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.airline")} title={t(locale, "index.airlines.title")} blurb={t(locale, "index.airlines.blurb")} items={items} locale={locale} dataset={dataset} showEmblem />

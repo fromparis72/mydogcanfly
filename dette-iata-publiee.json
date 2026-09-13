@@ -3,7 +3,7 @@
   "_mesure": {
     "pages": 0,
     "occurrences": 0,
-    "dist_pages_html": 3121
+    "dist_pages_html": 3125
   },
   "pages": {},
   "_regle": "Dette IATA encore PUBLIÉE sur le site construit. Mesurée par un seul contrat : le jugement lexical canonique de `inventaire-iata.mjs` (`jugerOccurrence`), appliqué aux ZONES PUBLIQUES DÉCODÉES de chaque page (`test-lib/zones-publiques.mjs`) — le titre du document (celui de l'espace de noms HTML, jamais celui d'un SVG) ; le corps, lu comme il est RENDU (les blocs séparent, les éléments en ligne ne séparent pas), sans scripts, styles ni templates ; les balises de description ; les chaînes du JSON-LD parcourues récursivement ; et les textes accessibles portés par des attributs — alt, aria-label, aria-description, title, placeholder, aria-placeholder, et la valeur d'un bouton. Ne sont PAS lus : aria-labelledby et aria-describedby (des identifiants, dont le texte est déjà dans le corps), les adresses, et la valeur d'un champ de saisie. Chaque entrée scelle l'URL, LA ZONE et la formulation : un défaut déplacé du corps vers une métadonnée ou vers un attribut ne peut donc pas passer à total constant. Un bloc JSON-LD illisible fait rougir le contrôle au lieu d'être compté zéro. S'AJOUTE À CETTE MESURE UNE RÉCONCILIATION DES JETONS, côté sources : tout « IATA » des racines déclarées (content/, packages/ui/src/, packages/ui/public/, packages/knowledge/raw/, packages/knowledge/translations/, data/) qui n'est ni dans une occurrence du motif ni dans un contexte licite déclaré fait échouer l'inventaire. Les études internes, la configuration de la CI, le code du moteur et les scripts ponctuels en sont exclus par chemin : ils ne publient pas, et ce choix est nommé dans l'instrument plutôt que subi."
