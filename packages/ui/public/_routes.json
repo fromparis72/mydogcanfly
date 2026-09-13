@@ -1,6 +1,8 @@
 {
   "version": 1,
-  "include": ["/*"],
+  "include": [
+    "/*"
+  ],
   "exclude": [
     "/fr/*",
     "/es/*",
@@ -19,6 +21,7 @@
     "/terms/*",
     "/lab/*",
     "/v1/*",
+    "/menu/*",
     "/_astro/*",
     "/airline-logos/*",
     "/brand/*",
