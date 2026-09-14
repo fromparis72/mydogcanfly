@@ -75,7 +75,8 @@ for (const [l, rel] of Object.entries(pages)) {
   if (compte.refus > 0 && z.corps.includes(attendue) && !attendue.includes(String(compte.refus))) echec(`${l} : la phrase ne porte pas le nombre de refus`);
 }
 
-/* 3. LES TITRES ET DESCRIPTIONS SEO DES QUATRE ACCUEILS (11/09/2026, arbitrage de Philippe).
+/* 3. LE POSITIONNEMENT SEO ET LE CONTENU VISIBLE DES QUATRE ACCUEILS
+      (14/09/2026, arbitrage de Philippe).
       Ils sont vérifiés ICI plutôt que dans un harnais neuf : ce fichier ouvre déjà les quatre
       pages d'accueil CONSTRUITES, dans les quatre langues, et tourne en CI après le build. Un
       second harnais qui rouvrirait les mêmes quatre fichiers serait une seconde définition de
@@ -86,35 +87,48 @@ for (const [l, rel] of Object.entries(pages)) {
         · `og:title`, `og:description`, `twitter:title` et `twitter:description` réemploient déjà
           ces deux valeurs dans `Base.astro` : on exige la concordance plutôt que de la supposer,
           car c'est précisément le genre de recopie qui se désynchronise en silence ;
-        · AUCUN suffixe de marque n'est ajouté par notre code — le titre anglais en portait un
-          (« | MyDogCanFly »), retiré par l'arbitrage ; Google affiche le nom du site de lui-même ;
         · les ANCIENS titres et descriptions ne subsistent dans aucune zone publique ;
-        · le H1 visible et les slogans arbitrés ne bougent pas — c'est la garde qui empêche une
-          correction SEO de déborder sur le contenu ;
+        · le H1, l'introduction, le premier H2 et le badge gratuit valent eux aussi EXACTEMENT les
+          textes arbitrés : le positionnement du head et celui de la page ne peuvent pas diverger ;
         · le portugais est du portugais du Brésil, ANNONCÉ comme tel (`lang="pt-BR"`,
-          `og:locale = pt_BR`), et sans repli : ses quatre chaînes lui sont propres. */
+          `og:locale = pt_BR`), et sans repli : ses chaînes lui sont propres. */
 const SEO_ATTENDU = {
   en: {
-    title: "Flying With a Dog: Airline Policies and Entry Rules",
-    description: "Check airline policies and destination-country entry requirements for flying with your dog: cabin, hold, cargo, documents, restrictions, and sources.",
+    title: "Find Airlines That Allow Dogs by Route | MyDogCanFly.com",
+    description: "Find airlines that allow dogs on your route—for free. Compare cabin, hold and cargo options, breed restrictions, health and entry rules with cited sources.",
+    h1: "Can my dog fly? Check which airlines allow dogs on your route",
+    intro: "Compare cabin, hold and cargo options, breed restrictions, and destination health and entry rules. Confirmed information is sourced and dated; anything uncertain is clearly flagged.",
+    h2: "Compare airline policies for your dog",
+    badge: "100% free online tool",
   },
   fr: {
-    title: "Voyager avec son chien : compagnies et formalités par pays",
-    description: "Consultez les conditions des compagnies aériennes et du pays de destination pour voyager avec votre chien : cabine, soute, fret, documents et restrictions.",
+    title: "Chien en avion : l’outil gratuit et complet | MyDogCanFly",
+    description: "Outil gratuit : trouve les compagnies pour ton chien et ton trajet. Compare cabine, soute, fret, restrictions de race et formalités, avec sources citées.",
+    h1: "Ton chien peut-il prendre l’avion ? Vérifie quelles compagnies l’acceptent sur ton trajet",
+    intro: "Compare les options en cabine, en soute ou en fret, les restrictions de race et les formalités sanitaires et administratives. Chaque information confirmée est sourcée et datée ; ce qui reste incertain est clairement signalé.",
+    h2: "Compare les politiques des compagnies pour ton chien",
+    badge: "Outil en ligne 100 % gratuit",
   },
   es: {
-    title: "Volar con perro: aerolíneas y requisitos por país",
-    description: "Consulta las condiciones de las aerolíneas y del país de destino para viajar con tu perro: cabina, bodega, carga, documentos y restricciones.",
+    title: "Aerolíneas que aceptan perros por ruta | Herramienta gratis",
+    description: "Herramienta gratis y completa: encuentra aerolíneas para tu perro y ruta. Compara cabina, bodega, carga, restricciones, requisitos y fuentes citadas.",
+    h1: "¿Puede volar mi perro? Revisa qué aerolíneas lo aceptan en tu ruta",
+    intro: "Compara en una sola búsqueda las opciones en cabina, bodega o carga, las restricciones de raza y los requisitos sanitarios y de entrada. La información confirmada incluye fuentes y fechas; cualquier punto pendiente aparece claramente marcado.",
+    h2: "Compara las políticas de las aerolíneas para tu perro",
+    badge: "Herramienta en línea 100 % gratis",
   },
   pt: {
-    title: "Viajar com cachorro: companhias e regras por país",
-    description: "Consulte as regras das companhias aéreas e do país de destino para viajar com seu cachorro: cabine, porão, carga, documentos e restrições.",
+    title: "Companhias aéreas para cachorro por rota | Ferramenta grátis",
+    description: "Ferramenta grátis: encontre companhias aéreas para seu cachorro e sua rota. Compare cabine, porão, carga, restrições e requisitos, com fontes citadas.",
+    h1: "Meu cachorro pode voar? Confira quais companhias aéreas o aceitam na sua rota",
+    intro: "Compare em uma única busca as opções de cabine, porão ou carga, as restrições de raça e os requisitos sanitários e de entrada. As informações confirmadas incluem fonte e data; qualquer ponto pendente aparece claramente marcado.",
+    h2: "Compare as políticas das companhias aéreas para seu cachorro",
+    badge: "Ferramenta online 100% grátis",
   },
 };
 /* Les textes REMPLACÉS. Ils ne sont pas effacés du dépôt : ils sont ce que la garde traque. */
 const SEO_ANCIENS = [
-  "Can My Dog Fly? Airline Conditions, Confirmed or To Check",
-  "| MyDogCanFly",
+  "Can My Dog Fly? Airline Conditions, Confirmed or To Check | MyDogCanFly",
   "Voyager avec son chien en avion : ce qui est confirmé, ce qui reste à vérifier",
   "¿Puede volar mi perro? Normas de las aerolíneas, con fuentes",
   "O meu cão pode voar? Regras das companhias, com fontes",
@@ -122,11 +136,20 @@ const SEO_ANCIENS = [
   "Les conditions des compagnies pour les chiens — cabine, soute, fret",
   "Las condiciones de las aerolíneas para perros — cabina, bodega y carga",
   "As condições das companhias para cães — cabine, porão e carga",
+  "Flying With a Dog: Airline Policies and Entry Rules",
+  "Check airline policies and destination-country entry requirements for flying with your dog: cabin, hold, cargo, documents, restrictions, and sources.",
+  "Voyager avec son chien : compagnies et formalités par pays",
+  "Consultez les conditions des compagnies aériennes et du pays de destination pour voyager avec votre chien : cabine, soute, fret, documents et restrictions.",
+  "Volar con perro: aerolíneas y requisitos por país",
+  "Consulta las condiciones de las aerolíneas y del país de destino para viajar con tu perro: cabina, bodega, carga, documentos y restricciones.",
+  "Viajar com cachorro: companhias e regras por país",
+  "Consulte as regras das companhias aéreas e do país de destino para viajar com seu cachorro: cabine, porão, carga, documentos e restrições.",
 ];
 {
   const decoder = (v) => v.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#x27;/g, "'");
   const balise = (html, re) => { const m = html.match(re); return m ? decoder(m[1]) : null; };
+  const texte = (v) => decoder(String(v ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
   for (const [l, rel] of Object.entries(pages)) {
     const f = join(DIST, rel);
     if (!existsSync(f)) { echec(`SEO ${l} : ${rel} absent du dist`); continue; }
@@ -148,27 +171,23 @@ const SEO_ANCIENS = [
       const vu = balise(html, re);
       if (vu !== valeur) echec(`SEO ${l} : ${nom} ne concorde pas avec la valeur arbitrée`, JSON.stringify({ vu: vu?.slice(0, 80) }));
     }
-    /* Aucun suffixe de marque ajouté par notre code : le titre vaut la chaîne, à l'octet près. */
-    if (titre && /[|–—-]\s*MyDogCanFly\s*$/.test(titre)) echec(`SEO ${l} : un suffixe de marque est ajouté au titre`, titre);
     /* Les anciens textes ne subsistent nulle part dans les zones publiques. */
     const z = zonesDe(html);
     const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
     const survivant = SEO_ANCIENS.find((v) => tout.includes(v));
     if (survivant) echec(`SEO ${l} : un ancien texte est encore publié`, survivant);
-    /* LE CONTENU VISIBLE N'A PAS BOUGÉ — et cette garde-ci a dû être refondue avant d'être crue.
-       *Erreur nommée, 11/09/2026.* Ma première rédaction cherchait la chaîne « Can MY dog fly? »
-       dans le corps de la page anglaise et passait au vert. Elle passait pour une MAUVAISE RAISON :
-       le H1 construit dit « Can your dog fly? », et la chaîne cherchée existait ailleurs — sur le
-       bouton du formulaire, dans un H2 et dans un bloc de libellés JSON. Un sabotage du H1 ne la
-       faisait pas rougir. C'est exactement la faute que ce dépôt traque : un contrôle vert parce
-       qu'il a trouvé autre chose que ce qu'il croyait regarder.
-       Elle est remplacée par une exigence qui ne dépend d'AUCUN texte d'accroche particulier, et
-       qui survivra donc aux arbitrages éditoriaux à venir : la correction SEO est restée dans le
-       `<head>`. Le titre et la description arbitrés ne doivent apparaître NULLE PART dans le corps,
-       et le H1 ne doit pas s'être aligné sur le titre SEO. */
-    const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-    if (!h1) echec(`SEO ${l} : aucun H1 sur l'accueil — la garde ne mordrait sur rien`);
-    else if (decoder(h1) === att.title) echec(`SEO ${l} : le H1 visible a pris la valeur du titre SEO`, h1);
+    /* Le contenu visible est vérifié dans ses BALISES, pas par une recherche globale qui pourrait
+       trouver la même phrase dans un bouton, un script ou un bloc JSON. */
+    const h1s = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)].map((m) => texte(m[1]));
+    const heroSub = texte(html.match(/<p class="hero__sub[^>]*>([\s\S]*?)<\/p>/)?.[1]);
+    const premierH2 = texte(html.match(/<h2 class="mdcf-h2"[^>]*>([\s\S]*?)<\/h2>/)?.[1]);
+    const badge = texte(html.match(/<p class="finder-free"[^>]*>([\s\S]*?)<\/p>/)?.[1]);
+    if (h1s.length !== 1) echec(`SEO ${l} : l'accueil doit contenir exactement un H1`, String(h1s.length));
+    else if (h1s[0] !== att.h1) echec(`SEO ${l} : H1 inattendu`, JSON.stringify({ vu: h1s[0], attendu: att.h1 }));
+    else ok(`SEO ${l} : H1 unique et exact`);
+    if (heroSub !== att.intro) echec(`SEO ${l} : introduction inattendue`, JSON.stringify({ vu: heroSub?.slice(0, 80) }));
+    if (premierH2 !== att.h2) echec(`SEO ${l} : premier H2 inattendu`, JSON.stringify({ vu: premierH2 }));
+    if (badge !== `✓ ${att.badge}`) echec(`SEO ${l} : badge de gratuité inattendu`, JSON.stringify({ vu: badge }));
     if (z.corps.includes(att.title)) echec(`SEO ${l} : le titre SEO est publié dans le CORPS de la page`, att.title);
     if (z.corps.includes(att.description)) echec(`SEO ${l} : la description SEO est publiée dans le CORPS de la page`);
   }

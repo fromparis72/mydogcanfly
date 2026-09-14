@@ -12,50 +12,31 @@ export function getStaticPaths() {
   ];
 }
 const { locale } = Astro.props as { locale: string };
-/* SEO title/description des quatre accueils — une variante par langue, aucune déduite d'une autre.
-   L'HISTORIQUE EST CONSERVÉ, PARCE QU'IL EXPLIQUE CE QUI EST INTERDIT ICI :
-     · l'espagnol a longtemps reçu les chaînes FRANÇAISES par repli — corrigé le 07/09/2026 ; c'est
-       pourquoi les quatre entrées sont écrites en toutes lettres et qu'aucune ne se déduit ;
-     · les quatre descriptions promettaient « la meilleure compagnie » (« Find the best airline for
-       your dog », « Encuentra la mejor opción ») et le titre français annonçait « 90+ compagnies »
-       là où la base en compte 102. Promettre un choix optimal dans la zone la plus reprise du site
-       contredisait ce que la page dit ensuite. Retiré le 07/09/2026, et à ne pas réintroduire.
-
-   MOUVEMENT NOMMÉ DU 11/09/2026 — arbitrage SEO validé par Philippe, textes verbatim.
-   Les quatre titres et les quatre descriptions sont remplacés par ceux de l'arbitrage. Trois
-   changements de fond, tous voulus :
-     · le suffixe de marque « | MyDogCanFly » disparaît du titre anglais. Google affiche déjà le nom
-       du site et décide seul de l'ajouter ou de le retirer ; l'écrire nous-mêmes ne fait que
-       consommer des caractères utiles. AUCUN suffixe n'est ajouté par le code — la balise vaut
-       exactement la chaîne ci-dessous, ici comme dans `og:title` et `twitter:title` ;
-     · les titres passent de la question de marque (« Can My Dog Fly ? ») à l'intention de
-       recherche (« Flying With a Dog »). Le H1 visible, lui, NE BOUGE PAS : la page continue de
-       demander « Can MY dog fly? », et les titres 2 et 3 arbitrés restent intacts ;
-     · les descriptions annoncent les deux moitiés du site — conditions des compagnies ET formalités
-       du pays de destination — là où les précédentes ne parlaient que des compagnies.
-   Le portugais est du portugais du BRÉSIL, et il l'est explicitement : `HTML_LANG` de `Base.astro`
-   rend `lang="pt-BR"` et `OG_LOCALE` rend `og:locale = pt_BR`. Aucun repli sur l'anglais, le
-   français ou le portugais européen n'existe pour cette entrée — elle est écrite ici. */
+/* SEO des quatre accueils — arbitrage validé par Philippe le 14/09/2026, textes verbatim.
+   Chaque langue porte sa propre intention de recherche, sans traduction de repli. Le titre et la
+   description distinguent l'outil des blogs : recherche par trajet, gratuité, modes de transport,
+   restrictions, formalités et sources. L'espagnol vise prioritairement l'Amérique latine ; le
+   portugais est du portugais du Brésil (`lang="pt-BR"`, `og:locale="pt_BR"`). */
 const SEO: Record<string, { title: string; description: string }> = {
   en: {
-    title: "Flying With a Dog: Airline Policies and Entry Rules",
+    title: "Find Airlines That Allow Dogs by Route | MyDogCanFly.com",
     description:
-      "Check airline policies and destination-country entry requirements for flying with your dog: cabin, hold, cargo, documents, restrictions, and sources.",
+      "Find airlines that allow dogs on your route—for free. Compare cabin, hold and cargo options, breed restrictions, health and entry rules with cited sources.",
   },
   fr: {
-    title: "Voyager avec son chien : compagnies et formalités par pays",
+    title: "Chien en avion : l’outil gratuit et complet | MyDogCanFly",
     description:
-      "Consultez les conditions des compagnies aériennes et du pays de destination pour voyager avec votre chien : cabine, soute, fret, documents et restrictions.",
+      "Outil gratuit : trouve les compagnies pour ton chien et ton trajet. Compare cabine, soute, fret, restrictions de race et formalités, avec sources citées.",
   },
   es: {
-    title: "Volar con perro: aerolíneas y requisitos por país",
+    title: "Aerolíneas que aceptan perros por ruta | Herramienta gratis",
     description:
-      "Consulta las condiciones de las aerolíneas y del país de destino para viajar con tu perro: cabina, bodega, carga, documentos y restricciones.",
+      "Herramienta gratis y completa: encuentra aerolíneas para tu perro y ruta. Compara cabina, bodega, carga, restricciones, requisitos y fuentes citadas.",
   },
   pt: {
-    title: "Viajar com cachorro: companhias e regras por país",
+    title: "Companhias aéreas para cachorro por rota | Ferramenta grátis",
     description:
-      "Consulte as regras das companhias aéreas e do país de destino para viajar com seu cachorro: cabine, porão, carga, documentos e restrições.",
+      "Ferramenta grátis: encontre companhias aéreas para seu cachorro e sua rota. Compare cabine, porão, carga, restrições e requisitos, com fontes citadas.",
   },
 };
 const { title: seoTitle, description: seoDescription } = SEO[locale] ?? SEO.en;
