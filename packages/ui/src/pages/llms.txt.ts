@@ -1,6 +1,9 @@
 import type { APIRoute } from "astro";
 import { loadKB, slugFor } from "@mydogcanfly/knowledge";
 import { reliefIndexable } from "../lib/reliefEtat";
+import { raceIndexable } from "../lib/raceEtat";
+import { compagnieIndexable } from "../lib/compagnieEtat";
+import { airlineData } from "../data/airlines";
 import { PUBLIC_LOCALES } from "../lib/sitemapEntries";
 
 /* /llms.txt — la carte du site à l'usage des moteurs de réponse.
@@ -26,8 +29,8 @@ export const prerender = true;
 const BASE = "https://mydogcanfly.com";
 
 /** Les compagnies les mieux notées, telles que la base les note — aucune sélection éditoriale. */
-function topAirlines(kb: any, n: number) {
-  return [...kb.airlines.values()]
+function topAirlines(airlines: any[], n: number) {
+  return airlines
     .filter((a: any) => typeof a.rating === "number")
     .sort((a: any, b: any) => b.rating - a.rating || String(a.name).localeCompare(String(b.name)))
     .slice(0, n);
@@ -50,9 +53,11 @@ const nom = (e: any): string =>
 
 export const GET: APIRoute = () => {
   const kb: any = loadKB();
-  const nCompagnies = kb.airlines.size;
+  const compagniesIndexables = [...kb.airlines.values()]
+    .filter((a: any) => airlineData[a.id] && compagnieIndexable(a, airlineData[a.id]));
+  const nCompagnies = compagniesIndexables.length;
   const nPays = kb.countries.size;
-  const nRaces = kb.breeds.size;
+  const nRaces = [...kb.breeds.values()].filter((b: any) => raceIndexable(kb, b)).length;
   const nAeroports = [...kb.airports.values()].filter((a: any) => reliefIndexable(a)).length;
   const langues = PUBLIC_LOCALES;
   const prefixes = langues.filter((l) => l !== "en");
@@ -65,8 +70,8 @@ export const GET: APIRoute = () => {
   w(
     `> The reference for flying with a dog. MyDogCanFly documents ${nCompagnies} airlines, ` +
       `${nPays} country entry regimes, ${nRaces} dog breeds and ${nAeroports} airports, and answers one ` +
-      `question: can this dog fly on this route, in the cabin, the hold or as cargo? Every rule ` +
-      `carries its official source, a verification date and a confidence level.`,
+      `question: can this dog fly on this route, in the cabin, the hold or as cargo? Rules presented ` +
+      `as verified carry their official source, a verification date and a confidence level.`,
   );
   w();
   w(
@@ -90,8 +95,8 @@ export const GET: APIRoute = () => {
   w();
   w("## Airlines");
   w();
-  w(`- [All airlines](${BASE}/airlines/): ${nCompagnies} carriers, each with cabin, hold, cargo, breed rules and network`);
-  for (const a of topAirlines(kb, 12))
+  w(`- [Airline directory](${BASE}/airlines/): ${nCompagnies} sourced carrier profiles currently eligible for indexing; draft profiles remain marked to confirm`);
+  for (const a of topAirlines(compagniesIndexables, 12))
     w(`- [${nom(a)}](${BASE}/airlines/${slugFor(a.id)}/): rated ${(a as any).rating}/5`);
   w();
   w("## Countries");

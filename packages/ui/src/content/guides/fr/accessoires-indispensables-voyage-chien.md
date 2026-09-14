@@ -6,7 +6,7 @@ description: "Le guide complet des accessoires indispensables pour voyager avec 
 summary: "Transport, sécurité, hydratation, repérage, confort, santé : le tour d'horizon des accessoires vraiment utiles pour voyager avec son chien, avec nos guides d'achat détaillés pour chaque famille."
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "accessoires", "voyage", "équipement", "checklist"]
 sourceUrl: "/accessoires-indispensables-voyage-chien/"

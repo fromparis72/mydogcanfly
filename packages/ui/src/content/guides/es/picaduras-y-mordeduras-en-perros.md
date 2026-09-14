@@ -6,7 +6,7 @@ description: "Picaduras y mordeduras en el perro: avispa, abeja, serpiente (víb
 summary: "Picaduras y mordeduras en el perro: avispa, abeja, serpiente (víbora), procesionaria del pino. Cómo valorar la gravedad y reaccionar. Urgencias que hay que conocer."
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "primeros auxilios", "verano"]
 enbref:

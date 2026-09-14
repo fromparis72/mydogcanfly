@@ -18,7 +18,7 @@ slug: "bernese-mountain-dog"
 url: "/dog-heat-safety/bernese-mountain-dog/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Bernese Mountain Dog"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1620058069144-9f639235faea?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Bernese Mountain Dog has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

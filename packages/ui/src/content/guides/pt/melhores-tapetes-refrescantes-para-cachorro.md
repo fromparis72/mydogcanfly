@@ -6,7 +6,7 @@ description: "Tapetes refrescantes para cachorro: como funcionam, como escolher 
 summary: "Tapetes refrescantes para cachorro: como funcionam, como escolher (gel, tamanho, resistência), com modelos Trixie e Flamingo para o calor do verão."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "tapete refrescante", "onda de calor", "equipamento"]
 enbref:

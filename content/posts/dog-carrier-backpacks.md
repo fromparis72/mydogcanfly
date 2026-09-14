@@ -15,7 +15,7 @@ url: "/dog-carrier-backpacks/"
 frUrl: "/sac-a-dos-transport-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "carrier", "hiking"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1766391238942-bac56dd681e2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBiYWNrcGFjayUyMGNhcnJpZXIlMjBoaWtpbmd8ZW58MXwwfHx8MTc4MjkzOTQyMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Backpack and front carriers for small dogs: what to look for in ventilation, safety, and comfort. Ideal for cities, hikes, and public transit."
 cover:

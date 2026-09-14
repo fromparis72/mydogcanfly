@@ -15,7 +15,7 @@ url: "/traveling-to-the-usa-with-a-dog/"
 frUrl: "/voyager-chien-etats-unis/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "USA"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1589314126779-44d8f89f5eee?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to the United States: easy level, lead time a few days (online form)."
 cover:

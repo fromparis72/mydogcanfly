@@ -19,7 +19,7 @@ url: "/dog-friendly-rest-stops/"
 frUrl: "/aires-autoroute-dog-friendly/"
 categories: ["Travel"]
 tags: ["dog", "highway", "rest stop", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1773758661833-ec675f9ddb73?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB3YWxraW5nJTIwZ3Jhc3MlMjBwYXJrJTIwbGVhc2h8ZW58MXwwfHx8MTc4MjQ5NzQ5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A break every 2 hours: walk your dog on a leash, offer water, let them stretch and relieve themselves in the designated green spaces. Never leave them alone in the car in summer."
 cover:

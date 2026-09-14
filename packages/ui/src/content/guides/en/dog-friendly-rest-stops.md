@@ -6,7 +6,7 @@ description: "How to make a successful highway rest stop with your dog: relief a
 summary: "A break every 2 hours: walk your dog on a leash, offer water, let them stretch and relieve themselves in the designated green spaces. Never leave them alone in the car in summer."
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "highway", "rest stop", "travel"]
 sourceUrl: "/dog-friendly-rest-stops/"

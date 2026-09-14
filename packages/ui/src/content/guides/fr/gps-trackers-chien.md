@@ -5,7 +5,7 @@ description: "GPS et trackers pour chien : différence avec la puce, autonomie, 
 summary: "Un traceur GPS localise le chien en temps réel, contrairement à la puce d'identification qui ne sert qu'à l'identifier une fois retrouvé. Autonomie, couverture et abonnement sont les critères décisifs."
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "GPS", "tracker", "sécurité"]
 sourceUrl: "/gps-trackers-chien/"

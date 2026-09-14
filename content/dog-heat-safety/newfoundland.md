@@ -18,7 +18,7 @@ slug: "newfoundland"
 url: "/dog-heat-safety/newfoundland/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Newfoundland"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1632674764208-bb420a102ace?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Newfoundland has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

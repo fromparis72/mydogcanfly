@@ -5,7 +5,7 @@ description: "Gamelles pliables, gourdes, tapis et accessoires nomades : l'équi
 summary: "Gamelle pliable, gourde à abreuvoir intégré, tapis de couchage roulable et sacs à déjections : quelques accessoires nomades bien choisis suffisent à voyager léger tout en gardant le confort du chien."
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "gamelle", "accessoires", "voyage"]
 sourceUrl: "/gamelles-accessoires-nomades-chien/"

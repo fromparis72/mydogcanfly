@@ -6,7 +6,7 @@ description: "As necessidades do cachorro em viagem: de quanto em quanto tempo p
 summary: "As necessidades do cachorro em viagem: de quanto em quanto tempo parar, como lidar com um filhote ou um cachorro ansioso, limpeza e acidentes. Uma viagem limpa e sem estresse."
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "higiene", "viagem"]
 enbref:

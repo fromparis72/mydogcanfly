@@ -1,36 +1,36 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "9352843170f2d8f0d85ed8a5e8430750ce0a1f7d70662fb4b573a3c3e13004ea",
+    "empreinte_donnees_sha256": "10048ab9a86d3793cac77f454acc969d84ae3f799251aa0f6ee5ab882ca44e08",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
     "par_categorie": {
-      "A": 224,
+      "A": 229,
       "A_incomplete": 0,
-      "B": 31,
-      "C": 48,
+      "B": 28,
+      "C": 46,
       "D": 3
     },
     "par_canal": {
       "cabin": {
-        "A": 87,
+        "A": 88,
         "A_incomplete": 0,
         "B": 8,
-        "C": 7,
+        "C": 6,
         "D": 0
       },
       "hold": {
-        "A": 85,
+        "A": 87,
         "A_incomplete": 0,
-        "B": 15,
+        "B": 13,
         "C": 2,
         "D": 0
       },
       "cargo": {
-        "A": 52,
+        "A": 54,
         "A_incomplete": 0,
-        "B": 8,
-        "C": 39,
+        "B": 7,
+        "C": 38,
         "D": 3
       }
     },
@@ -72,6 +72,8 @@
       "airline_air_mauritius#cabin (politique)",
       "airline_air_mauritius#hold (politique)",
       "airline_air_mauritius#cargo (politique)",
+      "airline_air_new_zealand#hold (politique)",
+      "airline_air_new_zealand#cargo (politique)",
       "airline_air_tahiti_nui#cabin (politique)",
       "airline_air_tahiti_nui#cargo (politique)",
       "airline_air_transat#cabin (politique)",
@@ -195,6 +197,9 @@
       "airline_malaysia_airlines#hold (politique)",
       "airline_neos#cabin (politique)",
       "airline_neos#hold (politique)",
+      "airline_norwegian#cabin (politique)",
+      "airline_norwegian#hold (politique)",
+      "airline_norwegian#cargo (politique)",
       "airline_philippine#cabin (politique)",
       "airline_philippine#hold (politique)",
       "airline_philippine#cargo (politique)",
@@ -267,42 +272,41 @@
       "airline_transavia#cargo"
     ],
     "B_par_piste": {
-      "politique": 9,
-      "regle": 22
+      "politique": 8,
+      "regle": 20
     },
-    "B_par_regle_gov_uk_seul": 9,
+    "B_par_regle_gov_uk_seul": 8,
     "priorite_B": {
       "availability": {
         "not_offered": 12,
-        "null": 12,
-        "offered": 7
+        "null": 11,
+        "offered": 5
       },
       "derived_from_fiche": {
         "false": 3,
-        "true": 28
+        "true": 25
       },
       "source_derived": {
-        "false": 10,
-        "true": 21
+        "false": 9,
+        "true": 19
       },
       "review_state": {
-        "legacy_unreviewed": 11,
-        "null": 20
+        "legacy_unreviewed": 10,
+        "null": 18
       },
       "history": {
-        "0": 23,
-        "1": 8
+        "0": 21,
+        "1": 7
       },
       "hotes": {
-        "airnewzealand.com": 2,
+        "airnewzealand.com": 1,
         "asianacargo.com": 1,
         "brcargo.com": 1,
         "britishairways.com": 1,
-        "cargo.norwegian.com": 1,
         "china-airlines.com": 1,
         "condor.com": 1,
         "elal.com": 2,
-        "gov.uk": 9,
+        "gov.uk": 8,
         "icelandair.com": 3,
         "jal.co.jp": 1,
         "maskargo.com": 1,
@@ -317,26 +321,26 @@
     "priorite_C": {
       "availability": {
         "not_offered": 11,
-        "null": 34,
-        "offered": 3
+        "null": 33,
+        "offered": 2
       },
       "review_state": {
-        "legacy_unreviewed": 34,
-        "null": 14
+        "legacy_unreviewed": 33,
+        "null": 13
       },
-      "avec_regles_auto_citees": 12
+      "avec_regles_auto_citees": 11
     },
     "coherence_niveau_de_preuve": {
       "paires": {
-        "A ↔ citee": 224,
-        "B ↔ aucune": 21,
-        "B ↔ officielle_non_citee": 9,
+        "A ↔ citee": 229,
+        "B ↔ aucune": 19,
+        "B ↔ officielle_non_citee": 8,
         "B ↔ politique_absente": 1,
-        "C ↔ aucune": 48,
+        "C ↔ aucune": 46,
         "D ↔ politique_absente": 3
       },
       "ecarts": {
-        "B_par_regle_sur_politique_aucune": 21,
+        "B_par_regle_sur_politique_aucune": 19,
         "B_par_regle_sans_politique": 1,
         "A_par_regle": 0,
         "A_incomplete": 0,
@@ -1569,22 +1573,22 @@
       "airline_id": "airline_air_new_zealand",
       "name": "Air New Zealand",
       "canal": "hold",
-      "categorie": "B",
-      "piste": "regle:rule_air_new_zealand_hold_weight",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
+      "url": "https://www.airnewzealand.com/travelling-with-pets",
       "hote": "airnewzealand.com",
-      "verified_date": "2026-07-10",
-      "niveau_de_preuve_politique": "aucune",
+      "verified_date": "2026-09-13",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.airnewzealand.com",
+        "url_politique": "https://www.airnewzealand.com/travelling-with-pets",
         "hote_politique": "airnewzealand.com",
-        "url_fabriquee": true,
+        "url_fabriquee": false,
         "regles": [
           "rule_air_new_zealand_gb_not_approved",
           "rule_air_new_zealand_hold_weight"
@@ -1603,22 +1607,22 @@
       "airline_id": "airline_air_new_zealand",
       "name": "Air New Zealand",
       "canal": "cargo",
-      "categorie": "C",
-      "piste": "valeur_heritee",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": null,
-      "hote": null,
-      "verified_date": null,
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://www.airnewzealandcargo.com/international-cargo-pet-services",
+      "hote": "airnewzealandcargo.com",
+      "verified_date": "2026-09-13",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": null,
+        "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
-        "review_state": "legacy_unreviewed",
+        "source_derived": false,
+        "review_state": null,
         "history": 0,
-        "url_politique": "https://www.airnewzealand.com",
-        "hote_politique": "airnewzealand.com",
-        "url_fabriquee": true,
+        "url_politique": "https://www.airnewzealandcargo.com/international-cargo-pet-services",
+        "hote_politique": "airnewzealandcargo.com",
+        "url_fabriquee": false,
         "regles": [],
         "regles_officielles": [],
         "hotes_regles": []
@@ -6435,22 +6439,22 @@
       "airline_id": "airline_norwegian",
       "name": "Norwegian",
       "canal": "cabin",
-      "categorie": "C",
-      "piste": "valeur_heritee",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": null,
-      "hote": null,
-      "verified_date": null,
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
+      "hote": "norwegian.com",
+      "verified_date": "2026-09-13",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.norwegian.com",
+        "url_politique": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
         "hote_politique": "norwegian.com",
-        "url_fabriquee": true,
+        "url_fabriquee": false,
         "regles": [
           "rule_norwegian_cabin_weight"
         ],
@@ -6464,22 +6468,22 @@
       "airline_id": "airline_norwegian",
       "name": "Norwegian",
       "canal": "hold",
-      "categorie": "B",
-      "piste": "regle:rule_norwegian_gb_not_approved",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": "https://www.gov.uk/government/publications/pet-travel-approved-air-sea-and-rail-carriers-and-routes/approved-air-routes-for-pet-travel",
-      "hote": "gov.uk",
-      "verified_date": "2026-08-08",
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
+      "hote": "norwegian.com",
+      "verified_date": "2026-09-13",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.norwegian.com",
+        "url_politique": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
         "hote_politique": "norwegian.com",
-        "url_fabriquee": true,
+        "url_fabriquee": false,
         "regles": [
           "rule_norwegian_gb_not_approved",
           "rule_norwegian_hold_weight"
@@ -6497,19 +6501,19 @@
       "airline_id": "airline_norwegian",
       "name": "Norwegian",
       "canal": "cargo",
-      "categorie": "B",
+      "categorie": "A",
       "piste": "politique",
       "manques": [],
       "url": "https://cargo.norwegian.com/services/",
       "hote": "cargo.norwegian.com",
-      "verified_date": "2026-08-10",
-      "niveau_de_preuve_politique": "officielle_non_citee",
+      "verified_date": "2026-09-13",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": null,
+        "availability": "not_offered",
         "derived_from_fiche": true,
         "source_derived": false,
-        "review_state": "legacy_unreviewed",
-        "history": 1,
+        "review_state": null,
+        "history": 0,
         "url_politique": "https://cargo.norwegian.com/services/",
         "hote_politique": "cargo.norwegian.com",
         "url_fabriquee": false,

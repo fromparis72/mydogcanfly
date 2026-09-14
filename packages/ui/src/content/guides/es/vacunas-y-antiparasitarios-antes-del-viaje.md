@@ -6,7 +6,7 @@ description: "Poner al día la salud de tu perro antes de viajar: vacunas, despa
 summary: "Poner al día la salud de tu perro antes de viajar: vacunas, desparasitación, protección contra pulgas y garrapatas. El calendario que hay que prever con tu veterinario."
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "vacunas", "desparasitación", "viaje"]
 enbref:

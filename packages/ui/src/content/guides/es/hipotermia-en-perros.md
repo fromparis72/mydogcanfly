@@ -6,7 +6,7 @@ description: "Frío e hipotermia en el perro: perros de riesgo, señales de aler
 summary: "Frío e hipotermia en el perro: perros de riesgo, señales de alerta, cómo calentarlo, prevención en invierno y en la montaña. Cuándo acudir al veterinario."
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "frío", "invierno"]
 enbref:

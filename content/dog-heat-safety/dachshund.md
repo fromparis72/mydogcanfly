@@ -18,7 +18,7 @@ slug: "dachshund"
 url: "/dog-heat-safety/dachshund/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Dachshund"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1614292981468-8a1577f7eb85?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Dachshund has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

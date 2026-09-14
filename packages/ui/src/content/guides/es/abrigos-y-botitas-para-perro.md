@@ -6,7 +6,7 @@ description: "Abrigos, impermeables y botitas para perro: proteger a tu perro de
 summary: "No todos los perros necesitan abrigo, pero las razas pequeñas, los perros mayores y los de pelo corto agradecen una protección extra cuando hace mucho frío. Las botitas protegen las almohadillas de la sal de deshielo, la nieve y el asfalto ardiente."
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "abrigo", "botitas", "tiempo"]
 enbref:

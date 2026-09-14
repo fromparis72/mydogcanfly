@@ -21,7 +21,7 @@ url: "/car-travel-dog-gear/"
 frUrl: "/voyager-voiture-chien-equipements/"
 categories: ["Gear"]
 tags: ["dog", "car", "safety", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1510020553968-30f966e1ec9e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjYXIlMjBiYWNrJTIwc2VhdCUyMHRyYXZlbHxlbnwxfDB8fHwxNzgyODIzODQwfDA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The gear that's genuinely useful for car travel with your dog: safety harness, seat cover, travel crate, hydration on the road."
 cover:

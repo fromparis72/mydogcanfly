@@ -6,7 +6,7 @@ description: "Guia, coleira e peitoral para viajar com o seu cachorro: que tipo 
 summary: "Guia, coleira e peitoral para viajar com o seu cachorro: que tipo escolher, com que materiais, como ajustar. Guia prático para passeios seguros."
 date: "2026-06-08T08:00:00+02:00"
 lastmod: "2026-06-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "guia", "peitoral", "coleira"]
 enbref:

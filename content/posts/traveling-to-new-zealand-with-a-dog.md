@@ -15,7 +15,7 @@ url: "/traveling-to-new-zealand-with-a-dog/"
 frUrl: "/voyager-chien-nouvelle-zelande/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "New Zealand", "international travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1547314283-befb6cc5cf29?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxOZXclMjBaZWFsYW5kJTIwbW91bnRhaW5zJTIwbGFrZXxlbnwxfDB8fHwxNzgyOTM5NDIwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "New Zealand dog entry requirements: MPI import permit, rabies titer test, 10-day quarantine. A long process — allow 6-7 months. Verified 2026."
 cover:

@@ -6,7 +6,7 @@ description: "Leash, collar, and harness for traveling with your dog: which type
 summary: "Leash, collar, and harness for traveling with your dog: which type to choose, which materials, how to fit them. A practical guide to safe walks."
 date: "2026-06-08T08:00:00+02:00"
 lastmod: "2026-06-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "leash", "harness", "collar"]
 sourceUrl: "/dog-leashes-collars-harnesses/"

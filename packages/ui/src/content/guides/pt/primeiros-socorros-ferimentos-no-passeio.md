@@ -6,7 +6,7 @@ description: "O que fazer se o seu cachorro se machucar no passeio: almofadinha 
 summary: "Diante de um corte, de uma espiga ou de um mancar: limpar, proteger e avaliar a gravidade antes de ir ao veterinário. Um kit de primeiros socorros canino permite agir rápido e bem no local."
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "primeiros socorros", "ferimento", "passeios"]
 enbref:

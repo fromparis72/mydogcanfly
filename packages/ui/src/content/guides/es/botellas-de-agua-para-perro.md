@@ -6,7 +6,7 @@ description: "Botellas de agua para perro e hidratación portátil: botellas con
 summary: "Botellas de agua para perro e hidratación portátil: botellas con dispensador integrado, comederos plegables, cuánta agua llevar. Evitar la deshidratación."
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "hidratación", "comedero"]
 enbref:

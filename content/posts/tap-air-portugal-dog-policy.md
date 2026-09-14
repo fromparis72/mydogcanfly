@@ -17,7 +17,7 @@ url: "/tap-air-portugal-dog-policy/"
 frUrl: "/tap-air-portugal-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "TAP Air Portugal", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1585208798174-6cedd86e019a?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxQb3J0dWdhbCUyMExpc2JvbnxlbnwxfDB8fHwxNzgyOTEyNzExfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "TAP Air Portugal accepts dogs in the cabin up to 8 kg (18 lb) (€50–120 / ~$60–140) and in the hold up to 45 kg (99 lb) (€80–320 / ~$90–370). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

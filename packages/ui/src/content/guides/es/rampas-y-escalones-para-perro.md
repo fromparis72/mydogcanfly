@@ -6,7 +6,7 @@ description: "Rampa o escalones para perro: proteger sus articulaciones al subir
 summary: "Rampa o escalones para perro: proteger sus articulaciones al subir al coche, a la cama o al sofá. Cómo elegirlos y acostumbrar a tu perro."
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "coche", "articulaciones"]
 enbref:

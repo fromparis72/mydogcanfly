@@ -15,7 +15,7 @@ url: "/traveling-with-a-senior-or-sick-dog/"
 frUrl: "/voyager-chien-age-malade/"
 categories: ["Health"]
 tags: ["dog", "health", "senior dog", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1642303009699-7d7fd6d4a243?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxzZW5pb3IlMjBvbGQlMjBkb2clMjByZXN0aW5nfGVufDF8MHx8fDE3ODI5Mzk0MzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Traveling with a senior or sick dog: pre-trip vet check, adapted travel plans, medications and comfort. The precautions that make the trip low-risk."
 cover:

@@ -6,7 +6,7 @@ description: "Rastreadores GPS para cachorro: em que diferem do microchip, auton
 summary: "Um rastreador GPS localiza o seu cachorro em tempo real, ao contrário do microchip de identificação, que só identifica o animal depois de encontrado. Autonomia, cobertura e custo da assinatura são os critérios decisivos."
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "GPS", "rastreador", "segurança"]
 enbref:

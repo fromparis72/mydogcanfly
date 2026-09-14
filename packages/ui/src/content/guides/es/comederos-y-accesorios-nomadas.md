@@ -6,7 +6,7 @@ description: "Comederos plegables, botellas de agua, esterillas de viaje y demá
 summary: "Un bol plegable, una botella con dispensador integrado, una esterilla enrollable y bolsas para excrementos: bastan unos pocos accesorios nómadas bien elegidos para viajar ligero sin sacrificar la comodidad de tu perro."
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "comedero", "accesorios", "viaje"]
 enbref:

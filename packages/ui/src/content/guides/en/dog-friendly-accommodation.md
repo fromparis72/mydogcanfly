@@ -6,7 +6,7 @@ description: "How to pick dog-friendly accommodation that actually works: key cr
 summary: "A good dog-friendly stay doesn't just tolerate your dog: it genuinely welcomes them, with a secure outdoor space, clear rules and zero hidden fees."
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "dog-friendly accommodation", "travel", "bed and breakfast"]
 sourceUrl: "/dog-friendly-accommodation/"

@@ -6,7 +6,7 @@ description: "Camas y esterillas de viaje para perro: colchoneta enrollable, est
 summary: "Camas y esterillas de viaje para perro: colchoneta enrollable, esterilla impermeable, olor familiar. Una cama portátil que tranquiliza a tu perro en cualquier sitio."
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "descanso", "confort"]
 enbref:

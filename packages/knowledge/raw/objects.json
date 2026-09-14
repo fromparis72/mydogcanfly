@@ -25131,8 +25131,8 @@
             "source": {
               "url": "https://www.airnewzealand.com",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
               "confidence": 3,
               "reviewer": "MyDogCanFly Data Team (derived from fiche)",
               "history": []
@@ -25173,29 +25173,33 @@
               }
             ],
             "source": {
-              "url": "https://www.airnewzealand.com",
+              "url": "https://www.airnewzealand.com/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
+              "confidence": 5,
+              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "history": [],
+              "quote": "Domesticated cats, dogs and small caged birds can travel as checked-in baggage on some domestic flights around New Zealand",
+              "quote_language": "en",
+              "locator": "Travelling with pets / Pets as checked-in baggage"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.airnewzealand.com",
+              "url": "https://www.airnewzealandcargo.com/international-cargo-pet-services",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
+              "confidence": 5,
+              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "history": [],
+              "quote": "Pets cannot commonly travel as checked in baggage on international Air New Zealand flights. Instead, we maximise your pets' comfort by offering some of the same comforts our passengers enjoy by providing fully pressurised and temperature-controlled conditions in our 'cargo' hold.",
+              "quote_language": "en",
+              "locator": "International cargo pets / Our pets service"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -44133,7 +44137,6 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "max_weight_kg": 8,
             "fares": [
               {
                 "id": "fare_norwegian_cabin_eur_2026_09_10",
@@ -44169,15 +44172,17 @@
               }
             ],
             "source": {
-              "url": "https://www.norwegian.com",
+              "url": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
+              "confidence": 5,
+              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "history": [],
+              "quote": "Small cats and dogs can travel in the cabin on the following flights",
+              "quote_language": "en",
+              "locator": "Pets in the cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -44217,33 +44222,32 @@
               }
             ],
             "source": {
-              "url": "https://www.norwegian.com",
+              "url": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
+              "confidence": 5,
+              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "history": [],
+              "quote": "Cats and dogs can travel in the cargo hold on the following flights",
+              "quote_language": "en",
+              "locator": "Pets in the cargo hold"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "not_offered",
             "source": {
               "url": "https://cargo.norwegian.com/services/",
               "source_type": "official_website",
-              "verified_date": "2026-08-10",
-              "review_due": "2026-11-08",
-              "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": [
-                {
-                  "date": "2026-08-10",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Complété (audit du 09-10/08/2026, placement fret manquant) : page officielle Norwegian Cargo, déclaration directe \"Norwegian does not accept live animals as cargo.\""
-                }
-              ]
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
+              "confidence": 5,
+              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "history": [],
+              "quote": "Live animals: Norwegian does not accept live animals as cargo. Accepted as checked in baggage AVIH.",
+              "quote_language": "en",
+              "locator": "Services / Limitations"
             },
             "derived_from_fiche": true
           }

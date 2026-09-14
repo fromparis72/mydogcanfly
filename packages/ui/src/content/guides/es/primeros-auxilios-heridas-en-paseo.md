@@ -6,7 +6,7 @@ description: "Qué hacer si tu perro se hace daño en el paseo: almohadilla cort
 summary: "Ante un corte, una espiga o una cojera: limpiar, proteger y valorar la gravedad antes de ir al veterinario. Un botiquín canino permite actuar rápido y bien sobre el terreno."
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "primeros auxilios", "herida", "paseos"]
 enbref:

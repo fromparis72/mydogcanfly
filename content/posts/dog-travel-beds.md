@@ -15,7 +15,7 @@ url: "/dog-travel-beds/"
 frUrl: "/couchage-tapis-voyage-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "bedding", "comfort"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1653638390484-bc1c263ce9e4?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog travel beds and mats: roll-up mattress, waterproof mat, familiar scent. A portable bed that reassures your dog anywhere."
 cover:

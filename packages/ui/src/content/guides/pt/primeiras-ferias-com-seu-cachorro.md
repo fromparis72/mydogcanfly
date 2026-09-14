@@ -6,7 +6,7 @@ description: "Primeiras férias com o seu cachorro: a lista completa de document
 summary: "Uma primeira viagem com o seu cachorro se apoia em três pilares: documentação em dia, o equipamento certo e uma hospedagem realmente dog-friendly. Siga a lista passo a passo."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "lista de verificação", "férias", "preparação"]
 enbref:

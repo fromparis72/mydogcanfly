@@ -6,7 +6,7 @@ description: "The complete guide to essential dog travel accessories: transport,
 summary: "Transport, safety, hydration, tracking, comfort, health: a full tour of the accessories that are actually useful when traveling with your dog, with our detailed buying guides for each category."
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "accessories", "travel", "gear", "checklist"]
 sourceUrl: "/dog-travel-accessories/"

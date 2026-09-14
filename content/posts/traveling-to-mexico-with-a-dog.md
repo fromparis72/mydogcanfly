@@ -15,7 +15,7 @@ url: "/traveling-to-mexico-with-a-dog/"
 frUrl: "/voyager-chien-mexique/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Mexico", "international travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1617220361167-9d556b850824?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxNZXhpY28lMjBUdWx1bSUyMGJlYWNoJTIwcnVpbnN8ZW58MXwwfHx8MTc4MjkzOTQxOXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Requirements for traveling to Mexico with a dog: microchip, rabies vaccine, health certificate, parasite treatments. No rabies titer test. Verified 2026."
 cover:

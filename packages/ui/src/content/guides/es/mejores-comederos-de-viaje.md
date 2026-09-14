@@ -6,7 +6,7 @@ description: "Comederos y botellas de viaje para perro: plegables, con dispensad
 summary: "Comederos y botellas de viaje para perro: plegables, con dispensador integrado, fáciles de limpiar. Criterios clave y modelos Kurgo y H2O4K9."
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "comedero", "viaje", "equipamiento"]
 enbref:

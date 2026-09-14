@@ -6,7 +6,7 @@ description: "Going camping with your dog: choose a dog-friendly campground, set
 summary: "Pick a campground that accepts dogs, plan a shaded spot and a tie-out, respect quiet hours — and never leave your dog alone in the tent in hot weather."
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "camping", "vacation", "outdoors"]
 sourceUrl: "/camping-with-a-dog/"

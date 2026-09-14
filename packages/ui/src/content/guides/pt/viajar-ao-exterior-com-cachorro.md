@@ -6,7 +6,7 @@ description: "Viajar ao exterior com cachorro: microchip, vacina antirrábica, p
 summary: "Para viajar dentro da UE, o cachorro precisa de passaporte europeu, microchip e vacina antirrábica em dia. Fora da UE, costumam ser exigidos exames adicionais (teste sorológico de raiva) e prazos de espera: comece com vários meses de antecedência."
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "viagem internacional", "passaporte", "documentos"]
 enbref:

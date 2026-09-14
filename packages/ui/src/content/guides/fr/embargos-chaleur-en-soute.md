@@ -6,7 +6,7 @@ description: "Les compagnies suspendent le transport d'animaux en soute au-dessu
 summary: "Un embargo chaleur suspend le transport en soute quand la température dépasse un seuil — mesuré au départ, à l'arrivée et à chaque escale. C'est l'aéroport le plus chaud de l'itinéraire qui décide, et ce n'est souvent pas celui qu'on croit."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "chaleur", "soute"]
 cover:

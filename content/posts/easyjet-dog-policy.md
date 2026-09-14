@@ -15,7 +15,7 @@ url: "/easyjet-dog-policy/"
 frUrl: "/easyjet-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "easyJet", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1520986606214-8b456906c813?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxMb25kb24lMjBFbmdsYW5kJTIwbGFuZG1hcmt8ZW58MXwwfHx8MTc4MjkxMjY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "easyJet does not accept dogs on board, apart from service dogs."
 cover:

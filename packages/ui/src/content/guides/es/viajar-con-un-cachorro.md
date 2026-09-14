@@ -6,7 +6,7 @@ description: "Viajar con un cachorro: edad y vacunas, duración de los trayectos
 summary: "Un cachorro viaja cuando sus vacunas están al día: trayectos cortos, paradas frecuentes, un objeto familiar tranquilizador e higiene estricta. Unos primeros viajes bien hechos sientan las bases de un adulto tranquilo en la carretera."
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "cachorro", "salud", "viaje"]
 enbref:

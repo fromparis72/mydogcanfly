@@ -19,7 +19,7 @@ url: "/dog-carriers-and-crates/"
 frUrl: "/sac-caisse-transport-chien/"
 categories: ["Gear"]
 tags: ["dog", "travel crate", "carrier", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1632236519667-29b4b78da232?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjcmF0ZSUyMGNhcnJpZXJ8ZW58MXwwfHx8MTc4MjQ5NzQ0MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The right container depends on your dog's size and how you travel: a soft carrier for small dogs in the cabin, an approved hard crate for the car, plane, or train. Gradual habituation is the key to acceptance."
 cover:

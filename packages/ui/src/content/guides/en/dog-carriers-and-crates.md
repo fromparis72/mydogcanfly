@@ -6,7 +6,7 @@ description: "Soft carrier, crate, or kennel: how to choose based on your dog's 
 summary: "The right container depends on your dog's size and how you travel: a soft carrier for small dogs in the cabin, an approved hard crate for the car, plane, or train. Gradual habituation is the key to acceptance."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "travel crate", "carrier", "gear"]
 sourceUrl: "/dog-carriers-and-crates/"

@@ -5,7 +5,7 @@ description: "Bien hydrater et nourrir son chien en voyage : quantités d'eau, g
 summary: "En voyage, gardez les mêmes croquettes qu'à la maison, évitez de nourrir juste avant un trajet, et proposez de l'eau régulièrement. Une déshydratation s'installe vite par forte chaleur ou long déplacement."
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "hydratation", "alimentation", "voyage"]
 sourceUrl: "/hydratation-alimentation-chien-voyage/"

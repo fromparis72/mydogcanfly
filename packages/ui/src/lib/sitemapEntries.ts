@@ -13,6 +13,8 @@ import { loadKB, slugFor, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { reliefIndexable } from "./reliefEtat";
 import { raceIndexable, faitsDeRace } from "./raceEtat";
 import { preuveAuditee } from "./decisionCanal";
+import { compagnieIndexable } from "./compagnieEtat";
+import { airlineData } from "../data/airlines";
 import { countryData } from "../data/countries";
 import { LOCALES, isPreviewLocale } from "./routes";
 
@@ -75,9 +77,11 @@ export function buildEntries(): Entry[] {
 
   // Fiches — vraie date par entité quand on l'a.
   for (const a of kb.airlines.values()) {
-    /* La date affichée sur la fiche : la plus récente des vérifications de canal auditées. Une
-     * compagnie dont aucun canal n'est audité n'en a pas — elle retombe sur la date de
-     * construction, comme avant, et c'est alors exact : sa page n'a pas d'autre repère. */
+    const fiche = airlineData[a.id];
+    if (!fiche || !compagnieIndexable(a, fiche)) continue;
+    /* La date affichée sur la fiche : la plus récente des vérifications de canal auditées. La
+     * porte ci-dessus garantit qu'il y en a au moins une ; le repli protège seulement une donnée
+     * invalide contre une date vide sans inventer de date éditoriale. */
     const policy = (a as any).premium?.policy;
     const d = plusRecente(
       (["cabin", "hold", "cargo"] as const).map((c) => preuveAuditee(policy?.[c])?.verified_date),

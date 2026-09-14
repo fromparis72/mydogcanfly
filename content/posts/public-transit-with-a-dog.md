@@ -19,7 +19,7 @@ url: "/public-transit-with-a-dog/"
 frUrl: "/transports-urbains-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "public transit", "city", "subway"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1549580341-d294a02326a3?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjaXR5JTIwdHJhbSUyMHB1YmxpYyUyMHRyYW5zcG9ydHxlbnwxfDB8fHwxNzgyNDk3NDE2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Rules vary by network: small dogs in a carrier, large dogs on a leash and sometimes muzzled, free or half fare depending on the city. Always check the local regulations before boarding."
 cover:

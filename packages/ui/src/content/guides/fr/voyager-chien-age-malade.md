@@ -5,7 +5,7 @@ description: "Voyager avec un chien âgé ou malade : bilan vétérinaire, traje
 summary: "Voyager avec un chien âgé ou malade : bilan vétérinaire, trajets adaptés, médicaments, confort. Précautions pour un voyage sans risque."
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "chien âgé", "voyage"]
 sourceUrl: "/voyager-chien-age-malade/"

@@ -26,16 +26,18 @@ const desc = T(
 
 const personLd = JSON.stringify({
   "@context": "https://schema.org", "@type": "Person",
+  "@id": `${LEGAL.url}/#founder`,
   name: LEGAL.director,
+  url: `${LEGAL.url}/about/`,
   jobTitle: T("Founder & Director of Publication", "Fondateur & Directeur de la publication", "Fundador y director de publicación"),
   worksFor: { "@type": "Organization", name: LEGAL.site, url: LEGAL.url },
   sameAs: [LEGAL.linkedin],
   alumniOf: ["EFREI Paris", "École nationale supérieure de la photographie d'Arles (ENSP Arles)"],
 });
 const orgLd = JSON.stringify({
-  "@context": "https://schema.org", "@type": "Organization",
+  "@context": "https://schema.org", "@type": "Organization", "@id": `${LEGAL.url}/#org`,
   name: LEGAL.site, url: LEGAL.url,
-  founder: { "@type": "Person", name: LEGAL.director, sameAs: [LEGAL.linkedin] },
+  founder: { "@id": `${LEGAL.url}/#founder` },
   /* Même déclaration d'identité que dans Base.astro : les deux blocs décrivent la même
    * organisation, ils ne peuvent pas dire deux choses différentes. */
   sameAs: OFFICIAL_PROFILES,

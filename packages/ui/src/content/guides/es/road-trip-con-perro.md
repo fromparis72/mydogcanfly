@@ -6,7 +6,7 @@ description: "Un road trip logrado con tu perro: planifica la ruta, marca el rit
 summary: "Un buen road trip canino se prepara: una parada cada 2 horas, agua siempre disponible, el perro sujeto o en transportín y paradas dog-friendly localizadas de antemano. La comodidad y la seguridad van antes que los kilómetros."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "road trip", "coche", "viaje"]
 enbref:

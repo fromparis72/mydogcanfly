@@ -17,7 +17,7 @@ url: "/royal-air-maroc-dog-policy/"
 frUrl: "/royal-air-maroc-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Royal Air Maroc", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1597212618440-806262de4f6b?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxNb3JvY2NvJTIwTWFycmFrZWNofGVufDF8MHx8fDE3ODI5MTI3MDJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Royal Air Maroc accepts dogs in the cabin up to 8 kg (18 lb) (€70–120 / ~$80–140) and in the hold up to 70 kg (154 lb) (€60 / ~$70). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

@@ -17,7 +17,7 @@ url: "/air-caraibes-dog-policy/"
 frUrl: "/air-caraibes-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Caraïbes", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1771945484043-3a17fbf57a4b?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Caraïbes accepts dogs in the cabin up to 8 kg (18 lb) for €10–75 (~$12–85) and in the hold up to 75 kg (165 lb) for €20–150 (~$25–175). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

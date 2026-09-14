@@ -15,7 +15,7 @@ url: "/traveling-to-turkey-with-a-dog/"
 frUrl: "/voyager-chien-turquie/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Turkey"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1758991281852-dd2bf929670a?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxiZWFnbGUlMjB0cmF2ZWx8ZW58MXwwfHx8MTc4MjgyODAxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Turkey: demanding level, allow about 4 months (rabies titer test + 3-month wait)."
 cover:

@@ -6,7 +6,7 @@ description: "El equipamiento realmente útil para viajar en coche con tu perro:
 summary: "El equipamiento realmente útil para viajar en coche con tu perro: arnés de seguridad, funda de asiento, transportín de viaje, hidratación en ruta."
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "coche", "seguridad", "equipamiento"]
 enbref:

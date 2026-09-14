@@ -18,7 +18,7 @@ slug: "jack-russell-terrier"
 url: "/dog-heat-safety/jack-russell-terrier/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Jack Russell Terrier"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1532275522382-fc0742e109d9?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Jack Russell Terrier has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

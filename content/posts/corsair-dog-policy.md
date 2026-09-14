@@ -17,7 +17,7 @@ url: "/corsair-dog-policy/"
 frUrl: "/corsair-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Corsair", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1509299349698-dd22323b5963?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwzfHxGcmFuY2UlMjBQYXJpcyUyMGxhbmRtYXJrfGVufDF8MHx8fDE3ODI5MTI2ODh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Corsair accepts dogs in the cabin up to 8 kg (18 lb) for €50 to €100 (~$58–115) and in the hold up to 50 kg (110 lb) for €50 to €100 (~$58–115). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

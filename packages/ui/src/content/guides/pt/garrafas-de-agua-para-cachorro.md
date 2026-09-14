@@ -6,7 +6,7 @@ description: "Garrafas de água para cachorro e hidratação portátil: garrafas
 summary: "Garrafas de água para cachorro e hidratação portátil: garrafas com dispensador integrado, comedouros dobráveis, quanta água levar. Evitar a desidratação."
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "hidratação", "comedouro"]
 enbref:

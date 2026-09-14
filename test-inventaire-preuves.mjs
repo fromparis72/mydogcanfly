@@ -46,7 +46,9 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30 compagnies — onze politiques nouvellement citées) : A 178 → 189 ; B 52 → 46 ; C 73 → 68. */
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers officiels — quatorze politiques nouvellement citées) : A 189 → 203 ; B 46 → 42 ; C 68 → 58 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret des principales compagnies — 21 politiques fret citées) : A 203 → 224 ; B 42 → 31 ; C 58 → 48 ; D inchangé. */
-  par_categorie: { A: 224, A_incomplete: 0, B: 31, C: 48, D: 3 },
+  /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq politiques deviennent A ;
+     trois quittent B et deux quittent C. A 224 → 229 ; B 31 → 28 ; C 48 → 46. */
+  par_categorie: { A: 229, A_incomplete: 0, B: 28, C: 46, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -61,14 +63,17 @@ const SENTINELLES = {
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : cabine 80/8 → 79/9 ; soute 71/23 → 70/24. */
     /* Lot 30 : cabine A 79 → 82, C 14 → 11. */
     /* Vague du 13/09 : cabine A 82 → 87, B 9 → 8, C 11 → 7. */
-    cabin: { A: 87, A_incomplete: 0, B: 8, C: 7, D: 0 },
+    /* Norwegian cabine : C → A. */
+    cabin: { A: 88, A_incomplete: 0, B: 8, C: 6, D: 0 },
     /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : A 70 → 71 ; C 8 → 7. */
     /* Lot 30 : soute A 71 → 79, B 24 → 18, C 7 → 5. */
     /* Vague du 13/09 : soute A 79 → 85, B 18 → 15, C 5 → 2. */
-    hold: { A: 85, A_incomplete: 0, B: 15, C: 2, D: 0 },
+    /* Air New Zealand et Norwegian soute : B → A. */
+    hold: { A: 87, A_incomplete: 0, B: 13, C: 2, D: 0 },
     /* Vague du 13/09 : fret A 28 → 31, C 52 → 49. */
     /* Lot fret du 13/09 : fret A 31 → 52, B 19 → 8, C 49 → 39. */
-    cargo: { A: 52, A_incomplete: 0, B: 8, C: 39, D: 3 },
+    /* Air New Zealand fret : C → A ; Norwegian fret : B → A. */
+    cargo: { A: 54, A_incomplete: 0, B: 7, C: 38, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
@@ -87,7 +92,9 @@ const SENTINELLES = {
   /* Lot 30 : six politiques B deviennent A ; cinq règles B deviennent inutiles après citation. */
   /* Vague du 13/09 : quatre règles deviennent inutiles après citation ; trois dépendances gov.uk disparaissent. */
   /* Lot fret du 13/09 : politique 19 → 9 ; règle 23 → 22 ; gov.uk inchangé. */
-  B_par_piste: { politique: 9, regle: 22 }, B_par_regle_gov_uk_seul: 9,
+  /* Les nouvelles preuves rendent inutiles une piste politique et deux pistes de règle,
+     dont une dépendance gov.uk : 9/22/9 → 8/20/8. */
+  B_par_piste: { politique: 8, regle: 20 }, B_par_regle_gov_uk_seul: 8,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
@@ -135,6 +142,9 @@ const A_ATTENDUS = [
   "airline_air_mauritius#cabin",
   "airline_air_mauritius#hold",
   "airline_air_mauritius#cargo",
+  /* Sources officielles transmises par Philippe le 13/09/2026. */
+  "airline_air_new_zealand#hold",
+  "airline_air_new_zealand#cargo",
   "airline_air_tahiti_nui#cabin",
   "airline_air_tahiti_nui#cargo",
   "airline_air_transat#cabin",
@@ -258,6 +268,9 @@ const A_ATTENDUS = [
   "airline_malaysia_airlines#hold",
   "airline_neos#cabin",
   "airline_neos#hold",
+  "airline_norwegian#cabin",
+  "airline_norwegian#hold",
+  "airline_norwegian#cargo",
   "airline_philippine#cabin",
   "airline_philippine#hold",
   "airline_philippine#cargo",
@@ -445,12 +458,13 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/73 → 189/19/68. */
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/68 → 203/19/58. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/58 → 224/9/48 ; 22 → 21 B par règle sur politique « aucune ». */
-  check("sur les 306 lignes, A ↔ citee 224, B(politique) ↔ officielle_non_citee 9, C ↔ aucune 48",
-    paires["A ↔ citee"] === 224 && paires["B ↔ officielle_non_citee"] === 9 && paires["C ↔ aucune"] === 48, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 21 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+  /* Air New Zealand + Norwegian : 224/9/48 → 229/8/46 ; deux règles B deviennent inutiles. */
+  check("sur les 306 lignes, A ↔ citee 229, B(politique) ↔ officielle_non_citee 8, C ↔ aucune 46",
+    paires["A ↔ citee"] === 229 && paires["B ↔ officielle_non_citee"] === 8 && paires["C ↔ aucune"] === 46, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 19 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée) : 27 → 29, les deux canaux revenus « aucune » tenant
        désormais à une règle. */
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 21
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 19
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
@@ -461,8 +475,9 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/102 → 189/19/94. */
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/94 → 203/19/80. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/80 → 224/9/69. */
-  check("302 politiques : 224 citées, 9 officielles non citées, 69 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 224 && niveaux.officielle_non_citee === 9 && niveaux.aucune === 69, JSON.stringify(niveaux));
+  /* Air New Zealand + Norwegian : 224/9/69 → 229/8/65. */
+  check("302 politiques : 229 citées, 8 officielles non citées, 65 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 229 && niveaux.officielle_non_citee === 8 && niveaux.aucune === 65, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

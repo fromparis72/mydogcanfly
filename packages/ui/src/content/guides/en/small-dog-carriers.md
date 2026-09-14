@@ -6,7 +6,7 @@ description: "Small dog carriers: comfort and safety criteria, airline cabin sta
 summary: "Small dog carriers: comfort and safety criteria, airline cabin standards, plus the Sleepypod and Trixie Madison as category examples."
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "carrier", "small dog", "gear"]
 sourceUrl: "/small-dog-carriers/"

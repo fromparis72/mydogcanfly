@@ -15,7 +15,7 @@ url: "/eva-air-dog-policy/"
 frUrl: "/eva-air-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "EVA Air", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1591356442491-99d7775bc7b1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxUYWl3YW4lMjBUYWlwZWklMjBsYW5kc2NhcGV8ZW58MXwwfHx8MTc4MjkxMjY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "EVA Air accepts dogs in the hold up to 32 kg (70 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

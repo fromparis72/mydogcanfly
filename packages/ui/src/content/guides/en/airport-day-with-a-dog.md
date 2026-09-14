@@ -6,7 +6,7 @@ description: "What actually happens on the day: pet check-in desks, security scr
 summary: "The airport day has a shape: arrive earlier than you would alone, check in at a specific desk, carry the dog through screening, then find a relief area before boarding."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "flying", "airport", "check-in"]
 cover:

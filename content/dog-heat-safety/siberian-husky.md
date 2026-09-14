@@ -18,7 +18,7 @@ slug: "siberian-husky"
 url: "/dog-heat-safety/siberian-husky/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Siberian Husky"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1576051369869-186e053a9328?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Siberian Husky has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

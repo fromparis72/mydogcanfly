@@ -21,7 +21,7 @@ url: "/traveling-by-car-with-a-dog/"
 frUrl: "/voyager-voiture-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "car", "road safety", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1578346693440-3dcedf4b7b81?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjYXIlMjByb2FkJTIwdHJpcCUyMHdpbmRvd3xlbnwxfDB8fHwxNzgyNDgxMjk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "In the car, a dog must be restrained or contained for everyone's safety. A crate, a crash-tested harness or a barrier, regular breaks and good preparation make the trip a success."
 cover:

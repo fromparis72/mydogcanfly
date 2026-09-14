@@ -108,7 +108,6 @@ const webpageLd = {
   // `lastReviewed` suit la date visible : annoncer aux moteurs une date plus ancienne que celle
   // lue à l'écran ferait passer pour périmée une information contrôlée le jour même.
   ...(verifiedDate ? { lastReviewed: verifiedDate } : {}),
-  ...(g.reviewer ? { reviewedBy: { "@type": "Person", name: g.reviewer } } : {}),
   /* LES SOURCES OFFICIELLES, CITÉES POUR LA MACHINE AUSSI (13/09/2026).
    *
    * Le bloc « Sources officielles » en bas de page énumère depuis toujours les textes sur
@@ -384,13 +383,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     </div>
 
     <!-- VERIFICATION -->
-    {/* « Dernière vérification » suivi du nom du relecteur se lisait comme « untel a relu la fiche
-        ce jour-là ». La date pouvant maintenant venir d'un contrôle de règle, le libellé porte sur
-        l'INFORMATION affichée, pas sur la relecture de la fiche : il reste vrai dans les deux cas.
-        Le relecteur reste nommé — c'est une responsabilité éditoriale, pas une date. */}
+    {/* La date et la confiance sont publiques. `g.reviewer` reste une piste d'audit interne : elle
+        peut nommer un script ou une équipe historique et ne doit donc être présentée ni comme une
+        personne, ni comme un relecteur public. La responsabilité éditoriale est attribuée au
+        directeur de la publication sur la page À propos. */}
     <div class="verif">
       <span>🗓️ {T("Information last verified on", "Informations vérifiées le", "Información verificada el")} <b>{fmtDate(verifiedDate)}</b></span>
-      <span>👤 {T("Reviewer", "Relecteur", "Revisor")}: {g.reviewer}</span>
       <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
     </div>
 

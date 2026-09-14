@@ -6,7 +6,7 @@ description: "City trips with a dog: finding places that welcome them, handling 
 summary: "In the city, favor dog-friendly patios, parks and shops, avoid scorching pavement during the hottest hours and carry water. Check access to transit and tourist sites before you go."
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "city", "sightseeing", "tourism"]
 sourceUrl: "/city-trips-with-a-dog/"

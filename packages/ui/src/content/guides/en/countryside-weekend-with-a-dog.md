@@ -6,7 +6,7 @@ description: "A countryside weekend with a dog: choosing your rental, enjoying n
 summary: "The countryside is ideal for a dog: wide-open spaces, welcoming rentals and endless walks. Keep them leashed near livestock and crops, and check for ticks after every outing."
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "countryside", "weekend", "vacation rental"]
 sourceUrl: "/countryside-weekend-with-a-dog/"

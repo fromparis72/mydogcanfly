@@ -15,7 +15,7 @@ url: "/dog-separation-anxiety-vacation/"
 frUrl: "/anxiete-separation-vacances-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "anxiety", "behavior"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1603724819619-a0858e51e762?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBsb29raW5nJTIwb3V0JTIwd2luZG93JTIwc2FkfGVufDF8MHx8fDE3ODI5Mzk0MzB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog separation anxiety on vacation: recognize the signs, prepare for alone time, set up an unfamiliar place. Tips for a calm, relaxed dog."
 cover:

@@ -6,7 +6,7 @@ description: "El mismo perro en el mismo avión puede viajar bajo tres contratos
 summary: "Cabina, bodega como equipaje acompañado y carga manifestada son tres acuerdos distintos, no tres clases. Difieren en el canal de reserva, la base del precio, la documentación y quién manipula al animal."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avión", "carga", "equipaje"]
 cover:

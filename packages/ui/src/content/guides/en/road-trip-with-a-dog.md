@@ -6,7 +6,7 @@ description: "A successful road trip with your dog: plan the route, time your br
 summary: "A good canine road trip takes planning: a break every 2 hours, water always available, a dog restrained or crated, and dog-friendly stops scouted in advance. Comfort and safety come before mileage."
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "road trip", "car", "travel"]
 sourceUrl: "/road-trip-with-a-dog/"

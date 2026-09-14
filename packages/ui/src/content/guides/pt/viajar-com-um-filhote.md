@@ -6,7 +6,7 @@ description: "Viajar com um filhote: idade e vacinas, duração dos trajetos, pa
 summary: "Um filhote viaja quando as vacinas estão em dia: trajetos curtos, paradas frequentes, um objeto familiar tranquilizador e higiene rigorosa. Primeiras viagens bem-feitas preparam um adulto tranquilo na estrada."
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "filhote", "saúde", "viagem"]
 enbref:

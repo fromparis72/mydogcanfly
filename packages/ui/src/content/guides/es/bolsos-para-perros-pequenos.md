@@ -6,7 +6,7 @@ description: "Bolsos de transporte para perros pequeños: criterios de comodidad
 summary: "Bolsos de transporte para perros pequeños: criterios de comodidad y seguridad, normas de cabina, y los Sleepypod y Trixie Madison como ejemplos de categoría."
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "transportín", "perro pequeño", "equipamiento"]
 enbref:

@@ -17,7 +17,7 @@ url: "/delta-dog-policy/"
 frUrl: "/delta-air-lines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Delta Air Lines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1573679250094-a66dd1fa32a3?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Delta Air Lines accepts dogs in the cabin up to 9 kg (20 lb) ($150 domestic, $200 international) and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

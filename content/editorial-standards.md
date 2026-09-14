@@ -16,7 +16,7 @@ Every article is built on **primary, authoritative sources**: veterinary publica
 
 ## Expertise and experience (E-E-A-T)
 
-Our content is written and signed by an identified author, whose [profile](/author/) you can read. We prioritize **real-world, first-hand experience**, backed by verifiable references.
+Our content is written and signed by an identified author, whose [profile](/about/) you can read. We prioritize primary, verifiable references and explicitly mark what remains to be confirmed.
 
 ## Keeping content current
 

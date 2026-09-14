@@ -15,7 +15,7 @@ url: "/traveling-to-spain-with-a-dog/"
 frUrl: "/voyager-chien-espagne/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Spain", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1688404808661-92f72f2ea258?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTcGFpbiUyMFNldmlsbGUlMjBwbGF6YSUyMGFyY2hpdGVjdHVyZXxlbnwxfDB8fHwxNzgyOTM5NDE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Entry requirements for traveling to Spain with a dog: microchip, rabies vaccination, EU pet passport. Standard EU rules — no rabies titer test, no quarantine. Verified 2026."
 cover:

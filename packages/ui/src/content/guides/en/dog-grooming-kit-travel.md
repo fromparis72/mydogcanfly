@@ -6,7 +6,7 @@ description: "Travel grooming kit for your dog: brush, microfiber towel, wipes, 
 summary: "Travel grooming kit for your dog: brush, microfiber towel, wipes, nail clippers, waste bags. The essentials for a clean dog anywhere."
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "grooming", "hygiene"]
 sourceUrl: "/dog-grooming-kit-travel/"

@@ -6,7 +6,7 @@ description: "Equipamiento de viaje para perro: cómo elegir transportín, arné
 summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio de transporte: transportín rígido, arnés de seguridad de coche para perro o bolso, según la situación."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "seguridad", "transporte"]
 enbref:

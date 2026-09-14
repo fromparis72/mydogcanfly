@@ -17,7 +17,7 @@ url: "/ana-dog-policy/"
 frUrl: "/ana-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "ANA (All Nippon Airways)", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1705202225132-82e59d5c6893?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxKYXBhbiUyME1vdW50JTIwRnVqaSUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNjkwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "ANA (All Nippon Airways) accepts dogs in the hold up to 45 kg / 99 lb ($230–460). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

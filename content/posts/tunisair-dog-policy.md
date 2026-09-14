@@ -15,7 +15,7 @@ url: "/tunisair-dog-policy/"
 frUrl: "/tunisair-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Tunisair", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1607869861980-da5f9b8b4969?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxUdW5pc2lhJTIwU2lkaSUyMEJvdSUyMFNhaWR8ZW58MXwwfHx8MTc4MjkxMjcxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Tunisair accepts dogs in the cabin up to 8 kg (18 lb) and in the hold."
 cover:

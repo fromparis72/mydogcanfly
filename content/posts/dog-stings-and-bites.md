@@ -15,7 +15,7 @@ url: "/dog-stings-and-bites/"
 frUrl: "/piqures-morsures-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "first aid", "summer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1604321477174-193020a2b8e5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBvdXRkb29yJTIwbWVhZG93fGVufDF8MHx8fDE3ODI5Mzk0MzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Stings and bites in dogs: wasp, bee, snake (viper), processionary caterpillar. How to judge the severity and react. Emergencies to know."
 cover:

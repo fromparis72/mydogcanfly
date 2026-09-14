@@ -21,7 +21,7 @@ url: "/dog-heatstroke/"
 frUrl: "/canicule-chien-coup-de-chaleur/"
 categories: ["Health"]
 tags: ["dog", "heat wave", "heatstroke", "summer"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1663501258049-77f9638cbaea?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBkcmlua2luZyUyMHdhdGVyJTIwc3VtbWVyfGVufDF8MHx8fDE3ODI0ODEyOTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Heatstroke happens when a dog can no longer regulate its body temperature. Above 40.5 °C (105 °F), it's a life-threatening emergency: cool your dog gradually and get to a veterinarian fast."
 cover:

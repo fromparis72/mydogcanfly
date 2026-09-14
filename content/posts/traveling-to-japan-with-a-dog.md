@@ -15,7 +15,7 @@ url: "/traveling-to-japan-with-a-dog/"
 frUrl: "/voyager-chien-japon/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Japan"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1762018824220-d4a9ebda2b28?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to Japan: a very demanding process, with a lead time of about 7 months (180-day wait)."
 cover:

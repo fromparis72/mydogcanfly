@@ -6,7 +6,7 @@ description: "Dog water bottles and portable hydration: bottles with built-in di
 summary: "Dog water bottles and portable hydration: bottles with built-in dispensers, collapsible bowls, how much water to carry. Avoid dehydration."
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "hydration", "bowl"]
 sourceUrl: "/dog-water-bottles/"

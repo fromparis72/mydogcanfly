@@ -15,7 +15,7 @@ url: "/wizz-air-dog-policy/"
 frUrl: "/wizz-air-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Wizz Air", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1616432902940-b7a1acbc60b3?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxIdW5nYXJ5JTIwQnVkYXBlc3R8ZW58MXwwfHx8MTc4MjkxMjcxNnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Wizz Air does not accept dogs on board, apart from service dogs."
 cover:

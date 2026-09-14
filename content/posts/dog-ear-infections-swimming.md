@@ -15,7 +15,7 @@ url: "/dog-ear-infections-swimming/"
 frUrl: "/otites-oreilles-baignade-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "ear infection", "swimming"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1655248756731-2e811afa99c2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBzd2ltbWluZyUyMGxha2V8ZW58MXwwfHx8MTc4MjkzOTQzMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog ear infections after swimming: moisture trapped in the ear promotes infection. Drying, prevention, warning signs and at-risk breeds."
 cover:

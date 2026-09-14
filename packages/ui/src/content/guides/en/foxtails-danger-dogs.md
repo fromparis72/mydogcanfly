@@ -6,7 +6,7 @@ description: "Foxtails in dogs: these dry grass awns burrow into skin, ears, eye
 summary: "Foxtails in dogs: these dry grass awns burrow into skin, ears, eyes and paws. Prevention, post-walk checks and when to see a vet urgently."
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "foxtails", "summer"]
 sourceUrl: "/foxtails-danger-dogs/"

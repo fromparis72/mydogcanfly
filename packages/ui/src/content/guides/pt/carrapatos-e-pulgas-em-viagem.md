@@ -6,7 +6,7 @@ description: "Proteger o seu cachorro de carrapatos e pulgas em viagem: prevenç
 summary: "Um antiparasitário em dia, uma checagem sistemática depois de cada passeio e a remoção rápida dos carrapatos com um removedor: essa é a melhor proteção contra as doenças transmitidas (babesiose, doença de Lyme)."
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "carrapatos", "pulgas", "prevenção"]
 enbref:

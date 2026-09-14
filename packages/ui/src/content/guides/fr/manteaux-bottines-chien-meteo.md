@@ -5,7 +5,7 @@ description: "Manteaux, imperméables et bottines : protéger son chien du froid
 summary: "Tous les chiens n'ont pas besoin de manteau, mais les petits gabarits, les chiens âgés ou à poil ras apprécient une protection par grand froid. Les bottines protègent les coussinets du sel, de la neige et du bitume brûlant."
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "manteau", "bottines", "météo"]
 sourceUrl: "/manteaux-bottines-chien-meteo/"

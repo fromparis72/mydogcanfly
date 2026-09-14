@@ -15,7 +15,7 @@ url: "/japan-airlines-dog-policy/"
 frUrl: "/japan-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Japan Airlines (JAL)", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Japan Airlines (JAL) accepts dogs in the hold up to 32 kg (70 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

@@ -19,7 +19,7 @@ url: "/dog-car-harness/"
 frUrl: "/harnais-securite-voiture-chien/"
 categories: ["Gear"]
 tags: ["dog", "harness", "road safety", "car"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1597893503977-e51f98d178e1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjYXIlMjBzZWF0JTIwYmVsdHxlbnwxfDB8fHwxNzgyNDk3NDM4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A car harness must be crash-tested, correctly sized and connected to the seat belt with a short tether. Along with a travel crate, it's the only reliable way to secure a dog in a car — and to stay on the right side of traffic laws."
 cover:

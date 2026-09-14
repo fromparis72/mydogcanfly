@@ -79,6 +79,18 @@ policies:
   cabin:
     availability: not_offered
   hold:
+    availability: offered
+    source:
+      url: https://www.airnewzealand.com/travelling-with-pets
+      source_type: official_website
+      verified_date: 2026-09-13
+      review_due: 2026-12-12
+      confidence: 5
+      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      history: []
+      quote: "Domesticated cats, dogs and small caged birds can travel as checked-in baggage on some domestic flights around New Zealand"
+      quote_language: en
+      locator: Travelling with pets / Pets as checked-in baggage
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_air_new_zealand_hold_nzd_2026_09_10
@@ -102,9 +114,19 @@ policies:
           quote: NZD $120 per pet carrier per journey
           quote_language: en
           locator: Domestic pets / charge
-    availability: offered
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://www.airnewzealandcargo.com/international-cargo-pet-services
+      source_type: official_website
+      verified_date: 2026-09-13
+      review_due: 2026-12-12
+      confidence: 5
+      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      history: []
+      quote: "Pets cannot commonly travel as checked in baggage on international Air New Zealand flights. Instead, we maximise your pets' comfort by offering some of the same comforts our passengers enjoy by providing fully pressurised and temperature-controlled conditions in our 'cargo' hold."
+      quote_language: en
+      locator: International cargo pets / Our pets service
 channels:
   - placement: cabin
     icon: 🐾
@@ -335,8 +357,8 @@ book:
   host: airnewzealand.com
   url: https://www.airnewzealand.com/
 sources:
-  en: Air New Zealand sources · collected 11 July 2026
-  fr: Sources Air New Zealand · relevées le 11 juillet 2026
-  es: Fuentes de Air New Zealand · recopiladas el 11 de julio de 2026
-  pt: "Fontes da Air New Zealand · recolhidas em 11 de julho de 2026"
-verified_date: 2026-07-11
+  en: Air New Zealand sources · updated 13 September 2026
+  fr: Sources Air New Zealand · mises à jour le 13 septembre 2026
+  es: Fuentes de Air New Zealand · actualizadas el 13 de septiembre de 2026
+  pt: "Fontes da Air New Zealand · atualizadas em 13 de setembro de 2026"
+verified_date: 2026-09-13

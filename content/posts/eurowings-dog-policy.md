@@ -17,7 +17,7 @@ url: "/eurowings-dog-policy/"
 frUrl: "/eurowings-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Eurowings", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1449452198679-05c7fd30f416?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxHZXJtYW55JTIwY2FzdGxlJTIwbGFuZG1hcmt8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Eurowings accepts dogs in the cabin up to 8 kg (18 lb), from €60 (~$65). No hold transport."
 cover:

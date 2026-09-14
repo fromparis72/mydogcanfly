@@ -15,7 +15,7 @@ url: "/traveling-to-canada-with-a-dog/"
 frUrl: "/voyager-chien-canada/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Canada"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1605074262645-ac5f60b39c8d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjByb2FkJTIwdHJpcHxlbnwxfDB8fHwxNzgyODI4MDE3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Canada: difficulty level easy, lead time a few days."
 cover:

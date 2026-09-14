@@ -18,7 +18,7 @@ slug: "border-collie"
 url: "/dog-heat-safety/border-collie/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Border Collie"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1654256578072-b932c33cb92e?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Border Collie has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

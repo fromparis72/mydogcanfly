@@ -6,7 +6,7 @@ description: "Hiking the mountains with your dog: build fitness gradually, manag
 summary: "The mountains are best savored gradually: train your dog, carry water and snacks, protect their paw pads on scree, keep them leashed near livestock and wildlife, and watch for signs of fatigue."
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "mountains", "hiking", "nature"]
 sourceUrl: "/mountain-vacations-with-a-dog/"

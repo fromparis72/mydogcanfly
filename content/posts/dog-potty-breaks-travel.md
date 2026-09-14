@@ -15,7 +15,7 @@ url: "/dog-potty-breaks-travel/"
 frUrl: "/proprete-besoins-chien-voyage/"
 categories: ["Health"]
 tags: ["dog", "health", "potty training", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1777302284475-037113500d0c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB3YWxraW5nJTIwb24lMjBsZWFzaCUyMHBhcmt8ZW58MXwwfHx8MTc4MjkzOTQzNnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog potty breaks while traveling: how often to stop, handling a puppy or an anxious dog, cleanup and accidents. A clean, stress-free trip."
 cover:

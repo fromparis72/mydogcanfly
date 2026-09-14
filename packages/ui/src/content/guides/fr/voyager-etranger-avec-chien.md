@@ -6,7 +6,7 @@ description: "Voyager à l'étranger avec son chien : passeport européen, vacci
 summary: "Pour voyager dans l'UE, votre chien a besoin d'un passeport européen, d'une puce électronique et d'un vaccin antirabique valide. Hors UE, des examens supplémentaires (titrage des anticorps antirabiques) et des délais sont souvent exigés : anticipez plusieurs mois."
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "voyage à l'étranger", "passeport", "formalités"]
 sourceUrl: "/voyager-etranger-avec-chien/"

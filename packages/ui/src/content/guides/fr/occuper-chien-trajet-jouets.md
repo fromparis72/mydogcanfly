@@ -5,7 +5,7 @@ description: "Occuper son chien pendant un long trajet : jouets à mâcher, tapi
 summary: "Occuper son chien pendant un long trajet : jouets à mâcher, tapis de fouille, jouets distributeurs. Réduire l'ennui et le stress en voiture, train ou avion."
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "jouets", "voyage"]
 sourceUrl: "/occuper-chien-trajet-jouets/"

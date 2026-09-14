@@ -152,6 +152,7 @@ if (DIST) {
   })(DIST);
 
   const { loadKB } = await import("./packages/knowledge/src/index.ts");
+  const { airlineData } = await import("./packages/ui/src/data/airlines.ts");
   const kb = loadKB();
   /** Le statut CANONIQUE d'un canal, lu dans la base normalisée — jamais deviné d'un booléen. */
   const politiqueDe = (slug, canal) => {
@@ -161,6 +162,11 @@ if (DIST) {
   const statutDe = (slug, canal) => {
     const p = politiqueDe(slug, canal);
     return p ? (p.status ?? (p.allowed ? "allowed" : "denied")) : null;
+  };
+  /** La fiche ne rend que les canaux qu'elle déclare dans sa donnée éditoriale. */
+  const canalVisible = (slug, canal) => {
+    const id = `airline_${slug.replace(/-/g, "_")}`;
+    return (airlineData[id]?.channels ?? []).some((c) => c.placement === canal);
   };
   /**
    * LE BLOC D'UN CANAL S'ARRÊTE AU CANAL SUIVANT. Une première rédaction cherchait
@@ -311,7 +317,7 @@ if (DIST) {
        quatrième état est un mouvement à faire avec la fermeture de cette dette. */
     const LIBELLES = { allowed: "Accepted", confirmation_required: "To confirm", denied: "Refused" };
     const vus = new Set();
-    let absencesLegitimes = 0;
+    let absencesHorsFiche = 0;
     for (const p of fiches) {
       const slug = p.split("/")[2];
       /* LA FENÊTRE EST FERMÉE EN FIN DE TOUR (voir plus bas). Sans cela, 408 arbres jsdom
@@ -324,17 +330,18 @@ if (DIST) {
         const st = statutDe(slug, canal);
         if (!st || !LIBELLES[st]) continue;
         const minis = doc.querySelectorAll(`.mini[data-placement="${canal}"]`);
-        /* UN CANAL PEUT LÉGITIMEMENT N'AVOIR AUCUN BLOC — mais à une seule condition. La fiche ne
-           publie que ses propres canaux ; ceux dont la politique est HÉRITÉE ET NON REVÉRIFIÉE
-           (`legacy_unreviewed`) n'y figurent pas, conformément à l'arbitrage : une donnée héritée
-           non revérifiée ne devient pas une affirmation publique. Ma rédaction précédente exigeait
-           un bloc pour CHAQUE canal de la base, et rougissait donc sur quatre absences correctes.
-           L'absence reste interdite pour toute autre cause : un canal réellement publié qui
-           disparaîtrait ferait toujours rougir. */
+        /* UN CANAL PEUT LÉGITIMEMENT N'AVOIR AUCUN BLOC si la fiche ne le déclare pas. La page,
+           comme la porte d'indexation de `compagnieEtat.ts`, ne rend que `channels[]` : une
+           politique de référentiel peut donc être auditée sans constituer un canal visible.
+           Norwegian cargo en est la contre-épreuve : la source officielle prouve `denied`, mais
+           la fiche n'offre pas de bloc cargo. L'ancienne exception fondée uniquement sur
+           `legacy_unreviewed` confondait état de preuve et surface éditoriale. On vérifie désormais
+           la déclaration du canal elle-même ; si un canal déclaré disparaît du DOM, le contrôle
+           rougit toujours, quelle que soit sa cause. */
         if (minis.length === 0) {
           const cause = politiqueDe(slug, canal)?.status_cause;
-          if (cause === "legacy_unreviewed") { absencesLegitimes++; continue; }
-          echec("5quater pastille", `${slug}/${canal} (${st}) : aucun bloc, et la cause est « ${cause ?? "aucune"} », pas « legacy_unreviewed »`);
+          if (!canalVisible(slug, canal)) { absencesHorsFiche++; continue; }
+          echec("5quater pastille", `${slug}/${canal} (${st}) : canal déclaré mais aucun bloc (cause « ${cause ?? "aucune"} »)`);
           continue;
         }
         if (minis.length !== 1) { echec("5quater pastille", `${slug}/${canal} : ${minis.length} blocs au lieu d'un`); continue; }
@@ -387,7 +394,7 @@ if (DIST) {
     } else {
       ok(`5quater la pastille dit les ${vus.size} état(s) que la base porte, chacun rencontré dans le HTML construit`
         + `${sansPorteur.length ? ` — « ${sansPorteur.join(", ")} » n'a AUCUN porteur depuis la frontière de confiance, absence mesurée et non supposée` : ""}`
-        + ` (${absencesLegitimes} canal/canaux hérités non revérifiés, légitimement absents)`);
+        + ` (${absencesHorsFiche} politique(s) hors des canaux déclarés, légitimement absente(s))`);
     }
   }
 

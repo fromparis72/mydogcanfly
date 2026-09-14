@@ -15,7 +15,7 @@ url: "/dog-travel-toys/"
 frUrl: "/occuper-chien-trajet-jouets/"
 categories: ["Gear"]
 tags: ["dog", "gear", "toys", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1587559070757-f72a388edbba?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjaGV3JTIwdG95JTIwcGxheWluZ3xlbnwxfDB8fHwxNzgyOTM5NDI1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Keeping your dog busy on a long trip: chew toys, snuffle mats, treat-dispensing toys. Reduce boredom and stress in the car, train or plane."
 cover:

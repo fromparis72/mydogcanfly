@@ -5,7 +5,7 @@ description: "Otite du chien après la baignade : l'humidité dans l'oreille fav
 summary: "Otite du chien après la baignade : l'humidité dans l'oreille favorise l'infection. Séchage, prévention, signes d'alerte et races à risque."
 date: "2026-06-01T08:00:00+02:00"
 lastmod: "2026-06-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "otite", "baignade"]
 sourceUrl: "/otites-oreilles-baignade-chien/"

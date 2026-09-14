@@ -82,7 +82,13 @@ const orgLd = {
   logo: `${LEGAL.url}/brand/wordmark.png`,
   image: `${LEGAL.url}/brand/og-default.png`,
   description: "Data-driven reference for flying with a dog: sourced rules for every airline, country and breed.",
-  founder: { "@type": "Person", name: LEGAL.director, sameAs: [LEGAL.linkedin] },
+  founder: {
+    "@type": "Person",
+    "@id": `${LEGAL.url}/#founder`,
+    name: LEGAL.director,
+    url: `${LEGAL.url}/about/`,
+    sameAs: [LEGAL.linkedin],
+  },
   /* Les cinq comptes officiels, pas seulement le LinkedIn du fondateur — voir le commentaire
    * de OFFICIAL_PROFILES dans lib/legal.ts. C'est ce qui rattache un domaine récent à des
    * profils établis, pour les moteurs comme pour les moteurs de réponse. */

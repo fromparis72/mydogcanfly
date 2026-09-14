@@ -6,7 +6,7 @@ description: "Some steps in a pet's international journey cannot be compressed. 
 summary: "Waiting periods, not paperwork, decide whether a pet can fly on a given date. Start from the departure date and work backwards: the rabies delay and the titre test set the earliest possible departure."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["pet", "flying", "planning", "international"]
 cover:

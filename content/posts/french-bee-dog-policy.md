@@ -15,7 +15,7 @@ url: "/french-bee-dog-policy/"
 frUrl: "/french-bee-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "French Bee", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1738762932370-468a90e0ff68?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "French Bee accepts dogs in the cabin up to 8 kg (18 lb) and in the hold up to 75 kg (165 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

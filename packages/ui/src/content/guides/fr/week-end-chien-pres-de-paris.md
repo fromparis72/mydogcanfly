@@ -6,7 +6,7 @@ description: "Week-end avec son chien près de Paris : idées de balades, forêt
 summary: "Pour un week-end avec son chien près de Paris, misez sur les forêts d'Île-de-France, les bords de Seine et un hébergement dog-friendly à moins d'une heure de la capitale."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "Paris", "week-end", "dog-friendly"]
 sourceUrl: "/week-end-chien-pres-de-paris/"

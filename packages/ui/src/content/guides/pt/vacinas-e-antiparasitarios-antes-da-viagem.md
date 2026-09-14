@@ -6,7 +6,7 @@ description: "Colocar a saúde do seu cachorro em dia antes de viajar: vacinas, 
 summary: "Colocar a saúde do seu cachorro em dia antes de viajar: vacinas, vermifugação, proteção contra pulgas e carrapatos. O calendário a planejar com o seu veterinário."
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "vacinas", "vermifugação", "viagem"]
 enbref:

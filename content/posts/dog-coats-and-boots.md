@@ -19,7 +19,7 @@ url: "/dog-coats-and-boots/"
 frUrl: "/manteaux-bottines-chien-meteo/"
 categories: ["Gear"]
 tags: ["dog", "coat", "boots", "weather"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1610919399248-7032a7a0017e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjb2F0JTIwd2ludGVyJTIwc25vd3xlbnwxfDB8fHwxNzgyNDk3NDQ3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Not every dog needs a coat, but small breeds, senior dogs and short-haired dogs appreciate extra protection in very cold weather. Boots protect paw pads from road salt, snow and scorching pavement."
 cover:

@@ -6,7 +6,7 @@ description: "Backpack and front carriers for small dogs: what to look for in ve
 summary: "Backpack and front carriers for small dogs: what to look for in ventilation, safety, and comfort. Ideal for cities, hikes, and public transit."
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "carrier", "hiking"]
 sourceUrl: "/dog-carrier-backpacks/"

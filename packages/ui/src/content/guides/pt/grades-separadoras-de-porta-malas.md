@@ -6,7 +6,7 @@ description: "Grades e separadores de porta-malas para transportar o seu cachorr
 summary: "Grades e separadores de porta-malas para transportar o seu cachorro com segurança no carro. Tipos, instalação e como se combinam com um peitoral crash-test."
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "carro", "segurança no trânsito"]
 enbref:

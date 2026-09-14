@@ -6,7 +6,7 @@ description: "Cold and hypothermia in dogs: at-risk dogs, warning signs, how to 
 summary: "Cold and hypothermia in dogs: at-risk dogs, warning signs, how to warm them up, prevention in winter and in the mountains. When to see a vet."
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "cold", "winter"]
 sourceUrl: "/dog-hypothermia/"

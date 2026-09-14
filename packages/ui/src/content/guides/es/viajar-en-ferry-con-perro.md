@@ -6,7 +6,7 @@ description: "Viajar en ferry con perro: reserva, perreras a bordo, camarotes pe
 summary: "En la mayoría de los ferris, el perro viaja en un camarote pet-friendly, en una perrera a bordo o en el coche, según el operador. Reserva pronto, prevé agua y una parada antes de embarcar, y anticípate al mareo."
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "ferry", "barco", "travesía"]
 enbref:

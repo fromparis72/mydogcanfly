@@ -18,7 +18,7 @@ slug: "chihuahua"
 url: "/dog-heat-safety/chihuahua/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Chihuahua"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1608228028188-acdf9ebd3044?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Chihuahua has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

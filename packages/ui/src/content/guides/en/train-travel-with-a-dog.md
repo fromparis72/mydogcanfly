@@ -6,7 +6,7 @@ description: "Train travel with a dog: how size, leash, muzzle and ticket rules 
 summary: "Most railways welcome dogs, but the rules follow a pattern: small dogs in a carrier, big dogs leashed (and often muzzled), and a ticket in many countries. Here's how it works from SNCF to Amtrak."
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "train", "rail travel", "transportation"]
 sourceUrl: "/train-travel-with-a-dog/"

@@ -24,9 +24,9 @@
 # (Caching → Cache Rules) et ne peut pas vivre dans le dépôt. Sans elle, ce fichier reste
 # correct mais n'a d'effet que sur les navigateurs.
 #
-# PURGE. Le déploiement de production ne purge rien aujourd'hui. Tant que la règle de cache
-# n'existe pas, c'est sans conséquence ; le jour où elle existe, une correction urgente
-# demandera une purge manuelle ou un `wrangler` de purge après `npm run release`.
+# PURGE. `npm run release` enchaîne le déploiement puis `npm run purge:cache`. Une correction
+# publiée par cette voie invalide donc le cache immédiatement ; un déploiement lancé autrement
+# doit être suivi d'une purge explicite pour ne pas laisser vivre l'ancien HTML pendant 24 h.
 
 /*
   Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
@@ -50,12 +50,8 @@
 /*.ico
   Cache-Control: public, max-age=2592000
 
-# Ce que les robots relisent souvent, et dont une version périmée coûte cher : une heure.
-/robots.txt
-  Cache-Control: public, max-age=0, s-maxage=3600
-/sitemap.xml
-  Cache-Control: public, max-age=0, s-maxage=3600
-/sitemap-*.xml
-  Cache-Control: public, max-age=0, s-maxage=3600
-/llms.txt
-  Cache-Control: public, max-age=0, s-maxage=3600
+# `robots.txt`, les sitemaps et `llms.txt` héritent volontairement de la règle générale.
+# Cloudflare Pages cumule les en-têtes de TOUTES les règles qui correspondent : les redéclarer
+# ici produisait deux `s-maxage` contradictoires dans une seule réponse. Le cache est purgé par
+# `npm run release`, donc ces fichiers changent immédiatement au déploiement puis restent stables
+# pendant 24 h comme le reste du corpus éditorial.

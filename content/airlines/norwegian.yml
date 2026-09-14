@@ -59,6 +59,18 @@ ladder:
       pt: "≤ 14 kg cada"
 policies:
   cabin:
+    availability: offered
+    source:
+      url: https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/
+      source_type: official_website
+      verified_date: 2026-09-13
+      review_due: 2026-12-12
+      confidence: 5
+      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      history: []
+      quote: "Small cats and dogs can travel in the cabin on the following flights"
+      quote_language: en
+      locator: Pets in the cabin
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_norwegian_cabin_eur_2026_09_10
@@ -84,8 +96,19 @@ policies:
           quote: 55–75 EUR en ligne
           quote_language: en
           locator: Animaux en cabine
-    availability: offered
   hold:
+    availability: offered
+    source:
+      url: https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/
+      source_type: official_website
+      verified_date: 2026-09-13
+      review_due: 2026-12-12
+      confidence: 5
+      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      history: []
+      quote: "Cats and dogs can travel in the cargo hold on the following flights"
+      quote_language: en
+      locator: Pets in the cargo hold
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_norwegian_hold_eur_2026_09_10
@@ -111,9 +134,19 @@ policies:
           quote: 150–180 EUR en ligne
           quote_language: en
           locator: Animaux en soute
-    availability: offered
   cargo:
-    review_state: legacy_unreviewed
+    availability: not_offered
+    source:
+      url: https://cargo.norwegian.com/services/
+      source_type: official_website
+      verified_date: 2026-09-13
+      review_due: 2026-12-12
+      confidence: 5
+      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      history: []
+      quote: "Live animals: Norwegian does not accept live animals as cargo. Accepted as checked in baggage AVIH."
+      quote_language: en
+      locator: Services / Limitations
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
   - placement: cabin
@@ -310,8 +343,8 @@ book:
   host: norwegian.com
   url: https://www.norwegian.com/
 sources:
-  en: Norwegian sources · collected 11 July 2026
-  fr: Sources Norwegian · relevées le 11 juillet 2026
-  es: Fuentes de Norwegian · recopiladas el 11 de julio de 2026
-  pt: "Fontes da Norwegian · recolhidas em 11 de julho de 2026"
-verified_date: 2026-07-11
+  en: Norwegian sources · updated 13 September 2026
+  fr: Sources Norwegian · mises à jour le 13 septembre 2026
+  es: Fuentes de Norwegian · actualizadas el 13 de septiembre de 2026
+  pt: "Fontes da Norwegian · atualizadas em 13 de setembro de 2026"
+verified_date: 2026-09-13

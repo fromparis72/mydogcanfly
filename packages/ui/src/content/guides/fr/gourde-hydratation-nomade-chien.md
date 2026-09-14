@@ -5,7 +5,7 @@ description: "Gourde et système d'hydratation nomade pour chien : gourde à abr
 summary: "Gourde et système d'hydratation nomade pour chien : gourde à abreuvoir intégré, gamelle pliable, quelle quantité d'eau emporter. Éviter la déshydratation."
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "hydratation", "gamelle"]
 sourceUrl: "/gourde-hydratation-nomade-chien/"

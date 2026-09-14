@@ -5,7 +5,7 @@ description: "Faire une pause réussie sur l'autoroute avec son chien : espaces 
 summary: "Une pause toutes les 2 heures : sortez le chien en laisse, proposez-lui de l'eau, laissez-le se dégourdir et faire ses besoins dans les espaces verts prévus. Ne le laissez jamais seul dans la voiture en été."
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "autoroute", "pause", "voyage"]
 sourceUrl: "/aires-autoroute-dog-friendly/"

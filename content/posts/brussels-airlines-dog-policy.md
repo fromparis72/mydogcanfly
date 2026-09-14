@@ -17,7 +17,7 @@ url: "/brussels-airlines-dog-policy/"
 frUrl: "/brussels-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Brussels Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1548092304-e0205cb0031b?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxCZWxnaXVtJTIwQnJ1Z2VzJTIwQnJ1c3NlbHN8ZW58MXwwfHx8MTc4MjkxMjY5Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Brussels Airlines accepts dogs in the cabin up to 8 kg / 18 lb (€65–105, ~$75–120) and in the hold up to 20 kg / 44 lb (€85–360, ~$100–415). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

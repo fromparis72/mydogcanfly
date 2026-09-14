@@ -6,7 +6,7 @@ description: "Protect your dog's paw pads from hot pavement, scorching sand and 
 summary: "Dog paw pads burn on hot asphalt and crack in winter. Test the ground with your hand, walk during the cooler hours and inspect the paws regularly."
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "paw pads", "summer", "care"]
 sourceUrl: "/protecting-dog-paw-pads/"

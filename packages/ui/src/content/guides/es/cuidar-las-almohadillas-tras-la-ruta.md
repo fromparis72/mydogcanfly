@@ -6,7 +6,7 @@ description: "Cuidar las almohadillas del perro después de una ruta o de la pla
 summary: "Cuidar las almohadillas del perro después de una ruta o de la playa: inspección, limpieza, bálsamo reparador, detectar una quemadura o un corte. Consejos de prevención."
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "almohadillas", "senderismo"]
 enbref:

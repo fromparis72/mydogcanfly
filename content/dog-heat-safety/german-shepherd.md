@@ -18,7 +18,7 @@ slug: "german-shepherd"
 url: "/dog-heat-safety/german-shepherd/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "German Shepherd"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1621951825147-bcf82eed6249?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The German Shepherd has a high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

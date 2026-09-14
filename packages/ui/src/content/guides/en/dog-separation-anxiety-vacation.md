@@ -6,7 +6,7 @@ description: "Dog separation anxiety on vacation: recognize the signs, prepare f
 summary: "Dog separation anxiety on vacation: recognize the signs, prepare for alone time, set up an unfamiliar place. Tips for a calm, relaxed dog."
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "anxiety", "behavior"]
 sourceUrl: "/dog-separation-anxiety-vacation/"

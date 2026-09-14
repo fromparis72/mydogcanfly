@@ -15,7 +15,7 @@ url: "/dog-ramps-and-steps/"
 frUrl: "/rampe-marches-acces-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "car", "joints"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1655143285744-dda9316e427e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBqdW1waW5nJTIwaW50byUyMGNhcnxlbnwxfDB8fHwxNzgyOTM5NDIyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog ramp or steps: protect your dog's joints getting into the car, onto the bed or couch. How to choose one and get your dog used to it."
 cover:

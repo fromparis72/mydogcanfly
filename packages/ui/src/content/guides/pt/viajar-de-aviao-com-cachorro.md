@@ -6,7 +6,7 @@ description: "Viajar de avião com cachorro: regras de cabine ou porão, limites
 summary: "Viajar de avião com cachorro exige uma caixa de transporte, um peso dentro do limite da companhia e a documentação sanitária iniciada várias semanas antes da viagem."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "viagem internacional"]
 enbref:

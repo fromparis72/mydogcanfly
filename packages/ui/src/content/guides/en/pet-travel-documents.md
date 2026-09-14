@@ -6,7 +6,7 @@ description: "Microchip, rabies vaccination, health certificate, titre test: wha
 summary: "The airline sets how your pet flies; the destination sets whether it may enter. Those are two separate authorities, two separate checklists, and two separate timetables."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["pet", "flying", "documents", "international"]
 cover:

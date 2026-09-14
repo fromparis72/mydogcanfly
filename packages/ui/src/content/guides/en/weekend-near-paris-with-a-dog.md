@@ -6,7 +6,7 @@ description: "Weekend near Paris with a dog: forest walks, Seine riverbanks and 
 summary: "For a weekend near Paris with a dog, count on the great forests of the Île-de-France region, the banks of the Seine and dog-friendly accommodation less than an hour from the capital."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["dog", "Paris", "weekend", "dog-friendly"]
 sourceUrl: "/weekend-near-paris-with-a-dog/"

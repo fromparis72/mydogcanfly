@@ -6,7 +6,7 @@ description: "Les quatre mesures que les compagnies vérifient réellement, comm
 summary: "Quatre mesures décident de la caisse : longueur, hauteur au garrot, hauteur debout tête levée, et largeur. Prenez-les sur un chien debout, ajoutez les marges, puis confrontez le résultat à la compagnie."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["chien", "avion", "caisse de transport", "IATA"]
 cover:

@@ -6,7 +6,7 @@ description: "O equipamento realmente útil para viajar de carro com o seu cacho
 summary: "O equipamento realmente útil para viajar de carro com o seu cachorro: peitoral de segurança, capa de banco, caixa de transporte, hidratação na estrada."
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "carro", "segurança", "equipamento"]
 enbref:

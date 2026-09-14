@@ -6,7 +6,7 @@ description: "Viajar en coche con perro con seguridad: sistemas de sujeción con
 summary: "En el coche, el perro debe ir sujeto o contenido por la seguridad de todos. Un transportín, un arnés con crash test o una reja, paradas regulares y una buena preparación hacen el viaje."
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "coche", "seguridad vial", "viaje"]
 enbref:

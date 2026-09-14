@@ -17,7 +17,7 @@ url: "/american-airlines-dog-policy/"
 frUrl: "/american-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "American Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1753178670354-7a4a19f25c5b?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "American Airlines accepts dogs in the cabin up to 9 kg / 20 lb (~$150) and in the hold via its cargo service only. Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

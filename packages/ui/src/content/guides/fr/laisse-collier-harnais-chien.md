@@ -5,7 +5,7 @@ description: "Laisse, collier et harnais pour voyager avec son chien : quel type
 summary: "Laisse, collier et harnais pour voyager avec son chien : quel type choisir, quelles matières, comment ajuster. Le guide pratique pour des balades sûres."
 date: "2026-06-08T08:00:00+02:00"
 lastmod: "2026-06-08T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "laisse", "harnais", "collier"]
 sourceUrl: "/laisse-collier-harnais-chien/"

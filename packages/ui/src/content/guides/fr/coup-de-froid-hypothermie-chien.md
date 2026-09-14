@@ -5,7 +5,7 @@ description: "Froid et hypothermie chez le chien : chiens à risque, signes d'al
 summary: "Froid et hypothermie chez le chien : chiens à risque, signes d'alerte, gestes pour réchauffer, prévention en hiver et à la montagne. Quand consulter."
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "froid", "hiver"]
 sourceUrl: "/coup-de-froid-hypothermie-chien/"

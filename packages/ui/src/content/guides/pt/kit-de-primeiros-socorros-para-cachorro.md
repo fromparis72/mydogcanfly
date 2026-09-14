@@ -6,7 +6,7 @@ description: "O kit de primeiros socorros para cachorro em viagem: conteúdo ess
 summary: "Um kit de primeiros socorros reúne o necessário para desinfetar, enfaixar, retirar um carrapato e lidar com incidentes menores. Nunca substitui o veterinário, mas ganha um tempo precioso."
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "primeiros socorros", "saúde", "viagem"]
 enbref:

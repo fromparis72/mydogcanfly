@@ -15,7 +15,7 @@ url: "/dog-digestive-issues-travel/"
 frUrl: "/troubles-digestifs-voyage-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "digestion", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1714068691210-073dc52c6c1d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBmb29kJTIwYm93bCUyMGVhdGluZ3xlbnwxfDB8fHwxNzgyOTM5NDMzfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog diarrhea and vomiting while traveling: causes (stress, new water, food changes), prevention and simple steps. When to worry."
 cover:

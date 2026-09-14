@@ -6,7 +6,7 @@ description: "Microchip, vacunación antirrábica, certificado sanitario, titula
 summary: "La aerolínea decide cómo vuela tu animal; el destino decide si puede entrar. Son dos autoridades distintas, dos listas distintas y dos calendarios distintos."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avión", "documentos", "internacional"]
 cover:

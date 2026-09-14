@@ -17,7 +17,7 @@ url: "/avianca-dog-policy/"
 frUrl: "/avianca-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Avianca", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1583531352515-8884af319dc1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDb2xvbWJpYSUyMENhcnRhZ2VuYXxlbnwxfDB8fHwxNzgyOTEyNjk2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Avianca accepts dogs in the cabin up to 10 kg / 22 lb ($45–230) and in the hold up to 70 kg / 154 lb ($75–305). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:

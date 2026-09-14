@@ -17,7 +17,7 @@ url: "/westjet-dog-policy/"
 frUrl: "/westjet-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "WestJet", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1507409613952-518459ac866e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwzfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "WestJet accepts dogs in the cabin ($40–90) and in the hold up to 45 kg (99 lb) ($80–185). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

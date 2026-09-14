@@ -6,7 +6,7 @@ description: "International travel with a dog: microchip, rabies vaccination, EU
 summary: "To travel within the EU, your dog needs an EU pet passport, a microchip and a valid rabies vaccination. Beyond the EU, extra tests (a rabies titer test) and waiting periods are often required: start several months ahead."
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "international travel", "passport", "paperwork"]
 sourceUrl: "/international-travel-with-a-dog/"

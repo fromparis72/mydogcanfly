@@ -6,7 +6,7 @@ description: "Como escolher uma hospedagem dog-friendly que funcione de verdade:
 summary: "Uma boa estadia dog-friendly não apenas tolera o seu cachorro: ela o acolhe de verdade, com um espaço externo seguro, regras claras e zero custos ocultos."
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "hospedagem dog-friendly", "viagem", "pousada"]
 enbref:

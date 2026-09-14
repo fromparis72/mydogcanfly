@@ -18,7 +18,7 @@ slug: "vizsla"
 url: "/dog-heat-safety/vizsla/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Vizsla"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1618398130625-4dbbd7488847?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Vizsla has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

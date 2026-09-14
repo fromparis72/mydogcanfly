@@ -15,7 +15,7 @@ url: "/iberia-express-dog-policy/"
 frUrl: "/iberia-express-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Iberia Express", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1597374325883-40eab3b18712?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwzfHxTcGFpbiUyMFNldmlsbGUlMjBCYXJjZWxvbmElMjBhcmNoaXRlY3R1cmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Iberia Express accepts dogs in the cabin up to 8 kg (18 lb) and in the hold. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

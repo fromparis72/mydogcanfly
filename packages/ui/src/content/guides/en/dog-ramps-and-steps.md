@@ -6,7 +6,7 @@ description: "Dog ramp or steps: protect your dog's joints getting into the car,
 summary: "Dog ramp or steps: protect your dog's joints getting into the car, onto the bed or couch. How to choose one and get your dog used to it."
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "car", "joints"]
 sourceUrl: "/dog-ramps-and-steps/"

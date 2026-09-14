@@ -6,7 +6,7 @@ description: "Canicule et chien : reconnaître les signes du coup de chaleur, ag
 summary: "Le coup de chaleur survient quand un chien ne parvient plus à réguler sa température. Au-delà de 40,5 °C de température corporelle, c'est une urgence vitale : rafraîchissez progressivement et filez chez le vétérinaire."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "canicule", "coup de chaleur", "été"]
 sourceUrl: "/canicule-chien-coup-de-chaleur/"

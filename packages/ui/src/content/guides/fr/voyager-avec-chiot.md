@@ -5,7 +5,7 @@ description: "Voyager avec un chiot : âge et vaccins, durée des trajets, propr
 summary: "Un chiot voyage une fois ses vaccins en place : trajets courts, pauses fréquentes, repère rassurant et hygiène stricte. Les premiers voyages, bien menés, posent les bases d'un chien adulte serein en déplacement."
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "chiot", "santé", "voyage"]
 sourceUrl: "/voyager-avec-chiot/"

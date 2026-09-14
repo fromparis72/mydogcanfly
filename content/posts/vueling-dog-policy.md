@@ -19,7 +19,7 @@ url: "/vueling-dog-policy/"
 frUrl: "/vueling-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Vueling", "low-cost", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1617178851416-16180c2dddd6?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHw1fHxTcGFpbiUyMFNldmlsbGUlMjBCYXJjZWxvbmElMjBhcmNoaXRlY3R1cmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Vueling accepts dogs up to 10 kg (22 lb) in the cabin (carrier included) — more than the usual 8 kg (18 lb) limit — from €30 (~$35). No hold, and no dogs to the United Kingdom, Ireland or Iceland."
 cover:

@@ -15,7 +15,7 @@ url: "/cathay-pacific-dog-policy/"
 frUrl: "/cathay-pacific-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Cathay Pacific", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1620015092538-e33c665fc181?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxIb25nJTIwS29uZyUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjcxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Cathay Pacific accepts dogs in the hold up to 32 kg (70 lb)."
 cover:

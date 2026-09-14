@@ -6,7 +6,7 @@ description: "Férias na praia com o seu cachorro: como encontrar praias dog-fri
 summary: "Muitas praias acolhem cães fora de temporada ou em áreas sinalizadas: confira sempre antes a regulamentação local. No destino, pense em sombra, água fresca, um enxágue depois de cada banho e vigilância constante contra a insolação."
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "praia", "mar", "verão"]
 enbref:

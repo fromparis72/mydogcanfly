@@ -6,7 +6,7 @@ description: "Espigas secas no cachorro: essas aristas de gramínea se enfiam na
 summary: "Espigas secas no cachorro: essas aristas de gramínea se enfiam na pele, nas orelhas, nos olhos e nas patas. Prevenção, revisão após o passeio e quando procurar um veterinário com urgência."
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "espigas", "verão"]
 enbref:

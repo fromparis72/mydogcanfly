@@ -6,7 +6,7 @@ description: "Como fazer uma boa parada de estrada com o seu cachorro: áreas pa
 summary: "Uma parada a cada 2 horas: leve o cachorro na guia, ofereça água, deixe-o esticar as pernas e fazer as necessidades nas áreas verdes previstas. Nunca o deixe sozinho no carro no verão."
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "rodovia", "parada de estrada", "viagem"]
 enbref:

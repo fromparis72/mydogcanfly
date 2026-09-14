@@ -19,7 +19,7 @@ url: "/traveling-with-a-puppy/"
 frUrl: "/voyager-avec-chiot/"
 categories: ["Health"]
 tags: ["dog", "puppy", "health", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1534361960057-19889db9621e?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A puppy travels once its vaccines are in place: short trips, frequent breaks, a reassuring familiar item and strict hygiene. First trips, done well, lay the foundation for a calm adult travel companion."
 cover:

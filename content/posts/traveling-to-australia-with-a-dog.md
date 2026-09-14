@@ -15,7 +15,7 @@ url: "/traveling-to-australia-with-a-dog/"
 frUrl: "/voyager-chien-australie/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Australia"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1516222338250-863216ce01ea?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBzdW1tZXIlMjBiZWFjaHxlbnwxfDB8fHwxNzgyODI4MDIxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Australia: a very demanding process, with a 6 to 7 month lead time plus quarantine."
 cover:

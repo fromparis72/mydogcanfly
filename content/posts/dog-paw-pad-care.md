@@ -15,7 +15,7 @@ url: "/dog-paw-pad-care/"
 frUrl: "/soigner-coussinets-rando-plage-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "paw pads", "hiking"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1664730807455-e5708e976912?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXdzJTIwdHJhaWwlMjBoaWtpbmd8ZW58MXwwfHx8MTc4MjkzOTQzNXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Caring for dog paw pads after a hike or the beach: inspection, cleaning, repair balm, spotting a burn or a cut. Prevention tips."
 cover:

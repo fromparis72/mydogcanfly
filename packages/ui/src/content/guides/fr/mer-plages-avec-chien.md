@@ -6,7 +6,7 @@ description: "Vacances à la mer avec son chien : trouver les plages autorisées
 summary: "De nombreuses plages acceptent les chiens hors saison ou sur des zones dédiées : vérifiez les arrêtés municipaux. Sur place, ombre, eau douce, rinçage après la baignade et vigilance face aux coups de chaleur."
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "mer", "plage", "été"]
 sourceUrl: "/mer-plages-avec-chien/"

@@ -313,6 +313,11 @@ jobs:
       - name: Ce que le site annonce existe (hreflang + sitemaps)
         run: npm run test:annonce
 
+      # Porte des compagnies, identité éditoriale, faux relecteur et llms.txt : ce contrôle lit
+      # le même build de preview, donc il partitionne lui aussi par sitemap et non par `robots`.
+      - name: Crédibilité SEO/GEO (preuves + identité + llms.txt)
+        run: npm run test:credibilite-seo
+
       - name: Tout lien interne mène quelque part
         run: npm run test:liens
 

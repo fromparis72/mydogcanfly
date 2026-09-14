@@ -6,7 +6,7 @@ description: "Trilhas de montanha com o seu cachorro: preparo gradual, altitude 
 summary: "A montanha se aproveita aos poucos: treine o seu cachorro, leve água e comida, proteja as almofadinhas no pedregulho, mantenha-o na guia perto do gado e da fauna, e observe os sinais de cansaço."
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "montanha", "trilha", "natureza"]
 enbref:

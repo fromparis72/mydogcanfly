@@ -6,7 +6,7 @@ description: "Entreter o seu cachorro em um trajeto longo: brinquedos para masti
 summary: "Entreter o seu cachorro em um trajeto longo: brinquedos para mastigar, tapetes olfativos, brinquedos que liberam petiscos. Reduzir o tédio e o estresse no carro, no trem ou no avião."
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "brinquedos", "viagem"]
 enbref:

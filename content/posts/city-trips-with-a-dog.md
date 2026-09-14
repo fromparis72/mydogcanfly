@@ -19,7 +19,7 @@ url: "/city-trips-with-a-dog/"
 frUrl: "/visiter-ville-avec-chien/"
 categories: ["Destinations"]
 tags: ["dog", "city", "sightseeing", "tourism"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1559515796-f24c8045ea9d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBjaXR5JTIwc3RyZWV0JTIwY2FmZXxlbnwxfDB8fHwxNzgyNDk3NDI1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "In the city, favor dog-friendly patios, parks and shops, avoid scorching pavement during the hottest hours and carry water. Check access to transit and tourist sites before you go."
 cover:

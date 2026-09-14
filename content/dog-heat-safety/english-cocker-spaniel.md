@@ -18,7 +18,7 @@ slug: "english-cocker-spaniel"
 url: "/dog-heat-safety/english-cocker-spaniel/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "English Cocker Spaniel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1641035855573-e22a4e11c7be?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The English Cocker Spaniel has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

@@ -6,7 +6,7 @@ description: "Cachorro que puxa a guia: que peitoral antipuxão escolher? Tipos,
 summary: "Cachorro que puxa a guia: que peitoral antipuxão escolher? Tipos, critérios e os Julius-K9 e Ruffwear Front Range como exemplos de categoria."
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "peitoral", "adestramento", "equipamento"]
 enbref:

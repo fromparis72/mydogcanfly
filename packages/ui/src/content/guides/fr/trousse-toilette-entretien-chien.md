@@ -5,7 +5,7 @@ description: "Trousse de toilette pour chien en voyage : brosse, serviette micro
 summary: "Trousse de toilette pour chien en voyage : brosse, serviette microfibre, lingettes, coupe-griffes, ramassage. L'essentiel pour un chien propre partout."
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "entretien", "hygiène"]
 sourceUrl: "/trousse-toilette-entretien-chien/"

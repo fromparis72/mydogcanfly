@@ -6,7 +6,7 @@ description: "Fin de semana cerca de París con perro: paseos por el bosque, ori
 summary: "Para un fin de semana cerca de París con perro, cuenta con los grandes bosques de Isla de Francia, las orillas del Sena y alojamientos dog-friendly a menos de una hora de la capital."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "París", "fin de semana", "dog-friendly"]
 enbref:

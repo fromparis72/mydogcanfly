@@ -5,7 +5,7 @@ description: "Piqûres et morsures chez le chien : guêpe, abeille, serpent (vip
 summary: "Piqûres et morsures chez le chien : guêpe, abeille, serpent (vipère), chenille processionnaire. Reconnaître la gravité et réagir. Urgences à connaître."
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "premiers secours", "été"]
 sourceUrl: "/piqures-morsures-chien/"

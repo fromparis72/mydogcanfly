@@ -6,7 +6,7 @@ description: "Bolsa flexível, caixa rígida ou gaiola: como escolher conforme o
 summary: "O contêiner certo depende do porte do seu cachorro e de como você viaja: bolsa flexível para cães pequenos na cabine, caixa rígida em conformidade com os requisitos aplicáveis para carro, avião ou trem. A habituação gradual é a chave da aceitação."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "caixa de transporte", "bolsa", "equipamento"]
 enbref:

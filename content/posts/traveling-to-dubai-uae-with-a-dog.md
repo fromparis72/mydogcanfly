@@ -15,7 +15,7 @@ url: "/traveling-to-dubai-uae-with-a-dog/"
 frUrl: "/voyager-chien-emirats-dubai/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "United Arab Emirates (Dubai)"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1749273858638-ea678cb48e94?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified entry requirements for taking your dog to the United Arab Emirates: demanding level, allow 1 to 2 months."
 cover:

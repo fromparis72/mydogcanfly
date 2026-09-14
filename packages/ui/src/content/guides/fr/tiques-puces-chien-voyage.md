@@ -5,7 +5,7 @@ description: "Protéger son chien des tiques et des puces en voyage : préventio
 summary: "Antiparasitaires à jour, inspection systématique après chaque balade et retrait rapide des tiques avec un crochet : c'est la meilleure protection contre les maladies transmises (piroplasmose, maladie de Lyme)."
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "tiques", "puces", "prévention"]
 sourceUrl: "/tiques-puces-chien-voyage/"

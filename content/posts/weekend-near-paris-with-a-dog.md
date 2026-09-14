@@ -21,7 +21,7 @@ url: "/weekend-near-paris-with-a-dog/"
 frUrl: "/week-end-chien-pres-de-paris/"
 categories: ["Destinations"]
 tags: ["dog", "Paris", "weekend", "dog-friendly"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1507629020616-5585874d0e26?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBmb3Jlc3QlMjB3YWxrJTIwYXV0dW1ufGVufDF8MHx8fDE3ODI0ODEyOTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "For a weekend near Paris with a dog, count on the great forests of the Île-de-France region, the banks of the Seine and dog-friendly accommodation less than an hour from the capital."
 cover:

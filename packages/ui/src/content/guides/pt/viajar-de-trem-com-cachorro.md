@@ -6,7 +6,7 @@ description: "Viajar de trem com cachorro: como funcionam as regras de porte, gu
 summary: "Quase todas as ferrovias aceitam cães, mas as regras seguem um mesmo padrão: cães pequenos em caixa, cães grandes na guia (e muitas vezes com focinheira) e passagem em vários países. Veja como funciona, da SNCF à Amtrak."
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "trem", "viagem de trem", "transporte"]
 enbref:

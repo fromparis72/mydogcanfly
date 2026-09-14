@@ -6,7 +6,7 @@ description: "Comment choisir un hébergement dog-friendly vraiment adapté : cr
 summary: "Un bon hébergement dog-friendly ne se contente pas d'accepter le chien : il l'accueille vraiment, avec un extérieur sécurisé, des règles claires et zéro frais caché."
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["chien", "hébergement dog-friendly", "voyage", "chambre d'hôtes"]
 sourceUrl: "/choisir-hebergement-dog-friendly/"

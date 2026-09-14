@@ -6,7 +6,7 @@ description: "Why airlines restrict or refuse snub-nosed breeds in the hold, whi
 summary: "Brachycephalic dogs breathe less efficiently, and heat plus stress makes that worse. Most airlines restrict or refuse them in the hold; some restrict the cabin too. The restrictions target the trait, not a fixed list."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "flying", "breeds", "brachycephalic"]
 cover:

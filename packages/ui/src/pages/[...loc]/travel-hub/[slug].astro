@@ -51,6 +51,8 @@ const hubHref = `${base}/travel-hub/`;
 const site = "https://mydogcanfly.com";
 const url = site + guideHref(locale, slug);
 const cover = d.cover?.image ? (d.cover.image.startsWith("http") ? d.cover.image : site + d.cover.image) : undefined;
+const authorUrl = `${LEGAL.url}/about/`;
+const authorId = `${LEGAL.url}/#founder`;
 
 /* La date affichée : `lastmod` s'il est postérieur, sinon la publication. Un guide révisé
  * doit le dire — c'est la même exigence de fraîcheur datée que sur les fiches. */
@@ -69,7 +71,13 @@ const ld: Record<string, any>[] = [
     dateModified: d.lastmod,
     mainEntityOfPage: url,
     ...(cover ? { image: cover } : {}),
-    ...(d.author ? { author: { "@type": "Person", name: d.author } } : {}),
+    author: {
+      "@type": "Person",
+      "@id": authorId,
+      name: LEGAL.director,
+      url: authorUrl,
+      sameAs: [LEGAL.linkedin],
+    },
     publisher: { "@id": `${LEGAL.url}/#org` },
   },
 ];
@@ -105,7 +113,7 @@ if (d.faq.length)
 
       <h1 class="gd__h1">{d.title}</h1>
       <p class="gd__meta">
-        {d.author && <span>{d.author}</span>}
+        <span><a href={`${base}/about/`} rel="author">{LEGAL.director}</a></span>
         <span>
           {revise
             ? `${L("updated", "mis à jour le", "actualizado el")} ${fmt.format(dt(d.lastmod))}`

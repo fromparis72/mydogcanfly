@@ -6,7 +6,7 @@ description: "As regras de animais das companhias mudam com a estação, a aeron
 summary: "Uma política de animais não é um documento estável: ela se move com os embargos de temperatura, as trocas de aeronave, as rotas e as regras de raça. Confira a companhia operadora, na sua rota, perto da partida."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "companhia aérea", "regulamentação"]
 cover:

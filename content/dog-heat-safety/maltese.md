@@ -18,7 +18,7 @@ slug: "maltese"
 url: "/dog-heat-safety/maltese/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Maltese"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1718101688401-c6bc867105b3?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Maltese has a moderate heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

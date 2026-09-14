@@ -21,7 +21,7 @@ url: "/flying-with-a-dog/"
 frUrl: "/voyager-avion-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "airplane", "international travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1580076333794-4b99c0b93850?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Flying with a dog means an IATA crate, a weight within your airline's limit and health paperwork started several weeks before departure."
 cover:

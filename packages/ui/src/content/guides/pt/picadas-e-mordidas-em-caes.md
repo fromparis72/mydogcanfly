@@ -6,7 +6,7 @@ description: "Picadas e mordidas no cachorro: vespa, abelha, serpente (víbora),
 summary: "Picadas e mordidas no cachorro: vespa, abelha, serpente (víbora), lagarta processionária. Como avaliar a gravidade e reagir. Emergências a conhecer."
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "primeiros socorros", "verão"]
 enbref:

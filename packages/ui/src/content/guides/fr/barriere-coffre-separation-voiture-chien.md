@@ -5,7 +5,7 @@ description: "Barrière de coffre et grille de séparation pour transporter son 
 summary: "Barrière de coffre et grille de séparation pour transporter son chien en voiture en sécurité. Types, installation et complémentarité avec le harnais."
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "voiture", "sécurité routière"]
 sourceUrl: "/barriere-coffre-separation-voiture-chien/"

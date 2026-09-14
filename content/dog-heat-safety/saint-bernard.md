@@ -18,7 +18,7 @@ slug: "saint-bernard"
 url: "/dog-heat-safety/saint-bernard/"
 categories: ["Health"]
 tags: ["dog", "heat", "summer", "Saint Bernard", "brachycephalic"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1628537364146-0a63eb7ba31f?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The Saint Bernard has a very high heat risk. Here is exactly when heat becomes dangerous for this breed and how to keep it safe."
 cover:

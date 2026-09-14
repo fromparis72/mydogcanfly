@@ -6,7 +6,7 @@ description: "Perro que tira de la correa: ¿qué arnés antitirón elegir? Tipo
 summary: "Perro que tira de la correa: ¿qué arnés antitirón elegir? Tipos, criterios y los Julius-K9 y Ruffwear Front Range como ejemplos de categoría."
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "arnés", "educación", "equipamiento"]
 enbref:

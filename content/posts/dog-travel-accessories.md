@@ -21,7 +21,7 @@ url: "/dog-travel-accessories/"
 frUrl: "/accessoires-indispensables-voyage-chien/"
 categories: ["Gear"]
 tags: ["dog", "accessories", "travel", "gear", "checklist"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1613029226625-45c9b5f6c61a?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxkb2clMjBzdWl0Y2FzZSUyMHRyYXZlbCUyMHJlYWR5fGVufDF8MHx8fDE3ODI4MjUwOTN8MA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Transport, safety, hydration, tracking, comfort, health: a full tour of the accessories that are actually useful when traveling with your dog, with our detailed buying guides for each category."
 cover:

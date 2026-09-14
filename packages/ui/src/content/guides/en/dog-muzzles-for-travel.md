@@ -6,7 +6,7 @@ description: "Muzzle for dog travel: the right basket muzzle, when it's required
 summary: "Muzzle for dog travel: the right basket muzzle, when it's required (trains, public transit), and how to get your dog used to it gently."
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "gear", "muzzle", "transportation"]
 sourceUrl: "/dog-muzzles-for-travel/"

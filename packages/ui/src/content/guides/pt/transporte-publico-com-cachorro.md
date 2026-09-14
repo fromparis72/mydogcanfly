@@ -6,7 +6,7 @@ description: "Transporte público com cachorro: como as regras variam conforme a
 summary: "As regras variam conforme a rede: cães pequenos em bolsa, cães grandes na guia e às vezes com focinheira, grátis ou meia-tarifa conforme a cidade. Consulte sempre o regulamento local antes de embarcar."
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "transporte público", "cidade", "metrô"]
 enbref:

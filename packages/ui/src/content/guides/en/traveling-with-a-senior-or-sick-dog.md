@@ -6,7 +6,7 @@ description: "Traveling with a senior or sick dog: pre-trip vet check, adapted t
 summary: "Traveling with a senior or sick dog: pre-trip vet check, adapted travel plans, medications and comfort. The precautions that make the trip low-risk."
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "health", "senior dog", "travel"]
 sourceUrl: "/traveling-with-a-senior-or-sick-dog/"

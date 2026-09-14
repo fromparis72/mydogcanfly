@@ -5,7 +5,7 @@ description: "Sac à dos et sac ventral pour transporter son petit chien : crit�
 summary: "Sac à dos et sac ventral pour transporter son petit chien : critères de choix, aération, sécurité, confort. Idéal ville, rando et transports."
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "équipement", "sac de transport", "randonnée"]
 sourceUrl: "/sac-a-dos-transport-chien/"

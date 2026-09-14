@@ -6,7 +6,7 @@ description: "Dog cooling mats: how they work, how to choose (gel, size, durabil
 summary: "Dog cooling mats: how they work, how to choose (gel, size, durability), with Trixie and Flamingo models for summer heat."
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "cooling mat", "heat wave", "gear"]
 sourceUrl: "/best-dog-cooling-mats/"

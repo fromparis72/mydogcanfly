@@ -17,7 +17,7 @@ url: "/egyptair-dog-policy/"
 frUrl: "/egyptair-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "EgyptAir", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1600520611035-84157ad4084d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFZ3lwdCUyMHB5cmFtaWRzfGVufDF8MHx8fDE3ODI5MTI2OTd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "EgyptAir accepts dogs in the cabin up to 8 kg (18 lb) for $32–480 and in the hold up to 32 kg (70 lb) for $32–950. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

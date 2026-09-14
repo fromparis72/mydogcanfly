@@ -17,7 +17,7 @@ url: "/volotea-dog-policy/"
 frUrl: "/volotea-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Volotea", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1468793195345-d9d67818016d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHw0fHxTcGFpbiUyMFNldmlsbGUlMjBCYXJjZWxvbmElMjBhcmNoaXRlY3R1cmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Volotea accepts dogs in the cabin up to 10 kg (22 lb) (€39–60 / ~$45–70)."
 cover:

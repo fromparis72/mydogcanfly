@@ -19,7 +19,7 @@ url: "/ticks-and-fleas-dog-travel/"
 frUrl: "/tiques-puces-chien-voyage/"
 categories: ["Health"]
 tags: ["dog", "ticks", "fleas", "prevention"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1767345271912-b3176aa4a057?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBpbiUyMHRhbGwlMjBncmFzc3xlbnwxfDB8fHwxNzgyNDk3NDMyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Up-to-date parasite prevention, a systematic check after every walk and quick tick removal with a hook: that's the best protection against tick-borne diseases (babesiosis, Lyme disease)."
 cover:

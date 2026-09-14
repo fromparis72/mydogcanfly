@@ -6,7 +6,7 @@ description: "Todas las formas de volar con un perro: cabina, bodega facturada, 
 summary: "Cabina, bodega, carga, perro de asistencia, animal de apoyo emocional o aerolíneas dedicadas: hay seis formas principales de volar con un perro, cada una con sus condiciones."
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["perro", "avión", "cabina", "bodega", "carga", "perro de asistencia"]
 enbref:

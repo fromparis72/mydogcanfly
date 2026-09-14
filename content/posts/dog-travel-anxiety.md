@@ -19,7 +19,7 @@ url: "/dog-travel-anxiety/"
 frUrl: "/anxiete-chien-transport/"
 categories: ["Health"]
 tags: ["dog", "anxiety", "stress", "travel"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1455103493930-a116f655b6c5?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Panting, trembling, drooling, whining: travel stress can be worked on through gradual desensitization, positive associations and comfort. For severe anxiety, a veterinarian can offer tailored support."
 cover:

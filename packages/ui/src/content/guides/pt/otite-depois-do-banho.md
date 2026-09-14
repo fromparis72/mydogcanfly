@@ -6,7 +6,7 @@ description: "Otite do cachorro depois do banho: a umidade retida na orelha favo
 summary: "Otite do cachorro depois do banho: a umidade retida na orelha favorece a infecção. Secagem, prevenção, sinais de alerta e raças de risco."
 date: "2026-06-01T08:00:00+02:00"
 lastmod: "2026-06-01T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "saúde", "otite", "banho de mar"]
 enbref:

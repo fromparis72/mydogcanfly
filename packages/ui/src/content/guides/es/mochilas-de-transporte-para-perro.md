@@ -6,7 +6,7 @@ description: "Mochilas y portadores frontales para perros pequeños: qué mirar 
 summary: "Mochilas y portadores frontales para perros pequeños: qué mirar en ventilación, seguridad y comodidad. Ideales para la ciudad, la montaña y el transporte público."
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["perro", "equipamiento", "transportín", "senderismo"]
 enbref:

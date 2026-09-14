@@ -6,7 +6,7 @@ description: "Proteja as almofadinhas do seu cachorro do asfalto quente, da arei
 summary: "As almofadinhas do cachorro queimam no asfalto quente e racham no inverno. Teste o chão com a mão, passeie nas horas frescas e inspecione as patas com regularidade."
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "almofadinhas", "verão", "cuidados"]
 enbref:

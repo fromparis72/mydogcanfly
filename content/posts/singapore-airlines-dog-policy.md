@@ -17,7 +17,7 @@ url: "/singapore-airlines-dog-policy/"
 frUrl: "/singapore-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Singapore Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTaW5nYXBvcmUlMjBNYXJpbmElMjBCYXl8ZW58MXwwfHx8MTc4MjkxMjcxNXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Singapore Airlines accepts dogs in the hold up to 32 kg (71 lb) ($60–260). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

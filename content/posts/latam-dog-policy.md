@@ -17,7 +17,7 @@ url: "/latam-dog-policy/"
 frUrl: "/latam-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "LATAM", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1558517286-8a9cb0b8c793?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDaGlsZSUyMFBhdGFnb25pYXxlbnwxfDB8fHwxNzgyOTEyNzAxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "LATAM accepts dogs in the cabin up to 7 kg (15 lb) ($38–265) and in the hold up to 45 kg (99 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

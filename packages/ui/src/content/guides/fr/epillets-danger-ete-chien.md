@@ -5,7 +5,7 @@ description: "Épillets chez le chien : ces épis secs s'infiltrent dans la peau
 summary: "Épillets chez le chien : ces épis secs s'infiltrent dans la peau, les oreilles, les yeux et les pattes. Prévention, inspection et quand consulter en urgence."
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "épillets", "été"]
 sourceUrl: "/epillets-danger-ete-chien/"

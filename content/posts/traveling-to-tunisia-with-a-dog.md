@@ -15,7 +15,7 @@ url: "/traveling-to-tunisia-with-a-dog/"
 frUrl: "/voyager-chien-tunisie/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Tunisia"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1612774412771-005ed8e861d2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxnb2xkZW4lMjByZXRyaWV2ZXIlMjB0cmF2ZWx8ZW58MXwwfHx8MTc4MjgyODAxNXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Tunisia: moderate difficulty, allow a few weeks."
 cover:

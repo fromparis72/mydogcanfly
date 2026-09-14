@@ -6,7 +6,7 @@ description: "Ir acampar com o seu cachorro: escolher um camping dog-friendly, m
 summary: "Escolha um camping que aceite cães, planeje uma área com sombra e um sistema de amarração, respeite os horários de silêncio — e nunca deixe o seu cachorro sozinho na barraca no calor."
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["cachorro", "camping", "férias", "ar livre"]
 enbref:

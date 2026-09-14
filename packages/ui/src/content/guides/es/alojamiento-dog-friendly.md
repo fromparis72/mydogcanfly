@@ -6,7 +6,7 @@ description: "Cómo elegir un alojamiento dog-friendly que funcione de verdad: c
 summary: "Una buena estancia dog-friendly no se limita a tolerar a tu perro: lo acoge de verdad, con un espacio exterior seguro, normas claras y cero costes ocultos."
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "destinations"
 tags: ["perro", "alojamiento dog-friendly", "viaje", "casa de huéspedes"]
 enbref:

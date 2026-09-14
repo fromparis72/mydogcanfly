@@ -6,7 +6,7 @@ description: "Viajar con un perro mayor o enfermo: revisión veterinaria antes d
 summary: "Viajar con un perro mayor o enfermo: revisión veterinaria antes de salir, trayecto adaptado, medicamentos y comodidad. Las precauciones que hacen el viaje seguro."
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["perro", "salud", "perro mayor", "viaje"]
 enbref:

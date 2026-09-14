@@ -17,7 +17,7 @@ url: "/ethiopian-airlines-dog-policy/"
 frUrl: "/ethiopian-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Ethiopian Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1572888195250-3037a59d3578?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFdGhpb3BpYSUyMG1vdW50YWlucyUyMGxhbmRzY2FwZXxlbnwxfDB8fHwxNzgyOTEyNjk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Ethiopian Airlines accepts dogs in the cabin up to 8 kg (18 lb) ($100–300) and in the hold up to 45 kg (99 lb) ($370–500). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

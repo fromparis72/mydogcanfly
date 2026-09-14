@@ -52,7 +52,10 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (13/09/2026, fret des principales compagnies) : 31 941 → 32 645.
    Les preuves cargo officielles ouvrent les canaux documentés ; les refus Delta, United et
    Virgin Atlantic ainsi que les cas IAG/Aeromexico n'inventent aucune acceptation. */
-const TEMOIN_VRAI_V3 = 32645;
+/* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 32 645 → 33 224.
+   Les preuves transmises par l'éditeur ouvrent Air New Zealand soute/fret et Norwegian
+   cabine/soute sur 579 couples supplémentaires ; le refus cargo Norwegian n'en ouvre aucun. */
+const TEMOIN_VRAI_V3 = 33224;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

@@ -6,7 +6,7 @@ description: "Las conexiones multiplican las formas en que un itinerario con ani
 summary: "Cada escala añade un juego de normas, un control de temperatura y una operación de manipulación. Un vuelo directo no solo es más cómodo: elimina categorías enteras de fallo."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avión", "conexión", "aeropuerto"]
 cover:

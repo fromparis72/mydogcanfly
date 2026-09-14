@@ -6,7 +6,7 @@ description: "What to do if your dog gets hurt on a walk: cut paw pad, foxtail, 
 summary: "Faced with a cut, a foxtail or a limp: clean, protect and assess the severity before heading to the vet. A canine first aid kit lets you act quickly and effectively in the field."
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["dog", "first aid", "injury", "walks"]
 sourceUrl: "/dog-injury-first-aid/"

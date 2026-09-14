@@ -6,7 +6,7 @@ description: "Puce, vaccination antirabique, certificat sanitaire, titrage : à 
 summary: "La compagnie décide comment votre animal vole ; la destination décide s'il peut entrer. Ce sont deux autorités distinctes, deux listes distinctes et deux calendriers distincts."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["animal", "avion", "documents", "international"]
 cover:

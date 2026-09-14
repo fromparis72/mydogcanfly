@@ -5,7 +5,7 @@ description: "Propreté et besoins du chien en voyage : rythme des pauses, gére
 summary: "Propreté et besoins du chien en voyage : rythme des pauses, gérer un chiot ou un chien anxieux, ramassage, accidents. Un trajet propre et serein."
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["chien", "santé", "propreté", "voyage"]
 sourceUrl: "/proprete-besoins-chien-voyage/"

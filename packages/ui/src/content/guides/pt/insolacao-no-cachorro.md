@@ -6,7 +6,7 @@ description: "Insolação no cachorro: reconheça os sinais de alerta, refresque
 summary: "A insolação surge quando o cachorro não consegue mais regular a temperatura. Acima de 40,5 °C é uma emergência vital: refresque-o gradualmente e procure um veterinário rapidamente."
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "health"
 tags: ["cachorro", "onda de calor", "insolação", "verão"]
 enbref:

@@ -17,7 +17,7 @@ url: "/air-canada-dog-policy/"
 frUrl: "/air-canada-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Canada", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1506104489822-562ca25152fe?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Canada accepts dogs in the cabin up to 10 kg (22 lb) for $40–90 and in the hold for $80–210. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

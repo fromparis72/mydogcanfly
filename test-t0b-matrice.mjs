@@ -107,6 +107,8 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_cathay_pacific|cargo",
   "airline_air_india|cargo",
   "airline_ethiopian|cargo",
+  /* 13/09/2026 : la page internationale Air New Zealand établit désormais le fret animalier. */
+  "airline_air_new_zealand|cargo",
   /* Lot 4 (09/09/2026) : Emirates fret (« …pets must be carried either as cargo or as checked
      baggage in the hold. ») et Alaska fret (« Our Pet Connect@ animal travel program… »). Même
      discipline : admises par identité, preuve exigée. */
@@ -184,13 +186,16 @@ const REACTIVEES_SUR_CITATION = new Set([
  * of Carriage (§ 8.8), lue directement par Codex. L'importeur a réécrit leur discriminant en
  * `availability: offered` : ils ne sont donc plus « migrés » (plus de `review_state`), et le
  * contrôle « versé non migré » rougirait à tort. Admis ici par IDENTITÉ, et la preuve est exigée
- * exactement comme pour les lignes du manifeste réactivées : `offered` ET une citation complète.
+ * exactement comme pour les lignes du manifeste réactivées : une disponibilité explicite
+ * (`offered` ou `not_offered`) ET une citation complète.
  * Les huit autres POLICY_STALE restent versés, et le contrôle continue de l'exiger. */
 const STALE_REACTIVES_SUR_CITATION = new Set([
   "airline_qantas|cargo",
   "airline_qantas|hold",
   /* Dossier fret rev2 : Korean Air publie désormais le service cargo vivant. */
   "airline_korean_air|cargo",
+  /* 13/09/2026 : Norwegian Cargo publie explicitement son refus des animaux vivants en fret. */
+  "airline_norwegian|cargo",
 ]);
 const citee = (p) => typeof p?.source?.quote === "string" && p.source.quote.length >= 10
   && typeof p.source.quote_language === "string" && p.source.quote_language.length > 0
@@ -272,7 +277,8 @@ for (const k of STALE_VERSES) {
   if (STALE_REACTIVES_SUR_CITATION.has(k)) {
     const [id, ch] = k.split("|");
     const p = objects.airlines.find((a) => a.id === id)?.premium?.policy?.[ch];
-    if (!(p?.availability === "offered" && citee(p))) err(`POLICY_STALE réactivé SANS preuve complète: ${k}`);
+    if (!((p?.availability === "offered" || p?.availability === "not_offered") && citee(p)))
+      err(`POLICY_STALE réactivé SANS preuve complète: ${k}`);
     continue;
   }
   if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);

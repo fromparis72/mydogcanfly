@@ -6,7 +6,7 @@ description: "O que acontece de fato no dia do voo: balcões de check-in para an
 summary: "O dia de aeroporto tem uma forma: chegar mais cedo do que se estivesse sozinho, fazer o check-in em um balcão específico, carregar o cachorro pela inspeção e procurar uma área de alívio antes de embarcar."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["cachorro", "avião", "aeroporto", "check-in"]
 cover:

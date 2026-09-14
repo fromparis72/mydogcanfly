@@ -6,7 +6,7 @@ description: "Protect your dog's paw pads in summer: scorching asphalt, the 7-se
 summary: "Protect your dog's paw pads in summer: scorching asphalt, the 7-second test, paw balm and boots. Full guide and recommended products."
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["dog", "paw pads", "summer", "gear"]
 sourceUrl: "/hot-pavement-dog-paws/"

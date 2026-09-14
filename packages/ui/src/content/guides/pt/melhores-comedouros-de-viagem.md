@@ -6,7 +6,7 @@ description: "Comedouros e garrafas de viagem para cachorro: dobráveis, com dis
 summary: "Comedouros e garrafas de viagem para cachorro: dobráveis, com dispensador integrado, fáceis de limpar. Critérios-chave e modelos Kurgo e H2O4K9."
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "comedouro", "viagem", "equipamento"]
 enbref:

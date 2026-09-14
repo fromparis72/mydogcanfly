@@ -6,7 +6,7 @@ description: "Booking a flight with a dog is not booking a seat and adding an an
 summary: "A pet booking is a separate reservation with its own quota, its own price and its own confirmation. Book the animal before the ticket, get it in writing, and re-check a few days before departure."
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "travel"
 tags: ["dog", "flying", "booking", "airline"]
 cover:

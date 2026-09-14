@@ -21,7 +21,7 @@ url: "/small-dog-carriers/"
 frUrl: "/sacs-transport-petits-chiens/"
 categories: ["Gear"]
 tags: ["dog", "carrier", "small dog", "gear"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1661322563051-15248c0568a1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGRvZyUyMGNhcnJpZXIlMjBiYWd8ZW58MXwwfHx8MTc4MjgyMzg0NHww&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Small dog carriers: comfort and safety criteria, airline cabin standards, plus the Sleepypod and Trixie Madison as category examples."
 cover:

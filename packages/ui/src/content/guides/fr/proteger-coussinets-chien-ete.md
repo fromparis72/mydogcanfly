@@ -5,7 +5,7 @@ description: "Protéger les coussinets de son chien l'été : bitume brûlant, t
 summary: "Protéger les coussinets de son chien l'été : bitume brûlant, test des 7 secondes, baume réparateur et bottines. Guide et produits conseillés."
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["chien", "coussinets", "été", "équipement"]
 sourceUrl: "/proteger-coussinets-chien-ete/"

@@ -17,7 +17,7 @@ url: "/thai-airways-dog-policy/"
 frUrl: "/thai-airways-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Thai Airways", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1528181304800-259b08848526?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxUaGFpbGFuZCUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNzE1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Thai Airways accepts dogs in the hold up to 32 kg (70 lb) ($115–170). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

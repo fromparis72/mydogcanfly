@@ -15,7 +15,7 @@ url: "/dog-grooming-kit-travel/"
 frUrl: "/trousse-toilette-entretien-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "grooming", "hygiene"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1675430426271-d74b542f21e4?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBncm9vbWluZyUyMGJydXNofGVufDF8MHx8fDE3ODI5Mzk0Mjd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Travel grooming kit for your dog: brush, microfiber towel, wipes, nail clippers, waste bags. The essentials for a clean dog anywhere."
 cover:

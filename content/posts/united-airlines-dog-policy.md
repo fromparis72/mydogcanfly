@@ -17,7 +17,7 @@ url: "/united-airlines-dog-policy/"
 frUrl: "/united-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "United Airlines", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1684575571081-d6abda485519?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "United Airlines accepts dogs in the cabin up to 9 kg (20 lb) (about $150) and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:

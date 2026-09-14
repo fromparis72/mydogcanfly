@@ -6,7 +6,7 @@ description: "Mochilas e canguru frontal para cães pequenos: o que observar em 
 summary: "Mochilas e canguru frontal para cães pequenos: o que observar em ventilação, segurança e conforto. Ideais para a cidade, a trilha e o transporte público."
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 category: "gear"
 tags: ["cachorro", "equipamento", "caixa de transporte", "trilha"]
 enbref:

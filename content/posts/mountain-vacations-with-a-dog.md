@@ -19,7 +19,7 @@ url: "/mountain-vacations-with-a-dog/"
 frUrl: "/montagne-avec-chien/"
 categories: ["Destinations"]
 tags: ["dog", "mountains", "hiking", "nature"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1623622772550-2a9d738c4fb6?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBtb3VudGFpbiUyMGhpa2luZyUyMHRyYWlsfGVufDF8MHx8fDE3ODI0OTc0MTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The mountains are best savored gradually: train your dog, carry water and snacks, protect their paw pads on scree, keep them leashed near livestock and wildlife, and watch for signs of fatigue."
 cover:

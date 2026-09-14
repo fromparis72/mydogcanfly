@@ -21,7 +21,7 @@ url: "/dog-friendly-france/"
 frUrl: "/destinations-dog-friendly-france/"
 categories: ["Destinations"]
 tags: ["dog", "dog-friendly", "vacation", "France"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1614077595151-abeb2550c49c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBydW5uaW5nJTIwYmVhY2glMjBzZWF8ZW58MXwwfHx8MTc4MjQ4MTI5M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "The best dog-friendly destinations in France combine nature, welcoming accommodations and dog-friendly beaches: Brittany, Auvergne, the Alps, the Southwest and the countryside around Paris lead the pack."
 cover:

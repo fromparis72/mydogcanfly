@@ -15,7 +15,7 @@ url: "/traveling-to-morocco-with-a-dog/"
 frUrl: "/voyager-chien-maroc/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Morocco"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1641147015813-7025d4fb306e?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Morocco: moderate difficulty, allow a few weeks (certificates tied to precise dates)."
 cover:

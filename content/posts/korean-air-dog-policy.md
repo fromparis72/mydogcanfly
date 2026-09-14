@@ -17,7 +17,7 @@ url: "/korean-air-dog-policy/"
 frUrl: "/korean-air-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Korean Air", "airlines"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1448523183439-d2ac62aca997?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTb3V0aCUyMEtvcmVhJTIwU2VvdWwlMjBwYWxhY2V8ZW58MXwwfHx8MTc4MjkxMjcwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Korean Air accepts dogs in the cabin up to 7 kg (15 lb) ($160–320) and in the hold up to 45 kg (99 lb) ($160–635). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:

@@ -15,7 +15,7 @@ url: "/traveling-to-greece-with-a-dog/"
 frUrl: "/voyager-chien-grece/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "Greece", "European Union / Schengen"]
-author: "Camille Roussel"
+author: "Phil Albert-Benoist"
 images: ["https://images.unsplash.com/photo-1688664562000-4c1f7cdb48f8?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxHcmVlY2UlMjBTYW50b3JpbmklMjBjb2FzdHxlbnwxfDB8fHwxNzgyOTM5NDE2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Entry requirements for traveling to Greece with a dog: ISO microchip, rabies vaccine, EU pet passport. EU rules apply — no rabies titer test, no quarantine. Verified 2026."
 cover:
