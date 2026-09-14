@@ -345,6 +345,18 @@ function verifierGarudaDecision(policies) {
       [/Companhias documentadas que operam (?!lá)/i,     /você confere na ficha de cada companhia/i],
     ];
 
+    /* EXEMPTION CIBLÉE DU 14/09/2026 — le titre SEO espagnol arbitré décrit la fonction de
+       recherche (« par trajet »), pas une compagnie desservant un pays ou un aéroport qui serait
+       déclarée acceptante par simple présence. L'exemption ne vaut que pour la chaîne ENTIÈRE,
+       uniquement dans le title et les métadonnées de l'accueil espagnol. Le corps, les autres
+       pages et la moindre variante restent jugés par les motifs ci-dessus. */
+    const TITRE_OUTIL_ES = "Aerolíneas que aceptan perros por ruta | Herramienta gratis";
+    const zonesAvecExemptionSeo = (rel, z) => {
+      const titre = rel === "es/index.html" ? z.titre.replaceAll(TITRE_OUTIL_ES, "") : z.titre;
+      const metas = rel === "es/index.html" ? z.metas.replaceAll(TITRE_OUTIL_ES, "") : z.metas;
+      return [titre, z.corps, metas, z.jsonLd, z.attributs].join("\n");
+    };
+
     const check7 = (cas, condition, libelleOk, detailEchec) => {
       if (condition) ok(`${cas} : ${libelleOk}`);
       else echec(cas, detailEchec);
@@ -394,7 +406,7 @@ function verifierGarudaDecision(policies) {
       const z = zonesDe(readFileSync(f, "utf8"));
       /* LES CINQ ZONES, pas seulement le corps : le titre et les métadonnées sont ce que la
          rédaction précédente ne voyait pas, et le JSON-LD reprend la FAQ mot pour mot. */
-      const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+      const tout = zonesAvecExemptionSeo(rel, z);
       jsonLdIllisibles += z.jsonLdInvalide ?? 0;
       vus[lang]++;
       for (const [nom, re, portee] of INTERDITS) {
@@ -477,6 +489,21 @@ function verifierGarudaDecision(policies) {
       check7("7 json-ld", jsonLdIllisibles === 0,
         "aucun bloc JSON-LD illisible sur les pages parcourues",
         `${jsonLdIllisibles} bloc(s) JSON-LD non analysables — la zone annoncée comme lue ne l'est pas`);
+
+      /* CONTRE-ÉPREUVES DE L'EXEMPTION : l'exactitude et la zone font partie de la permission. */
+      {
+        const motifEs = INTERDITS.find(([nom, re]) => nom === "desserte" && re.test("Aerolíneas que aceptan perros"))?.[1];
+        const base = { titre: TITRE_OUTIL_ES, corps: "", metas: TITRE_OUTIL_ES, jsonLd: "", attributs: "" };
+        check7("7 exemption SEO es", motifEs && !motifEs.test(zonesAvecExemptionSeo("es/index.html", base)),
+          "le titre exact est permis seulement dans le head de l'accueil espagnol",
+          "le titre SEO espagnol exact n'est pas correctement exempté");
+        check7("7 exemption SEO es", motifEs && motifEs.test(zonesAvecExemptionSeo("es/countries/fr/index.html", base)),
+          "la même phrase sur une autre page reste interdite",
+          "l'exemption déborde sur une autre page");
+        check7("7 exemption SEO es", motifEs && motifEs.test(zonesAvecExemptionSeo("es/index.html", { ...base, corps: TITRE_OUTIL_ES })),
+          "la même phrase dans le corps de l'accueil reste interdite",
+          "l'exemption déborde du head vers le corps");
+      }
 
       /* LA PRÉSENCE EN SOURCE, pour les deux sections dormantes — 0/102 compagnies ont un canal
          `allowed`, la section n'est donc rendue nulle part et le DOM ne peut rien prouver ici. */
