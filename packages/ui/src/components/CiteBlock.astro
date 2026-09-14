@@ -9,18 +9,13 @@ import { inlineT } from "@mydogcanfly/knowledge";
  * Quelqu'un qui veut bien faire ne trouvait pas comment — et citait la source primaire à notre
  * place, ou rien du tout.
  *
- * OÙ IL SE POSE, et pourquoi pas ailleurs. Personne ne décide de citer en arrivant sur une page :
- * on cite APRÈS avoir pris le fait, et le moment où l'on cherche comment le faire est celui où
- * l'on vérifie la provenance. Ce bloc se place donc systématiquement au voisinage de la source
- * affichée — après « Sources officielles » sur les fiches pays, après la ligne de source sur les
- * fiches de race et d'aéroport. Un bandeau en tête s'adresserait à quelqu'un qui n'a encore rien
- * à citer, et saturerait l'espace le plus cher de la page pour un lecteur sur cent.
+ * OÙ IL SE POSE. Le bloc suit le résumé propre à la page — jamais le fil d'Ariane, jamais le H1,
+ * jamais la réponse courte. Il apparaît ainsi avant les développements que l'on peut reprendre,
+ * sans retarder l'accès à l'information recherchée. Son invitation et son bouton de copie sont
+ * visibles immédiatement ; la citation longue et les conditions restent repliées.
  *
- * `<details>` ET NON UN INTERRUPTEUR MAISON. Le repli est natif : il fonctionne sans JavaScript,
- * il est annoncé correctement par les lecteurs d'écran, et plusieurs blocs peuvent coexister sur
- * une page sans se marcher dessus — ce que ma première version, qui cherchait un identifiant
- * unique dans le document, ne permettait pas. Seul le bouton « Copier » demande du JavaScript ;
- * sans lui, la citation reste lisible et sélectionnable à la souris.
+ * `<details>` ET NON UN INTERRUPTEUR MAISON. Le repli est natif et fonctionne sans JavaScript.
+ * Seul le bouton « Copier » en demande ; sans lui, la citation reste lisible et sélectionnable.
  *
  * LA DATE N'EST JAMAIS INVENTÉE. `date` est la date de vérification que la page AFFICHE déjà,
  * celle-là même qui alimente `lastReviewed` dans le JSON-LD. Une page sans date n'appelle pas ce
@@ -44,29 +39,51 @@ const L = inlineT(locale);
 const href = locale === "en" ? "/citing/" : `/${locale}/citing/`;
 const prefixe = `MyDogCanFly, "${title}", ${L("verified", "vérifié le", "verificado el")} ${date}, `;
 ---
-<details class="cite">
-  <summary class="cite__sum">❝ {L("Cite this page", "Citer cette page", "Cómo citar esta página")}</summary>
-  <div class="cite__body">
-    <p class="cite__p">{L(
-      "The verified facts on this page are free to reuse, provided you credit MyDogCanFly and state the verification date. Systematic reproduction of the database and republication of the editorial text require permission.",
-      "Les faits vérifiés de cette page sont libres de reprise, à condition de citer MyDogCanFly et de mentionner la date de vérification. La reproduction systématique de la base et la republication du texte éditorial restent soumises à autorisation.",
-      "Los datos verificados de esta página pueden reutilizarse libremente, siempre que se cite MyDogCanFly y se indique la fecha de verificación. La reproducción sistemática de la base de datos y la republicación del texto editorial requieren autorización.",
+<aside class="cite" aria-labelledby="cite-heading">
+  <span class="cite__icon" aria-hidden="true">❝</span>
+  <div class="cite__content">
+    <p class="cite__eyebrow">{L(
+      "Verified information, ready to reuse",
+      "Information vérifiée et réutilisable",
+      "Información verificada y reutilizable",
     )}</p>
-    <blockquote class="cite__q" data-cite-prefix={prefixe}>
-      MyDogCanFly, «&nbsp;{title}&nbsp;», {L("verified", "vérifié le", "verificado el")} {date}, <span class="cite__url"></span>
-    </blockquote>
-    <div class="cite__row">
-      <button class="cite__copy" type="button" data-cite-copy data-copied={L("Copied", "Copié", "Copiado")}>
-        ⧉ {L("Copy", "Copier", "Copiar")}
-      </button>
-      <a class="cite__link" href={href}>{L(
-        "Full terms and other citation formats",
-        "Conditions complètes et autres formats de citation",
-        "Condiciones completas y otros formatos de cita",
-      )} →</a>
-    </div>
+    <p class="cite__title" id="cite-heading">{L(
+      "Sharing this information? Cite MyDogCanFly.",
+      "Vous partagez cette information ? Citez MyDogCanFly.",
+      "¿Compartes esta información? Cita a MyDogCanFly.",
+    )}</p>
+    <p class="cite__lead">{L(
+      "A ready-made citation with the page URL and its verification date.",
+      "Une citation prête à copier, avec l’adresse de la page et sa date de vérification.",
+      "Una cita lista para copiar, con la dirección de la página y su fecha de verificación.",
+    )}</p>
+    <details class="cite__details">
+      <summary class="cite__sum">{L(
+        "View the full citation and terms",
+        "Voir la citation complète et les conditions",
+        "Ver la cita completa y las condiciones",
+      )}</summary>
+      <div class="cite__body">
+        <blockquote class="cite__q" data-cite-prefix={prefixe}>
+          MyDogCanFly, «&nbsp;{title}&nbsp;», {L("verified", "vérifié le", "verificado el")} {date}, <span class="cite__url"></span>
+        </blockquote>
+        <p class="cite__p">{L(
+          "The verified facts on this page are free to reuse, provided you credit MyDogCanFly and state the verification date. Systematic reproduction of the database and republication of the editorial text require permission.",
+          "Les faits vérifiés de cette page sont libres de reprise, à condition de citer MyDogCanFly et de mentionner la date de vérification. La reproduction systématique de la base et la republication du texte éditorial restent soumises à autorisation.",
+          "Los datos verificados de esta página pueden reutilizarse libremente, siempre que se cite MyDogCanFly y se indique la fecha de verificación. La reproducción sistemática de la base de datos y la republicación del texto editorial requieren autorización.",
+        )}</p>
+        <a class="cite__link" href={href}>{L(
+          "Full terms and other citation formats",
+          "Conditions complètes et autres formats de citation",
+          "Condiciones completas y otros formatos de cita",
+        )} →</a>
+      </div>
+    </details>
   </div>
-</details>
+  <button class="cite__copy" type="button" data-cite-copy data-copied={L("Citation copied", "Citation copiée", "Cita copiada")}>
+    ⧉ <span>{L("Copy citation", "Copier la citation", "Copiar la cita")}</span>
+  </button>
+</aside>
 
 <script is:inline>
   (function () {
@@ -76,12 +93,12 @@ const prefixe = `MyDogCanFly, "${title}", ${L("verified", "vérifié le", "verif
     document.querySelectorAll(".cite__url").forEach(function (u) { u.textContent = url; });
     document.querySelectorAll("[data-cite-copy]").forEach(function (b) {
       b.addEventListener("click", function () {
-        var q = b.closest(".cite__body").querySelector(".cite__q");
+        var q = b.closest(".cite").querySelector(".cite__q");
         var texte = (q.getAttribute("data-cite-prefix") || "") + url;
         var fini = function () {
-          var avant = b.textContent;
+          var avant = b.innerHTML;
           b.textContent = "✓ " + (b.getAttribute("data-copied") || "");
-          setTimeout(function () { b.textContent = avant; }, 2000);
+          setTimeout(function () { b.innerHTML = avant; }, 2000);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fini, function () {});
         else fini();
@@ -91,23 +108,39 @@ const prefixe = `MyDogCanFly, "${title}", ${L("verified", "vérifié le", "verif
 </script>
 
 <style>
-  .cite { margin: 14px 0 0; max-width: 720px; border: 1px solid var(--mdcf-line); border-radius: 12px;
-    background: var(--mdcf-surface, #fff); }
-  .cite__sum { cursor: pointer; list-style: none; padding: 11px 16px; font-size: 13.5px; font-weight: 600;
-    color: var(--mdcf-ink); min-height: 44px; display: flex; align-items: center; gap: 8px; }
+  .cite { margin: 16px 0; width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 14px; align-items: start; padding: 18px 18px 18px 14px; overflow: hidden;
+    border: 1px solid #f1c28f; border-left: 5px solid var(--mdcf-accent); border-radius: 16px;
+    background: linear-gradient(110deg, var(--mdcf-accent-soft, #fff1e5), var(--mdcf-surface, #fff) 76%);
+    box-shadow: var(--mdcf-shadow-sm); }
+  .cite__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 999px;
+    background: var(--mdcf-accent-ink, #b4530a); color: #fff; font-size: 20px; line-height: 1; }
+  .cite__eyebrow { margin: 0 0 4px; color: var(--mdcf-accent-ink, #b4530a); font-size: 11px;
+    font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .cite__title { margin: 0; color: var(--mdcf-ink); font-size: 17px; font-weight: 800; line-height: 1.35; }
+  .cite__lead { margin: 4px 0 0; color: var(--mdcf-muted, #64748b); font-size: 13px; line-height: 1.5; }
+  .cite__details { margin-top: 9px; }
+  .cite__sum { cursor: pointer; list-style: none; width: fit-content; color: var(--mdcf-accent-ink, #b4530a);
+    font-size: 12.5px; font-weight: 700; min-height: 24px; display: flex; align-items: center; gap: 6px; }
+  .cite__sum::before { content: "▸"; transition: transform .15s ease; }
+  .cite__details[open] .cite__sum::before { transform: rotate(90deg); }
   .cite__sum::-webkit-details-marker { display: none; }
-  .cite__sum:focus-visible { outline: 2px solid var(--mdcf-accent); outline-offset: -2px; border-radius: 12px; }
-  .cite__body { padding: 0 16px 14px; }
-  .cite__p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.6; color: var(--mdcf-muted, #64748b); }
-  .cite__q { margin: 0 0 12px; padding: 10px 12px; border-left: 2px solid var(--mdcf-line);
-    font-size: 13.5px; line-height: 1.6; color: var(--mdcf-ink); overflow-wrap: anywhere; }
+  .cite__sum:focus-visible { outline: 2px solid var(--mdcf-accent); outline-offset: 2px; border-radius: 4px; }
+  .cite__body { padding-top: 10px; }
+  .cite__p { margin: 0 0 8px; font-size: 12.5px; line-height: 1.55; color: var(--mdcf-muted, #64748b); }
+  .cite__q { margin: 0 0 9px; padding: 9px 11px; border-left: 3px solid #f1c28f;
+    background: var(--mdcf-surface, #fff); font-size: 12.5px; line-height: 1.55;
+    color: var(--mdcf-ink); overflow-wrap: anywhere; }
   .cite__url { color: var(--mdcf-muted, #64748b); }
-  .cite__row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
-  .cite__copy { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; box-sizing: border-box;
-    padding: 0 14px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
-    background: var(--mdcf-surface, #fff); color: var(--mdcf-ink); border: 1px solid var(--mdcf-line); }
-  .cite__copy:hover { border-color: var(--mdcf-ink); }
-  .cite__link { font-size: 13px; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .cite__copy { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; box-sizing: border-box;
+    padding: 0 15px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+    background: var(--mdcf-navy, #011d48); color: #fff; border: 1px solid var(--mdcf-navy, #011d48); }
+  .cite__copy:hover { background: var(--mdcf-navy-2, #0a2a5c); border-color: var(--mdcf-navy-2, #0a2a5c); }
+  .cite__link { font-size: 12.5px; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
   .cite__link:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .cite { grid-template-columns: auto minmax(0, 1fr); padding: 15px 14px 15px 11px; }
+    .cite__copy { grid-column: 1 / -1; width: 100%; min-height: 44px; justify-content: center; }
+  }
   @media print { .cite { display: none; } }
 </style>

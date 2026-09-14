@@ -8,6 +8,7 @@ import Breadcrumb from "./Breadcrumb.astro";
 import { hrefFor, localizeHref } from "../lib/routes";
 import { countryData } from "../data/countries";
 import PageActions from "./PageActions.astro";
+import CiteBlock from "./CiteBlock.astro";
 import { loadKB, inlineT, inlineF, localizer, dateFormatter, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { airportsInCountry, dogAirlinesForCountry } from "../lib/cluster";
 import FaqBlock from "./FaqBlock.astro";
@@ -149,6 +150,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     </div>
 
     <p class="intro">{t(g.hero.intro)}</p>
+
+    {verifiedDate && <CiteBlock locale={locale} title={t(g.seo.metaTitle)} date={fmtDate(verifiedDate)} />}
 
     <!-- VERDICT EN 30 SECONDES -->
     <div class="grid-top grid-top--solo">
@@ -392,8 +395,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
     </div>
 
-    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)}
-      citeTitle={t(g.seo.metaTitle)} citeDate={verifiedDate ? fmtDate(verifiedDate) : undefined} />
+    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)} />
   </div>
 </Base>
 

@@ -12,7 +12,6 @@ import { inlineT } from "@mydogcanfly/knowledge";
  * aux outils pour qu'ils s'ouvrent pré-remplis.
  */
 import RelatedTools from "./RelatedTools.astro";
-import CiteBlock from "./CiteBlock.astro";
 
 interface Props {
   locale?: string;
@@ -29,20 +28,11 @@ interface Props {
   emailSubject?: string;
   /** Masquer la rangée d'actions (pages d'index, par exemple). */
   noActions?: boolean;
-  /** Citation de la page. Voir le commentaire du bloc « citer » plus bas : le bouton
-   *  n'apparaît QUE si la page porte une date de vérification réelle. */
-  citeTitle?: string;
-  citeDate?: string;
 }
 const {
   locale = "en", toIso, breedId, airlineId, current = "",
-  bookUrl, bookLabel, emailSubject, noActions = false, citeTitle, citeDate,
+  bookUrl, bookLabel, emailSubject, noActions = false,
 } = Astro.props as Props;
-
-/* Le bloc « citer » vit dans CiteBlock.astro, partagé avec les fiches d'aéroport qui
-   n'utilisent pas ce pied fonctionnel. Le raisonnement — placement, ton, garde sur la date —
-   est en tête de ce composant. */
-const citable = !!(citeTitle && citeDate);
 
 const L = inlineT(locale);
 const subject = emailSubject ?? L("Travelling with my dog — MyDogCanFly", "Voyager avec mon chien — MyDogCanFly", "Viajar con mi perro — MyDogCanFly");
@@ -61,7 +51,6 @@ const subject = emailSubject ?? L("Travelling with my dog — MyDogCanFly", "Voy
         ✉ {L("Send by email", "Envoyer par email", "Enviar por email")}
       </a>
     </div>
-    {citable && <CiteBlock locale={locale} title={citeTitle!} date={citeDate!} />}
   </section>
 )}
 
