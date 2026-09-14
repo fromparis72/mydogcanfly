@@ -41,6 +41,26 @@ const accueil = lire(join(DIST, "index.html"));
 const production = !noindex(accueil);
 const kb = loadKB();
 
+// Une compagnie sans fichier de marque retombe sur un code IATA énigmatique. La table générée
+// et les fichiers publics doivent donc rester complets ensemble : une entrée sans fichier serait
+// encore pire, car le navigateur montrerait une image cassée au lieu du monogramme de secours.
+const logosCompagnies = JSON.parse(lire("packages/ui/src/data/airline-logos.generated.json"));
+const provenanceLogos = JSON.parse(lire("packages/knowledge/raw/airline-logo-sources.json"));
+exiger("les 102 compagnies ont un logo déclaré", Object.keys(logosCompagnies).length === kb.airlines.size,
+  `${Object.keys(logosCompagnies).length}/${kb.airlines.size}`);
+for (const airline of kb.airlines.values()) {
+  const logo = logosCompagnies[airline.id];
+  exiger(`un logo est déclaré pour ${airline.name}`, !!logo?.src);
+  if (!logo?.src) continue;
+  exiger(`le logo de ${airline.name} est un fichier public existant`,
+    existsSync(join("packages/ui/public", logo.src.replace(/^\/+/, ""))), logo.src);
+}
+for (const [id, provenance] of Object.entries(provenanceLogos.logos)) {
+  exiger(`la provenance de ${id} correspond au fichier publié`,
+    logosCompagnies[id]?.src === `/airline-logos/${provenance.file}`);
+  exiger(`la source de ${id} est une URL HTTPS`, /^https:\/\//.test(provenance.source));
+}
+
 // Une règle, deux consommateurs, quatre langues : page et sitemap ne peuvent pas diverger.
 const compagnies = [...kb.airlines.values()].map((airline) => {
   const fiche = airlineData[airline.id];
@@ -154,6 +174,8 @@ exiger("_headers ne déclare qu'un seul s-maxage", (headers.match(/^\s*Cache-Con
 
 process.stdout.write(
   `  ✓ ${nCompagnies}/102 compagnies au sitemap dans 4 langues ; ${retirees.length} retirées\n` +
+  `  ✓ ${Object.keys(logosCompagnies).length}/${kb.airlines.size} compagnies avec un logo public existant\n` +
+  `  ✓ ${Object.keys(provenanceLogos.logos).length} nouveaux logos avec une provenance consignée\n` +
   `  ✓ ${guides.length} guides attribués à Phil Albert-Benoist ; aucun faux relecteur public\n` +
   `  ✓ llms.txt : ${nCompagnies} compagnies, ${nPays} pays, ${nRaces} races, ${nAeroports} aéroports indexables\n` +
   `  ✓ ${citationsVisibles} blocs de citation, tous sur une fiche au sitemap et après son résumé\n` +
