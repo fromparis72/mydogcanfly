@@ -116,6 +116,38 @@ for (const langue of LANGUES) for (const country of kb.countries.values()) {
   exiger("une fiche pays ne publie pas le relecteur interne", !html.includes("MyDogCanFly Data Team") && !html.includes('"reviewedBy"'), fichier);
 }
 
+// Le bloc d'attribution est un signal éditorial, pas du mobilier générique : il n'apparaît que
+// sur les quatre familles de fiches qui entrent au sitemap, et avant leur développement.
+let citationsVisibles = 0;
+const verifierCitation = (langue, famille, slug, attendue) => {
+  const fichier = page(langue, famille, slug);
+  if (!existsSync(fichier)) return;
+  const html = lire(fichier);
+  const presente = html.includes("data-cite-copy");
+  const auSitemap = sitemaps[langue].has(url(langue, famille, slug));
+  exiger(`citation et sitemap concordent pour ${langue}/${famille}/${slug}`, presente === auSitemap);
+  exiger(`citation et porte éditoriale concordent pour ${langue}/${famille}/${slug}`, presente === attendue);
+  if (presente) {
+    citationsVisibles++;
+    exiger(`la citation suit le H1 pour ${langue}/${famille}/${slug}`, html.indexOf("<h1") < html.indexOf("data-cite-copy"));
+    exiger(`la citation précède les actions de pied pour ${langue}/${famille}/${slug}`,
+      !html.includes('class="pact"') || html.indexOf("data-cite-copy") < html.indexOf('class="pact"'));
+  }
+};
+for (const langue of LANGUES) {
+  for (const { airline, indexable } of compagnies)
+    verifierCitation(langue, "airlines", slugFor(airline.id), indexable);
+  for (const country of kb.countries.values())
+    verifierCitation(langue, "countries", slugFor(country.id), true);
+  for (const breed of kb.breeds.values())
+    verifierCitation(langue, "breeds", slugFor(breed.id), raceIndexable(kb, breed));
+  for (const airport of kb.airports.values())
+    verifierCitation(langue, "airports", slugFor(airport.id), reliefIndexable(airport));
+}
+const citationsAttendues = LANGUES.length * (nCompagnies + nPays + nRaces + nAeroports);
+exiger("une citation par fiche indexable des quatre familles", citationsVisibles === citationsAttendues,
+  `${citationsVisibles}/${citationsAttendues}`);
+
 // Une seule politique de cache partagé : les règles Pages qui se chevauchent cumulent sinon les valeurs.
 const headers = lire("packages/ui/public/_headers");
 exiger("_headers ne déclare qu'un seul s-maxage", (headers.match(/^\s*Cache-Control:.*s-maxage=/gm) ?? []).length === 1);
@@ -124,6 +156,7 @@ process.stdout.write(
   `  ✓ ${nCompagnies}/102 compagnies au sitemap dans 4 langues ; ${retirees.length} retirées\n` +
   `  ✓ ${guides.length} guides attribués à Phil Albert-Benoist ; aucun faux relecteur public\n` +
   `  ✓ llms.txt : ${nCompagnies} compagnies, ${nPays} pays, ${nRaces} races, ${nAeroports} aéroports indexables\n` +
+  `  ✓ ${citationsVisibles} blocs de citation, tous sur une fiche au sitemap et après son résumé\n` +
   `  · build ${production ? "production : balises robots contrôlées" : "preview : partition robots lue dans les sitemaps"}\n`,
 );
 if (echecs) {

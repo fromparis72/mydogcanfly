@@ -122,8 +122,8 @@ export const GET: APIRoute = () => {
   w();
   /* LA SECTION QUI DIT COMMENT CITER (13/09/2026).
    *
-   * Un rédacteur humain trouve le bloc « Citer cette page » au pied de chaque fiche datée ; un
-   * moteur de réponse, lui, ne lit pas les pieds de page. Jusqu'ici rien ne lui indiquait qu'il
+   * Un rédacteur humain trouve le bloc « Citer cette page » juste après le résumé de chaque fiche
+   * indexable et datée ; un moteur de réponse ne dépend pas de ce placement. Jusqu'ici rien ne lui indiquait qu'il
    * devait nommer le site ni transporter la date de vérification du fait qu'il rapporte — et il
    * ne le faisait pas. Ces quelques lignes sont l'exact pendant machine du bloc visible, et le
    * `license` posé dans le JSON-LD de chaque page datée pointe vers la même adresse. */

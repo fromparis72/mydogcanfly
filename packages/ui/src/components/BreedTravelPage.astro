@@ -1,7 +1,8 @@
 ---
-import { inlineT, localizer, localized, t as tt } from "@mydogcanfly/knowledge";
+import { dateFormatter, inlineT, localizer, localized, t as tt } from "@mydogcanfly/knowledge";
 import Breadcrumb from "./Breadcrumb.astro";
 import PageActions from "./PageActions.astro";
+import CiteBlock from "./CiteBlock.astro";
 import type { BreedTravelProfile, Bi, Level } from "../lib/breedTravel";
 interface Props { profile: BreedTravelProfile; locale: string; compare?: { slug: string; name: string }[]; image?: string | null;
   /** Les faits du registre canonique qui s'appliquent à cette race. Voir `lib/raceEtat.ts`. */
@@ -12,6 +13,7 @@ const { profile: p, locale, compare = [], image = null, faits = [] } = Astro.pro
 const dateFaits = faits.map((f: any) => f?.source?.verified_date).filter((d: any) => typeof d === "string").sort().at(-1);
 const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
 const T = inlineT(locale);
+const fmtDate = dateFormatter(locale);
 const fr = locale === "fr";
 const es = locale === "es";
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
@@ -91,6 +93,8 @@ const sub = [
       </div>
     </div>
   </section>
+
+  {dateFaits && <CiteBlock locale={locale} title={name} date={fmtDate(dateFaits)} />}
 
   <!-- TRAVEL SNAPSHOT -->
   <section class="bt2-card">
@@ -291,7 +295,7 @@ const sub = [
         : <a href={p.source.url} rel="nofollow">{new URL(p.source.url).host}</a>
     } · {T("verified", "vérifié", "verificado")} {p.source.date} · {T("confidence", "confiance", "confianza")} {p.source.confidence}/5. {T("Travel interpretation by MyDogCanFly.", "Interprétation voyage propre à MyDogCanFly.", "Interpretación de viaje por MyDogCanFly.")}</p>
   )}
-  <PageActions locale={locale} breedId={p.id} emailSubject={name} citeTitle={name} citeDate={dateFaits} />
+  <PageActions locale={locale} breedId={p.id} emailSubject={name} />
 </div>
 
 {/* Le contexte de race voyage avec le CLIC, jamais avec la simple lecture de la fiche.

@@ -6,6 +6,7 @@ import OnwardNav from "./OnwardNav.astro";
 import Breadcrumb from "./Breadcrumb.astro";
 import { airlineData } from "../data/airlines";
 import PageActions from "./PageActions.astro";
+import CiteBlock from "./CiteBlock.astro";
 import logos from "../data/airline-logos.generated.json";
 import { loadKB, t as tt, inlineT, inlineF, localizer, dateFormatter } from "@mydogcanfly/knowledge";
 import FaqBlock from "./FaqBlock.astro";
@@ -262,6 +263,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         d.name,
       )}</p>
     </div>
+
+    {indexable && derniereVerif && <CiteBlock locale={locale} title={seoTitle} date={fmtDate(derniereVerif)} />}
 
     <div class="card">
       <h2>⚖️ {T("Where does your dog travel?", "Où voyage ton chien ?", "¿Dónde viaja tu perro?")}</h2>
@@ -550,8 +553,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <p class="muted codeshare">{tt(locale, "codeshare.notice")}</p>
     </div>
 
-    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle}
-      citeTitle={seoTitle} citeDate={derniereVerif ? fmtDate(derniereVerif) : undefined} />
+    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle} />
   </div>
 </Base>
 
