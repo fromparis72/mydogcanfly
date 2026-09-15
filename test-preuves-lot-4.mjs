@@ -12,8 +12,9 @@
  *   · trois refus cabine pour TOUT chien de compagnie (Emirates, Qantas, Aer Lingus) ;
  *   · quatre lignes NON REVÉRIFIÉES réactivées sur citation, dont deux anciens POLICY_STALE
  *     (Qantas soute et fret) et deux lignes du manifeste (Emirates fret, Alaska fret) ;
- *   · ITA Airways cabine citée SANS plafond : 12 kg sur certains vols intérieurs italiens, 8 kg
- *     ailleurs — Codex refuse un seuil mondial, et la donnée n'en porte aucun ;
+ *   · ITA Airways cabine citée SANS plafond global : 12 kg sur les vols intérieurs italiens,
+ *     8 kg ailleurs. Depuis le 15/09, la règle de 8 kg est officiellement citée et bornée aux
+ *     trajets non domestiques ; le service Large Dog couvre séparément certains vols intérieurs ;
  *   · UN FAIT REFUSÉ par l'importeur, nommé : Aer Lingus soute. La fiche dit `not_offered` (sans
  *     source) ; la phrase citée dit « carried in the aircraft hold » via un agent animalier. Ce
  *     passage ressemble autant au fret qu'à la soute accompagnée : ce n'est pas une correction
@@ -82,6 +83,20 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
           && s.quote_language === "nl" && s.verified_date === "2026-09-12", JSON.stringify(s));
       check(`  …review_due calculé par reviewDueFrom (2026-12-11) et projeté sous conditions`,
         s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11"
+          && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
+      continue;
+    }
+    if (cle === "airline_ita_airways.cabin") {
+      /* MOUVEMENT NOMMÉ (15/09/2026, Large Dog On Board) : la preuve anglophone du lot 4
+         est remplacée par la page nationale italienne, qui établit les deux plafonds selon le
+         trajet. Le plafond reste absent de la politique globale ; les règles le bornent. */
+      check(`${cle} : source nationale italienne plus récente, phrase, URL, langue et date`,
+        pol?.availability === "offered"
+          && s.url === "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin"
+          && s.quote === "Il peso complessivo (incluso trasportino e cibo) non deve superare 12 kg sui voli nazionali e 8 kg su tutti gli altri voli."
+          && s.quote_language === "it" && s.verified_date === "2026-09-15", JSON.stringify(s));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-14) et projeté sous conditions`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-14"
           && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
       continue;
     }
@@ -196,7 +211,8 @@ console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londre
   const fcoG = decide("airport_cdg", "airport_fco", GOLDEN_32), fcoC = decide("airport_cdg", "airport_fco", CAVALIER_6);
   const itaC = canal(fcoC, "airline_ita_airways", "cabin"), itaG = canal(fcoG, "airline_ita_airways", "cabin");
   check("ITA cabine, Cavalier 6 kg : sous conditions SANS plafond transporté (aucun seuil mondial écrit)", itaC?.status === "accepted_with_conditions" && itaC?.weight_limit_kg === undefined, JSON.stringify(itaC));
-  check("ITA cabine, Golden 32 kg : JAMAIS un refus inventé par le poids — à confirmer (règles de poids non citées)", itaG?.status === "confirmation_required", JSON.stringify(itaG));
+  check("ITA cabine, Golden 32 kg vers Rome : refus sûr par le plafond officiel de 8 kg hors vols intérieurs italiens",
+    itaG?.status === "denied" && itaG?.source?.url === "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin", JSON.stringify(itaG));
   check("ITA soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
     canal(fcoG, "airline_ita_airways", "hold")?.status === "accepted_with_conditions" && canal(fcoG, "airline_ita_airways", "cargo")?.status === "confirmation_required");
   const laxG = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);

@@ -13,7 +13,7 @@
 // Voir docs/pipeline-compagnies.md.
 import raw from "./airlines.generated.json";
 
-export type LT = { en: string; fr: string };
+export type LT = { en: string; fr: string; es?: string; pt?: string };
 export type PillCls = "ok" | "no" | "warn" | "neutral";
 export interface Pill { cls: PillCls; label: LT }
 export interface Chip { icon: string; label: LT; cls?: PillCls }
@@ -49,6 +49,18 @@ export interface FareRow { zone: LT; cabin: string; hold: string }
 export interface FareItem { label: LT; value: LT }
 export interface RestrictionCard { icon: string; title: LT; pills: Pill[]; note: LT }
 export interface InfoRow { icon: string; label: LT; value: LT }
+export interface SpecialService {
+  id: string;
+  placement: Placement;
+  species: "dog";
+  route: { origin_iso: string; destination_iso: string };
+  weight: { min_kg: number; min_bound: "gt" | "gte"; max_kg: number; max_bound: "lt" | "lte" };
+  title: LT;
+  summary: LT;
+  details: LT;
+  cta: LT;
+  source: PolicySource;
+}
 export interface AirlineData {
   id?: string;
   mono: string;
@@ -69,6 +81,7 @@ export interface AirlineData {
    *  diverger, et c'est cette divergence que le contre-test du 15/08/2026 a trouvée. */
   policies: Partial<Record<Placement, PolicyAuthored>>;
   channels: Channel[];
+  specialServices?: SpecialService[];
   fareGrid?: { headCabin: LT; headHold: LT; rows: FareRow[]; note: LT };
   fareList?: { rows: FareItem[]; note: LT };
   restrictions: RestrictionCard[];

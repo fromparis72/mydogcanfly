@@ -627,16 +627,17 @@ console.log("\n=== 11 bis. AUCUNE auto-citation ne peut être servie comme sourc
   /* Le compte est FIGÉ : il descendra quand les sources seront remplacées, et chaque baisse devra
      être nommée. Il ne doit jamais MONTER. */
   /* 128 AU TOTAL, ET NON 44 : ma première rédaction n'attendait que les règles PAYS, parce que
-     c'est là que la faute se voyait. Le balayage en a trouvé 84 de plus, de portée COMPAGNIE —
+     c'est là que la faute se voyait. Le balayage en avait trouvé 84 de plus, de portée COMPAGNIE —
      exactement la répartition que la contre-revue avait chiffrée (84 deny + 44 require, 52 URL).
-     Les 84 ne sont PAS présentées : les sources d'un rapport viennent des exigences pays, des
+     Le cas ITA Airways a depuis quitté cette dette sur preuve officielle : il en reste 83. Elles
+     ne sont PAS présentées : les sources d'un rapport viennent des exigences pays, des
      politiques de canal (filtrées par `preuveAuditee`) et des preuves de race ; les règles
      compagnie ne vivent que dans `fired`, qui ne quitte pas le moteur.
      Elles alimentent en revanche `confidences`, donc l'indice de confiance affiché — une dette
      réelle, plus petite, consignée pour la contre-revue et non corrigée ici : toucher au calcul
      du score est une décision de produit, et le score est déjà en attente d'arbitrage. */
-  check("128 règles portent une auto-citation dans la DONNÉE — 84 compagnie, 44 pays, compte figé",
-    auto.length === 128 && parPortee.airline === 84 && parPortee.country === 44, JSON.stringify(parPortee));
+  check("127 règles portent une auto-citation dans la DONNÉE — 83 compagnie, 44 pays, compte figé",
+    auto.length === 127 && parPortee.airline === 83 && parPortee.country === 44, JSON.stringify(parPortee));
 
   /* Et surtout, la propriété qui protège le visiteur : quelle que soit la destination, aucune
      auto-citation n'atteint le rapport. On l'éprouve sur CHAQUE pays auto-cité qui a un aéroport
@@ -973,11 +974,14 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
     /* MOUVEMENT NOMMÉ (09/09/2026, réconciliation ciblée — Philippe, sur décision de Codex : deux règles héritées non citées retirées, borne stricte modélisée) : 129 → 127 règles `deny` officielles non citées (rule_aer_lingus_no_hold, rule_air_china_no_cabin retirées : elles contredisaient une politique citée plus récente). */
     /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 1 → 4 règles `deny` CITÉES — R1 (international), R2 (BKK/DMK ↔ KBV),
        R3 (CNX ↔ KBV), toutes trois sur la page officielle relue par Codex ; officielles non citées 127 et faibles 88 inchangées. */
-  check("état figé des règles `deny` : 7 citées, 126 officielles non citées, 88 faibles",
-    parNiveau.citee === 7 && parNiveau.officielle_non_citee === 126 && parNiveau.faible === 88,
+    /* MOUVEMENT NOMMÉ (15/09/2026, ITA Large Dog On Board) : la règle cabine ITA existante
+       quitte l'auto-citation pour la page nationale officielle, et la borne propre au service
+       intérieur (> 30 kg) entre comme seconde règle citée. 7 → 9 citées, 88 → 87 faibles. */
+  check("état figé des règles `deny` : 9 citées, 126 officielles non citées, 87 faibles",
+    parNiveau.citee === 9 && parNiveau.officielle_non_citee === 126 && parNiveau.faible === 87,
     JSON.stringify(parNiveau));
-  check("…et les sept règles citées sont nominativement figées",
-    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12", "rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_ethiopian_cargo_brachy_official_2026_09_12", "rule_nz_breed_ban_restricted_types"].join(),
+  check("…et les neuf règles citées sont nominativement figées",
+    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12", "rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_ethiopian_cargo_brachy_official_2026_09_12", "rule_ita_airways_cabin_weight", "rule_ita_airways_large_dog_domestic_max_weight", "rule_nz_breed_ban_restricted_types"].join(),
     JSON.stringify(denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id)));
 
   /* ET LE CAS RÉEL, celui par lequel la faille s'est vue. `rule_british_airways_no_cabin` refuse

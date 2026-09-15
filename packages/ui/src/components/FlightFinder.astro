@@ -2,6 +2,7 @@
 import { loadKB, t, breedName, cityName, searchCityName, inlineT } from "@mydogcanfly/knowledge";
 import { hrefFor } from "../lib/routes";
 import { countryData } from "../data/countries";
+import { airlineData } from "../data/airlines";
 
 interface Props { locale?: string }
 const { locale = "en" } = Astro.props;
@@ -286,6 +287,21 @@ const labels = {
   // Per-airline links for the result cards: our airline page + the official website (booking).
   airlineHref: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, hrefFor(a.id, locale)])),
   airlineSite: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, (a as { website?: string }).website ?? ""])),
+  /* Services de cabine EXCEPTIONNELS, sourcés et à portée exécutable. Ils ne modifient pas le
+     rapport du moteur : ils expliquent une réponse « sous conditions » seulement lorsque le
+     trajet et le poids demandés tombent exactement dans la portée publiée. */
+  specialServices: Object.fromEntries(Object.entries(airlineData)
+    .filter(([, fiche]) => (fiche.specialServices?.length ?? 0) > 0)
+    .map(([airlineId, fiche]) => [airlineId, fiche.specialServices!.map((service) => ({
+      placement: service.placement,
+      species: service.species,
+      route: service.route,
+      weight: service.weight,
+      title: pickLT(service.title as Record<string, string>),
+      summary: pickLT(service.summary as Record<string, string>),
+      cta: pickLT(service.cta as Record<string, string>),
+      url: service.source.url,
+    }))])),
   airlineInfo: t(locale, "air.airline_info"),
   bookLabel: t(locale, "air.book_official"),
   nextTitle: t(locale, "air.next_title"),
@@ -817,6 +833,25 @@ const labels = {
                     const cargoSeulRestant = statut("cabin") === "denied" && statut("hold") === "denied";
                     const cargoDeveloppe = !cargoNonPublie || cargoDemande || cargoSeulRestant;
                     return `<div class="acard__lines">${ligne("cabin", false)}${ligne("hold", false)}${ligne("cargo", !cargoDeveloppe)}</div>`;
+                  })()}
+                  ${(() => {
+                    /* Une exception n'est montrée que dans son périmètre exact. En particulier,
+                       le service ITA « Large Dog » ne doit jamais devenir un bandeau universel
+                       sur une route internationale, pour un petit chien, ni dans une recherche
+                       demandant exclusivement la soute ou le fret. */
+                    if (lastPlacement !== "any" && lastPlacement !== "cabin") return "";
+                    if (a.cabin_status === "denied" || lastWeightKg === undefined) return "";
+                    const services: any[] = (L.specialServices ?? {})[a.airline_id] ?? [];
+                    const service = services.find((s) => {
+                      const minOk = s.weight.min_bound === "gt" ? lastWeightKg! > s.weight.min_kg : lastWeightKg! >= s.weight.min_kg;
+                      const maxOk = s.weight.max_bound === "lt" ? lastWeightKg! < s.weight.max_kg : lastWeightKg! <= s.weight.max_kg;
+                      return s.placement === "cabin" && s.species === "dog"
+                        && String(s.route.origin_iso).toLowerCase() === lastOriginIso
+                        && String(s.route.destination_iso).toLowerCase() === lastDestIso
+                        && minOk && maxOk;
+                    });
+                    if (!service) return "";
+                    return `<div class="acard__special"><b>🐕 ${esc(service.title)}</b><span>${esc(service.summary)}</span><a href="${esc(service.url)}" rel="nofollow noopener" target="_blank">${esc(service.cta)} →</a></div>`;
                   })()}
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
                   ${/* Le paragraphe « compagnie potentiellement pertinente… » (annexe 42) n'existe plus : une carte dont
@@ -1652,6 +1687,10 @@ const labels = {
   .acard__line .ab { font-size: 12px; }
   .acard__line--quiet { color: var(--mdcf-muted); font-size: 12px; }
   .acard__line--quiet .ab { background: transparent; padding: 0; font-weight: 600; }
+  .acard__special { display: grid; gap: 3px; margin-top: 8px; padding: 8px 10px; border-left: 3px solid var(--mdcf-accent); border-radius: 0 8px 8px 0; background: color-mix(in srgb, var(--mdcf-accent-soft) 72%, transparent); font-size: 12px; line-height: 1.4; color: var(--mdcf-ink); }
+  .acard__special b { color: var(--mdcf-accent-ink); }
+  .acard__special a { width: fit-content; color: var(--mdcf-accent-ink); font-weight: 700; text-decoration: none; }
+  .acard__special a:hover { text-decoration: underline; }
   .acard__prov { margin-top: 5px; font-size: 11.5px; color: var(--mdcf-muted); line-height: 1.4; }
   .acard__proofs { display: inline; }
   .acard__proofs summary { display: inline; cursor: pointer; color: var(--mdcf-accent); }

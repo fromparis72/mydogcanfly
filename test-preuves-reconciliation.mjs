@@ -106,15 +106,17 @@ console.log("\n=== Ce que la réconciliation n'a PAS fait ===");
   /* MOUVEMENTS NOMMÉS : 399 → 402 avec les trois règles géographiques de Bangkok Airways,
      puis 402 → 404 avec les deux règles fret officielles du 13/09 (chaleur American,
      brachycéphales Ethiopian). La règle chaleur Air Canada existait déjà et a été resserrée
-     sur le fret, elle n'ajoute donc pas une ligne au total. */
+     sur le fret, elle n'ajoute donc pas une ligne au total. Le service Large Dog d'ITA ajoute
+     le 15/09 sa garde intérieure propre au-delà de 30 kg : 404 → 405. */
   const fretAjoutees = [
     "rule_american_cargo_heat_official_2026_09_12",
     "rule_ethiopian_cargo_brachy_official_2026_09_12",
   ];
-  check("404 règles = 399 de la réconciliation + 3 Bangkok Airways + 2 gardes fret officielles",
-    regles.length === 404
+  check("405 règles = 399 de la réconciliation + 3 Bangkok Airways + 2 gardes fret officielles + 1 garde ITA Large Dog",
+    regles.length === 405
       && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3
-      && fretAjoutees.every((id) => regles.some((r) => r.id === id)),
+      && fretAjoutees.every((id) => regles.some((r) => r.id === id))
+      && regles.some((r) => r.id === "rule_ita_airways_large_dog_domestic_max_weight"),
     String(regles.length));
 }
 

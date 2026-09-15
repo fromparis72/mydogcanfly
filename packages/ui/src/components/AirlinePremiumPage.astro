@@ -401,6 +401,13 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           );
         })}
       </div>
+      {(d.specialServices ?? []).map((service) => (
+        <aside class="special-service" data-special-service={service.id}>
+          <div class="special-service__title">🐕 {t(service.title)}</div>
+          <p><strong>{t(service.summary)}</strong> {t(service.details)}</p>
+          <a href={service.source.url} rel="nofollow noopener" target="_blank">{t(service.cta)} →</a>
+        </aside>
+      ))}
       {/* Un lien vers un OUTIL, pas une affirmation sur la compagnie : le calculateur de caisse
           est canonique (il ne retient un gabarit de cabine que sur un statut `allowed`). Il vivait
           au bas de la carte « Température & soute », supprimée avec le reste de l'éditorial. */}
@@ -608,6 +615,11 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .mini .t .nm { min-width: 0; }
   .afp .mini .t .ml { margin-left: auto; }
   .afp .mini .t .aci { color: #166534; font-weight: 800; }
+  .afp .special-service { margin-top: 14px; padding: 12px 14px; border-left: 4px solid var(--mdcf-accent, #f2700f); border-radius: 0 12px 12px 0; background: var(--mdcf-accent-soft, #fdf1e7); color: var(--mdcf-ink, #1a2433); }
+  .afp .special-service__title { font-weight: 800; color: var(--mdcf-accent-ink, #b4530a); }
+  .afp .special-service p { margin: 5px 0 4px; font-size: 13.5px; line-height: 1.5; }
+  .afp .special-service a { color: var(--mdcf-accent-ink, #b4530a); font-size: 12.5px; font-weight: 700; text-decoration: none; }
+  .afp .special-service a:hover { text-decoration: underline; }
   .afp .k { color: var(--mdcf-muted, #5b6b7f); font-size: 13.5px; margin-top: 6px; }
   /* Les cotes, les poids et la nature du sac, dans une phrase par ailleurs en gris. Le contraste
      vient de la COULEUR autant que de la graisse : sur du texte secondaire, un gras seul se

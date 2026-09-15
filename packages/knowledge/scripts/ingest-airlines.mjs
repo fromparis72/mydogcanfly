@@ -195,6 +195,47 @@ const InfoRow = z.object({ icon: z.string(), label: LT, value: LT });
 const FareRow = z.object({ zone: LT, cabin: z.string(), hold: z.string() });
 const FareItem = z.object({ label: LT, value: LT });
 
+/**
+ * Un service SPÉCIAL, distinct de la politique générale du canal. Le cas fondateur est
+ * `Large Dog On Board` d'ITA Airways : certains vols intérieurs italiens acceptent, après
+ * confirmation, des chiens qui dépassent le plafond standard de la cabine. Le ranger dans
+ * `policies.cabin.max_weight_kg` transformerait une exception de route en règle universelle ;
+ * le laisser dans `goodToKnow` le rendrait invisible, puisque ce lecteur éditorial non sourcé
+ * a été retiré. Cette forme porte donc à la fois sa portée exécutable, son texte localisé et sa
+ * preuve officielle.
+ */
+const SpecialService = z.object({
+  id: z.string().regex(/^special_[a-z0-9_]+$/),
+  placement: Placement,
+  species: z.literal("dog"),
+  route: z.object({
+    origin_iso: z.string().regex(/^[A-Z]{2}$/),
+    destination_iso: z.string().regex(/^[A-Z]{2}$/),
+  }).strict(),
+  weight: z.object({
+    min_kg: z.number().positive(),
+    min_bound: z.enum(["gt", "gte"]),
+    max_kg: z.number().positive(),
+    max_bound: z.enum(["lt", "lte"]),
+  }).strict().refine((w) => w.min_kg < w.max_kg, { message: "la borne basse doit précéder la borne haute" }),
+  title: LT,
+  summary: LT,
+  details: LT,
+  cta: LT,
+  source: T0bAuditSource,
+}).strict().superRefine((service, ctx) => {
+  /* Les deux nombres pilotent le rendu du Finder : la citation doit donc les porter tous les
+     deux. Vérifier seulement « une source existe » recréerait le défaut des anciennes lignes
+     de poids, où la preuve d'acceptation était prise pour la preuve du seuil. */
+  const nombres = service.source.quote.match(/\d+(?:[.,]\d+)?/g) ?? [];
+  for (const [cle, valeur] of [["min_kg", service.weight.min_kg], ["max_kg", service.weight.max_kg]]) {
+    if (!nombres.some((n) => Number(n.replace(",", ".")) === valeur)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["source", "quote"],
+        message: `la citation du service spécial ne porte pas ${cle}=${valeur}` });
+    }
+  }
+});
+
 const Fiche = z.object({
   id: z.string().regex(/^airline_[a-z0-9_]+$/),
   mono: z.string().min(1).max(3),
@@ -223,6 +264,7 @@ const Fiche = z.object({
     message: "bloc policies vide : une fiche doit décider d'au moins un placement",
   }),
   channels: z.array(Channel).min(1),
+  specialServices: z.array(SpecialService).optional(),
   fareGrid: z.object({ headCabin: LT, headHold: LT, rows: z.array(FareRow).min(1), note: LT }).optional(),
   fareList: z.object({ rows: z.array(FareItem).min(1), note: LT }).optional(),
   restrictions: z.array(Restriction),
