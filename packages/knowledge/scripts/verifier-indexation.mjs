@@ -21,7 +21,7 @@
  *   → code de sortie 1 : bloqué, NE PAS déployer
  */
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -61,15 +61,54 @@ if (!vus) echecs.push("aucune page de l'échantillon n'existe — le build est i
 else if (noindex) echecs.push(`${noindex} page(s) sur ${vus} portent « noindex » — PUBLIC_SITE_ENV=production manquait au build`);
 else ok.push(`${vus} pages contrôlées, aucune balise noindex`);
 
-/* 3 — les sitemaps. Présents, non vides, et cohérents avec le nombre de pages construites. */
+/* 3 — les sitemaps. Présents, non vides, cohérents avec le nombre de pages construites, et
+ *     opposables page par page. L'échantillon précédent prouve la variable globale du build ; il
+ *     ne suffit pas pour les pages qui portent légitimement un `noindex` propre. Une URL annoncée
+ *     à Google ne doit jamais appartenir à cette famille : on ouvre donc chacune des pages des
+ *     quatre sitemaps et on refuse à la fois un fichier absent et une balise `noindex`. */
 const idx = join(DIST, "sitemap.xml");
 if (!existsSync(idx)) echecs.push("sitemap.xml absent");
 else {
-  let urls = 0;
-  for (const f of readdirSync(DIST).filter((f) => /^sitemap-.+\.xml$/.test(f)))
-    urls += (readFileSync(join(DIST, f), "utf8").match(/<url>/g) || []).length;
-  if (urls < 500) echecs.push(`les sitemaps ne totalisent que ${urls} URL — build partiel ?`);
-  else ok.push(`sitemaps : ${urls} URL au total`);
+  const sitemapUrls = [];
+  for (const f of readdirSync(DIST).filter((f) => /^sitemap-.+\.xml$/.test(f))) {
+    const xml = readFileSync(join(DIST, f), "utf8");
+    sitemapUrls.push(...[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  }
+
+  if (sitemapUrls.length < 500) {
+    echecs.push(`les sitemaps ne totalisent que ${sitemapUrls.length} URL — build partiel ?`);
+  } else {
+    const absentes = [];
+    const interdites = [];
+    for (const loc of sitemapUrls) {
+      const pathname = decodeURIComponent(new URL(loc).pathname);
+      const relatif = pathname === "/"
+        ? "index.html"
+        : pathname.endsWith("/")
+          ? `${pathname.slice(1)}index.html`
+          : extname(pathname)
+            ? pathname.slice(1)
+            : `${pathname.slice(1)}/index.html`;
+      const page = join(DIST, relatif);
+      if (!existsSync(page)) {
+        absentes.push(pathname);
+        continue;
+      }
+      if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(readFileSync(page, "utf8"))) {
+        interdites.push(pathname);
+      }
+    }
+
+    if (absentes.length) {
+      echecs.push(`${absentes.length} URL du sitemap n'ont pas de page construite, dont ${absentes.slice(0, 3).join(", ")}`);
+    }
+    if (interdites.length) {
+      echecs.push(`${interdites.length} URL du sitemap portent « noindex », dont ${interdites.slice(0, 3).join(", ")}`);
+    }
+    if (!absentes.length && !interdites.length) {
+      ok.push(`sitemaps : ${sitemapUrls.length} URL présentes et indexables`);
+    }
+  }
 }
 
 /* 4 — le build est-il complet ? Un shard laissé de côté vide une famille entière sans rien dire. */
