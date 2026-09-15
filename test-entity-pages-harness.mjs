@@ -155,6 +155,31 @@ console.log("\n=== 0. Les pages d'entités sont-elles construites ? ===");
   if (manquantes.length || paysManquantes.length) { console.log(`\n${pass} OK, ${fail} FAIL`); process.exit(1); }
 }
 
+// ---- 0 bis. Les deux raccourcis immédiatement sous les canaux -------------------------------
+{
+  const libellesFinder = {
+    en: "Find a suitable flight",
+    fr: "Rechercher un vol adapté",
+    es: "Buscar un vuelo adecuado",
+    pt: "Procurar um voo adequado",
+  };
+  const parSlug = new Map(SENTINELLES_COMPAGNIES.map((s) => [s.slug, s.id]));
+  for (const [slug, id] of parSlug) for (const [langue, p] of LANGUES) {
+    const dom = new JSDOM(lire(path.join(p, "airlines", slug, "index.html")));
+    const groupe = dom.window.document.querySelector(".channel-ctas");
+    const liens = groupe?.querySelectorAll("a") ?? [];
+    const finder = groupe?.querySelector(".cratecta--finder");
+    check(`${slug} · ${langue} : caisse et Finder sont proposés ensemble juste sous les canaux`,
+      liens.length === 2 && finder !== null,
+      `${liens.length} lien(s)`);
+    check(`${slug} · ${langue} : le CTA Finder est localisé et pré-sélectionne la compagnie`,
+      finder?.textContent.replace(/\s+/g, " ").trim() === `🔎 ${libellesFinder[langue]} →`
+        && finder?.getAttribute("href") === `/${p}#flight-finder?air=${id}`,
+      `${finder?.textContent.trim() ?? "absent"} · ${finder?.getAttribute("href") ?? "sans href"}`);
+    dom.window.close();
+  }
+}
+
 // ---- 1. Zéro erreur console, ET le comportement qui en dépend --------------------------------
 console.log("\n=== 1. Zéro erreur console, et les DEUX composants qui appellent mdcfQuery ===");
 for (const [langue, p] of LANGUES) {
@@ -395,6 +420,35 @@ console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, di
     check(`aucune autre fiche sentinelle ne publie de synthèse (${autres.length} canaux lus)`,
       autres.length > 0 && autres.every((c) => c.fait === null),
       autres.filter((c) => c.fait).map((c) => `${c.slug}.${c.placement} ${c.langue}: ${c.fait}`).join(" | "));
+
+    /* LE SERVICE SPÉCIAL ITA A SA PROPRE PREUVE, SUR LA MÊME FICHE. Il ne relève pas d'une
+       politique cabin/hold/cargo ordinaire : l'exclure du contrôle général sans contrepartie
+       créerait pourtant une porte où publier n'importe quel seuil. La synthèse localisée ne
+       sort donc de l'examen que si ses kilos se retrouvent dans la citation italienne du même
+       bloc, visible derrière son volet et reliée à la page officielle. */
+    const services = res2.servicesSpeciaux;
+    const ITA = services.filter((s) => s.slug === "ita-airways" && s.id === "special_ita_large_dog_on_board");
+    check("ita-airways : le service spécial est rendu dans les quatre langues",
+      ITA.length === 4 && new Set(ITA.map((s) => s.langue)).size === 4,
+      ITA.map((s) => s.langue).join(", "));
+    for (const s of ITA) {
+      check(`ita-airways · ${s.langue} : les seuils 10–30 kg sont rattachés à la citation du MÊME bloc`,
+        s.resumeKg.includes("10") && s.resumeKg.includes("30")
+          && s.resumeKg.every((n) => s.citationKg.includes(n)),
+        `synthèse=${JSON.stringify(s.resumeKg)} citation=${JSON.stringify(s.citationKg)}`);
+      check(`ita-airways · ${s.langue} : la synthèse précède son volet de preuve`,
+        s.resumeAvantPreuve === true, String(s.resumeAvantPreuve));
+      check(`ita-airways · ${s.langue} : la preuve renvoie à la page nationale officielle`,
+        s.url === "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin/large-dog-on-board",
+        String(s.url));
+    }
+    check("ita-airways : la citation reste identique et marquée italienne dans les quatre langues",
+      ITA.length === 4 && new Set(ITA.map((s) => s.citation)).size === 1
+        && ITA.every((s) => s.citation && s.citationLangue === "it"),
+      ITA.map((s) => `${s.langue}→${s.citationLangue}`).join(" | "));
+    check("aucune autre fiche sentinelle ne publie un service spécial",
+      services.length === ITA.length,
+      services.filter((s) => s.slug !== "ita-airways").map((s) => `${s.slug}:${s.id}`).join(" | "));
 
     /* LES EXCLUSIONS DU CONTRÔLE DE SEUILS SONT CHIFFRÉES — une exclusion muette est une porte. */
     check(`témoin : 8 synthèses et ${res2.citationsRetirees} citations retirées de l'examen des seuils`,

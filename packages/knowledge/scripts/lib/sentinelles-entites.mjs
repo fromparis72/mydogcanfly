@@ -99,6 +99,11 @@ export const SENTINELLES_COMPAGNIES = [
      Ces deux entrées sont un AJOUT, pas un remplacement : aucun rôle existant n'est abaissé. */
   { slug: "air-france", id: "airline_air_france", placement: "cabin", statut: "accepted_with_conditions", role: "fait ATTESTÉ · borne haute seule · synthèse localisée" },
   { slug: "air-france", id: "airline_air_france", placement: "hold", statut: "accepted_with_conditions", role: "fait ATTESTÉ · deux bornes · synthèse localisée" },
+  /* AJOUT (15/09/2026, service ITA « Large Dog On Board ») : le harnais DOM dédié lit la
+     fiche ITA dans les quatre langues en plus de l'accueil. La voie réduite doit donc construire
+     cette page explicitement ; sinon le témoin échoue faute de matière avant de pouvoir vérifier
+     le paragraphe permanent et sa source officielle. */
+  { slug: "ita-airways", id: "airline_ita_airways", placement: "cabin", statut: "accepted_with_conditions", role: "service spécial grand chien · fiche construite pour le harnais ITA" },
 ];
 
 /** La page pays sentinelle — France, dont le guide est complet dans les quatre langues. */

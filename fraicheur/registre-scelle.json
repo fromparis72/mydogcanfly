@@ -1968,12 +1968,12 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_ita_airways].premium.policy.cabin.source",
-      "empreinte_source": "b02928777bc4b4669573e47ad2cce3dd230dff34f52f59305e9262bbf08e3189"
+      "empreinte_source": "78352e6554d15dffb0ef7aaaa7dd3c9f3e1de69dbcce9e00d7f573b881f21811"
     },
     {
       "famille": "airlines",
       "locator": "airlines[airline_ita_airways].premium.policy.cargo.source",
-      "empreinte_source": "6e6e4b8ec0414fd3147bd7feee966c222591a0703d09b02129fe5b2c8068eee9"
+      "empreinte_source": "4fa9a82f4d952ac8cc94698a8a44b06d7c59b5c3063725f1a34b8d8510683a99"
     },
     {
       "famille": "airlines",
@@ -7738,7 +7738,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_ita_airways_cabin_weight].source",
-      "empreinte_source": "e8cd8c90cfac13ce15b98c4775c9c1a4b69d7e1bb4acbd5ebcbe71a7b61dba7f"
+      "empreinte_source": "78352e6554d15dffb0ef7aaaa7dd3c9f3e1de69dbcce9e00d7f573b881f21811"
     },
     {
       "famille": "rules",
@@ -7749,6 +7749,11 @@
       "famille": "rules",
       "locator": "rules[rule_ita_airways_hold_weight].source",
       "empreinte_source": "e8cd8c90cfac13ce15b98c4775c9c1a4b69d7e1bb4acbd5ebcbe71a7b61dba7f"
+    },
+    {
+      "famille": "rules",
+      "locator": "rules[rule_ita_airways_large_dog_domestic_max_weight].source",
+      "empreinte_source": "83576647ef944a180d8b32f112871d518e2fe89435ab6d4ccc379797b676d61e"
     },
     {
       "famille": "rules",
@@ -8652,14 +8657,14 @@
     }
   ],
   "empreintes": {
-    "globale": "89aa840804c236c4e45a313248c6432d7e699fa91a64e93d53e83814903a0d34",
+    "globale": "c9b2af41288cc0c6b6e886b8b5dc7f2b1a8922f39b6fc89e698444ffa139f080",
     "par_famille": {
-      "airlines": "98bece65012a37c3e022f4a3328dabe5b75beaf3fd1199f1b53a60d8b0b9c550",
+      "airlines": "3c57e887cac19a36c9b2bb5313a5d7c508def1bd509f212b4bf355d65ee14c98",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "02cb70e6289bf0cc1bffcd1b53cec3b32161ac68a7e80a776038b5a511e3b1bd"
+      "rules": "869e0fe39ca11e3cba2a3593272f4e3d179737308c27113263ff366425ab7d90"
     }
   }
 }

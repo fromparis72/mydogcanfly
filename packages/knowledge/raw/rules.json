@@ -13913,6 +13913,20 @@
           "fact": "dog.weight_kg",
           "op": "gt",
           "value": 8
+        },
+        {
+          "any": [
+            {
+              "fact": "route.origin_country_id",
+              "op": "neq",
+              "value": "country_it"
+            },
+            {
+              "fact": "route.dest_country_id",
+              "op": "neq",
+              "value": "country_it"
+            }
+          ]
         }
       ]
     },
@@ -13925,24 +13939,86 @@
     "params": {
       "max_weight_kg": 8
     },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
+    "rationale": "Outside domestic Italian flights, the combined weight of the pet, carrier and food must not exceed 8 kg. The separate Large Dog service applies only to selected domestic Italian flights.",
     "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
+      "fr": "Hors vols intérieurs italiens, le poids total de l'animal, du sac et de la nourriture ne doit pas dépasser 8 kg. Le service Grand Chien distinct ne vaut que sur certains vols intérieurs italiens.",
+      "es": "Fuera de los vuelos nacionales italianos, el peso total del animal, el transportín y la comida no debe superar 8 kg. El servicio separado para perros grandes solo se aplica a determinados vuelos nacionales italianos.",
+      "pt": "Fora dos voos domésticos italianos, o peso total do animal, da bolsa e do alimento não pode ultrapassar 8 kg. O serviço separado para cães grandes só se aplica a determinados voos domésticos italianos."
     },
     "source": {
-      "url": "https://mydogcanfly.com/ita-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
+      "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
+      "source_type": "official_website",
+      "verified_date": "2026-09-15",
+      "review_due": "2026-12-14",
+      "confidence": 5,
+      "reviewer": "Codex — lecture directe de la page nationale italienne",
+      "history": [],
+      "quote": "Il peso complessivo (incluso trasportino e cibo) non deve superare 12 kg sui voli nazionali e 8 kg su tutti gli altri voli.",
+      "quote_language": "it",
+      "locator": "Animali in cabina → condizioni di trasporto"
+    }
+  },
+  {
+    "id": "rule_ita_airways_large_dog_domestic_max_weight",
+    "scope": {
+      "type": "airline",
+      "id": "airline_ita_airways"
+    },
+    "category": "cabin_weight",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
         {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
+          "fact": "placement",
+          "op": "eq",
+          "value": "cabin"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "eq",
+          "value": "country_it"
+        },
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_it"
+        },
+        {
+          "fact": "dog.weight_kg",
+          "op": "gt",
+          "value": 30
         }
       ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cabin"
+      ]
+    },
+    "params": {
+      "max_weight_kg": 30,
+      "service": "Large Dog On Board",
+      "selected_domestic_flights_only": true,
+      "prior_confirmation_required": true
+    },
+    "rationale": "ITA's Large Dog On Board service is limited to dogs up to 30 kg and only operates on selected domestic Italian flights, subject to prior confirmation.",
+    "rationale_i18n": {
+      "fr": "Le service Large Dog On Board d'ITA est réservé aux chiens jusqu'à 30 kg sur certains vols intérieurs italiens, avec confirmation préalable obligatoire.",
+      "es": "El servicio Large Dog On Board de ITA está limitado a perros de hasta 30 kg en determinados vuelos nacionales italianos, con confirmación previa obligatoria.",
+      "pt": "O serviço Large Dog On Board da ITA é limitado a cães de até 30 kg em determinados voos domésticos italianos, com confirmação prévia obrigatória."
+    },
+    "source": {
+      "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin/large-dog-on-board",
+      "source_type": "official_website",
+      "verified_date": "2026-09-15",
+      "review_due": "2026-12-14",
+      "confidence": 5,
+      "reviewer": "Codex — lecture directe de la page nationale italienne",
+      "history": [],
+      "quote": "Il servizio è disponibile esclusivamente per cani di grossa taglia fino a 30 kg su una selezione dei nostri voli nazionali identificati come voli Large Dog.",
+      "quote_language": "it",
+      "locator": "Large Dog On Board → introduzione"
     }
   },
   {

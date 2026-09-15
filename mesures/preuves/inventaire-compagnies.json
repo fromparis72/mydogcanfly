@@ -1,6 +1,6 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "10048ab9a86d3793cac77f454acc969d84ae3f799251aa0f6ee5ab882ca44e08",
+    "empreinte_donnees_sha256": "f19a4a9caa6489a82f1985085c01d141848db4d99dfd5167e924a8854973c719",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
@@ -5237,9 +5237,9 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
+      "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
       "hote": "ita-airways.com",
-      "verified_date": "2026-09-09",
+      "verified_date": "2026-09-15",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
@@ -5247,15 +5247,19 @@
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
+        "url_politique": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
         "hote_politique": "ita-airways.com",
         "url_fabriquee": false,
         "regles": [
-          "rule_ita_airways_cabin_weight"
+          "rule_ita_airways_cabin_weight",
+          "rule_ita_airways_large_dog_domestic_max_weight"
         ],
-        "regles_officielles": [],
+        "regles_officielles": [
+          "rule_ita_airways_cabin_weight",
+          "rule_ita_airways_large_dog_domestic_max_weight"
+        ],
         "hotes_regles": [
-          "mydogcanfly.com"
+          "ita-airways.com"
         ]
       }
     },

@@ -30766,10 +30766,10 @@
       {
         "icon": "🗓",
         "label": {
-          "en": "Updated 11 Jul 2026",
-          "fr": "Mise à jour le 11 juil. 2026",
-          "es": "Actualizado el 11 jul 2026",
-          "pt": "Atualizado em 11 jul. 2026"
+          "en": "Updated 15 Sep 2026",
+          "fr": "Mise à jour le 15 sept. 2026",
+          "es": "Actualizado el 15 sep 2026",
+          "pt": "Atualizado em 15 set. 2026"
         }
       }
     ],
@@ -30816,16 +30816,16 @@
       "cabin": {
         "availability": "offered",
         "source": {
-          "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
+          "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
-          "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "verified_date": "2026-09-15",
+          "review_due": "2026-12-14",
+          "confidence": 5,
+          "reviewer": "Codex — lecture directe de la page nationale italienne",
           "history": [],
-          "quote": "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
-          "quote_language": "en",
-          "locator": "Pets in cabin → Service overview"
+          "quote": "Il peso complessivo (incluso trasportino e cibo) non deve superare 12 kg sui voli nazionali e 8 kg su tutti gli altri voli.",
+          "quote_language": "it",
+          "locator": "Animali in cabina → condizioni di trasporto"
         },
         "fares": [
           {
@@ -30997,10 +30997,10 @@
           "pt": "Permitido"
         },
         "detail": {
-          "en": "Dogs & cats (min. 3 months) in a soft carrier under the seat (max 55 × 40 × 23 cm); up to 12 kg on domestic flights, 8 kg elsewhere.",
-          "fr": "Chiens et chats (min. 3 mois) dans un sac souple sous le siège (max 55 × 40 × 23 cm) ; jusqu'à 12 kg sur les vols nationaux, 8 kg ailleurs.",
-          "es": "Perros y gatos (mín. 3 meses) en una jaula blanda bajo el asiento (máx. 55 × 40 × 23 cm); hasta 12 kg en vuelos nacionales, 8 kg en el resto.",
-          "pt": "Cachorros e gatos (mín. 3 meses) em uma bolsa de transporte macia sob o assento (máx. 55 × 40 × 23 cm); até 12 kg em voos domésticos, 8 kg nos demais."
+          "en": "Standard service — dog or cat with soft carrier and food up to 12 kg on domestic flights and 8 kg elsewhere. A separate Large Dog service exists on selected domestic flights.",
+          "fr": "Service standard — chien ou chat avec sac souple et nourriture jusqu'à 12 kg sur les vols nationaux et 8 kg ailleurs. Un service Grand Chien distinct existe sur certains vols nationaux.",
+          "es": "Servicio estándar: perro o gato con transportín blando y comida hasta 12 kg en vuelos nacionales y 8 kg en los demás. Existe un servicio separado para perros grandes en determinados vuelos nacionales.",
+          "pt": "Serviço padrão — cão ou gato com bolsa flexível e alimento até 12 kg em voos domésticos e 8 kg nos demais. Há um serviço separado para cães grandes em determinados voos domésticos."
         },
         "fee": {
           "en": "€73–230",
@@ -31065,6 +31065,59 @@
           "fr": "—",
           "es": "—",
           "pt": "—"
+        }
+      }
+    ],
+    "specialServices": [
+      {
+        "id": "special_ita_large_dog_on_board",
+        "placement": "cabin",
+        "species": "dog",
+        "route": {
+          "origin_iso": "IT",
+          "destination_iso": "IT"
+        },
+        "weight": {
+          "min_kg": 10,
+          "min_bound": "gt",
+          "max_kg": 30,
+          "max_bound": "lte"
+        },
+        "title": {
+          "en": "Special case: large dog in the cabin",
+          "fr": "Cas particulier : grand chien en cabine",
+          "es": "Caso especial: perro grande en cabina",
+          "pt": "Caso especial: cão grande na cabine"
+        },
+        "summary": {
+          "en": "On selected domestic Italian “Large Dog” flights, ITA may accept a dog weighing over 10 kg and up to 30 kg in the cabin. Prior confirmation is mandatory.",
+          "fr": "Sur certains vols intérieurs italiens « Large Dog », ITA peut accepter en cabine un chien de plus de 10 kg et jusqu'à 30 kg. Confirmation préalable obligatoire.",
+          "es": "En determinados vuelos nacionales italianos «Large Dog», ITA puede aceptar en cabina un perro de más de 10 kg y hasta 30 kg. La confirmación previa es obligatoria.",
+          "pt": "Em determinados voos domésticos italianos «Large Dog», a ITA pode aceitar na cabine um cão com mais de 10 kg e até 30 kg. A confirmação prévia é obrigatória."
+        },
+        "details": {
+          "en": "Request the service through the CIAO Contact Center at least 4 days before departure. Availability depends on the aircraft, other animals and operating conditions. Two passenger tickets plus a PETX surcharge, specific documents and a crash-tested harness are required.",
+          "fr": "La demande se fait auprès du Contact Center CIAO au moins 4 jours avant le départ. La disponibilité dépend de l'avion, des autres animaux et des conditions opérationnelles. Deux billets passagers, un supplément PETX, des documents spécifiques et un harnais crash-testé sont requis.",
+          "es": "El servicio debe solicitarse al Contact Center CIAO al menos 4 días antes de la salida. La disponibilidad depende del avión, de los demás animales y de las condiciones operativas. Se requieren dos billetes de pasajero, un suplemento PETX, documentos específicos y un arnés sometido a pruebas de choque.",
+          "pt": "O serviço deve ser solicitado ao Contact Center CIAO pelo menos 4 dias antes da partida. A disponibilidade depende da aeronave, dos outros animais e das condições operacionais. São exigidos dois bilhetes de passageiro, uma taxa PETX, documentos específicos e um peitoral testado em colisão."
+        },
+        "cta": {
+          "en": "See ITA's official Large Dog conditions",
+          "fr": "Voir les conditions officielles Grand Chien d'ITA",
+          "es": "Ver las condiciones oficiales de ITA para perros grandes",
+          "pt": "Ver as condições oficiais da ITA para cães grandes"
+        },
+        "source": {
+          "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin/large-dog-on-board",
+          "source_type": "official_website",
+          "verified_date": "2026-09-15",
+          "review_due": "2026-12-14",
+          "confidence": 5,
+          "reviewer": "Codex — lecture directe de la page nationale italienne",
+          "history": [],
+          "quote": "Su ciascun volo Large Dog possono essere ammessi al massimo 2 cani in cabina:\n1 di peso superiore a 10 kg e fino a 15 kg\n1 di peso superiore a 15 kg e fino a 30 kg\nLa disponibilità del servizio dipende:\ndal tipo di aeromobile;\ndalla presenza di altri animali a bordo;\ndalle condizioni operative del volo.\nLa conferma del servizio è sempre soggetta a verifica preventiva.\nTi consigliamo di richiedere il servizio con il maggiore anticipo possibile e, in ogni caso, almeno 4 giorni prima della partenza del volo.\nPer viaggiare con il servizio Large Dog On Board è previsto l'acquisto di due biglietti, per garantire al cane lo spazio dedicato in cabina, e il pagamento della tariffa prevista per il trasporto a bordo.\nAl momento della richiesta e del check-in sarà necessario presentare:\nattestazione del veterinario, rilasciata non oltre 20 giorni prima del volo, relativa all’ idoneità del large dog, comprensiva della valutazione dello stato di salute, del comportamento e del peso.\ndocumento identificativo o passaporto dell’animale;\ndocumentazione vaccinale aggiornata;\nattestazione assicurativa RC PET;\nModulo di Accettazione Animali Domestici sottoscritto dal proprietario.\nAl check-in sarà inoltre verificata la presenza della pettorina Crash Tested conforme agli standard CMVSS 213 e FMVSS 213, obbligatoria per il trasporto.",
+          "quote_language": "it",
+          "locator": "Large Dog On Board → Come funziona il servizio"
         }
       }
     ],
@@ -31332,12 +31385,12 @@
       "url": "https://www.ita-airways.com/"
     },
     "sources": {
-      "en": "ITA Airways sources · collected 11 July 2026",
-      "fr": "Sources ITA Airways · relevées le 11 juillet 2026",
-      "es": "Fuentes de ITA Airways · recopiladas el 11 de julio de 2026",
-      "pt": "Fontes da ITA Airways · recolhidas em 11 de julho de 2026"
+      "en": "ITA Airways sources · checked 15 September 2026",
+      "fr": "Sources ITA Airways · vérifiées le 15 septembre 2026",
+      "es": "Fuentes de ITA Airways · verificadas el 15 de septiembre de 2026",
+      "pt": "Fontes da ITA Airways · verificadas em 15 de setembro de 2026"
     },
-    "verified_date": "2026-07-11"
+    "verified_date": "2026-09-15"
   },
   "airline_jal": {
     "id": "airline_jal",
