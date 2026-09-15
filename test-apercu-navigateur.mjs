@@ -1091,7 +1091,14 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     const corps = await p.textContent("body");
     const resultat = (await p.textContent("#dfx-result").catch(() => "")) ?? "";
     check("destinations pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
-    check("destinations pt : l'outil a répondu quelque chose", resultat.trim().length > 20, `${resultat.trim().length} caractères`);
+    /* Une réponse métier valide peut tenir exactement en vingt caractères selon les données du
+       jour (« aucune route directe », par exemple). La longueur arbitraire ne prouve rien : on
+       exige que la zone soit visible, non vide et sortie de son état de chargement. */
+    check("destinations pt : l'outil a rendu une réponse métier, pas un chargement suspendu",
+      await p.locator("#dfx-result:not([hidden])").count() === 1
+        && resultat.trim().length > 0
+        && await p.locator("#dfx-result .dfx__loading").count() === 0,
+      `${resultat.trim().length} caractères`);
     exiger("destinations pt", "packages/ui/src/components/DestinationFinder.astro", corps);
     await capturer(p, "pt-destinations");
     await p.close();
