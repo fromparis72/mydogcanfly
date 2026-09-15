@@ -35,6 +35,8 @@
  *            "canaux": [ { slug, langue, placement, statut, fait, faitNombres, citation,
  *                          citationNombres, citationLangue, enTetePreuve, faitAvantPreuve,
  *                          locatorHorsMeta, locatorDansMeta } ],
+ *            "servicesSpeciaux": [ { slug, langue, id, resume, resumeKg, citation,
+ *                                     citationKg, citationLangue, url, resumeAvantPreuve } ],
  *            "faitsRetires", "citationsRetirees", "citationsBalisage": [ { slug, langue, phrase, url } ] } sur stdout.
  */
 import fs from "node:fs";
@@ -54,7 +56,7 @@ const ANCIENNE_META = /fares|restrictions|tarifs|official sources|fuentes oficia
 const BRACHY = new RegExp(entree.classif[0], entree.classif[1]);
 const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0,
   zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0, fuitesDev: [],
-  canaux: [], faitsRetires: 0, citationsRetirees: 0, citationsBalisage: [] };
+  canaux: [], servicesSpeciaux: [], faitsRetires: 0, citationsRetirees: 0, citationsBalisage: [] };
 
 for (const tache of entree.taches) {
   const abs = path.join(entree.dist, tache.rel);
@@ -158,6 +160,36 @@ for (const tache of entree.taches) {
       });
       if (fait) { sortie.faitsRetires++; fait.remove(); }
       if (citation) { sortie.citationsRetirees++; citation.remove(); }
+    }
+
+    /* ── UN SERVICE SPÉCIAL NE DEVIENT PAS UNE TROISIÈME PORTE SANS PREUVE ─────────────────
+       ITA publie désormais un produit cabine distinct jusqu'à 30 kg. Le retirer en bloc de
+       l'examen serait une exception aveugle : une traduction pourrait changer 30 en 35 kg sans
+       que rien ne rougisse. On ne retire donc QUE sa synthèse chiffrée et sa citation, et on les
+       renvoie au harnais avec leur lien structurel. Si la citation disparaît, vient d'un autre
+       bloc ou ne porte plus les mêmes kilos, le harnais refuse la page. */
+    for (const service of doc.querySelectorAll("[data-special-service]")) {
+      const resume = service.querySelector(".special-service__summary");
+      const citation = service.querySelector(".special-service__proof-q");
+      const preuve = service.querySelector(".special-service__proof");
+      const lien = service.querySelector(".special-service__source");
+      const kilos = (texte) => [...String(texte ?? "").matchAll(/(\d+(?:[.,]\d+)?)\s*(?:kg|kilos?)\b/gi)]
+        .map((m) => m[1].replace(",", "."));
+      sortie.servicesSpeciaux.push({
+        slug: tache.slug,
+        langue: tache.langue,
+        id: service.getAttribute("data-special-service"),
+        resume: resume?.textContent.replace(/\s+/g, " ").trim() ?? null,
+        resumeKg: kilos(resume?.textContent),
+        citation: citation?.textContent.replace(/\s+/g, " ").trim() ?? null,
+        citationKg: kilos(citation?.textContent),
+        citationLangue: citation?.getAttribute("lang") ?? null,
+        url: lien?.getAttribute("href") ?? null,
+        resumeAvantPreuve: resume && preuve
+          ? !!(resume.compareDocumentPosition(preuve) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) : null,
+      });
+      if (resume) resume.remove();
+      if (citation) citation.remove();
     }
 
     /* ── LA MÊME CITATION, DANS LE BALISAGE LU PAR LES MACHINES ─────────────────────────────

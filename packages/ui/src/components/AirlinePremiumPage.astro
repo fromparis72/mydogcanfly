@@ -404,14 +404,29 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       {(d.specialServices ?? []).map((service) => (
         <aside class="special-service" data-special-service={service.id}>
           <div class="special-service__title">🐕 {t(service.title)}</div>
-          <p><strong>{t(service.summary)}</strong> {t(service.details)}</p>
-          <a href={service.source.url} rel="nofollow noopener" target="_blank">{t(service.cta)} →</a>
+          <p><strong class="special-service__summary">{t(service.summary)}</strong> {t(service.details)}</p>
+          {/* Les seuils du service spécial ne sortent du contrôle des affirmations qu'avec leur
+              propre citation, dans ce même bloc. Une simple URL ne suffit pas : déplacer ou
+              retirer la phrase officielle doit refaire rougir la fiche construite. */}
+          <details class="special-service__proof">
+            <summary>{tt(locale, "premium.special_service.proof")}</summary>
+            <div class="proof-h">🛡️ {tt(locale, "premium.preuve.original").replace("{langue}", nomDeLangue(service.source.quote_language, locale))}</div>
+            <blockquote class="special-service__proof-q" lang={service.source.quote_language}>« {service.source.quote} »</blockquote>
+            <div class="proof-m">
+              {service.source.locator && <span>{service.source.locator}</span>}
+              <span>{tt(locale, "premium.verified_on").replace("{date}", fmtDate(service.source.verified_date))}</span>
+            </div>
+          </details>
+          <a class="special-service__source" href={service.source.url} rel="nofollow noopener" target="_blank">{t(service.cta)} →</a>
         </aside>
       ))}
       {/* Un lien vers un OUTIL, pas une affirmation sur la compagnie : le calculateur de caisse
           est canonique (il ne retient un gabarit de cabine que sur un statut `allowed`). Il vivait
           au bas de la carte « Température & soute », supprimée avec le reste de l'éditorial. */}
-      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")} →</a>
+      <div class="channel-ctas">
+        <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")} →</a>
+        <a class="cratecta cratecta--finder" data-carry="breed" href={`${base}/#flight-finder?air=${id}`}>🔎 {tt(locale, "premium.cta.find_flight")} →</a>
+      </div>
     </div>
 
     {/* L'ANCIENNE GRILLE LIBRE « TARIFS PAR ZONE » reste non rendue. Les tarifs migrés vers le
@@ -607,8 +622,11 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .ladder { display: flex; height: 52px; border-radius: 12px; overflow: hidden; font-size: 12.5px; font-weight: 700; color: #fff; }
   .afp .ladder > div { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 6px; }
   .afp .ladder small { font-weight: 500; opacity: .9; }
-  .afp .cratecta { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 15px; border: 1px solid rgba(242,112,15,.4); border-radius: 999px; background: var(--mdcf-accent-soft, #fdf1e7); color: var(--mdcf-accent-ink, #b4530a); font-weight: 700; font-size: 13.5px; text-decoration: none; }
+  .afp .channel-ctas { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+  .afp .cratecta { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid rgba(242,112,15,.4); border-radius: 999px; background: var(--mdcf-accent-soft, #fdf1e7); color: var(--mdcf-accent-ink, #b4530a); font-weight: 700; font-size: 13.5px; text-decoration: none; }
   .afp .cratecta:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
+  .afp .cratecta--finder { border-color: #b9cbe2; background: #f5f9ff; color: var(--mdcf-navy, #011d48); }
+  .afp .cratecta--finder:hover { border-color: var(--mdcf-navy, #011d48); }
   .afp .g { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
   .afp .mini { background: var(--mdcf-subtle, #f5f7fa); border-radius: 12px; padding: 14px 15px; }
   .afp .mini .t { display: flex; align-items: center; gap: 6px 8px; font-weight: 700; flex-wrap: wrap; }
@@ -620,6 +638,10 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .special-service p { margin: 5px 0 4px; font-size: 13.5px; line-height: 1.5; }
   .afp .special-service a { color: var(--mdcf-accent-ink, #b4530a); font-size: 12.5px; font-weight: 700; text-decoration: none; }
   .afp .special-service a:hover { text-decoration: underline; }
+  .afp .special-service__proof { margin: 7px 0 5px; font-size: 12px; color: var(--mdcf-muted, #5b6b7f); }
+  .afp .special-service__proof > summary { width: fit-content; cursor: pointer; color: var(--mdcf-accent-ink, #b4530a); font-weight: 700; }
+  .afp .special-service__proof .proof-h { margin-top: 7px; }
+  .afp .special-service__proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; white-space: pre-line; }
   .afp .k { color: var(--mdcf-muted, #5b6b7f); font-size: 13.5px; margin-top: 6px; }
   /* Les cotes, les poids et la nature du sac, dans une phrase par ailleurs en gris. Le contraste
      vient de la COULEUR autant que de la graisse : sur du texte secondaire, un gras seul se
