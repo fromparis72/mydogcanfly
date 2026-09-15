@@ -135,6 +135,22 @@ function relever(doc, out) {
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
 const pages = Object.fromEntries(LOCALES.map(([l, dir]) => [l, chargerPage(dir)]));
 
+/* « FOOTPRINT » DÉCRIT L'ENCOMBREMENT DU SAC (15/09/2026), JAMAIS UNE EMPREINTE AU SENS
+   LITTÉRAL. La FAQ est publiée deux fois — texte visible et JSON-LD — et la garde porte donc sur
+   toute la page construite dans chacune des trois langues traduites. */
+const termesEncombrement = {
+  fr: "encombrement du sac",
+  es: "espacio que ocupa el transportín",
+  pt: "espaço que a bolsa ocupa",
+};
+for (const [langue, terme] of Object.entries(termesEncombrement)) {
+  const html = fs.readFileSync(path.join(DIST, langue, "tools/crate/index.html"), "utf8");
+  check(`${langue} : « footprint » est traduit par l'encombrement réel du contenant`,
+    html.includes(terme), terme);
+}
+check("fr : la FAQ ne publie plus la traduction littérale « empreinte »",
+  !fs.readFileSync(path.join(DIST, "fr/tools/crate/index.html"), "utf8").includes("d'empreinte"));
+
 /* ── DEUX TÉMOINS RE-FONDÉS, PAS ABAISSÉS (frontière de confiance) ─────────────────────────────
  *
  * `noPets` exige les TROIS canaux `denied`, et `cabin` n'existe que sur un canal `allowed`.
