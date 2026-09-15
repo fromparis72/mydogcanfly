@@ -52,7 +52,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub:
+      en: selected aircraft/routes
+      fr: appareils/routes sélectionnés
+      es: aviones/rutas seleccionados
+      pt: "aeronaves/rotas selecionadas"
   - flex: 30
     color: "#9a6410"
     label:

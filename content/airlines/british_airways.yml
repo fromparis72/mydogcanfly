@@ -101,7 +101,18 @@ policies:
     # ce qui peut correspondre commercialement au fret, mais on ne conclut pas « aucune soute »
     # sans une définition et une citation de plus. La politique reste donc à confirmer — et c'est
     # une lecture qui a servi : elle empêche de reprendre ce canal en croyant qu'il reste à voir.
-    availability: not_offered
+    availability: case_by_case
+    source:
+      url: https://www.britishairways.com/content/information/legal/conditions-of-carriage/general-conditions-of-carriage
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel britannique remis par Philippe
+      history: []
+      quote: "On some services we do not carry animals. If we agree to carry your animals, we will carry them subject to the following conditions."
+      quote_language: en-GB
+      locator: clause 8l « Animals »
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -167,17 +178,17 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: By prior agreement
+      fr: Sur accord préalable
+      es: Con acuerdo previo
+      pt: "Com acordo prévio"
     detail:
-      en: Pets don't travel as passenger checked baggage.
-      fr: Les animaux ne voyagent pas en bagage enregistré passager.
-      es: Las mascotas no viajan como equipaje facturado del pasajero.
-      pt: "Os animais não viajam como bagagem despachada de passageiro."
+      en: British Airways carries animals only on services where it gives prior agreement; conditions vary by service.
+      fr: British Airways transporte les animaux uniquement sur les services pour lesquels elle donne son accord préalable ; les conditions varient selon le service.
+      es: British Airways transporta animales únicamente en los servicios para los que da su acuerdo previo; las condiciones varían según el servicio.
+      pt: "A British Airways transporta animais apenas nos serviços para os quais dá o seu acordo prévio; as condições variam conforme o serviço."
     fee:
       en: —
       fr: —

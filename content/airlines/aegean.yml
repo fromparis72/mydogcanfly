@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: 8–25 kg +
+    sub:
+      en: "> 8 kg · fare by crate size"
+      fr: "> 8 kg · tarif selon la taille de la caisse"
+      es: "> 8 kg · tarifa según el tamaño de la jaula"
+      pt: "> 8 kg · tarifa conforme o tamanho da caixa"
   - flex: 20
     color: "#9a6410"
     label:
@@ -161,6 +165,9 @@ policies:
           quote_language: el
           locator: Κράτηση & χρεώσεις · χώρος αποθήκευσης · Large
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 2).
     # Effet attendu : For a 32 kg dog, show hold offered under conditions.
     # Portée nommée : larger cat or dog exceeding 8 kg including its container; route, aircraft, breed and connection exceptions apply

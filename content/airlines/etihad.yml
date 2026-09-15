@@ -109,7 +109,9 @@ policies:
       quote_language: en
       locator: "Travelling with Pets → Eligibility"
   hold:
-    availability: not_offered
+    # La page officielle ne publie pas ce canal comme bagage accompagné et ne
+    # formule pas non plus un refus opposable : rester à confirmer.
+    review_state: legacy_unreviewed
   cargo:
     availability: offered
     source:
@@ -154,17 +156,17 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: "Cats & dogs aren't carried as checked baggage (falcons are, at a per-cage fare). Service dogs fly in the cabin."
-      fr: "Chats et chiens non transportés en bagage enregistré (les faucons le sont, à un tarif par cage). Les chiens d'assistance voyagent en cabine."
-      es: "Perros y gatos no se transportan como equipaje facturado (los halcones sí, con una tarifa por jaula). Los perros de servicio viajan en cabina."
-      pt: "Gatos e cachorros não são transportados como bagagem despachada (falcões são, com tarifa por caixa). Cães de assistência viajam na cabine."
+      en: The reviewed official page does not publish a clear accompanied-hold decision for ordinary dogs.
+      fr: La page officielle relue ne publie pas de décision claire pour les chiens ordinaires en soute accompagnée.
+      es: La página oficial revisada no publica una decisión clara para perros ordinarios en bodega acompañada.
+      pt: "A página oficial revisada não publica uma decisão clara para cães comuns no porão acompanhado."
     fee:
       en: —
       fr: —

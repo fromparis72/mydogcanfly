@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub:
+      en: with prior permission
+      fr: sur autorisation préalable
+      es: con autorización previa
+      pt: "com autorização prévia"
   - flex: 30
     color: "#9a6410"
     label:

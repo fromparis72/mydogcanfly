@@ -187,6 +187,9 @@ policies:
           quote_language: en
           locator: Reservation and Fee > Service Fee
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 9).
     # Effet attendu : Passenger hold is a conditional path; never apply it to a codeshare or a route that requires cargo treatment.
     # Portée nommée : ANA-operated flight under ANA flight number, advance reservation, country/quarantine limits and seasonal or breed restrictions
@@ -197,10 +200,17 @@ policies:
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Your pet will be carried in the cargo section, which is located underneath the passenger cabin."
-      quote_language: en
-      locator: "For passengers traveling with pets (International Flights) → Reservation and Fee"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle japonaise chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/ ;
+            citation « Your pet will be carried in the cargo section, which is located underneath the passenger cabin. » ;
+            localisateur « For passengers traveling with pets (International Flights) → Reservation and Fee ».
+            Remplacée par la limite officielle de poids publiée sur la page japonaise.
+      quote: "ペットケージの3辺（縦・横・高さ）の和が292cm（115インチ）、もしくはペットとケージの総重量が45kg（99ポンド）を超える場合はお預かりできません。"
+      quote_language: ja
+      locator: "ペットケージの要件 → 受付制限"
   cargo:
     availability: offered
     source:

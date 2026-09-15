@@ -110,6 +110,9 @@ policies:
           locator: bloc « 价格标准 » incruste dans l'image officielle
   hold:
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets
       source_type: official_website
@@ -117,10 +120,17 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
-      quote: （1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source nationale précédente vérifiée le 2026-09-12 sur la même page : citation
+            « （1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。 » ;
+            localisateur « section 一、一般规定, alinéa (1) ». Remplacée par l'alinéa qui établit
+            explicitement le plafond de 32 kg, contenant compris.
+      quote: （4）旅客托运的活体动物笼体包装最大不能超过 90x60x66 厘米，最小不能小于5x15x20厘米，重量最大不得超过32公斤，应单独装笼；
       quote_language: zh
-      locator: section « 一、一般规定 », alinea (1)
+      locator: section « 二、收运要求 », alinea (4)
   cargo:
     fares:
       - id: fare_china_southern_cargo_2026_09_10
@@ -150,17 +160,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: Conflicting official rules
+      fr: Règles officielles contradictoires
+      es: Reglas oficiales contradictorias
+      pt: "Regras oficiais contraditórias"
     detail:
-      en: No pets in the cabin — only service dogs. Emotional-support dogs aren't accepted (since 2021).
-      fr: Pas d'animaux en cabine — seulement les chiens d'assistance. Chiens de soutien émotionnel non acceptés (depuis 2021).
-      es: No se admiten mascotas en cabina, solo perros de servicio. Los perros de apoyo emocional no se aceptan (desde 2021).
-      pt: "Nenhum animal na cabine — somente cães de assistência. Cães de apoio emocional não são aceitos (desde 2021)."
+      en: A current paid cabin product coexists with an official FAQ refusing pets in the cabin; confirm flight eligibility before booking.
+      fr: Un produit cabine payant actuel coexiste avec une FAQ officielle refusant les animaux en cabine ; confirme l'éligibilité du vol avant de réserver.
+      es: Un producto actual de cabina de pago coexiste con una FAQ oficial que rechaza mascotas; confirma la elegibilidad del vuelo antes de reservar.
+      pt: "Um produto atual pago de cabine coexiste com uma FAQ oficial que recusa animais; confirme a elegibilidade do voo antes de reservar."
     fee:
       en: —
       fr: —

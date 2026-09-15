@@ -145,20 +145,31 @@ policies:
           quote_language: en
           locator: Can my pet travel in the luggage hold? → flights starting with TO
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 4).
     # Effet attendu : Show hold offered under conditions, not a promise of remaining capacity.
     # Portée nommée : snub-nosed dogs and cats are excluded from hold; capacity is limited to two pets per flight
     source:
       url: "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
       confidence: 4
       reviewer: "Codex — lecture directe de la page officielle"
-      history: []
-      quote: "You may transport your pet in our cargo hold."
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet ;
+            citation « You may transport your pet in our cargo hold. » ; localisateur « Can my pet travel in the luggage hold? ».
+            Remplacée par la phrase officielle chiffrée relue le 2026-09-15.
+      quote: "The maximum weight of your pet and kennel together is: 75 kg."
       quote_language: en
-      locator: "Can my pet travel in the luggage hold?"
+      locator: "Pets in the hold → Weight"
+  cargo:
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -206,6 +217,29 @@ channels:
       fr: 77–100 €+
       es: 77–100 €+
       pt: "€77–100+"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: No separate live-animal cargo service is established in the official sources reviewed for this airline.
+      fr: Aucun service fret distinct pour animaux vivants n'est établi dans les sources officielles relues pour cette compagnie.
+      es: Las fuentes oficiales revisadas para esta aerolínea no establecen un servicio de carga separado para animales vivos.
+      pt: "As fontes oficiais revisadas para esta companhia não estabelecem um serviço de carga separado para animais vivos."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

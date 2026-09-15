@@ -1802,7 +1802,7 @@ console.log("=== Preuve PERMANENTE SAS soute — une citation nationale suédois
   }
 }
 
-console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
+console.log("=== Couverture DIRECTE : les 306 politiques, hors des 72 scénarios ===");
 {
   const kbCouverture = loadKB();
   /* LA TABLE DEVIENT DÉPENDANTE DE LA PREUVE (frontière de confiance, 04/09/2026). `offered` et
@@ -1853,8 +1853,8 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
       conformes++;
     }
   }
-  check("302 politiques d'auteur, toutes projetées", vues === 302 && ecarts.length === 0, `${vues} vues · ${ecarts.length} écart(s) : ${ecarts.slice(0, 3).join(" ; ")}`);
-  check("302 conformes à la table de projection", conformes === 302, String(conformes));
+  check("306 politiques d'auteur, toutes projetées", vues === 306 && ecarts.length === 0, `${vues} vues · ${ecarts.length} écart(s) : ${ecarts.slice(0, 3).join(" ; ")}`);
+  check("306 conformes à la table de projection", conformes === 306, String(conformes));
   check("ZÉRO forme d'auteur héritée subsistante", herites === 0, `${herites} résiduelle(s)`);
   /* 28/08/2026 — Virgin Australia cabine : `offered` → `case_by_case` (arbitrage A-bis,
    * « Pets in Cabin » n'est ni interdit ni universel — routes/dates domestiques éligibles
@@ -1914,12 +1914,16 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : quatre canaux hérités deviennent
      sous conditions et le fret Norwegian devient un refus documenté. Cinq causes
      `legacy_unreviewed` disparaissent. */
-  check("répartition runtime : 0 allowed · 177 sous conditions · 44 denied · 81 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 177 && parStatut.denied === 44 && parStatut.confirmation_required === 81,
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : les quatre derniers canaux
+     manquants sont rendus explicites, les décisions catégoriques sans citation sont rétrogradées,
+     les politiques nouvellement raccordées prennent effet et les cartes visibles sont alignées.
+     Le contrat porte désormais exactement 102 × 3 politiques. */
+  check("répartition runtime : 0 allowed · 188 sous conditions · 52 denied · 66 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 188 && parStatut.denied === 52 && parStatut.confirmation_required === 66,
     JSON.stringify(parStatut));
-  check("causes : 71 legacy_unreviewed · 2 official_source_unquoted · 0 policy_unpublished · 8 airline_approval",
-    parCause.legacy_unreviewed === 71 && parCause.official_source_unquoted === 2
-      && !parCause.policy_unpublished && parCause.airline_approval === 8, JSON.stringify(parCause));
+  check("causes : 55 legacy_unreviewed · 0 official_source_unquoted · 0 policy_unpublished · 11 airline_approval",
+    parCause.legacy_unreviewed === 55 && !parCause.official_source_unquoted
+      && !parCause.policy_unpublished && parCause.airline_approval === 11, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

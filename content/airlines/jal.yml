@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub:
+      en: limit varies by route/operator
+      fr: limite selon la route/l'opérateur
+      es: límite según ruta/operador
+      pt: "limite conforme rota/operador"
   - flex: 20
     color: "#9a6410"
     label:
@@ -66,10 +70,16 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 32 kg"
+    sub:
+      en: by cargo arrangement
+      fr: sur accord du fret
+      es: previo acuerdo de carga
+      pt: "mediante acordo com a carga"
 policies:
   cabin:
-    availability: not_offered
+    # Le refus relevé est limité aux vols intérieurs japonais ; il est porté
+    # par une règle de trajet et ne doit pas fermer la cabine mondialement.
+    review_state: legacy_unreviewed
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -141,17 +151,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: Depends on route
+      fr: Selon le trajet
+      es: Según la ruta
+      pt: "Conforme a rota"
     detail:
-      en: Dogs & cats can't be carried in the cabin — only assistance dogs (plus tiny sealed-container creatures).
-      fr: Chiens et chats interdits en cabine — seulement les chiens d'assistance (plus quelques petites créatures en récipient scellé).
-      es: Los perros y gatos no pueden viajar en cabina; solo los perros de asistencia (más algunas criaturas diminutas en recipiente sellado).
-      pt: "Cachorros e gatos não podem ser transportados na cabine — somente cães de assistência (além de pequenas criaturas em recipiente lacrado)."
+      en: Dogs and cats are refused in the cabin on domestic Japanese flights; the reviewed international source does not publish a global cabin decision.
+      fr: Les chiens et chats sont refusés en cabine sur les vols intérieurs japonais ; la source internationale relue ne publie pas de décision cabine mondiale.
+      es: Los perros y gatos se rechazan en cabina en vuelos nacionales japoneses; la fuente internacional revisada no publica una decisión mundial de cabina.
+      pt: "Cães e gatos são recusados na cabine em voos domésticos japoneses; a fonte internacional revisada não publica uma decisão global de cabine."
     fee:
       en: —
       fr: —

@@ -46,7 +46,11 @@ const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, de
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
 /* Seuils attendus, TELS QUE la phrase citée les porte (jamais depuis `condition_scope`). */
-const SEUILS = { "airline_austrian.cabin": [8, true], "airline_swiss.cabin": [8, true], "airline_brussels.cabin": [8, true] };
+const SEUILS = {
+  "airline_austrian.cabin": ["max", 8, true], "airline_swiss.cabin": ["max", 8, true],
+  "airline_swiss.hold": ["min", 8, true], "airline_brussels.cabin": ["max", 8, true],
+  "airline_westjet.hold": ["max", 45, true],
+};
 const REACTIVEES = ["airline_emirates.cargo", "airline_qantas.hold", "airline_qantas.cargo", "airline_alaska.cargo"];
 const REFUSE = "airline_aer_lingus.hold";
 const ficheAerLingusHoldASource = (() => {
@@ -106,18 +110,26 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       "airline_emirates.cargo": { url: "https://www.skycargo.com/products/live/pets/", quote: "Pets strictly follows IATA's Live Animal Regulations (LAR) and considers all relevant country and operator-specific rules", quote_language: "en", locator: "section presentation du produit Pets" },
       "airline_qantas.cargo": { url: "https://freight.qantas.com/au-en/pets.html", quote: "Pets include dogs (excluding service dogs), cats, rabbits, guinea pigs, domestic fish with no aeration requirements, and domestic birds that don't need a travel permit.", quote_language: "en", locator: "section « Pet travel »" },
     }[cle];
-    const sourceAttendue = fretRafraichi ?? f;
-    const dateAttendue = fretRafraichi ? "2026-09-12" : f.verified_date;
-    const echeanceAttendue = fretRafraichi ? "2026-12-11" : "2026-12-08";
-    check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture${fretRafraichi ? " — page Cargo dédiée" : ""}`,
+    const supersedee = cle === "airline_westjet.hold" ? {
+      url: "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
+      quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
+      quote_language: "en", locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage",
+      verified_date: "2026-09-15", review_due: "2026-12-14", history_date: "2026-09-15",
+    } : undefined;
+    const sourceAttendue = supersedee ?? fretRafraichi ?? f;
+    const dateAttendue = supersedee?.verified_date ?? (fretRafraichi ? "2026-09-12" : f.verified_date);
+    const echeanceAttendue = supersedee?.review_due ?? (fretRafraichi ? "2026-12-11" : "2026-12-08");
+    check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture${supersedee ? " — preuve officielle supersédée" : fretRafraichi ? " — page Cargo dédiée" : ""}`,
       !!pol && s.quote === sourceAttendue.quote && s.locator === sourceAttendue.locator && s.quote_language === sourceAttendue.quote_language && s.url === sourceAttendue.url && s.verified_date === dateAttendue,
       JSON.stringify({ attendu: sourceAttendue.quote, lu: s.quote }));
+    if (supersedee) check("  …la preuve précédente reste consignée dans l'historique",
+      s.history?.some((h) => h.date === supersedee.history_date && h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)), JSON.stringify(s.history));
     check(`  …review_due calculé par reviewDueFrom (${echeanceAttendue})`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === echeanceAttendue, `${s.verified_date} → ${s.review_due}`);
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
-    if (seuil) check(`  …plafond ${seuil[0]} kg, chien + contenant — écrit tel que la phrase le dit`,
-      proj?.max_weight_kg === seuil[0] && proj?.weight_includes_carrier === seuil[1], JSON.stringify({ max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
+    if (seuil) check(`  …${seuil[0] === "max" ? "plafond" : "plancher"} ${seuil[1]} kg, chien + contenant — écrit tel que la phrase le dit`,
+      proj?.[`${seuil[0]}_weight_kg`] === seuil[1] && proj?.weight_includes_carrier === seuil[2], JSON.stringify({ max: proj?.max_weight_kg, min: proj?.min_weight_kg, incl: proj?.weight_includes_carrier }));
     else check(`  …aucun plafond écrit (la phrase n'en porte pas, ou Codex l'a refusé)`, pol?.weight_includes_carrier === undefined, JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
   }
   for (const u of d.intentionally_unset) {
@@ -170,13 +182,9 @@ console.log("\n=== Étage 2 — Paris → Vienne, Zurich, Bruxelles : trois plaf
   const bruG = decide("airport_cdg", "airport_bru", GOLDEN_32), bruC = decide("airport_cdg", "airport_bru", CAVALIER_6);
   check("Brussels cabine, Golden 32 kg : refus sûr ; Cavalier 6 kg : sous conditions, plafond 8 chien + contenant",
     canal(bruG, "airline_brussels", "cabin")?.status === "denied" && canal(bruC, "airline_brussels", "cabin")?.status === "accepted_with_conditions" && canal(bruC, "airline_brussels", "cabin")?.weight_limit_includes_carrier === true);
-  /* MESURÉ : la soute Brussels est citée (sous conditions), mais une RÈGLE de poids non citée
-     (`rule_brussels_hold_weight`) demande confirmation pour un Golden de 32 kg. Le moteur garde
-     donc « à confirmer » et NOMME la règle : la citation n'efface pas une incertitude qu'elle ne
-     couvre pas — et ce n'est jamais un refus inventé. */
   const bruH = canal(bruG, "airline_brussels", "hold");
-  check("Brussels soute, Golden 32 kg : citée sous conditions MAIS règle de poids non citée → à confirmer, la règle nommée, jamais un refus",
-    bruH?.status === "confirmation_required" && (bruH?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_brussels_hold_weight"), JSON.stringify(bruH));
+  check("Brussels soute, Golden 32 kg : sous conditions sur la citation officielle, sans règle de poids inventée",
+    bruH?.status === "accepted_with_conditions" && bruH?.weight_limit_kg === undefined, JSON.stringify(bruH));
   check("Brussels fret : volontairement NON décidé (Royaume-Uni seulement) → à confirmer", canal(bruG, "airline_brussels", "cargo")?.status === "confirmation_required");
 }
 
@@ -216,15 +224,17 @@ console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londre
   check("ITA soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
     canal(fcoG, "airline_ita_airways", "hold")?.status === "accepted_with_conditions" && canal(fcoG, "airline_ita_airways", "cargo")?.status === "confirmation_required");
   const laxG = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);
-  check("American cabine, Cavalier 6 kg : sous conditions ; Golden 32 kg : à confirmer, jamais refusé",
-    canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "cabin")?.status === "confirmation_required");
+  check("American cabine : les deux chiens restent sous conditions, sans plafond chiffré inventé",
+    canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "cabin")?.status === "accepted_with_conditions"
+      && canal(laxG, "airline_american", "cabin")?.weight_limit_kg === undefined);
   check("American fret (PetEmbark), Golden 32 kg : preuve présente mais confirmation climatique en juillet ; soute refusée aux voyageurs ordinaires",
     canal(laxG, "airline_american", "cargo")?.status === "confirmation_required"
       && (canal(laxG, "airline_american", "cargo")?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_american_cargo_heat_official_2026_09_12")
       && canal(laxG, "airline_american", "hold")?.status === "denied");
   const lhrG = decide("airport_lhr", "airport_lax", GOLDEN_32), lhrC = decide("airport_lhr", "airport_lax", CAVALIER_6);
-  check("WestJet soute, Golden 32 kg : sous conditions (« most international flights » — jamais une réponse absolue) ; cabine 32 kg à confirmer",
-    canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "cabin")?.status === "confirmation_required");
+  check("WestJet soute, Golden 32 kg : sous conditions avec plafond 45 kg ; cabine sous conditions qualitatives sans plafond inventé",
+    canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "hold")?.weight_limit_kg === 45
+      && canal(lhrG, "airline_westjet", "cabin")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "cabin")?.weight_limit_kg === undefined);
   check("WestJet cabine, Cavalier 6 kg : sous conditions ; fret non décidé → à confirmer",
     canal(lhrC, "airline_westjet", "cabin")?.status === "accepted_with_conditions" && canal(lhrC, "airline_westjet", "cargo")?.status === "confirmation_required", JSON.stringify(canal(lhrC, "airline_westjet", "cabin")));
   const seaG = decide("airport_sea", "airport_lax", GOLDEN_32), seaC = decide("airport_sea", "airport_lax", CAVALIER_6);

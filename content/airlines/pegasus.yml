@@ -58,7 +58,11 @@ ladder:
       fr: Soute — domestique/KKTC uniquement
       es: Bodega — solo nacional/KKTC
       pt: "Porão — só doméstico/KKTC"
-    sub: 8–15 kg / over 15 kg
+    sub:
+      en: Fare varies by weight
+      fr: Tarif selon le poids
+      es: Tarifa según el peso
+      pt: "Tarifa conforme o peso"
 policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
@@ -85,6 +89,20 @@ policies:
           quote_language: en
           locator: Pet transportation fees
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
+    source:
+      url: https://www.flypgs.com/seyahat-sozlugu/evcil-hayvan-ile-seyahat
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture directe de la page nationale officielle
+      history: []
+      quote: "Kafes ve evcil hayvanın toplam ağırlığı 8 kg ağırlığı geçtiği takdirde evcil hayvan (AVIH) havalandırma sistemli kargo kompartımanında taşınır."
+      quote_language: tr
+      locator: Evcil Hayvan ile Seyahat → kabin ve kargo kompartımanı
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -113,7 +131,7 @@ policies:
           locator: Domestic and KKTC → Pet → AVIH(S)/AVIH(B)
     review_state: legacy_unreviewed
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -168,12 +186,12 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not published
-      fr: Non publié
-      es: No publicado
-      pt: "Não publicado"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
       en: No dedicated cargo/unaccompanied-pet-shipment page exists on flypgs.com — only the accompanied cabin/hold products described above.
       fr: Aucune page fret/expédition non accompagnée dédiée n'existe sur flypgs.com — seuls les produits cabine/soute accompagnés décrits ci-dessus.

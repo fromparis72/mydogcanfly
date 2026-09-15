@@ -160,6 +160,29 @@ channels:
       fr: Devis
       es: Cotización
       pt: "Cotação"
+  - placement: hold
+    icon: 🧳
+    name:
+      en: Checked-baggage hold
+      fr: Soute comme bagage enregistré
+      es: Bodega como equipaje facturado
+      pt: "Porão como bagagem despachada"
+    cls: ok
+    statusLabel:
+      en: Under conditions
+      fr: Sous conditions
+      es: Con condiciones
+      pt: "Sob condições"
+    detail:
+      en: Qantas states that some airports allow a pet in the hold as checked baggage, while others require freight; prior acceptance and a suitable crate are required.
+      fr: Qantas indique que certains aéroports permettent le transport en soute comme bagage enregistré, tandis que d'autres imposent le fret ; accord préalable et caisse adaptée requis.
+      es: Qantas indica que algunos aeropuertos permiten llevar la mascota en bodega como equipaje facturado, mientras que otros exigen carga; se requiere aceptación previa y una jaula adecuada.
+      pt: "A Qantas informa que alguns aeroportos permitem o animal no porão como bagagem despachada, enquanto outros exigem carga; são necessários aceitação prévia e caixa adequada."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

@@ -42,11 +42,66 @@ const GOLDEN_32 = { breed_id: "breed_golden_retriever", weight_kg: 32 };
 const CAVALIER_6 = { breed_id: "breed_cavalier_king_charles", weight_kg: 6 };
 const CARLIN_8 = { breed_id: "breed_pug", weight_kg: 8 };
 const BULLY_50 = { breed_id: "breed_american_bully_xl", weight_kg: 50 };
+const GOLDEN_101 = { breed_id: "breed_golden_retriever", weight_kg: 101 };
 const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, destination: dst, dog, date: JUILLET }));
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
 const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
-const SEUILS = { "airline_aerolineas_argentinas.cabin": [9, true], "airline_edelweiss.cabin": [8, true], "airline_tarom.cabin": [8, true] };
+const SEUILS = {
+  "airline_aerolineas_argentinas.cabin": { max: 9, incl: true },
+  "airline_air_astana.cabin": { max: 8, incl: true },
+  "airline_air_astana.hold": { max: 50, incl: true },
+  "airline_air_astana.cargo": { min: 50, incl: true },
+  "airline_croatia_airlines.cabin": { max: 8, incl: true },
+  "airline_edelweiss.cabin": { max: 8, incl: true },
+  "airline_neos.cabin": { max: 10, incl: true },
+  "airline_neos.hold": { min: 10, incl: true },
+  "airline_tarom.cabin": { max: 8, incl: true },
+  "airline_tarom.hold": { min: 8, max: 40, incl: false, minIncl: true },
+  "airline_tarom.cargo": { min: 40, incl: false },
+};
+const SOURCES_REMPLACEES = {
+  "airline_air_astana.cabin": {
+    url: "https://airastana.com/kaz-kk/information/carriage-of-pets",
+    quote: "Мысықтар, кішкентай иттер, тасбақалар және құрлықтағы ұлулар сияқты ұсақ үй жануарларын, олардың тасымалдау қорабымен бірге жалпы салмағы 8 кг (17 фунт) аспаған жағдайда, ұшақ салонында алып жүруге болады.",
+    language: "kk", locator: "accordéon cabine, première phrase",
+  },
+  "airline_air_astana.hold": {
+    url: "https://airastana.com/kaz-ru/information/carriage-of-pets",
+    quote: "При транспортировке животных, перевозимых в зарегистрированном багаже, максимальный допустимый вес составляет 50 кг, включая вес контейнера (клетки); животные, вес которых превышает этот предел, принимаются к перевозке в качестве груза с оформлением авианакладной (air waybill).",
+    language: "ru", locator: "accordéon « Животные, перевозимые в грузовых отсеках », premier paragraphe",
+  },
+  "airline_air_astana.cargo": {
+    url: "https://airastana.com/kaz-ru/information/carriage-of-pets",
+    quote: "При транспортировке животных, перевозимых в зарегистрированном багаже, максимальный допустимый вес составляет 50 кг, включая вес контейнера (клетки); животные, вес которых превышает этот предел, принимаются к перевозке в качестве груза с оформлением авианакладной (air waybill).",
+    language: "ru", locator: "accordéon « Животные, перевозимые в грузовых отсеках », premier paragraphe",
+  },
+  "airline_croatia_airlines.cabin": {
+    url: "https://www.croatiaairlines.com/hr/Prtljaga/zivotinje",
+    quote: "možete ih prevesti u kabini zrakoplova, ako su zadovoljeni svi uvjeti (težina s kavezom do 8 kg, zbroj dimenzija može biti maksimalno do 115 cm)",
+    language: "hr", locator: "Životinje → prijevoz u putničkoj kabini",
+  },
+  "airline_neos.cabin": {
+    url: "https://www.neosair.com/us/en/information/traveling-with-pets",
+    quote: "If the weight of the animal, including the cage or carrier, does not exceed 10 kilograms, you are allowed to transport them in the cabin.",
+    language: "en", locator: "NECESSARY REQUIREMENTS",
+  },
+  "airline_neos.hold": {
+    url: "https://www.neosair.com/us/en/information/traveling-with-pets",
+    quote: "If the weight of the animal, including the cage or carrier, exceeds 10 kilograms, transportation is authorised in the hold of the aircraft, which is pressurised and ventilated.",
+    language: "en", locator: "NECESSARY REQUIREMENTS",
+  },
+  "airline_tarom.hold": {
+    url: "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
+    quote: "Dogs and cats weighing more than 8kg (including the weight of the kennel) can be transported safely in the hold of air-conditioned aircraft. For dogs over 40 kg (cage not included): May be accepted only as cargo.",
+    language: "en", locator: "In the hold → opening paragraph",
+  },
+  "airline_tarom.cargo": {
+    url: "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
+    quote: "For dogs over 40 kg (cage not included): May be accepted only as cargo.",
+    language: "en", locator: "In the hold → Conditions for Transport → For dogs over 40 kg",
+  },
+};
 const REACTIVEES = ["airline_aerolineas_argentinas.cargo", "airline_air_astana.cargo", "airline_edelweiss.cargo", "airline_tarom.hold", "airline_tarom.cargo"];
 
 console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet près ===");
@@ -90,6 +145,28 @@ console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet prè
       else check("  …aucun plafond global ajouté à ce canal", pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined);
       continue;
     }
+    const actuelle = SOURCES_REMPLACEES[cle];
+    if (actuelle) {
+      /* MOUVEMENT NOMMÉ (12–15/09/2026, audit raccordement complet) : la phrase du lot 9 a été
+         remplacée par une source officielle plus précise qui porte ses propres bornes. L'ancienne
+         preuve demeure dans l'historique et le Finder exécute uniquement la nouvelle. */
+      check(`${cle} (LOT9[${f.index}]) : source actuelle plus précise, ancienne preuve conservée`,
+        s.url === actuelle.url && s.quote === actuelle.quote && s.quote_language === actuelle.language
+          && s.locator === actuelle.locator
+          && s.history?.some((h) => h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)),
+        JSON.stringify({ attendu: actuelle, lu: s, ancienne: f }));
+      check(`  …review_due calculé par reviewDueFrom`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline"), `${s.verified_date} → ${s.review_due}`);
+      check(`  …projeté accepted_with_conditions`, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status }));
+      const seuil = SEUILS[cle];
+      check(`  …frontière de poids officielle conservée`,
+        (seuil.max === undefined || proj?.max_weight_kg === seuil.max)
+          && (seuil.min === undefined || proj?.min_weight_kg === seuil.min)
+          && proj?.weight_includes_carrier === seuil.incl
+          && (seuil.minIncl === undefined || proj?.min_weight_includes_carrier === seuil.minIncl),
+        JSON.stringify({ min: proj?.min_weight_kg, max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier, minIncl: proj?.min_weight_includes_carrier }));
+      continue;
+    }
     check(`${cle} (LOT9[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
       !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
@@ -97,19 +174,32 @@ console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet prè
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
-    if (seuil) check(`  …plafond ${seuil[0]} kg, chien + contenant — écrit tel que la phrase le dit`,
-      proj?.max_weight_kg === seuil[0] && proj?.weight_includes_carrier === seuil[1], JSON.stringify({ max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
+    if (seuil) check(`  …frontière de poids officielle écrite telle que la phrase le dit`,
+      (seuil.max === undefined || proj?.max_weight_kg === seuil.max)
+        && (seuil.min === undefined || proj?.min_weight_kg === seuil.min)
+        && proj?.weight_includes_carrier === seuil.incl
+        && (seuil.minIncl === undefined || proj?.min_weight_includes_carrier === seuil.minIncl),
+      JSON.stringify({ min: proj?.min_weight_kg, max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier, minIncl: proj?.min_weight_includes_carrier }));
     else check(`  …aucun plafond écrit (la phrase ne porte pas le chiffre ET la base du poids)`, pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined, JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    if (u.airline_id === "airline_el_al") {
+      const seuil = SEUILS[`airline_el_al.${u.placement}`];
+      check(`non-décision historique airline_el_al.${u.placement} : désormais documentée sur la page nationale en hébreu`,
+        pol?.availability === "offered" && pol?.source?.quote_language === "he"
+          && projetee(u.airline_id, u.placement)?.status === "accepted_with_conditions",
+        JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status, seuil }));
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && (projetee(u.airline_id, u.placement)?.status ?? "confirmation_required") === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
   }
-  const ru = ["cabin", "hold", "cargo"].map((c) => politique("airline_air_astana", c)?.source);
-  check("Air Astana : trois citations en russe, à l'octet près, `quote_language: ru` — jamais traduites",
-    ru.every((s) => s?.quote_language === "ru") && ru[0].quote === "Перевозка домашних животных (кошек или собак) в салоне самолета разрешена" && ru[2].quote === "животные должны быть транспортированы исключительно по грузовой авианакладной");
+  const aaSources = ["cabin", "hold", "cargo"].map((c) => politique("airline_air_astana", c)?.source);
+  check("Air Astana : source nationale kazakhe en cabine, repli national russe en soute et fret — citations jamais traduites",
+    aaSources[0]?.quote_language === "kk" && aaSources.slice(1).every((s) => s?.quote_language === "ru")
+      && aaSources[0]?.quote?.includes("8 кг") && aaSources[2]?.quote?.includes("50 кг"));
   check("Aerolíneas Argentinas : source passagers en anglais, source cargo en espagnol, seuil cabine 9 kg contenant compris",
     ["cabin", "hold"].every((c) => politique("airline_aerolineas_argentinas", c)?.source?.quote_language === "en")
       && politique("airline_aerolineas_argentinas", "cargo")?.source?.quote_language === "es"
@@ -120,15 +210,22 @@ console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet prè
     ["cabin", "hold", "cargo"].every((c) => !politique("airline_batik_air_malaysia", c)?.source?.quote && projetee("airline_batik_air_malaysia", c)?.status === "confirmation_required" && projetee("airline_batik_air_malaysia", c)?.status_cause === "legacy_unreviewed"));
   check("Batik Air Indonesia : cabine et soute REFUSÉES sur citation ; fret volontairement non décidé (refus d'auteur sans phrase → à confirmer)",
     projetee("airline_batik_air_indonesia", "cabin")?.status === "denied" && projetee("airline_batik_air_indonesia", "hold")?.status === "denied" && projetee("airline_batik_air_indonesia", "cargo")?.status === "confirmation_required" && !politique("airline_batik_air_indonesia", "cargo")?.source?.quote);
-  check("EL AL : trois canaux SANS citation (la checklist de cage ne décide aucun canal) — reste le témoin « carte sans canal sourcé » du harnais des entités",
-    ["cabin", "hold", "cargo"].every((c) => !politique("airline_el_al", c)?.source?.quote && projetee("airline_el_al", c)?.status === "confirmation_required"));
+  check("EL AL : trois canaux documentés sur la page nationale, avec frontières 9/100 kg distinctes",
+    projetee("airline_el_al", "cabin")?.max_weight_kg === 9
+      && projetee("airline_el_al", "hold")?.min_weight_kg === 9 && projetee("airline_el_al", "hold")?.max_weight_kg === 100
+      && projetee("airline_el_al", "cargo")?.min_weight_kg === 100
+      && ["cabin", "hold", "cargo"].every((c) => projetee("airline_el_al", c)?.status === "accepted_with_conditions" && politique("airline_el_al", c)?.source?.quote_language === "he"));
   /* Croatia Airlines : sources DATÉES, importées par contrat, échéance calculée — la priorité de relecture est nommée, pas codée. */
   const cr = ["cabin", "hold"].map((c) => politique("airline_croatia_airlines", c)?.source);
-  check("Croatia Airlines : les deux sources sont les documents de première partie DATÉS (manuel 24.01.2023, politique de service oct. 2019), URL intactes, échéance calculée et non copiée",
-    /24\.01\.2023\.pdf$/.test(cr[0]?.url ?? "") && /oct19\.pdf\.pdf$/.test(cr[1]?.url ?? "") && cr.every((s) => s?.review_due === reviewDueFrom("2026-09-09", "airline")));
+  check("Croatia Airlines : la cabine vient de la page nationale actuelle avec l'ancien manuel daté en historique ; la soute conserve la politique de service 2019",
+    /croatiaairlines\.com\/hr\/Prtljaga\/zivotinje$/.test(cr[0]?.url ?? "")
+      && cr[0]?.history?.some((h) => h.note?.includes("24.01.2023.pdf"))
+      && /oct19\.pdf\.pdf$/.test(cr[1]?.url ?? "") && cr.every((s) => s?.review_due === reviewDueFrom("2026-09-09", "airline")));
   const ne = projetee("airline_neos", "cabin"), aa = projetee("airline_air_astana", "cabin");
-  check("Neos 10 kg et Air Astana 8 kg : cabines PROJETÉES sous conditions SANS plafond — chiffres absents des phrases citées",
-    ne?.status === "accepted_with_conditions" && ne?.max_weight_kg === undefined && aa?.status === "accepted_with_conditions" && aa?.max_weight_kg === undefined, JSON.stringify({ ne, aa }));
+  check("Neos 10 kg et Air Astana 8 kg : cabines PROJETÉES sous conditions avec leurs plafonds officiels exécutables",
+    ne?.status === "accepted_with_conditions" && ne?.max_weight_kg === 10 && ne?.weight_includes_carrier === true
+      && aa?.status === "accepted_with_conditions" && aa?.max_weight_kg === 8 && aa?.weight_includes_carrier === true,
+    JSON.stringify({ ne, aa }));
 }
 
 console.log("\n=== Étage 2 — Madrid → Buenos Aires ; Francfort → Almaty ; Zurich → Palma ; Bucarest → Paris ===");
@@ -140,21 +237,22 @@ console.log("\n=== Étage 2 — Madrid → Buenos Aires ; Francfort → Almaty ;
   check("Aerolíneas Argentinas, Golden 32 kg : soute sous conditions (« se trasporta en bodega ») et fret RÉACTIVÉ → sous conditions",
     canal(eze, "airline_aerolineas_argentinas", "hold")?.status === "accepted_with_conditions" && canal(eze, "airline_aerolineas_argentinas", "cargo")?.status === "accepted_with_conditions");
   const ala = decide("airport_fra", "airport_ala", GOLDEN_32), alaC = decide("airport_fra", "airport_ala", CAVALIER_6);
-  check("Air Astana (Francfort → Almaty) : cabine Cavalier 6 kg sous conditions SANS plafond ; soute et fret Golden 32 kg sous conditions (fret RÉACTIVÉ, portée nommée : destinations où le bagage est interdit)",
-    canal(alaC, "airline_air_astana", "cabin")?.status === "accepted_with_conditions" && canal(alaC, "airline_air_astana", "cabin")?.weight_limit_kg === undefined && canal(ala, "airline_air_astana", "hold")?.status === "accepted_with_conditions" && canal(ala, "airline_air_astana", "cargo")?.status === "accepted_with_conditions");
+  check("Air Astana (Francfort → Almaty) : cabine Cavalier sous conditions au plafond 8 ; soute Golden sous conditions au plafond 50 ; fret Golden hors portée > 50 → à confirmer",
+    canal(alaC, "airline_air_astana", "cabin")?.status === "accepted_with_conditions" && canal(alaC, "airline_air_astana", "cabin")?.weight_limit_kg === 8 && canal(ala, "airline_air_astana", "hold")?.status === "accepted_with_conditions" && canal(ala, "airline_air_astana", "hold")?.weight_limit_kg === 50 && canal(ala, "airline_air_astana", "cargo")?.status === "confirmation_required"
+      && canal(ala, "airline_air_astana", "cargo")?.confirmation_causes?.some((x) => x.code === "weight_scope_unmet"));
   const ag = canal(ala, "airline_air_astana", "cabin");
-  check("Air Astana cabine, Golden 32 kg : « à confirmer », règle globale héritée NOMMÉE (`rule_global_cabin_weight_cap`) — jamais un refus prouvé",
-    ag?.status === "confirmation_required" && (ag?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"), JSON.stringify(ag));
+  check("Air Astana cabine, Golden 32 kg : refus sûr au-dessus du plafond officiel de 8 kg",
+    ag?.status === "denied" && !(ag?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"), JSON.stringify(ag));
   const pmi = decide("airport_zrh", "airport_pmi", GOLDEN_32), pmiC = decide("airport_zrh", "airport_pmi", CAVALIER_6);
   const edC = canal(pmiC, "airline_edelweiss", "cabin");
   check("Edelweiss (Zurich → Palma) : cabine Cavalier 6 kg sous conditions, plafond 8 contenant compris ; Golden 32 kg : cabine refusée, soute sous conditions, fret RÉACTIVÉ (SWISS WorldCargo) → sous conditions",
     edC?.status === "accepted_with_conditions" && edC?.weight_limit_kg === 8 && edC?.weight_limit_includes_carrier === true && canal(pmi, "airline_edelweiss", "cabin")?.status === "denied" && canal(pmi, "airline_edelweiss", "hold")?.status === "accepted_with_conditions" && canal(pmi, "airline_edelweiss", "cargo")?.status === "accepted_with_conditions", JSON.stringify(edC));
   const otp = decide("airport_otp", "airport_cdg", GOLDEN_32), otpC = decide("airport_otp", "airport_cdg", CAVALIER_6), otpB = decide("airport_otp", "airport_cdg", BULLY_50);
   const taC = canal(otpC, "airline_tarom", "cabin");
-  check("TAROM (Bucarest → Paris) : cabine Cavalier 6 kg sous conditions, plafond 8 cage comprise ; Golden 32 kg : cabine refusée, soute RÉACTIVÉE → sous conditions ; fret RÉACTIVÉ → sous conditions",
-    taC?.status === "accepted_with_conditions" && taC?.weight_limit_kg === 8 && taC?.weight_limit_includes_carrier === true && canal(otp, "airline_tarom", "cabin")?.status === "denied" && canal(otp, "airline_tarom", "hold")?.status === "accepted_with_conditions" && canal(otp, "airline_tarom", "cargo")?.status === "accepted_with_conditions", JSON.stringify(taC));
-  check("TAROM, Bully 50 kg : soute sous conditions SANS plafond (le seuil de 40 kg du fret n'est pas dans la phrase) — le fret reste « sous conditions », jamais un renvoi automatique",
-    canal(otpB, "airline_tarom", "hold")?.status === "accepted_with_conditions" && canal(otpB, "airline_tarom", "hold")?.weight_limit_kg === undefined && canal(otpB, "airline_tarom", "cargo")?.status === "accepted_with_conditions");
+  check("TAROM (Bucarest → Paris) : cabine Cavalier au plafond 8 cage comprise ; Golden 32 kg en soute, mais fret hors portée > 40 → à confirmer",
+    taC?.status === "accepted_with_conditions" && taC?.weight_limit_kg === 8 && taC?.weight_limit_includes_carrier === true && canal(otp, "airline_tarom", "cabin")?.status === "denied" && canal(otp, "airline_tarom", "hold")?.status === "accepted_with_conditions" && canal(otp, "airline_tarom", "hold")?.weight_limit_kg === 40 && canal(otp, "airline_tarom", "cargo")?.status === "confirmation_required", JSON.stringify(taC));
+  check("TAROM, Bully 50 kg : soute refusée au plafond chien seul de 40 kg ; fret sous conditions au-dessus de 40 kg",
+    canal(otpB, "airline_tarom", "hold")?.status === "denied" && canal(otpB, "airline_tarom", "cargo")?.status === "accepted_with_conditions");
 }
 
 console.log("\n=== Étage 2 — Zagreb → Francfort, Londres ; Kuala Lumpur → Penang ; Tel-Aviv → Paris ===");
@@ -169,9 +267,15 @@ console.log("\n=== Étage 2 — Zagreb → Francfort, Londres ; Kuala Lumpur →
   const pen = decide("airport_kul", "airport_pen", GOLDEN_32), penC = decide("airport_kul", "airport_pen", CAVALIER_6);
   check("Batik Air Malaysia (Kuala Lumpur → Penang), Golden et Cavalier : les trois canaux « à confirmer », cause legacy_unreviewed — jamais un refus, jamais un oui",
     [pen, penC].every((x) => ["cabin", "hold", "cargo"].every((c) => canal(x, "airline_batik_air_malaysia", c)?.status === "confirmation_required" && (canal(x, "airline_batik_air_malaysia", c)?.confirmation_causes ?? []).some((k) => k.code === "legacy_unreviewed"))));
-  const tlv = decide("airport_tlv", "airport_cdg", GOLDEN_32), tlvC = decide("airport_tlv", "airport_cdg", CAVALIER_6);
-  check("EL AL (Tel-Aviv → Paris), Golden et Cavalier : les trois canaux « à confirmer », cause legacy_unreviewed",
-    [tlv, tlvC].every((x) => ["cabin", "hold", "cargo"].every((c) => canal(x, "airline_el_al", c)?.status === "confirmation_required")));
+  const tlv = decide("airport_tlv", "airport_cdg", GOLDEN_32), tlvC = decide("airport_tlv", "airport_cdg", CAVALIER_6), tlv101 = decide("airport_tlv", "airport_cdg", GOLDEN_101);
+  check("EL AL (Tel-Aviv → Paris) : Cavalier 6 kg en cabine ; Golden 32 kg en soute ; chien 101 kg en fret, chaque autre canal borné sans extrapolation",
+    canal(tlvC, "airline_el_al", "cabin")?.status === "accepted_with_conditions"
+      && canal(tlvC, "airline_el_al", "hold")?.status === "confirmation_required"
+      && canal(tlv, "airline_el_al", "cabin")?.status === "denied"
+      && canal(tlv, "airline_el_al", "hold")?.status === "accepted_with_conditions"
+      && canal(tlv, "airline_el_al", "cargo")?.status === "confirmation_required"
+      && canal(tlv101, "airline_el_al", "hold")?.status === "denied"
+      && canal(tlv101, "airline_el_al", "cargo")?.status === "accepted_with_conditions");
   /* Batik Air Indonesia et Neos ne desservent aucun des trajets essayés : éprouvés à l'étage 1 sur la donnée projetée. */
 }
 
@@ -190,8 +294,11 @@ console.log("\n=== Clôture : les 102 compagnies examinées, ce que cela veut di
      comptés séparément dans la réconciliation 306 = 102 × 3. */
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq politiques gagnent leur
      citation officielle ; 224 → 229 citées et 78 → 73 sans phrase. */
-  check("229 politiques citées sur 302 — 73 politiques restent sans phrase",
-    citees === 229 && politiques === 302, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit raccordement complet) : les quatre canaux qui n'avaient
+     pas encore de bloc explicite sont matérialisés ; les preuves nationales plus récentes portent
+     le total à 251 canaux cités sur les 306 décisions attendues (102 × 3). */
+  check("251 politiques citées sur 306 — chaque compagnie porte exactement trois canaux",
+    citees === 251 && politiques === 306, `${citees} / ${politiques}`);
   const neufLots = ["v3", "lots-2-3", "lot-4", "lot-5", "lot-6", "lot-7", "lot-8", "lot-9"].map((l) => `test-baselines/import-strict-${l}-apres.json`);
   check("la chaîne des baselines figées est complète, de l'import V3 au lot 9", neufLots.every((f) => { try { readFileSync(f); return true; } catch { return false; } }), neufLots.join(", "));
 }

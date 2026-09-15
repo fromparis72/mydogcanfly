@@ -144,6 +144,9 @@ policies:
           quote_language: fr
           locator: "Voyage avec un animal de compagnie → Dans la soute → Frais"
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 1).
     # Effet attendu : Passenger hold is a conditional path, not an automatic acceptance on every marketed Air Canada itinerary.
     # Portée nommée : Air Canada/ Rouge or Jazz operated itinerary; codeshare flights are excluded; pet plus kennel must not exceed 45 kg
@@ -154,23 +157,33 @@ policies:
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft."
-      quote_language: en
-      locator: "Travelling with your Pet → In the Baggage Compartment"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html ;
+            citation « Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft. » ;
+            localisateur « Travelling with your Pet → In the Baggage Compartment ».
+            Remplacée par la limite officielle de poids du même canal.
+      quote: "Poids maximal | Jusqu'à 45 kg (100 lb) (poids total de l'animal et de la cage)"
+      quote_language: fr
+      locator: "Voyage avec un animal de compagnie → Dans la soute → restrictions de poids et de dimension"
   cargo:
     availability: offered
+    min_weight_kg: 45
+    weight_min_bound: gt
+    weight_includes_carrier: true
     source:
-      url: https://www.aircanada.com/cargo/all-products/ac-animals?lang=fr
+      url: https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html
       source_type: official_website
       verified_date: 2026-09-12
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
       history: []
-      quote: "Tous les animaux dont le transport a été réservé avec AC Animaux voyagent en soute, avec les bagages et d’autres marchandises, et bénéficient d’une manutention spéciale pendant le transport terrestre."
+      quote: "Veuillez communiquer avec Air Canada Cargo (AC Animaux) pour connaître les tarifs et pour obtenir de l'aide quant à l'envoi de cages dont le poids dépasse 45 kg (100 lb) ou les dimensions linéaires dépassent 292 cm (115 po)."
       quote_language: fr
-      locator: "titre de page « Air Canada Cargo - AC Animaux » et section « Voyage en avion avec Air Canada Cargo »"
+      locator: "Voyage avec un animal de compagnie → Dans la soute → note 1"
 channels:
   - placement: cabin
     icon: 🐾

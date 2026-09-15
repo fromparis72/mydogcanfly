@@ -262,16 +262,22 @@ console.log("\n=== Compagnie opératrice ===");
     check(`le détail s'ouvre (${liens[0].split("#")[0]})`, r?.status() === 200, `HTTP ${r?.status()}`);
     await q.close();
   }
-  /* Et la fiche compagnie elle-même, atteinte directement : c'est là que le tarif de transport
-     reparaîtrait s'il devait reparaître. */
+  /* Et la fiche compagnie elle-même, atteinte directement : les tarifs structurés et sourcés y
+     sont désormais publiés. L'ancien témoin interdisait tout montant et figeait l'état transitoire
+     antérieur au contrat tarifaire ; il exige maintenant le tarif Air France effectivement relu,
+     ainsi que le fret officiellement ouvert sans prix chiffré inventé. */
   const q2 = await nouvellePage();
   const r2 = await q2.goto(`${BASE}/airlines/air-france/`, { waitUntil: "domcontentloaded" });
   await capturer(q2, "3-fiche-compagnie-air-france");
   check("la fiche compagnie s'ouvre", r2?.status() === 200, `HTTP ${r2?.status()}`);
-  const fiche = (await q2.textContent("body")) ?? "";
-  check("la fiche compagnie ne publie AUCUN tarif de transport", !MONTANT.test(fiche),
-    (fiche.match(MONTANT) ?? []).join(" | "));
-  check("la fiche compagnie dit son incertitude", /to confirm with the airline/i.test(fiche));
+  const tarifCabine = await q2.locator(".mini[data-placement='cabin'] .amt").innerText().catch(() => "");
+  check("la fiche compagnie publie le tarif cabine Air France relu et le qualifie comme officiel",
+    /official published fare/i.test(tarifCabine) && /(?:€\s*70|70\s*€)/.test(tarifCabine), tarifCabine);
+  const fret = q2.locator(".mini[data-placement='cargo']");
+  const tarifFret = await fret.locator(".amt").innerText().catch(() => "");
+  check("la fiche compagnie publie le fret sourcé sans lui inventer de montant",
+    await fret.getAttribute("data-status") === "accepted_with_conditions"
+      && !MONTANT.test(tarifFret), tarifFret);
   await q2.close();
   await p.close();
 }
@@ -324,9 +330,7 @@ for (const [nom, slug, gouvernemental] of [["France", "fr", true], ["Brésil", "
 /* ---- 9. LE SCORE DE COMPATIBILITÉ, CONSTATÉ — un effet de la frontière, pas de la route ------ */
 console.log("\n=== Le score affiché en tête de rapport ===");
 {
-  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 4 });
-  const m = texte.match(/(\d{1,3})\s*%/);
-  const score = m ? Number(m[1]) : null;
+  const { p } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 4 });
   /* MESURÉ HORS NAVIGATEUR le 04/09/2026, sur la MÊME route et les MÊMES 22 cartes :
    *   données réelles  → score 10, 0 compagnie acceptante
    *   données citées   → score 76, 20 compagnies acceptantes
@@ -343,8 +347,11 @@ console.log("\n=== Le score affiché en tête de rapport ===");
    *
    * Il reste NON VIDE : la réponse de tête, elle, doit être présente et dire « pas encore
    * établi ». Sans cette moitié, une page blanche satisferait le contrôle. */
-  check("AUCUN pourcentage n'est affiché en tête de rapport — la jauge est masquée",
-    score === null, `score affiché : ${score}%`);
+  /* Chercher n'importe quel pourcentage dans tout le résultat est trop large : une citation de
+     compagnie peut légitimement en contenir un. La propriété visée est l'absence de la jauge,
+     donc on interroge son élément propre. */
+  check("AUCUNE jauge de compatibilité n'est affichée en tête de rapport",
+    await p.locator(".report__score").count() === 0);
   const reponse = await p.$eval(".report__answer", (n) => n.textContent.trim()).catch(() => "");
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3) : sur ce trajet, des canaux sont désormais
      prouvés SOUS CONDITIONS, et la réponse de tête dit « Oui — sous conditions » au lieu de « pas
@@ -439,12 +446,12 @@ console.log("\n=== Fiche compagnie : bandeau sur sa ligne, pastilles courtes, au
 console.log("\n=== Accueil : T1 / T2 / T3 verbatim, aucun débordement à 320 / 360 / 375 / 400 px, quatre langues ===");
 {
   const TEXTES = {
-    "": { q: "Can my dog fly?", acc: "Travelling together means caring about every detail.", sub: "Every airline has its own rules for travel in the cabin, in the hold or as cargo, along with breed restrictions and destination requirements. MyDogCanFly.com brings this information together, clearly separating what is confirmed from what still needs to be checked." },
-    "/fr": { q: "Mon chien peut-il prendre l’avion ?", acc: "Voyager ensemble, c’est prendre soin de chaque détail.", sub: "Chaque compagnie applique ses propres règles pour le transport en cabine, en soute ou par fret, auxquelles s’ajoutent les restrictions liées à la race et les formalités de destination. MyDogCanFly.com rassemble ces informations en distinguant clairement ce qui est confirmé de ce qui doit encore être vérifié." },
-    "/es": { q: "¿Puede viajar mi perro en avión?", acc: "Viajar juntos es cuidar cada detalle.", sub: "Cada aerolínea aplica sus propias normas para el transporte en cabina, en bodega o como carga, además de las restricciones relacionadas con la raza y los requisitos del destino. MyDogCanFly.com reúne esta información y distingue claramente lo que está confirmado de lo que aún debe comprobarse." },
-    "/pt": { q: "Meu cachorro pode viajar de avião?", acc: "Viajar juntos é cuidar de cada detalhe.", sub: "Cada companhia aérea aplica suas próprias regras para o transporte na cabine, no porão ou como carga, além das restrições relacionadas à raça e das exigências do destino. MyDogCanFly.com reúne essas informações e distingue claramente o que está confirmado do que ainda precisa ser verificado." },
+    "": { q: "Can my dog fly?", acc: "Check which airlines allow dogs on your route", sub: "Compare cabin, hold and cargo options, breed restrictions, and destination health and entry rules. Confirmed information is sourced and dated; anything uncertain is clearly flagged." },
+    "/fr": { q: "Ton chien peut-il prendre l’avion ?", acc: "Vérifie quelles compagnies l’acceptent sur ton trajet", sub: "Compare les options en cabine, en soute ou en fret, les restrictions de race et les formalités sanitaires et administratives. Chaque information confirmée est sourcée et datée ; ce qui reste incertain est clairement signalé." },
+    "/es": { q: "¿Puede volar mi perro?", acc: "Revisa qué aerolíneas lo aceptan en tu ruta", sub: "Compara en una sola búsqueda las opciones en cabina, bodega o carga, las restricciones de raza y los requisitos sanitarios y de entrada. La información confirmada incluye fuentes y fechas; cualquier punto pendiente aparece claramente marcado." },
+    "/pt": { q: "Meu cachorro pode voar?", acc: "Confira quais companhias aéreas o aceitam na sua rota", sub: "Compare em uma única busca as opções de cabine, porão ou carga, as restrições de raça e os requisitos sanitários e de entrada. As informações confirmadas incluem fonte e data; qualquer ponto pendente aparece claramente marcado." },
   };
-  const ANCIENS = /still needs checking|ce qu'il faut vérifier|aún hay que comprobar|ainda é preciso verificar|Can your dog fly|Ton chien peut-il|Puede volar tu perro|O teu cão pode voar/;
+  const ANCIENS = /still needs checking|ce qu'il faut vérifier|aún hay que comprobar|ainda é preciso verificar|Can your dog fly|Puede volar tu perro|O teu cão pode voar/;
   const mesurer = (p) => p.evaluate(() => {
     const cw = document.documentElement.clientWidth, dep = [];
     for (const el of document.querySelectorAll("h1, h2, h3, a, button, .mdcf-container, .mdcf-card, p")) {
@@ -1084,7 +1091,14 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     const corps = await p.textContent("body");
     const resultat = (await p.textContent("#dfx-result").catch(() => "")) ?? "";
     check("destinations pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
-    check("destinations pt : l'outil a répondu quelque chose", resultat.trim().length > 20, `${resultat.trim().length} caractères`);
+    /* Une réponse métier valide peut tenir exactement en vingt caractères selon les données du
+       jour (« aucune route directe », par exemple). La longueur arbitraire ne prouve rien : on
+       exige que la zone soit visible, non vide et sortie de son état de chargement. */
+    check("destinations pt : l'outil a rendu une réponse métier, pas un chargement suspendu",
+      await p.locator("#dfx-result:not([hidden])").count() === 1
+        && resultat.trim().length > 0
+        && await p.locator("#dfx-result .dfx__loading").count() === 0,
+      `${resultat.trim().length} caractères`);
     exiger("destinations pt", "packages/ui/src/components/DestinationFinder.astro", corps);
     await capturer(p, "pt-destinations");
     await p.close();

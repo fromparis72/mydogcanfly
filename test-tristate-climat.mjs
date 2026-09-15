@@ -247,18 +247,18 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
  * se voyait pas. Elle compte désormais ce qu'elle annonce — la cause `estimated_climate`. */
 {
   const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
-  /* MOUVEMENT NOMMÉ — LA FRONTIÈRE S'APPLIQUE AUX RÈGLES (05/09/2026).
+  /* MOUVEMENT NOMMÉ — AUDIT DE RACCORDEMENT (15/09/2026).
    *
-   * `rule_tk_brachy_hold` fermait la soute et le fret d'un carlin. Elle n'est pas citée : elle ne
-   * décide donc plus, et les deux canaux passent « à confirmer » en NOMMANT la règle. Le visiteur
-   * n'est pas laissé sans rien — l'avis de sécurité brachycéphale, lui, reste publié, et la cause
-   * `breed_policy_unreviewed` dit que notre donnée de race n'a pas été revérifiée. */
+   * `rule_tk_brachy_hold` généralisait une restriction de race à la soute et au fret sans phrase
+   * propre à ces deux canaux. Elle a été retirée. Le moteur conserve la prudence par la cause
+   * générique `breed_policy_unreviewed`, sans attribuer cette réserve à une règle inexistante. */
   for (const pl of ["hold", "cargo"]) {
     const p = stOf(est, "airline_turkish", pl);
     check(`carlin : ${pl} n'est plus refusé sur une règle non citée`,
       p?.status === "confirmation_required", JSON.stringify(p?.status));
-    check(`carlin : ${pl} NOMME la règle de race qui le fermait`,
-      (p?.confirmation_causes ?? []).some((c) => c.code === "rule_official_unquoted" && c.rule_id === "rule_tk_brachy_hold"),
+    check(`carlin : ${pl} nomme l'incertitude de race sans inventer une règle de canal`,
+      (p?.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed")
+        && !(p?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_tk_brachy_hold"),
       JSON.stringify((p?.confirmation_causes ?? []).map((c) => c.code)));
   }
   const tousLesCanaux = est.airlines.flatMap((a) => a.placements);
@@ -345,8 +345,12 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      soute et fret reçoivent les phrases officielles fournies par l'éditeur. Norwegian fret est
      explicitement refusé par sa page cargo. 41 → 39 confirmations, 16 → 13 de provenance et
      38 → 37 de race ; la règle seule Air Algérie et l'absence d'inexpliquée restent inchangées. */
-  check("carlin : 39 confirmations — 13 de provenance, 37 de race, 1 par règle non citée seule, aucune inexpliquée",
-    confirmations.length === 39 && provenance === 13 && race === 37 && parRegleSeule.length === 1 && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ — AUDIT DE RACCORDEMENT (15/09/2026) : le retrait des généralisations
+     brachycéphales et le raccordement des politiques font passer 39 → 37 confirmations et
+     13 → 9 causes de provenance. Les 37 réserves de race demeurent, mais aucune n'est désormais
+     attribuée à une règle non citée ou étendue au mauvais canal. */
+  check("carlin : 37 confirmations — 9 de provenance, 37 de race, aucune inexpliquée",
+    confirmations.length === 37 && provenance === 9 && race === 37 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 
@@ -482,25 +486,13 @@ console.log("\n=== 7 ter. Tri : l'accepté RÉEL passe avant le « à confirmer 
 
 console.log("\n=== 7 quater. Bandeau ⇔ cartes : l'embargo affiché a toujours une carte marquée (contre-revue v4) ===");
 {
-  /* kbTK + 35° fournis : Turkish a la cabine fermée au POIDS et la soute/le fret par l'embargo.
-     La v4 démarquait la carte (garde « seule raison ») pendant que le bandeau affirmait « les
-     compagnies concernées sont marquées ». L'invariant est désormais structurel. */
-  /* MOUVEMENT NOMMÉ (05/09/2026) : les DEUX règles que ce témoin invoque sont désormais citées.
-     Depuis la frontière côté règles, ni `rule_tk_cabin_weight` ni `rule_tk_summer_embargo` — URL
-     officielle, aucune phrase — ne referme quoi que ce soit sur la base réelle : le témoin
-     n'avait plus ni cabine fermée au poids, ni embargo à marquer. L'invariant qu'il défend, lui,
-     est intact : quand le bandeau AFFIRME un embargo, une carte au moins doit le porter. */
-  const kbCiteeTK = citerRegles("rule_tk_cabin_weight", "rule_tk_summer_embargo");
+  /* La règle climatique citée suffit à éprouver l'invariant : quand le bandeau AFFIRME un
+     embargo, une carte au moins doit le porter. L'ancien témoin invoquait aussi une règle cabine
+     de poids devenue redondante avec la politique raccordée, et désormais supprimée. */
+  const kbCiteeTK = citerRegles("rule_tk_summer_embargo");
   const kbTK = { ...kbCiteeTK, airlines: new Map([...kbCiteeTK.airlines].filter(([id]) => id === "airline_turkish")) };
   const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
   const rep = explain(dec, "fr");
-  /* v7 (contre-revue v6) : la disjonction « OU cabine fermée » rendait le témoin vert même si le
-     motif `weight_limit` disparaissait — le libellé affirme le POIDS, la preuve exige le motif. */
-  check(
-    "témoin : la cabine est fermée pour une AUTRE cause (poids)",
-    (rep.airlines[0]?.deny_reasons ?? []).includes("weight_limit"),
-    JSON.stringify(rep.airlines[0]?.deny_reasons),
-  );
   check("climate.embargo=true (règle déclenchée sur température fournie)", rep.climate?.embargo === true, JSON.stringify(rep.climate));
   check("…ET la carte est marquée heat_embargo — le bandeau tient sa promesse",
     rep.airlines.some((a) => a.heat_embargo === true), JSON.stringify(rep.airlines.map((a) => ({ id: a.airline_id, he: a.heat_embargo }))));

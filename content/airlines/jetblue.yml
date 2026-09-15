@@ -113,7 +113,9 @@ policies:
       quote_language: en
       locator: Section 8 · Acceptance of Animals
   cargo:
-    availability: not_offered
+    # L'absence de bagage enregistré est prouvée ; celle d'un produit fret
+    # séparé ne l'est pas.
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -168,17 +170,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No ofrecido
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No live-pet cargo service — cabin only.
-      fr: Aucun service fret animalier — cabine uniquement.
-      es: Sin servicio de carga de mascotas vivas; solo cabina.
-      pt: "Sem serviço de carga de animais vivos — somente cabine."
+      en: JetBlue refuses checked baggage, but the reviewed source does not establish a separate cargo decision.
+      fr: JetBlue refuse le bagage enregistré, mais la source relue n'établit pas de décision séparée pour le fret.
+      es: JetBlue rechaza el equipaje facturado, pero la fuente revisada no establece una decisión separada para la carga.
+      pt: "A JetBlue recusa bagagem despachada, mas a fonte revisada não estabelece uma decisão separada para carga."
     fee:
       en: —
       fr: —

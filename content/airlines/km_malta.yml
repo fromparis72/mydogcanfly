@@ -66,7 +66,11 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 32 kg"
+    sub:
+      en: point-to-point · quote
+      fr: point-à-point · sur devis
+      es: punto a punto · presupuesto
+      pt: "ponto a ponto · orçamento"
 policies:
   cabin:
     fares:
@@ -92,15 +96,24 @@ policies:
           quote_language: mt
           locator: section PETC
     availability: offered
+    max_weight_kg: 10
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://kmmaltairlines.com/en/travelling-with-pets
+      url: https://passaggi.kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Dogs and cats (up to 10kg)
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par une phrase explicite sur le poids total"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ;
+            citation « Dogs and cats (up to 10kg) » ; localisateur « Travelling with Pets → Pets in Cabin ».
+            Remplacée par la phrase officielle qui précise que les 10 kg incluent le contenant.
+      quote: It's important to note that pets, including the carrier, can weigh up to 10kg in total
       quote_language: en
       locator: Travelling with Pets → Pets in Cabin
   hold:
@@ -129,15 +142,24 @@ policies:
           quote_language: en
           locator: section AVIH, bloc « FEES », puces 1 a 3 et notes
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: false
     source:
-      url: https://kmmaltairlines.com/en/travelling-with-pets
+      url: https://passaggi.kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Dogs and cats weighing up to 32kg
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page officielle courante"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ;
+            citation « Dogs and cats weighing up to 32kg » ; localisateur « Travelling with Pets → Pet as Checked Baggage ».
+            Remplacée par la phrase complète de la surface officielle courante.
+      quote: Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.
       quote_language: en
       locator: Travelling with Pets → Pet as Checked Baggage
   cargo:

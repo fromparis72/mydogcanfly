@@ -71,7 +71,7 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: "no"
+    cls: warn
     statusLabel:
       en: Not published
       fr: Non publié
@@ -94,7 +94,7 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: "no"
+    cls: warn
     statusLabel:
       en: Implied, never described
       fr: Sous-entendu, jamais décrit
@@ -117,7 +117,7 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: "no"
+    cls: warn
     statusLabel:
       en: Not published
       fr: Non publié

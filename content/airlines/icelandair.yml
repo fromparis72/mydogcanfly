@@ -57,11 +57,22 @@ ladder:
       pt: "somente cães de serviço"
 policies:
   cabin:
-    availability: not_offered
+    review_state: legacy_unreviewed
   hold:
-    availability: not_offered
+    availability: offered
+    source:
+      url: https://www.icelandair.com/is-is/adstod/seradstod/ferdast-med-dyr-i-farangursrymi/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture de la page nationale islandaise
+      history: []
+      quote: "Dýr eru velkomin í farangursrými í innanlands."
+      quote_language: is
+      locator: section « Dýr í farangursrými → Innanlandsflug »
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -70,17 +81,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Service dogs only
-      fr: Chiens d'assistance
-      es: Solo perros de servicio
-      pt: "Somente cães de serviço"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No pets are accepted in the cabin. Recognised service dogs (guide, hearing, diabetic-alert, mobility, autism) are welcome free of charge.
-      fr: Aucun animal n'est accepté en cabine. Les chiens d'assistance reconnus (guide, audition, alerte diabétique, mobilité, autisme) sont admis gratuitement.
-      es: No se aceptan mascotas en cabina. Los perros de servicio reconocidos (guía, audición, alerta de diabetes, movilidad, autismo) se admiten gratis.
-      pt: "Nenhum animal é aceito na cabine. Cães de serviço reconhecidos (guia, audição, alerta de diabetes, mobilidade, autismo) são bem-vindos gratuitamente."
+      en: The reviewed official sources do not establish a general cabin decision for ordinary pets.
+      fr: Les sources officielles relues n'établissent pas de décision cabine générale pour les animaux ordinaires.
+      es: Las fuentes oficiales revisadas no establecen una decisión general de cabina para mascotas ordinarias.
+      pt: "As fontes oficiais revisadas não estabelecem uma decisão geral de cabine para animais comuns."
     fee:
       en: "—"
       fr: "—"
@@ -93,12 +104,12 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: "no"
+    cls: ok
     statusLabel:
-      en: Not accepted
-      fr: Non accepté
-      es: No aceptado
-      pt: "Não aceitas"
+      en: Domestic only
+      fr: Vols intérieurs uniquement
+      es: Solo vuelos nacionales
+      pt: "Somente voos domésticos"
     detail:
       en: Since 1 November 2024, following fleet changes, animals are no longer carried in the hold on international flights. Pets remain allowed in the hold on domestic Iceland routes.
       fr: Depuis le 1er novembre 2024, à la suite de changements de flotte, les animaux ne sont plus transportés en soute sur les vols internationaux. Les animaux restent admis en soute sur les vols intérieurs islandais.
@@ -116,17 +127,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No ofrecido
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: Icelandair's passenger service offers no pet transport as cargo on international routes.
-      fr: Le service passagers d'Icelandair ne propose pas de transport d'animaux en fret sur les routes internationales.
-      es: El servicio de pasajeros de Icelandair no ofrece transporte de mascotas como carga en rutas internacionales.
-      pt: "O serviço de passageiros da Icelandair não oferece transporte de animais como carga em rotas internacionais."
+      en: The reviewed passenger sources do not establish a separate live-animal cargo decision.
+      fr: Les sources passagers relues n'établissent pas de décision séparée pour le fret d'animaux vivants.
+      es: Las fuentes de pasajeros revisadas no establecen una decisión separada para la carga de animales vivos.
+      pt: "As fontes de passageiros revisadas não estabelecem uma decisão separada para a carga de animais vivos."
     fee:
       en: "—"
       fr: "—"

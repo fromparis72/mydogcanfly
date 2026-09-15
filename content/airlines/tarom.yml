@@ -59,10 +59,10 @@ ladder:
       es: Bodega
       pt: "Porão"
     sub:
-      en: 8–75 kg crate incl.
-      fr: 8–75 kg caisse comprise
-      es: 8–75 kg jaula incl.
-      pt: "8–75 kg com a caixa"
+      en: "> 8 kg · conditions apply"
+      fr: "> 8 kg · sous conditions"
+      es: "> 8 kg · con condiciones"
+      pt: "> 8 kg · sob condições"
   - flex: 30
     color: "#9a6410"
     label:
@@ -143,6 +143,12 @@ policies:
           quote_language: en
           locator: Hold pet charges
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    min_weight_kg: 8
+    weight_min_bound: gt
+    min_weight_includes_carrier: true
+    max_weight_kg: 40
+    weight_limit_bound: lte
+    weight_includes_carrier: false
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 16).
     # Effet attendu : TAROM hold is a documented conditional route; A320 and brachycephalic restrictions apply.
     # Portée nommée : Dogs and cats over 8 kg may travel in the hold, subject to advance confirmation, aircraft, breed, weight, crate, health, route and documentation restrictions.
@@ -153,12 +159,21 @@ policies:
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline material"
-      history: []
-      quote: "Dogs and cats weighing more than 8kg can be transported safely in the hold"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — extension contrôlée à la frontière soute/fret"
+          note: >-
+            Citation précédente vérifiée le 2026-09-09 sur https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold :
+            « Dogs and cats weighing more than 8kg can be transported safely in the hold » ; localisateur « In the hold → opening paragraph ».
+            La citation courante conserve cette phrase et ajoute la règle contiguë qui fixe le passage au fret au-dessus de 40 kg hors cage.
+      quote: "Dogs and cats weighing more than 8kg (including the weight of the kennel) can be transported safely in the hold of air-conditioned aircraft. For dogs over 40 kg (cage not included): May be accepted only as cargo."
       quote_language: en
       locator: "In the hold → opening paragraph"
   cargo:
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    min_weight_kg: 40
+    weight_min_bound: gt
+    weight_includes_carrier: false
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 17).
     # Effet attendu : TAROM cargo is a documented conditional route for dogs over the stated threshold.
     # Portée nommée : Dogs over 40 kg excluding the cage may be accepted only as cargo; cargo booking, route, station, crate and documentation approval apply.
@@ -169,8 +184,14 @@ policies:
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline material"
-      history: []
-      quote: "May be accepted only as cargo."
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — extension de la citation à son seuil propre"
+          note: >-
+            Citation précédente vérifiée le 2026-09-09 sur https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold :
+            « May be accepted only as cargo. » ; localisateur « In the hold → Conditions for Transport → For dogs over 40 kg ».
+            La phrase complète établit désormais le plancher strict de plus de 40 kg hors cage.
+      quote: "For dogs over 40 kg (cage not included): May be accepted only as cargo."
       quote_language: en
       locator: "In the hold → Conditions for Transport → For dogs over 40 kg"
 channels:

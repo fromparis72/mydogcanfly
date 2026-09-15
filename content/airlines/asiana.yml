@@ -93,6 +93,9 @@ policies:
       locator: "Traveling with Pets → Eligible Pets for the Cabin"
   hold:
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 12).
     # Effet attendu : Asiana hold is a documented conditional route, not a specific-flight confirmation.
     # Portée nommée : Dogs, cats and pet birds only; prior reservation and confirmation are required, and codeshare/route restrictions apply.
@@ -103,10 +106,17 @@ policies:
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage."
-      quote_language: en
-      locator: "Traveling with Pets → Eligible Pets for Transport"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets ;
+            citation « Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage. » ;
+            localisateur « Traveling with Pets → Eligible Pets for Transport ».
+            Remplacée par la limite de poids officielle du canal soute.
+      quote: "운반 용기를 포함한 동물의 무게가 45kg 이하이고 운반 용기의 3면 길이의 합이 285cm, 높이 84cm 이하인 경우"
+      quote_language: ko
+      locator: "반려동물 동반 → 수하물로 위탁하는 경우"
   cargo:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
@@ -157,6 +167,29 @@ channels:
       fr: 30 000–290 000 KRW (le double au-delà de 32 kg)
       es: 30 000–290 000 KRW (el doble por encima de 32 kg)
       pt: "30.000–290.000 KRW (o dobro acima de 32 kg)"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: No separate live-animal cargo service is established in the official sources reviewed for this airline.
+      fr: Aucun service fret distinct pour animaux vivants n'est établi dans les sources officielles relues pour cette compagnie.
+      es: Las fuentes oficiales revisadas para esta aerolínea no establecen un servicio de carga separado para animales vivos.
+      pt: "As fontes oficiais revisadas para esta companhia não estabelecem um serviço de carga separado para animais vivos."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

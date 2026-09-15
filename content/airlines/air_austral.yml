@@ -137,6 +137,9 @@ policies:
           quote_language: fr
           locator: Puis-je voyager avec mon animal ?
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 3).
     # Effet attendu : Air Austral hold is a documented conditional route, not guaranteed acceptance.
     # Portée nommée : Cats and dogs over 8 kg; capacity, breed, route, container and documentation restrictions apply.
@@ -147,12 +150,32 @@ policies:
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Le transport en soute est obligatoire"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html ;
+            citation « Le transport en soute est obligatoire » ; localisateur « Animaux transportés en soute (AVIH) ».
+            Remplacée par la limite de poids du même canal officiel.
+      quote: "poids (animal + contenant) ≤ 75kg"
       quote_language: fr
-      locator: "Animaux transportés en soute (AVIH)"
+      locator: "Animaux transportés en soute (AVIH) → Conditions d'acceptation"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    min_weight_kg: 75
+    weight_min_bound: gt
+    weight_includes_carrier: true
+    source:
+      url: "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html"
+      source_type: official_website
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle nationale"
+      history: []
+      quote: "Poids (contenant + animal) supérieur à 75 kg."
+      quote_language: fr
+      locator: "Animaux voyageant par fret"
 channels:
   - placement: cabin
     icon: 🐾

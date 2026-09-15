@@ -137,6 +137,9 @@ policies:
           quote_language: en
           locator: Fees for checked pets
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 5).
     # Effet attendu : Passenger hold is a conditional lead. Booking/payment never proves acceptance, which remains operationally constrained.
     # Portée nommée : cat or dog only; no codeshare, connection, vacation package or Train + Air; advance reservation and operational acceptance required
@@ -147,10 +150,16 @@ policies:
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Only cats and dogs are allowed in the checked baggage hold."
-      quote_language: en
-      locator: "Pets in the checked baggage hold → Restrictions"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs ;
+            citation « Only cats and dogs are allowed in the checked baggage hold. » ; localisateur « Pets in the checked baggage hold → Restrictions ».
+            Remplacée par la limite officielle de poids du même canal.
+      quote: "Le poids maximal accepté à l’enregistrement : 45kg (99 lb) (incluant la cage)"
+      quote_language: fr
+      locator: "Animaux en soute → Restrictions → Spécifications minimales de la cage"
   cargo:
     review_state: legacy_unreviewed
 channels:

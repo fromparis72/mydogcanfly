@@ -180,17 +180,17 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: Via pet agent
+      fr: Via agent animalier
+      es: Vía agente de mascotas
+      pt: "Via agente de animais"
     detail:
-      en: Pets aren't accepted as checked baggage — a pet brought to check-in won't be accepted.
-      fr: Les animaux ne sont pas acceptés en bagage enregistré — un animal présenté à l'enregistrement sera refusé.
-      es: Las mascotas no se aceptan como equipaje facturado — una mascota presentada en la facturación será rechazada.
-      pt: "Animais não são aceitos como bagagem despachada — um animal levado ao check-in não será aceito."
+      en: Pets travel in the aircraft hold after booking through a pet agent; operator, aircraft and route restrictions apply.
+      fr: Les animaux voyagent en soute après réservation auprès d'un agent animalier ; des restrictions d'opérateur, d'appareil et de trajet s'appliquent.
+      es: Las mascotas viajan en la bodega tras reservar mediante un agente; se aplican restricciones de operador, avión y ruta.
+      pt: "Os animais viajam no porão após reserva por meio de um agente; aplicam-se restrições de operador, aeronave e rota."
     fee:
       en: —
       fr: —

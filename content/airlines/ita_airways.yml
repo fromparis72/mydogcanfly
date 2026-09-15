@@ -50,7 +50,11 @@ ladder:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    sub: ≤ 12 kg
+    sub:
+      en: Route-dependent · Large Dog pilot
+      fr: Selon le trajet · dispositif Large Dog
+      es: Según la ruta · programa Large Dog
+      pt: "Conforme a rota · programa Large Dog"
   - flex: 84
     color: "#1f5fa8"
     label:
@@ -58,7 +62,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 75 kg
+    sub:
+      en: Under conditions
+      fr: Sous conditions
+      es: Con condiciones
+      pt: "Sob condições"
 policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
@@ -188,7 +196,7 @@ policies:
       quote_language: en
       locator: "Pets in cabin → Service overview"
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -243,17 +251,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No ofrecido
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: ITA carries pets only in the cabin or hold — there's no separate pet cargo service.
-      fr: ITA ne transporte les animaux qu'en cabine ou en soute — pas de service fret animalier séparé.
-      es: ITA solo transporta mascotas en cabina o bodega; no hay servicio de carga de mascotas por separado.
-      pt: "A ITA transporta animais somente na cabine ou no porão — não há serviço separado de carga para animais."
+      en: No separate live-animal cargo decision is established by the passenger policy reviewed.
+      fr: La politique passagers relue n'établit pas de décision séparée pour le fret d'animaux vivants.
+      es: La política de pasajeros revisada no establece una decisión separada para la carga de animales vivos.
+      pt: "A política de passageiros revisada não estabelece uma decisão separada para a carga de animais vivos."
     fee:
       en: —
       fr: —

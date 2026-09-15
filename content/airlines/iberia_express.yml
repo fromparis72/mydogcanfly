@@ -100,6 +100,9 @@ policies:
           quote_language: es
           locator: accordeon « Coste del transporte », bloc cabine, en-tetes conserves
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas
       source_type: official_website
@@ -107,7 +110,13 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas ;
+            citation « podrán ser aceptados para el transporte en cabina determinados animales domésticos » ; localisateur « Aceptación en cabina de pasajero ».
+            Remplacée par la limite de poids et les dimensions officielles du canal.
       quote: El peso máximo permitido del animal será de 8 kg incluyendo en el mismo el peso del recipiente o jaula en el que será transportado el animal. El recipiente podrá tener como máximo 45 cm de largo, 35 cm de ancho y 25 cm de profundidad, siempre que la suma de estas tres dimensiones no exceda de 105 cm. El transporte debe cumplir estas condiciones teniendo en cuenta que irá situado debajo de los pies del pasajero.
       quote_language: es
       locator: accordeon « Aceptación en cabina de pasajero », phrase d'attaque et premier tiret
@@ -145,6 +154,9 @@ policies:
           quote_language: es
           locator: accordeon « Coste del transporte », bloc soute et mentions finales, en-tetes conserves
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas
       source_type: official_website
@@ -152,7 +164,13 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas ;
+            citation « pueden ser aceptados como equipaje en bodega » ; localisateur « Aceptación en bodega ».
+            Remplacée par la politique détaillée et la limite de poids officielles du canal.
       quote: "Como regla general, el transporte de animales vivos deberá hacerse en la bodega del avión, en recipientes o contenedores adecuados proporcionados por el pasajero. Los recipientes deberán tener las siguientes características: Resistencia y seguridad Comodidad para la talla del animal Ventilación Un cierre que ofrezca garantías de que no va a abrirse en ningún momento Fondo impermeable Cuando no reúna estas condiciones, el transporte será rechazado. CONSIDERACIONES IMPORTANTES: El peso máximo aceptable para animales en bodega es 45 kg (incluyendo el peso del animal + el peso del contenedor) Para vuelos en conexión, el servicio en bodega será aplicable si dicha conexión es mayor a 90 minutos y no supera las 4 horas La petición del servicio ha de realizarse con una antelación mínima de 48 horas a la salida del vuelo Las reservas que no indiquen la raza de los animales serán rechazados Solo se aceptarán un máximo de 2 animales en bodega para cada trayecto en vuelos de corto y medio radio No se aceptarán animales de razas peligrosas, considerandose perros potencialmente peligrosos los de constitución robusta, aquellos que manifiesten un carácter marcadamente agresivo y los siguientes perros y sus cruces Pit Bull Terrier, Staffordshire Bull Terrier, American Staffodshire Terrier, Rottweiler, Dogo Argentino, Fila Brasileiro, Tosa Inu, Akita Inu"
       quote_language: es
       locator: accordeon « Aceptación en bodega »

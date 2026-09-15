@@ -68,10 +68,54 @@ ladder:
 policies:
   cabin:
     availability: offered
+    max_weight_kg: 9
+    weight_limit_bound: lte
+    weight_includes_carrier: true
+    source:
+      url: https://www.elal.com/heb/baggage/pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: 'כלבים, חתולים וציפורים אקזוטיות בלבד השוקלים עד 9 ק"ג (כולל הכלוב) יוכלו לטוס יחד עם מלווה בתא הנוסעים ככבודה אישית בכפוף למגבלות ולנהלים.'
+      quote_language: he
+      locator: 'section « הטסת בעלי חיים בתא הנוסעים »'
   hold:
     availability: offered
+    min_weight_kg: 9
+    weight_min_bound: gt
+    max_weight_kg: 100
+    weight_limit_bound: lte
+    weight_includes_carrier: true
+    source:
+      url: https://www.elal.com/heb/baggage/pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: 'כאשר בעל החיים שוקל מעל 9 ק"ג ועד 100 ק"ג ביחד עם הכלוב - ניתן לרוב להטיסו ככבודה בתא המטען.'
+      quote_language: he
+      locator: 'sections « הטסת חיית מחמד לחו"ל » et « …לישראל »'
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    min_weight_kg: 100
+    weight_min_bound: gt
+    weight_includes_carrier: true
+    source:
+      url: https://www.elal.com/heb/baggage/pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: 'כאשר בעל החיים שוקל מעל 100 ק"ג ביחד עם הכלוב - ניתן לרוב להטיסו כמטען רשום בתא המטען.'
+      quote_language: he
+      locator: 'sections « הטסת חיית מחמד לחו"ל » et « …לישראל »'
 channels:
   - placement: cabin
     icon: 🐾

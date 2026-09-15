@@ -30,7 +30,10 @@ const check = (label, cond, detail = "") => {
 const throws = (fn) => { try { fn(); return false; } catch { return true; } };
 
 const AIRLINE = "airline_turkish";
-const FERMEE = "airline_air_serbia";   // soute ET fret `denied` sur CDG→IST, cabine ouverte
+/* easyJet porte un refus officiel sur ce trajet. Air Serbia était l'ancien témoin, mais son
+   refus de soute ne disposait d'aucune phrase propre et l'audit du 15/09/2026 l'a justement
+   replacé à « à confirmer ». */
+const FERMEE = "airline_easyjet";
 const GOLDEN = "breed_golden_retriever";
 const PUG = "breed_pug";
 
@@ -239,12 +242,8 @@ console.log("=== 2. Les branches décisives — statut, causes, PREUVES, et le r
       JSON.stringify(d));
   }
   /* Un canal structurellement fermé ne se rouvre pas — sur une compagnie RÉELLEMENT fermée.
-   *
-   * 04/09/2026 — la soute d'Air Serbia est `not_offered` dans sa fiche, mais sans phrase citée :
-   * depuis la frontière de confiance elle sort « à confirmer », et le témoin « bien `denied`
-   * avant toute restriction » n'avait plus de canal fermé à observer. On CITE donc sa provenance
-   * dans une KB de test, et la projection la referme d'elle-même — ce qui vérifie au passage,
-   * gratuitement, que la fermeture reste possible dès qu'une phrase la fonde. */
+   * easyJet est le témoin vivant : sa soute est refusée sur la phrase officielle globale qui
+   * exclut les animaux des vols passagers, hors chiens guides et d'assistance reconnus. */
   {
     const kbFermeeCitee = (restrictions) => {
       const brut = JSON.parse(JSON.stringify(rawKB));
@@ -547,8 +546,12 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
   /* 13/09/2026 — LOT FRET OFFICIEL : 392 → 380, à cartes constantes (206). Delta, United et
      Virgin Atlantic fret sont désormais refusés sur citation ; douze causes de race s'éteignent
      derrière ces refus officiels. Les avis et le témoin non visé restent inchangés. */
+  /* 15/09/2026 — AUDIT EXHAUSTIF FICHE ↔ FINDER : 380 → 370, toujours sur 206 cartes.
+     Les statuts des 306 canaux sont maintenant ceux de leur politique citée ; les refus prouvés
+     éteignent la cause de race, tandis qu'aucun refus brachycéphale générique n'est inventé.
+     Les 306 décisions sont contrôlées nominativement par test:raccordement-finder. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 380 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 370 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",

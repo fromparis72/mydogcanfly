@@ -83,6 +83,9 @@ policies:
           quote_language: en
           locator: Pets ancillary fee
     availability: offered
+    max_weight_kg: 10
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: "https://help.vueling.com/hc/es/articles/19798818168337-Mascotas"
       source_type: official_website
@@ -91,9 +94,9 @@ policies:
       confidence: 4
       reviewer: "Codex — lectura directa de la página nacional oficial"
       history: []
-      quote: "Puedes viajar con tu mascota siempre que selecciones la tarifa Fly Light de Vueling o la tarifa Basic de Iberia."
+      quote: "Tu mascota deberá volar en un transportín homologado que no sea rígido de medidas máx. 45x39x21 cm y 10 kg (peso máximo con la mascota dentro)"
       quote_language: es
-      locator: "Mascotas → Características del servicio"
+      locator: "Mascotas → primera liste, deuxième puce"
   hold:
     availability: not_offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte F fait 1).

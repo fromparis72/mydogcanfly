@@ -137,20 +137,30 @@ policies:
           quote_language: en
           locator: Other transport
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
+    max_weight_kg: 65
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 1).
     # Effet attendu : Cargo is a documented conditional route, never a shipment confirmation.
     # Portée nommée : Virgin Australia directs pet and animal travel to its cargo service; carrier network, animal type, route, documents and cargo acceptance conditions apply.
     source:
-      url: "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/"
+      url: "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pet-transport/"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "We’re ready to take good care of your animal in the cargo hold."
+      reviewer: "Codex — lecture directe de la page nationale officielle"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/ ;
+            citation « We’re ready to take good care of your animal in the cargo hold. » ;
+            localisateur « Pet travel → choose your pet travel experience ».
+            Remplacée par la limite de poids publiée sur la page nationale officielle.
+      quote: "The combined weight of your pet and the container must not exceed 65kg."
       quote_language: en
-      locator: "Pet travel → choose your pet travel experience"
+      locator: "Pet transport → pet and container requirements"
 channels:
   - placement: cabin
     icon: 🐾
@@ -198,6 +208,29 @@ channels:
       fr: Devis
       es: Presupuesto
       pt: "Cotação"
+  - placement: hold
+    icon: 🧳
+    name:
+      en: Passenger hold
+      fr: Soute passager
+      es: Bodega como equipaje
+      pt: "Porão como bagagem"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: The official sources reviewed describe the cabin trial and a separate cargo service, but do not establish carriage in the hold as checked baggage.
+      fr: Les sources officielles relues décrivent l'essai en cabine et un service fret distinct, mais n'établissent pas le transport en soute comme bagage enregistré.
+      es: Las fuentes oficiales revisadas describen la prueba en cabina y un servicio de carga separado, pero no establecen el transporte en bodega como equipaje facturado.
+      pt: "As fontes oficiais revisadas descrevem o teste na cabine e um serviço de carga separado, mas não estabelecem o transporte no porão como bagagem despachada."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

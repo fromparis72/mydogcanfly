@@ -90,6 +90,17 @@ policies:
       locator: "Are pets allowed in the cabin?"
   hold:
     availability: not_offered
+    source:
+      url: https://www.cathaypacific.com/cx/zh_HK/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national remis par Philippe
+      history: []
+      quote: "你的寵物將需要以貨運方式運送。"
+      quote_language: zh-Hant-HK
+      locator: FAQ « 我可否攜帶寵物登機？ »
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:

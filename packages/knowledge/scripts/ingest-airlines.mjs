@@ -144,6 +144,7 @@ const DecisionPlacement = z.union([
     /** Le plancher de poids et sa borne (annexe 51) — la soute Air France en a besoin. */
     min_weight_kg: z.number().positive().optional(),
     weight_min_bound: z.enum(["gt", "gte"]).optional(),
+    min_weight_includes_carrier: z.boolean().optional(),
     /** LE RATTACHEMENT fait → preuve (annexe 51). La fiche l'écrit, le contrat le vérifie. */
     attestations: z.array(Attestation).optional(),
     /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
@@ -168,6 +169,7 @@ const DecisionPlacement = z.union([
     review_state: z.literal("legacy_unreviewed"),
     min_weight_kg: z.number().positive().optional(),
     weight_min_bound: z.enum(["gt", "gte"]).optional(),
+    min_weight_includes_carrier: z.boolean().optional(),
     attestations: z.array(Attestation).optional(),
     /* Une ligne non revérifiée peut porter un tarif prouvé : la page publie le prix sans que la
        politique du canal soit décidée. Les deux preuves sont distinctes — c'est tout l'arbitrage. */
@@ -354,8 +356,8 @@ const Fiche = z.object({
       } else idsConflits.set(c.id, m);
     });
   }
-  /* Une politique SANS canal visible n'est pas interdite — six existent, scellées — mais elle
-     doit figurer dans la dette, sinon une politique invisible pourrait naître sans revue. */
+  /* Toute politique doit avoir son canal visible. La liste scellée ci-dessous est désormais
+     vide : une nouvelle politique invisible ferait immédiatement échouer l'ingestion. */
   for (const m of PLACEMENTS) {
     if (fiche.policies[m] === undefined || vus.has(m)) continue;
     if (!POLITIQUES_SANS_CANAL_VISIBLE.includes(`${fiche.id}.${m}`)) {
@@ -368,20 +370,14 @@ const Fiche = z.object({
 });
 
 /**
- * Dette ÉDITORIALE scellée (T0-B2) — les six placements décidés par une fiche qu'aucun canal
- * visible ne décrit. Elle remplace les dix `POLICY_STALE` du lot M1 : ceux-ci étaient une dette
- * DÉCISIONNELLE (une politique que l'ingestion ne savait plus rattacher à sa fiche, donc que
- * personne ne régénérait), et l'option C la referme — les 302 décisions viennent désormais des
- * fiches. Ce qui subsiste est d'une autre nature, et bien plus faible : ces six placements
- * décident, ils ne sont simplement pas racontés au lecteur.
+ * Dette ÉDITORIALE scellée (T0-B2) — elle est vide depuis la matérialisation des trois canaux
+ * pour chacune des 102 compagnies. Elle reste contrôlée dans les deux sens afin qu'une politique
+ * invisible ne puisse jamais réapparaître silencieusement.
  *
  * Scellée par IDENTITÉ, jamais par cardinal : à effectif constant, une dette résorbée et une
  * dette neuve doivent échouer, pas s'annuler.
  */
-const POLITIQUES_SANS_CANAL_VISIBLE = [
-  "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
-  "airline_norwegian.cargo", "airline_qantas.hold", "airline_virgin_australia.hold",
-];
+const POLITIQUES_SANS_CANAL_VISIBLE = [];
 
 // ---- Ingest ---------------------------------------------------------------
 const files = readdirSync(SRC)
@@ -437,10 +433,6 @@ console.log(
 // Single source of truth: the verified fiche fields (channels = allowed status per mode, fareList =
 // cabin weight, restrictions = snub-nosed hold ban). The crate calculator + finder read the KB, so we
 // inject the derived policy into raw/objects.json. Existing hand-authored policy (richer, with cabin
-// dimensions) is preserved — the derivation only fills gaps. A missing signal stays "unknown" (omitted),
-// never a fabricated refusal.
-const kgOf = (s) => { const m = (s || "").match(/(?:≤|<=|up to|jusqu'?à)?\s*(\d{1,3})\s*kg/i); return m ? parseInt(m[1], 10) : null; };
-
 /**
  * T0-B2 — LA décision vient du bloc `policies:`, et de lui seul.
  *
@@ -473,41 +465,18 @@ function derivePolicy(fiche) {
        ces champs-là l'emportent sur l'artefact — voir la branche préservée. */
     Object.defineProperty(p[mode], "__ecrits", { value: new Set(Object.keys(discriminant)), enumerable: false });
   }
-  /* Poids maximal en cabine : le seul maximum non ambigu que la fiche exprime. Le rattachement
-     passe désormais par le placement du canal, plus par le libellé de la ligne tarifaire.
-     ERREUR NOMMÉE (09/09/2026, import strict lot 5) : cette dérivation s'appliquait AUSSI à un
-     canal cabine porteur d'une CITATION. Philippine Airlines, cabine citée sans seuil écrit
-     (le plafond FurPAL de 10 kg est intérieur, donc non écrit par contrat), recevait quand même
-     `max_weight_kg: 10` depuis sa ligne tarifaire « Cabin (FurPAL, ≤ 10 kg, domestic) » — et le
-     calculateur de caisses publiait « ≤ 10 kg » comme limite citée (21 limites au lieu de 20,
-     attrapé par le harnais, pas en relisant). Sur un canal cité, un seuil n'existe que s'il est
-     ÉCRIT dans `policies:` depuis la phrase citée (table SEUILS de l'importeur) : la grille
-     tarifaire n'est pas une preuve. Virgin Australia (cabine `case_by_case` citée, « ≤ 8 kg »
-     tarifaire) tombe sous la même règle. */
-  const sourceCabine = p.cabin?.__source_auditee;
-  const cabineCitee = !!(sourceCabine && typeof sourceCabine.quote === "string" && sourceCabine.quote.length >= 10
-    && typeof sourceCabine.locator === "string" && sourceCabine.locator.length > 0
-    && typeof sourceCabine.quote_language === "string" && sourceCabine.quote_language.length > 0);
-  if (p.cabin && !cabineCitee) {
-    for (const r of (fiche.fareList?.rows || [])) {
-      if (!/cabin|cabine/i.test(r.label?.en || "")) continue;
-      const kg = kgOf(r.label?.en) ?? kgOf(r.value?.en);
-      if (kg && p.cabin.max_weight_kg == null) p.cabin.max_weight_kg = kg;
-    }
-  }
-  /* Refus brachycéphale en soute. Inchangé, y compris son angle mort connu : si la fiche ne
-     décide pas la soute, le fait n'a nulle part où aller — il est consigné dans `__dropped`,
-     que `--check` nomme (POLICY_GAP). */
-  const dropped = [];
-  for (const r of (fiche.restrictions || [])) {
-    if (!/flat-faced|brachy|snub|nose|nez|museau/i.test(r.title?.en || "")) continue;
-    for (const pill of (r.pills || [])) {
-      if (pill.cls !== "no" || !/hold|soute|cargo/i.test(pill.label?.en || "")) continue;
-      if (p.hold) p.hold.brachy_allowed = false;
-      else dropped.push(["hold", "brachy_allowed", false]);
-    }
-  }
-  Object.defineProperty(p, "__dropped", { value: dropped, enumerable: false });
+  /* Aucun seuil n'est plus déduit d'une ligne tarifaire ou d'un texte éditorial. Une grille de
+     prix peut nommer un palier sans prouver le plafond d'acceptation, et une traduction visible
+     peut survivre à la suppression de sa preuve. Le défaut Saudia (5 kg retirés de la fiche mais
+     recréés depuis `fareList`) a montré qu'une dérivation même « de secours » réintroduit un fait
+     que l'auteur vient précisément de retirer. Un poids utilisable par le Finder doit donc être
+     écrit explicitement dans `policies.<placement>` et suivre sa source officielle. */
+  /* Une pastille éditoriale n'est pas une preuve exécutable. Les restrictions brachycéphales
+     varient selon la race, le canal, la route, le pays et parfois la saison : les transformer
+     automatiquement en `brachy_allowed: false` généraliserait une portée que la fiche ne sait
+     pas représenter. Elles restent visibles dans la fiche ; seules les règles structurées et
+     citées du registre de restrictions peuvent décider dans le Finder. */
+  Object.defineProperty(p, "__dropped", { value: [], enumerable: false });
   return p;
 }
 
@@ -523,7 +492,7 @@ let patched = 0, filledModes = 0;
  * rougir la CI sur un champ sans effet, et masquerait les trois qui décident vraiment. Le rendre
  * effectif est un sujet de M3, pas de M1.
  */
-const COMPARED_FIELDS = ["max_weight_kg", "brachy_allowed"];
+const COMPARED_FIELDS = ["max_weight_kg"];
 
 /** Les deux discriminants d'auteur, et l'ancien booléen tant qu'il subsiste dans l'artefact. */
 const DISCRIMINANTS = ["availability", "review_state"];
@@ -596,12 +565,11 @@ const KNOWN_PROVENANCE_CURATED = [
  * inconstructible — le schéma refuse une politique orpheline, et refuse un canal qui pointerait
  * un placement dont `policies:` ne parle pas.
  *
- * Ce qui subsiste est d'une autre nature, bien plus faible, et scellé ailleurs
- * (`POLITIQUES_SANS_CANAL_VISIBLE`) : six placements décident sans qu'aucun canal visible ne les
- * raconte au lecteur. C'est une dette ÉDITORIALE, pas décisionnelle.
+ * La dette éditoriale `POLITIQUES_SANS_CANAL_VISIBLE` est désormais vide : les 102 fiches
+ * matérialisent chacune cabine, soute et fret.
  */
 
-/** POLICY_GAP connus et acceptés à ce jour (lot M1, 12/08/2026) — L'ENSEMBLE EXACT, pas le compte.
+/** POLICY_GAP connus et acceptés à ce jour (lot M1, 12/08/2026) — ensemble désormais vide.
  *
  *  Mécanisme emprunté au `xfail`/`XPASS` retenu pour M2 : un défaut connu ne fait pas rougir la
  *  CI — sinon `main` naît rouge — mais sa DISPARITION doit être remarquée, sinon un correctif de
@@ -611,29 +579,8 @@ const KNOWN_PROVENANCE_CURATED = [
  *  corrigée et une autre cassée s'annulent, et la CI reste verte sur un défaut tout neuf. On fige
  *  donc les clés une par une. Toute clé en plus, en moins, ou remplacée par une autre, échoue.
  *
- *  Les 10 sont tous `hold.brachy_allowed` : la fiche déclare le refus des races à face plate en
- *  soute, le moteur ne le reçoit pas. Impact mesuré, canal par canal :
- *    · 7 faux « soute disponible » — air_canada, air_france, iberia, klm, lufthansa, turkish,
- *      westjet : `hold.allowed = true` et aucun garde-fou brachycéphale ;
- *    · 2 sans conséquence d'affichage — american, delta : `hold.allowed = false` de toute façon,
- *      la restriction est perdue mais la soute n'est pas proposée ;
- *    · 1 en état « inconnu » — air_tahiti_nui : pas de canal soute du tout.
- *
- *  À corriger dans un P0 dédié « propagation des restrictions brachycéphales », canal par canal
- *  et source par source — pas par dix `brachy_allowed: false` ajoutés à l'aveugle. Chaque clé
- *  corrigée doit disparaître de cette liste DANS LA MÊME PR. */
-const KNOWN_POLICY_GAPS = [
-  "airline_air_canada.hold.brachy_allowed",
-  "airline_air_france.hold.brachy_allowed",
-  "airline_air_tahiti_nui.hold.brachy_allowed",
-  "airline_american.hold.brachy_allowed",
-  "airline_delta.hold.brachy_allowed",
-  "airline_iberia.hold.brachy_allowed",
-  "airline_klm.hold.brachy_allowed",
-  "airline_lufthansa.hold.brachy_allowed",
-  "airline_turkish.hold.brachy_allowed",
-  "airline_westjet.hold.brachy_allowed",
-];
+ *  Toute nouvelle clé doit faire échouer la CI. */
+const KNOWN_POLICY_GAPS = [];
 for (const a of (objects.airlines || [])) {
   const fiche = sorted[a.id]; if (!fiche) continue;
   const derived = derivePolicy(fiche);
@@ -721,8 +668,25 @@ for (const a of (objects.airlines || [])) {
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
       /* `fares` et `fare_conflicts` entrent dans cette liste LE JOUR MÊME de leur écriture dans la fiche
          (10/09/2026) : c'est ici que le seuil s'était perdu le 15/08, et le champ du quatrième état le 08/09. */
-      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "carrier_dims_cm", "attestations", "conditions", "fares", "fare_conflicts"]) {
+      /* Ces champs vivent désormais DANS LA FICHE. Leur synchronisation est donc bidirectionnelle :
+         une valeur écrite remplace l'ancienne, et une valeur retirée de la fiche disparaît aussi de
+         l'objet canonique. L'ancienne boucle ne faisait que la première moitié. Résultat concret :
+         après le retrait de la preuve UAT de Saudia, `max_weight_kg: 5` survivait dans le Finder
+         alors qu'il n'existait plus dans la fiche. Une suppression est une modification, pas un
+         silence à combler avec l'historique. */
+      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "min_weight_includes_carrier", "carrier_dims_cm", "attestations", "fares", "fare_conflicts"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
+        else delete enrichissements[k];
+      }
+      /* Une ancienne dérivation éditoriale ne doit pas survivre dans une politique enrichie :
+         sans rattachement propre à une phrase officielle, le silence vaut indéterminé. */
+      delete enrichissements.brachy_allowed;
+      /* `conditions` conserve provisoirement son historique curatorial lorsque la fiche n'en
+         porte pas encore : ce texte n'intervient dans aucun verdict du Finder. Il sera migré
+         séparément ; le mêler au correctif décisionnel ferait disparaître des explications sans
+         rapport avec les poids. */
+      if (d.__ecrits?.has("conditions") && d.conditions !== undefined) {
+        enrichissements.conditions = d.conditions;
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
          plaçait cette priorité UNIQUEMENT dans la branche dérivée : sur une politique enrichie,
@@ -769,11 +733,11 @@ for (const a of (objects.airlines || [])) {
          préservation du 15/08 et la projection du 08/09 — et il se referme en même temps. */
       ...(d.min_weight_kg != null ? { min_weight_kg: d.min_weight_kg } : {}),
       ...(d.weight_min_bound ? { weight_min_bound: d.weight_min_bound } : {}),
+      ...(typeof d.min_weight_includes_carrier === "boolean" ? { min_weight_includes_carrier: d.min_weight_includes_carrier } : {}),
       ...(d.carrier_dims_cm ? { carrier_dims_cm: d.carrier_dims_cm } : {}),
       ...(d.attestations?.length ? { attestations: d.attestations } : {}),
       ...(d.fares?.length ? { fares: d.fares } : {}),
       ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),
-      ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),
       derived_from_fiche: true,
@@ -898,9 +862,8 @@ if (CHECK) {
     for (const r of politiquesRetirees) console.warn(`  POLICY_REMOVED ${r.id}.${r.mode}`);
   }
 
-  /* Dette éditoriale des six placements sans canal visible : contrôlée DANS LES DEUX SENS, par
-     identité. Une dette qui apparaît doit être revue ; une dette qui disparaît doit devenir une
-     garantie, pas s'effacer en silence. */
+  /* Dette éditoriale des placements sans canal visible : contrôlée DANS LES DEUX SENS, par
+     identité. L'ensemble attendu est vide. */
   const detteObservee = [];
   for (const [id, f] of Object.entries(sorted)) {
     const portes = new Set(f.channels.map((c) => c.placement));

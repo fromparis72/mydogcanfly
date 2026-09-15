@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: "> 8 kg"
+    sub:
+      en: conditions by container
+      fr: conditions selon la caisse
+      es: condiciones según la jaula
+      pt: "condições conforme a caixa"
   - flex: 20
     color: "#9a6410"
     label:
@@ -95,6 +99,9 @@ policies:
           quote_language: en
           locator: Charges
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/pet-in-cabin"
       source_type: official_website

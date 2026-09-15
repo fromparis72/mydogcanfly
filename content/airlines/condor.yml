@@ -82,6 +82,9 @@ policies:
           quote_language: de
           locator: Prices and registration
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
       source_type: official_website
@@ -177,6 +180,29 @@ channels:
       fr: 79,99–254,99 €
       es: 79,99–254,99 €
       pt: "79,99–254,99 €"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: No separate live-animal cargo service is established in the official sources reviewed for this airline.
+      fr: Aucun service fret distinct pour animaux vivants n'est établi dans les sources officielles relues pour cette compagnie.
+      es: Las fuentes oficiales revisadas para esta aerolínea no establecen un servicio de carga separado para animales vivos.
+      pt: "As fontes oficiais revisadas para esta companhia não estabelecem um serviço de carga separado para animais vivos."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

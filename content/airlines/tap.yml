@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 45 kg
+    sub:
+      en: Route-dependent limit
+      fr: Limite selon le trajet
+      es: Límite según la ruta
+      pt: "Limite conforme a rota"
   - flex: 20
     color: "#9a6410"
     label:

@@ -67,10 +67,10 @@ ladder:
       es: Carga
       pt: "Carga"
     sub:
-      en: "> 32 kg / UK"
-      fr: "> 32 kg / R.-U."
-      es: "> 32 kg / R. Unido"
-      pt: "> 32 kg / Reino Unido"
+      en: large pets / restricted routes
+      fr: grands animaux / routes restreintes
+      es: animales grandes / rutas restringidas
+      pt: "animais grandes / rotas restritas"
 policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
@@ -99,20 +99,30 @@ policies:
           quote_language: en
           locator: Fees → zones A–D and domestic routes
     availability: offered
+    max_weight_kg: 6
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 7).
     # Effet attendu : Vietnam Airlines cabin is a documented conditional route, not a route-specific confirmation.
     # Portée nommée : Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.
     source:
-      url: "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1"
+      url: "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet"
       source_type: official_website
       verified_date: "2026-09-09"
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage."
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1 ;
+            citation « With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage. » ;
+            localisateur « Special services → Travelling with pets ».
+            Remplacée par la limite de poids publiée pour la cabine.
+      quote: "Weight: Each transport cage holds one pet, and the overall weight of the pet and kennel cannot exceed 6kg."
       quote_language: en
-      locator: "Special services → Travelling with pets"
+      locator: "Conditions for transporting pets in the passenger cabin → Weight"
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -140,20 +150,30 @@ policies:
           quote_language: en
           locator: Fees → weight 9kg or less → zones A–D
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 8).
     # Effet attendu : Vietnam Airlines hold is a documented conditional route, not a route-specific confirmation.
     # Portée nommée : Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.
     source:
-      url: "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1"
+      url: "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet"
       source_type: official_website
       verified_date: "2026-09-09"
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage."
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1 ;
+            citation « With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage. » ;
+            localisateur « Special services → Travelling with pets ».
+            Remplacée par la limite de poids publiée pour la soute.
+      quote: "Weight: The total weight of the pet and the cage must not exceed 32kg."
       quote_language: en
-      locator: "Special services → Travelling with pets"
+      locator: "Conditions for transporting pets in checked baggage → Weight"
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:

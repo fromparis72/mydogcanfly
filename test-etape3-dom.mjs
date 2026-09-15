@@ -638,7 +638,21 @@ ok(`départ : ${pages.length} pages construites`);
         premium: {
           ...a.premium,
           policy: Object.fromEntries(Object.entries(pol).map(([canal, p]) =>
-            [canal, canaux.includes(canal) ? { ...p, status: "allowed", allowed: true } : p])),
+            [canal, canaux.includes(canal) ? (() => {
+              /* Ce témoin ne teste que la bijection des libellés. Les bornes réelles restent
+                 éprouvées par leurs propres harnais ; les conserver ici rendrait une combinaison
+                 synthétique dépendante du poids choisi (par exemple la soute Air France > 8 kg). */
+              const {
+                min_weight_kg: _min,
+                max_weight_kg: _max,
+                weight_min_bound: _minBound,
+                weight_limit_bound: _maxBound,
+                min_weight_includes_carrier: _minCarrier,
+                weight_includes_carrier: _maxCarrier,
+                ...sansBornes
+              } = p;
+              return { ...sansBornes, status: "allowed", allowed: true };
+            })() : p])),
         },
       });
       /* LES QUATRE PORTEUSES SONT CHOISIES SUR MESURE, PAS PAR INTUITION. Ma première rédaction

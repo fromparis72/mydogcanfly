@@ -99,7 +99,9 @@ policies:
       quote_language: en
       locator: "Pets"
   cargo:
-    availability: not_offered
+    # L'interdiction publiée couvre les vols passagers ; elle ne prouve pas
+    # l'absence d'un service fret juridiquement distinct.
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -154,17 +156,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No ofrecido
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: easyJet operates no pet cargo service.
-      fr: easyJet n'exploite aucun service fret animalier.
-      es: easyJet no opera ningún servicio de carga para mascotas.
-      pt: "A easyJet não opera nenhum serviço de carga para animais."
+      en: The passenger-flight prohibition does not establish whether a separate live-animal cargo product exists.
+      fr: L'interdiction sur les vols passagers n'établit pas si un produit fret séparé pour animaux vivants existe.
+      es: La prohibición en vuelos de pasajeros no establece si existe un producto separado de carga de animales vivos.
+      pt: "A proibição nos voos de passageiros não estabelece se existe um produto separado de carga de animais vivos."
     fee:
       en: —
       fr: —

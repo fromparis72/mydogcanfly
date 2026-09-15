@@ -41,13 +41,59 @@ const kb = loadKB();
 const JUILLET = (() => { const n = new Date(), y = n.getUTCFullYear(); return `${Date.UTC(y, n.getUTCMonth(), n.getUTCDate()) <= Date.UTC(y, 6, 15) ? y : y + 1}-07-15`; })();
 const GOLDEN_32 = { breed_id: "breed_golden_retriever", weight_kg: 32 };
 const CAVALIER_6 = { breed_id: "breed_cavalier_king_charles", weight_kg: 6 };
+const GOLDEN_20 = { breed_id: "breed_golden_retriever", weight_kg: 20 };
 const CARLIN_8 = { breed_id: "breed_pug", weight_kg: 8 };
 const BULLY_50 = { breed_id: "breed_american_bully_xl", weight_kg: 50 };
 const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, destination: dst, dog, date: JUILLET }));
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
 const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
-const SEUILS = { "airline_copa.cabin": [10, true], "airline_tunisair.cabin": [8, true], "airline_sunexpress.cabin": [8, true] };
+const SEUILS = {
+  "airline_copa.cabin": { max: 10, incl: true },
+  "airline_china_southern.hold": { max: 32, incl: true },
+  "airline_tunisair.cabin": { max: 8, incl: true },
+  "airline_tunisair.hold": { max: 32, incl: true },
+  "airline_sky_express.cabin": { max: 8, incl: true },
+  "airline_sky_express.hold": { min: 8, max: 25, incl: true },
+  "airline_km_malta.cabin": { max: 10, incl: true },
+  "airline_km_malta.hold": { max: 32, incl: false },
+  "airline_sunexpress.cabin": { max: 8, incl: true },
+  "airline_sunexpress.hold": { min: 8, incl: false },
+  "airline_smartwings.cabin": { max: 8, incl: true },
+  "airline_smartwings.hold": { min: 8, max: 32, incl: true },
+};
+const SOURCES_REMPLACEES = {
+  "airline_tunisair.hold": {
+    url: "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
+    quote: "Toute pièce de plus de 32Kg doit être obligatoirement prise en charge par le service Fret.",
+    language: "fr", locator: "Préparez vos bagages → limitation de poids par pièce",
+  },
+  "airline_sky_express.cabin": {
+    url: "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+    quote: "ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς",
+    language: "el", locator: "encart chiffre de la section cabine",
+  },
+  "airline_sky_express.hold": {
+    url: "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+    quote: "ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στην καμπίνα. ΕΩΣ / 25KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στον χώρο αποθήκευσης / (μόνο γάτες και σκύλοι)",
+    language: "el", locator: "tableau « Βάρος κατοικιδίων », colonne soute",
+  },
+  "airline_km_malta.cabin": {
+    url: "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
+    quote: "It's important to note that pets, including the carrier, can weigh up to 10kg in total",
+    language: "en", locator: "Travelling with Pets → Pets in Cabin",
+  },
+  "airline_km_malta.hold": {
+    url: "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
+    quote: "Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.",
+    language: "en", locator: "Travelling with Pets → Pet as Checked Baggage",
+  },
+  "airline_smartwings.hold": {
+    url: "https://www.smartwings.com/en/fees-and-charges/?layout=default",
+    quote: "Pet in cabin (1 piece up to 8 kg / leg); Animal in hold (1 piece up to 32 kg / leg)",
+    language: "en", locator: "Fees and charges → Price list of additional services → AVIH",
+  },
+};
 const REACTIVEES = ["airline_bangkok_airways.cargo", "airline_copa.cargo", "airline_km_malta.cargo", "airline_sky_express.hold", "airline_sunexpress.hold"];
 const REFUSE = "airline_thai_airways.cargo";
 /* CORRECTIF D'ARBITRAGES (09/09/2026, Codex, tranché par Philippe) : quatre faits de ce lot ont vu leur preuve REMPLACÉE
@@ -77,7 +123,7 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
           }
         : {
             url: "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets",
-            quote: "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。",
+            quote: "（4）旅客托运的活体动物笼体包装最大不能超过 90x60x66 厘米，最小不能小于5x15x20厘米，重量最大不得超过32公斤，应单独装笼；",
             status: "accepted_with_conditions",
           };
       check(`${cle} (LOT8[${f.index}]) : source nationale actuelle, citation chinoise exacte`,
@@ -90,9 +136,16 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       check(`  …projeté ${attendu.status}${f.placement === "cabin" ? " — conflit officiel, accord requis" : ""}`,
         proj?.status === attendu.status && (f.placement !== "cabin" || proj?.status_cause === "airline_approval"),
         JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
-      check(`  …aucun plafond écrit sans rattachement attesté`,
-        pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
-        JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      if (f.placement === "hold") {
+        check(`  …ancienne autorisation générale consignée, plafond national de 32 kg exécutable`,
+          s.history?.some((h) => h.note?.includes("（1）作为行李运输的小动物"))
+            && pol?.max_weight_kg === 32 && pol?.weight_includes_carrier === true,
+          JSON.stringify({ history: s.history, max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      } else {
+        check(`  …aucun plafond écrit sans rattachement attesté`,
+          pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
+          JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      }
       continue;
     }
     if (cle === REFUSE) {
@@ -123,6 +176,27 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       check(`  …projeté ${attenduR}`, proj?.status === attenduR, JSON.stringify({ status: proj?.status }));
       continue;
     }
+    const actuelle = SOURCES_REMPLACEES[cle];
+    if (actuelle) {
+      /* MOUVEMENT NOMMÉ (12–15/09/2026, audit raccordement complet) : une source plus précise
+         remplace la phrase du lot 8. L'ancienne preuve doit rester dans l'historique, et la
+         nouvelle doit porter elle-même toutes les bornes que le Finder exécute. */
+      check(`${cle} (LOT8[${f.index}]) : source actuelle plus précise, ancienne preuve conservée`,
+        s.url === actuelle.url && s.quote === actuelle.quote && s.quote_language === actuelle.language
+          && s.locator === actuelle.locator
+          && s.history?.some((h) => h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)),
+        JSON.stringify({ attendu: actuelle, lu: s, ancienne: f }));
+      check(`  …review_due calculé par reviewDueFrom`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline"), `${s.verified_date} → ${s.review_due}`);
+      check(`  …projeté accepted_with_conditions`, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status }));
+      const seuil = SEUILS[cle];
+      check(`  …frontière de poids officielle conservée`,
+        (seuil.max === undefined || proj?.max_weight_kg === seuil.max)
+          && (seuil.min === undefined || proj?.min_weight_kg === seuil.min)
+          && proj?.weight_includes_carrier === seuil.incl,
+        JSON.stringify({ min: proj?.min_weight_kg, max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
+      continue;
+    }
     check(`${cle} (LOT8[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
       !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
@@ -130,12 +204,29 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
-    if (seuil) check(`  …plafond ${seuil[0]} kg, chien + contenant — écrit tel que la phrase le dit`,
-      proj?.max_weight_kg === seuil[0] && proj?.weight_includes_carrier === seuil[1], JSON.stringify({ max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
+    if (seuil) check(`  …frontière de poids officielle écrite telle que la phrase le dit`,
+      (seuil.max === undefined || proj?.max_weight_kg === seuil.max)
+        && (seuil.min === undefined || proj?.min_weight_kg === seuil.min)
+        && proj?.weight_includes_carrier === seuil.incl,
+      JSON.stringify({ min: proj?.min_weight_kg, max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
     else check(`  …aucun plafond écrit (la phrase ne porte pas le chiffre ET la base du poids)`, pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined, JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    if (u.airline_id === "airline_bangkok_airways" && u.placement === "hold") {
+      check("non-décision historique airline_bangkok_airways.hold : désormais documentée au cas par cas sur les conditions de transport officielles",
+        pol?.availability === "case_by_case" && !!pol?.source?.quote
+          && projetee(u.airline_id, u.placement)?.status === "confirmation_required",
+        JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
+      continue;
+    }
+    if (u.airline_id === "airline_tunisair" && u.placement === "cargo") {
+      check("non-décision historique airline_tunisair.cargo : désormais documentée au-delà de 32 kg",
+        pol?.availability === "offered" && pol?.min_weight_kg === 32 && pol?.weight_min_bound === "gt"
+          && projetee(u.airline_id, u.placement)?.status === "accepted_with_conditions",
+        JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && (projetee(u.airline_id, u.placement)?.status ?? "confirmation_required") === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
@@ -144,11 +235,14 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     politique("airline_tunisair", "cabin")?.source?.quote === "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture" && politique("airline_tunisair", "cabin")?.source?.quote_language === "fr" && politique("airline_tunisair", "hold")?.source?.quote_language === "fr");
   /* MOUVEMENT NOMMÉ (correctif) : les deux fragments signalés ont été REMPLACÉS par Codex — la réponse officielle complète
      pour China Southern soute, la FAQ IndiGo CarGo pour IndiGo fret. */
-  check("citations fragmentaires REMPLACÉES : China Southern soute (règle nationale chinoise), IndiGo fret (« No, IndiGo does not carry livestock », page CarGo)",
-    politique("airline_china_southern", "hold")?.source?.quote === "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。" && politique("airline_indigo", "cargo")?.source?.quote === "No, IndiGo does not carry livestock" && /goindigo\.in\/cargo\//.test(politique("airline_indigo", "cargo")?.source?.url ?? ""));
+  check("citations fragmentaires REMPLACÉES : China Southern soute (plafond national chinois complet), IndiGo fret (« No, IndiGo does not carry livestock », page CarGo)",
+    politique("airline_china_southern", "hold")?.source?.quote?.includes("重量最大不得超过32公斤") && politique("airline_indigo", "cargo")?.source?.quote === "No, IndiGo does not carry livestock" && /goindigo\.in\/cargo\//.test(politique("airline_indigo", "cargo")?.source?.url ?? ""));
   const km = projetee("airline_km_malta", "cabin"), sw = projetee("airline_smartwings", "cabin"), sk = projetee("airline_sky_express", "cabin");
-  check("KM Malta, Smartwings, SKY express cabines PROJETÉES : sous conditions, SANS plafond — 10, 8 et 8 kg ni écrits (base absente de la phrase) ni déduits de la grille tarifaire",
-    [km, sw, sk].every((p) => p?.status === "accepted_with_conditions" && p?.max_weight_kg === undefined && p?.weight_includes_carrier === undefined), JSON.stringify({ km, sw, sk }));
+  check("KM Malta, Smartwings, SKY express cabines PROJETÉES : sous conditions, plafonds 10, 8 et 8 kg désormais reliés à leurs phrases officielles",
+    km?.status === "accepted_with_conditions" && km?.max_weight_kg === 10 && km?.weight_includes_carrier === true
+      && sw?.status === "accepted_with_conditions" && sw?.max_weight_kg === 8 && sw?.weight_includes_carrier === true
+      && sk?.status === "accepted_with_conditions" && sk?.max_weight_kg === 8 && sk?.weight_includes_carrier === true,
+    JSON.stringify({ km, sw, sk }));
   check("IndiGo : trois refus PROUVÉS (cabine, soute, fret) — deuxième refus total du dépôt, après Ryanair",
     ["cabin", "hold", "cargo"].every((c) => projetee("airline_indigo", c)?.status === "denied"));
   /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : « à confirmer partout » → « sous conditions » sur le réseau intérieur, refus cité à l'international (R1). */
@@ -191,12 +285,14 @@ console.log("\n=== Étage 2 — Paris → Canton, Bangkok, Tunis ; Athènes → 
   const tc = canal(tunC, "airline_tunisair", "cabin");
   check("Tunisair cabine, Cavalier 6 kg : sous conditions, plafond 8 (contenant et nourriture compris) ; Golden 32 kg : refus sûr ; soute Golden : sous conditions ; fret non décidé",
     tc?.status === "accepted_with_conditions" && tc?.weight_limit_kg === 8 && tc?.weight_limit_includes_carrier === true && canal(tun, "airline_tunisair", "cabin")?.status === "denied" && canal(tun, "airline_tunisair", "hold")?.status === "accepted_with_conditions" && canal(tun, "airline_tunisair", "cargo")?.status === "confirmation_required", JSON.stringify(tc));
-  const her = decide("airport_ath", "airport_her", GOLDEN_32), herC = decide("airport_ath", "airport_her", CAVALIER_6);
-  check("SKY express (Athènes → Héraklion) : cabine Cavalier 6 kg sous conditions SANS plafond ; soute Golden 32 kg RÉACTIVÉE → sous conditions SANS plafond (25 kg absent de la phrase)",
-    canal(herC, "airline_sky_express", "cabin")?.status === "accepted_with_conditions" && canal(herC, "airline_sky_express", "cabin")?.weight_limit_kg === undefined && canal(her, "airline_sky_express", "hold")?.status === "accepted_with_conditions" && canal(her, "airline_sky_express", "hold")?.weight_limit_kg === undefined);
+  const her = decide("airport_ath", "airport_her", GOLDEN_32), herC = decide("airport_ath", "airport_her", CAVALIER_6), her20 = decide("airport_ath", "airport_her", GOLDEN_20);
+  check("SKY express (Athènes → Héraklion) : cabine Cavalier sous conditions au plafond 8 ; soute 20 kg sous conditions entre 8 et 25 ; Golden 32 kg refusé",
+    canal(herC, "airline_sky_express", "cabin")?.status === "accepted_with_conditions" && canal(herC, "airline_sky_express", "cabin")?.weight_limit_kg === 8
+      && canal(her20, "airline_sky_express", "hold")?.status === "accepted_with_conditions" && canal(her20, "airline_sky_express", "hold")?.weight_limit_kg === 25
+      && canal(her, "airline_sky_express", "hold")?.status === "denied");
   const mla = decide("airport_mla", "airport_cdg", GOLDEN_32), mlaC = decide("airport_mla", "airport_cdg", CAVALIER_6), lhr = decide("airport_mla", "airport_lhr", CAVALIER_6);
-  check("KM Malta (Malte → Paris) : cabine Cavalier 6 kg sous conditions SANS plafond ; soute Golden 32 kg sous conditions ; fret RÉACTIVÉ → sous conditions",
-    canal(mlaC, "airline_km_malta", "cabin")?.status === "accepted_with_conditions" && canal(mlaC, "airline_km_malta", "cabin")?.weight_limit_kg === undefined && canal(mla, "airline_km_malta", "hold")?.status === "accepted_with_conditions" && canal(mla, "airline_km_malta", "cargo")?.status === "accepted_with_conditions");
+  check("KM Malta (Malte → Paris) : cabine Cavalier sous conditions au plafond 10 ; soute Golden sous conditions au plafond 32 ; fret sous conditions",
+    canal(mlaC, "airline_km_malta", "cabin")?.status === "accepted_with_conditions" && canal(mlaC, "airline_km_malta", "cabin")?.weight_limit_kg === 10 && canal(mla, "airline_km_malta", "hold")?.status === "accepted_with_conditions" && canal(mla, "airline_km_malta", "hold")?.weight_limit_kg === 32 && canal(mla, "airline_km_malta", "cargo")?.status === "accepted_with_conditions");
   const kl = canal(lhr, "airline_km_malta", "cabin"), kh = canal(lhr, "airline_km_malta", "hold");
   check("KM Malta (Malte → Londres), Cavalier 6 kg : cabine et soute « à confirmer », règles Royaume-Uni NOMMÉES (`rule_gb_no_cabin_pets`, `rule_km_malta_gb_not_approved`) — la restriction de route reste opposable",
     kl?.status === "confirmation_required" && (kl?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_gb_no_cabin_pets") && kh?.status === "confirmation_required" && (kh?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_km_malta_gb_not_approved"), JSON.stringify({ kl, kh }));
@@ -205,11 +301,11 @@ console.log("\n=== Étage 2 — Paris → Canton, Bangkok, Tunis ; Athènes → 
   check("SunExpress (Francfort → Antalya) : cabine Cavalier 6 kg sous conditions, plafond 8 contenant compris ; Golden 32 kg : cabine refusée, soute RÉACTIVÉE → sous conditions",
     sc?.status === "accepted_with_conditions" && sc?.weight_limit_kg === 8 && sc?.weight_limit_includes_carrier === true && canal(ayt, "airline_sunexpress", "cabin")?.status === "denied" && canal(ayt, "airline_sunexpress", "hold")?.status === "accepted_with_conditions", JSON.stringify(sc));
   const prg = decide("airport_prg", "airport_bcn", GOLDEN_32), prgC = decide("airport_prg", "airport_bcn", CAVALIER_6);
-  check("Smartwings (Prague → Barcelone) : cabine Cavalier 6 kg sous conditions SANS plafond ; soute Golden 32 kg sous conditions SANS plafond ; fret absent de la fiche → à confirmer",
-    canal(prgC, "airline_smartwings", "cabin")?.status === "accepted_with_conditions" && canal(prgC, "airline_smartwings", "cabin")?.weight_limit_kg === undefined && canal(prg, "airline_smartwings", "hold")?.status === "accepted_with_conditions" && canal(prg, "airline_smartwings", "hold")?.weight_limit_kg === undefined && canal(prg, "airline_smartwings", "cargo")?.status === "confirmation_required");
+  check("Smartwings (Prague → Barcelone) : cabine Cavalier sous conditions au plafond 8 ; soute Golden sous conditions entre 8 et 32 ; fret absent → à confirmer",
+    canal(prgC, "airline_smartwings", "cabin")?.status === "accepted_with_conditions" && canal(prgC, "airline_smartwings", "cabin")?.weight_limit_kg === 8 && canal(prg, "airline_smartwings", "hold")?.status === "accepted_with_conditions" && canal(prg, "airline_smartwings", "hold")?.weight_limit_kg === 32 && canal(prg, "airline_smartwings", "cargo")?.status === "confirmation_required");
   const sg = canal(prg, "airline_smartwings", "cabin");
-  check("Smartwings cabine, Golden 32 kg : « à confirmer », règle héritée de poids NOMMÉE (`rule_smartwings_cabin_weight`) — aucun plafond cité",
-    sg?.status === "confirmation_required" && (sg?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_smartwings_cabin_weight"), JSON.stringify(sg));
+  check("Smartwings cabine, Golden 32 kg : refus sûr au-dessus du plafond officiel de 8 kg, sans dépendre de l'ancienne règle héritée",
+    sg?.status === "denied" && !(sg?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_smartwings_cabin_weight"), JSON.stringify(sg));
   /* Bangkok Airways ne dessert aucun des aéroports du référentiel essayés (CNX, USM absents) : éprouvée à l'étage 1 sur la donnée projetée. */
   check("Bangkok Airways cabine et soute : volontairement NON décidées → « à confirmer »",
     projetee("airline_bangkok_airways", "cabin")?.status === "confirmation_required" && projetee("airline_bangkok_airways", "hold")?.status === "confirmation_required");

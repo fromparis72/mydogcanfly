@@ -124,16 +124,18 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
      nouvellement cités sont ouverts sous conditions ; aucun ne devient `allowed`. */
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 173 → 177. Air New Zealand
      soute/fret et Norwegian cabine/soute deviennent quatre ouvertures sourcées sous conditions. */
-  check(`politiques réelles en accepted_with_conditions : 177 après Air New Zealand et Norwegian — mesuré : ${cond}`, cond === 177);
-  /* RE-FONDÉ (13/09/2026) : Eurowings cabine porte maintenant la phrase officielle d'acceptation
-     jusqu'à 8 kg, mais la règle structurée de poids n'est toujours pas citée. Le Golden de 32 kg
-     reste donc « à confirmer » au lieu d'être refusé par une règle orpheline. */
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : 177 → 188. */
+  check(`politiques réelles en accepted_with_conditions : 188 après l'audit exhaustif — mesuré : ${cond}`, cond === 188);
+  /* RE-FONDÉ (15/09/2026) : le plafond Eurowings n'est plus une règle orpheline. Il appartient
+     à la politique cabine et à la même citation que l'acceptation ; 32 kg sont donc refusés sur
+     cette preuve, sans passer par une règle parallèle. */
   const reel = REQ(GOLDEN_32, kb);
   const ew = stOf(reel, "airline_eurowings", "cabin");
   const ewPol = kb.airlines.get("airline_eurowings")?.premium?.policy?.cabin;
-  check("Eurowings cabine : acceptation citée, mais règle de poids non citée → reste à confirmer pour 32 kg",
-    !!ewPol?.source?.quote && ewPol?.status === "accepted_with_conditions" && ew?.status === "confirmation_required"
-      && (ew?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_eurowings_cabin_weight"), JSON.stringify({ ewPol, ew }));
+  check("Eurowings cabine : la même politique citée ouvre jusqu'à 8 kg et refuse 32 kg",
+    !!ewPol?.source?.quote && ewPol?.status === "accepted_with_conditions" && ewPol.max_weight_kg === 8
+      && ew?.status === "denied" && ew.source?.url === ewPol.source.url
+      && (ew?.confirmation_causes ?? []).length === 0, JSON.stringify({ ewPol, ew }));
   const cab = stOf(reel, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle désormais CITÉE : Golden 32 kg refusé sûrement, sur la page officielle du 10/09",
     cab?.status === "denied" && /wwws\.airfrance\.fr/.test(cab?.source?.url ?? "") && cab?.source?.verified_date === "2026-09-10", JSON.stringify(cab));
@@ -166,13 +168,11 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
   const soute = stOf(dec, "airline_air_france", "hold");
   check("la soute Air France (citée à 75 kg chien + contenant) est acceptée sous conditions à 32 kg — le seuil cabine ne déteint pas",
     soute?.status === "accepted_with_conditions" && soute?.weight_limit_kg === 75, JSON.stringify(soute));
-  /* Le témoin inverse : sans `weight_includes_carrier`, le seuil n'est pas qualifié, et le moteur
-     ne refuse PAS au seuil. Mesuré : le canal tombe « à confirmer », parce que deux règles de
-     poids NON CITÉES (`rule_af_cabin_weight`, `rule_global_cabin_weight_cap`) pèsent encore sur
-     lui — elles ne refusent plus rien depuis la frontière, mais elles demandent confirmation.
-     Ce que le témoin garantit : jamais `denied` sans le champ. */
+  /* Le témoin inverse : sans `weight_includes_carrier`, le seuil n'est pas qualifié et le moteur
+     ne refuse PAS au seuil. Les anciennes règles parallèles ont été retirées : la politique
+     citée reste simplement ouverte sous conditions, sans inventer ce que pèse le plafond. */
   const sans = stOf(REQ(GOLDEN_32, kbCiteeSansSeuil), "airline_air_france", "cabin");
-  check("même politique SANS `weight_includes_carrier` → JAMAIS un refus au seuil (mesuré : à confirmer, par les règles de poids non citées)",
+  check("même politique SANS `weight_includes_carrier` → JAMAIS un refus au seuil",
     sans?.status !== "denied" && sans?.status !== "allowed", JSON.stringify(sans));
   /* LOT 2 : `weight_includes_carrier: false` EXPLICITE = plafond du chien seul (Air Europa cabine).
      Le chien seul au-dessus est refusé sûrement, et la décision dit que le contenant s'ajoute. */
@@ -193,8 +193,8 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
     check("…et Cavalier 6 kg sous conditions, la décision disant que le contenant s'ajoute",
       c?.status === "accepted_with_conditions" && c?.weight_limit_kg === 8 && c?.weight_limit_includes_carrier === false, JSON.stringify(c));
   }
-  check("…et la confirmation nomme la règle de poids non citée d'Air France",
-    (sans?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_af_cabin_weight"), JSON.stringify(sans?.confirmation_causes));
+  check("…et aucune règle de poids parallèle ne revient sous forme de confirmation",
+    (sans?.confirmation_causes ?? []).length === 0, JSON.stringify(sans?.confirmation_causes));
 }
 
 console.log("\n=== 4. Cavalier 6 kg, même route : jamais un oui sec en dessous du seuil ===");

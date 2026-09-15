@@ -137,6 +137,9 @@ policies:
           quote_language: en
           locator: Pet in hold > charges
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 1).
     # Effet attendu : Passenger hold is a conditional route for a larger dog. It is never a guarantee for the chosen aircraft, route or paperwork.
     # Portée nommée : domestic and select international flights, prior approval, aircraft and route compatibility; pet plus carrier over 10 kg and not more than 32 kg
@@ -147,12 +150,22 @@ policies:
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India."
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle de la frontière soute/fret"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html ;
+            citation « We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India. » ;
+            localisateur « Pet Travel FAQ → What is Air India’s pet policy? ».
+            Remplacée par la FAQ officielle qui établit la frontière de 32 kg.
+      quote: "If your pet weighs more than 10 kg / 22 lb, then it must be transported as checked baggage. If the combined weight of the pet and the container is over 32 kg / 70 lb they must be carried as cargo."
       quote_language: en
-      locator: "Pet Travel FAQ → What is Air India’s pet policy?"
+      locator: "Pet Travel FAQ → When does my pet need to be transported as checked baggage or cargo?"
   cargo:
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot3, 2026-09-08) — était review_state: legacy_unreviewed
+    min_weight_kg: 32
+    weight_min_bound: gt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 2).
     # Effet attendu : Cargo is a conditional direction for a very large dog-and-container combination, never an automatic shipment acceptance.
     # Portée nommée : when the combined weight of pet and container is above 32 kg; route, cargo process and documentation restrictions apply

@@ -86,20 +86,30 @@ policies:
       locator: "China Eastern Small Animals → Transport rules"
   hold:
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 14).
     # Effet attendu : China Eastern hold is a documented conditional route, not a final carriage approval.
     # Portée nommée : Suitable carrier, aircraft cargo-compartment suitability, route, temperature, breed and animal-health requirements apply; refusal conditions are enumerated by the carrier.
     source:
-      url: "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
+      url: "https://www.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin."
-      quote_language: en
-      locator: "China Eastern Small Animals → Transport rules"
+      reviewer: "Codex — contre-lecture du dossier officiel national"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/ ;
+            citation « Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin. » ;
+            localisateur « China Eastern Small Animals → Transport rules ».
+            Remplacée par la limite de poids publiée sur la page nationale officielle.
+      quote: "每个独立包装的小动物及其容器合计重量(含食物和水)不得超过32千克（kg）。"
+      quote_language: zh-CN
+      locator: "八、乘机须知 1 > a et b（4）小动物容器尺寸及重量"
   cargo:
     review_state: legacy_unreviewed
 channels:

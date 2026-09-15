@@ -66,7 +66,11 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 45 kg"
+    sub:
+      en: by cargo arrangement
+      fr: selon accord fret
+      es: según acuerdo de carga
+      pt: "conforme acordo de carga"
 policies:
   cabin:
     # TARIFS OFFICIELS — grille complète relue le 2026-09-11 sur la page française.
@@ -306,20 +310,29 @@ policies:
         scope_label: 26–45 kg · Amériques, Asie, Qatar · correspondance
         source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 385 EUR/455 USD/335 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar" }
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: false
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 13).
     # Effet attendu : Show hold offered under conditions.
     # Portée nommée : cats and dogs; 45 kg pet plus carrier ceiling; breed, transit and booking exceptions apply
     source:
-      url: "https://www.iberia.com/us/fly-with-iberia/pets/"
+      url: "https://agencias.iberia.com/es-es/informacion-viaje/viajeros/viajar-con-animales.html"
       source_type: official_website
       verified_date: "2026-09-08"
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
       reviewer: "Codex — lecture directe de la page officielle"
-      history: []
-      quote: "The Iberia Group allow cats and dogs to travel in the hold."
-      quote_language: en
-      locator: "Acceptance in hold"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle espagnole plus précise"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.iberia.com/us/fly-with-iberia/pets/ ;
+            citation « The Iberia Group allow cats and dogs to travel in the hold. » ; localisateur « Acceptance in hold ».
+            Remplacée par la grille officielle espagnole qui établit les catégories de poids.
+      quote: "Razas pequeñas: de 0 a 10Kg, Razas medianas: de 11 a 25Kg, Razas grandes: de 26 a 45 Kg"
+      quote_language: es
+      locator: "Animales → transporte en bodega → categorías por peso"
   cargo:
     availability: case_by_case
     conditions:

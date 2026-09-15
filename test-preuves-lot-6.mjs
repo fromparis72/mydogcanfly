@@ -49,7 +49,21 @@ const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, de
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
 const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
-const SEUILS = { "airline_aeromexico.cabin": [9, true], "airline_aeromexico.hold": [45, true], "airline_egyptair.cabin": [8, true] };
+const SEUILS = {
+  "airline_aeromexico.cabin": [9, true], "airline_aeromexico.hold": [45, true],
+  "airline_egyptair.cabin": [8, true], "airline_air_china.hold": [32, true],
+  "airline_royal_jordanian.cabin": [7, true],
+};
+const SUPERSEDEES = {
+  "airline_air_china.hold": {
+    history_date: "2026-09-15", url: "https://m.airchina.com.cn/ac/c/invoke/animalInstruction%40pgzhcn", quote_language: "zh",
+    quote: "每只小动物（包含包装容器以及容器内的水及食物），不得超过32公斤。", locator: "小动物托运 → 五、运输要求",
+  },
+  "airline_royal_jordanian.cabin": {
+    history_date: "2026-09-15", url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets", quote_language: "en",
+    quote: "Maximum Weight of animal & crate | 7 kg (15 Ibs)", locator: "Flying with Pets → passenger cabin requirements table → Maximum Weight of animal & crate",
+  },
+};
 const REACTIVEES = ["airline_south_african_airways.hold", "airline_south_african_airways.cargo", "airline_kenya_airways.cargo", "airline_gulf_air.cargo", "airline_royal_jordanian.cabin"];
 const REFUSE = "airline_air_china.cabin";
 const CORRECTIF = JSON.parse(readFileSync("mesures/preuves/correctif-arbitrages-2026-09-09/CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json", "utf8"));
@@ -63,15 +77,15 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
     if (cle === "airline_saudia.cabin" || cle === "airline_saudia.hold") {
-      /* PREUVE RETIRÉE (10/09/2026, contre-lecture de l'audit tarifaire de Codex, tranchée par Philippe). Le lot 6 avait
-         importé ces deux faits depuis `booking-uat.dcloud.saudia.com`, et ce test signalait déjà l'URL « pour
-         contre-revue, non réécrite ». La contre-revue a tranché : une surface de test ne prouve rien de ce que la
-         compagnie publie. Le fait reste dans le dossier de Codex, à l'octet près — il n'est plus dans la donnée.
-         Le témoin le VÉRIFIE : plus de citation, plus d'URL UAT, et le canal revenu « à confirmer ». */
-      check(`${cle} (LOT6[${f.index}]) : preuve RETIRÉE — plus de citation, plus d'URL de test, canal revenu « à confirmer »`,
-        !pol?.source?.quote && !/booking-uat/.test(JSON.stringify(pol ?? {})) && proj?.status === "confirmation_required" && proj?.status_cause === "legacy_unreviewed",
+      /* La preuve UAT du lot 6 a d'abord été retirée. Le 12/09, une page nationale arabe
+         officielle a établi à nouveau les deux verdicts, sans réintroduire l'adresse de test. */
+      const attendu = cle.endsWith(".cabin") ? "denied" : "accepted_with_conditions";
+      check(`${cle} (LOT6[${f.index}]) : preuve UAT remplacée par la page nationale arabe officielle`,
+        pol?.source?.url === "https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets"
+          && pol?.source?.quote_language === "ar" && pol?.source?.verified_date === "2026-09-12"
+          && !/booking-uat/.test(JSON.stringify(pol ?? {})) && proj?.status === attendu,
         JSON.stringify({ politique: pol, projete: proj }));
-      check(`  …et le fait de Codex reste lisible dans son dossier, inchangé`, (f.quote ?? "").startsWith("Dogs must be transported in the cargo hold"));
+      check(`  …le fait UAT reste lisible uniquement dans le dossier historique, jamais comme provenance active`, (f.quote ?? "").startsWith("Dogs must be transported in the cargo hold"));
       continue;
     }
     if (cle === REFUSE) {
@@ -125,14 +139,18 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
        mot pour mot les deux lignes de politique du lot 6, mais quitte le sous-domaine
        beta pour la page publique www et reçoit la nouvelle date de lecture. */
     const aeromexicoActualise = cle === "airline_aeromexico.cabin" || cle === "airline_aeromexico.hold";
+    const supersedee = SUPERSEDEES[cle];
+    const sourceAttendue = supersedee ?? f;
     const urlAttendue = aeromexicoActualise
       ? "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
-      : f.url;
+      : sourceAttendue.url;
     const dateAttendue = aeromexicoActualise ? "2026-09-12" : f.verified_date;
     const echeanceAttendue = aeromexicoActualise ? "2026-12-11" : "2026-12-08";
     check(`${cle} (LOT6[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
-      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === urlAttendue && s.verified_date === dateAttendue,
-      JSON.stringify({ attendu: f.quote, lu: s.quote }));
+      !!pol && s.quote === sourceAttendue.quote && s.locator === sourceAttendue.locator && s.quote_language === sourceAttendue.quote_language && s.url === urlAttendue && s.verified_date === dateAttendue,
+      JSON.stringify({ attendu: sourceAttendue.quote, lu: s.quote }));
+    if (supersedee) check("  …la preuve précédente reste consignée dans l'historique, avec son URL, sa phrase et son localisateur",
+      s.history?.some((h) => h.date === supersedee.history_date && h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)), JSON.stringify(s.history));
     check(`  …review_due calculé par reviewDueFrom (${echeanceAttendue})`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === echeanceAttendue, `${s.verified_date} → ${s.review_due}`);
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
@@ -175,20 +193,17 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
   const am = politique("airline_aeromexico", "cabin")?.source;
   check("Aeromexico : la ligne de tableau citée est conservée telle quelle, en espagnol (`quote_language: es`)",
     am?.quote_language === "es" && am?.quote?.startsWith("Mascota bajo el asiento (PETC)") && am?.quote?.endsWith("Hasta 9 kg (Incluyendo transportadora)"));
-  /* Saudia : la PREMIÈRE réactivation en refus cité du dépôt a été DÉFAITE (10/09/2026). Ce test signalait dès le lot 6
-     que l'URL était un sous-domaine `booking-uat` — « accepté par le contrat, SIGNALÉ pour contre-revue ». L'audit
-     indépendant de Codex l'a opposée comme surface de test ; Philippe a tranché : preuve retirée. Le témoin garde sa
-     force en changeant de sens — aucune adresse de test ne doit plus fonder une décision, nulle part dans la donnée. */
+  /* La provenance UAT a été retirée, puis la page nationale arabe a refermé le canal. */
   const sc = politique("airline_saudia", "cabin");
-  check("Saudia cabine : la réactivation en refus cité est DÉFAITE — ligne redevenue non revérifiée, sans disponibilité écrite",
-    !sc?.availability && sc?.review_state === "legacy_unreviewed" && projetee("airline_saudia", "cabin")?.status === "confirmation_required", JSON.stringify(sc));
+  check("Saudia cabine : refus documenté sur la page nationale arabe, jamais sur l'ancienne surface UAT",
+    sc?.availability === "not_offered" && sc?.source?.quote_language === "ar" && projetee("airline_saudia", "cabin")?.status === "denied", JSON.stringify(sc));
   check("AUCUNE politique du dépôt ne repose sur une adresse de test (`booking-uat`, `.uat.`, `staging`)",
     !/booking-uat|\.uat\.|staging\./i.test(JSON.stringify(objets.airlines.map((a) => a.premium?.policy ?? {}))),
     (JSON.stringify(objets.airlines.map((a) => a.premium?.policy ?? {})).match(/https?:\/\/[^"]*(booking-uat|\.uat\.|staging\.)[^"]*/) || [""])[0]);
-  /* Un seuil n'existe que s'il est ÉCRIT depuis la phrase : Royal Jordanian 7 ne l'est pas. */
+  /* Le seuil Royal Jordanian est désormais écrit depuis la ligne chiffrée du tableau officiel. */
   const rj = projetee("airline_royal_jordanian", "cabin");
-  check("Royal Jordanian cabine PROJETÉE : sous conditions SANS plafond — la phrase citée ne porte pas le chiffre, et la grille tarifaire n'est pas une preuve",
-    rj?.status === "accepted_with_conditions" && rj?.max_weight_kg === undefined && rj?.weight_includes_carrier === undefined, JSON.stringify(rj));
+  check("Royal Jordanian cabine PROJETÉE : sous conditions, plafond officiel 7 kg animal + caisse",
+    rj?.status === "accepted_with_conditions" && rj?.max_weight_kg === 7 && rj?.weight_includes_carrier === true, JSON.stringify(rj));
   /* Les plafonds Aeromexico et EgyptAir étaient jusqu'ici DÉDUITS de la grille tarifaire ; ils sont
      désormais ÉCRITS depuis la phrase, avec la qualification du contenant. */
   const blocFiche = (slug, pl) => { const l = readFileSync(`content/airlines/${slug}.yml`, "utf8").split("\n"); const i = l.findIndex((x) => new RegExp(`^  ${pl}:\\s*$`).test(x)); const j = l.findIndex((x, k) => k > i && /^  [a-z_]+:\s*$/.test(x)); return l.slice(i + 1, j < 0 ? undefined : j).join("\n"); };
@@ -220,34 +235,29 @@ console.log("\n=== Étage 2 — Madrid → Santiago, Londres → Newark : LATAM 
   const sclC = decide("airport_mad", "airport_scl", CAVALIER_6), sclG = decide("airport_mad", "airport_scl", GOLDEN_32);
   check("LATAM cabine, soute et fret : sous conditions sur leurs preuves propres",
     canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "accepted_with_conditions");
-  /* MESURÉ : une règle de poids héritée non citée (`rule_latam_cabin_weight`) garde le Golden « à
-     confirmer » en cabine — jamais un refus prouvé, la règle est nommée. */
+  /* La preuve cabine LATAM ne publie aucun nombre. Aucun plafond global n'est donc inventé. */
   const lg = canal(sclG, "airline_latam", "cabin");
-  check("LATAM cabine, Golden 32 kg : « à confirmer », règle héritée de poids NOMMÉE (aucun plafond cité)",
-    lg?.status === "confirmation_required" && (lg?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_latam_cabin_weight"), JSON.stringify(lg));
+  check("LATAM cabine, Golden 32 kg : sous conditions qualitatives, sans refus ni plafond chiffré inventé",
+    lg?.status === "accepted_with_conditions" && lg?.weight_limit_kg === undefined && !(lg?.confirmation_causes ?? []).some((x) => x.rule_id), JSON.stringify(lg));
   const ewrC = decide("airport_lhr", "airport_ewr", CAVALIER_6), ewrG = decide("airport_lhr", "airport_ewr", GOLDEN_32);
   check("United cabine, Cavalier 6 kg : sous conditions ; soute et fret refusés sur leurs citations",
     canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "denied" && canal(ewrC, "airline_united", "cargo")?.status === "denied");
   const ug = canal(ewrG, "airline_united", "cabin");
-  check("United cabine, Golden 32 kg : « à confirmer », règles héritées de poids NOMMÉES (`rule_ua_cabin_weight`, `rule_united_cabin_weight`)",
-    ug?.status === "confirmation_required" && ["rule_ua_cabin_weight", "rule_united_cabin_weight"].every((r) => (ug?.confirmation_causes ?? []).some((x) => x.rule_id === r)), JSON.stringify(ug));
+  check("United cabine, Golden 32 kg : sous conditions sans plafond inventé — la page publie explicitement l'absence de limite de poids",
+    ug?.status === "accepted_with_conditions" && ug?.weight_limit_kg === undefined && !(ug?.confirmation_causes ?? []).some((x) => x.rule_id), JSON.stringify(ug));
 }
 
 console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johannesburg → Le Cap ; Paris → Bahreïn ===");
 {
   const ruh = decide("airport_cdg", "airport_ruh", GOLDEN_32), ruhC = decide("airport_cdg", "airport_ruh", CAVALIER_6), ruhP = decide("airport_cdg", "airport_ruh", CARLIN_8);
-  check("Saudia cabine : « à confirmer » pour TOUT chien de compagnie (Golden, Cavalier 6 kg, Carlin 8 kg) — la preuve de test retirée, aucun refus n'est prononcé",
-    [ruh, ruhC, ruhP].every((x) => canal(x, "airline_saudia", "cabin")?.status === "confirmation_required"), JSON.stringify([ruh, ruhC, ruhP].map((x) => canal(x, "airline_saudia", "cabin")?.status)));
-  check("Saudia soute et fret, Golden 32 kg : « à confirmer » tous deux — retirer une preuve ne crée ni oui ni non",
-    canal(ruh, "airline_saudia", "hold")?.status === "confirmation_required" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
+  check("Saudia cabine : refusée pour tout chien de compagnie sur la page nationale arabe",
+    [ruh, ruhC, ruhP].every((x) => canal(x, "airline_saudia", "cabin")?.status === "denied"), JSON.stringify([ruh, ruhC, ruhP].map((x) => canal(x, "airline_saudia", "cabin")?.status)));
+  check("Saudia soute sous conditions sur preuve nationale ; fret toujours à confirmer",
+    canal(ruh, "airline_saudia", "hold")?.status === "accepted_with_conditions" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
   const pek = decide("airport_cdg", "airport_pek", GOLDEN_32), pekC = decide("airport_cdg", "airport_pek", CAVALIER_6);
   const acC = canal(pekC, "airline_air_china", "cabin");
-  /* HISTOIRE : après l'arbitrage, `rule_air_china_no_cabin` (héritée, non citée) gardait la cabine « à confirmer ».
-     RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : la règle est RETIRÉE, ses restrictions
-     sourcées vivent en conditions. Un Golden de 32 kg reste « à confirmer » par la règle GLOBALE de poids, non citée
-     elle aussi — nommée, hors de cette réconciliation. */
-  check("Air China cabine, Cavalier 6 kg : SOUS CONDITIONS dans le Finder — la règle héritée est retirée ; Golden 32 kg : « à confirmer » par `rule_global_cabin_weight_cap`, nommée",
-    acC?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.status === "confirmation_required" && (canal(pek, "airline_air_china", "cabin")?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"), JSON.stringify(acC));
+  check("Air China cabine : Cavalier et Golden sous conditions, sans plafond global non cité",
+    acC?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.weight_limit_kg === undefined, JSON.stringify(acC));
   check("Air China soute, Golden 32 kg : sous conditions (demande préalable citée) ; fret non décidé → à confirmer",
     canal(pek, "airline_air_china", "hold")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cargo")?.status === "confirmation_required");
   const nbo = decide("airport_cdg", "airport_nbo", GOLDEN_32), nboC = decide("airport_cdg", "airport_nbo", CAVALIER_6);
@@ -267,8 +277,8 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
       && canal(cpt, "airline_south_african_airways", "cargo")?.status === "accepted_with_conditions");
   check("South African Airways, Cavalier 6 kg : cabine refusée aussi (« No pets permitted in Cabin. »)", canal(cptC, "airline_south_african_airways", "cabin")?.status === "denied");
   const amm = decide("airport_cdg", "airport_amm", GOLDEN_32), ammC = decide("airport_cdg", "airport_amm", CAVALIER_6);
-  check("Royal Jordanian cabine, Cavalier 6 kg : sous conditions SANS plafond (7 kg non écrit) ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
-    canal(ammC, "airline_royal_jordanian", "cabin")?.status === "accepted_with_conditions" && canal(ammC, "airline_royal_jordanian", "cabin")?.weight_limit_kg === undefined && canal(amm, "airline_royal_jordanian", "hold")?.status === "accepted_with_conditions" && canal(amm, "airline_royal_jordanian", "cargo")?.status === "confirmation_required");
+  check("Royal Jordanian cabine, Cavalier 6 kg : sous conditions au plafond 7 kg ; soute Golden sous conditions ; fret à confirmer",
+    canal(ammC, "airline_royal_jordanian", "cabin")?.status === "accepted_with_conditions" && canal(ammC, "airline_royal_jordanian", "cabin")?.weight_limit_kg === 7 && canal(amm, "airline_royal_jordanian", "hold")?.status === "accepted_with_conditions" && canal(amm, "airline_royal_jordanian", "cargo")?.status === "confirmation_required");
 }
 
 console.log("\n=== Ce que l'import n'a PAS fait ===");

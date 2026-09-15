@@ -93,7 +93,10 @@ policies:
           quote: FurPAL welcomes small dogs and cats to travel in-cabin with their owners for as low as P2,500 per way.
           quote_language: en
           locator: tableau contractuel compare au bandeau d'introduction de la meme page
-    availability: offered
+    # FurPAL est explicitement publié sur le réseau intérieur. Le modèle ne
+    # sait pas encore opposer cette disponibilité au seul trajet domestique :
+    # ne pas la généraliser à l'international.
+    availability: case_by_case
     source:
       url: https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html
       source_type: official_website
@@ -107,6 +110,9 @@ policies:
       locator: FurPAL → Covered Routes
   hold:
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.philippineairlines.com/ph/en/before-you-fly/baggage-information/special-baggage/pets.html
       source_type: official_website
@@ -115,9 +121,9 @@ policies:
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: Pets, such as dogs and cats, may be accepted as checked-in baggage. Contact PAL before the reservation to check if your flight's aircraft cargo compartment can accommodate live animals/pets as checked-in bag. Carrying pets as checked-in bag could impact their pet's health leading to weakness, injury, or death.
+      quote: "Important: The total weight of the pet and kennel as checked-in baggage must not exceed 32 kg for checked-in transport. If this exceeds the weight limit, the pet may be forwarded as cargo, and applicable cargo fees and requirements shall apply."
       quote_language: en
-      locator: "bloc « Pets, such as dogs and cats… » et bloc « When travelling with pets, you must: »"
+      locator: "Travelling with pets → checked-in baggage → Important"
   cargo:
     fares:
       - id: fare_philippine_cargo_2026_09_10

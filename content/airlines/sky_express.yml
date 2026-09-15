@@ -62,30 +62,50 @@ ladder:
 policies:
   cabin:
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.skyexpress.gr/en/sky-experience/sky-pets
+      url: https://www.skyexpress.gr/el/sky-experience/sky-pets
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Dogs and cats weighing up to 8 kg
-      quote_language: en
-      locator: Carriage of animals in the cabin (up to 8kg)
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page nationale"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.skyexpress.gr/en/sky-experience/sky-pets ;
+            citation « Dogs and cats weighing up to 8 kg » ; localisateur « Carriage of animals in the cabin (up to 8kg) ».
+            Remplacée par l'encart grec qui précise le poids maximal avec le contenant.
+      quote: ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς
+      quote_language: el
+      locator: encart chiffre de la section cabine
   hold:
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    max_weight_kg: 25
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.skyexpress.gr/en/sky-experience/sky-pets
+      url: https://www.skyexpress.gr/el/sky-experience/sky-pets
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Dogs and cats weighing more than 8 kilograms
-      quote_language: en
-      locator: Transporting animals in the aircraft hold (weight more than 8kg)
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page nationale"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.skyexpress.gr/en/sky-experience/sky-pets ;
+            citation « Dogs and cats weighing more than 8 kilograms » ; localisateur « Transporting animals in the aircraft hold (weight more than 8kg) ».
+            Remplacée par le tableau grec qui établit ensemble le plancher de 8 kg, le plafond de 25 kg et le contenant.
+      quote: ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στην καμπίνα. ΕΩΣ / 25KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στον χώρο αποθήκευσης / (μόνο γάτες και σκύλοι)
+      quote_language: el
+      locator: tableau « Βάρος κατοικιδίων », colonne soute
   cargo:
     review_state: legacy_unreviewed
 channels:

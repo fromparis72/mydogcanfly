@@ -55,13 +55,11 @@ console.log("\n=== 2. La borne du seuil : `lt` exclut la valeur, `lte` l'inclut 
   check("Air Austral cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « inférieur à 8 kg », et projeté", aa?.weight_limit_bound === "lt" && projetee("airline_air_austral", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_austral")));
   let bornesStrictes = 0, seuils = 0;
   for (const a of objets.airlines) for (const p of Object.values(a.premium?.policy ?? {})) { if (typeof p.max_weight_kg === "number" && typeof p.weight_includes_carrier === "boolean") { seuils++; if (p.weight_limit_bound === "lt") bornesStrictes++; } }
-  /* MOUVEMENT NOMMÉ (12/09/2026, KLM et SAS — sources nationales) : 38 → 40
-     seuils qualifiés. Les deux nouveaux plafonds sont inclusifs ; Air Austral et
-     Air France restent les deux seules politiques dont la phrase citée porte
-     une borne stricte.
-     MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 40 → 41, Finnair soute
-     gagne son plafond inclusif de 75 kg depuis la page nationale la plus récente. */
-  check("état figé : 41 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France)", seuils === 41 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif des raccordements) : les 102
+     fiches pilotent désormais 101 plafonds exécutables. Quatre citations portent
+     une borne stricte : Air Austral et Air France en cabine, EVA Air et Royal Air
+     Maroc en soute. */
+  check("état audité : 101 plafonds exécutables, quatre bornes strictes citées", seuils === 101 && bornesStrictes === 4, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
   const afB = politique("airline_air_france", "cabin");
   check("Air France cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « moins de 8 kg », et projeté", afB?.weight_limit_bound === "lt" && projetee("airline_air_france", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_france")));
   const st = (w) => canal(decide("airport_cdg", "airport_run", { breed_id: "breed_pug", weight_kg: w }), "airline_air_austral", "cabin");
@@ -95,29 +93,34 @@ console.log("\n=== 3 et 4. Deux règles héritées non citées retirées ; les r
   check("Air China cabine (Paris → Pékin), Cavalier 6 kg : SOUS CONDITIONS dans le Finder, source citée transportée",
     canal(pek, "airline_air_china", "cabin")?.status === "accepted_with_conditions" && /airchina\.com\.cn/.test(canal(pek, "airline_air_china", "cabin")?.source?.url ?? ""));
   const pekG = decide("airport_cdg", "airport_pek", { breed_id: "breed_golden_retriever", weight_kg: 32 });
-  check("Air China cabine, Golden 32 kg : « à confirmer » par la règle GLOBALE de poids non citée — nommée, hors de cette réconciliation (aucun plafond cité chez Air China)",
-    canal(pekG, "airline_air_china", "cabin")?.status === "confirmation_required" && (canal(pekG, "airline_air_china", "cabin")?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"));
+  const airChinaGolden = canal(pekG, "airline_air_china", "cabin");
+  check("Air China cabine, Golden 32 kg : canal publié sous conditions, sans plafond ni refus de poids inventé",
+    airChinaGolden?.status === "accepted_with_conditions"
+      && airChinaGolden?.weight_limit_kg === undefined
+      && !(airChinaGolden?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"));
 }
 
 console.log("\n=== Ce que la réconciliation n'a PAS fait ===");
 {
   let allowed = 0; for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais une place promise", allowed === 0, String(allowed));
-  /* MOUVEMENTS NOMMÉS : 399 → 402 avec les trois règles géographiques de Bangkok Airways,
-     puis 402 → 404 avec les deux règles fret officielles du 13/09 (chaleur American,
-     brachycéphales Ethiopian). La règle chaleur Air Canada existait déjà et a été resserrée
-     sur le fret, elle n'ajoute donc pas une ligne au total. Le service Large Dog d'ITA ajoute
-     le 15/09 sa garde intérieure propre au-delà de 30 kg : 404 → 405. */
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif) : les règles globales de poids
+     et de races sont retirées. Restent 297 règles citées et bornées à leur vraie
+     portée ; les trois seules règles globales portent sur la géographie, jamais
+     sur un poids ou une race de compagnie. */
   const fretAjoutees = [
     "rule_american_cargo_heat_official_2026_09_12",
     "rule_ethiopian_cargo_brachy_official_2026_09_12",
   ];
-  check("405 règles = 399 de la réconciliation + 3 Bangkok Airways + 2 gardes fret officielles + 1 garde ITA Large Dog",
-    regles.length === 405
+  const globales = regles.filter((r) => !r.scope?.id);
+  check("297 règles après retrait des généralisations ; les règles métier ajoutées restent présentes et les trois globales sont exclusivement géographiques",
+    regles.length === 297
       && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3
       && fretAjoutees.every((id) => regles.some((r) => r.id === id))
-      && regles.some((r) => r.id === "rule_ita_airways_large_dog_domestic_max_weight"),
-    String(regles.length));
+      && regles.some((r) => r.id === "rule_ita_airways_large_dog_domestic_max_weight")
+      && globales.length === 3
+      && globales.every((r) => ["rule_au_mel_cargo_only", "rule_gb_no_cabin_pets", "rule_gb_stn_not_approved"].includes(r.id)),
+    JSON.stringify({ total: regles.length, globales: globales.map((r) => r.id) }));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

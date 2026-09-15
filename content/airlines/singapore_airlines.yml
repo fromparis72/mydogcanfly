@@ -70,6 +70,17 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    source:
+      url: https://www.singaporeair.com/en_UK/gb/faq/check-in/checking-in/
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture directe de la FAQ officielle
+      history: []
+      quote: Only domesticated cats and certain breeds of dogs that are at least 3 months old are allowed as checked baggage or in cargo.
+      quote_language: en
+      locator: Checking in → travelling with pets
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -93,6 +104,9 @@ policies:
           quote_language: en
           locator: Fees for travelling with pets
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: "https://www.singaporeair.com/en_UK/sg/travel-info/special-assistance/travelling-with-pets/"
       source_type: official_website
@@ -101,9 +115,9 @@ policies:
       confidence: 4
       reviewer: "Codex — direct reading of official national airline page"
       history: []
-      quote: "We welcome your pet on board our flights* as checked baggage."
+      quote: "Due to Occupational Health and Safety rules, if the combined weight of your pet(s) and its container exceeds 32kg, please make travel arrangements for your pet(s) via a cargo agent."
       quote_language: en
-      locator: "Travelling with pets → Checked baggage"
+      locator: "Travelling with pets → Checked baggage, second paragraph"
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -127,17 +141,20 @@ policies:
           quote_language: en
           locator: Cargo referral
     availability: offered
+    min_weight_kg: 32
+    weight_min_bound: gt
+    weight_includes_carrier: true
     source:
-      url: https://www.siacargo.com/products/live-animals/
+      url: https://www.singaporeair.com/en_UK/sg/travel-info/special-assistance/travelling-with-pets/
       source_type: official_website
       verified_date: 2026-09-12
       review_due: 2026-12-11
       confidence: 4
-      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      reviewer: Codex — contre-lecture de la page nationale officielle
       history: []
-      quote: "Complying with the IATA Live Animal Regulations (LAR), our experienced staff at SIA Cargo ensure the welfare and safety of the animals are well taken care of."
+      quote: "Due to Occupational Health and Safety rules, if the combined weight of your pet(s) and its container exceeds 32kg, please make arrangements for your pet(s) to travel via cargo instead."
       quote_language: en
-      locator: "section « Professional Handling »"
+      locator: "Travelling with pets → Checked baggage, second paragraph"
 channels:
   - placement: cabin
     icon: 🐾

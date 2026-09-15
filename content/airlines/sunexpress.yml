@@ -103,6 +103,9 @@ policies:
       locator: Transporting animals → Carriage of animals inside cabin
   hold:
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_includes_carrier: false
     source:
       url: https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/
       source_type: official_website

@@ -88,17 +88,26 @@ policies:
           quote_language: fr
           locator: onglet « En cabine » > « Des frais spécifiques s'appliquent par trajet »
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
+      url: https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Le transport peut s'effectuer en cabine
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport ;
+            citation « Le transport peut s'effectuer en cabine » ; localisateur « Conditions de transport → Transport d'animaux ».
+            Remplacée par la limite de poids de la page officielle cabine.
+      quote: Le poids total (animal + contenant) ne doit pas dépasser 8 kg. En cas de dépassement, l'animal devra voyager en soute.
       quote_language: fr
-      locator: Conditions de transport → Transport d'animaux
+      locator: onglet « En cabine » → « Conditions de transport »
   hold:
     fares:
       - id: fare_corsair_hold_eur_2026_09_12
@@ -125,6 +134,9 @@ policies:
           quote_language: fr
           locator: onglet « En soute » > « Tarifs applicables »
     availability: offered
+    max_weight_kg: 50
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
       source_type: official_website
@@ -132,8 +144,14 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: Le transport s'effectue en soute
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport ;
+            citation « Le transport s'effectue en soute » ; localisateur « Conditions de transport → Transport d'animaux ».
+            Remplacée par la limite de poids du même canal.
+      quote: Si le poids total de l'animal avec sa cage est inférieur ou égal à 50 kg, le transport s'effectue en soute.
       quote_language: fr
       locator: Conditions de transport → Transport d'animaux
   cargo:
@@ -157,6 +175,9 @@ policies:
           quote_language: en
           locator: Special animal transport
     availability: offered
+    min_weight_kg: 50
+    weight_min_bound: gt
+    weight_includes_carrier: true
     source:
       url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
       source_type: official_website

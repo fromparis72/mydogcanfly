@@ -52,7 +52,7 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 23 kg
+    sub: ≤ 32 kg
   - flex: 20
     color: "#9a6410"
     label:
@@ -68,6 +68,9 @@ ladder:
 policies:
   cabin:
     availability: offered
+    max_weight_kg: 6
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/
       source_type: official_website
@@ -75,25 +78,54 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
-      quote: Votre animal de compagnie Chien, chat, oiseau ou autre animal domestique est accepté à bord des vols d'Air Algérie sous réserve de conditions exigées par le pays de destination ou de départ.
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/ ;
+            citation « only small pets under 6 kg are accepted on board » ; localisateur « Travel with pets → Pets travelling in cabin ».
+            Remplacée par la phrase nationale précisant animal et contenant.
+      quote: Les animaux domestiques admis en cabine ne doivent pas excéder un poids maximum de 06 kg (animal + contenant de transport).
       quote_language: fr
-      locator: corps de page, premier paragraphe sous « Animaux de compagnie »
+      locator: Voyage des animaux domestiques en cabine
   hold:
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: false
     source:
-      url: https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/
+      url: https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/
       source_type: official_website
-      verified_date: 2026-09-09
-      review_due: 2026-12-08
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: your pet must be transported in the hold
-      quote_language: en
-      locator: Travel with pets → Pets travel in the hold
+      reviewer: Codex — lecture de la page officielle nationale
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/ ;
+            citation « your pet must be transported in the hold » ; localisateur « Travel with pets → Pets travel in the hold ».
+            Remplacée par la phrase nationale établissant la frontière soute/fret à 32 kg.
+      quote: Les animaux en soute sont acceptés d’un poids allant jusqu’à un maximum de 32 kg. Au-delà de 32 kg le transport se fera via le fret.
+      quote_language: fr
+      locator: Voyage des animaux domestiques en soute
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    min_weight_kg: 32
+    weight_min_bound: gt
+    weight_includes_carrier: false
+    source:
+      url: https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture de la page officielle nationale
+      history: []
+      quote: Les animaux en soute sont acceptés d’un poids allant jusqu’à un maximum de 32 kg. Au-delà de 32 kg le transport se fera via le fret.
+      quote_language: fr
+      locator: Voyage des animaux domestiques en soute
 channels:
   - placement: cabin
     icon: 🐾

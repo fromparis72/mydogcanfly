@@ -20,10 +20,10 @@ chips:
       pt: "Luxemburgo"
   - icon: 🐾
     label:
-      en: Cabin < 8 kg
-      fr: Cabine < 8 kg
-      es: Cabina < 8 kg
-      pt: "Cabine < 8 kg"
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
   - icon: 🗓
     label:
       en: Updated 8 Aug 2026
@@ -50,7 +50,7 @@ ladder:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    sub: < 8 kg
+    sub: ≤ 8 kg
   - flex: 84
     color: "#1f5fa8"
     label:
@@ -84,17 +84,26 @@ policies:
           quote_language: fr
           locator: § « Transport en cabine, animaux moins de 8KG », 1/ Reservation
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.luxair.lu/en/node/502/
+      url: https://www.luxair.lu/fr/node/502/
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: welcome them on board either in cabin
-      quote_language: en
-      locator: Travelling with animals → General information and regulations
+      reviewer: Codex — lecture directe de la page officielle française
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle française chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.luxair.lu/en/node/502/ ;
+            citation « welcome them on board either in cabin » ; localisateur « Travelling with animals → General information and regulations ».
+            Remplacée par la limite de poids de la page officielle française.
+      quote: Votre animal ne peut être accepté en cabine que s'il ne pèse pas plus de 8 kg (cage comprise)
+      quote_language: fr
+      locator: Transport en cabine, animaux moins de 8KG → Préparation de votre voyage
   hold:
     fares:
       - id: fare_luxair_hold_eur_2026_09_12
@@ -118,17 +127,28 @@ policies:
           quote_language: fr
           locator: § « Transport en soute, animaux de plus de 8KG », 1/ Reservation
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    max_weight_kg: 50
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.luxair.lu/en/node/502/
+      url: https://www.luxair.lu/fr/node/502/
       source_type: official_website
       verified_date: 2026-09-09
       review_due: 2026-12-08
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: welcome them on board either in cabin or in hold
-      quote_language: en
-      locator: Travelling with animals → General information and regulations
+      reviewer: Codex — lecture directe de la page officielle française
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle française chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.luxair.lu/en/node/502/ ;
+            citation « welcome them on board either in cabin or in hold » ; localisateur « Travelling with animals → General information and regulations ».
+            Remplacée par les frontières de poids de la page officielle française.
+      quote: Votre animal ne peut être accepté en cabine que s'il ne pèse pas plus de 8 kg (cage comprise). Votre animal ne peut être accepté en soute que s'il ne pèse pas plus de 50 kg (cage comprise).
+      quote_language: fr
+      locator: Transport en soute, animaux de plus de 8KG → Préparation de votre voyage
   cargo:
     review_state: legacy_unreviewed
 channels:

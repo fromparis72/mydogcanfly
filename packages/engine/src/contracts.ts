@@ -82,6 +82,14 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
    */
   z.object({ code: z.literal("rule_official_unquoted"), rule_id: z.string().min(1) }).strict(),
   z.object({ code: z.literal("rule_unverified"), rule_id: z.string().min(1) }).strict(),
+  /** Une règle officielle impose une validation préalable de la compagnie pour ce scénario. */
+  z.object({ code: z.literal("rule_requirement"), rule_id: z.string().min(1) }).strict(),
+  /**
+   * La phrase officielle ne propose ce canal qu'à partir d'un poids donné. En dessous de ce
+   * plancher, elle ne prouve ni une acceptation ni un refus : le Finder demande donc une
+   * confirmation au lieu d'étendre silencieusement la portée de la phrase à tous les poids.
+   */
+  z.object({ code: z.literal("weight_scope_unmet"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
   /**
    * AUCUNE POLITIQUE DÉCLARÉE POUR CE CANAL. L'absence valait `denied` par défaut — « la fiche ne
    * documente pas cette soute, donc elle n'existe pas ». C'est une inférence, pas un fait : une
@@ -126,7 +134,7 @@ export const causeKey = (c: ConfirmationCause): string =>
   /* Les causes de RÈGLE s'identifient par leur règle, pas par un canal : deux règles distinctes
      déclenchées sur le même canal doivent rester deux causes, sans quoi le visiteur n'en verrait
      qu'une — la même faute que `restriction_ref` a fermée pour les exigences de race. */
-  : (c.code === "rule_official_unquoted" || c.code === "rule_unverified") ? `${c.code}|${c.rule_id}`
+  : (c.code === "rule_official_unquoted" || c.code === "rule_unverified" || c.code === "rule_requirement") ? `${c.code}|${c.rule_id}`
   : `${c.code}|${c.policy_ref}`;
 
 const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {

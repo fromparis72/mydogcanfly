@@ -873,22 +873,34 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
     JSON.stringify(fret?.source ?? null));
 
   /* DEUX cartes, choisies pour être opposées : Thai porte une source auditée sur son fret ;
-     Air China n'a AUCUN canal sourcé et une racine qui est une page d'accueil. Sans la seconde,
-     le contrôle « aucune racine affichée » passerait sur une carte qui n'en a jamais eu. */
-  /* TÉMOIN RE-FONDÉ PAR MESURE (09/09/2026, import strict lot 6) : Air China porte désormais une
-     soute CITÉE (« …pets will only be carried following approval by Air China. ») — elle ne peut
-     plus témoigner qu'une carte sans canal sourcé n'affiche aucun bloc de sources. Mesuré sur les
-     35 cartes de CDG→BKK : cinq compagnies n'ont aucun canal sourcé, trois avec une racine qui est
-     une page d'accueil (Aircalin, China Southern, El Al ; LOT et Singapore ont une racine
-     mydogcanfly.com). China Southern est retenue. Jamais abaissé. */
-  /* RE-FONDÉ ENCORE (09/09/2026, lot 8) : China Southern est citée (cabine refusée, soute sous conditions).
-     Mesuré sur CDG→BKK : quatre cartes sans canal sourcé, une seule à racine page d'accueil hors des
-     lots 7 et 8 — El Al. Retenue. */
+     le témoin négatif n'a AUCUN canal sourcé et sa racine est une page d'accueil. Sans la seconde,
+     le contrôle « aucune racine affichée » passerait sur une carte qui n'en a jamais eu.
+
+     Air China, China Southern puis EL AL ont successivement cessé d'être des témoins valides à
+     mesure que leurs canaux étaient cités. Le rapport courant ne contient plus aucune carte sans
+     source. La branche négative est donc une MUTATION nommée d'une carte EL AL réellement servie :
+     ses sources sont retirées, et l'interface doit rester muette plutôt que reprendre sa racine. */
   const TEMOIN_SANS_SOURCE = "airline_el_al";
-  const cartes2 = ["airline_thai_airways", TEMOIN_SANS_SOURCE]
-    .map((id) => (rapport.airlines ?? []).find((a) => a.airline_id === id));
-  check(`le témoin ${TEMOIN_SANS_SOURCE} est servi, sans aucun canal sourcé`,
-    !!cartes2[1] && (cartes2[1].placement_decisions ?? []).every((d) => !d.source));
+  const carteThaiRapport = (rapport.airlines ?? []).find((a) => a.airline_id === "airline_thai_airways");
+  const carteTemoinOriginale = (rapport.airlines ?? []).find((a) => a.airline_id === TEMOIN_SANS_SOURCE);
+  const carteTemoinRapport = carteTemoinOriginale ? {
+    ...structuredClone(carteTemoinOriginale),
+    cabin: false,
+    hold: false,
+    cargo: false,
+    cabin_status: "confirmation_required",
+    hold_status: "confirmation_required",
+    cargo_status: "confirmation_required",
+    to_confirm: ["cabin", "hold", "cargo"],
+    placement_decisions: (carteTemoinOriginale.placement_decisions ?? []).map((decision) => {
+      const { source: _sourceRetiree, ...sansSource } = decision;
+      return { ...sansSource, status: "confirmation_required" };
+    }),
+  } : null;
+  const cartes2 = [carteThaiRapport, carteTemoinRapport];
+  check(`la mutation ${TEMOIN_SANS_SOURCE} part d'une carte servie et lui retire tous ses canaux sourcés`,
+    !!cartes2[1] && (carteTemoinOriginale?.placement_decisions ?? []).some((d) => !!d.source)
+      && (cartes2[1].placement_decisions ?? []).every((d) => !d.source));
   const racineTemoin = kb.airlines.get(TEMOIN_SANS_SOURCE)?.source?.url ?? "";
   check(`et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper`,
     racineTemoin !== "" && new URL(racineTemoin).pathname.replace(/\/$/, "") === "",
@@ -989,8 +1001,11 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   /* 256 → 253 (13/09/2026, lot fret officiel) : Delta, United et Virgin Atlantic fret passent
    * de l'incertitude éditoriale à un refus officiel cité, désormais concordant avec `cls: no`.
    * Le périmètre reste de 100 fiches. */
-  check("253 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 253 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
+  /* 253 → 254 et 100 → 99 fiches (15/09/2026, raccordement exhaustif) : les décisions sont
+   * désormais calculées depuis les 306 politiques canoniques et leurs bornes, plus depuis les
+   * règles de poids dupliquées. Le registre est recompté sur ce contrat runtime. */
+  check("254 canaux contradictoires sur 99 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 254 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 99,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

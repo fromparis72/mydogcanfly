@@ -471,6 +471,7 @@ export type ChampsStructures = {
   max_weight_kg?: number;
   min_weight_kg?: number;
   weight_includes_carrier?: boolean;
+  min_weight_includes_carrier?: boolean;
   weight_limit_bound?: "lt" | "lte";
   weight_min_bound?: "gt" | "gte";
   carrier_dims_cm?: { l: number; w: number; h: number };
@@ -502,7 +503,7 @@ export function desaccord(claim: Claim, p: ChampsStructures): string | null {
   if (claim.kind === "weight_min") {
     if (p.min_weight_kg !== claim.kg) return `la politique porte min_weight_kg=${String(p.min_weight_kg)}, l'attestation annonce ${claim.kg}`;
     if ((p.weight_min_bound ?? "gte") !== claim.bound) return `borne du plancher : la politique dit ${p.weight_min_bound ?? "gte"}, l'attestation ${claim.bound}`;
-    return desaccordSujet(claim.subject, p.weight_includes_carrier);
+    return desaccordSujet(claim.subject, p.min_weight_includes_carrier ?? p.weight_includes_carrier);
   }
   const d = p.carrier_dims_cm;
   if (!d) return "la politique ne porte aucune dimension de contenant";
