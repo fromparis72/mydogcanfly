@@ -410,7 +410,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
               retirer la phrase officielle doit refaire rougir la fiche construite. */}
           <details class="special-service__proof">
             <summary>{tt(locale, "premium.special_service.proof")}</summary>
-            <div class="proof-h">🛡️ {tt(locale, "premium.preuve.original").replace("{langue}", nomDeLangue(service.source.quote_language, locale))}</div>
+            <div class="proof-h">🛡️ {tt(locale, "premium.preuve.original").replace("{langue}", nomDeLangue(service.source.quote_language, locale) ?? service.source.quote_language ?? "")}</div>
             <blockquote class="special-service__proof-q" lang={service.source.quote_language}>« {service.source.quote} »</blockquote>
             <div class="proof-m">
               {service.source.locator && <span>{service.source.locator}</span>}
