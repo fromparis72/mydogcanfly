@@ -209,14 +209,17 @@ const MUTATIONS = [
     attendu: "la CITATION est celle de l'IATA, mot pour mot",
   },
   {
-    nom: "une règle CONSERVÉE est modifiée en douce",
-    id: "une-regle-conservee-est-modifiee-en-douce",
-    fichier: "packages/knowledge/raw/rules.json",
-    cherche: `    "id": "rule_aa_cabin_weight",`,
-    remplace: `    "id": "rule_aa_cabin_weight",\n    "_mutation": "contre-épreuve",`,
-    harnais: "mesures/t0b3b-referentiel-brachy/outils/mesurer.mjs",
-    args: ["--sans-ecrire"],
-    attendu: "l'après est l'avant PRIVÉ des 42",
+    /* Le témoin historique ciblait `rule_aa_cabin_weight`, supprimée avec les anciennes règles
+       de poids dupliquées. Le conserver aurait rendu la mutation muette. Le même risque est
+       désormais protégé à la frontière canonique : modifier la fiche sans régénérer ses deux
+       projections doit être vu immédiatement. */
+    nom: "une politique canonique raccordée est modifiée en douce",
+    id: "une-politique-canonique-raccordee-est-modifiee-en-douce",
+    fichier: "content/airlines/neos.yml",
+    cherche: "    max_weight_kg: 10",
+    remplace: "    max_weight_kg: 11",
+    harnais: "test-raccordement-finder.mjs",
+    attendu: "FICHE_GENERATED_DRIFT\tairline_neos\tcabin",
   },
   {
     nom: "un `.nvmrc` vide redevient un plancher satisfait",

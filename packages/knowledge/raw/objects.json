@@ -19957,6 +19957,9 @@
           },
           "hold": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_aegean_hold_medium_eur_2026_09_12",
@@ -20023,7 +20026,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
               "source_type": "official_website",
@@ -20775,7 +20777,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
               "source_type": "official_website",
@@ -21114,7 +21115,6 @@
             "availability": "offered",
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
               "source_type": "official_website",
@@ -21337,6 +21337,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 6,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -21344,41 +21347,61 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
-              "quote": "Votre animal de compagnie Chien, chat, oiseau ou autre animal domestique est accepté à bord des vols d'Air Algérie sous réserve de conditions exigées par le pays de destination ou de départ.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/ ; citation « only small pets under 6 kg are accepted on board » ; localisateur « Travel with pets → Pets travelling in cabin ». Remplacée par la phrase nationale précisant animal et contenant."
+                }
+              ],
+              "quote": "Les animaux domestiques admis en cabine ne doivent pas excéder un poids maximum de 06 kg (animal + contenant de transport).",
               "quote_language": "fr",
-              "locator": "corps de page, premier paragraphe sous « Animaux de compagnie »"
+              "locator": "Voyage des animaux domestiques en cabine"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": false,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "your pet must be transported in the hold",
-              "quote_language": "en",
-              "locator": "Travel with pets → Pets travel in the hold"
+              "reviewer": "Codex — lecture de la page officielle nationale",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/ ; citation « your pet must be transported in the hold » ; localisateur « Travel with pets → Pets travel in the hold ». Remplacée par la phrase nationale établissant la frontière soute/fret à 32 kg."
+                }
+              ],
+              "quote": "Les animaux en soute sont acceptés d’un poids allant jusqu’à un maximum de 32 kg. Au-delà de 32 kg le transport se fera via le fret.",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques en soute"
             },
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": false,
+            "min_weight_kg": 32,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.airalgerie.dz",
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture de la page officielle nationale",
+              "history": [],
+              "quote": "Les animaux en soute sont acceptés d’un poids allant jusqu’à un maximum de 32 kg. Au-delà de 32 kg le transport se fera via le fret.",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques en soute"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -21452,6 +21475,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_astana_cabin_2026_09_10",
@@ -21478,21 +21504,30 @@
               }
             ],
             "source": {
-              "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+              "url": "https://airastana.com/kaz-kk/information/carriage-of-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Перевозка домашних животных (кошек или собак) в салоне самолета разрешена",
-              "quote_language": "ru",
-              "locator": "Правила и нормы перевозки домашних животных в салоне самолета"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85 ; citation « Перевозка домашних животных (кошек или собак) в салоне самолета разрешена » ; localisateur « Правила и нормы перевозки домашних животных в салоне самолета ». Remplacée par la phrase kazakhe établissant le plafond total de 8 kg."
+                }
+              ],
+              "quote": "Мысықтар, кішкентай иттер, тасбақалар және құрлықтағы ұлулар сияқты ұсақ үй жануарларын, олардың тасымалдау қорабымен бірге жалпы салмағы 8 кг (17 фунт) аспаған жағдайда, ұшақ салонында алып жүруге болады.",
+              "quote_language": "kk",
+              "locator": "accordéon cabine, première phrase"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 50,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_astana_hold_2026_09_10",
@@ -21518,34 +21553,48 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
-              "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+              "url": "https://airastana.com/kaz-ru/information/carriage-of-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Правила перевозки животных в багажном отсеке",
+              "reviewer": "Codex — contre-lecture du dossier officiel national (repli russe)",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la frontière soute/fret chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85 ; citation « Правила перевозки животных в багажном отсеке » ; localisateur identique. Remplacée par la phrase nationale établissant le plafond total de 50 kg et le passage au fret au-delà."
+                }
+              ],
+              "quote": "При транспортировке животных, перевозимых в зарегистрированном багаже, максимальный допустимый вес составляет 50 кг, включая вес контейнера (клетки); животные, вес которых превышает этот предел, принимаются к перевозке в качестве груза с оформлением авианакладной (air waybill).",
               "quote_language": "ru",
-              "locator": "Правила перевозки животных в багажном отсеке"
+              "locator": "accordéon « Животные, перевозимые в грузовых отсеках », premier paragraphe"
             },
             "derived_from_fiche": true
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 50,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+              "url": "https://airastana.com/kaz-ru/information/carriage-of-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "животные должны быть транспортированы исключительно по грузовой авианакладной",
+              "reviewer": "Codex — contre-lecture du dossier officiel national (repli russe)",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la frontière soute/fret chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85 ; citation « животные должны быть транспортированы исключительно по грузовой авианакладной » ; localisateur « Существуют ли особые ограничения для других стран? ». Remplacée par la phrase nationale qui rattache explicitement le fret au dépassement de 50 kg."
+                }
+              ],
+              "quote": "При транспортировке животных, перевозимых в зарегистрированном багаже, максимальный допустимый вес составляет 50 кг, включая вес контейнера (клетки); животные, вес которых превышает этот предел, принимаются к перевозке в качестве груза с оформлением авианакладной (air waybill).",
               "quote_language": "ru",
-              "locator": "Существуют ли особые ограничения для других стран?"
+              "locator": "accordéon « Животные, перевозимые в грузовых отсеках », premier paragraphe"
             },
             "derived_from_fiche": true
           }
@@ -21710,6 +21759,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_austral_hold_eur_2026_09_10",
@@ -21747,25 +21799,36 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Le transport en soute est obligatoire",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html ; citation « Le transport en soute est obligatoire » ; localisateur « Animaux transportés en soute (AVIH) ». Remplacée par la limite de poids du même canal officiel."
+                }
+              ],
+              "quote": "poids (animal + contenant) ≤ 75kg",
               "quote_language": "fr",
-              "locator": "Animaux transportés en soute (AVIH)"
+              "locator": "Animaux transportés en soute (AVIH) → Conditions d'acceptation"
             },
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 75,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.air-austral.com",
+              "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe de la page officielle nationale",
+              "history": [],
+              "quote": "Poids (contenant + animal) supérieur à 75 kg.",
+              "quote_language": "fr",
+              "locator": "Animaux voyageant par fret"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -21883,11 +21946,6 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 43,
-              "w": 40,
-              "h": 20
-            },
             "fee": "CA/US $50–$60 one-way (higher international)",
             "conditions": {
               "en": "One cat or small dog per passenger; soft-sided carrier under the seat; pet at least 10 weeks old.",
@@ -21954,10 +22012,16 @@
               "review_due": "2026-12-07",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft.",
-              "quote_language": "en",
-              "locator": "Travelling with your Pet → In the Baggage Compartment"
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html ; citation « Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft. » ; localisateur « Travelling with your Pet → In the Baggage Compartment ». Remplacée par la limite officielle de poids du même canal."
+                }
+              ],
+              "quote": "Poids maximal | Jusqu'à 45 kg (100 lb) (poids total de l'animal et de la cage)",
+              "quote_language": "fr",
+              "locator": "Voyage avec un animal de compagnie → Dans la soute → restrictions de poids et de dimension"
             },
             "fares": [
               {
@@ -21992,7 +22056,10 @@
                   "locator": "Voyage avec un animal de compagnie → Dans la soute → Frais"
                 }
               }
-            ]
+            ],
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte"
           },
           "cargo": {
             "availability": "offered",
@@ -22001,17 +22068,20 @@
               "fr": "Via Air Canada Cargo (AC Animals) pour les animaux voyageant seuls ou les caisses de plus de 45 kg."
             },
             "source": {
-              "url": "https://www.aircanada.com/cargo/all-products/ac-animals?lang=fr",
+              "url": "https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html",
               "source_type": "official_website",
               "verified_date": "2026-09-12",
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
               "history": [],
-              "quote": "Tous les animaux dont le transport a été réservé avec AC Animaux voyagent en soute, avec les bagages et d’autres marchandises, et bénéficient d’une manutention spéciale pendant le transport terrestre.",
+              "quote": "Veuillez communiquer avec Air Canada Cargo (AC Animaux) pour connaître les tarifs et pour obtenir de l'aide quant à l'envoi de cages dont le poids dépasse 45 kg (100 lb) ou les dimensions linéaires dépassent 292 cm (115 po).",
               "quote_language": "fr",
-              "locator": "titre de page « Air Canada Cargo - AC Animaux » et section « Voyage en avion avec Air Canada Cargo »"
-            }
+              "locator": "Voyage avec un animal de compagnie → Dans la soute → note 1"
+            },
+            "min_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_min_bound": "gt"
           }
         },
         "booking": {
@@ -22528,6 +22598,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_caraibes_cabin_eur_2026_09_12",
@@ -22569,15 +22642,24 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "sont uniquement les chiens, chats",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ; citation « sont uniquement les chiens, chats » ; localisateur « Animaux en cabine → Présentation ». Remplacée par les limites de poids publiées pour les réseaux régional et transatlantique."
+                }
+              ],
+              "quote": "Les chiens et les chats d'un poids maximum de 5kg sur le réseau régional et 8kg sur le réseau transatlantique, contenant compris.",
               "quote_language": "fr",
-              "locator": "Animaux en cabine → Présentation"
+              "locator": "Animaux en cabine → Conditions d'acceptation"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_caraibes_hold_eur_2026_09_12",
@@ -22612,7 +22694,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
               "source_type": "official_website",
@@ -22620,15 +22701,24 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie).",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ; citation « sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie). » ; localisateur « Animaux en soute → Présentation ». Remplacée par la limite de poids transatlantique du canal."
+                }
+              ],
+              "quote": "Le poids maximum autorisé pour le transport des AVIH sur les vols transatlantiques est de 75KG (poids de l’animal et cage de type n°5/Ref 700 inclus) au-delà, le transport doit se faire par FRET.",
               "quote_language": "fr",
-              "locator": "Animaux en soute → Présentation"
+              "locator": "Animaux en soute → Règles de transport → réseau transatlantique"
             },
             "derived_from_fiche": true
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 75,
+            "weight_min_bound": "gt",
             "source": {
               "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
               "source_type": "official_website",
@@ -22636,10 +22726,16 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "devront voyager par FRET.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ; citation « devront voyager par FRET. » ; localisateur « Animaux en soute → Règles de transport ». Remplacée par la phrase complète établissant la frontière soute/fret."
+                }
+              ],
+              "quote": "Le poids maximum autorisé pour le transport des AVIH sur les vols transatlantiques est de 75KG (poids de l’animal et cage de type n°5/Ref 700 inclus) au-delà, le transport doit se faire par FRET.",
               "quote_language": "fr",
-              "locator": "Animaux en soute → Règles de transport"
+              "locator": "Animaux en soute → Règles de transport → réseau transatlantique"
             },
             "derived_from_fiche": true
           }
@@ -22891,17 +22987,26 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
+              "url": "https://m.airchina.com.cn/ac/c/invoke/animalInstruction%40pgzhcn",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Should you require your pet to be carried as checked baggage, please ensure that you submit an application when you make your reservation, as pets will only be carried following approval by Air China.",
-              "quote_language": "en",
-              "locator": "Pets as Checked Baggage → Carriage requirements"
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/ ; citation « Should you require your pet to be carried as checked baggage, please ensure that you submit an application when you make your reservation, as pets will only be carried following approval by Air China. » ; localisateur « Pets as Checked Baggage → Carriage requirements ». Remplacée par la limite de poids de la page nationale officielle."
+                }
+              ],
+              "quote": "每只小动物（包含包装容器以及容器内的水及食物），不得超过32公斤。",
+              "quote_language": "zh",
+              "locator": "小动物托运 → 五、运输要求"
             },
             "derived_from_fiche": true
           },
@@ -23269,6 +23374,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 50,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_europa_hold_spain_2026_09_11",
@@ -23431,18 +23539,23 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
-              "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
+              "url": "https://www.aireuropa.com/es/es/aea/informacion-para-volar/pasajeros/mascotas.html",
               "source_type": "official_website",
               "verified_date": "2026-09-08",
               "review_due": "2026-12-07",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Pets may travel on board or in the aircraft hold depending on their species, breed and weight.",
-              "quote_language": "en",
-              "locator": "Flying with pets on board → How can I fly with my pet?"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale espagnole chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html ; citation « Pets may travel on board or in the aircraft hold depending on their species, breed and weight. » ; localisateur « Flying with pets on board → How can I fly with my pet? ». Remplacée par la limite officielle de poids publiée sur le site national."
+                }
+              ],
+              "quote": "Asegúrese de que el peso combinado de su mascota y la jaula no supere los 50 kg.",
+              "quote_language": "es",
+              "locator": "section « Animales en bodega »"
             },
             "derived_from_fiche": true
           },
@@ -23586,11 +23699,6 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
-            "carrier_dims_cm": {
-              "l": 46,
-              "w": 28,
-              "h": 24
-            },
             "fee": "€70 (within France) to €200 (US/Canada–Europe)",
             "conditions": {
               "en": "One animal per carrier, minimum 15 weeks old; soft bag under the seat. Snub-nosed breeds allowed in the cabin.",
@@ -24760,6 +24868,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_india_hold_inr_2026_09_10",
@@ -24818,7 +24929,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
               "source_type": "official_website",
@@ -24826,15 +24936,24 @@
               "review_due": "2026-12-07",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle de la frontière soute/fret",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html ; citation « We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India. » ; localisateur « Pet Travel FAQ → What is Air India’s pet policy? ». Remplacée par la FAQ officielle qui établit la frontière de 32 kg."
+                }
+              ],
+              "quote": "If your pet weighs more than 10 kg / 22 lb, then it must be transported as checked baggage. If the combined weight of the pet and the container is over 32 kg / 70 lb they must be carried as cargo.",
               "quote_language": "en",
-              "locator": "Pet Travel FAQ → What is Air India’s pet policy?"
+              "locator": "Pet Travel FAQ → When does my pet need to be transported as checked baggage or cargo?"
             },
             "derived_from_fiche": true
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 32,
+            "weight_min_bound": "gt",
             "source": {
               "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
               "source_type": "official_website",
@@ -25127,7 +25246,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airnewzealand.com",
               "source_type": "official_website",
@@ -25336,6 +25455,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_serbia_cabin_eur_2026_09_10",
@@ -25371,19 +25493,21 @@
               }
             ],
             "source": {
-              "url": "https://www.airserbia.com",
+              "url": "https://www.airserbia.com/sr_latin/info-and-help/travel-guidelines/traveling-with-your-pets",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe de la page officielle nationale",
+              "history": [],
+              "quote": "nosiljka i životinja zajedno nisu teži od 8 kg",
+              "quote_language": "sr-Latn",
+              "locator": "Pravila za kućnog ljubimca"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airserbia.com",
               "source_type": "official_website",
@@ -25397,7 +25521,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airserbia.com",
               "source_type": "official_website",
@@ -25529,6 +25653,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_tahiti_nui_cabin_xpf_2026_09_10",
@@ -25626,10 +25753,16 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Air Tahiti Nui accepte le transport en cabine des chiens et chats vaccinés accompagnés de leur propriétaire et uniquement sur les vols suivants :",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://pf.airtahitinui.com/voyager-avec-un-animal ; citation « Air Tahiti Nui accepte le transport en cabine des chiens et chats vaccinés accompagnés de leur propriétaire et uniquement sur les vols suivants : » ; localisateur « Animaux domestiques en cabine ». Remplacée par la limite de poids du même canal."
+                }
+              ],
+              "quote": "Le poids total de l’animal et son contenant doit être inférieur ou égal à 8 Kg.",
               "quote_language": "fr",
-              "locator": "Animaux domestiques en cabine"
+              "locator": "Animaux domestiques en cabine → Conditions de transport des animaux de compagnie en cabine"
             },
             "derived_from_fiche": true
           },
@@ -25647,6 +25780,20 @@
               "quote_language": "fr",
               "locator": "Vous souhaitez faire voyager votre animal de compagnie ?"
             },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "review_state": "legacy_unreviewed",
+            "source": {
+              "url": "https://www.airtahitinui.com",
+              "source_type": "official_website",
+              "verified_date": "2026-07-11",
+              "review_due": "2026-10-09",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -25878,6 +26025,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_air_transat_hold_cad_2026_09_10",
@@ -25919,10 +26069,16 @@
               "review_due": "2026-12-07",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Only cats and dogs are allowed in the checked baggage hold.",
-              "quote_language": "en",
-              "locator": "Pets in the checked baggage hold → Restrictions"
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs ; citation « Only cats and dogs are allowed in the checked baggage hold. » ; localisateur « Pets in the checked baggage hold → Restrictions ». Remplacée par la limite officielle de poids du même canal."
+                }
+              ],
+              "quote": "Le poids maximal accepté à l’enregistrement : 45kg (99 lb) (incluant la cage)",
+              "quote_language": "fr",
+              "locator": "Animaux en soute → Restrictions → Spécifications minimales de la cage"
             },
             "derived_from_fiche": true
           },
@@ -26131,6 +26287,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_airbaltic_cabin_eur_2026_09_10",
@@ -26177,6 +26336,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_airbaltic_hold_eur_2026_09_10",
@@ -26691,7 +26853,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.alaskaair.com/content/travel-info/pets",
               "source_type": "official_website",
@@ -26823,11 +26984,6 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 46,
-              "w": 28,
-              "h": 28
-            },
             "fee": "$150 per carrier",
             "conditions": {
               "en": "Cats and dogs; carrier under the seat; flights up to 12 h; sedated pets are not accepted.",
@@ -27735,6 +27891,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_ana_hold_jpy_2026_09_12",
@@ -27871,7 +28030,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
               "source_type": "official_website",
@@ -27879,10 +28037,16 @@
               "review_due": "2026-12-07",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Your pet will be carried in the cargo section, which is located underneath the passenger cabin.",
-              "quote_language": "en",
-              "locator": "For passengers traveling with pets (International Flights) → Reservation and Fee"
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle japonaise chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/ ; citation « Your pet will be carried in the cargo section, which is located underneath the passenger cabin. » ; localisateur « For passengers traveling with pets (International Flights) → Reservation and Fee ». Remplacée par la limite officielle de poids publiée sur la page japonaise."
+                }
+              ],
+              "quote": "ペットケージの3辺（縦・横・高さ）の和が292cm（115インチ）、もしくはペットとケージの総重量が45kg（99ポンド）を超える場合はお預かりできません。",
+              "quote_language": "ja",
+              "locator": "ペットケージの要件 → 受付制限"
             },
             "derived_from_fiche": true
           },
@@ -27981,7 +28145,9 @@
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
@@ -27989,10 +28155,16 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage.",
-              "quote_language": "en",
-              "locator": "Traveling with Pets → Eligible Pets for Transport"
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets ; citation « Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage. » ; localisateur « Traveling with Pets → Eligible Pets for Transport ». Remplacée par la limite de poids officielle du canal soute."
+                }
+              ],
+              "quote": "운반 용기를 포함한 동물의 무게가 45kg 이하이고 운반 용기의 3면 길이의 합이 285cm, 높이 84cm 이하인 경우",
+              "quote_language": "ko",
+              "locator": "반려동물 동반 → 수하물로 위탁하는 경우"
             },
             "derived_from_fiche": true
           },
@@ -28624,7 +28796,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
               "source_type": "official_website",
@@ -28860,7 +29031,6 @@
             "availability": "offered",
             "max_weight_kg": 70,
             "weight_includes_carrier": true,
-            "brachy_allowed": false,
             "source": {
               "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
               "source_type": "official_website",
@@ -28941,7 +29111,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.bangkokair.com",
               "source_type": "official_website",
@@ -28955,18 +29125,19 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "availability": "offered",
-            "brachy_allowed": false,
+            "availability": "case_by_case",
             "source": {
-              "url": "https://www.bangkokair.com",
+              "url": "https://www.bangkokair.com/conditions/condition-baggage",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe des conditions de transport officielles de production",
+              "history": [],
+              "quote": "If we agree to carry your animals, they will be carried subject to the following conditions. If accepted as Baggage, the animal, together with its container and food carried, shall not be included in your free Baggage allowance but shall constitute excess Baggage, for which you will be obliged to pay the applicable rate.",
+              "quote_language": "en",
+              "locator": "Conditions of Carriage → Baggage → Animals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -29085,7 +29256,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.batikair.com",
               "source_type": "official_website",
@@ -29406,19 +29577,22 @@
             }
           },
           "hold": {
-            "availability": "not_offered",
+            "availability": "case_by_case",
             "conditions": {
               "en": "Pets travel in the hold but not as passenger checked baggage — arrangements are made via IAG Cargo (to the UK) or PetAir UK (exports).",
               "fr": "Les animaux voyagent en soute mais pas en bagage enregistré passager — via IAG Cargo (vers le Royaume-Uni) ou PetAir UK (export)."
             },
             "source": {
-              "url": "https://www.britishairways.com/en-gb/information/travel-assistance/travelling-with-pets",
+              "url": "https://www.britishairways.com/content/information/legal/conditions-of-carriage/general-conditions-of-carriage",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contre-lecture du dossier officiel britannique remis par Philippe",
+              "history": [],
+              "quote": "On some services we do not carry animals. If we agree to carry your animals, we will carry them subject to the following conditions.",
+              "quote_language": "en-GB",
+              "locator": "clause 8l « Animals »"
             }
           },
           "cargo": {
@@ -30093,7 +30267,6 @@
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-dogs-in-the-hold",
               "source_type": "official_website",
@@ -30345,15 +30518,17 @@
           "hold": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.cathaypacific.com/",
+              "url": "https://www.cathaypacific.com/cx/zh_HK/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national remis par Philippe",
+              "history": [],
+              "quote": "你的寵物將需要以貨運方式運送。",
+              "quote_language": "zh-Hant-HK",
+              "locator": "FAQ « 我可否攜帶寵物登機？ »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -30562,15 +30737,17 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.china-airlines.com",
+              "url": "https://www.china-airlines.com/tw/zh/prepare-for-the-fly/information/baggage/pet-transport",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national remis par Philippe",
+              "history": [],
+              "quote": "寵物必須置放於妥善容器內以託運方式裝載於貨艙運送。因考量貨艙溫度調節因素，目前本公司 B738 / 32C 機型，不接受旅客託運寵物。",
+              "quote_language": "zh-TW",
+              "locator": "onglet « 基本規定 », section « 寵物託運 »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -30840,17 +31017,26 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
+              "url": "https://www.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin.",
-              "quote_language": "en",
-              "locator": "China Eastern Small Animals → Transport rules"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/ ; citation « Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin. » ; localisateur « China Eastern Small Animals → Transport rules ». Remplacée par la limite de poids publiée sur la page nationale officielle."
+                }
+              ],
+              "quote": "每个独立包装的小动物及其容器合计重量(含食物和水)不得超过32千克（kg）。",
+              "quote_language": "zh-CN",
+              "locator": "八、乘机须知 1 > a et b（4）小动物容器尺寸及重量"
             },
             "derived_from_fiche": true
           },
@@ -31164,6 +31350,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets",
               "source_type": "official_website",
@@ -31171,10 +31360,16 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
-              "quote": "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source nationale précédente vérifiée le 2026-09-12 sur la même page : citation « （1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。 » ; localisateur « section 一、一般规定, alinéa (1) ». Remplacée par l'alinéa qui établit explicitement le plafond de 32 kg, contenant compris."
+                }
+              ],
+              "quote": "（4）旅客托运的活体动物笼体包装最大不能超过 90x60x66 厘米，最小不能小于5x15x20厘米，重量最大不得超过32公斤，应单独装笼；",
               "quote_language": "zh",
-              "locator": "section « 一、一般规定 », alinea (1)"
+              "locator": "section « 二、收运要求 », alinea (4)"
             },
             "derived_from_fiche": true
           },
@@ -31394,6 +31589,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_condor_cabin_eur_2026_09_10",
@@ -31838,6 +32036,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_corsair_cabin_eur_2026_09_12",
@@ -31873,21 +32074,30 @@
               }
             ],
             "source": {
-              "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+              "url": "https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Le transport peut s'effectuer en cabine",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport ; citation « Le transport peut s'effectuer en cabine » ; localisateur « Conditions de transport → Transport d'animaux ». Remplacée par la limite de poids de la page officielle cabine."
+                }
+              ],
+              "quote": "Le poids total (animal + contenant) ne doit pas dépasser 8 kg. En cas de dépassement, l'animal devra voyager en soute.",
               "quote_language": "fr",
-              "locator": "Conditions de transport → Transport d'animaux"
+              "locator": "onglet « En cabine » → « Conditions de transport »"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 50,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_corsair_hold_eur_2026_09_12",
@@ -31922,7 +32132,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
               "source_type": "official_website",
@@ -31930,8 +32139,14 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Le transport s'effectue en soute",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport ; citation « Le transport s'effectue en soute » ; localisateur « Conditions de transport → Transport d'animaux ». Remplacée par la limite de poids du même canal."
+                }
+              ],
+              "quote": "Si le poids total de l'animal avec sa cage est inférieur ou égal à 50 kg, le transport s'effectue en soute.",
               "quote_language": "fr",
               "locator": "Conditions de transport → Transport d'animaux"
             },
@@ -31939,6 +32154,9 @@
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 50,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_corsair_cargo_2026_09_10",
@@ -32082,23 +32300,31 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://www.croatiaairlines.com/resources/documents/handling-agent/OP-ZOU-001-Ground_Operations_Manual_Issue_II_rev.11-24.01.2023.pdf",
+              "url": "https://www.croatiaairlines.com/hr/Prtljaga/zivotinje",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Pets in cabin (PETC), such as: Small domestic animals (dogs and cats only).",
-              "quote_language": "en",
-              "locator": "Ground Operations Manual → 4.7.1 Stowing of Load in the Passenger Cabin → page 127"
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession du manuel daté par la page passagers nationale",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.croatiaairlines.com/resources/documents/handling-agent/OP-ZOU-001-Ground_Operations_Manual_Issue_II_rev.11-24.01.2023.pdf ; citation « Pets in cabin (PETC), such as: Small domestic animals (dogs and cats only). » ; localisateur « Ground Operations Manual → 4.7.1 Stowing of Load in the Passenger Cabin → page 127 ». Remplacée par la page nationale actuelle qui établit le plafond total de 8 kg."
+                }
+              ],
+              "quote": "možete ih prevesti u kabini zrakoplova, ako su zadovoljeni svi uvjeti (težina s kavezom do 8 kg, zbroj dimenzija može biti maksimalno do 115 cm)",
+              "quote_language": "hr",
+              "locator": "Životinje → prijevoz u putničkoj kabini"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.croatiaairlines.com/resources/dokumenti/ou-emd-distribution---services-policy--aaas--for-ouand-ta-oct19.pdf.pdf",
               "source_type": "official_website",
@@ -33529,7 +33755,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.easyjet.com",
               "source_type": "official_website",
@@ -33813,7 +34039,6 @@
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html",
               "source_type": "official_website",
@@ -34333,44 +34558,61 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 9,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://www.elal.com",
+              "url": "https://www.elal.com/heb/baggage/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [],
+              "quote": "כלבים, חתולים וציפורים אקזוטיות בלבד השוקלים עד 9 ק\"ג (כולל הכלוב) יוכלו לטוס יחד עם מלווה בתא הנוסעים ככבודה אישית בכפוף למגבלות ולנהלים.",
+              "quote_language": "he",
+              "locator": "section « הטסת בעלי חיים בתא הנוסעים »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 100,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
+            "min_weight_kg": 9,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.elal.com",
+              "url": "https://www.elal.com/heb/baggage/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [],
+              "quote": "כאשר בעל החיים שוקל מעל 9 ק\"ג ועד 100 ק\"ג ביחד עם הכלוב - ניתן לרוב להטיסו ככבודה בתא המטען.",
+              "quote_language": "he",
+              "locator": "sections « הטסת חיית מחמד לחו\"ל » et « …לישראל »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 100,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.elal.com",
+              "url": "https://www.elal.com/heb/baggage/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [],
+              "quote": "כאשר בעל החיים שוקל מעל 100 ק\"ג ביחד עם הכלוב - ניתן לרוב להטיסו כמטען רשום בתא המטען.",
+              "quote_language": "he",
+              "locator": "sections « הטסת חיית מחמד לחו\"ל » et « …לישראל »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -35169,6 +35411,9 @@
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 45,
+            "weight_min_bound": "gt",
             "source": {
               "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
               "source_type": "official_website",
@@ -35489,7 +35734,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.etihad.com/",
               "source_type": "official_website",
@@ -35783,6 +36028,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html",
               "source_type": "official_website",
@@ -36121,6 +36369,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lt",
             "fares": [
               {
                 "id": "fare_eva_air_hold_2026_09_10",
@@ -36147,16 +36398,22 @@
               }
             ],
             "source": {
-              "url": "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/",
+              "url": "https://www.evaair.com/zh-tw/fly-prepare/baggage/travelling-with-pets/",
               "source_type": "official_website",
-              "verified_date": "2026-09-08",
-              "review_due": "2026-12-07",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment.",
-              "quote_language": "en",
-              "locator": "Travelling with Pets → Travelling with Pets"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale taïwanaise chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/ ; citation « The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment. » ; localisateur « Travelling with Pets → Travelling with Pets ». Remplacée par la limite officielle de poids publiée sur la page nationale."
+                }
+              ],
+              "quote": "籠子總尺寸> 292公分(115英寸)，或重量(含籠子)達45公斤(100磅)以上：不接受以託運行李運送。",
+              "quote_language": "zh-Hant-TW",
+              "locator": "託運限制 → 籠子總尺寸與重量"
             },
             "derived_from_fiche": true
           },
@@ -36682,6 +36939,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_french_bee_cabin_eur_xpf_2026_09_12",
@@ -36751,7 +37011,13 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine ; citation « En cabine vous avez le droit de transporter un chien ou chat par passager. » ; localisateur « Quel type de sac pour mon animal en cabine ? ». Remplacée par la limite de poids de la page nationale officielle."
+                }
+              ],
               "quote": "Les chiens et les chats d'un poids maximum de 8kg contenant compris.",
               "quote_language": "fr",
               "locator": "sections « Voyage des animaux en cabine › Conditions d'acceptation de l'animal » et « Règles de transport d'un animal en cabine › Sac de transport »"
@@ -36760,6 +37026,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_french_bee_hold_eur_xpf_2026_09_12",
@@ -36822,7 +37091,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
               "source_type": "official_website",
@@ -36830,7 +37098,13 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion ; citation « Ils peuvent voyager en soute sous certaines conditions » ; localisateur « Puis-je faire voyager mon animal avec moi dans l’avion ? ». Remplacée par la limite de poids et la frontière fret de la page nationale officielle."
+                }
+              ],
               "quote": "Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.",
               "quote_language": "fr",
               "locator": "sections « Transport par FRET » et « Références des cages et leurs dimensions »"
@@ -36838,7 +37112,10 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 75,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_french_bee_cargo_2026_09_10",
@@ -36864,19 +37141,16 @@
               }
             ],
             "source": {
-              "url": "https://us.frenchbee.com/en/organize-my-trip/before-the-flight/animals",
+              "url": "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
               "source_type": "official_website",
-              "verified_date": "2026-08-10",
-              "review_due": "2026-11-08",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": [
-                {
-                  "date": "2026-08-10",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Complété (audit du 09-10/08/2026, placement fret manquant) : page officielle \"Only dogs and cats are allowed to travel with us, either in the cabin or in the hold\" — liste fermée à deux options, aucun fret mentionné nulle part sur le site officiel."
-                }
-              ]
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [],
+              "quote": "Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.",
+              "quote_language": "fr",
+              "locator": "sections « Transport par FRET » et « Références des cages et leurs dimensions »"
             },
             "derived_from_fiche": true
           }
@@ -37319,11 +37593,6 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
-            "carrier_dims_cm": {
-              "l": 45,
-              "w": 35,
-              "h": 25
-            },
             "fee": "from €40/$50 (Spain) to €180/$215 (America/Asia) per segment",
             "conditions": {
               "en": "Carrier ventilated and leak-proof, kept under the seat; not permitted next to an emergency exit.",
@@ -37784,16 +38053,22 @@
               "fr": "Chiens et chats uniquement, hors races brachycéphales et dangereuses ; réservation en agence et paiement à l'aéroport."
             },
             "source": {
-              "url": "https://www.iberia.com/us/fly-with-iberia/pets/",
+              "url": "https://agencias.iberia.com/es-es/informacion-viaje/viajeros/viajar-con-animales.html",
               "source_type": "official_website",
               "verified_date": "2026-09-08",
               "review_due": "2026-12-07",
               "confidence": 4,
               "reviewer": "Codex — lecture directe de la page officielle",
-              "history": [],
-              "quote": "The Iberia Group allow cats and dogs to travel in the hold.",
-              "quote_language": "en",
-              "locator": "Acceptance in hold"
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle espagnole plus précise",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.iberia.com/us/fly-with-iberia/pets/ ; citation « The Iberia Group allow cats and dogs to travel in the hold. » ; localisateur « Acceptance in hold ». Remplacée par la grille officielle espagnole qui établit les catégories de poids."
+                }
+              ],
+              "quote": "Razas pequeñas: de 0 a 10Kg, Razas medianas: de 11 a 25Kg, Razas grandes: de 26 a 45 Kg",
+              "quote_language": "es",
+              "locator": "Animales → transporte en bodega → categorías por peso"
             },
             "fares": [
               {
@@ -38444,7 +38719,10 @@
                   "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar"
                 }
               }
-            ]
+            ],
+            "max_weight_kg": 45,
+            "weight_includes_carrier": false,
+            "weight_limit_bound": "lte"
           },
           "cargo": {
             "availability": "case_by_case",
@@ -38858,6 +39136,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_iberia_express_cabin_ranges_2026_09_12",
@@ -38915,7 +39196,13 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas ; citation « podrán ser aceptados para el transporte en cabina determinados animales domésticos » ; localisateur « Aceptación en cabina de pasajero ». Remplacée par la limite de poids et les dimensions officielles du canal."
+                }
+              ],
               "quote": "El peso máximo permitido del animal será de 8 kg incluyendo en el mismo el peso del recipiente o jaula en el que será transportado el animal. El recipiente podrá tener como máximo 45 cm de largo, 35 cm de ancho y 25 cm de profundidad, siempre que la suma de estas tres dimensiones no exceda de 105 cm. El transporte debe cumplir estas condiciones teniendo en cuenta que irá situado debajo de los pies del pasajero.",
               "quote_language": "es",
               "locator": "accordeon « Aceptación en cabina de pasajero », phrase d'attaque et premier tiret"
@@ -38924,6 +39211,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_iberia_express_hold_ranges_2026_09_12",
@@ -38974,7 +39264,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
               "source_type": "official_website",
@@ -38982,7 +39271,13 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve nationale chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas ; citation « pueden ser aceptados como equipaje en bodega » ; localisateur « Aceptación en bodega ». Remplacée par la politique détaillée et la limite de poids officielles du canal."
+                }
+              ],
               "quote": "Como regla general, el transporte de animales vivos deberá hacerse en la bodega del avión, en recipientes o contenedores adecuados proporcionados por el pasajero. Los recipientes deberán tener las siguientes características: Resistencia y seguridad Comodidad para la talla del animal Ventilación Un cierre que ofrezca garantías de que no va a abrirse en ningún momento Fondo impermeable Cuando no reúna estas condiciones, el transporte será rechazado. CONSIDERACIONES IMPORTANTES: El peso máximo aceptable para animales en bodega es 45 kg (incluyendo el peso del animal + el peso del contenedor) Para vuelos en conexión, el servicio en bodega será aplicable si dicha conexión es mayor a 90 minutos y no supera las 4 horas La petición del servicio ha de realizarse con una antelación mínima de 48 horas a la salida del vuelo Las reservas que no indiquen la raza de los animales serán rechazados Solo se aceptarán un máximo de 2 animales en bodega para cada trayecto en vuelos de corto y medio radio No se aceptarán animales de razas peligrosas, considerandose perros potencialmente peligrosos los de constitución robusta, aquellos que manifiesten un carácter marcadamente agresivo y los siguientes perros y sus cruces Pit Bull Terrier, Staffordshire Bull Terrier, American Staffodshire Terrier, Rottweiler, Dogo Argentino, Fila Brasileiro, Tosa Inu, Akita Inu",
               "quote_language": "es",
               "locator": "accordeon « Aceptación en bodega »"
@@ -39050,7 +39345,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.icelandair.com",
               "source_type": "official_website",
@@ -39064,21 +39359,23 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "availability": "not_offered",
+            "availability": "offered",
             "source": {
-              "url": "https://www.icelandair.com",
+              "url": "https://www.icelandair.com/is-is/adstod/seradstod/ferdast-med-dyr-i-farangursrymi/",
               "source_type": "official_website",
-              "verified_date": "2026-07-18",
-              "review_due": "2026-10-16",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture de la page nationale islandaise",
+              "history": [],
+              "quote": "Dýr eru velkomin í farangursrými í innanlands.",
+              "quote_language": "is",
+              "locator": "section « Dýr í farangursrými → Innanlandsflug »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.icelandair.com",
               "source_type": "official_website",
@@ -39787,7 +40084,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
               "source_type": "official_website",
@@ -39803,7 +40099,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.ita-airways.com",
               "source_type": "official_website",
@@ -39982,7 +40278,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.jal.co.jp",
               "source_type": "official_website",
@@ -40333,7 +40629,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.jetblue.com",
               "source_type": "official_website",
@@ -40661,11 +40957,6 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
-            "carrier_dims_cm": {
-              "l": 46,
-              "w": 28,
-              "h": 24
-            },
             "fee": "€70 to €500 per one-way flight",
             "conditions": {
               "en": "One pet in Economy (or Business within Europe); stays in the kennel throughout; minimum 15 weeks old.",
@@ -40727,11 +41018,6 @@
           },
           "hold": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 122,
-              "w": 81,
-              "h": 89
-            },
             "fee": "€70 to €500",
             "conditions": {
               "en": "Up to 3 pets; pet plus kennel max 75 kg; snub-nosed breeds not accepted; no pets to the UK.",
@@ -41247,6 +41533,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 10,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_km_malta_cabin_eur_2026_09_12",
@@ -41278,14 +41567,20 @@
               }
             ],
             "source": {
-              "url": "https://kmmaltairlines.com/en/travelling-with-pets",
+              "url": "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs and cats (up to 10kg)",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par une phrase explicite sur le poids total",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ; citation « Dogs and cats (up to 10kg) » ; localisateur « Travelling with Pets → Pets in Cabin ». Remplacée par la phrase officielle qui précise que les 10 kg incluent le contenant."
+                }
+              ],
+              "quote": "It's important to note that pets, including the carrier, can weigh up to 10kg in total",
               "quote_language": "en",
               "locator": "Travelling with Pets → Pets in Cabin"
             },
@@ -41293,6 +41588,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": false,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_km_malta_hold_eur_2026_09_12",
@@ -41328,14 +41626,20 @@
               }
             ],
             "source": {
-              "url": "https://kmmaltairlines.com/en/travelling-with-pets",
+              "url": "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs and cats weighing up to 32kg",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page officielle courante",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ; citation « Dogs and cats weighing up to 32kg » ; localisateur « Travelling with Pets → Pet as Checked Baggage ». Remplacée par la phrase complète de la surface officielle courante."
+                }
+              ],
+              "quote": "Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.",
               "quote_language": "en",
               "locator": "Travelling with Pets → Pet as Checked Baggage"
             },
@@ -41643,7 +41947,6 @@
             "availability": "offered",
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en",
               "source_type": "official_website",
@@ -41760,7 +42063,13 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par les conditions de transport officielles",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.lacompagnie.com/fr/plan/special-services ; citation « vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats) » ; localisateur « Services optionnels → Animaux ». Remplacée par la clause chiffrée des conditions de transport."
+                }
+              ],
               "quote": "l’Animal de Compagnie et son contenant nedoivent pas excéder un poids total de huit (8) kg, et le contenant doitrespecter les dimensions maximales applicables, notamment 55 cm de longueur, 35cm de largeur et 25 cm de hauteur.",
               "quote_language": "fr",
               "locator": "conditions generales de transport, article 10.8.2"
@@ -41776,11 +42085,31 @@
               "review_due": "2026-12-11",
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
-              "history": [],
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par les conditions de transport officielles",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.lacompagnie.com/fr/plan/special-services ; citation « Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé. » ; localisateur « Services optionnels → Animaux ». Remplacée par la clause complète des conditions de transport."
+                }
+              ],
               "quote": "Le transport des Animaux de Compagnie et des Chiensd’Assistance Éduqués est autorisé uniquement en cabine. Le transport d’animauxen soute n’est pas proposé par le Transporteur.",
               "quote_language": "fr",
               "locator": "conditions generales de transport, article 10.8.1, dernier alinea"
             },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "review_state": "legacy_unreviewed",
+            "source": {
+              "url": "https://www.lacompagnie.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -42006,7 +42335,6 @@
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.latamairlines.com/ca/en/help-center/faq/pets/transport/airplaine-flight",
               "source_type": "official_website",
@@ -42292,6 +42620,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_lot_cabin_2026_09_10",
@@ -42358,7 +42689,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/animal-in-hold",
               "source_type": "official_website",
@@ -42664,7 +42994,10 @@
                   "locator": "Tarifs → Remarque → nuitée à Zurich"
                 }
               }
-            ]
+            ],
+            "min_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_min_bound": "gt"
           },
           "cargo": {
             "availability": "offered",
@@ -43183,6 +43516,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_luxair_cabin_eur_2026_09_12",
@@ -43214,21 +43550,32 @@
               }
             ],
             "source": {
-              "url": "https://www.luxair.lu/en/node/502/",
+              "url": "https://www.luxair.lu/fr/node/502/",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "welcome them on board either in cabin",
-              "quote_language": "en",
-              "locator": "Travelling with animals → General information and regulations"
+              "reviewer": "Codex — lecture directe de la page officielle française",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle française chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.luxair.lu/en/node/502/ ; citation « welcome them on board either in cabin » ; localisateur « Travelling with animals → General information and regulations ». Remplacée par la limite de poids de la page officielle française."
+                }
+              ],
+              "quote": "Votre animal ne peut être accepté en cabine que s'il ne pèse pas plus de 8 kg (cage comprise)",
+              "quote_language": "fr",
+              "locator": "Transport en cabine, animaux moins de 8KG → Préparation de votre voyage"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 50,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_luxair_hold_eur_2026_09_12",
@@ -43258,18 +43605,23 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
-              "url": "https://www.luxair.lu/en/node/502/",
+              "url": "https://www.luxair.lu/fr/node/502/",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "welcome them on board either in cabin or in hold",
-              "quote_language": "en",
-              "locator": "Travelling with animals → General information and regulations"
+              "reviewer": "Codex — lecture directe de la page officielle française",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle française chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.luxair.lu/en/node/502/ ; citation « welcome them on board either in cabin or in hold » ; localisateur « Travelling with animals → General information and regulations ». Remplacée par les frontières de poids de la page officielle française."
+                }
+              ],
+              "quote": "Votre animal ne peut être accepté en cabine que s'il ne pèse pas plus de 8 kg (cage comprise). Votre animal ne peut être accepté en soute que s'il ne pèse pas plus de 50 kg (cage comprise).",
+              "quote_language": "fr",
+              "locator": "Transport en soute, animaux de plus de 8KG → Préparation de votre voyage"
             },
             "derived_from_fiche": true
           },
@@ -43755,6 +44107,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 10,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_neos_cabin_eur_2026_09_12",
@@ -43791,8 +44146,14 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "you are allowed to transport them in the cabin",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — extension de la citation à la condition chiffrée complète",
+                  "note": "Citation précédente vérifiée le 2026-09-09 sur https://www.neosair.com/us/en/information/traveling-with-pets : « you are allowed to transport them in the cabin » ; localisateur « NECESSARY REQUIREMENTS ». La phrase complète établit désormais le plafond total de 10 kg."
+                }
+              ],
+              "quote": "If the weight of the animal, including the cage or carrier, does not exceed 10 kilograms, you are allowed to transport them in the cabin.",
               "quote_language": "en",
               "locator": "NECESSARY REQUIREMENTS"
             },
@@ -43800,6 +44161,9 @@
           },
           "hold": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 10,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_neos_hold_eur_2026_09_12",
@@ -43829,7 +44193,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.neosair.com/us/en/information/traveling-with-pets",
               "source_type": "official_website",
@@ -43837,8 +44200,14 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "transportation is authorised in the hold of the aircraft",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — extension de la citation à la condition chiffrée complète",
+                  "note": "Citation précédente vérifiée le 2026-09-09 sur https://www.neosair.com/us/en/information/traveling-with-pets : « transportation is authorised in the hold of the aircraft » ; localisateur « NECESSARY REQUIREMENTS ». La phrase complète établit désormais le plancher total strict de plus de 10 kg."
+                }
+              ],
+              "quote": "If the weight of the animal, including the cage or carrier, exceeds 10 kilograms, transportation is authorised in the hold of the aircraft, which is pressurised and ventilated.",
               "quote_language": "en",
               "locator": "NECESSARY REQUIREMENTS"
             },
@@ -44137,6 +44506,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_norwegian_cabin_eur_2026_09_10",
@@ -44172,16 +44544,16 @@
               }
             ],
             "source": {
-              "url": "https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/",
+              "url": "https://www.norwegian.com/no/reiseinformasjon/bagasje/reise-med-dyr/",
               "source_type": "official_website",
               "verified_date": "2026-09-13",
               "review_due": "2026-12-12",
               "confidence": 5,
-              "reviewer": "Phil Albert-Benoist — lecture directe de la source officielle",
+              "reviewer": "Codex — contre-lecture de la page nationale officielle",
               "history": [],
-              "quote": "Small cats and dogs can travel in the cabin on the following flights",
-              "quote_language": "en",
-              "locator": "Pets in the cabin"
+              "quote": "Buret og kjæledyret/-dyrene må ikke veie mer enn 8 kilo tilsammen.",
+              "quote_language": "nb",
+              "locator": "Kjæledyr i kabinen → vekt"
             },
             "derived_from_fiche": true
           },
@@ -44572,6 +44944,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_pegasus_cabin_eur_2026_09_10",
@@ -44603,15 +44978,17 @@
               }
             ],
             "source": {
-              "url": "https://www.flypgs.com",
+              "url": "https://www.flypgs.com/seyahat-sozlugu/evcil-hayvan-ile-seyahat",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [],
+              "quote": "Kafes ve evcil hayvanın toplam ağırlığı 8 kg ağırlığı geçtiği takdirde evcil hayvan (AVIH) havalandırma sistemli kargo kompartımanında taşınır.",
+              "quote_language": "tr",
+              "locator": "Evcil Hayvan ile Seyahat → kabin ve kargo kompartımanı"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -44663,7 +45040,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flypgs.com",
               "source_type": "official_website",
@@ -44886,7 +45263,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "offered",
+            "availability": "case_by_case",
             "fares": [
               {
                 "id": "fare_philippine_cabin_php_2026_09_12",
@@ -44933,7 +45310,9 @@
           },
           "hold": {
             "availability": "offered",
-            "brachy_allowed": false,
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://www.philippineairlines.com/ph/en/before-you-fly/baggage-information/special-baggage/pets.html",
               "source_type": "official_website",
@@ -44942,9 +45321,9 @@
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
               "history": [],
-              "quote": "Pets, such as dogs and cats, may be accepted as checked-in baggage. Contact PAL before the reservation to check if your flight's aircraft cargo compartment can accommodate live animals/pets as checked-in bag. Carrying pets as checked-in bag could impact their pet's health leading to weakness, injury, or death.",
+              "quote": "Important: The total weight of the pet and kennel as checked-in baggage must not exceed 32 kg for checked-in transport. If this exceeds the weight limit, the pet may be forwarded as cargo, and applicable cargo fees and requirements shall apply.",
               "quote_language": "en",
-              "locator": "bloc « Pets, such as dogs and cats… » et bloc « When travelling with pets, you must: »"
+              "locator": "Travelling with pets → checked-in baggage → Important"
             },
             "derived_from_fiche": true
           },
@@ -45560,6 +45939,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_qatar_airways_hold_usd_2026_09_12",
@@ -45626,33 +46008,43 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
-              "url": "https://www.qatarairways.com/en-au/baggage/animals.html",
+              "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-08",
-              "review_due": "2026-12-07",
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la page officielle",
-              "history": [],
-              "quote": "We accept domesticated dogs, cats and birds as checked baggage.",
-              "quote_language": "en",
-              "locator": "Eligibility"
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale qatarienne",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.qatarairways.com/en-au/baggage/animals.html ; citation « We accept domesticated dogs, cats and birds as checked baggage. » ; localisateur « Eligibility ». Remplacée par la page nationale officielle en arabe relue le 2026-09-15."
+                }
+              ],
+              "quote": "يجب نقل الحيوانات مع البضائع المشحونة إذا كانت هذه الحيوانات غير أليفة، أو مسافرة بمفردها، أو إذا تجاوزتْ الحد الأقصى من حيث الأبعاد (300 سم) والوزن (75 كجم)، أو إذا كانت الحيوانات ستواصل السفر في رحلة ربط بعد وصولها على متن رحلات شركات طيران أخرى.",
+              "quote_language": "ar",
+              "locator": "الحيوانات → الأهلية والحدود القصوى"
             },
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 75,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.qatarairways.com/",
+              "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [],
+              "quote": "يجب نقل الحيوانات مع البضائع المشحونة إذا كانت هذه الحيوانات غير أليفة، أو مسافرة بمفردها، أو إذا تجاوزتْ الحد الأقصى من حيث الأبعاد (300 سم) والوزن (75 كجم)، أو إذا كانت الحيوانات ستواصل السفر في رحلة ربط بعد وصولها على متن رحلات شركات طيران أخرى.",
+              "quote_language": "ar",
+              "locator": "الحيوانات → الأهلية والحدود القصوى"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -45850,6 +46242,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_royal_air_maroc_cabin_mad_2026_09_12",
@@ -45917,21 +46312,24 @@
               }
             ],
             "source": {
-              "url": "https://www.royalairmaroc.com/ma-ar/information/animaux",
+              "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
               "verified_date": "2026-09-12",
               "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la page nationale marocaine",
+              "reviewer": "Philippe et Codex — lecture directe de la page officielle marocaine",
               "history": [],
-              "quote": "يتم قبول الحيوانات الأليفة (كلاب، قطط، عصافير) في المقصورة",
-              "quote_language": "ar",
-              "locator": "الحيوانات في المقصورة"
+              "quote": "L'animal ne doit pas peser plus de 8 kg, y compris son conteneur",
+              "quote_language": "fr",
+              "locator": "Animaux en cabine → condition 2"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 70,
+            "weight_includes_carrier": false,
+            "weight_limit_bound": "lt",
             "fares": [
               {
                 "id": "fare_royal_air_maroc_hold_mad_2026_09_12",
@@ -46100,6 +46498,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 7,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
               "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
               "source_type": "official_website",
@@ -46107,10 +46508,16 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "The carriage of pets (Cats and Dogs) in passenger cabin is only permitted in Economy Class Cabins and is subject to the following conditions:",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.rj.com/en/info-and-tips/special-services/flying-with-pets ; citation « The carriage of pets (Cats and Dogs) in passenger cabin is only permitted in Economy Class Cabins and is subject to the following conditions: » ; localisateur « Flying with Pets → carriage of pets in passenger cabin ». Remplacée par la ligne chiffrée du tableau officiel du même canal."
+                }
+              ],
+              "quote": "Maximum Weight of animal & crate | 7 kg (15 Ibs)",
               "quote_language": "en",
-              "locator": "Flying with Pets → carriage of pets in passenger cabin"
+              "locator": "Flying with Pets → passenger cabin requirements table → Maximum Weight of animal & crate"
             },
             "derived_from_fiche": true
           },
@@ -47860,7 +48267,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/lastutrymmet",
               "source_type": "official_website",
@@ -48178,32 +48584,35 @@
       "premium": {
         "policy": {
           "cabin": {
-            "review_state": "legacy_unreviewed",
-            "max_weight_kg": 5,
+            "availability": "not_offered",
             "source": {
-              "url": "https://www.saudia.com",
+              "url": "https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture de la page officielle nationale arabe remise par Philippe",
+              "history": [],
+              "quote": "يجب نقل الكلاب في مخازن الطائرة (المخازن مجهزة بأنظمة تهوية).",
+              "quote_language": "ar",
+              "locator": "section « اللوائح والتنظيمات », liste"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.saudia.com",
+              "url": "https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture de la page officielle nationale arabe remise par Philippe",
+              "history": [],
+              "quote": "يجب نقل الكلاب في مخازن الطائرة (المخازن مجهزة بأنظمة تهوية).",
+              "quote_language": "ar",
+              "locator": "section « اللوائح والتنظيمات », liste"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -48449,19 +48858,24 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.singaporeair.com/",
+              "url": "https://www.singaporeair.com/en_UK/gb/faq/check-in/checking-in/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe de la FAQ officielle",
+              "history": [],
+              "quote": "Only domesticated cats and certain breeds of dogs that are at least 3 months old are allowed as checked baggage or in cargo.",
+              "quote_language": "en",
+              "locator": "Checking in → travelling with pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_singapore_airlines_hold_2026_09_10",
@@ -48487,7 +48901,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.singaporeair.com/en_UK/sg/travel-info/special-assistance/travelling-with-pets/",
               "source_type": "official_website",
@@ -48496,14 +48909,17 @@
               "confidence": 4,
               "reviewer": "Codex — direct reading of official national airline page",
               "history": [],
-              "quote": "We welcome your pet on board our flights* as checked baggage.",
+              "quote": "Due to Occupational Health and Safety rules, if the combined weight of your pet(s) and its container exceeds 32kg, please make travel arrangements for your pet(s) via a cargo agent.",
               "quote_language": "en",
-              "locator": "Travelling with pets → Checked baggage"
+              "locator": "Travelling with pets → Checked baggage, second paragraph"
             },
             "derived_from_fiche": true
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 32,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_singapore_airlines_cargo_2026_09_10",
@@ -48530,16 +48946,16 @@
               }
             ],
             "source": {
-              "url": "https://www.siacargo.com/products/live-animals/",
+              "url": "https://www.singaporeair.com/en_UK/sg/travel-info/special-assistance/travelling-with-pets/",
               "source_type": "official_website",
               "verified_date": "2026-09-12",
               "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "reviewer": "Codex — contre-lecture de la page nationale officielle",
               "history": [],
-              "quote": "Complying with the IATA Live Animal Regulations (LAR), our experienced staff at SIA Cargo ensure the welfare and safety of the animals are well taken care of.",
+              "quote": "Due to Occupational Health and Safety rules, if the combined weight of your pet(s) and its container exceeds 32kg, please make arrangements for your pet(s) to travel via cargo instead.",
               "quote_language": "en",
-              "locator": "section « Professional Handling »"
+              "locator": "Travelling with pets → Checked baggage, second paragraph"
             },
             "derived_from_fiche": true
           }
@@ -48638,33 +49054,53 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://www.skyexpress.gr/en/sky-experience/sky-pets",
+              "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs and cats weighing up to 8 kg",
-              "quote_language": "en",
-              "locator": "Carriage of animals in the cabin (up to 8kg)"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.skyexpress.gr/en/sky-experience/sky-pets ; citation « Dogs and cats weighing up to 8 kg » ; localisateur « Carriage of animals in the cabin (up to 8kg) ». Remplacée par l'encart grec qui précise le poids maximal avec le contenant."
+                }
+              ],
+              "quote": "ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς",
+              "quote_language": "el",
+              "locator": "encart chiffre de la section cabine"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 25,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.skyexpress.gr/en/sky-experience/sky-pets",
+              "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs and cats weighing more than 8 kilograms",
-              "quote_language": "en",
-              "locator": "Transporting animals in the aircraft hold (weight more than 8kg)"
+              "reviewer": "Codex — contre-lecture du dossier officiel national",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la page nationale",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.skyexpress.gr/en/sky-experience/sky-pets ; citation « Dogs and cats weighing more than 8 kilograms » ; localisateur « Transporting animals in the aircraft hold (weight more than 8kg) ». Remplacée par le tableau grec qui établit ensemble le plancher de 8 kg, le plafond de 25 kg et le contenant."
+                }
+              ],
+              "quote": "ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στην καμπίνα. ΕΩΣ / 25KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στον χώρο αποθήκευσης / (μόνο γάτες και σκύλοι)",
+              "quote_language": "el",
+              "locator": "tableau « Βάρος κατοικιδίων », colonne soute"
             },
             "derived_from_fiche": true
           },
@@ -48850,6 +49286,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_smartwings_cabin_2026_09_12",
@@ -48903,6 +49342,11 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_smartwings_hold_2026_09_12",
@@ -48947,11 +49391,31 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Animal in hold (1 piece up to 32 kg / leg)",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — extension contrôlée de la citation à la frontière cabine/soute",
+                  "note": "Citation précédente vérifiée le 2026-09-09 sur https://www.smartwings.com/en/fees-and-charges/?layout=default : « Animal in hold (1 piece up to 32 kg / leg) » ; localisateur « Fees and charges → Price list of additional services → AVIH ». La citation courante conserve cette phrase et ajoute la ligne cabine contiguë afin d'établir le plancher soute de plus de 8 kg."
+                }
+              ],
+              "quote": "Pet in cabin (1 piece up to 8 kg / leg); Animal in hold (1 piece up to 32 kg / leg)",
               "quote_language": "en",
               "locator": "Fees and charges → Price list of additional services → AVIH"
             },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "review_state": "legacy_unreviewed",
+            "source": {
+              "url": "https://www.smartwings.com/",
+              "source_type": "official_website",
+              "verified_date": "2026-07-11",
+              "review_due": "2026-10-09",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -49246,6 +49710,9 @@
           },
           "hold": {
             "availability": "offered",
+            "weight_includes_carrier": false,
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_sunexpress_hold_eur_2026_09_12",
@@ -49711,6 +50178,9 @@
           },
           "hold": {
             "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
             "fares": [
               {
                 "id": "fare_swiss_hold_chf_2026_09_10",
@@ -49797,7 +50267,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
               "source_type": "official_website",
@@ -50263,7 +50732,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.flytap.com/en-gb/information/traveling-with-animals/pets",
               "source_type": "official_website",
@@ -50399,6 +50867,12 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 40,
+            "weight_includes_carrier": false,
+            "weight_limit_bound": "lte",
+            "min_weight_kg": 8,
+            "weight_min_bound": "gt",
+            "min_weight_includes_carrier": true,
             "fares": [
               {
                 "id": "fare_tarom_hold_eur_2026_09_10",
@@ -50429,7 +50903,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
               "source_type": "official_website",
@@ -50437,8 +50910,14 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Dogs and cats weighing more than 8kg can be transported safely in the hold",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — extension contrôlée à la frontière soute/fret",
+                  "note": "Citation précédente vérifiée le 2026-09-09 sur https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold : « Dogs and cats weighing more than 8kg can be transported safely in the hold » ; localisateur « In the hold → opening paragraph ». La citation courante conserve cette phrase et ajoute la règle contiguë qui fixe le passage au fret au-dessus de 40 kg hors cage."
+                }
+              ],
+              "quote": "Dogs and cats weighing more than 8kg (including the weight of the kennel) can be transported safely in the hold of air-conditioned aircraft. For dogs over 40 kg (cage not included): May be accepted only as cargo.",
               "quote_language": "en",
               "locator": "In the hold → opening paragraph"
             },
@@ -50446,6 +50925,9 @@
           },
           "cargo": {
             "availability": "offered",
+            "weight_includes_carrier": false,
+            "min_weight_kg": 40,
+            "weight_min_bound": "gt",
             "source": {
               "url": "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
               "source_type": "official_website",
@@ -50453,8 +50935,14 @@
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "May be accepted only as cargo.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — extension de la citation à son seuil propre",
+                  "note": "Citation précédente vérifiée le 2026-09-09 sur https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold : « May be accepted only as cargo. » ; localisateur « In the hold → Conditions for Transport → For dogs over 40 kg ». La phrase complète établit désormais le plancher strict de plus de 40 kg hors cage."
+                }
+              ],
+              "quote": "For dogs over 40 kg (cage not included): May be accepted only as cargo.",
               "quote_language": "en",
               "locator": "In the hold → Conditions for Transport → For dogs over 40 kg"
             },
@@ -50713,7 +51201,6 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
               "source_type": "official_website",
@@ -51108,6 +51595,9 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 75,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_transavia_hold_hv_eur_2026_09_11",
@@ -51166,19 +51656,38 @@
                 }
               }
             ],
-            "brachy_allowed": false,
             "source": {
               "url": "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet",
               "source_type": "official_website",
-              "verified_date": "2026-09-08",
-              "review_due": "2026-12-07",
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
               "confidence": 4,
               "reviewer": "Codex — lecture directe de la page officielle",
-              "history": [],
-              "quote": "You may transport your pet in our cargo hold.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-08 : https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet ; citation « You may transport your pet in our cargo hold. » ; localisateur « Can my pet travel in the luggage hold? ». Remplacée par la phrase officielle chiffrée relue le 2026-09-15."
+                }
+              ],
+              "quote": "The maximum weight of your pet and kennel together is: 75 kg.",
               "quote_language": "en",
-              "locator": "Can my pet travel in the luggage hold?"
+              "locator": "Pets in the hold → Weight"
             },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "review_state": "legacy_unreviewed",
+            "source": {
+              "url": "https://www.transavia.com",
+              "source_type": "official_website",
+              "verified_date": "2026-07-11",
+              "review_due": "2026-10-09",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -51608,32 +52117,46 @@
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "source": {
-              "url": "https://www.tunisair.com/fr/conditions-generales-de-transport",
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Animaux voyageant en soute",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la frontière soute/fret chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.tunisair.com/fr/conditions-generales-de-transport ; citation « Animaux voyageant en soute » ; localisateur « Conditions générales de transport → 10.3 Animaux voyageant en soute ». Remplacée par la phrase officielle qui rend le plafond de 32 kg exécutable dans le Finder."
+                }
+              ],
+              "quote": "Toute pièce de plus de 32Kg doit être obligatoirement prise en charge par le service Fret.",
               "quote_language": "fr",
-              "locator": "Conditions générales de transport → 10.3 Animaux voyageant en soute"
+              "locator": "Préparez vos bagages → limitation de poids par pièce"
             },
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
+            "weight_includes_carrier": true,
+            "min_weight_kg": 32,
+            "weight_min_bound": "gt",
             "source": {
-              "url": "https://www.tunisair.com",
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture de la page nationale officielle",
+              "history": [],
+              "quote": "Toute pièce de plus de 32Kg doit être obligatoirement prise en charge par le service Fret.",
+              "quote_language": "fr",
+              "locator": "Préparez vos bagages → limitation de poids par pièce"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -51777,11 +52300,6 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
-            "carrier_dims_cm": {
-              "l": 40,
-              "w": 30,
-              "h": 23
-            },
             "conditions": {
               "en": "Soft-sided carrier under the seat; passenger seated by a window; brachycephalic breeds allowed in the cabin.",
               "fr": "Caisse souple sous le siège ; passager placé côté hublot ; races brachycéphales admises en cabine."
@@ -51855,11 +52373,6 @@
           },
           "hold": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 125,
-              "w": 75,
-              "h": 75
-            },
             "conditions": {
               "en": "Pet plus carrier up to 50 kg in a rigid crate (max 125×75×75 cm); brachycephalic breeds are not accepted in the hold; pets cannot travel to the United Kingdom as accompanied baggage (cargo only).",
               "fr": "Animal et caisse jusqu’à 50 kg dans une caisse rigide (max 125×75×75 cm) ; les races brachycéphales ne sont pas acceptées en soute ; pas d’animaux en bagage accompagné vers le Royaume-Uni (fret uniquement)."
@@ -52486,11 +52999,6 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 45,
-              "w": 27,
-              "h": 27
-            },
             "fee": "$150 each way",
             "conditions": {
               "en": "Cats and dogs only; carrier under the seat; up to 2 pets (2 seats), 1 on narrowbody jets. No published weight or breed limit.",
@@ -53354,6 +53862,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 6,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_vietnam_airlines_cabin_usd_2026_09_10",
@@ -53389,21 +53900,30 @@
               }
             ],
             "source": {
-              "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
+              "url": "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1 ; citation « With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage. » ; localisateur « Special services → Travelling with pets ». Remplacée par la limite de poids publiée pour la cabine."
+                }
+              ],
+              "quote": "Weight: Each transport cage holds one pet, and the overall weight of the pet and kennel cannot exceed 6kg.",
               "quote_language": "en",
-              "locator": "Special services → Travelling with pets"
+              "locator": "Conditions for transporting pets in the passenger cabin → Weight"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 32,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_vietnam_airlines_hold_usd_2026_09_10",
@@ -53439,16 +53959,22 @@
               }
             ],
             "source": {
-              "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
+              "url": "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet",
               "source_type": "official_website",
               "verified_date": "2026-09-09",
               "review_due": "2026-12-08",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1 ; citation « With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage. » ; localisateur « Special services → Travelling with pets ». Remplacée par la limite de poids publiée pour la soute."
+                }
+              ],
+              "quote": "Weight: The total weight of the pet and the cage must not exceed 32kg.",
               "quote_language": "en",
-              "locator": "Special services → Travelling with pets"
+              "locator": "Conditions for transporting pets in checked baggage → Weight"
             },
             "derived_from_fiche": true
           },
@@ -53600,29 +54126,33 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.virginatlantic.com/",
+              "url": "https://vaabrowse.virginatlantic.com/content/dam/conditions-of-carriage/Revision%2058%20%2817%20August%202026%29.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture du contrat officiel britannique remis par Philippe",
+              "history": [],
+              "quote": "only Assistance Dogs accompanying disabled passengers can be taken into the aircraft cabin;",
+              "quote_language": "en-GB",
+              "locator": "clause 16.3(a), p. 20"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.virginatlantic.com/",
+              "url": "https://help.virginatlantic.com/gb/en/how-to-book-your-pet-onto-a-flight.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contre-lecture de la page officielle britannique remise par Philippe",
+              "history": [],
+              "quote": "Sorry, our pet service is currently unavailable",
+              "quote_language": "en-GB",
+              "locator": "titre de page « How to book your pet onto a flight », bloc de corps unique"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -53782,6 +54312,9 @@
           },
           "cargo": {
             "availability": "offered",
+            "max_weight_kg": 65,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_virgin_australia_cargo_2026_09_10",
@@ -53808,16 +54341,22 @@
               }
             ],
             "source": {
-              "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/",
+              "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pet-transport/",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "We’re ready to take good care of your animal in the cargo hold.",
+              "reviewer": "Codex — lecture directe de la page nationale officielle",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par la preuve officielle chiffrée",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/ ; citation « We’re ready to take good care of your animal in the cargo hold. » ; localisateur « Pet travel → choose your pet travel experience ». Remplacée par la limite de poids publiée sur la page nationale officielle."
+                }
+              ],
+              "quote": "The combined weight of your pet and the container must not exceed 65kg.",
               "quote_language": "en",
-              "locator": "Pet travel → choose your pet travel experience"
+              "locator": "Pet transport → pet and container requirements"
             },
             "derived_from_fiche": true
           },
@@ -53982,6 +54521,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 10,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_volotea_cabin_eur_2026_09_12",
@@ -54024,9 +54566,9 @@
               "confidence": 4,
               "reviewer": "Codex — contre-lecture du dossier officiel national",
               "history": [],
-              "quote": "Permitimos perros y gatos pequeños de al menos 8 semanas de edad, pero no otros animales.",
+              "quote": "10kg MAX. = Mascota + transportín",
               "quote_language": "es",
-              "locator": "bloc « Perros y gatos bienvenidos »"
+              "locator": "bloc « 10kg MAX. »"
             },
             "derived_from_fiche": true
           },
@@ -54334,6 +54876,9 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 10,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte",
             "fares": [
               {
                 "id": "fare_vueling_cabin_eur_2026_09_10",
@@ -54372,9 +54917,9 @@
               "confidence": 4,
               "reviewer": "Codex — lectura directa de la página nacional oficial",
               "history": [],
-              "quote": "Puedes viajar con tu mascota siempre que selecciones la tarifa Fly Light de Vueling o la tarifa Basic de Iberia.",
+              "quote": "Tu mascota deberá volar en un transportín homologado que no sea rígido de medidas máx. 45x39x21 cm y 10 kg (peso máximo con la mascota dentro)",
               "quote_language": "es",
-              "locator": "Mascotas → Características del servicio"
+              "locator": "Mascotas → primera liste, deuxième puce"
             },
             "derived_from_fiche": true
           },
@@ -54514,11 +55059,6 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "carrier_dims_cm": {
-              "l": 41,
-              "w": 25.4,
-              "h": 21.5
-            },
             "conditions": {
               "en": "Small pets only: the dog must fit a soft-sided carrier that stays fully under the seat (max 41 × 21.5 × 25.4 cm) and be able to stand, turn around and lie down. One pet per guest. No published weight limit, but the carrier size effectively limits the cabin to small dogs.",
               "fr": "Petits animaux uniquement : le chien doit tenir dans un sac souple placé entièrement sous le siège (max 41 × 21,5 × 25,4 cm) et pouvoir se tenir debout, se retourner et se coucher. Un animal par passager. Pas de limite de poids publiée, mais la taille du sac limite de fait la cabine aux petits chiens."
@@ -54543,20 +55083,29 @@
               "fr": "Les chiens voyagent en bagage enregistré en soute ; animal + caisse jusqu'à 45 kg (100 lb) ; caisse maximale 101 × 68 × 81 cm."
             },
             "source": {
-              "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+              "url": "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+              "reviewer": "Codex — lecture directe du tarif domestique officiel en vigueur",
+              "history": [
+                {
+                  "date": "2026-09-15",
+                  "reviewer": "Codex — supersession par le tarif domestique officiel chiffré",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://www.westjet.com/en-ca/pets/general-entrance-requirements ; citation « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ; localisateur « General entrance requirements for guests travelling with pets → opening policy statement ». Remplacée par la limite de poids publiée dans le tarif officiel en vigueur."
+                }
+              ],
+              "quote": "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
               "quote_language": "en",
-              "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
-            }
+              "locator": "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage"
+            },
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
+            "weight_limit_bound": "lte"
           },
           "cargo": {
-            "availability": "offered",
+            "review_state": "legacy_unreviewed",
             "conditions": {
               "en": "Available via WestJet Cargo where checked-baggage carriage is not possible.",
               "fr": "Disponible via WestJet Cargo lorsque le transport en bagage enregistré n'est pas possible."
@@ -55105,33 +55654,37 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://wizzair.com",
+              "url": "https://wizzair.com/static/docs/default-source/downloadable-documents/general-conditions-of-carriage/gcc-wam/gcc-w4_070323_en_88a1e75d.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe des conditions générales officielles de Wizz Air Malta",
+              "history": [],
+              "quote": "live animals (including pets, insects, reptiles, or any other form of livestock), with the exception of recognised assistance dogs;",
+              "quote_language": "en",
+              "locator": "clause 15.4.1.13, p. 36"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "not_offered",
             "source": {
-              "url": "https://wizzair.com",
+              "url": "https://wizzair.com/static/docs/default-source/downloadable-documents/general-conditions-of-carriage/gcc-wam/gcc-w4_070323_en_88a1e75d.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-15",
+              "review_due": "2026-12-14",
+              "confidence": 4,
+              "reviewer": "Codex — lecture directe des conditions générales officielles de Wizz Air Malta",
+              "history": [],
+              "quote": "live animals (including pets, insects, reptiles, or any other form of livestock), with the exception of recognised assistance dogs;",
+              "quote_language": "en",
+              "locator": "clause 15.4.1.13, p. 36"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://wizzair.com",
               "source_type": "official_website",

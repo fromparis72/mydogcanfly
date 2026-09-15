@@ -68,11 +68,10 @@ const compagnies = [...kb.airlines.values()].map((airline) => {
   return { airline, fiche, indexable: !!fiche && compagnieIndexable(airline, fiche) };
 });
 const retirees = compagnies.filter((x) => !x.indexable).map((x) => x.airline.name).sort();
-const RETRAITEES_ATTENDUES = [
-  "Air Serbia", "Batik Air Malaysia", "EL AL Israel Airlines", "Icelandair",
-  "Pegasus Airlines", "Saudia", "Wizz Air",
-].sort();
-exiger("sept compagnies sans preuve restent hors index", retirees.join("|") === RETRAITEES_ATTENDUES.join("|"), retirees.join(", "));
+/* RACCORDEMENT EXHAUSTIF (15/09/2026) : six des sept fiches autrefois sans preuve portent
+ * désormais au moins une citation de canal admissible. Batik Air Malaysia reste seule hors index. */
+const RETRAITEES_ATTENDUES = ["Batik Air Malaysia"];
+exiger("la seule compagnie encore sans preuve reste hors index", retirees.join("|") === RETRAITEES_ATTENDUES.join("|"), retirees.join(", "));
 
 for (const { airline, fiche, indexable } of compagnies) {
   const slug = slugFor(airline.id);

@@ -66,7 +66,11 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 45 kg"
+    sub:
+      en: Case by case
+      fr: Au cas par cas
+      es: Caso por caso
+      pt: "Caso a caso"
 policies:
   cabin:
     # GRILLE NATIONALE RELUE PAR PHILIPPE LE 2026-09-12. Les tarifs sont facturés par

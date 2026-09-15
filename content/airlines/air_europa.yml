@@ -50,7 +50,11 @@ ladder:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    sub: ≤ 10 kg
+    sub:
+      en: Pet and carrier limits
+      fr: Limites animal et contenant
+      es: Límites de mascota y transportín
+      pt: "Limites do animal e da caixa"
   - flex: 64
     color: "#1f5fa8"
     label:
@@ -233,20 +237,30 @@ policies:
           quote_language: fr
           locator: Prix pour les animaux en soute → long-courrier → autres routes
     availability: offered
+    max_weight_kg: 50
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 7).
     # Effet attendu : Passenger hold is a conditional path; it is not a positive result for a restricted breed or a 50 kg-plus animal-and-kennel combination.
     # Portée nommée : cat or dog only; breed and weight restrictions apply; pet plus kennel cannot exceed 50 kg
     source:
-      url: "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html"
+      url: "https://www.aireuropa.com/es/es/aea/informacion-para-volar/pasajeros/mascotas.html"
       source_type: official_website
       verified_date: "2026-09-08"
       review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Pets may travel on board or in the aircraft hold depending on their species, breed and weight."
-      quote_language: en
-      locator: "Flying with pets on board → How can I fly with my pet?"
+      reviewer: "Codex — contre-lecture du dossier officiel national"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page nationale espagnole chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html ;
+            citation « Pets may travel on board or in the aircraft hold depending on their species, breed and weight. » ;
+            localisateur « Flying with pets on board → How can I fly with my pet? ».
+            Remplacée par la limite officielle de poids publiée sur le site national.
+      quote: "Asegúrese de que el peso combinado de su mascota y la jaula no supere los 50 kg."
+      quote_language: es
+      locator: "section « Animales en bodega »"
   cargo:
     review_state: legacy_unreviewed
 channels:

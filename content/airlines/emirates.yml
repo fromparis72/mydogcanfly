@@ -52,7 +52,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub:
+      en: fare bands by weight
+      fr: tarifs par tranche de poids
+      es: tarifas por tramo de peso
+      pt: "tarifas por faixa de peso"
   - flex: 40
     color: "#9a6410"
     label:

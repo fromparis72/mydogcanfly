@@ -874,6 +874,7 @@ export function dansUnSlugConserve(texte, debut, fin) {
  * Les mêmes mots écrits ailleurs dans la même ligne restent interdits. */
 const PAGES_CATHAY = ["/airlines/cathay-pacific/", "/fr/airlines/cathay-pacific/", "/es/airlines/cathay-pacific/", "/pt/airlines/cathay-pacific/"];
 const PAGES_AIRBALTIC = ["/airlines/airbaltic/", "/fr/airlines/airbaltic/", "/es/airlines/airbaltic/", "/pt/airlines/airbaltic/"];
+const PAGES_VUELING = ["/airlines/vueling/", "/fr/airlines/vueling/", "/es/airlines/vueling/", "/pt/airlines/vueling/"];
 /** L'artefact que l'ingesteur écrit à partir des fiches compagnies, mot pour mot. */
 const DERIVE_AIRLINES = "packages/ui/src/data/airlines.generated.json";
 /* ---- LES CORRECTIONS CARGO, SCELLÉES DANS L'ÉTAT COURANT ------------------------------------
@@ -957,6 +958,13 @@ export const FRAGMENTS_ATTRIBUES = [
   { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
     fragment: "certificado de formação IATA Live Animals Regulations",
     source: "idem" },
+  /* La page officielle Vueling emploie « homologado » sans attribuer le contenant à l'IATA.
+     Le motif historique capte volontairement ce mot isolé : l'exemption doit donc rester bornée
+     à la citation officielle exacte, à sa fiche et à ses quatre rendus. Sans cette attribution,
+     publier la preuve verbatim recréerait artificiellement une dette IATA. */
+  { chemins: ["content/airlines/vueling.yml", DERIVE_AIRLINES], pages: PAGES_VUELING,
+    fragment: "Tu mascota deberá volar en un transportín homologado que no sea rígido de medidas máx. 45x39x21 cm y 10 kg (peso máximo con la mascota dentro)",
+    source: "https://help.vueling.com/hc/es/articles/19798818168337-Mascotas" },
 ];
 
 /** Vrai si l'occurrence vit ENTIÈREMENT dans un fragment attribué déclaré POUR CE CHEMIN. */

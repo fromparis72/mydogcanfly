@@ -100,7 +100,13 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par les conditions de transport officielles"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.lacompagnie.com/fr/plan/special-services ;
+            citation « vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats) » ; localisateur « Services optionnels → Animaux ».
+            Remplacée par la clause chiffrée des conditions de transport.
       quote: l’Animal de Compagnie et son contenant nedoivent pas excéder un poids total de huit (8) kg, et le contenant doitrespecter les dimensions maximales applicables, notamment 55 cm de longueur, 35cm de largeur et 25 cm de hauteur.
       quote_language: fr
       locator: conditions generales de transport, article 10.8.2
@@ -113,10 +119,18 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par les conditions de transport officielles"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.lacompagnie.com/fr/plan/special-services ;
+            citation « Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé. » ; localisateur « Services optionnels → Animaux ».
+            Remplacée par la clause complète des conditions de transport.
       quote: Le transport des Animaux de Compagnie et des Chiensd’Assistance Éduqués est autorisé uniquement en cabine. Le transport d’animauxen soute n’est pas proposé par le Transporteur.
       quote_language: fr
       locator: conditions generales de transport, article 10.8.1, dernier alinea
+  cargo:
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -164,6 +178,29 @@ channels:
       fr: —
       es: —
       pt: "—"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: No separate live-animal cargo service is established in the official sources reviewed for this airline.
+      fr: Aucun service fret distinct pour animaux vivants n'est établi dans les sources officielles relues pour cette compagnie.
+      es: Las fuentes oficiales revisadas para esta aerolínea no establecen un servicio de carga separado para animales vivos.
+      pt: "As fontes oficiais revisadas para esta companhia não estabelecem um serviço de carga separado para animais vivos."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

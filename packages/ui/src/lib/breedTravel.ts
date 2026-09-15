@@ -123,6 +123,34 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
     if (p.allowed === undefined) return "inconnu";
     return p.allowed ? "allowed" : "denied";
   };
+  /**
+   * Une politique générale de soute ou de fret ne tranche pas, à elle seule, le cas d'une race.
+   * La seule source de vérité pour une exception de race est le registre `breedRestrictions` :
+   * jamais le booléen legacy `brachy_allowed`, dont l'audit interdit désormais l'arrivée au
+   * runtime faute de rattachement fait → preuve et de portée (compagnie, canal, route, saison).
+   *
+   * La fiche de race est indépendante d'un trajet. Une restriction conditionnelle ne peut donc
+   * pas y être évaluée : elle rend le canal « à confirmer », elle ne devient ni un oui ni un non.
+   * En l'absence d'un fait audité, un chien brachycéphale reste également « à confirmer » en
+   * soute/fret — prudence explicite, mais jamais interdiction uniforme.
+   */
+  const cibleLaRace = (restriction: any): boolean => {
+    const target = restriction?.applies_to ?? {};
+    if (target.trait === "brachycephalic") return brachy;
+    return Array.isArray(target.breed_ids) && target.breed_ids.includes(b.id);
+  };
+  const statutRaceDu = (airlineId: string, placement: "cabin" | "hold" | "cargo"):
+    "allowed" | "confirmation_required" | "denied" => {
+    const faits = (kb.breedRestrictions ?? []).filter((restriction: any) =>
+      (restriction.airline_id === undefined || restriction.airline_id === airlineId) &&
+      restriction.placements?.includes(placement) && cibleLaRace(restriction));
+    if (faits.some((restriction: any) => restriction.when !== undefined)) return "confirmation_required";
+    if (faits.some((restriction: any) => restriction.action === "deny")) return "denied";
+    if (faits.some((restriction: any) => restriction.action === "require")) return "confirmation_required";
+    if (faits.some((restriction: any) => restriction.action === "allow")) return "allowed";
+    if (brachy && (placement === "hold" || placement === "cargo")) return "confirmation_required";
+    return "allowed";
+  };
   let holdAConfirmer = 0, cargoAConfirmer = 0, cabinAConfirmer = 0;
   const perAirline: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number; incl?: boolean }[] = [];
   for (const a of kb.airlines.values() as Iterable<any>) {
@@ -145,7 +173,9 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
     if (stHold === "confirmation_required") holdAConfirmer++;
     else if (stHold === "denied") holdNo++;
     else if (stHold === "allowed") {
-      if (brachy && h.brachy_allowed === false) { holdNo++; brachyHoldBans++; }
+      const raceStatus = statutRaceDu(a.id, "hold");
+      if (raceStatus === "denied") { holdNo++; brachyHoldBans++; }
+      else if (raceStatus === "confirmation_required") holdAConfirmer++;
       else { holdYes++; holdEligible = true; }
     } else holdUnk++;
     // cargo
@@ -154,7 +184,9 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
     if (stCargo === "confirmation_required") cargoAConfirmer++;
     else if (stCargo === "denied") cargoNo++;
     else if (stCargo === "allowed") {
-      if (brachy && g.brachy_allowed === false) cargoNo++;
+      const raceStatus = statutRaceDu(a.id, "cargo");
+      if (raceStatus === "denied") cargoNo++;
+      else if (raceStatus === "confirmation_required") cargoAConfirmer++;
       else { cargoYes++; cargoEligible = true; }
     } else cargoUnk++;
     const channel = cabinEligible ? "cabin" : holdEligible ? "hold" : cargoEligible ? "cargo" : "none";
@@ -165,8 +197,8 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
 
   // ---- Channel verdicts ----
   const cabin = cabinVerdict(w, cabinWithin, cabinStated, cabinUnkLimit);
-  const hold = holdVerdict(brachy, holdYes, holdNo, brachyHoldBans);
-  const cargo = cargoVerdict(cargoYes, cargoNo, brachy);
+  const hold = holdVerdict(brachy, holdYes, holdNo, brachyHoldBans, holdAConfirmer);
+  const cargo = cargoVerdict(cargoYes, cargoNo, brachy, cargoAConfirmer);
 
   // headline (airline restriction summary)
   const airlineHeadline = headline(cabin, hold, cargo);
@@ -343,11 +375,11 @@ function cabinVerdict(w: number, within: number, stated: number, unk: number): C
   return { level, detail, etabli: true };
 }
 
-function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): ChannelView {
+function holdVerdict(brachy: boolean, yes: number, no: number, bans: number, confirmations: number): ChannelView {
   const tot = yes + no;
   /* `pct = tot ? yes/tot : 0` : sur zéro politique établie, le pourcentage valait 0 et la fiche
      annonçait « Souvent refusé » — un refus déduit de l'absence de données. */
-  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("hold"), etabli: false };
+  if (tot === 0 && confirmations === 0) return { level: NON_ETABLI, detail: detailNonEtabli("hold"), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level: Level;
   if (brachy) {
@@ -376,10 +408,10 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
      établit un canal : les corriger maintenant, c'est refuser le défaut différé — le même que
      celui du score, nommé au lot précédent. */
   const detail: Bi = brachy
-    ? { en: `${bans} airlines have a recorded ban on snub-nosed dogs in the hold — confirm the rule that applies to your flight with the carrier operating it.`,
-        fr: `${bans} compagnies ont une interdiction enregistrée pour les chiens au museau court en soute — confirme la règle applicable au vol auprès du transporteur effectif.`,
-        es: `${bans} aerolíneas tienen registrada una prohibición para los perros de hocico chato en bodega — confirma la norma aplicable a tu vuelo con el transportista que lo opera.`,
-        pt: `${bans} companhias têm uma proibição registada para cachorros de focinho achatado no porão — confirma a regra aplicável ao teu voo junto da transportadora que o opera.` }
+    ? { en: `${yes} airlines explicitly accept this profile in the hold, ${bans} explicitly refuse it, and ${confirmations} require confirmation for the applicable flight.`,
+        fr: `${yes} compagnies acceptent explicitement ce profil en soute, ${bans} le refusent explicitement et ${confirmations} demandent une confirmation pour le vol concerné.`,
+        es: `${yes} aerolíneas aceptan explícitamente este perfil en bodega, ${bans} lo rechazan explícitamente y ${confirmations} requieren confirmación para el vuelo correspondiente.`,
+        pt: `${yes} companhias aceitam explicitamente este perfil no porão, ${bans} recusam-no explicitamente e ${confirmations} exigem confirmação para o voo em causa.` }
     : { en: `${yes} airlines accept this profile in the hold, ${no} do not.`,
         fr: `${yes} compagnies acceptent ce profil en soute, ${no} non.`,
         es: `${yes} aerolíneas aceptan este perfil en la bodega, ${no} no.`,
@@ -387,23 +419,24 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
   return { level, detail, etabli: true };
 }
 
-function cargoVerdict(yes: number, no: number, brachy: boolean): ChannelView {
+function cargoVerdict(yes: number, no: number, brachy: boolean, confirmations: number): ChannelView {
   const tot = yes + no;
-  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo"), etabli: false };
+  if (tot === 0 && confirmations === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo"), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level = pct >= 0.7 ? L("Possible for most, under the airlines' conditions", "Possible pour la plupart, sous conditions des compagnies", "Posible en la mayoría, con las condiciones de las aerolíneas", "Possível na maioria, nas condições das companhias", "ok")
     : pct >= 0.4 ? L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn")
       : L("Limited", "Limité", "Limitado", "Limitado", "no");
-  // Snub-nosed dogs are commonly subject to seasonal cargo heat embargoes → cap at "with conditions".
-  if (brachy && level.tone === "ok") level = L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn");
+  // Une catégorie ne plafonne jamais le verdict par elle-même : seules les restrictions du
+  // registre peuvent le faire. Une portée encore indécidable reste, elle, à confirmer.
+  if (brachy && confirmations > 0) level = L("Restrictions — confirm per airline", "Restrictions — à confirmer", "Restricciones — confirmar según la aerolínea", "Restrições — confirmar com cada companhia", "warn");
   /* MÊME GESTE QU'EN SOUTE : le compte d'options cargo est mesuré, « prévoir embargos chaleur
      saisonniers et validation vétérinaire » ne l'est pas. La branche brachycéphale ne se
      distingue donc plus par une prédiction, mais par le renvoi au transporteur effectif. */
   const detail: Bi = brachy
-    ? { en: `${yes} airlines run a pet-cargo option — confirm the conditions that apply to snub-nosed breeds with the carrier operating your flight.`,
-        fr: `${yes} compagnies proposent une option cargo — confirme les conditions applicables aux races brachycéphales auprès du transporteur effectif.`,
-        es: `${yes} aerolíneas ofrecen una opción de carga para mascotas — confirma las condiciones aplicables a las razas braquicéfalas con el transportista que opera tu vuelo.`,
-        pt: `${yes} companhias oferecem uma opção de carga para animais — confirma as condições aplicáveis às raças braquicefálicas junto da transportadora que opera o teu voo.` }
+    ? { en: `${yes} airlines explicitly accept this profile as cargo, ${no} explicitly refuse it or do not offer cargo, and ${confirmations} require confirmation for the applicable flight.`,
+        fr: `${yes} compagnies acceptent explicitement ce profil en fret, ${no} le refusent explicitement ou ne proposent pas ce canal et ${confirmations} demandent une confirmation pour le vol concerné.`,
+        es: `${yes} aerolíneas aceptan explícitamente este perfil como carga, ${no} lo rechazan explícitamente o no ofrecen este canal y ${confirmations} requieren confirmación para el vuelo correspondiente.`,
+        pt: `${yes} companhias aceitam explicitamente este perfil como carga, ${no} recusam-no explicitamente ou não oferecem este canal e ${confirmations} exigem confirmação para o voo em causa.` }
     : { en: `${yes} airlines run a pet-cargo option compatible with this breed.`,
         fr: `${yes} compagnies proposent une option cargo compatible avec cette race.`,
         es: `${yes} aerolíneas ofrecen una opción de carga para mascotas compatible con esta raza.`,

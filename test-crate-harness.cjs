@@ -182,9 +182,10 @@ const sansAnimaux = Object.entries(AIR).filter(([, a]) => a.noPets).map(([id]) =
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations) : 0 → 1 refus total (Ryanair, sur
    trois phrases citées) et 0 → 9 limites cabine exploitables (Aegean, Finnair, Iberia, KLM,
    Lufthansa, SAS, TAP, Transavia, Turkish — toutes « chien + contenant », 8 kg). Figé sur mesure. */
-/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : 1 → 2 refus totaux — IndiGo rejoint Ryanair (trois canaux cités). */
-check("état réel figé : DEUX compagnies refusent les trois placements — IndiGo et Ryanair, sur citations",
-  JSON.stringify(Object.entries(AIR_REEL).filter(([, a]) => a.noPets).map(([id]) => id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair"]),
+/* MOUVEMENT NOMMÉ (15/09/2026, raccordement exhaustif) : 2 → 3 refus totaux — Virgin Atlantic
+   rejoint IndiGo et Ryanair, ses trois canaux étant désormais évalués depuis les politiques citées. */
+check("état réel figé : TROIS compagnies refusent les trois placements — IndiGo, Ryanair et Virgin Atlantic, sur citations",
+  JSON.stringify(Object.entries(AIR_REEL).filter(([, a]) => a.noPets).map(([id]) => id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair", "airline_virgin_atlantic"]),
   Object.entries(AIR_REEL).filter(([, a]) => a.noPets).map(([id]) => id).join(", "));
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 9 → 15 limites cabine citées ; Air Europa plafonne le CHIEN SEUL (`incl: false`), les
    quatorze autres chien + contenant — toutes QUALIFIÉES (booléen écrit), jamais devinées. */
@@ -200,8 +201,10 @@ check("état réel figé : DEUX compagnies refusent les trois placements — Ind
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout) : 27 → 30 (Aerolíneas Argentinas 9, Edelweiss 8, TAROM 8, chien + contenant). */
 /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, 179 en tout) : 30 → 31 (Air France 8, chien + sac de
    transport, borne stricte « moins de 8 kg »). */
-check("état réel figé : 31 compagnies publient une limite cabine citée, chacune qualifiée (chien + contenant, ou chien seul)",
-  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 31
+/* MOUVEMENT NOMMÉ (15/09/2026, raccordement exhaustif) : 31 → 57 limites cabine citées et
+   exécutables. Chacune conserve un sujet pesé explicite ; Air Europa reste le seul chien seul. */
+check("état réel figé : 57 compagnies publient une limite cabine citée, chacune qualifiée (chien + contenant, ou chien seul)",
+  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 57
     && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).every((a) => typeof a.cabin.incl === "boolean")
     && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null && a.cabin.incl === false).length === 1,
   `${Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length}`);
@@ -209,8 +212,9 @@ check("le référentiel embarqué est peuplé (sinon rien de ce qui suit ne prou
   Object.keys(AIR).length >= 50 && Object.keys(pages.en.L.breeds ?? {}).length >= 100,
   `${Object.keys(AIR).length} compagnies · ${Object.keys(pages.en.L.breeds ?? {}).length} races`);
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo rejoint les témoins réels — trois refus cités. */
-check("les témoins « aucun animal » sont le synthétique, Ryanair ET IndiGo (réels, cités) — les trois sont joués",
-  sansAnimaux.length === 3 && sansAnimaux.includes(SYNTH_SANS_ANIMAUX) && sansAnimaux.includes("airline_ryanair") && sansAnimaux.includes("airline_indigo"), sansAnimaux.join(", "));
+check("les témoins « aucun animal » sont le synthétique, Ryanair, IndiGo ET Virgin Atlantic — les quatre sont joués",
+  sansAnimaux.length === 4 && sansAnimaux.includes(SYNTH_SANS_ANIMAUX) && sansAnimaux.includes("airline_ryanair")
+    && sansAnimaux.includes("airline_indigo") && sansAnimaux.includes("airline_virgin_atlantic"), sansAnimaux.join(", "));
 
 /* ---- 1. « Aucun animal » prend le dessus, sans ligne de soute ambiguë ------------------------- */
 for (const id of sansAnimaux) {
@@ -249,7 +253,7 @@ for (const m of MESURES) {
 
 /* ---- 4. Un chien trop lourd ne reçoit jamais un verdict cabine favorable ---------------------- */
 const avecPoidsCabine = Object.entries(AIR)
-  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 32);
+  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null);
 /* ERREUR NOMMÉE (09/09/2026, lot 5) : en passant de 19 à 21 témoins, j'ai laissé cette coupe à 20 —
    le harnais rougissait sur sa propre troncature, pas sur la donnée. La coupe suit le compte. */
 /* MOUVEMENT NOMMÉ : le seuil était « ≥ 5 compagnies réelles ». Depuis la frontière, AUCUNE
@@ -259,8 +263,8 @@ const avecPoidsCabine = Object.entries(AIR)
    favorable, et c'est le script de production qui le décide. */
 /* MOUVEMENT NOMMÉ (08/09/2026) : le synthétique n'est plus seul — neuf limites réelles citées le
    rejoignent, et chacune est jouée ci-dessous (au-delà du plafond, jamais un verdict favorable). */
-check("les témoins « limite cabine publiée » : le synthétique et les 31 limites réelles citées",
-  avecPoidsCabine.length === 32 && avecPoidsCabine.some(([i]) => i === SYNTH_CABINE),
+check("les témoins « limite cabine publiée » : le synthétique et les 57 limites réelles citées",
+  avecPoidsCabine.length === 58 && avecPoidsCabine.some(([i]) => i === SYNTH_CABINE),
   `${avecPoidsCabine.length} : ${avecPoidsCabine.map(([i]) => i).join(", ")}`);
 for (const [id, a] of avecPoidsCabine) {
   const trop = scenario(pagesT.en, { a: 45, d: 32, poids: a.cabin.maxKg + 10, airId: id });

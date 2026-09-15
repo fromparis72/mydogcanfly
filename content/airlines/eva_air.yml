@@ -58,7 +58,7 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub: < 45 kg
 policies:
   cabin:
     availability: not_offered
@@ -99,20 +99,30 @@ policies:
           quote_language: en
           locator: Pet fee changes
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 11).
     # Effet attendu : Passenger hold is a conditional path, not a blanket approval for the route or dog.
     # Portée nommée : accompanied dogs, cats and rabbits on EVA/UNI operated international flights; breed, season, container, route and advance-reservation restrictions apply
     source:
-      url: "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/"
+      url: "https://www.evaair.com/zh-tw/fly-prepare/baggage/travelling-with-pets/"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment."
-      quote_language: en
-      locator: "Travelling with Pets → Travelling with Pets"
+      reviewer: "Codex — contre-lecture du dossier officiel national"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page nationale taïwanaise chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/ ;
+            citation « The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment. » ;
+            localisateur « Travelling with Pets → Travelling with Pets ».
+            Remplacée par la limite officielle de poids publiée sur la page nationale.
+      quote: "籠子總尺寸> 292公分(115英寸)，或重量(含籠子)達45公斤(100磅)以上：不接受以託運行李運送。"
+      quote_language: zh-Hant-TW
+      locator: "託運限制 → 籠子總尺寸與重量"
   cargo:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
@@ -163,6 +173,29 @@ channels:
       fr: Tarif bagage excédentaire
       es: Tarifa de exceso de equipaje
       pt: "Tarifa de excesso de bagagem"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
+    detail:
+      en: No separate live-animal cargo service is established in the official sources reviewed for this airline.
+      fr: Aucun service fret distinct pour animaux vivants n'est établi dans les sources officielles relues pour cette compagnie.
+      es: Las fuentes oficiales revisadas para esta aerolínea no establecen un servicio de carga separado para animales vivos.
+      pt: "As fontes oficiais revisadas para esta companhia não estabelecem um serviço de carga separado para animais vivos."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Orçamento"
 fareList:
   rows:
     - label:

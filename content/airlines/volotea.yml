@@ -84,6 +84,9 @@ policies:
           quote_language: es
           locator: tableau des frais, ligne « Mascota a bordo », en-tetes conserves
     availability: offered
+    max_weight_kg: 10
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.volotea.com/es/tu-reserva/mascotas-a-bordo/
       source_type: official_website
@@ -92,9 +95,9 @@ policies:
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: Permitimos perros y gatos pequeños de al menos 8 semanas de edad, pero no otros animales.
+      quote: 10kg MAX. = Mascota + transportín
       quote_language: es
-      locator: bloc « Perros y gatos bienvenidos »
+      locator: bloc « 10kg MAX. »
   hold:
     availability: case_by_case
     source:
@@ -146,17 +149,17 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No disponible
-      pt: "Não oferecido"
+      en: Conflicting official rules
+      fr: Règles officielles contradictoires
+      es: Reglas oficiales contradictorias
+      pt: "Regras oficiais contraditórias"
     detail:
-      en: Volotea doesn't transport pets in the hold.
-      fr: Volotea ne transporte pas les animaux en soute.
-      es: Volotea no transporta mascotas en la bodega.
-      pt: "A Volotea não transporta animais no porão."
+      en: General conditions refuse hold transport, while an Italian fare table sells it on limited public-service routes; confirm the flight.
+      fr: Les conditions générales refusent la soute, mais une grille italienne la vend sur certaines liaisons de continuité territoriale ; confirme le vol.
+      es: Las condiciones generales rechazan la bodega, pero una tabla italiana la vende en rutas limitadas de servicio público; confirma el vuelo.
+      pt: "As condições gerais recusam o porão, mas uma tabela italiana o vende em rotas limitadas de serviço público; confirme o voo."
     fee:
       en: —
       fr: —
@@ -169,12 +172,12 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No disponible
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
       en: Volotea publishes no cargo option for pets — its conditions only cover the cabin.
       fr: Volotea ne publie aucune offre de fret pour les animaux — ses conditions ne couvrent que la cabine.

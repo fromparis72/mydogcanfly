@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * CONTRE-ÉPREUVES DU LOT 5 DE L'IMPORT STRICT — 19 faits de Codex (09/09/2026), 18 importés, 1 refusé.
+ * CONTRE-ÉPREUVES DU LOT 5 DE L'IMPORT STRICT — 19 faits de Codex (09/09/2026),
+ * dont plusieurs preuves ont depuis été remplacées par une phrase officielle plus précise.
  *
  *   npx tsx test-preuves-lot-5.mjs
  *
@@ -45,11 +46,47 @@ const BULLY_50 = { breed_id: "breed_american_bully_xl", weight_kg: 50 };
 const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, destination: dst, dog, date: JUILLET }));
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
-const SEUILS = { "airline_korean_air.cabin": [7, true], "airline_korean_air.hold": [45, true], "airline_asiana.cabin": [7, true] };
+const SEUILS = {
+  "airline_virgin_australia.cargo": [65, true],
+  "airline_korean_air.cabin": [7, true], "airline_korean_air.hold": [45, true],
+  "airline_vietnam_airlines.cabin": [6, true], "airline_vietnam_airlines.hold": [32, true],
+  "airline_asiana.cabin": [7, true], "airline_asiana.hold": [45, true],
+  "airline_china_eastern.hold": [32, true],
+};
+/* MOUVEMENTS NOMMÉS (12–15/09/2026) : les preuves génériques du lot 5 ont été
+   remplacées par des phrases officielles qui établissent le seuil du canal. L'ancienne
+   preuve reste opposable dans `source.history`. */
+const SUPERSEDEES = {
+  "airline_virgin_australia.cargo": {
+    verified_date: "2026-09-15", history_date: "2026-09-15",
+    url: "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pet-transport/", quote_language: "en",
+    quote: "The combined weight of your pet and the container must not exceed 65kg.", locator: "Pet transport → pet and container requirements",
+  },
+  "airline_vietnam_airlines.cabin": {
+    verified_date: "2026-09-09", history_date: "2026-09-15",
+    url: "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet", quote_language: "en",
+    quote: "Weight: Each transport cage holds one pet, and the overall weight of the pet and kennel cannot exceed 6kg.", locator: "Conditions for transporting pets in the passenger cabin → Weight",
+  },
+  "airline_vietnam_airlines.hold": {
+    verified_date: "2026-09-09", history_date: "2026-09-15",
+    url: "https://www.vietnamairlines.com/cn/en/travel-information/special-services/traveling-with-pet", quote_language: "en",
+    quote: "Weight: The total weight of the pet and the cage must not exceed 32kg.", locator: "Conditions for transporting pets in checked baggage → Weight",
+  },
+  "airline_asiana.hold": {
+    verified_date: "2026-09-09", history_date: "2026-09-15",
+    url: "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets", quote_language: "ko",
+    quote: "운반 용기를 포함한 동물의 무게가 45kg 이하이고 운반 용기의 3면 길이의 합이 285cm, 높이 84cm 이하인 경우", locator: "반려동물 동반 → 수하물로 위탁하는 경우",
+  },
+  "airline_china_eastern.hold": {
+    verified_date: "2026-09-12", history_date: "2026-09-15",
+    url: "https://www.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/", quote_language: "zh-CN",
+    quote: "每个独立包装的小动物及其容器合计重量(含食物和水)不得超过32千克（kg）。", locator: "八、乘机须知 1 > a et b（4）小动物容器尺寸及重量",
+  },
+};
 const REACTIVEES = ["airline_virgin_australia.cargo", "airline_philippine.cargo", "airline_air_mauritius.cargo", "airline_garuda_indonesia.cargo"];
 const REFUSE = "airline_virgin_australia.cabin";
 
-console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet près, 1 refusé et nommé ===");
+console.log("=== Étage 1 — 19 faits relus, preuves actuelles et supersessions nommées ===");
 {
   check("19 faits relus depuis le dossier, 11 non-décisions déclarées", faits.length === 19 && d.intentionally_unset.length === 11);
   for (const f of faits) {
@@ -68,11 +105,15 @@ console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet prè
       check(`  …projeté « à confirmer », cause airline_approval — l'essai intérieur ne devient pas une offre`, proj?.status === "confirmation_required" && proj?.status_cause === "airline_approval", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
-    check(`${cle} (LOT5[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
-      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
-      JSON.stringify({ attendu: f.quote, lu: s.quote }));
-    check(`  …review_due calculé par reviewDueFrom (2026-12-08)`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-08", `${s.verified_date} → ${s.review_due}`);
-    const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
+    const supersedee = SUPERSEDEES[cle];
+    const attendue = supersedee ?? f;
+    check(`${cle} (LOT5[${f.index}]) : phrase, URL, localisateur, langue, date de lecture${supersedee ? " — preuve officielle supersédée" : ""}`,
+      !!pol && s.quote === attendue.quote && s.locator === attendue.locator && s.quote_language === attendue.quote_language && s.url === attendue.url && s.verified_date === (supersedee?.verified_date ?? f.verified_date),
+      JSON.stringify({ attendu: attendue.quote, lu: s.quote }));
+    if (supersedee) check("  …la preuve précédente reste consignée dans l'historique, avec son URL, sa phrase et son localisateur",
+      s.history?.some((h) => h.date === supersedee.history_date && h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)), JSON.stringify(s.history));
+    check(`  …review_due calculé par reviewDueFrom`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline"), `${s.verified_date} → ${s.review_due}`);
+    const attendu = cle === "airline_philippine.cabin" ? "confirmation_required" : f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
     if (seuil) check(`  …plafond ${seuil[0]} kg, chien + contenant — écrit tel que la phrase le dit`,
@@ -98,6 +139,12 @@ console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet prè
         JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.cargo?.status }));
       continue;
     }
+    if (u.airline_id === "airline_china_airlines" && u.placement === "cabin") {
+      check("non-décision historique airline_china_airlines.cabin : refermée le 12/09 sur refus officiel",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.cabin?.status === "denied",
+        JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.cabin?.status }));
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status }));
@@ -119,8 +166,8 @@ console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet prè
      — les deux témoins échouaient sur un statut absent. La projection vit dans `loadKB()`. */
   const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
   const phC = projetee("airline_philippine", "cabin");
-  check("Philippine cabine PROJETÉE : accepté sous conditions, SANS plafond ni qualification du contenant — la grille tarifaire n'est pas une preuve",
-    phC?.status === "accepted_with_conditions" && phC.max_weight_kg === undefined && phC.weight_includes_carrier === undefined, JSON.stringify(phC));
+  check("Philippine cabine PROJETÉE : à confirmer (accord compagnie), SANS plafond ni qualification du contenant — la grille tarifaire n'est pas une preuve",
+    phC?.status === "confirmation_required" && phC?.status_cause === "airline_approval" && phC.max_weight_kg === undefined && phC.weight_includes_carrier === undefined, JSON.stringify(phC));
   /* Virgin Australia : ce même retrait de la dérivation faisait tomber le 8 kg que l'arbitrage du
      28/08 (option A-bis, `test-virgin-australia-cabine.mjs`) exige sur la politique. La citation de
      PHILIPPE du 28/08 porte « no more than 8kg » en toutes lettres : le seuil est désormais ÉCRIT dans
@@ -145,15 +192,15 @@ console.log("\n=== Étage 2 — Paris → Séoul : Korean Air et Asiana, plafond
   const asC = canal(c, "airline_asiana", "cabin");
   check("Asiana cabine, Cavalier 6 kg : sous conditions, plafond 7 ; Carlin 8 kg et Golden 32 kg : refus sûr",
     asC?.status === "accepted_with_conditions" && asC?.weight_limit_kg === 7 && canal(p, "airline_asiana", "cabin")?.status === "denied" && canal(g, "airline_asiana", "cabin")?.status === "denied");
-  check("Asiana soute, Golden 32 kg et Bully 50 kg : sous conditions SANS plafond ; fret non décidé → à confirmer",
-    canal(g, "airline_asiana", "hold")?.status === "accepted_with_conditions" && canal(b, "airline_asiana", "hold")?.status === "accepted_with_conditions" && canal(g, "airline_asiana", "hold")?.weight_limit_kg === undefined && canal(g, "airline_asiana", "cargo")?.status === "confirmation_required");
+  check("Asiana soute : Golden 32 kg sous conditions, Bully 50 kg refusé au-dessus du plafond 45 ; fret non décidé → à confirmer",
+    canal(g, "airline_asiana", "hold")?.status === "accepted_with_conditions" && canal(g, "airline_asiana", "hold")?.weight_limit_kg === 45 && canal(b, "airline_asiana", "hold")?.status === "denied" && canal(g, "airline_asiana", "cargo")?.status === "confirmation_required");
 }
 
 console.log("\n=== Étage 2 — Paris → Hô Chi Minh-Ville, Kuala Lumpur, Shanghai, Maurice ===");
 {
   const sgnG = decide("airport_cdg", "airport_sgn", GOLDEN_32), sgnC = decide("airport_cdg", "airport_sgn", CAVALIER_6);
-  check("Vietnam Airlines cabine, Cavalier 6 kg : sous conditions sans plafond ; Golden 32 kg : à confirmer, jamais refusé ; soute 32 kg : sous conditions",
-    canal(sgnC, "airline_vietnam_airlines", "cabin")?.status === "accepted_with_conditions" && canal(sgnG, "airline_vietnam_airlines", "cabin")?.status === "confirmation_required" && canal(sgnG, "airline_vietnam_airlines", "hold")?.status === "accepted_with_conditions");
+  check("Vietnam Airlines : cabine Cavalier 6 kg sous conditions au plafond 6, Golden 32 kg refusé ; soute Golden sous conditions au plafond 32",
+    canal(sgnC, "airline_vietnam_airlines", "cabin")?.status === "accepted_with_conditions" && canal(sgnC, "airline_vietnam_airlines", "cabin")?.weight_limit_kg === 6 && canal(sgnG, "airline_vietnam_airlines", "cabin")?.status === "denied" && canal(sgnG, "airline_vietnam_airlines", "hold")?.status === "accepted_with_conditions" && canal(sgnG, "airline_vietnam_airlines", "hold")?.weight_limit_kg === 32);
   for (const [o, dst, id, nom] of [["airport_cdg", "airport_kul", "airline_malaysia_airlines", "Malaysia Airlines"], ["airport_cdg", "airport_pvg", "airline_china_eastern", "China Eastern"], ["airport_cdg", "airport_mru", "airline_air_mauritius", "Air Mauritius"]]) {
     const g = decide(o, dst, GOLDEN_32), c = decide(o, dst, CAVALIER_6), p = decide(o, dst, CARLIN_8);
     check(`${nom} cabine : refusée sur citation pour TOUT chien de compagnie (Golden, Cavalier 6 kg, Carlin 8 kg)`,
@@ -170,17 +217,16 @@ console.log("\n=== Étage 2 — Paris → Hô Chi Minh-Ville, Kuala Lumpur, Shan
 console.log("\n=== Étage 2 — Londres → Taipei, Sydney → Manille, Singapour → Jakarta, Sydney → Melbourne ===");
 {
   const tpe = decide("airport_lhr", "airport_tpe", GOLDEN_32);
-  check("China Airlines soute (AVIH bagage enregistré) et fret : sous conditions ; cabine toujours à confirmer",
-    canal(tpe, "airline_china_airlines", "hold")?.status === "accepted_with_conditions" && canal(tpe, "airline_china_airlines", "cabin")?.status === "confirmation_required" && canal(tpe, "airline_china_airlines", "cargo")?.status === "accepted_with_conditions");
+  check("China Airlines soute (AVIH bagage enregistré) et fret : sous conditions ; cabine refusée sur citation",
+    canal(tpe, "airline_china_airlines", "hold")?.status === "accepted_with_conditions" && canal(tpe, "airline_china_airlines", "cabin")?.status === "denied" && canal(tpe, "airline_china_airlines", "cargo")?.status === "accepted_with_conditions");
   const mnl = decide("airport_syd", "airport_mnl", GOLDEN_32), ceb = decide("airport_mnl", "airport_ceb", CAVALIER_6);
   check("Philippine soute et fret (AVIH), Golden 32 kg : tous deux sous conditions sur leurs citations propres",
     canal(mnl, "airline_philippine", "cargo")?.status === "accepted_with_conditions" && canal(mnl, "airline_philippine", "hold")?.status === "accepted_with_conditions");
-  /* MESURÉ : la cabine FurPAL est citée (vols intérieurs), mais une règle héritée non citée la
-     ferme (`rule_philippine_cabin_deny`) : le moteur garde « à confirmer » et nomme la règle,
-     même sur Manille → Cebu. Dette nommée : cette règle contredit la citation, elle est à relire. */
+  /* La cabine FurPAL reste soumise à accord explicite de la compagnie : le moteur nomme la
+     politique citée, sans ressusciter l'ancienne règle globale non prouvée. */
   const pc = canal(ceb, "airline_philippine", "cabin");
-  check("Philippine cabine, Cavalier 6 kg sur Manille → Cebu : citée, mais fermée par une règle héritée non citée → à confirmer, la règle NOMMÉE (jamais un oui, jamais un refus prouvé)",
-    pc?.status === "confirmation_required" && (pc?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_philippine_cabin_deny"), JSON.stringify(pc));
+  check("Philippine cabine, Cavalier 6 kg sur Manille → Cebu : à confirmer sur l'accord compagnie de la politique citée, sans règle globale inventée",
+    pc?.status === "confirmation_required" && (pc?.confirmation_causes ?? []).some((x) => x.code === "airline_approval" && x.policy_ref === "airline_philippine#cabin") && !(pc?.confirmation_causes ?? []).some((x) => x.rule_id), JSON.stringify(pc));
   const cgk = decide("airport_sin", "airport_cgk", GOLDEN_32);
   check("Garuda fret (CargoWeb), Golden 32 kg : RÉACTIVÉ sur citation → sous conditions ; cabine et soute restent non revérifiées → à confirmer (cause legacy_unreviewed)",
     canal(cgk, "airline_garuda_indonesia", "cargo")?.status === "accepted_with_conditions" && canal(cgk, "airline_garuda_indonesia", "cabin")?.status === "confirmation_required" && canal(cgk, "airline_garuda_indonesia", "hold")?.status === "confirmation_required");

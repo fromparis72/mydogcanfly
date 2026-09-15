@@ -35,6 +35,7 @@ const GENERATED_REL = join("packages", "ui", "src", "data", "airlines.generated.
    au lieu d'en recopier un second : le bac à sable doit donc embarquer les sources du paquet
    `knowledge`, l'ensemble d'identités approuvé, et exécuter le script sous `tsx`. */
 const SRC_REL = join("packages", "knowledge", "src");
+const SCRIPT_LIB_REL = join("packages", "knowledge", "scripts", "lib");
 const IDENTITES_REL = join("test-baselines", "t0b2-policy-identities.json");
 
 let pass = 0;
@@ -52,6 +53,7 @@ function freshSandbox() {
   mkdirSync(join(SANDBOX, "packages", "ui", "src", "data"), { recursive: true });
   cpSync(join(ROOT, "content", "airlines"), join(SANDBOX, "content", "airlines"), { recursive: true });
   cpSync(join(ROOT, SCRIPT_REL), join(SANDBOX, SCRIPT_REL));
+  cpSync(join(ROOT, SCRIPT_LIB_REL), join(SANDBOX, SCRIPT_LIB_REL), { recursive: true });
   cpSync(join(ROOT, OBJECTS_REL), join(SANDBOX, OBJECTS_REL));
   cpSync(join(ROOT, SCELLE_REL), join(SANDBOX, SCELLE_REL));
   cpSync(join(ROOT, GENERATED_REL), join(SANDBOX, GENERATED_REL));
@@ -80,7 +82,7 @@ console.log("=== 1. Dépôt intact : sortie 0, aucune écriture ===");
   const { code, out } = run("--check");
   check("code de sortie 0", code === 0, out.slice(-300));
   check("aucun artefact réécrit (mtime inchangée)", mtimes() === avant);
-  check("les 10 POLICY_GAP sont listés", (out.match(/^ {2}POLICY_GAP /gm) || []).length === 10,
+  check("aucun POLICY_GAP structurel ne subsiste", (out.match(/^ {2}POLICY_GAP /gm) || []).length === 0,
     `trouvés : ${(out.match(/^ {2}POLICY_GAP /gm) || []).length}`);
   check("les 10 PROVENANCE_CURATED sont listés", (out.match(/^ {2}PROVENANCE_CURATED /gm) || []).length === 10,
     `trouvés : ${(out.match(/^ {2}PROVENANCE_CURATED /gm) || []).length}`);
@@ -271,11 +273,13 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
        non citées avec plafond — Eurowings, LOT, Norwegian, Volotea, Vueling — sont dérivées de la fiche). La
        contre-épreuve garde son sens en REMPLAÇANT l'URL et la phrase du bloc cité par celles de la revue : la source
        auditée écrite dans la fiche doit gagner sur la provenance que l'artefact porte encore, et les enrichissements
-       écrits à la main (dimensions) doivent survivre. Précondition ajoutée : la phrase à remplacer est bien là. */
+       écrits à la main (ici le poids) doivent survivre. Les anciennes dimensions Air France ont
+       été retirées : leur citation ne les établissait pas. Précondition ajoutée : la phrase à
+       remplacer est bien là. */
     const QUOTE_AF = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
     const URL_AF = 'url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"';
-    check("(m) préalable : air_france.cabin est enrichie à la main (dimensions), et sa fiche porte la phrase citée du 10/09",
-      avant.derived_from_fiche === undefined && avant.max_weight_kg === 8 && avant.carrier_dims_cm?.l === 46
+    check("(m) préalable : air_france.cabin est enrichie à la main (poids), et sa fiche porte la phrase citée du 10/09",
+      avant.derived_from_fiche === undefined && avant.max_weight_kg === 8 && avant.carrier_dims_cm === undefined
       && readFileSync(af, "utf8").includes(QUOTE_AF) && readFileSync(af, "utf8").includes(URL_AF));
     /* MOUVEMENT NOMMÉ (11/09/2026, annexe 51) : ce témoin réécrivait la PHRASE CITÉE sans toucher à
        l'attestation qui s'y rattache. Depuis que la garde du rattachement est branchée à
@@ -301,8 +305,8 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     check("(m) la source auditée GAGNE sur la provenance écrite à la main",
       apres.source.url === "https://wwws.airfrance.fr/information/passagers/animaux-cabine"
       && apres.source.quote?.startsWith("Les chiens et chats"), JSON.stringify(apres.source).slice(0, 200));
-    check("(m) les enrichissements survivent (poids, dimensions)",
-      apres.max_weight_kg === 8 && apres.carrier_dims_cm?.l === 46, JSON.stringify(apres).slice(0, 200));
+    check("(m) l'enrichissement prouvé survit, les dimensions non prouvées restent absentes",
+      apres.max_weight_kg === 8 && apres.carrier_dims_cm === undefined, JSON.stringify(apres).slice(0, 200));
   }
 
   /* (n) et (o) LE RATTACHEMENT fait → preuve (annexe 51) — les deux contre-épreuves exigées par

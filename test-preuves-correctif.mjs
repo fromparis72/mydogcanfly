@@ -45,15 +45,21 @@ console.log("=== Six remplacements, à l'octet près ===");
     const cle = `${f.airline_id}.${f.placement}`;
     const pol = politique(f.airline_id, f.placement); const s = pol?.source ?? {}; const proj = projetee(f.airline_id, f.placement);
     if (cle === "airline_china_southern.hold") {
-      /* MOUVEMENT NOMMÉ (12/09/2026, contre-lecture nationale) : la réponse
-         anglophone du correctif est elle-même remplacée par la règle chinoise
-         actuelle. Le canal et son verdict restent identiques. */
-      const phrase = "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。";
-      check(`${cle} (remplace le lot ${f.replaces_lot}, puis relu le 12/09) : source chinoise, phrase exacte, localisateur, échéance calculée`,
-        !!pol && s.quote === phrase && s.url === "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets"
-          && !!s.locator && s.quote_language === "zh" && s.verified_date === "2026-09-12"
-          && s.review_due === reviewDueFrom("2026-09-12", "airline"),
-        JSON.stringify({ attendu: phrase, lu: s.quote, url: s.url }));
+      /* MOUVEMENTS NOMMÉS : la réponse anglophone du correctif a d'abord été
+         remplacée par la règle chinoise générale le 12/09, puis cette règle par
+         l'alinéa de la même page qui établit réellement le plafond de 32 kg.
+         L'étape intermédiaire reste opposable dans l'historique. */
+      const phrasePrecedente = "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。";
+      const phraseActive = "（4）旅客托运的活体动物笼体包装最大不能超过 90x60x66 厘米，最小不能小于5x15x20厘米，重量最大不得超过32公斤，应单独装笼；";
+      const historique = s.history?.[0];
+      check(`${cle} (remplace le lot ${f.replaces_lot}, puis relu le 12/09) : preuve nationale chiffrée active, preuve générale conservée`,
+        !!pol && s.quote === phraseActive && s.url === "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets"
+          && s.locator === "section « 二、收运要求 », alinea (4)" && s.quote_language === "zh" && s.verified_date === "2026-09-12"
+          && s.review_due === reviewDueFrom("2026-09-12", "airline")
+          && historique?.date === "2026-09-15"
+          && historique?.note?.includes(phrasePrecedente)
+          && historique?.note?.includes("section 一、一般规定, alinéa (1)"),
+        JSON.stringify({ attendu: phraseActive, lu: s.quote, url: s.url, historique }));
     } else {
       check(`${cle} (remplace le lot ${f.replaces_lot}) : phrase, URL, localisateur, langue, date, échéance calculée`,
         !!pol && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.quote_language === f.quote_language && s.verified_date === "2026-09-09" && s.review_due === reviewDueFrom("2026-09-09", "airline"),

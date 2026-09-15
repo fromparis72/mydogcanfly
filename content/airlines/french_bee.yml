@@ -109,6 +109,9 @@ policies:
           quote_language: en
           locator: Pets in cabin
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
       source_type: official_website
@@ -116,7 +119,13 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine ;
+            citation « En cabine vous avez le droit de transporter un chien ou chat par passager. » ; localisateur « Quel type de sac pour mon animal en cabine ? ».
+            Remplacée par la limite de poids de la page nationale officielle.
       quote: Les chiens et les chats d'un poids maximum de 8kg contenant compris.
       quote_language: fr
       locator: sections « Voyage des animaux en cabine › Conditions d'acceptation de l'animal » et « Règles de transport d'un animal en cabine › Sac de transport »
@@ -167,6 +176,9 @@ policies:
           quote_language: en
           locator: Pets in hold
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
       source_type: official_website
@@ -174,7 +186,13 @@ policies:
       review_due: 2026-12-11
       confidence: 4
       reviewer: Codex — contre-lecture du dossier officiel national
-      history: []
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion ;
+            citation « Ils peuvent voyager en soute sous certaines conditions » ; localisateur « Puis-je faire voyager mon animal avec moi dans l’avion ? ».
+            Remplacée par la limite de poids et la frontière fret de la page nationale officielle.
       quote: Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.
       quote_language: fr
       locator: sections « Transport par FRET » et « Références des cages et leurs dimensions »
@@ -198,7 +216,21 @@ policies:
           quote: contact cargo
           quote_language: en
           locator: Oversize/cargo
-    review_state: legacy_unreviewed
+    availability: offered
+    min_weight_kg: 75
+    weight_min_bound: gt
+    weight_includes_carrier: true
+    source:
+      url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.
+      quote_language: fr
+      locator: sections « Transport par FRET » et « Références des cages et leurs dimensions »
 channels:
   - placement: cabin
     icon: 🐾

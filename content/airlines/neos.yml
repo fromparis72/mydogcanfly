@@ -87,6 +87,9 @@ policies:
           quote_language: it
           locator: section « PREZZI »
     availability: offered
+    max_weight_kg: 10
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.neosair.com/us/en/information/traveling-with-pets
       source_type: official_website
@@ -94,8 +97,14 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline material
-      history: []
-      quote: you are allowed to transport them in the cabin
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — extension de la citation à la condition chiffrée complète"
+          note: >-
+            Citation précédente vérifiée le 2026-09-09 sur https://www.neosair.com/us/en/information/traveling-with-pets :
+            « you are allowed to transport them in the cabin » ; localisateur « NECESSARY REQUIREMENTS ».
+            La phrase complète établit désormais le plafond total de 10 kg.
+      quote: If the weight of the animal, including the cage or carrier, does not exceed 10 kilograms, you are allowed to transport them in the cabin.
       quote_language: en
       locator: NECESSARY REQUIREMENTS
   hold:
@@ -121,6 +130,9 @@ policies:
           quote_language: it
           locator: section « PREZZI »
     availability: offered
+    min_weight_kg: 10
+    weight_min_bound: gt
+    weight_includes_carrier: true
     source:
       url: https://www.neosair.com/us/en/information/traveling-with-pets
       source_type: official_website
@@ -128,8 +140,14 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline material
-      history: []
-      quote: transportation is authorised in the hold of the aircraft
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — extension de la citation à la condition chiffrée complète"
+          note: >-
+            Citation précédente vérifiée le 2026-09-09 sur https://www.neosair.com/us/en/information/traveling-with-pets :
+            « transportation is authorised in the hold of the aircraft » ; localisateur « NECESSARY REQUIREMENTS ».
+            La phrase complète établit désormais le plancher total strict de plus de 10 kg.
+      quote: If the weight of the animal, including the cage or carrier, exceeds 10 kilograms, transportation is authorised in the hold of the aircraft, which is pressurised and ventilated.
       quote_language: en
       locator: NECESSARY REQUIREMENTS
   cargo:

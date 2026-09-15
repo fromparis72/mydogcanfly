@@ -66,7 +66,11 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 70 kg"
+    sub:
+      en: by cargo arrangement
+      fr: sur accord du fret
+      es: previo acuerdo de carga
+      pt: "mediante acordo com a carga"
 policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
@@ -118,17 +122,20 @@ policies:
           quote_language: fr
           locator: "Voyager avec des animaux → Tarifs des animaux en cabine"
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: "https://www.royalairmaroc.com/ma-ar/information/animaux"
+      url: "https://www.royalairmaroc.com/ma-fr/information/animaux"
       source_type: official_website
       verified_date: "2026-09-12"
       review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — lecture directe de la page nationale marocaine"
+      reviewer: "Philippe et Codex — lecture directe de la page officielle marocaine"
       history: []
-      quote: "يتم قبول الحيوانات الأليفة (كلاب، قطط، عصافير) في المقصورة"
-      quote_language: ar
-      locator: "الحيوانات في المقصورة"
+      quote: "L'animal ne doit pas peser plus de 8 kg, y compris son conteneur"
+      quote_language: fr
+      locator: "Animaux en cabine → condition 2"
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -179,6 +186,9 @@ policies:
           quote_language: fr
           locator: "Voyager avec des animaux → Tarifs des animaux en soute"
     availability: offered
+    max_weight_kg: 70
+    weight_limit_bound: lt
+    weight_includes_carrier: false
     source:
       url: "https://www.royalairmaroc.com/ma-fr/information/animaux"
       source_type: official_website

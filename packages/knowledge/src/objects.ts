@@ -147,6 +147,10 @@ const PlacementPolicyCommon = {
    *  `gt` exclut la valeur (« more than »), `gte` l'inclut (« from »). Absent = `gte`. */
   min_weight_kg: z.number().positive().optional(),
   weight_min_bound: z.enum(["gt", "gte"]).optional(),
+  /** Qualification propre au plancher lorsque ses kilos ne portent pas sur le même sujet que le
+   *  plafond. Absent : `weight_includes_carrier` reste la qualification commune. Cas fondateur :
+   *  TAROM, plancher soute de 8 kg cage comprise mais plafond de 40 kg cage exclue. */
+  min_weight_includes_carrier: z.boolean().optional(),
   /** LE RATTACHEMENT DE CHAQUE FAIT À LA PHRASE QUI L'ÉTABLIT (annexe 51).
    *
    *  Sans lui, un seuil structuré et une citation qui COHABITENT sur un canal passaient pour une
@@ -348,8 +352,8 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
   /* `fares` et `fare_conflicts` ajoutés à cette liste LE JOUR MÊME de leur entrée au schéma (10/09/2026) — la leçon
      du 08/09 ci-dessus, deux fois apprise : un champ absent d'ici est perdu par la projection, et le moteur ne le
      voit jamais. Le témoin `test-contrat-tarifaire.mjs` l'exige explicitement. */
-  const { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  const { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

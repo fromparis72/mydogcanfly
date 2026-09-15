@@ -154,14 +154,20 @@ console.log("\n=== 8. Un `deny` ne corrobore JAMAIS une politique `offered` ==="
   const q = qualifier({ availability: "offered" }, "cabin", [regleCanal]);
   check("une acceptation adossée à un refus tombe en ensemble 3, sans source",
     q.ensemble === 3 && q.source === null, JSON.stringify(q));
-  /* LE FAIT QUI REND MA FAUTE INCONSTRUCTIBLE : toutes les règles de portée compagnie sont des
-     `deny`. Si une règle `allow` apparaissait un jour, ce contrôle rougirait — et il faudrait
-     alors décider ce qu'elle a le droit de soutenir, au lieu de le supposer. */
+  /* Les règles de portée compagnie restent fermées aux `allow`. La seule autre action admise
+     est le `require` cité du service ITA Large Dog On Board : il ne soutient aucune politique
+     `offered`, il force précisément une confirmation humaine. */
   const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
   const compagnie = regles.filter((r) => r?.scope?.type === "airline");
   const actions = [...new Set(compagnie.map((r) => r.effect?.action))];
-  check(`les ${compagnie.length} règles de portée compagnie sont TOUTES des \`deny\``,
-    actions.length === 1 && actions[0] === "deny", actions.join(", "));
+  const nonDeny = compagnie.filter((r) => r.effect?.action !== "deny");
+  check(`les ${compagnie.length} règles de portée compagnie sont 104 refus et l'unique confirmation ITA`,
+    compagnie.filter((r) => r.effect?.action === "deny").length === 104
+      && nonDeny.length === 1
+      && nonDeny[0].id === "rule_ita_airways_large_dog_domestic_confirmation"
+      && nonDeny[0].effect?.action === "require"
+      && !actions.includes("allow"),
+    JSON.stringify(nonDeny.map((r) => [r.id, r.effect?.action])));
 }
 
 console.log("\n=== 9. L'ambiguïté ne se tranche pas en silence ===");
@@ -243,12 +249,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq canaux hérités reçoivent
      une citation officielle. Air New Zealand soute/fret et Norwegian cabine/soute deviennent
      `accepted_with_conditions`; Norwegian fret devient un refus documenté. */
-  check("221 décisions prouvées : 0 `allowed`, 177 sous conditions, 44 `denied`, 81 à confirmer",
-    allowed === 0 && sousConditions === 177 && denied === 44 && aConfirmer === 81, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : les 306 politiques se
+     répartissent en 188 acceptations sous conditions, 52 refus prouvés et 66 confirmations.
+     Aucun accord absolu n'est créé. */
+  check("240 décisions prouvées : 0 `allowed`, 188 sous conditions, 52 `denied`, 66 à confirmer",
+    allowed === 0 && sousConditions === 188 && denied === 52 && aConfirmer === 66, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 81 && !("undefined" in causes), JSON.stringify(causes));
-  check("2 gardent une page officielle non citée, 71 n'ont rien à montrer, 8 demandent arbitrage compagnie",
-    causes.official_source_unquoted === 2 && causes.legacy_unreviewed === 71 && causes.airline_approval === 8, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 66 && !("undefined" in causes), JSON.stringify(causes));
+  check("55 restent non revues et 11 demandent un arbitrage compagnie ; aucune URL seule ne décide",
+    causes.official_source_unquoted === undefined && causes.legacy_unreviewed === 55 && causes.airline_approval === 11, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -518,8 +527,32 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_united.cargo",
     "airline_virgin_atlantic.cargo",
     "airline_vueling.cargo",
+    /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : vingt-deux canaux
+       supplémentaires portent désormais leur phrase officielle propre. */
+    "airline_air_algerie.cargo",
+    "airline_air_austral.cargo",
+    "airline_air_serbia.cabin",
+    "airline_bangkok_airways.hold",
+    "airline_british_airways.hold",
+    "airline_cathay_pacific.hold",
+    "airline_china_airlines.cabin",
+    "airline_el_al.cabin",
+    "airline_el_al.hold",
+    "airline_el_al.cargo",
+    "airline_french_bee.cargo",
+    "airline_icelandair.hold",
+    "airline_pegasus.cabin",
+    "airline_qatar_airways.cargo",
+    "airline_saudia.cabin",
+    "airline_saudia.hold",
+    "airline_singapore_airlines.cabin",
+    "airline_tunisair.cargo",
+    "airline_virgin_atlantic.cabin",
+    "airline_virgin_atlantic.hold",
+    "airline_wizz_air.cabin",
+    "airline_wizz_air.hold",
   ];
-  check("229 politiques d'auteur portent une phrase citée — nominativement",
+  check("251 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
   /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
      être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
@@ -530,8 +563,8 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 176 → 177 décisions citées. */
   /* Air New Zealand et Norwegian ajoutent cinq décisions sourcées : 216 → 221. Les huit
      `case_by_case` déjà cités restent prudents et inchangés. */
-  check("et 221 d'elles sont des décisions (huit case_by_case restent prudentes)",
-    decideesCitees.length === 221 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
+  check("et 240 d'elles sont des décisions (onze case_by_case restent prudentes)",
+    decideesCitees.length === 240 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
       && !decideesCitees.includes("airline_virgin_australia.cabin")
       && !decideesCitees.includes("airline_china_southern.cabin")
       && !decideesCitees.includes("airline_south_african_airways.hold")
@@ -539,7 +572,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
       && !decideesCitees.includes("airline_aer_lingus.cargo")
       && !decideesCitees.includes("airline_aeromexico.cargo")
       && !decideesCitees.includes("airline_iberia.cargo")
-      && !decideesCitees.includes("airline_vueling.cargo"),
+      && !decideesCitees.includes("airline_vueling.cargo")
+      && !decideesCitees.includes("airline_bangkok_airways.hold")
+      && !decideesCitees.includes("airline_british_airways.hold")
+      && !decideesCitees.includes("airline_philippine.cabin"),
     decideesCitees.join(", "));
 }
 
@@ -636,8 +672,10 @@ console.log("\n=== 11 bis. AUCUNE auto-citation ne peut être servie comme sourc
      Elles alimentent en revanche `confidences`, donc l'indice de confiance affiché — une dette
      réelle, plus petite, consignée pour la contre-revue et non corrigée ici : toucher au calcul
      du score est une décision de produit, et le score est déjà en attente d'arbitrage. */
-  check("127 règles portent une auto-citation dans la DONNÉE — 83 compagnie, 44 pays, compte figé",
-    auto.length === 127 && parPortee.airline === 83 && parPortee.country === 44, JSON.stringify(parPortee));
+  /* MOUVEMENT NOMMÉ (15/09/2026) : 127 → 52. L'audit retire 75 règles compagnie faibles ou
+     dupliquées ; les huit dettes compagnie restantes et les 44 pays restent filtrés du public. */
+  check("52 règles portent encore une auto-citation dans la DONNÉE — 8 compagnie, 44 pays, compte figé",
+    auto.length === 52 && parPortee.airline === 8 && parPortee.country === 44, JSON.stringify(parPortee));
 
   /* Et surtout, la propriété qui protège le visiteur : quelle que soit la destination, aucune
      auto-citation n'atteint le rapport. On l'éprouve sur CHAQUE pays auto-cité qui a un aéroport
@@ -900,8 +938,8 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo rejoint Ryanair — trois refus prouvés sur UNE
        phrase officielle (« does not permit the carriage of pets or animals on its aircraft »), fret compris.
        Deux fiches, nominativement, et elles seules. */
-    check("DEUX fiches concluent au refus total — IndiGo et Ryanair, sur trois refus prouvés chacune",
-      JSON.stringify(refusTotal.map((a) => a.id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
+    check("TROIS fiches concluent au refus total — IndiGo, Ryanair et Virgin Atlantic, sur trois refus prouvés chacune",
+      JSON.stringify(refusTotal.map((a) => a.id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair", "airline_virgin_atlantic"]), JSON.stringify(refusTotal.map((a) => a.id)));
     const ba = kbR.airlines.get("airline_british_airways");
     check("British Airways : cabine refusée sur preuve, fret cité, FICHE ouverte sous conditions",
       ba?.premium?.policy?.cabin?.status === "denied"
@@ -977,11 +1015,13 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
     /* MOUVEMENT NOMMÉ (15/09/2026, ITA Large Dog On Board) : la règle cabine ITA existante
        quitte l'auto-citation pour la page nationale officielle, et la borne propre au service
        intérieur (> 30 kg) entre comme seconde règle citée. 7 → 9 citées, 88 → 87 faibles. */
-  check("état figé des règles `deny` : 9 citées, 126 officielles non citées, 87 faibles",
-    parNiveau.citee === 9 && parNiveau.officielle_non_citee === 126 && parNiveau.faible === 87,
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif) : les doublons et généralisations sans
+     preuve propre sont retirés. Restent 12 refus cités, 92 officiels non cités et 9 faibles. */
+  check("état figé des règles `deny` : 12 citées, 92 officielles non citées, 9 faibles",
+    parNiveau.citee === 12 && parNiveau.officielle_non_citee === 92 && parNiveau.faible === 9,
     JSON.stringify(parNiveau));
-  check("…et les neuf règles citées sont nominativement figées",
-    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12", "rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_ethiopian_cargo_brachy_official_2026_09_12", "rule_ita_airways_cabin_weight", "rule_ita_airways_large_dog_domestic_max_weight", "rule_nz_breed_ban_restricted_types"].join(),
+  check("…et les douze règles citées sont nominativement figées",
+    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12", "rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_ethiopian_cargo_brachy_official_2026_09_12", "rule_egyptair_hold_weight", "rule_icelandair_international_no_hold", "rule_ita_airways_cabin_weight", "rule_ita_airways_large_dog_domestic_max_weight", "rule_jal_domestic_no_cabin", "rule_nz_breed_ban_restricted_types"].sort().join(),
     JSON.stringify(denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id)));
 
   /* ET LE CAS RÉEL, celui par lequel la faille s'est vue. `rule_british_airways_no_cabin` refuse
@@ -996,9 +1036,10 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
     parCanal.cabin?.status === "denied", JSON.stringify(parCanal.cabin?.status));
   check("British Airways SOUTE : à confirmer — la citation cabine ne ferme pas la soute",
     parCanal.hold?.status === "confirmation_required", JSON.stringify(parCanal.hold?.status));
-  check("…et la règle qui la fermait est NOMMÉE dans la cause, plus muette",
-    (parCanal.hold?.confirmation_causes ?? []).some((c) => c.code === "rule_official_unquoted"
-      && c.rule_id === "rule_british_airways_no_cabin"),
+  check("…et l'accord préalable de la compagnie est NOMMÉ dans la cause, sans règle cabine transposée",
+    (parCanal.hold?.confirmation_causes ?? []).some((c) => c.code === "airline_approval"
+      && c.policy_ref === "airline_british_airways#hold")
+      && !(parCanal.hold?.confirmation_causes ?? []).some((c) => "rule_id" in c),
     JSON.stringify(parCanal.hold?.confirmation_causes));
 
   /* UNE ABSENCE DE POLITIQUE N'EST PLUS UN REFUS — ET LE CONTRÔLE L'EXERCE VRAIMENT.

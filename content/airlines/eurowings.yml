@@ -60,6 +60,9 @@ ladder:
 policies:
   cabin:
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html
       source_type: official_website

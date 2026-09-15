@@ -103,20 +103,30 @@ policies:
     # cabine sous conditions sur les vols opérés par Air China ; « domestic dogs » = chiens domestiques, pas vols intérieurs ; ne pas étendre aux vols partenaires. La règle héritée non citée rule_air_china_no_cabin reste nommée par le moteur (dette, hors périmètre).
   hold:
     availability: offered
+    max_weight_kg: 32
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 13).
     # Effet attendu : Air China hold is a documented conditional route, never a guarantee for every flight.
     # Portée nommée : Advance application and Air China approval required; dog/cat, aircraft, breed, route, combined weight and documentation restrictions apply.
     source:
-      url: "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/"
+      url: "https://m.airchina.com.cn/ac/c/invoke/animalInstruction%40pgzhcn"
       source_type: official_website
       verified_date: "2026-09-09"
       review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Should you require your pet to be carried as checked baggage, please ensure that you submit an application when you make your reservation, as pets will only be carried following approval by Air China."
-      quote_language: en
-      locator: "Pets as Checked Baggage → Carriage requirements"
+      reviewer: "Codex — lecture directe de la page nationale officielle"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve nationale chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/ ;
+            citation « Should you require your pet to be carried as checked baggage, please ensure that you submit an application when you make your reservation, as pets will only be carried following approval by Air China. » ;
+            localisateur « Pets as Checked Baggage → Carriage requirements ».
+            Remplacée par la limite de poids de la page nationale officielle.
+      quote: "每只小动物（包含包装容器以及容器内的水及食物），不得超过32公斤。"
+      quote_language: zh
+      locator: "小动物托运 → 五、运输要求"
   cargo:
     review_state: legacy_unreviewed
 channels:
@@ -127,17 +137,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: no
+    cls: ok
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: Allowed on eligible flights
+      fr: Autorisé sur vols éligibles
+      es: Permitido en vuelos elegibles
+      pt: "Permitido em voos elegíveis"
     detail:
-      en: Pets can't enter the cabin — only trained service dogs. Cats & dogs travel in the hold.
-      fr: Les animaux ne peuvent pas entrer en cabine — seulement les chiens d'assistance dressés. Chats et chiens voyagent en soute.
-      es: Las mascotas no pueden entrar en cabina — solo perros de asistencia adiestrados. Los gatos y perros viajan en bodega.
-      pt: "Animais não podem entrar na cabine — somente cães de serviço treinados. Gatos e cachorros viajam no porão."
+      en: Pet dogs and cats may travel in the cabin on eligible Air China-operated flights, with advance booking and route, carrier and capacity restrictions.
+      fr: Les chiens et chats de compagnie peuvent voyager en cabine sur les vols Air China éligibles, avec réservation préalable et restrictions de trajet, de contenant et de capacité.
+      es: Perros y gatos pueden viajar en cabina en vuelos elegibles operados por Air China, con reserva previa y restricciones de ruta, transportín y capacidad.
+      pt: "Cães e gatos podem viajar na cabine em voos elegíveis operados pela Air China, com reserva prévia e restrições de rota, caixa e capacidade."
     fee:
       en: —
       fr: —

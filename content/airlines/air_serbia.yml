@@ -79,10 +79,24 @@ policies:
           quote_language: en
           locator: Fees
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
+    source:
+      url: https://www.airserbia.com/sr_latin/info-and-help/travel-guidelines/traveling-with-your-pets
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture directe de la page officielle nationale
+      history: []
+      quote: nosiljka i životinja zajedno nisu teži od 8 kg
+      quote_language: sr-Latn
+      locator: Pravila za kućnog ljubimca
   hold:
-    availability: not_offered
+    review_state: legacy_unreviewed
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -114,12 +128,12 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not published
-      fr: Non publié
-      es: No publicado
-      pt: "Não publicado"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
       en: "Air Serbia publishes no weight limits, crate-size bands or dedicated fee for hold travel. The only related text is a legal boilerplate line in the Conditions of Carriage: an animal checked as baggage is excess baggage, billed at the applicable rate — with no rate ever given."
       fr: "Air Serbia ne publie aucune limite de poids, gabarit de caisse ou tarif dédié pour la soute. Le seul texte disponible est une clause générique des conditions de transport : un animal enregistré comme bagage est un excédent de bagage, facturé au tarif applicable — sans que ce tarif soit jamais précisé."
@@ -137,12 +151,12 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not published
-      fr: Non publié
-      es: No publicado
-      pt: "Não publicado"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
       en: The tariff document references a "Rule 75 — Acceptance of animals" section, but its full text isn't accessible on the public site, and no standalone unaccompanied-cargo pet page exists.
       fr: Le document tarifaire mentionne une section « Règle 75 — Acceptation des animaux », mais son texte complet n'est pas accessible sur le site public, et aucune page fret non accompagné dédiée aux animaux n'existe.

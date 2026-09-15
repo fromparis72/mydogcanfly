@@ -74,8 +74,30 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    source:
+      url: https://vaabrowse.virginatlantic.com/content/dam/conditions-of-carriage/Revision%2058%20%2817%20August%202026%29.pdf
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du contrat officiel britannique remis par Philippe
+      history: []
+      quote: "only Assistance Dogs accompanying disabled passengers can be taken into the aircraft cabin;"
+      quote_language: en-GB
+      locator: clause 16.3(a), p. 20
   hold:
     availability: not_offered
+    source:
+      url: https://help.virginatlantic.com/gb/en/how-to-book-your-pet-onto-a-flight.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture de la page officielle britannique remise par Philippe
+      history: []
+      quote: "Sorry, our pet service is currently unavailable"
+      quote_language: en-GB
+      locator: titre de page « How to book your pet onto a flight », bloc de corps unique
   cargo:
     availability: not_offered
     source:

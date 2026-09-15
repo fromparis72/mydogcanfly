@@ -1,56 +1,5 @@
 [
   {
-    "id": "rule_aa_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_american"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 2,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_aa_no_hold_cargo",
     "scope": {
       "type": "airline",
@@ -92,106 +41,6 @@
     },
     "rationale_i18n": {
       "fr": "Les chiens ne sont acceptés qu’en cabine ; la compagnie ne transporte pas les chiens en soute ni en fret pour les voyages classiques."
-    }
-  },
-  {
-    "id": "rule_ac_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_canada"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted as checked baggage in the hold. Air Canada Cargo applies a separate regulated booking process and is not covered by this rule.",
-    "source": {
-      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales ne sont pas acceptées comme bagages enregistrés en soute. Air Canada Cargo applique un processus de réservation réglementé distinct, qui n'est pas couvert par cette règle."
-    }
-  },
-  {
-    "id": "rule_ac_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_canada"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to approximately 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
     }
   },
   {
@@ -392,108 +241,6 @@
     }
   },
   {
-    "id": "rule_aegean_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aegean"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_aegean_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aegean"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_aer_lingus_no_cabin",
     "scope": {
       "type": "airline",
@@ -605,212 +352,6 @@
     }
   },
   {
-    "id": "rule_aeromexico_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aeromexico"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/aeromexico-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_aeromexico_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aeromexico"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/aeromexico-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_af_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_france"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
-    "id": "rule_af_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_france"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_af_summer_embargo",
     "scope": {
       "type": "airline",
@@ -866,57 +407,6 @@
     }
   },
   {
-    "id": "rule_air_algerie_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_algerie"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 6
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 6
-    },
-    "rationale": "In-cabin carriage is limited to about 6 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 6 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-algerie-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_air_algerie_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -969,57 +459,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_algerie_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_algerie"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-algerie-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -1082,57 +521,6 @@
     }
   },
   {
-    "id": "rule_air_caraibes_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_caraibes"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-caraibes-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_air_caraibes_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -1190,57 +578,6 @@
     }
   },
   {
-    "id": "rule_air_caraibes_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_caraibes"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-caraibes-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_air_china_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -1293,316 +630,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_china_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_china"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://www.airchina.us/US/GB/info/assistance/pets.html",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_europa_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_europa"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-europa-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_europa_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_europa"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 50
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 50
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 50 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-europa-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_france_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_france"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-france-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_india_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_india"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-india-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_india_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_india"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-india-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -1709,111 +736,6 @@
     }
   },
   {
-    "id": "rule_air_new_zealand_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_new_zealand"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 60
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 60
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 60 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 60 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        },
-        {
-          "date": "2026-08-27",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.airnewzealand.com/pets-in-the-cabin"
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_new_zealand_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_new_zealand"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Dogs are not accepted in the passenger cabin (recognised assistance dogs excepted); pets travel in the hold or as cargo.",
-    "rationale_i18n": {
-      "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
-    },
-    "source": {
-      "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        },
-        {
-          "date": "2026-08-27",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.airnewzealand.com/pets-in-the-cabin"
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_air_serbia_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -1866,57 +788,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_tahiti_nui_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_tahiti_nui"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-tahiti-nui-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -2020,112 +891,6 @@
     },
     "rationale_i18n": {
       "fr": "Air Tahiti Nui n'accepte pas les chiens en soute comme bagage ; les grands chiens voyagent en fret lorsque c'est possible."
-    }
-  },
-  {
-    "id": "rule_air_transat_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_transat"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-transat-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_air_transat_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_transat"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/air-transat-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -2283,57 +1048,6 @@
     }
   },
   {
-    "id": "rule_american_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_american"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/american-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_american_no_hold",
     "scope": {
       "type": "airline",
@@ -2363,57 +1077,6 @@
     },
     "source": {
       "url": "https://mydogcanfly.com/american-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_ana_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ana"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/ana-dog-policy/",
       "source_type": "other",
       "verified_date": "2026-06-30",
       "review_due": "2026-09-28",
@@ -3117,159 +1780,6 @@
           "date": "2026-08-12",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Correction de portée. L'entrée du 10/08 généralisait à tort le guide du GROUPE 3 (« exclusivement via Melbourne, sans transfert domestique ») à l'ensemble des provenances. Relecture des guides officiels DAFF : GROUPES 2 et 3 — arrivée directe obligatoire à Melbourne, fret manifesté, transfert intérieur interdit (category-3-step-by-step-guide-for-dogs, category-2-step-by-step-guide-for-dogs). GROUPE 1, Nouvelle-Zélande et île Norfolk — les guides publiés confirment le contrôle au premier point d'entrée australien (« We will inspect your animal and their import documents at the first point of entry into Australia »), la correspondance intérieure possible après ce contrôle, et le fret manifesté imposé (« must travel as manifested cargo (not in the cabin) in an IATA approved crate »). Les îles Cocos (Keeling) appartiennent aussi au groupe 1, mais le DAFF n'y publie pas de parcours équivalent pour les chiens : son guide Cocos est réservé aux chats (« This guide is for cat imports only. If you are seeking to bring your dog from Cocos (Keeling) Islands to Australia, please contact us at imports@aff.gov.au »). Aucune généralisation n'est faite ici pour Cocos. LACUNE CONNUE, hors périmètre de ce correctif : la soute accompagnée reste affichée ouverte sur certaines arrivées du groupe 1 vers Sydney et Brisbane, alors que le fret manifesté y est exigé — à traiter en règle de portée pays. Le champ travel_type=service_dog est hors périmètre : les chiens d'assistance relèvent d'un régime d'importation distinct, soumis à permis et à des aménagements raisonnables évalués individuellement (« This will be unique to each individual handler's application », cats-dogs/assistance-dogs) ; leur exclusion de cette règle générique ne signifie donc pas que la cabine leur est automatiquement ouverte."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_austrian_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_austrian"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/austrian-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_avianca_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_avianca"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/avianca-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_avianca_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_avianca"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 70
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 70
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 70 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 70 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/avianca-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -4451,107 +2961,6 @@
     }
   },
   {
-    "id": "rule_british_airways_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_british_airways"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin",
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "British Airways does not carry pets as passenger baggage (cabin or hold); dogs travel only via cargo. Trained assistance dogs excepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "British Airways ne transporte pas les animaux en bagage passager (cabine ou soute) ; les chiens voyagent uniquement en fret. Chiens d'assistance exceptés en cabine."
-    },
-    "source": {
-      "url": "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_brussels_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_brussels"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_brussels_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -4604,61 +3013,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_brussels_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_brussels"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 20
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 20
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 20 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 20 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -4757,50 +3111,6 @@
     },
     "rationale_i18n": {
       "fr": "Le Canada exige un certificat de vaccination antirabique valide ; le chien doit avoir plus de 3 mois et être identifié (puce recommandée). Depuis la plupart des pays, la démarche ne prend que quelques jours."
-    }
-  },
-  {
-    "id": "rule_cathay_pacific_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_cathay_pacific"
-    },
-    "category": "placement",
-    "criticality": "medium",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "Cathay Pacific carries pets only as cargo (Cathay Cargo Live Animals); dogs are not accepted in the cabin or as checked baggage.",
-    "rationale_i18n": {
-      "fr": "Cathay Pacific ne transporte les animaux qu’en fret (Cathay Cargo) ; les chiens ne sont acceptés ni en cabine ni en bagage accompagné."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/cathay-pacific-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -5249,101 +3559,6 @@
     }
   },
   {
-    "id": "rule_china_airlines_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_china_airlines"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/china-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_china_airlines_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_china_airlines"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "China Airlines does not carry dogs in the passenger cabin; pets travel only in the hold or as cargo. Trained assistance dogs excepted.",
-    "rationale_i18n": {
-      "fr": "China Airlines ne transporte pas les chiens en cabine ; les animaux voyagent uniquement en soute ou en fret. Chiens d'assistance exceptés."
-    },
-    "source": {
-      "url": "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_china_eastern_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -5396,57 +3611,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_china_eastern_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_china_eastern"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
         }
       ]
     }
@@ -5548,67 +3712,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_china_southern_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_china_southern"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://www.csair.com/newh5/en/tourguide/luggage_service/pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        },
-        {
-          "date": "2026-08-27",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.csair.com/en/tourguide/faq/baggage/dongwu.shtml"
-        },
-        {
-          "date": "2026-08-28",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "URL corrigée après vérification (28/08/2026) : la page vivante est sous /newh5/. Citation vérifiée : « The maximum weight for small animals should not exceed 32kg. »"
         }
       ]
     }
@@ -5869,57 +3972,6 @@
     }
   },
   {
-    "id": "rule_condor_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_condor"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to 8 kg including the carrier (max 55 × 40 × 23 cm); heavier dogs travel in the hold.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à 8 kg, caisse comprise (max 55 × 40 × 23 cm) ; les chiens plus lourds voyagent en soute."
-    },
-    "source": {
-      "url": "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
-      "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Condor official pet page."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_condor_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -5972,57 +4024,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_copa_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_copa"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/copa-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -6129,57 +4130,6 @@
     }
   },
   {
-    "id": "rule_corsair_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_corsair"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/corsair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_corsair_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -6232,57 +4182,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_corsair_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_corsair"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 50
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 50
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 50 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/corsair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -7493,57 +5392,6 @@
     }
   },
   {
-    "id": "rule_delta_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_delta"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/delta-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_delta_no_hold",
     "scope": {
       "type": "airline",
@@ -7951,57 +5799,6 @@
     }
   },
   {
-    "id": "rule_dl_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_delta"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.delta.com/us/en/pet-travel/overview",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 2,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_dl_no_hold_cargo",
     "scope": {
       "type": "airline",
@@ -8199,62 +5996,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_easyjet_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_easyjet"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cargo"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin",
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "easyJet does not carry pets on its flights; only recognised assistance dogs are accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "easyJet ne transporte pas d'animaux sur ses vols ; seuls les chiens d'assistance reconnus sont admis en cabine."
-    },
-    "source": {
-      "url": "https://www.pettravel.com/information/airlines/easyjet-pet-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
         }
       ]
     }
@@ -8682,57 +6423,6 @@
     }
   },
   {
-    "id": "rule_egyptair_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_egyptair"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/egyptair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_egyptair_hold_weight",
     "scope": {
       "type": "airline",
@@ -8771,19 +6461,19 @@
     "params": {
       "max_weight_kg": 32
     },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg for Tunisia and Tanzania; heavier dogs travel via cargo. (Other destinations: dogs over 23 kg travel individually, billed as two pieces, but remain hold-eligible.)",
+    "rationale": "Pets over 32 kg are not accepted to Tunisia or Tanzania. (For other destinations, dogs over 23 kg travel individually and are billed as two pieces, but remain hold-eligible.)",
     "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg pour la Tunisie et la Tanzanie ; au-delà, transport en fret. (Autres destinations : au-delà de 23 kg, l'animal voyage seul, facturé comme deux pièces, mais reste éligible à la soute.)",
-      "es": "Como equipaje acompañado, el conjunto perro + caja no debe superar unos 32 kg para Túnez y Tanzania; por encima, transporte en carga. (Otros destinos: por encima de 23 kg, el animal viaja solo, facturado como dos piezas, pero sigue siendo elegible para bodega.)",
-      "pt": "Como bagagem acompanhada, o conjunto cão + caixa não deve exceder cerca de 32 kg para a Tunísia e a Tanzânia; acima disso, transporte como carga. (Outros destinos: acima de 23 kg, o animal viaja sozinho, cobrado como duas peças, mas continua elegível para o porão.)"
+      "fr": "Les animaux de plus de 32 kg ne sont pas acceptés vers la Tunisie ou la Tanzanie. (Pour les autres destinations, au-delà de 23 kg, l'animal voyage seul et est facturé comme deux pièces, mais reste éligible à la soute.)",
+      "es": "No se aceptan mascotas de más de 32 kg hacia Túnez o Tanzania. (Para otros destinos, por encima de 23 kg, el animal viaja solo y se factura como dos piezas, pero sigue siendo elegible para bodega.)",
+      "pt": "Animais com mais de 32 kg não são aceitos para a Tunísia ou Tanzânia. (Para outros destinos, acima de 23 kg, o animal viaja sozinho e é cobrado como duas peças, mas continua elegível para o porão.)"
     },
     "source": {
-      "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+      "url": "https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx",
       "source_type": "official_website",
-      "verified_date": "2026-08-09",
-      "review_due": "2026-11-07",
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
       "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
+      "reviewer": "Philippe et Codex — lecture directe de la page française officielle",
       "history": [
         {
           "date": "2026-07-09",
@@ -8795,58 +6485,10 @@
           "reviewer": "MyDogCanFly Data Team",
           "note": "Retest utilisateur du 09/08/2026 : le plafond 32 kg était appliqué à toutes les destinations au lieu de Tunisie/Tanzanie uniquement — reporté sur la page officielle EgyptAir."
         }
-      ]
-    }
-  },
-  {
-    "id": "rule_el_al_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_el_al"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, sac compris ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://www.elal.com/en/PassengersInfo/Baggage/Pages/Pets.aspx",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        }
-      ]
+      ],
+      "quote": "Les animaux de compagnie plus de 32KG ne sont pas acceptés aux destinations suivantes: 1-Tunisie 2-Tanzanie",
+      "quote_language": "fr",
+      "locator": "Le Transport des Animaux dans les Cales d’Avion → restrictions par destination"
     }
   },
   {
@@ -8902,57 +6544,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_el_al_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_el_al"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 100
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 100
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 100 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 100 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://www.elal.com/en/PassengersInfo/Baggage/Pages/Pets.aspx",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
         }
       ]
     }
@@ -9322,203 +6913,6 @@
     }
   },
   {
-    "id": "rule_ethiopian_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ethiopian"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_ethiopian_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ethiopian"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_etihad_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_etihad"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/etihad-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_etihad_hold_deny",
-    "scope": {
-      "type": "airline",
-      "id": "airline_etihad"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "Etihad Airways does not accept dogs in the hold as checked baggage; larger dogs travel via cargo where available.",
-    "source": {
-      "url": "https://mydogcanfly.com/etihad-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Etihad Airways n'accepte pas les chiens en soute comme bagage ; les grands chiens voyagent en fret lorsque c'est possible."
-    }
-  },
-  {
     "id": "rule_eurowings_cabin_only",
     "scope": {
       "type": "airline",
@@ -9564,57 +6958,6 @@
     },
     "rationale_i18n": {
       "fr": "Eurowings ne transporte les chiens qu'en cabine — pas d'option soute ni fret."
-    }
-  },
-  {
-    "id": "rule_eurowings_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_eurowings"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/eurowings-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -9670,57 +7013,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_eva_air_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_eva_air"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/eva-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -10088,57 +7380,6 @@
     }
   },
   {
-    "id": "rule_finnair_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_finnair"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/finnair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_finnair_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -10191,57 +7432,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_finnair_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_finnair"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/finnair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -10611,57 +7801,6 @@
     }
   },
   {
-    "id": "rule_french_bee_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_french_bee"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/french-bee-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_french_bee_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -10714,57 +7853,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_french_bee_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_french_bee"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/french-bee-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -11149,56 +8237,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 mois. Exigences : puce ISO, vaccination antirabique, certificat de santé, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_global_cabin_weight_cap",
-    "scope": {
-      "type": "global"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin travel is limited to small dogs that fit a soft carrier under the seat. As a safety default, dogs over about 10 kg are not accepted in the cabin; airlines that publish a lower limit deny at their own threshold.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est réservé aux petits chiens tenant dans un sac souple sous le siège. Par défaut de sécurité, les chiens de plus de 10 kg environ ne sont pas acceptés en cabine ; les compagnies publiant une limite inférieure refusent à leur propre seuil."
-    },
-    "source": {
-      "url": "https://www.iata.org/en/youandiata/travelers/pets/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2027-01-04",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Universal cabin-size safety default for airlines without a published cabin weight limit."
-        }
-      ]
     }
   },
   {
@@ -12388,57 +9426,6 @@
     }
   },
   {
-    "id": "rule_ib_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_iberia"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.iberia.com/us/travelling-with-pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_ib_summer_embargo",
     "scope": {
       "type": "airline",
@@ -12494,108 +9481,6 @@
     }
   },
   {
-    "id": "rule_iberia_express_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_iberia_express"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/iberia-express-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_iberia_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_iberia"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/iberia-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_icelandair_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -12648,138 +9533,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_icelandair_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_icelandair"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Icelandair does not accept pets in the passenger cabin; only recognised service dogs travel in the cabin, free of charge.",
-    "rationale_i18n": {
-      "fr": "Icelandair n'accepte pas les animaux en cabine ; seuls les chiens d'assistance reconnus voyagent en cabine, gratuitement."
-    },
-    "source": {
-      "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-18",
-      "review_due": "2026-10-16",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "reviewer": "research",
-          "note": "Airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_icelandair_no_cargo",
-    "scope": {
-      "type": "airline",
-      "id": "airline_icelandair"
-    },
-    "category": "placement",
-    "criticality": "medium",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cargo"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Icelandair's passenger service offers no pet transport as cargo on international routes; only service dogs are carried, in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le service passagers d'Icelandair ne propose pas de transport d'animaux en fret sur les routes internationales ; seuls les chiens d'assistance sont acceptés, en cabine."
-    },
-    "source": {
-      "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-18",
-      "review_due": "2026-10-16",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "reviewer": "research",
-          "note": "Airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_icelandair_no_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_icelandair"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "Since 1 November 2024, following fleet changes, Icelandair no longer transports animals in the hold on international flights (domestic Iceland routes excepted).",
-    "rationale_i18n": {
-      "fr": "Depuis le 1er novembre 2024, à la suite de changements de flotte, Icelandair ne transporte plus d'animaux en soute sur les vols internationaux (routes intérieures islandaises exceptées)."
-    },
-    "source": {
-      "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-18",
-      "review_due": "2026-10-16",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "reviewer": "research",
-          "note": "Airline import — verified from the airline's official pet policy."
         }
       ]
     }
@@ -13959,6 +10712,73 @@
     }
   },
   {
+    "id": "rule_ita_airways_large_dog_domestic_confirmation",
+    "scope": {
+      "type": "airline",
+      "id": "airline_ita_airways"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cabin"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "eq",
+          "value": "country_it"
+        },
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_it"
+        },
+        {
+          "fact": "dog.weight_kg",
+          "op": "gt",
+          "value": 10
+        },
+        {
+          "fact": "dog.weight_kg",
+          "op": "lte",
+          "value": 30
+        }
+      ]
+    },
+    "effect": {
+      "action": "require",
+      "placement": [
+        "cabin"
+      ]
+    },
+    "params": {
+      "service": "Large Dog On Board",
+      "prior_confirmation_required": true,
+      "lead_time_days": 4
+    },
+    "rationale": "ITA's Large Dog On Board service on selected domestic Italian flights always requires prior verification and confirmation.",
+    "rationale_i18n": {
+      "fr": "Le service Large Dog On Board d'ITA sur certains vols intérieurs italiens exige toujours une vérification et une confirmation préalables.",
+      "es": "El servicio Large Dog On Board de ITA en determinados vuelos nacionales italianos exige siempre verificación y confirmación previas.",
+      "pt": "O serviço Large Dog On Board da ITA em determinados voos domésticos italianos exige sempre verificação e confirmação prévias."
+    },
+    "source": {
+      "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin/large-dog-on-board",
+      "source_type": "official_website",
+      "verified_date": "2026-09-15",
+      "review_due": "2026-12-14",
+      "confidence": 5,
+      "reviewer": "Codex — lecture directe de la page nationale italienne",
+      "history": [],
+      "quote": "La conferma del servizio è sempre soggetta a verifica preventiva.",
+      "quote_language": "it",
+      "locator": "Large Dog On Board → Come funziona il servizio"
+    }
+  },
+  {
     "id": "rule_ita_airways_large_dog_domestic_max_weight",
     "scope": {
       "type": "airline",
@@ -14074,251 +10894,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_ita_airways_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ita_airways"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/ita-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_jal_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_jal"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/japan-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_jal_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_jal"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Japan Airlines (JAL) does not carry dogs in the passenger cabin; pets travel only in the hold or as cargo. Trained assistance dogs excepted.",
-    "rationale_i18n": {
-      "fr": "Japan Airlines (JAL) ne transporte pas les chiens en cabine ; les animaux voyagent uniquement en soute ou en fret. Chiens d'assistance exceptés."
-    },
-    "source": {
-      "url": "https://www.jal.co.jp/jp/en/inter/support/pet/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_jetblue_cabin_only",
-    "scope": {
-      "type": "airline",
-      "id": "airline_jetblue"
-    },
-    "category": "placement",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "JetBlue carries dogs in the cabin only — there is no hold or cargo option.",
-    "source": {
-      "url": "https://mydogcanfly.com/jetblue-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "JetBlue ne transporte les chiens qu'en cabine — pas d'option soute ni fret."
-    }
-  },
-  {
-    "id": "rule_jetblue_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_jetblue"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/jetblue-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -14570,110 +11145,6 @@
     }
   },
   {
-    "id": "rule_kl_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_klm"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://www.klm.com/information/travel-classes-extra-options/pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
-    "id": "rule_kl_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_klm"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.klm.com/information/travel-classes-extra-options/pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_kl_summer_embargo",
     "scope": {
       "type": "airline",
@@ -14729,108 +11200,6 @@
     }
   },
   {
-    "id": "rule_klm_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_klm"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/klm-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_km_malta_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_km_malta"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage (PETC) is limited to 10 kg including the carrier; heavier dogs travel as accompanied checked baggage (AVIH, up to 32 kg) or as cargo.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine (PETC) est limité à 10 kg, sac compris ; les chiens plus lourds voyagent en bagage accompagné (AVIH, jusqu'à 32 kg) ou en fret."
-    },
-    "source": {
-      "url": "https://kmmaltairlines.com/en/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-18",
-      "review_due": "2026-10-16",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "reviewer": "research",
-          "note": "Airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_km_malta_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -14883,159 +11252,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_km_malta_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_km_malta"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied checked baggage (AVIH) the dog plus crate must not exceed 32 kg; heavier dogs travel as cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné (AVIH), le chien et sa caisse ne doivent pas dépasser 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://kmmaltairlines.com/en/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-18",
-      "review_due": "2026-10-16",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-18",
-          "reviewer": "research",
-          "note": "Airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_korean_air_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_korean_air"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 7
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 7
-    },
-    "rationale": "In-cabin carriage is limited to about 7 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 7 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/korean-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_korean_air_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_korean_air"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/korean-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -15196,57 +11412,6 @@
     }
   },
   {
-    "id": "rule_latam_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_latam"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 7
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 7
-    },
-    "rationale": "In-cabin carriage is limited to about 7 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 7 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/latam-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_latam_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -15301,161 +11466,6 @@
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_latam_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_latam"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/latam-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_lh_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_lufthansa"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://www.lufthansa.com/de/en/travelling-with-animals",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
-    "id": "rule_lh_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_lufthansa"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.lufthansa.com/de/en/travelling-with-animals",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
     }
   },
   {
@@ -15867,57 +11877,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 à 2 mois. Exigences : permis d’importation, vaccination antirabique, certificat de santé, traitement antiparasitaire, quarantaine."
-    }
-  },
-  {
-    "id": "rule_lot_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_lot"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -18589,57 +14548,6 @@
     }
   },
   {
-    "id": "rule_norwegian_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_norwegian"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/norwegian-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_norwegian_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -18692,57 +14600,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_norwegian_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_norwegian"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 14
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 14
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 14 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 14 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/norwegian-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -19061,152 +14918,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 mois. Exigences : puce ISO, vaccination antirabique, certificat de santé, permis d’importation, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_philippine_cabin_deny",
-    "scope": {
-      "type": "airline",
-      "id": "airline_philippine"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Philippine Airlines does not accept dogs in the cabin (recognised assistance dogs excepted).",
-    "source": {
-      "url": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Philippine Airlines n'accepte pas les chiens en cabine (chiens d'assistance reconnus exceptés)."
-    }
-  },
-  {
-    "id": "rule_philippine_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_philippine"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_philippine_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_philippine"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -20030,57 +15741,6 @@
     }
   },
   {
-    "id": "rule_qatar_airways_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_qatar_airways"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 75
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 75
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 75 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/qatar-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_qatar_airways_no_cabin",
     "scope": {
       "type": "airline",
@@ -20440,57 +16100,6 @@
     }
   },
   {
-    "id": "rule_royal_air_maroc_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_royal_air_maroc"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_royal_air_maroc_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -20543,57 +16152,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_royal_air_maroc_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_royal_air_maroc"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 70
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 70
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 70 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 70 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -20854,108 +16412,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : 1 à 2 mois. Exigences : puce ISO, vaccination antirabique, permis d’importation, certificat de santé."
-    }
-  },
-  {
-    "id": "rule_sas_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_sas"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/sas-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_sas_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_sas"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 50
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 50
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 50 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/sas-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -21740,57 +17196,6 @@
     }
   },
   {
-    "id": "rule_singapore_airlines_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_singapore_airlines"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/singapore-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_singapore_airlines_no_cabin",
     "scope": {
       "type": "airline",
@@ -22255,72 +17660,6 @@
     }
   },
   {
-    "id": "rule_smartwings_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_smartwings"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "Smartwings limits in-cabin pets to 8 kg including the carrier (max 43 × 30 × 27 cm); heavier dogs travel in the hold.",
-    "rationale_i18n": {
-      "fr": "Smartwings limite le transport en cabine à 8 kg, sac compris (max 43 × 30 × 27 cm) ; les chiens plus lourds voyagent en soute."
-    },
-    "source": {
-      "url": "https://www.smartwings.com/en/fees-and-charges",
-      "source_type": "official_website",
-      "verified_date": "2026-08-28",
-      "review_due": "2026-11-26",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Smartwings official pet page (leisure carrier, PRG hub)."
-        },
-        {
-          "date": "2026-08-27",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "La page « Can I fly with my pet » ne porte aucun chiffre de poids (vérification humaine du 26/08/2026) : source remplacée par la page officielle des frais, qui énonce la limite de 8 kg sac compris. Ancienne URL : https://www.smartwings.com/en/can-i-fly-with-my-pet"
-        },
-        {
-          "date": "2026-08-28",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Substitution vers /en/fees-and-charges RETIRÉE (28/08/2026) : non prouvée — aucune page officielle smartwings.com indexée ne porte le 8 kg (agrégateurs seulement). Retour à la page animaux officielle ; la VALEUR de 8 kg reste sans source officielle établie — signalée à l arbitrage."
-        },
-        {
-          "date": "2026-08-28",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Substitution RÉTABLIE après lecture directe (Codex, 28/08/2026) : la page officielle des frais porte le 8 kg — section « Price list of additional services », citation « Pet in cabin (1 piece up to 8 kg / leg) », la note précisant que le poids total caisse comprise ne doit pas dépasser 8 kg. curl reçoit 403 (challenge Cloudflare) mais le navigateur rend la page : la veille de fraîcheur la verra « inaccessible », ce qui est nommé ici et n'est pas un défaut de la source."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_sn_import",
     "scope": {
       "type": "country",
@@ -22475,108 +17814,6 @@
     }
   },
   {
-    "id": "rule_swiss_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_swiss"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/swiss-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_tap_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_tap"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_tap_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -22629,61 +17866,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_tap_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_tap"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -22835,57 +18017,6 @@
     }
   },
   {
-    "id": "rule_thai_airways_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_thai_airways"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/thai-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_thai_airways_no_cabin",
     "scope": {
       "type": "airline",
@@ -22927,110 +18058,6 @@
           "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_tk_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_turkish"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://www.turkishairlines.com/en-int/any-questions/traveling-with-pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
-    "id": "rule_tk_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_turkish"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.turkishairlines.com/en-int/any-questions/traveling-with-pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
     }
   },
   {
@@ -23183,57 +18210,6 @@
     }
   },
   {
-    "id": "rule_transavia_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_transavia"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/transavia-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_transavia_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -23334,57 +18310,6 @@
           "date": "2026-07-09",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Baseline entry added to expand coverage; detailed requirements pending official verification."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_tunisair_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_tunisair"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to about 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/tunisair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -23546,57 +18471,6 @@
     }
   },
   {
-    "id": "rule_ua_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_united"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 8
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 8
-    },
-    "rationale": "In-cabin carriage is limited to approximately 8 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "source": {
-      "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 2,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 8 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    }
-  },
-  {
     "id": "rule_ua_import",
     "scope": {
       "type": "country",
@@ -23737,57 +18611,6 @@
           "date": "2026-07-09",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Baseline entry added to expand coverage; detailed requirements pending official verification."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_united_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_united"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/united-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -24047,57 +18870,6 @@
     }
   },
   {
-    "id": "rule_vietnam_airlines_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_vietnam_airlines"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 6
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 6
-    },
-    "rationale": "In-cabin carriage is limited to about 6 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 6 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_vietnam_airlines_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -24150,57 +18922,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_vietnam_airlines_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_vietnam_airlines"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
     }
@@ -24320,94 +19041,6 @@
     }
   },
   {
-    "id": "rule_virgin_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_virgin_atlantic"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Virgin Atlantic does not carry pets in the cabin; assistance dogs excepted.",
-    "rationale_i18n": {
-      "fr": "Virgin Atlantic ne transporte pas les animaux en cabine (chiens d’assistance exceptés)."
-    },
-    "source": {
-      "url": "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Virgin Atlantic official pet page (cargo-only via approved shipper)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_virgin_no_hold_baggage",
-    "scope": {
-      "type": "airline",
-      "id": "airline_virgin_atlantic"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {},
-    "rationale": "Virgin Atlantic does not accept privately owned pets as accompanied checked baggage; dogs travel as manifested cargo through an approved pet shipping company.",
-    "rationale_i18n": {
-      "fr": "Virgin Atlantic n’accepte pas les animaux comme bagage accompagné en soute ; les chiens voyagent en fret manifesté via un transporteur animalier agréé."
-    },
-    "source": {
-      "url": "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Virgin Atlantic official pet page (cargo-only via approved shipper)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_vn_import",
     "scope": {
       "type": "country",
@@ -24501,57 +19134,6 @@
     },
     "rationale_i18n": {
       "fr": "Volotea ne transporte les chiens qu'en cabine — pas d'option soute ni fret."
-    }
-  },
-  {
-    "id": "rule_volotea_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_volotea"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/volotea-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -24660,57 +19242,6 @@
     }
   },
   {
-    "id": "rule_vueling_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_vueling"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 10
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 10
-    },
-    "rationale": "In-cabin carriage is limited to about 10 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 10 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/vueling-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_vueling_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -24768,61 +19299,6 @@
     }
   },
   {
-    "id": "rule_westjet_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_westjet"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 45
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 45
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 45 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/westjet-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_wizz_air_gb_not_approved",
     "scope": {
       "type": "airline",
@@ -24875,62 +19351,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_wizz_air_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_wizz_air"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cargo"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin",
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Wizz Air does not carry pets on its flights; only recognised assistance dogs are accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Wizz Air ne transporte pas d'animaux sur ses vols ; seuls les chiens d'assistance reconnus sont admis en cabine."
-    },
-    "source": {
-      "url": "https://petabroad.eu/wizz-air-pet-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
         }
       ]
     }
@@ -25661,6 +20081,116 @@
       ],
       "quote": "Accept all domestic route Except Bangkok – Krabi v.v. and Chiang Mai – Krabi v.v.",
       "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → Domestic Routes"
+    }
+  },
+  {
+    "id": "rule_icelandair_international_no_hold",
+    "scope": {
+      "type": "airline",
+      "id": "airline_icelandair"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "hold"
+        },
+        {
+          "any": [
+            {
+              "fact": "route.origin_country_id",
+              "op": "neq",
+              "value": "country_is"
+            },
+            {
+              "fact": "route.dest_country_id",
+              "op": "neq",
+              "value": "country_is"
+            }
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "hold"
+      ]
+    },
+    "params": {},
+    "rationale": "Icelandair no longer transports pets in the hold on international flights; the published hold service is limited to domestic Iceland flights.",
+    "rationale_i18n": {
+      "fr": "Icelandair ne transporte plus d'animaux en soute sur les vols internationaux ; le service publié en soute est limité aux vols intérieurs islandais.",
+      "es": "Icelandair ya no transporta mascotas en bodega en vuelos internacionales; el servicio publicado en bodega se limita a vuelos nacionales de Islandia.",
+      "pt": "A Icelandair não transporta mais animais no porão em voos internacionais; o serviço publicado no porão é limitado aos voos domésticos na Islândia."
+    },
+    "source": {
+      "url": "https://www.icelandair.com/is-is/adstod/seradstod/ferdast-med-dyr-i-farangursrymi/",
+      "source_type": "official_website",
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
+      "confidence": 4,
+      "reviewer": "Codex — contre-lecture de la page nationale islandaise",
+      "history": [],
+      "quote": "…getum við ekki lengur boðið upp á flutning gæludýra í farangursrými flugvéla í millilandaflugi…",
+      "quote_language": "is",
+      "locator": "section « Dýr í farangursrými → Millilandaflug »"
+    }
+  },
+  {
+    "id": "rule_jal_domestic_no_cabin",
+    "scope": {
+      "type": "airline",
+      "id": "airline_jal"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cabin"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "eq",
+          "value": "country_jp"
+        },
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_jp"
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cabin"
+      ]
+    },
+    "params": {},
+    "rationale": "Japan Airlines explicitly refuses dogs, cats and small animals in the cabin on domestic Japanese flights; no global cabin refusal is inferred for international flights.",
+    "rationale_i18n": {
+      "fr": "Japan Airlines refuse explicitement les chiens, chats et petits animaux en cabine sur les vols intérieurs japonais ; aucun refus mondial n'est déduit pour les vols internationaux.",
+      "es": "Japan Airlines rechaza expresamente perros, gatos y animales pequeños en cabina en los vuelos nacionales de Japón; no se deduce una prohibición mundial para los vuelos internacionales.",
+      "pt": "A Japan Airlines recusa expressamente cães, gatos e pequenos animais na cabine em voos domésticos japoneses; nenhuma proibição global é inferida para voos internacionais."
+    },
+    "source": {
+      "url": "https://www.jal.co.jp/jp/ja/dom/support/pet/",
+      "source_type": "official_website",
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
+      "confidence": 4,
+      "reviewer": "Codex — contre-lecture du dossier officiel national remis par Philippe",
+      "history": [],
+      "quote": "機内持ち込み\n\n不可。",
+      "quote_language": "ja",
+      "locator": "section « ペットの種類 », catégorie « 犬、猫、うさぎなどの小動物 », ligne « 機内持ち込み »"
     }
   }
 ]

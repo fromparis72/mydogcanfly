@@ -179,6 +179,9 @@ policies:
           quote_language: fr
           locator: Tarifs → Remarque → nuitée à Zurich
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 10).
     # Effet attendu : Show hold offered under conditions for a large dog.
     # Portée nommée : dog plus container over 8 kg; route, weather and country restrictions apply

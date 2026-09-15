@@ -86,6 +86,33 @@ const DECISIONS_POST_MIGRATION = new Set([
      une prise en charge par partenaire, donc `case_by_case`, avec citation. */
   "airline_iberia|cargo",
   "airline_vueling|cargo",
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : les décisions
+     antérieures sans phrase propre ne peuvent plus alimenter le Finder. Dix-neuf canaux
+     reviennent à `legacy_unreviewed`; Bangkok Airways soute, British Airways soute et
+     Philippine cabine restent `case_by_case` sur leur citation et leur portée limitée.
+     `test:raccordement-finder` vérifie séparément la valeur et la provenance des 306 canaux. */
+  "airline_air_new_zealand|cabin",
+  "airline_air_serbia|hold",
+  "airline_air_serbia|cargo",
+  "airline_air_tahiti_nui|hold",
+  "airline_bangkok_airways|cabin",
+  "airline_bangkok_airways|hold",
+  "airline_batik_air_indonesia|cargo",
+  "airline_british_airways|hold",
+  "airline_easyjet|cargo",
+  "airline_etihad|hold",
+  "airline_icelandair|cabin",
+  "airline_icelandair|cargo",
+  "airline_ita_airways|cargo",
+  "airline_jal|cabin",
+  "airline_jetblue|cargo",
+  "airline_la_compagnie|cargo",
+  "airline_pegasus|cargo",
+  "airline_philippine|cabin",
+  "airline_smartwings|cargo",
+  "airline_transavia|cargo",
+  "airline_westjet|cargo",
+  "airline_wizz_air|cargo",
   /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : Thai Airways fret passe d'`undocumented` (décision
      auditée du manifeste, « contactez Cargo ») à `offered` sur la page THAI Cargo. L'observation de migration reste
      intacte ; la valeur courante est admise ici par identité, et `test-t0b-legacy-unreviewed.mjs` (7 bis) exige que la
@@ -180,6 +207,15 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_singapore_airlines|cargo",
   "airline_swiss|cargo",
   "airline_virgin_atlantic|cargo",
+  /* Audit exhaustif du 15/09/2026 : six anciennes lignes du manifeste ont reçu une
+     disponibilité explicite et une citation officielle propre. Saudia cabine revient ici
+     après remplacement de l'ancienne surface UAT par la page nationale de production. */
+  "airline_air_algerie|cargo",
+  "airline_air_austral|cargo",
+  "airline_el_al|cargo",
+  "airline_qatar_airways|cargo",
+  "airline_saudia|cabin",
+  "airline_tunisair|cargo",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions
@@ -196,6 +232,9 @@ const STALE_REACTIVES_SUR_CITATION = new Set([
   "airline_korean_air|cargo",
   /* 13/09/2026 : Norwegian Cargo publie explicitement son refus des animaux vivants en fret. */
   "airline_norwegian|cargo",
+  /* Audit exhaustif du 15/09/2026 : French bee publie le passage obligatoire au fret
+     au-delà de 75 kg, contenant compris. */
+  "airline_french_bee|cargo",
 ]);
 const citee = (p) => typeof p?.source?.quote === "string" && p.source.quote.length >= 10
   && typeof p.source.quote_language === "string" && p.source.quote_language.length > 0
@@ -254,6 +293,9 @@ const EDITIONS_POST_MIGRATION = new Map([
   /* Dossier fret rev2 : le bloc client dit désormais exactement que le produit
      animaux Virgin Atlantic Cargo est indisponible. */
   ["airline_virgin_atlantic/cargo", "e767559637a9feabaf6dc277a246d875fff5c72c34f041d9b6381868dde929a5"],
+  /* Audit exhaustif du 15/09/2026 : le bloc Saudia cabine reflète désormais la source
+     nationale de production, qui refuse explicitement les chiens en cabine. */
+  ["airline_saudia/cabin", "a88a72fa6393869873f8c3fd23779baf069da7aae9f33e502b13176f5a45aa4b"],
 ]);
 /** Décision runtime visée par une ligne du manifeste, sous forme d'auteur. */
 const attenduPour = (r) => r.decision.state === "legacy_unreviewed"

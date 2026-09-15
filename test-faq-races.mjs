@@ -112,17 +112,37 @@ if (!goldenCite) { console.error("[faq-races] profil cité introuvable"); proces
 /* ---- 1 bis. L'ÉTAT RÉEL, constaté et figé — pas caché derrière la fixture ------------------- */
 {
   let avecCompagnies = 0, races = 0;
+  const sansCompagnie = [];
   for (const id of [...loadKB().breeds.keys()]) {
     const p = computeBreedTravel(id);
     if (!p) continue;
     races++;
     if (p.bestAirlines.length) avecCompagnies++;
+    else sansCompagnie.push({ id, p });
   }
-  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 0 → 172 races sur 172. Dix-huit politiques `offered` citées sont au quatrième
-     état (accepté sous conditions), que `computeBreedTravel` compte comme ouvertes : chaque race
-     trouve au moins une compagnie. C'est la citation vérifiée qui est entrée — l'arbitrage du
-     29/08 n'a pas été rouvert. Compte figé ; il bouge par mouvement nommé. */
-  const RACES_AVEC_COMPAGNIES_V3 = 172;
+  /* MOUVEMENT NOMMÉ (15/09/2026, raccordement exhaustif). Les plafonds cabine sont désormais
+     opposables : onze races brachycéphales trop lourdes pour toutes les cabines citées n'ont
+     aucun canal soute/fret dont l'acceptation de LEUR profil soit auditée. Elles restent « à
+     confirmer » sur ces deux canaux — jamais « refusées partout » — et n'entrent pas dans
+     bestAirlines, qui exclut justement les confirmations. Attendre 172 ici aurait obligé à
+     transformer l'absence d'une interdiction en autorisation uniforme, faute symétrique de celle
+     que ce chantier corrige. */
+  const SANS_COMPAGNIE_ATTENDUES = [
+    "breed_boxer", "breed_bullmastiff", "breed_chow_chow", "breed_continental_bulldog",
+    "breed_dogue_de_bordeaux", "breed_english_bulldog", "breed_french_bulldog",
+    "breed_neapolitan_mastiff", "breed_presa_canario_dogo_canario", "breed_shar_pei",
+    "breed_spanish_mastiff",
+  ];
+  const idsSansCompagnie = sansCompagnie.map(({ id }) => id).sort();
+  const attendues = [...SANS_COMPAGNIE_ATTENDUES].sort();
+  const RACES_AVEC_COMPAGNIES_V3 = races - attendues.length;
+  if (idsSansCompagnie.join() !== attendues.join()) {
+    echec("1 bis périmètre", `races sans compagnie : ${idsSansCompagnie.join(", ")} ; attendues : ${attendues.join(", ")}`);
+  } else if (sansCompagnie.some(({ p }) => !p.brachy || p.hold.level.tone !== "warn" || p.cargo.level.tone !== "warn")) {
+    echec("1 bis portée brachycéphale", "une des onze races est devenue un refus uniforme, ou n'est pas brachycéphale");
+  } else {
+    ok("1 bis portée : les 11 races sans classement sont brachycéphales et restent à confirmer en soute/fret — aucune interdiction uniforme");
+  }
   if (avecCompagnies !== RACES_AVEC_COMPAGNIES_V3) {
     echec("1 bis état réel", `${avecCompagnies} race(s) sur ${races} ont des compagnies compatibles — `
       + `l'état figé (import strict V3) disait ${RACES_AVEC_COMPAGNIES_V3}. Mouvement à nommer : soit une citation vérifiée est entrée ou sortie, `

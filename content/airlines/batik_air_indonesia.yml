@@ -90,7 +90,9 @@ policies:
       quote_language: en
       locator: "Bring Live Animal/Pet"
   cargo:
-    availability: not_offered
+    # Le refus publié vise les animaux sur les vols passagers ; il n'établit pas
+    # l'absence d'un produit fret séparé.
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -145,17 +147,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not published
-      fr: Non publié
-      es: No publicado
-      pt: "Não publicado"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No cargo/unaccompanied-pet page or mention exists anywhere on the official site.
-      fr: Aucune page ni mention de fret animalier non accompagné n'existe sur le site officiel.
-      es: "No existe ninguna página ni mención de carga de mascotas no acompañadas en el sitio oficial."
-      pt: "Não existe nenhuma página ou menção de carga de animais não acompanhados no site oficial."
+      en: No separate live-animal cargo policy was established in the official passenger sources reviewed.
+      fr: Aucune politique fret séparée pour animaux vivants n'a été établie dans les sources passagers officielles relues.
+      es: "No se estableció una política separada de carga de animales vivos en las fuentes oficiales de pasajeros revisadas."
+      pt: "Nenhuma política separada de carga de animais vivos foi estabelecida nas fontes oficiais de passageiros revisadas."
     fee:
       en: Not applicable
       fr: Non applicable

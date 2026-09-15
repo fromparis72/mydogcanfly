@@ -53,24 +53,27 @@ ladder:
       es: Bodega
       pt: "Porão"
     sub:
-      en: ≤ 14 kg each
-      fr: ≤ 14 kg chacun
-      es: ≤ 14 kg cada uno
-      pt: "≤ 14 kg cada"
+      en: Selected routes · conditions by crate
+      fr: Certains trajets · conditions selon la caisse
+      es: Algunas rutas · condiciones según la jaula
+      pt: "Algumas rotas · condições conforme a caixa"
 policies:
   cabin:
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
-      url: https://www.norwegian.com/en/travel-info/baggage/travelling-with-pets/
+      url: https://www.norwegian.com/no/reiseinformasjon/bagasje/reise-med-dyr/
       source_type: official_website
       verified_date: 2026-09-13
       review_due: 2026-12-12
       confidence: 5
-      reviewer: Phil Albert-Benoist — lecture directe de la source officielle
+      reviewer: Codex — contre-lecture de la page nationale officielle
       history: []
-      quote: "Small cats and dogs can travel in the cabin on the following flights"
-      quote_language: en
-      locator: Pets in the cabin
+      quote: "Buret og kjæledyret/-dyrene må ikke veie mer enn 8 kilo tilsammen."
+      quote_language: nb
+      locator: Kjæledyr i kabinen → vekt
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_norwegian_cabin_eur_2026_09_10
@@ -195,6 +198,29 @@ channels:
       fr: 150–200 €
       es: 150–200 €
       pt: "€150–200"
+  - placement: cargo
+    icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: Norwegian Cargo states that it does not accept live animals as cargo; pets may instead be accepted as checked baggage under the passenger policy.
+      fr: Norwegian Cargo indique ne pas accepter les animaux vivants comme fret ; ils peuvent en revanche être acceptés comme bagages enregistrés selon la politique passagers.
+      es: Norwegian Cargo indica que no acepta animales vivos como carga; las mascotas pueden ser aceptadas como equipaje facturado según la política de pasajeros.
+      pt: "A Norwegian Cargo informa que não aceita animais vivos como carga; os animais podem ser aceitos como bagagem despachada conforme a política de passageiros."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
 fareList:
   rows:
     - label:

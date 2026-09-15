@@ -100,8 +100,8 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
      * cabine est autorisé, le transport d'animaux en soute n'est pas proposé. » (soute). Ce que le
      * cas affirmait au tour 6 sans preuve, il le PROUVE aujourd'hui pour deux canaux : la cabine
      * refuse au seuil cité (32 kg de chien seul dépassent 8 kg sac compris), la soute refuse sur
-     * citation. Le fret, lui, n'a toujours AUCUNE politique dans la fiche : il reste « à
-     * confirmer », cause `policy_absent`. Le cas n'est ni supprimé ni abaissé : les deux témoins
+     * citation. Le fret, lui, ne porte toujours aucune disponibilité officiellement établie : il
+     * reste « à confirmer », cause `legacy_unreviewed`. Le cas n'est ni supprimé ni abaissé : les deux témoins
      * précédents (« à confirmer », cause `legacy_unreviewed`) sont remplacés par leur contraire
      * prouvé, et le troisième canal garde exactement l'exigence d'avant. */
     /* MOUVEMENT NOMMÉ (13/09/2026) : la source commerciale du lot 7 est remplacée par les
@@ -129,8 +129,8 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
     check("aucun canal n'est refusé sans phrase citée — cabine et soute refusées sur citation, fret à confirmer",
       st.cabin?.status === "denied" && st.hold?.status === "denied" && st.cargo?.status === "confirmation_required",
       `cabin=${st.cabin?.status} hold=${st.hold?.status} cargo=${st.cargo?.status}`);
-    check("…et la seule incertitude restante nomme ce qui la produit (fret : aucune politique)",
-      (st.cargo?.confirmation_causes ?? []).some((c) => c.code === "policy_absent" && c.policy_ref === "airline_la_compagnie#cargo"),
+    check("…et la seule incertitude restante nomme ce qui la produit (fret non revérifié)",
+      (st.cargo?.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed" && c.policy_ref === "airline_la_compagnie#cargo"),
       JSON.stringify({ cargo: st.cargo?.confirmation_causes }));
   }
 }

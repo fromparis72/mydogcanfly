@@ -55,7 +55,11 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 32 645 → 33 224.
    Les preuves transmises par l'éditeur ouvrent Air New Zealand soute/fret et Norwegian
    cabine/soute sur 579 couples supplémentaires ; le refus cargo Norwegian n'en ouvre aucun. */
-const TEMOIN_VRAI_V3 = 33224;
+/* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : 33 224 → 34 724.
+   Les politiques citées et leurs seuils sont désormais projetés depuis les 306 canaux du
+   référentiel, sans règle cabine globale ni doublon hérité. Le témoin gagne 1 500 couples sur
+   des canaux `accepted_with_conditions`; aucun silence n'est transformé en acceptation. */
+const TEMOIN_VRAI_V3 = 34724;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *
@@ -168,8 +172,11 @@ if (WRITE) {
   const perdent = [...new Set(entries.filter((e) => e.new === "no").map((e) => e.airline_id))].sort();
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo passe à « no » à son tour — trois refus cités
      (cabine, soute, fret) sur la page officielle « How to Book ». Deux pertes admises, nominativement. */
-  check("deux compagnies perdent leur transport d'animaux, sur preuve : IndiGo et Ryanair",
-    JSON.stringify(perdent) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(perdent));
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : Virgin Atlantic rejoint la
+     liste sur trois refus distincts et cités : cabine réservée aux chiens d'assistance, service
+     passager en soute indisponible et produit animaux cargo indisponible. */
+  check("trois compagnies perdent leur transport d'animaux, sur preuve : IndiGo, Ryanair et Virgin Atlantic",
+    JSON.stringify(perdent) === JSON.stringify(["airline_indigo", "airline_ryanair", "airline_virgin_atlantic"]), JSON.stringify(perdent));
   check("la mesure T0-B2 reste figée (2 017 bascules, 55 compagnies) — elle n'est PAS régénérée",
     ref.changements === 2017 && ref.airlines.length === 55 && ref.true_to_false === 0,
     JSON.stringify({ ch: ref.changements, air: ref.airlines?.length, t2f: ref.true_to_false }));

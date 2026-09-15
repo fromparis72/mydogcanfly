@@ -173,6 +173,9 @@ policies:
       locator: "Travelling with Pets → Policy"
   cargo:
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot3, 2026-09-08) — était review_state: legacy_unreviewed
+    min_weight_kg: 45
+    weight_min_bound: gt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 7).
     # Effet attendu : Cargo is a conditional direction for a dog-and-container combination above 45 kg, not a shipping confirmation.
     # Portée nommée : pet plus cage above 45 kg; cargo procedures, legal and route restrictions apply

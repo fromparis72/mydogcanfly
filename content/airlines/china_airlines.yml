@@ -58,7 +58,11 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 32 kg
+    sub:
+      en: limit varies by station
+      fr: limite selon l'escale
+      es: límite según el aeropuerto
+      pt: "limite conforme o aeroporto"
   - flex: 20
     color: "#9a6410"
     label:
@@ -74,6 +78,17 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    source:
+      url: https://www.china-airlines.com/tw/zh/prepare-for-the-fly/information/baggage/pet-transport
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national remis par Philippe
+      history: []
+      quote: "寵物必須置放於妥善容器內以託運方式裝載於貨艙運送。因考量貨艙溫度調節因素，目前本公司 B738 / 32C 機型，不接受旅客託運寵物。"
+      quote_language: zh-TW
+      locator: onglet « 基本規定 », section « 寵物託運 »
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 4).

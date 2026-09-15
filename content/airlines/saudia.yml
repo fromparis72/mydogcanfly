@@ -51,10 +51,10 @@ ladder:
       es: Cabina
       pt: "Cabine"
     sub:
-      en: cats ≤ 5 kg
-      fr: chats ≤ 5 kg
-      es: gatos ≤ 5 kg
-      pt: "gatos ≤ 5 kg"
+      en: Cats only
+      fr: Chats uniquement
+      es: Solo gatos
+      pt: "Somente gatos"
   - flex: 64
     color: "#1f5fa8"
     label:
@@ -87,13 +87,35 @@ policies:
     # retirée, et le canal redevient « à confirmer » — jamais un refus, jamais une acceptation. La dette était
     # nommée depuis le 09/09 ; elle est fermée dans le sens de la prudence, pas dans celui du verdict.
     # À rouvrir SEULEMENT sur une page de production stable portant la phrase.
-    review_state: legacy_unreviewed
+    availability: not_offered
+    source:
+      url: https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture de la page officielle nationale arabe remise par Philippe
+      history: []
+      quote: "يجب نقل الكلاب في مخازن الطائرة (المخازن مجهزة بأنظمة تهوية)."
+      quote_language: ar
+      locator: section « اللوائح والتنظيمات », liste
   hold:
     # PREUVE RETIRÉE (10/09/2026) — même surface de test, même raison. La soute RETROUVE son état d'avant le lot 6 :
     # `availability: offered` sans citation, c'est-à-dire une disponibilité d'auteur, jamais revérifiée. Elle n'a
     # jamais été une ligne « non revérifiée » de la migration : la remettre en `review_state` inventerait une histoire
     # que le manifeste contredit. Projetée « à confirmer », comme toute disponibilité sans phrase.
     availability: offered
+    source:
+      url: https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture de la page officielle nationale arabe remise par Philippe
+      history: []
+      quote: "يجب نقل الكلاب في مخازن الطائرة (المخازن مجهزة بأنظمة تهوية)."
+      quote_language: ar
+      locator: section « اللوائح والتنظيمات », liste
   cargo:
     review_state: legacy_unreviewed
 channels:
@@ -104,12 +126,12 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: warn
+    cls: no
     statusLabel:
-      en: Cats only
-      fr: Chats uniquement
-      es: Solo gatos
-      pt: "Somente gatos"
+      en: Dogs not allowed
+      fr: Chiens non autorisés
+      es: Perros no permitidos
+      pt: "Cães não permitidos"
     detail:
       en: Cats & small birds in the cabin (≤ 5 kg incl. container, max 52.5 × 32.5 × 40 cm); falcons hooded with a handler. Dogs aren't allowed in the cabin.
       fr: Chats et petits oiseaux en cabine (≤ 5 kg avec le sac, max 52,5 × 32,5 × 40 cm) ; faucons encapuchonnés avec un fauconnier. Les chiens ne sont pas admis en cabine.

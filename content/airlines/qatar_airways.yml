@@ -132,22 +132,45 @@ policies:
           quote_language: ar
           locator: رسوم سفر الحيوانات الأليفة مع الأمتعة المسجّلة
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 19).
     # Effet attendu : Show checked-baggage hold offered under conditions.
     # Portée nommée : domesticated dogs, cats and birds; local requirements, restricted breeds and route exceptions apply
     source:
-      url: "https://www.qatarairways.com/en-au/baggage/animals.html"
+      url: "https://www.qatarairways.com/ar-qa/baggage/animals.html"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
       confidence: 4
-      reviewer: "Codex — lecture directe de la page officielle"
-      history: []
-      quote: "We accept domesticated dogs, cats and birds as checked baggage."
-      quote_language: en
-      locator: "Eligibility"
+      reviewer: "Codex — lecture directe de la page nationale officielle"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la page nationale qatarienne"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.qatarairways.com/en-au/baggage/animals.html ;
+            citation « We accept domesticated dogs, cats and birds as checked baggage. » ; localisateur « Eligibility ».
+            Remplacée par la page nationale officielle en arabe relue le 2026-09-15.
+      quote: "يجب نقل الحيوانات مع البضائع المشحونة إذا كانت هذه الحيوانات غير أليفة، أو مسافرة بمفردها، أو إذا تجاوزتْ الحد الأقصى من حيث الأبعاد (300 سم) والوزن (75 كجم)، أو إذا كانت الحيوانات ستواصل السفر في رحلة ربط بعد وصولها على متن رحلات شركات طيران أخرى."
+      quote_language: ar
+      locator: "الحيوانات → الأهلية والحدود القصوى"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    min_weight_kg: 75
+    weight_min_bound: gt
+    weight_includes_carrier: true
+    source:
+      url: "https://www.qatarairways.com/ar-qa/baggage/animals.html"
+      source_type: official_website
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page nationale officielle"
+      history: []
+      quote: "يجب نقل الحيوانات مع البضائع المشحونة إذا كانت هذه الحيوانات غير أليفة، أو مسافرة بمفردها، أو إذا تجاوزتْ الحد الأقصى من حيث الأبعاد (300 سم) والوزن (75 كجم)، أو إذا كانت الحيوانات ستواصل السفر في رحلة ربط بعد وصولها على متن رحلات شركات طيران أخرى."
+      quote_language: ar
+      locator: "الحيوانات → الأهلية والحدود القصوى"
 channels:
   - placement: cabin
     icon: 🐾

@@ -96,6 +96,9 @@ policies:
           quote_language: lv
           locator: bloc « Mazie majdzivnieki salona » → « Cena »
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
       source_type: official_website
@@ -133,6 +136,9 @@ policies:
           quote_language: en
           locator: Fees in hold
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
       source_type: official_website

@@ -290,7 +290,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
       if (p.status_cause === "official_source_unquoted") nonCitee++;
     }
   }
-  check(`les ${canaux} politiques réelles sont au complet`, canaux === 302, String(canaux));
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : les quatre placements
+     absents ont été restaurés ; le référentiel est désormais rectangulaire, 102 × 3. */
+  check(`les ${canaux} politiques réelles sont au complet`, canaux === 306, String(canaux));
   /* 04/09/2026 — FRONTIÈRE DE CONFIANCE. 84 → 267. Les 84 d'origine restent ce qu'elles étaient
      (73 manifeste + 10 stale + Garuda cabine) ; s'y ajoutent les 183 décisions catégoriques dont
      la provenance est fabriquée depuis notre propre fiche, auto-citée, ou absente — elles ne
@@ -318,8 +320,11 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      douze canaux fret quittent `legacy_unreviewed` sur une citation officielle dédiée. */
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 76 → 71 ; cinq canaux
      quittent `legacy_unreviewed` sur les citations officielles transmises par l'éditeur. */
-  check("71 politiques émettent legacy_unreviewed après Air New Zealand et Norwegian",
-    porteuses === 71, String(porteuses));
+  /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : 71 → 55. Les citations
+     propres réactivent les décisions documentées ; les décisions sans phrase restent
+     explicitement non revues. La liste complète est contrôlée par test:raccordement-finder. */
+  check("55 politiques émettent legacy_unreviewed après l'audit exhaustif des 306 canaux",
+    porteuses === 55, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -332,8 +337,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      déjà liées reçoivent enfin leur phrase opposable. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel) : 11 → 2 ; neuf pages officielles déjà
      liées reçoivent leur phrase opposable. */
-  check("2 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 2, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (15/09/2026) : 2 → 0. Une URL sans phrase ne constitue plus une
+     provenance intermédiaire : le canal est soit cité, soit rangé dans l'état non revu. */
+  check("0 politique n'émet official_source_unquoted — aucune URL seule ne décide",
+    nonCitee === 0, String(nonCitee));
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
      ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
   check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
@@ -351,7 +358,7 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
       if ("allowed" in pol[ch] || "conditional" in pol[ch]) herites++;
     }
   }
-  check("302 politiques d'auteur dans l'artefact", decidees === 302, String(decidees));
+  check("306 politiques d'auteur dans l'artefact", decidees === 306, String(decidees));
   check("ZÉRO forme héritée `{allowed}` / `conditional` subsistante", herites === 0, `${herites} résiduelle(s)`);
 
   /* 7.3 — la forme héritée n'est plus seulement absente : elle est INCONSTRUCTIBLE. Tant que la
@@ -427,12 +434,17 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
    * contrôle passerait sur une politique qui n'a jamais rien eu à cacher. */
   const NON_REVUES_A_SOURCE_OFFICIELLE = [
     "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
-    "airline_french_bee.cargo", "airline_malaysia_airlines.cargo",
+    "airline_malaysia_airlines.cargo",
     /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : Qantas soute et fret SORTENT de cette liste — citées
        (Conditions of Carriage § 8.8), elles ne sont plus « non revues ». 10 → 8, par identité. */
     /* MOUVEMENT NOMMÉ (13/09/2026) : Norwegian fret SORT à son tour — sa page Cargo publie
        explicitement le refus des animaux vivants et la phrase est désormais stockée. 7 → 6. */
+    /* MOUVEMENT NOMMÉ (15/09/2026) : French bee fret SORT — la page nationale établit le
+       passage au fret au-delà de 75 kg, contenant compris. */
     "airline_virgin_australia.hold",
+    /* WestJet Cargo conserve une page officielle et un simple renvoi commercial, sans phrase
+       établissant l'acceptation d'un animal : la source reste visible mais non décisionnelle. */
+    "airline_westjet.cargo",
   ];
   /* L'ensemble OBSERVÉ, recalculé sur la base — pas relu de la liste ci-dessus. */
   const observees = [];

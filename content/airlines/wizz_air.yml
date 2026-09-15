@@ -68,10 +68,23 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    source: &wizz_pet_refusal
+      url: https://wizzair.com/static/docs/default-source/downloadable-documents/general-conditions-of-carriage/gcc-wam/gcc-w4_070323_en_88a1e75d.pdf
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture directe des conditions générales officielles de Wizz Air Malta
+      history: []
+      quote: "live animals (including pets, insects, reptiles, or any other form of livestock), with the exception of recognised assistance dogs;"
+      quote_language: en
+      locator: clause 15.4.1.13, p. 36
   hold:
     availability: not_offered
+    source: *wizz_pet_refusal
   cargo:
-    availability: not_offered
+    # La clause bagages ne démontre pas l'absence d'un produit fret distinct.
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -126,17 +139,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No disponible
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No pet cargo service.
-      fr: Aucun service fret animalier.
-      es: Sin servicio de carga de mascotas.
-      pt: "Sem serviço de carga para animais."
+      en: The passenger-baggage prohibition does not establish whether a separate live-animal cargo product exists.
+      fr: L'interdiction sur les bagages passagers n'établit pas si un produit fret séparé pour animaux vivants existe.
+      es: La prohibición de equipaje de pasajeros no establece si existe un producto separado de carga de animales vivos.
+      pt: "A proibição de bagagem de passageiros não estabelece se existe um produto separado de carga de animais vivos."
     fee:
       en: —
       fr: —

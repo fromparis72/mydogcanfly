@@ -92,6 +92,9 @@ policies:
           quote_language: fr
           locator: onglet « Animaux en cabine » > « Acceptation et taxation » et « Règles de transport »
     availability: offered
+    max_weight_kg: 8
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux
       source_type: official_website
@@ -99,10 +102,16 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: sont uniquement les chiens, chats
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ;
+            citation « sont uniquement les chiens, chats » ; localisateur « Animaux en cabine → Présentation ».
+            Remplacée par les limites de poids publiées pour les réseaux régional et transatlantique.
+      quote: Les chiens et les chats d'un poids maximum de 5kg sur le réseau régional et 8kg sur le réseau transatlantique, contenant compris.
       quote_language: fr
-      locator: Animaux en cabine → Présentation
+      locator: Animaux en cabine → Conditions d'acceptation
   hold:
     fares:
       - id: fare_air_caraibes_hold_eur_2026_09_12
@@ -129,6 +138,9 @@ policies:
           quote_language: fr
           locator: onglet « Animaux en soute » > « Acceptation et taxation » et note « NB » de « Règles de transport »
     availability: offered
+    max_weight_kg: 75
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     source:
       url: https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux
       source_type: official_website
@@ -136,12 +148,21 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie).
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ;
+            citation « sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie). » ; localisateur « Animaux en soute → Présentation ».
+            Remplacée par la limite de poids transatlantique du canal.
+      quote: Le poids maximum autorisé pour le transport des AVIH sur les vols transatlantiques est de 75KG (poids de l’animal et cage de type n°5/Ref 700 inclus) au-delà, le transport doit se faire par FRET.
       quote_language: fr
-      locator: Animaux en soute → Présentation
+      locator: Animaux en soute → Règles de transport → réseau transatlantique
   cargo:
     availability: offered
+    min_weight_kg: 75
+    weight_min_bound: gt
+    weight_includes_carrier: true
     source:
       url: https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux
       source_type: official_website
@@ -149,10 +170,16 @@ policies:
       review_due: 2026-12-08
       confidence: 4
       reviewer: Codex — direct reading of official airline page
-      history: []
-      quote: devront voyager par FRET.
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par la preuve officielle chiffrée"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux ;
+            citation « devront voyager par FRET. » ; localisateur « Animaux en soute → Règles de transport ».
+            Remplacée par la phrase complète établissant la frontière soute/fret.
+      quote: Le poids maximum autorisé pour le transport des AVIH sur les vols transatlantiques est de 75KG (poids de l’animal et cage de type n°5/Ref 700 inclus) au-delà, le transport doit se faire par FRET.
       quote_language: fr
-      locator: Animaux en soute → Règles de transport
+      locator: Animaux en soute → Règles de transport → réseau transatlantique
 channels:
   - placement: cabin
     icon: 🐾

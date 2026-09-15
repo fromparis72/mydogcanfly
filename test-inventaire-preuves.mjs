@@ -17,6 +17,7 @@
  * harnais protège seulement sa reproductibilité et son accord avec la frontière de confiance.
  */
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { CANAUX, CATEGORIES, CHEMIN_REGISTRE, chargerDonnees, construireRegistre, serialiser,
   classerLigne, niveauDePreuveReproduit, manquesDeCitation } from "./packages/knowledge/scripts/inventaire-preuves.mjs";
 
@@ -32,7 +33,10 @@ const check = (label, cond, detail = "") => {
  * dans un commentaire daté. Un chiffre qui bouge sans commentaire est une régression, dans un
  * sens comme dans l'autre. */
 const SENTINELLES = {
-  compagnies: 102, lignes: 306, politiques: 302,
+  compagnies: 102, lignes: 306, politiques: 306,
+  /* MOUVEMENT NOMMÉ (15/09/2026, raccordement exhaustif des trois canaux) : les quatre
+     politiques auparavant absentes sont matérialisées et 23 canaux gagnent une citation propre.
+     A 229 → 252 ; B 28 → 11 ; C 46 → 43 ; D 3 → 0. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : A 52 → 74 ; B 102 → 90 ; C 149 → 139 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : A 74 → 92 ; B 90 → 84 ; C 139 → 127 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : A 92 → 113 ; B 84 → 78 ; C 127 → 112 ; D inchangé. */
@@ -48,7 +52,7 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret des principales compagnies — 21 politiques fret citées) : A 203 → 224 ; B 42 → 31 ; C 58 → 48 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq politiques deviennent A ;
      trois quittent B et deux quittent C. A 224 → 229 ; B 31 → 28 ; C 48 → 46. */
-  par_categorie: { A: 229, A_incomplete: 0, B: 28, C: 46, D: 3 },
+  par_categorie: { A: 252, A_incomplete: 0, B: 11, C: 43, D: 0 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -64,16 +68,16 @@ const SENTINELLES = {
     /* Lot 30 : cabine A 79 → 82, C 14 → 11. */
     /* Vague du 13/09 : cabine A 82 → 87, B 9 → 8, C 11 → 7. */
     /* Norwegian cabine : C → A. */
-    cabin: { A: 88, A_incomplete: 0, B: 8, C: 6, D: 0 },
+    cabin: { A: 97, A_incomplete: 0, B: 0, C: 5, D: 0 },
     /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : A 70 → 71 ; C 8 → 7. */
     /* Lot 30 : soute A 71 → 79, B 24 → 18, C 7 → 5. */
     /* Vague du 13/09 : soute A 79 → 85, B 18 → 15, C 5 → 2. */
     /* Air New Zealand et Norwegian soute : B → A. */
-    hold: { A: 87, A_incomplete: 0, B: 13, C: 2, D: 0 },
+    hold: { A: 95, A_incomplete: 0, B: 6, C: 1, D: 0 },
     /* Vague du 13/09 : fret A 28 → 31, C 52 → 49. */
     /* Lot fret du 13/09 : fret A 31 → 52, B 19 → 8, C 49 → 39. */
     /* Air New Zealand fret : C → A ; Norwegian fret : B → A. */
-    cargo: { A: 54, A_incomplete: 0, B: 7, C: 38, D: 3 },
+    cargo: { A: 60, A_incomplete: 0, B: 5, C: 37, D: 0 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
@@ -94,11 +98,14 @@ const SENTINELLES = {
   /* Lot fret du 13/09 : politique 19 → 9 ; règle 23 → 22 ; gov.uk inchangé. */
   /* Les nouvelles preuves rendent inutiles une piste politique et deux pistes de règle,
      dont une dépendance gov.uk : 9/22/9 → 8/20/8. */
-  B_par_piste: { politique: 8, regle: 20 }, B_par_regle_gov_uk_seul: 8,
+  B_par_piste: { politique: 6, regle: 5 }, B_par_regle_gov_uk_seul: 5,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
-const A_ATTENDUS = [
+/* Historique nominatif antérieur au raccordement exhaustif. Il reste dans le dossier pour rendre
+   le mouvement relisible, mais la sentinelle courante utilise une empreinte de l'inventaire
+   ordonné : même garantie exacte, sans une liste de 252 lignes recopiée dans le test. */
+const A_HISTORIQUE_AVANT_AUDIT = [
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 92 → 113, nominativement, dans l'ordre de l'inventaire. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 113 → 136, nominativement, dans l'ordre de l'inventaire. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 136 → 158, nominativement, dans l'ordre de l'inventaire. Thai Airways fret REFUSÉ n'y entre pas. */
@@ -338,7 +345,9 @@ const A_ATTENDUS = [
   "airline_westjet#cabin",
   "airline_westjet#hold",
 ];
-const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "airline_transavia#cargo"];
+void A_HISTORIQUE_AVANT_AUDIT;
+const A_DIGEST_ATTENDU = "9c39f8ad80a4acb2c3ec52a93e748608b56ae1e9c339cab778b09d90043bd483";
+const A_PAR_REGLE_ATTENDUS = ["airline_jal#cabin:regle:rule_jal_domestic_no_cabin"];
 /* Cinq B par la politique, pris parmi les 9 restantes après le lot fret : une `offered`, une
    `not_offered` et trois `legacy_unreviewed`, pour éprouver les trois formes encore réelles. */
 /* KLM soute est devenue A (citée) : témoin B re-fondé sur Air Canada soute, jamais abaissé. */
@@ -346,7 +355,7 @@ const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "a
    FRET, même compagnie, même page officielle (wwws.airfrance.us) sans phrase citée : la situation exacte que ce témoin décrit. */
 /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : Air Canada, Air France et Delta fret deviennent A ;
    les témoins B sont re-fondés sur des politiques officielles toujours sans phrase citée. */
-const B_TEMOINS = ["airline_asiana#cargo", "airline_british_airways#hold", "airline_condor#cargo", "airline_virgin_australia#hold", "airline_westjet#cargo"];
+const B_TEMOINS = ["airline_asiana#cargo", "airline_condor#cargo", "airline_malaysia_airlines#cargo", "airline_virgin_australia#hold", "airline_westjet#cargo"];
 
 const donnees = chargerDonnees();
 const registre = construireRegistre(donnees);
@@ -393,16 +402,17 @@ console.log("\n=== (b) Sentinelles : comptes figés par catégorie et par canal 
 console.log("\n=== (c) Témoins nommés ===");
 {
   const A = lignes.filter((l) => l.categorie === "A").map(cle);
-  check(`les ${A_ATTENDUS.length} A sont ${A_ATTENDUS.join(", ")}`, A.join() === A_ATTENDUS.join(), A.join(", "));
-  check("toutes les A passent par la POLITIQUE (aucune règle citée n'existe encore)",
-    lignes.filter((l) => l.categorie === "A").every((l) => l.piste === "politique" && l.manques.length === 0));
+  const digestA = createHash("sha256").update(A.join("\n")).digest("hex");
+  check(`les ${A.length} A gardent leur inventaire ordonné exact`, digestA === A_DIGEST_ATTENDU, digestA);
+  const aParRegle = lignes.filter((l) => l.categorie === "A" && l.piste !== "politique").map((l) => `${cle(l)}:${l.piste}`);
+  check("une seule A passe par une règle citée, JAL cabine", aParRegle.join() === A_PAR_REGLE_ATTENDUS.join(), aParRegle.join(", "));
+  check("toutes les autres A passent par leur politique citée",
+    lignes.filter((l) => l.categorie === "A" && l.piste === "politique").every((l) => l.manques.length === 0));
   const D = lignes.filter((l) => l.categorie === "D").map(cle);
-  check(`les 3 D sont ${D_ATTENDUS.join(", ")}`, D.join() === D_ATTENDUS.join(), D.join(", "));
-  check("un D n'a ni politique, ni règle, ni URL — rien à montrer, rien d'hérité",
-    lignes.filter((l) => l.categorie === "D").every((l) => l.niveau_de_preuve_politique === null && !l.priorite.regles.length && l.url === null));
+  check("aucun canal D ne subsiste : les 306 politiques sont explicites", D.length === 0 && resume.politiques === 306, D.join(", "));
   const tahiti = par.get("airline_air_tahiti_nui#hold");
-  check("Air Tahiti Nui soute : sans politique mais B par la règle gov.uk — pas D",
-    tahiti?.categorie === "B" && tahiti.piste === "regle:rule_air_tahiti_nui_gb_not_approved" && tahiti.niveau_de_preuve_politique === null);
+  check("Air Tahiti Nui soute : politique explicite sans preuve directe, B par la règle gov.uk — pas D",
+    tahiti?.categorie === "B" && tahiti.piste === "regle:rule_air_tahiti_nui_gb_not_approved" && tahiti.niveau_de_preuve_politique === "aucune");
   check("toute ligne C sur une URL fabriquée le dit (`url_fabriquee`) et n'expose pas cette URL comme piste",
     lignes.filter((l) => l.categorie === "C" && l.priorite.source_derived).every((l) => l.priorite.url_fabriquee && l.url === null));
 }
@@ -430,7 +440,7 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
     const [id, canal] = k.split("#");
     return donnees.objets.find((o) => o.id === id)?.premium?.policy?.[canal];
   };
-  for (const k of A_ATTENDUS) {
+  for (const k of lignes.filter((l) => l.categorie === "A" && l.piste === "politique").map(cle)) {
     check(`${k} : A ⇔ niveauDePreuve = citee`,
       par.get(k).categorie === "A" && niveauDePreuveReproduit(politiqueDe(k)) === "citee" && par.get(k).niveau_de_preuve_politique === "citee");
   }
@@ -459,14 +469,15 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/68 → 203/19/58. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/58 → 224/9/48 ; 22 → 21 B par règle sur politique « aucune ». */
   /* Air New Zealand + Norwegian : 224/9/48 → 229/8/46 ; deux règles B deviennent inutiles. */
-  check("sur les 306 lignes, A ↔ citee 229, B(politique) ↔ officielle_non_citee 8, C ↔ aucune 46",
-    paires["A ↔ citee"] === 229 && paires["B ↔ officielle_non_citee"] === 8 && paires["C ↔ aucune"] === 46, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 19 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+  check("sur les 306 lignes, A ↔ citee 251, B(politique) ↔ officielle_non_citee 6, C ↔ aucune 43",
+    paires["A ↔ citee"] === 251 && paires["B ↔ officielle_non_citee"] === 6 && paires["C ↔ aucune"] === 43, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 5 B et 1 A par règle sur une politique sans preuve",
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée) : 27 → 29, les deux canaux revenus « aucune » tenant
        désormais à une règle. */
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 19
-    && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
-    && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 5
+    && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 0
+    && resume.coherence_niveau_de_preuve.ecarts.A_par_regle === 1
+    && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 0
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
   const niveaux = lignes.filter((l) => l.niveau_de_preuve_politique !== null).reduce((m, l) => { m[l.niveau_de_preuve_politique] = (m[l.niveau_de_preuve_politique] ?? 0) + 1; return m; }, {});
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : 178/23/101 → 179/22/101. */
@@ -476,8 +487,8 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/94 → 203/19/80. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/80 → 224/9/69. */
   /* Air New Zealand + Norwegian : 224/9/69 → 229/8/65. */
-  check("302 politiques : 229 citées, 8 officielles non citées, 65 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 229 && niveaux.officielle_non_citee === 8 && niveaux.aucune === 65, JSON.stringify(niveaux));
+  check("306 politiques : 251 citées, 6 officielles non citées, 49 sans preuve directe",
+    niveaux.citee === 251 && niveaux.officielle_non_citee === 6 && niveaux.aucune === 49, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");
@@ -507,13 +518,12 @@ console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ==="
   /* United soute est devenue A dans le lot du 12/09. Le témoin B est re-fondé sur British Airways
      soute, qui conserve une page officielle sans phrase citée. */
   const ac = donnees.objets.find((o) => o.id === "airline_british_airways").premium.policy.hold;
-  const acRegles = donnees.regles.filter((r) => r.scope?.type === "airline" && r.scope.id === "airline_british_airways" && (r.effect?.placement ?? []).includes("hold"));
-  const regleOfficielle = acRegles.findIndex((r) => r.id === "rule_british_airways_no_cabin");
-  check("British Airways soute est B", classerLigne(ac, acRegles).categorie === "B");
-  check("British Airways soute + les cinq champs → A par la politique",
-    classerLigne({ ...ac, source: { ...ac.source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } }, acRegles).categorie === "A");
-  const regleCitee = { ...acRegles[regleOfficielle], source: { ...acRegles[regleOfficielle].source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } };
-  const c4 = classerLigne(ac, [regleCitee, ...acRegles.filter((_, i) => i !== regleOfficielle)]);
+  const { quote: _q, quote_language: _ql, locator: _loc, ...sourceSansCitation } = ac.source;
+  const acSansCitation = { ...ac, source: sourceSansCitation };
+  check("British Airways soute privée de sa citation devient B", classerLigne(acSansCitation, []).categorie === "B");
+  check("British Airways soute avec ses cinq champs reste A par la politique", classerLigne(ac, []).categorie === "A");
+  const regleCitee = { id: "rule_british_airways_hold_test", source: ac.source };
+  const c4 = classerLigne(acSansCitation, [regleCitee]);
   check("British Airways soute + une RÈGLE citée (URL officielle) → A par la règle", c4.categorie === "A" && c4.piste === `regle:${regleCitee.id}`, JSON.stringify(c4));
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : Aeromexico cabine est citée (A) — témoin C re-fondé sur Air Algérie cabine
      (provenance dérivée, `source_derived`, aucune phrase), pas abaissé. */
@@ -521,9 +531,9 @@ console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ==="
      Argentinas cabine (provenance dérivée, aucune phrase, hors des lots 7 et 8), pas abaissé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 9) : Aerolíneas Argentinas cabine est citée (A) à son tour — témoin C re-fondé sur
      Air Serbia cabine (provenance dérivée, aucune phrase, hors de tout lot), pas abaissé. */
-  const temoinC = donnees.objets.find((o) => o.id === "airline_air_serbia").premium.policy.cabin;
-  check("air_serbia cabin (provenance dérivée, règle auto-citée) est C", classerLigne(temoinC, []).categorie === "C");
-  check("air_serbia cabin + une règle avec URL officielle → B par la règle",
+  const temoinC = donnees.objets.find((o) => o.id === "airline_air_serbia").premium.policy.cargo;
+  check("air_serbia cargo (provenance dérivée, règle auto-citée) est C", classerLigne(temoinC, []).categorie === "C");
+  check("air_serbia cargo + une règle avec URL officielle → B par la règle",
     classerLigne(temoinC, [{ id: "rule_x", source: { url: "https://example-airline.example/pets", source_type: "official_website", verified_date: "2026-09-08" } }]).categorie === "B");
   check("ni politique ni règle → D", classerLigne(undefined, []).categorie === "D");
 }

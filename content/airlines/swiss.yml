@@ -223,6 +223,9 @@ policies:
           quote_language: en
           locator: Price table → Long-haul intercontinental → hold crate size 2–5
     availability: offered
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 5).
     # Effet attendu : SWISS hold is a documented conditional route, not a blanket approval for every breed, airport or destination.
     # Portée nommée : Ordinary dogs and cats over 8 kg including container or with an oversized carrier; snub-nosed breeds are excluded from hold carriage and country rules still apply.

@@ -502,6 +502,9 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       const denyFires = fires.filter(
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
       );
+      const requireFires = fires.filter(
+        (r) => r.effect.action === "require" && (!r.effect.placement || r.effect.placement.includes(p)),
+      );
       /* TRI-STATE (P0 climat). L'ordre de dominance est celui du contrat :
            denied  >  confirmation_required  >  allowed.
          Seul l'embargo chaleur (`summer_embargo`) déclenché sur une température ESTIMÉE est
@@ -549,15 +552,26 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          canal reste « accepté sous conditions », et la carte dit la condition. Le refus porte la
          source citée de la politique — c'est elle qui le prouve. */
       const poidsChien = Number(ctx["dog.weight_kg"] ?? 0);
-      const seuilDepasse = pol?.status === "accepted_with_conditions"
+      const seuilDepasse = pol !== undefined && pol.status !== "denied"
         /* `true` : plafond chien + contenant ; `false` EXPLICITE : plafond du chien seul (lot 2,
            Air Europa cabine : « The weight of the pet cannot exceed 8 kg »). Dans les deux cas le
            chien seul au-dessus est refusé sûrement ; absent (`undefined`) : seuil non qualifié,
-           jamais un refus. */
+           jamais un refus. Le plafond vaut aussi sur une acceptation `case_by_case` : le doute
+           porte sur l'accord de la compagnie, pas sur la limite chiffrée qu'elle a publiée. */
         && typeof pol.weight_includes_carrier === "boolean" && typeof pol.max_weight_kg === "number"
         /* LA BORNE (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur — Air Austral, « inférieur à
            8 kg » : 8,0 kg est refusé, 7,9 ne l'est pas ; `lte` ou absent l'inclut : 8,0 passe, 8,1 est refusé. */
         && (pol.weight_limit_bound === "lt" ? poidsChien >= pol.max_weight_kg : poidsChien > pol.max_weight_kg);
+      /* LE PLANCHER DÉLIMITE LA PORTÉE DE L'AUTORISATION, PAS UN REFUS. « Au-delà de 32 kg, le
+         transport se fera via le fret » prouve le fret au-dessus de 32 kg ; il ne prouve pas que
+         le fret accepte aussi 20 kg, ni qu'il le refuse. Sous la borne, le seul verdict fidèle
+         est donc « à confirmer ». Même avec `weight_includes_carrier: true`, un chien seul sous
+         le plancher ne permet pas de trancher : le contenant inconnu pourrait faire franchir la
+         borne. L'absence de qualification du sujet pesé interdit toute décision chiffrée. */
+      const qualificationPlancher = pol?.min_weight_includes_carrier ?? pol?.weight_includes_carrier;
+      const plancherNonAtteint = pol !== undefined && pol.status !== "denied"
+        && typeof qualificationPlancher === "boolean" && typeof pol.min_weight_kg === "number"
+        && (pol.weight_min_bound === "gt" ? poidsChien <= pol.min_weight_kg : poidsChien < pol.min_weight_kg);
       let weightDeny = false;
       if (denyDecisifs.length > 0) {
         status = "denied";
@@ -599,6 +613,9 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
           if (!pol.status_cause) throw new Error(`politique ${a.id}#${p} à confirmer SANS cause — schéma runtime violé`);
           causes.push({ code: pol.status_cause, policy_ref: `${a.id}#${p}` });
         }
+        if (plancherNonAtteint) {
+          causes.push({ code: "weight_scope_unmet", policy_ref: `${a.id}#${p}` });
+        }
         /* Les règles qui se sont déclenchées SANS avoir le droit de refuser deviennent des causes
            de confirmation, chacune nommant sa règle. Une page officielle sans phrase reste
            montrable comme lien faible ; une règle faible ne montre rien. */
@@ -606,6 +623,17 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
           causes.push(niveauDePreuveRegle(r) === "officielle_non_citee"
             ? { code: "rule_official_unquoted", rule_id: r.id }
             : { code: "rule_unverified", rule_id: r.id });
+        }
+        /* Une exigence AIRLINE déclenchée n'est ni une autorisation ni un refus : elle maintient
+           le canal à confirmer. Cas fondateur : ITA Large Dog, limité à certains vols intérieurs
+           et toujours soumis à vérification préalable. Les règles pays ne passent pas par
+           `airlineRules` et ne peuvent donc pas dégrader ici tous les canaux d'un trajet. */
+        for (const r of requireFires) {
+          causes.push(regleDecisive(r)
+            ? { code: "rule_requirement", rule_id: r.id }
+            : niveauDePreuveRegle(r) === "officielle_non_citee"
+              ? { code: "rule_official_unquoted", rule_id: r.id }
+              : { code: "rule_unverified", rule_id: r.id });
         }
         /* Deux causes climatiques distinctes, jamais confondues :
              `estimated_climate`     — la règle vaut, c'est la TEMPÉRATURE qui est estimée ;

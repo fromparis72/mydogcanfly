@@ -64,10 +64,10 @@ ladder:
       es: Bodega
       pt: "Porão"
     sub:
-      en: 20 kg ATR / 60 kg Airbus
-      fr: 20 kg ATR / 60 kg Airbus
-      es: 20 kg ATR / 60 kg Airbus
-      pt: "20 kg ATR / 60 kg Airbus"
+      en: limit varies by aircraft
+      fr: limite selon l'appareil
+      es: límite según el avión
+      pt: "limite conforme a aeronave"
   - flex: 20
     color: "#9a6410"
     label:
@@ -82,9 +82,22 @@ ladder:
       pt: "não publicado"
 policies:
   cabin:
-    availability: not_offered
+    # Aucun refus cabine explicite n'a été trouvé sur une surface de production officielle.
+    # La page UAT découverte pendant l'audit est inadmissible comme preuve.
+    review_state: legacy_unreviewed
   hold:
-    availability: offered
+    availability: case_by_case
+    source:
+      url: https://www.bangkokair.com/conditions/condition-baggage
+      source_type: official_website
+      verified_date: 2026-09-15
+      review_due: 2026-12-14
+      confidence: 4
+      reviewer: Codex — lecture directe des conditions de transport officielles de production
+      history: []
+      quote: "If we agree to carry your animals, they will be carried subject to the following conditions. If accepted as Baggage, the animal, together with its container and food carried, shall not be included in your free Baggage allowance but shall constitute excess Baggage, for which you will be obliged to pay the applicable rate."
+      quote_language: en
+      locator: Conditions of Carriage → Baggage → Animals
   cargo:
     availability: offered   # RÉTABLI le 10/09/2026 (arbitrage conditionnel de Codex, décision de Philippe — annexe 37) :
     # `case_by_case` (09/09) → `offered`, PARCE QUE le même lot encode les trois règles citées R1 (refus de tout
@@ -122,17 +135,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: "no"
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No se ofrece
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: Bangkok Airways has no cabin option for pets, whatever their size. Only assistance dogs travel in the cabin, and only on Airbus flights.
-      fr: Bangkok Airways ne propose aucune option cabine pour les animaux, quelle que soit leur taille. Seuls les chiens d'assistance voyagent en cabine, et seulement sur les vols Airbus.
-      es: Bangkok Airways no ofrece ninguna opción de cabina para mascotas, sea cual sea su tamaño. Solo los perros de asistencia viajan en cabina, y únicamente en los vuelos Airbus.
-      pt: "A Bangkok Airways não oferece nenhuma opção de cabine para animais, seja qual for o tamanho. Somente cães de assistência viajam na cabine, e apenas em voos Airbus."
+      en: The reviewed production sources do not establish a cabin option or an explicit refusal for ordinary pets.
+      fr: Les sources de production relues n'établissent ni option cabine ni refus explicite pour les animaux ordinaires.
+      es: Las fuentes de producción revisadas no establecen ni una opción de cabina ni un rechazo explícito para mascotas ordinarias.
+      pt: "As fontes de produção revisadas não estabelecem nem uma opção de cabine nem uma recusa explícita para animais comuns."
     fee:
       en: —
       fr: —
@@ -145,12 +158,12 @@ channels:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    cls: ok
+    cls: warn
     statusLabel:
-      en: Allowed
-      fr: Autorisé
-      es: Permitido
-      pt: "Permitido"
+      en: By prior agreement
+      fr: Sur accord préalable
+      es: Con acuerdo previo
+      pt: "Com acordo prévio"
     detail:
       en: Dogs and cats in a rigid crate, booked 24 h ahead. Two animals on the ATR 72 (80 × 45 × 65 cm, 20 kg total), two on the A319 and three on the A320 (100 × 60 × 75 cm, 60 kg total).
       fr: Chiens et chats en caisse rigide, réservation 24 h à l'avance. Deux animaux sur ATR 72 (80 × 45 × 65 cm, 20 kg au total), deux sur A319 et trois sur A320 (100 × 60 × 75 cm, 60 kg au total).

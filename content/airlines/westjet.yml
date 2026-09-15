@@ -88,20 +88,30 @@ policies:
       locator: "General entrance requirements for guests travelling with pets → opening policy statement"
   hold:
     availability: offered
+    max_weight_kg: 45
+    weight_limit_bound: lte
+    weight_includes_carrier: true
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 19).
     # Effet attendu : WestJet hold is a documented conditional route, not an itinerary-specific acceptance confirmation.
     # Portée nommée : Checked kennel on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.
     source:
-      url: "https://www.westjet.com/en-ca/pets/general-entrance-requirements"
+      url: "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-15"
+      review_due: "2026-12-14"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "WestJet accepts small pets in the cabin and as checked kennel on most international flights."
+      reviewer: "Codex — lecture directe du tarif domestique officiel en vigueur"
+      history:
+        - date: "2026-09-15"
+          reviewer: "Codex — supersession par le tarif domestique officiel chiffré"
+          note: >-
+            Source précédente vérifiée le 2026-09-09 : https://www.westjet.com/en-ca/pets/general-entrance-requirements ;
+            citation « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ;
+            localisateur « General entrance requirements for guests travelling with pets → opening policy statement ».
+            Remplacée par la limite de poids publiée dans le tarif officiel en vigueur.
+      quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb)."
       quote_language: en
-      locator: "General entrance requirements for guests travelling with pets → opening policy statement"
+      locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage"
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -124,7 +134,9 @@ policies:
           quote: contact WestJet Cargo
           quote_language: en
           locator: Cargo referral
-    availability: offered
+    # Le renvoi vers WestJet Cargo ne suffit pas à prouver l'acceptation d'un
+    # chien sur une expédition donnée.
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
@@ -181,15 +193,15 @@ channels:
       pt: "WestJet Cargo"
     cls: warn
     statusLabel:
-      en: Via cargo
-      fr: Via fret
-      es: Vía carga
-      pt: "Via carga"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: Solo pets, brachycephalic breeds, strong/aggressive breeds (CR82 crate), and all pets to London Heathrow.
-      fr: Animaux non accompagnés, races brachycéphales, races puissantes/agressives (caisse CR82), et tous les animaux vers Londres Heathrow.
-      es: Mascotas sin acompañante, razas braquicéfalas, razas fuertes/agresivas (jaula CR82) y todas las mascotas a Londres Heathrow.
-      pt: "Animais desacompanhados, raças braquicefálicas, raças fortes/agressivas (caixa CR82), e todos os animais para Londres Heathrow."
+      en: WestJet refers some cases to Cargo; acceptance and the exact route must be confirmed with that service.
+      fr: WestJet renvoie certains cas vers le fret ; l'acceptation et le trajet précis doivent être confirmés auprès de ce service.
+      es: WestJet remite algunos casos a Carga; la aceptación y la ruta exacta deben confirmarse con ese servicio.
+      pt: "A WestJet encaminha alguns casos para a Carga; a aceitação e a rota exata devem ser confirmadas com esse serviço."
     fee:
       en: Quote
       fr: Devis
