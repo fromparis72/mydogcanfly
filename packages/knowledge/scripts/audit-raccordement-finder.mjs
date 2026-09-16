@@ -99,16 +99,10 @@ for (const filename of readdirSync(CONTENT).filter((name) => name.endsWith(".yml
      `case_by_case` — c'est le conflit officiel déjà documenté, pas une négligence. */
   const GRIS_INDISPONIBLE = "#8a94a3";
   const LIBELLE_MUET = new Set(["", "-", "—"]);
-  /* Dette nommée plutôt que silencieuse : Aer Lingus déclare `hold: offered` alors que sa frise
-     et son résumé disent que tout passe par IAG Cargo via un agent. Savoir si c'est la politique
-     ou la frise qui a tort demande un arbitrage — pas une retouche. La garde la compte sans la
-     masquer ; l'exception disparaît le jour où l'arbitrage est rendu. */
-  const ARBITRAGES_EN_ATTENTE = new Set(["airline_aer_lingus\thold"]);
   for (const segment of fiche.ladder ?? []) {
     const canal = segment.label?.en?.toLowerCase();
     const placement = canal === "cabin" ? "cabin" : canal === "hold" ? "hold" : null;
     if (!placement || fichePolicies[placement]?.availability !== "offered") continue;
-    if (ARBITRAGES_EN_ATTENTE.has(`${id}\t${placement}`)) continue;
     if (segment.color === GRIS_INDISPONIBLE) {
       add("LADDER_GREY_ON_OFFERED", id, placement,
         "la frise peint le canal en gris d'indisponibilité alors que la politique l'offre");
