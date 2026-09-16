@@ -91,6 +91,110 @@ policies:
       quote: "반려동물과 운송용기 합한 총 무게가 7kg 이하"
       quote_language: ko
       locator: "Traveling with Pets → Transport restrictions → cabin pet conditions"
+    # GRILLE TARIFAIRE OFFICIELLE (16/09/2026). La page dit que « les frais basés sur la méthode de
+    # transport (cabine, soute) sont les mêmes » : le prix dépend du POIDS TOTAL — animal et cage —
+    # et de la distance, jamais du canal. Les mêmes montants sont donc portés des deux côtés.
+    #
+    # LA BANDE « 33 À 45 KG » N'EXISTE PAS EN CABINE, et c'est la fiche elle-même qui le dit : le
+    # plafond cabine de Korean Air est de 7 kg contenant compris. Publier un tarif cabine pour 33 à
+    # 45 kg reviendrait à afficher le prix d'une prestation impossible. Seule la soute porte les huit
+    # lignes ; la cabine en porte quatre.
+    #
+    # AUCUN `applies_when`, ET POUR UNE RAISON PRÉCISE. Le palier ne se décide pas sur le poids du
+    # chien, que le moteur connaît, mais sur le total avec la cage, qu'il ne connaît pas. Un prédicat
+    # sur `dog.weight_kg` publierait donc le mauvais palier pour un chien de 30 kg dans une caisse de
+    # 8. Les zones « court, moyen, long-courrier » ne sont pas davantage modélisées. Ces montants se
+    # montrent comme grille, et ne prétendent pas calculer un prix.
+    #
+    # UNE SEULE DEVISE ENREGISTRÉE. La page facture « dans la devise du pays de départ », et convertit
+    # depuis l'USD quand ce n'est ni KRW, ni USD, ni CAD, ni IDR. Seuls les montants en wons y sont
+    # publiés en chiffres : le contrat interdisant toute conversion silencieuse, ce sont les seuls
+    # enregistrés.
+    fares:
+      - id: fare_korean_air_cabin_interieur_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 30000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Vols intérieurs 30 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_cabin_court_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 150000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Court-courriers 150 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_cabin_moyen_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 225000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Moyen-courriers 225 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_cabin_long_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 300000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Long-courriers 300 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 3).
@@ -110,6 +214,194 @@ policies:
       quote: "반려동물과 운송용기 합한 총 무게가 45kg 이하"
       quote_language: ko
       locator: "Traveling with Pets → Transport restrictions → checked-pet conditions"
+    # GRILLE TARIFAIRE OFFICIELLE (16/09/2026). La page dit que « les frais basés sur la méthode de
+    # transport (cabine, soute) sont les mêmes » : le prix dépend du POIDS TOTAL — animal et cage —
+    # et de la distance, jamais du canal. Les mêmes montants sont donc portés des deux côtés.
+    #
+    # LA BANDE « 33 À 45 KG » N'EXISTE PAS EN CABINE, et c'est la fiche elle-même qui le dit : le
+    # plafond cabine de Korean Air est de 7 kg contenant compris. Publier un tarif cabine pour 33 à
+    # 45 kg reviendrait à afficher le prix d'une prestation impossible. Seule la soute porte les huit
+    # lignes ; la cabine en porte quatre.
+    #
+    # AUCUN `applies_when`, ET POUR UNE RAISON PRÉCISE. Le palier ne se décide pas sur le poids du
+    # chien, que le moteur connaît, mais sur le total avec la cage, qu'il ne connaît pas. Un prédicat
+    # sur `dog.weight_kg` publierait donc le mauvais palier pour un chien de 30 kg dans une caisse de
+    # 8. Les zones « court, moyen, long-courrier » ne sont pas davantage modélisées. Ces montants se
+    # montrent comme grille, et ne prétendent pas calculer un prix.
+    #
+    # UNE SEULE DEVISE ENREGISTRÉE. La page facture « dans la devise du pays de départ », et convertit
+    # depuis l'USD quand ce n'est ni KRW, ni USD, ni CAD, ni IDR. Seuls les montants en wons y sont
+    # publiés en chiffres : le contrat interdisant toute conversion silencieuse, ce sont les seuls
+    # enregistrés.
+    fares:
+      - id: fare_korean_air_hold_interieur_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 30000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Vols intérieurs 30 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_hold_court_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 150000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Court-courriers 150 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_hold_moyen_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 225000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Moyen-courriers 225 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_hold_long_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 300000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Long-courriers 300 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → 32 Kg Max"
+      - id: fare_korean_air_hold_interieur_33_45_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 60000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols intérieurs coréens, animal et cage de 33 à 45 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Vols intérieurs 60 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → de 33 à 45 Kg"
+      - id: fare_korean_air_hold_court_33_45_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 300000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux court-courriers, animal et cage de 33 à 45 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Court-courriers 300 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → de 33 à 45 Kg"
+      - id: fare_korean_air_hold_moyen_33_45_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 450000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux moyen-courriers, animal et cage de 33 à 45 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Moyen-courriers 450 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → de 33 à 45 Kg"
+      - id: fare_korean_air_hold_long_33_45_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 600000
+              currency: KRW
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Vols internationaux long-courriers, animal et cage de 33 à 45 kg"
+        source:
+          url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Long-courriers 600 000KRW"
+          quote_language: fr
+          locator: "Informations sur le tarif pour le transport des animaux domestiques → de 33 à 45 Kg"
   cargo:
     availability: offered
     source:

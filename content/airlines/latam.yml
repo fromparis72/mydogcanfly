@@ -90,6 +90,170 @@ policies:
       quote: "Depending on the size, weight and other considerations, your pet can travel with you in the cabin (Economy or Premium Economy), or in the aircraft hold."
       quote_language: en
       locator: "Can I travel with my pet on the plane? → opening policy statement"
+    # GRILLE TARIFAIRE OFFICIELLE (16/09/2026). Relevée sur la page « Pets in the cabin », derrière
+    # le dépliant « Transport Fees ». Sept lignes, une par portée publiée, sans conversion : la page
+    # publie des devises nationales pour les vols intérieurs et des dollars pour les vols régionaux
+    # et long-courriers, et le contrat interdit de les rapprocher.
+    #
+    # AUCUN `applies_when`, DÉLIBÉRÉMENT. Les portées « Regionals » et « Long Haul » sont des zones
+    # commerciales, et le moteur ne modélise aucun découpage de ce genre : un prédicat les ferait
+    # répondre « indécidable » sur presque tout trajet, ou pire, deviner. Ces montants se montrent
+    # donc comme grille, à la manière d'Air Europa, et ne prétendent pas calculer un prix.
+    #
+    # DEUX LIGNES ABSENTES, ET C'EST INTENTIONNEL. Un relevé tiers annonçait 3 000 ARS pour les vols
+    # intérieurs argentins et 200 EUR pour l'Europe ; ni l'un ni l'autre ne figure sur la page
+    # officielle, qui ne publie aucune ligne Argentine et libelle le long-courrier en dollars.
+    #
+    # `journey_basis: per_journey` — la page précise qu'une escale permettant de sortir de l'aéroport
+    # fait payer chaque tronçon jusqu'à destination ; le tarif couvre donc le trajet, pas le vol.
+    fares:
+      - id: fare_latam_cabin_bresil_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 200
+              currency: BRL
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols intérieurs au Brésil"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Within Brasil BR $ 200"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_chili_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 50000
+              currency: CLP
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols intérieurs au Chili, île de Pâques exceptée"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Within Chile (except Easter Island) CLP 50.000"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_colombie_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 60000
+              currency: COP
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols intérieurs en Colombie"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Within Colombia COP 60.000"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_equateur_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 45
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols intérieurs en Équateur"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Within Ecuador USD 45"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_perou_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 45
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols intérieurs au Pérou"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Within Peru USD 45"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_regional_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 200
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols régionaux : entre pays d'Amérique du Sud, et entre l'Amérique du Sud et l'Amérique centrale ou Cancún ; Punta Cana–Miami et Santiago–île de Pâques inclus"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Regionals** USD 200"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
+      - id: fare_latam_cabin_long_courrier_2026_09_16
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 250
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: "Vols long-courriers : entre l'Amérique du Sud et l'Europe ou l'Amérique du Nord"
+        source:
+          url: "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Long Haul flights*** USD 250"
+          quote_language: en
+          locator: "Pets in the cabin → Ticket fee → Transport Fees → Learn about the fees"
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 3).
