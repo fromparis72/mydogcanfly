@@ -1004,8 +1004,11 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   /* 253 → 254 et 100 → 99 fiches (15/09/2026, raccordement exhaustif) : les décisions sont
    * désormais calculées depuis les 306 politiques canoniques et leurs bornes, plus depuis les
    * règles de poids dupliquées. Le registre est recompté sur ce contrat runtime. */
-  check("254 canaux contradictoires sur 99 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 254 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 99,
+  /* 254 → 253 (16/09/2026, ré-arbitrage Aer Lingus) : la soute accompagnée passe de
+   * `offered` à `not_offered`, en accord avec son `cls: no`. La fiche reste dans le registre
+   * par ses autres canaux, donc le périmètre demeure de 99 fiches. */
+  check("253 canaux contradictoires sur 99 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 253 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 99,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).
