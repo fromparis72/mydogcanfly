@@ -52,13 +52,17 @@ ladder:
       pt: "Cabine"
     sub: —
   - flex: 10
-    color: "#8a94a3"
+    color: "#9a6410"
     label:
       en: Hold
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: —
+    sub:
+      en: via IAG Cargo
+      fr: via IAG Cargo
+      es: vía IAG Cargo
+      pt: "via IAG Cargo"
   - flex: 80
     color: "#1f5fa8"
     label:
