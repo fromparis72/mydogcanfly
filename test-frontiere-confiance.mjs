@@ -252,8 +252,11 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : les 306 politiques se
      répartissent en 188 acceptations sous conditions, 52 refus prouvés et 66 confirmations.
      Aucun accord absolu n'est créé. */
-  check("240 décisions prouvées : 0 `allowed`, 188 sous conditions, 52 `denied`, 66 à confirmer",
-    allowed === 0 && sousConditions === 188 && denied === 52 && aConfirmer === 66, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (16/09/2026, ré-arbitrage Aer Lingus) : sa soute accompagnée passe
+     de sous conditions à refusée sur la phrase officielle du check-in passagers. Le total de
+     décisions prouvées reste 240 et aucune confirmation ne bouge. */
+  check("240 décisions prouvées : 0 `allowed`, 187 sous conditions, 53 `denied`, 66 à confirmer",
+    allowed === 0 && sousConditions === 187 && denied === 53 && aConfirmer === 66, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
     Object.values(causes).reduce((x, y) => x + y, 0) === 66 && !("undefined" in causes), JSON.stringify(causes));
   check("55 restent non revues et 11 demandent un arbitrage compagnie ; aucune URL seule ne décide",

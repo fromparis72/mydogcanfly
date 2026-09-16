@@ -9,7 +9,8 @@
  * change une DISPONIBILITÉ sur ordre — ce que l'importeur ne fait jamais seul. Ce qui est éprouvé ici :
  *   · les cinq preuves passées par l'importeur (`--lot=correctif`, clé `replace_facts`) sont dans la donnée à
  *     l'octet près ; l'ancienne preuve a disparu de la politique (elle reste dans les commentaires et l'annexe) ;
- *   · Thai fret, Aer Lingus soute, Air China cabine : `offered` SUR ORDRE, la fiche le dit en toutes lettres ;
+ *   · Thai fret et Air China cabine restent `offered` SUR ORDRE ; Aer Lingus soute conserve cet
+ *     arbitrage dans son historique, puis le ré-arbitrage du 16/09 la ferme sur preuve ;
  *   · Bangkok Airways fret : `case_by_case` par arbitrage (le modèle ne restreint pas par route — précédent Virgin
  *     A-bis), preuve écrite à la main avec les champs du correctif, conditions quadrilingues nommant Krabi ;
  *   · règle des seuils fixée par Codex : chiffre, unité, borne ET base pesée — un plafond élimine, jamais ne
@@ -44,7 +45,19 @@ console.log("=== Six remplacements, à l'octet près ===");
   for (const f of d.replace_facts) {
     const cle = `${f.airline_id}.${f.placement}`;
     const pol = politique(f.airline_id, f.placement); const s = pol?.source ?? {}; const proj = projetee(f.airline_id, f.placement);
-    if (cle === "airline_china_southern.hold") {
+    if (cle === "airline_aer_lingus.hold") {
+      /* MOUVEMENT NOMMÉ (16/09/2026) : la preuve du correctif disait où voyage l'animal, sans
+         établir une soute accompagnée. La page officielle plus précise refuse tout animal au
+         comptoir passagers ; elle remplace la preuve active et conserve celle-ci dans history. */
+      check(`${cle} (remplace le lot ${f.replaces_lot}, puis ré-arbitré le 16/09) : refus passager actif, preuve du correctif conservée`,
+        !!pol && pol.availability === "not_offered"
+          && s.quote === "Animals presented for travel at passenger check-in won't be accepted under any circumstances."
+          && s.url === "https://www.aerlingus.com/prepare/bags/travelling-with-pets/"
+          && s.locator === "Travelling with Pets → How to book your pet for travel?"
+          && s.verified_date === "2026-09-16" && s.review_due === reviewDueFrom("2026-09-16", "airline")
+          && s.history?.some((h) => h.date === "2026-09-09" && h.note?.includes(f.url) && h.note?.includes(f.quote)),
+        JSON.stringify({ attendu: f.quote, lu: s.quote, url: s.url, historique: s.history }));
+    } else if (cle === "airline_china_southern.hold") {
       /* MOUVEMENTS NOMMÉS : la réponse anglophone du correctif a d'abord été
          remplacée par la règle chinoise générale le 12/09, puis cette règle par
          l'alinéa de la même page qui établit réellement le plafond de 32 kg.
@@ -67,7 +80,7 @@ console.log("=== Six remplacements, à l'octet près ===");
     }
     /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : Bangkok fret, `case_by_case` le 09/09 → `offered` le 10/09 avec R1/R2/R3 citées ; projeté
        « sous conditions » comme les autres `offered`, l'international étant refusé par règle. */
-    const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
+    const attendu = cle === "airline_aer_lingus.hold" || f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${cle === "airline_bangkok_airways.cargo" ? " (offered depuis le 10/09, refus international par R1 citée)" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
   }
   check("les anciennes preuves ont disparu des politiques : « contactez Cargo » (Thai), « you can check it » seul (China Southern), fragment IndiGo, prod.bangkokair.com",
@@ -75,12 +88,16 @@ console.log("=== Six remplacements, à l'octet près ===");
       && politique("airline_indigo", "cargo")?.source?.quote !== "pets or animals on its aircraft" && !/prod\.bangkokair\.com/.test(politique("airline_bangkok_airways", "cargo")?.source?.url ?? ""));
 }
 
-console.log("\n=== Trois disponibilités changées SUR ORDRE, dites dans les fiches ===");
+console.log("\n=== Disponibilités changées SUR ORDRE, puis ré-arbitrage Aer Lingus ===");
 {
-  for (const [slug, id, pl, etait] of [["thai_airways", "airline_thai_airways", "cargo", "undocumented"], ["aer_lingus", "airline_aer_lingus", "hold", "not_offered"], ["air_china", "airline_air_china", "cabin", "not_offered"]]) {
+  for (const [slug, id, pl, etait] of [["thai_airways", "airline_thai_airways", "cargo", "undocumented"], ["air_china", "airline_air_china", "cabin", "not_offered"]]) {
     check(`${id}.${pl} : \`offered\` sur arbitrage, la fiche nomme l'arbitrage et l'ancienne valeur (${etait})`,
       politique(id, pl)?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026, relayé et tranché par Philippe/.test(fiche(slug)) && new RegExp(`availability: offered\\s+# ARBITRÉ.*était ${etait}`).test(fiche(slug)));
   }
+  check("airline_aer_lingus.hold : le ré-arbitrage du 16/09 ferme la soute accompagnée et nomme l'ancien arbitrage",
+    politique("airline_aer_lingus", "hold")?.availability === "not_offered"
+      && /RÉ-ARBITRÉ \(16\/09\/2026/.test(fiche("aer_lingus"))
+      && /L'arbitrage du 09\/09/.test(fiche("aer_lingus")));
   check("Thai fret : l'ancienne citation auditée du 13/08 est consignée en commentaire de la fiche, pas effacée",
     /contact directly to Cargo/.test(fiche("thai_airways")) && /13\/08\/2026/.test(fiche("thai_airways")));
   /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : `case_by_case` → `offered`, R1/R2/R3 citées dans le même lot ; les conditions Krabi restent. */
@@ -100,10 +117,10 @@ console.log("\n=== Effets dans le Finder ===");
      règle globale de poids, pas par la règle retirée. Le témoin vise la règle retirée : un Cavalier de 6 kg. */
   const dub = decide("airport_cdg", "airport_dub", GOLDEN_32), pek = decide("airport_cdg", "airport_pek", { breed_id: "breed_cavalier_king_charles", weight_kg: 6 });
   const al = canal(dub, "airline_aer_lingus", "hold"), ac = canal(pek, "airline_air_china", "cabin");
-  /* HISTOIRE : au correctif, deux règles héritées non citées gardaient ces canaux « à confirmer » — dette nommée.
-     RÉCONCILIATION CIBLÉE (même jour) : règles retirées, le verdict cité atteint le Finder. */
-  check("Aer Lingus soute et Air China cabine : le verdict cité « sous conditions » atteint le Finder — les règles héritées non citées sont RETIRÉES (réconciliation ciblée)",
-    al?.status === "accepted_with_conditions" && ac?.status === "accepted_with_conditions", JSON.stringify({ al, ac }));
+  /* HISTOIRE : la réconciliation du 09/09 a bien retiré les deux règles héritées. Air China reste
+     sous conditions. Aer Lingus est ensuite refermée par une NOUVELLE preuve officielle le 16/09. */
+  check("Air China cabine reste sous conditions ; Aer Lingus soute est refusée par la preuve plus récente du 16/09",
+    al?.status === "denied" && ac?.status === "accepted_with_conditions", JSON.stringify({ al, ac }));
 }
 
 console.log("\n=== Règle des seuils de Codex, confrontée au modèle ===");

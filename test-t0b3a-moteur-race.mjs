@@ -550,8 +550,13 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
      Les statuts des 306 canaux sont maintenant ceux de leur politique citée ; les refus prouvés
      éteignent la cause de race, tandis qu'aucun refus brachycéphale générique n'est inventé.
      Les 306 décisions sont contrôlées nominativement par test:raccordement-finder. */
+  /* 16/09/2026 — RÉ-ARBITRAGE AER LINGUS : 370 → 366, toujours sur 206 cartes. Mesure
+     différentielle sur le même référentiel : l'ancien état `hold: offered` produisait 8 causes
+     Aer Lingus, le nouvel état `hold: not_offered` en produit 4. Les quatre causes éteintes sont
+     exactement les décisions de soute désormais refusées sur la citation « Animals presented
+     for travel at passenger check-in won't be accepted under any circumstances. ». */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 370 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 366 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",

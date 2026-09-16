@@ -12,10 +12,10 @@
  *      8 kg » s'écrit `lt` — contre-épreuves à 7,9 / 8 / 8,1 kg, et la borne inclusive en miroir (SWISS, « up to 8 kg »).
  *      Aucun arrondi : 8 reste 8.
  *   3. Aer Lingus soute et 4. Air China cabine : les règles héritées non citées `rule_aer_lingus_no_hold` et
- *      `rule_air_china_no_cabin` sont RETIRÉES (copie dans le dossier du correctif) ; seules les restrictions présentes
- *      dans les sources officielles relues le 09/09 restent, en conditions, dans les quatre langues. Le verdict cité
- *      atteint le Finder. PRINCIPE : une règle historique non citée n'a pas priorité sur une politique officielle plus
- *      récente et citée.
+ *      `rule_air_china_no_cabin` sont RETIRÉES (copie dans le dossier du correctif). Air China reste ouverte sur la
+ *      preuve du 09/09. Aer Lingus est ensuite refermée par la preuve plus précise du 16/09 : aucun animal présenté à
+ *      l'enregistrement passagers n'est accepté. PRINCIPE : retirer une règle non citée n'empêche jamais une preuve
+ *      officielle ultérieure de décider le même canal.
  */
 import { readFileSync, existsSync } from "node:fs";
 import { loadKB } from "./packages/knowledge/src/index.ts";
@@ -81,14 +81,23 @@ console.log("\n=== 3 et 4. Deux règles héritées non citées retirées ; les r
   check("aucune autre règle ne vise Aer Lingus soute ni Air China cabine en `deny`",
     !regles.some((r) => r.scope?.id === "airline_aer_lingus" && r.effect?.action === "deny" && (r.effect?.placement ?? []).includes("hold"))
     && !regles.some((r) => r.scope?.id === "airline_air_china" && r.effect?.action === "deny" && (r.effect?.placement ?? []).includes("cabin")));
-  for (const [id, pl, slug, mots] of [["airline_aer_lingus", "hold", "aer_lingus", ["Emerald", "Regional"]], ["airline_air_china", "cabin", "air_china", ["2", "1"]]]) {
+  for (const [id, pl, slug, mots] of [["airline_air_china", "cabin", "air_china", ["2", "1"]]]) {
     const c = politique(id, pl)?.conditions ?? {};
     check(`${id}.${pl} : conditions en quatre langues, tirées de la source officielle relue (${mots.join(", ")}) ; la fiche nomme la réconciliation`,
       ["en", "fr", "es", "pt"].every((l) => typeof c[l] === "string" && mots.every((m) => c[l].includes(m))) && /RÉCONCILIATION CIBLÉE \(Philippe, 09\/09\/2026/.test(fiche(slug)));
   }
+  const alPol = politique("airline_aer_lingus", "hold"), alCond = alPol?.conditions ?? {};
+  check("airline_aer_lingus.hold : le refus du canal passager est localisé dans les quatre langues et le ré-arbitrage est nommé",
+    alPol?.availability === "not_offered"
+      && ["en", "fr", "es", "pt"].every((l) => typeof alCond[l] === "string" && alCond[l].length > 40)
+      && /passenger check-in/.test(alCond.en ?? "") && /enregistrement passagers/.test(alCond.fr ?? "")
+      && alPol?.source?.verified_date === "2026-09-16"
+      && /RÉ-ARBITRÉ \(16\/09\/2026/.test(fiche("aer_lingus")));
   const dub = decide("airport_cdg", "airport_dub", { breed_id: "breed_golden_retriever", weight_kg: 32 });
-  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : SOUS CONDITIONS dans le Finder, source citée transportée",
-    canal(dub, "airline_aer_lingus", "hold")?.status === "accepted_with_conditions" && /aerlingus\.com/.test(canal(dub, "airline_aer_lingus", "hold")?.source?.url ?? ""));
+  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : REFUSÉE dans le Finder, source du 16/09 transportée",
+    canal(dub, "airline_aer_lingus", "hold")?.status === "denied"
+      && canal(dub, "airline_aer_lingus", "hold")?.source?.verified_date === "2026-09-16"
+      && /aerlingus\.com/.test(canal(dub, "airline_aer_lingus", "hold")?.source?.url ?? ""));
   const pek = decide("airport_cdg", "airport_pek", { breed_id: "breed_cavalier_king_charles", weight_kg: 6 });
   check("Air China cabine (Paris → Pékin), Cavalier 6 kg : SOUS CONDITIONS dans le Finder, source citée transportée",
     canal(pek, "airline_air_china", "cabin")?.status === "accepted_with_conditions" && /airchina\.com\.cn/.test(canal(pek, "airline_air_china", "cabin")?.source?.url ?? ""));
