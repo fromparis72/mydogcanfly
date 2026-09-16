@@ -91,6 +91,24 @@ try {
   const avance = jouer();
   attendre("avance sur origin", avance.code === 1, `code ${avance.code}, attendu 1`);
   attendre("avance sur origin", avance.sortie.includes("origin/main"), "l'écart avec origin n'est pas nommé");
+
+  /* 6. En retard sur origin/main : on republierait une version antérieure à ce que les autres ont
+     fusionné. L'écart est symétrique du précédent et doit mordre aussi. */
+  git(clone, "push", "--quiet", "origin", "main");
+  git(clone, "reset", "--quiet", "--hard", "HEAD~1");
+  const retard = jouer();
+  attendre("retard sur origin", retard.code === 1, `code ${retard.code}, attendu 1`);
+  attendre("retard sur origin", retard.sortie.includes("de retard"), "le retard n'est pas nommé");
+
+  /* 7. `git fetch` en échec : l'état de `main` n'a pas pu être vérifié. Le silence du réseau ne
+     vaut pas accord — sans fetch réussi, « HEAD = origin/main » ne compare que des souvenirs. */
+  git(clone, "merge", "--quiet", "--ff-only", "origin/main");
+  git(clone, "remote", "set-url", "origin", join(atelier, "origine-absente.git"));
+  const sansFetch = jouer();
+  attendre("fetch impossible", sansFetch.code === 1, `code ${sansFetch.code}, attendu 1`);
+  attendre("fetch impossible", sansFetch.sortie.includes("origin"),
+    "l'impossibilité de vérifier origin n'est pas nommée");
+
 } finally {
   rmSync(atelier, { recursive: true, force: true });
 }
@@ -100,4 +118,4 @@ if (echecs.length) {
   for (const echec of echecs) console.error(`  ${echec}`);
   process.exit(1);
 }
-console.log("✓ porte de déploiement : refus nommé sur arbre sale, branche de travail et avance sur origin ; dérogation tracée ; état nominal accepté");
+console.log("✓ porte de déploiement : refus nommé sur arbre sale, branche de travail, avance et retard sur origin, et fetch impossible ; dérogation tracée ; état nominal accepté");
