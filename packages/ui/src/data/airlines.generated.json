@@ -730,24 +730,30 @@
         }
       },
       "hold": {
-        "availability": "offered",
+        "availability": "not_offered",
         "source": {
-          "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+          "url": "https://www.aerlingus.com/prepare/bags/travelling-with-pets/",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
-          "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
-          "history": [],
-          "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+          "verified_date": "2026-09-16",
+          "review_due": "2026-12-15",
+          "confidence": 5,
+          "reviewer": "Claude — lecture directe de la page officielle, source apportée par Philippe",
+          "history": [
+            {
+              "date": "2026-09-09",
+              "reviewer": "Codex — direct reading of official airline page",
+              "note": "Source précédente : https://www.aerlingus.com/localized/en/modals/baggage-information.html ; citation « Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold. » ; localisateur « Baggage Information → General Animals & Pets Rules ». Elle disait où l'animal voyage (la soute) sans dire par quel canal il y entre, et avait été lue comme une soute accompagnée."
+            }
+          ],
+          "quote": "Animals presented for travel at passenger check-in won't be accepted under any circumstances.",
           "quote_language": "en",
-          "locator": "Baggage Information → General Animals & Pets Rules"
+          "locator": "Travelling with Pets → How to book your pet for travel?"
         },
         "conditions": {
-          "en": "Pets must be booked through a pet agent and travel in the aircraft hold, subject to the operating airline, aircraft and route: Aer Lingus Regional (operated by Emerald Airlines) does not carry pets, and some aircraft holds are not ventilated.",
-          "fr": "Réservation obligatoire via un agent animalier, transport en soute, sous réserve de l'opérateur, de l'appareil et de la route : Aer Lingus Regional (opéré par Emerald Airlines) ne transporte pas d'animaux, et certaines soutes ne sont pas ventilées.",
-          "es": "Reserva obligatoria a través de un agente de mascotas y transporte en bodega, sujeto a la aerolínea operadora, el avión y la ruta: Aer Lingus Regional (operado por Emerald Airlines) no transporta mascotas, y algunas bodegas no están ventiladas.",
-          "pt": "Reserva obrigatória através de um agente de animais e transporte no porão, sujeito à companhia operadora, à aeronave e à rota: a Aer Lingus Regional (operada pela Emerald Airlines) não transporta animais, e alguns porões não são ventilados."
+          "en": "An animal presented at an Aer Lingus passenger check-in desk is never accepted. Pets do travel in the aircraft hold, but only when booked as cargo through IAG Cargo or a pet agent — see the cargo channel.",
+          "fr": "Un animal présenté à un comptoir d'enregistrement passagers Aer Lingus n'est jamais accepté. Les animaux voyagent bien en soute, mais uniquement réservés en fret via IAG Cargo ou un agent animalier — voir le canal fret.",
+          "es": "Un animal presentado en un mostrador de facturación de pasajeros de Aer Lingus nunca se acepta. Las mascotas sí viajan en la bodega, pero solo reservadas como carga a través de IAG Cargo o un agente de mascotas — véase el canal de carga.",
+          "pt": "Um animal apresentado num balcão de check-in de passageiros da Aer Lingus nunca é aceite. Os animais viajam no porão, mas apenas quando reservados como carga através da IAG Cargo ou de um agente de animais — ver o canal de carga."
         }
       },
       "cargo": {
@@ -836,18 +842,18 @@
           "es": "Bodega",
           "pt": "Porão"
         },
-        "cls": "warn",
+        "cls": "no",
         "statusLabel": {
-          "en": "Via pet agent",
-          "fr": "Via agent animalier",
-          "es": "Vía agente de mascotas",
-          "pt": "Via agente de animais"
+          "en": "Not accepted at check-in",
+          "fr": "Refusé à l'enregistrement",
+          "es": "No se acepta en facturación",
+          "pt": "Não aceite no check-in"
         },
         "detail": {
-          "en": "Pets travel in the aircraft hold after booking through a pet agent; operator, aircraft and route restrictions apply.",
-          "fr": "Les animaux voyagent en soute après réservation auprès d'un agent animalier ; des restrictions d'opérateur, d'appareil et de trajet s'appliquent.",
-          "es": "Las mascotas viajan en la bodega tras reservar mediante un agente; se aplican restricciones de operador, avión y ruta.",
-          "pt": "Os animais viajam no porão após reserva por meio de um agente; aplicam-se restrições de operador, aeronave e rota."
+          "en": "An animal presented at a passenger check-in desk is never accepted. Pets do reach the aircraft hold, but only booked as cargo — see IAG Cargo below.",
+          "fr": "Un animal présenté à un comptoir d'enregistrement passagers n'est jamais accepté. Les animaux atteignent bien la soute, mais réservés en fret — voir le canal fret ci-dessous.",
+          "es": "Un animal presentado en un mostrador de facturación nunca se acepta. Las mascotas sí llegan a la bodega, pero reservadas como carga — véase el canal de carga más abajo.",
+          "pt": "Um animal apresentado num balcão de check-in nunca é aceite. Os animais chegam ao porão, mas reservados como carga — ver o canal de carga abaixo."
         },
         "fee": {
           "en": "—",
