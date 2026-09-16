@@ -5322,10 +5322,10 @@
       "pt": "Viajar com um cachorro na Air China"
     },
     "metaDesc": {
-      "en": "Air China pet policy: hold-only carriage, US dog suspension, breed limits and official sources.",
-      "fr": "Politique animaux Air China : transport en soute uniquement, suspension des chiens vers les USA, restrictions de races et sources officielles.",
-      "es": "Política de mascotas de Air China: transporte solo en bodega, suspensión de perros hacia EE. UU., límites de razas y fuentes oficiales.",
-      "pt": "Política de animais da Air China: transporte somente no porão, suspensão de cachorros para os EUA, limites de raça e fontes oficiais."
+      "en": "Air China pet policy: cabin on eligible flights, hold up to 32 kg, cargo for larger dogs, US dog suspension and official sources.",
+      "fr": "Politique animaux Air China : cabine sur vols éligibles, soute jusqu'à 32 kg, fret pour les grands chiens, suspension vers les USA et sources officielles.",
+      "es": "Política de mascotas de Air China: cabina en vuelos elegibles, bodega hasta 32 kg, carga para perros grandes, suspensión a EE. UU. y fuentes oficiales.",
+      "pt": "Política de animais da Air China: cabine em voos elegíveis, porão até 32 kg, carga para cães grandes, suspensão para os EUA e fontes oficiais."
     },
     "chips": [
       {
@@ -5366,25 +5366,30 @@
       }
     },
     "verdictNote": {
-      "en": "No cabin pets except service dogs; cats & dogs travel in the hold on oxygen-equipped aircraft.",
-      "fr": "Pas d'animaux en cabine sauf chiens d'assistance ; chats et chiens voyagent en soute sur avions équipés d'oxygène.",
-      "es": "No se admiten mascotas en cabina salvo perros de asistencia; los gatos y perros viajan en bodega en aeronaves equipadas con oxígeno.",
-      "pt": "Sem animais na cabine, exceto cães de serviço; gatos e cachorros viajam no porão em aeronaves equipadas com oxigênio."
+      "en": "Cabin on eligible Air China-operated flights, with advance booking and 2 pets per flight maximum; otherwise hold (≤ 32 kg) on oxygen-equipped aircraft. All dogs remain suspended to the USA.",
+      "fr": "Cabine sur les vols éligibles opérés par Air China, avec réservation préalable et 2 animaux par vol au maximum ; sinon soute (≤ 32 kg) sur avions équipés d'oxygène. Tous les chiens restent suspendus vers les USA.",
+      "es": "Cabina en vuelos elegibles operados por Air China, con reserva previa y un máximo de 2 mascotas por vuelo; si no, bodega (≤ 32 kg) en aeronaves equipadas con oxígeno. Todos los perros siguen suspendidos hacia EE. UU.",
+      "pt": "Cabine em voos elegíveis operados pela Air China, com reserva prévia e no máximo 2 animais por voo; caso contrário, porão (≤ 32 kg) em aeronaves equipadas com oxigênio. Todos os cães seguem suspensos para os EUA."
     },
     "ladder": [
       {
-        "flex": 8,
-        "color": "#8a94a3",
+        "flex": 20,
+        "color": "#1f7a5a",
         "label": {
           "en": "Cabin",
           "fr": "Cabine",
           "es": "Cabina",
           "pt": "Cabine"
         },
-        "sub": "—"
+        "sub": {
+          "en": "under-seat",
+          "fr": "sous le siège",
+          "es": "bajo el asiento",
+          "pt": "sob o assento"
+        }
       },
       {
-        "flex": 72,
+        "flex": 60,
         "color": "#1f5fa8",
         "label": {
           "en": "Hold",
