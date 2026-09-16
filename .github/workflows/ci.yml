@@ -452,6 +452,13 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # Le runner de ce job est neuf : rien de ce que `verify` ou `site-complet` ont installé ne
+      # survit d'un job à l'autre. L'installation se refait donc ici, depuis le seul lockfile —
+      # et ce commentaire n'est pas décoratif : les contre-épreuves du catalogue ancrent leurs
+      # mutations sur le bloc « Node 22 → Installation reproductible » des deux jobs de contrôle,
+      # et exigent que chaque ancre soit UNIQUE dans le fichier. Sans cette ligne, le bloc du job
+      # de déploiement serait textuellement identique à celui de `site-complet`, et deux mutations
+      # ne sauraient plus laquelle viser (constaté sur la PR #75, run #270).
       - name: Installation reproductible
         run: npm ci
 
