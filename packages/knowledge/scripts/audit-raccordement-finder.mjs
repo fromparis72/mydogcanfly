@@ -75,6 +75,45 @@ for (const filename of readdirSync(CONTENT).filter((name) => name.endsWith(".yml
     add("FICHE_GENERATED_DRIFT", id, "restrictions", "les restrictions visibles diffèrent de la fiche source");
   }
 
+  /* RÉSUMÉ VISUEL CONTRE POLITIQUE CANONIQUE (16/09/2026). Air China portait
+     `policies.cabin.availability: offered` — arbitré, sourcé, servi par le Finder — pendant que
+     le haut de sa fiche annonçait « transport en soute uniquement », et que sa frise réduisait la
+     cabine à un éclat gris de 8 % sans libellé. Aucun de ces champs n'était rendu ce jour-là, de
+     sorte que rien ne se voyait en production ; c'est ce qui rend le défaut dangereux, puisqu'un
+     gabarit qui les réafficherait publierait une contradiction que personne n'a décidée. La garde
+     s'exécute donc sur la FICHE SOURCE et non sur le HTML construit : un contrôle du rendu aurait
+     été vert ce jour-là, et aveugle à la classe entière.
+
+     ELLE NE LIT PAS LA PROSE, ET C'EST DÉLIBÉRÉ. Une première version cherchait des formules de
+     refus (« hold-only », « soute uniquement ») dans `metaDesc` et `verdictNote`. Mesurée sur les
+     102 fiches, elle a levé 36 alertes sur 13 compagnies dont la quasi-totalité étaient fausses :
+     la langue porte une portée que la sous-chaîne ignore. « Snub-nosed breeds cabin-only » chez
+     SWISS et Brussels qualifie une RACE, « flat-faced breeds allowed in the cabin only » chez
+     TAROM aussi, « hold (AVIH) is restricted to domestic flights » chez Pegasus qualifie une
+     ROUTE. Aucune de ces phrases ne refuse le canal. Une garde qui crie à tort finit désactivée,
+     et une garde désactivée ne protège rien : le lexique a donc été retiré au profit des deux
+     signaux STRUCTURÉS que portait réellement le cas Air China, où la portée n'existe pas.
+
+     Restent, hors machine et pour relecture humaine : China Southern, dont le résumé affirme un
+     refus catégorique en cabine dans les quatre langues alors que la politique dit
+     `case_by_case` — c'est le conflit officiel déjà documenté, pas une négligence. */
+  const GRIS_INDISPONIBLE = "#8a94a3";
+  const LIBELLE_MUET = new Set(["", "-", "—"]);
+  for (const segment of fiche.ladder ?? []) {
+    const canal = segment.label?.en?.toLowerCase();
+    const placement = canal === "cabin" ? "cabin" : canal === "hold" ? "hold" : null;
+    if (!placement || fichePolicies[placement]?.availability !== "offered") continue;
+    if (segment.color === GRIS_INDISPONIBLE) {
+      add("LADDER_GREY_ON_OFFERED", id, placement,
+        "la frise peint le canal en gris d'indisponibilité alors que la politique l'offre");
+    }
+    const sousTitre = typeof segment.sub === "string" ? segment.sub : segment.sub?.en;
+    if (LIBELLE_MUET.has((sousTitre ?? "").trim())) {
+      add("LADDER_MUTE_ON_OFFERED", id, placement,
+        "la frise laisse le canal sans libellé alors que la politique l'offre");
+    }
+  }
+
   if (new Set(placements).size !== placements.length) add("CHANNEL_DUPLICATE", id, "-", placements.join(", "));
   for (const placement of PLACEMENTS) {
     const channelCount = placements.filter((candidate) => candidate === placement).length;

@@ -15,11 +15,11 @@
  *   · ITA Airways cabine citée SANS plafond global : 12 kg sur les vols intérieurs italiens,
  *     8 kg ailleurs. Depuis le 15/09, la règle de 8 kg est officiellement citée et bornée aux
  *     trajets non domestiques ; le service Large Dog couvre séparément certains vols intérieurs ;
- *   · UN FAIT REFUSÉ par l'importeur, nommé : Aer Lingus soute. La fiche dit `not_offered` (sans
- *     source) ; la phrase citée dit « carried in the aircraft hold » via un agent animalier. Ce
- *     passage ressemble autant au fret qu'à la soute accompagnée : ce n'est pas une correction
- *     manifeste, c'est un arbitrage de vérité métier (Philippe + Codex). En attendant, la ligne
- *     reste « à confirmer », sans citation — jamais un refus prouvé, jamais un oui.
+ *   · UN FAIT D'ABORD REFUSÉ par l'importeur, puis arbitré deux fois : Aer Lingus soute. La phrase
+ *     du lot 4 disait où voyage l'animal, sans établir une soute accompagnée. La page officielle
+ *     relue le 16/09 tranche le canal commercial : aucun animal présenté à l'enregistrement
+ *     passagers n'est accepté. La soute accompagnée est donc refusée sur preuve ; le fret reste
+ *     le canal à confirmer.
  */
 import { readFileSync } from "node:fs";
 import { loadKB, reviewDueFrom } from "./packages/knowledge/src/index.ts";
@@ -52,7 +52,7 @@ const SEUILS = {
   "airline_westjet.hold": ["max", 45, true],
 };
 const REACTIVEES = ["airline_emirates.cargo", "airline_qantas.hold", "airline_qantas.cargo", "airline_alaska.cargo"];
-const REFUSE = "airline_aer_lingus.hold";
+const REARBITREE = "airline_aer_lingus.hold";
 const ficheAerLingusHoldASource = (() => {
   const l = readFileSync("content/airlines/aer_lingus.yml", "utf8").split("\n");
   const i = l.findIndex((x) => /^  hold:\s*$/.test(x)); const j = l.findIndex((x, k) => k > i && /^  [a-z_]+:\s*$/.test(x));
@@ -67,15 +67,20 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     const pol = politique(f.airline_id, f.placement);
     const s = pol?.source ?? {};
     const proj = kb.airlines.get(f.airline_id)?.premium?.policy?.[f.placement];
-    if (cle === REFUSE) {
-      /* HISTOIRE : refusé à l'import du lot 4 (la fiche disait `not_offered` sans bloc source), porté à l'arbitrage.
-         ARBITRAGE (09/09/2026, Codex, tranché par Philippe — correctif d'arbitrages) : « maintenu » — soute via agent
-         animalier sous conditions d'opérateur, d'appareil et de route ; Aer Lingus Regional exclue. La disponibilité a
-         été changée À LA MAIN, sur ordre (l'importeur ne la change jamais), puis la phrase écrite par l'importeur du
-         correctif — la même phrase que celle du lot 4. */
-      check(`${cle} (LOT4[${f.index}]) : ARBITRÉ — \`offered\` sur ordre, phrase, URL, localisateur, langue et date du correctif`,
-        pol?.availability === "offered" && ficheAerLingusHoldASource && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.verified_date === "2026-09-09", JSON.stringify({ availability: pol?.availability, quote: s.quote }));
-      check(`  …projeté « accepté sous conditions » — jamais \`allowed\``, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+    if (cle === REARBITREE) {
+      /* HISTOIRE : refusé à l'import du lot 4, puis porté à `offered` le 09/09 sur une phrase qui
+         établissait la soute physique sans établir le canal accompagné. RÉ-ARBITRAGE (16/09/2026) :
+         la page officielle refuse explicitement tout animal présenté à l'enregistrement passagers.
+         La preuve précédente reste dans l'historique ; le canal accompagné devient `not_offered`. */
+      check(`${cle} (LOT4[${f.index}]) : RÉ-ARBITRÉ — refus accompagné prouvé, source nouvelle et preuve précédente conservée`,
+        pol?.availability === "not_offered" && ficheAerLingusHoldASource
+          && s.quote === "Animals presented for travel at passenger check-in won't be accepted under any circumstances."
+          && s.url === "https://www.aerlingus.com/prepare/bags/travelling-with-pets/"
+          && s.locator === "Travelling with Pets → How to book your pet for travel?"
+          && s.verified_date === "2026-09-16"
+          && s.history?.some((h) => h.date === "2026-09-09" && h.note?.includes(f.url) && h.note?.includes(f.quote)),
+        JSON.stringify({ availability: pol?.availability, quote: s.quote }));
+      check(`  …projeté « refusé » sur preuve`, proj?.status === "denied", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
     if (cle === "airline_brussels.hold") {
@@ -205,13 +210,12 @@ console.log("\n=== Étage 2 — Paris → Dubaï, Londres → Sydney, Paris → 
   check("Qantas soute ET fret, Golden 32 kg : deux anciens POLICY_STALE RÉACTIVÉS sur citation → sous conditions",
     canal(syd, "airline_qantas", "hold")?.status === "accepted_with_conditions" && canal(syd, "airline_qantas", "cargo")?.status === "accepted_with_conditions");
   const dub = decide("airport_cdg", "airport_dub", GOLDEN_32);
-  /* HISTOIRE : après l'arbitrage, la règle héritée non citée `rule_aer_lingus_no_hold` gardait encore le canal « à
-     confirmer ». RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : « une règle historique non
-     citée ne peut pas avoir priorité sur une politique officielle plus récente et citée » — la règle est RETIRÉE, ses
-     seules restrictions sourcées vivent en conditions. Le verdict cité atteint le Finder. */
+  /* RÉ-ARBITRAGE (16/09/2026) : la page officielle distingue la soute physique du canal
+     accompagné en refusant tout animal présenté à l'enregistrement passagers. Le Finder doit
+     donc fermer la soute accompagnée, tout en conservant le fret à confirmer. */
   const alH = canal(dub, "airline_aer_lingus", "hold");
-  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : SOUS CONDITIONS dans le Finder — la règle héritée est retirée ; fret non décidé → à confirmer",
-    alH?.status === "accepted_with_conditions" && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(alH));
+  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : REFUSÉE sur preuve dans le Finder ; fret → à confirmer",
+    alH?.status === "denied" && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(alH));
 }
 
 console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londres → Los Angeles, Seattle → Los Angeles ===");
@@ -247,8 +251,9 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais devenu une acceptation catégorique", allowed === 0, String(allowed));
-  check("Aer Lingus soute a été basculée SUR ARBITRAGE (Codex 09/09, tranché par Philippe), et le dit dans la fiche",
-    politique("airline_aer_lingus", "hold")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/aer_lingus.yml", "utf8")));
+  check("Aer Lingus soute est ré-arbitrée sur la preuve du 16/09, et la fiche nomme ce mouvement",
+    politique("airline_aer_lingus", "hold")?.availability === "not_offered"
+      && /RÉ-ARBITRÉ \(16\/09\/2026/.test(readFileSync("content/airlines/aer_lingus.yml", "utf8")));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

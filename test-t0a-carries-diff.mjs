@@ -59,7 +59,10 @@ const WRITE = process.argv.includes("--write");
    Les politiques citées et leurs seuils sont désormais projetés depuis les 306 canaux du
    référentiel, sans règle cabine globale ni doublon hérité. Le témoin gagne 1 500 couples sur
    des canaux `accepted_with_conditions`; aucun silence n'est transformé en acceptation. */
-const TEMOIN_VRAI_V3 = 34724;
+/* MOUVEMENT NOMMÉ (16/09/2026, ré-arbitrage Aer Lingus) : 34 724 → 34 430.
+   La soute accompagnée n'est pas un produit passager : les 294 couples où ce canal ouvrait
+   le témoin se referment sur un refus officiel cité. Aucun autre canal ne bouge. */
+const TEMOIN_VRAI_V3 = 34430;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

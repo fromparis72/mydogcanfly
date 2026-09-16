@@ -1918,8 +1918,13 @@ console.log("=== Couverture DIRECTE : les 306 politiques, hors des 72 scénarios
      manquants sont rendus explicites, les décisions catégoriques sans citation sont rétrogradées,
      les politiques nouvellement raccordées prennent effet et les cartes visibles sont alignées.
      Le contrat porte désormais exactement 102 × 3 politiques. */
-  check("répartition runtime : 0 allowed · 188 sous conditions · 52 denied · 66 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 188 && parStatut.denied === 52 && parStatut.confirmation_required === 66,
+  /* MOUVEMENT NOMMÉ (16/09/2026, ré-arbitrage Aer Lingus) : la phrase « carried in the
+     aircraft hold » décrivait le lieu physique, pas une soute accompagnée vendue au comptoir
+     passagers. La page officielle refuse explicitement les animaux présentés au check-in :
+     Aer Lingus soute passe donc de sous conditions à refusée. 40 des 72 scénarios de la
+     baseline bougent sur cette seule compagnie ; les 66 confirmations restent inchangées. */
+  check("répartition runtime : 0 allowed · 187 sous conditions · 53 denied · 66 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 187 && parStatut.denied === 53 && parStatut.confirmation_required === 66,
     JSON.stringify(parStatut));
   check("causes : 55 legacy_unreviewed · 0 official_source_unquoted · 0 policy_unpublished · 11 airline_approval",
     parCause.legacy_unreviewed === 55 && !parCause.official_source_unquoted

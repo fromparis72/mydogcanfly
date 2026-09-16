@@ -125,7 +125,9 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : 173 → 177. Air New Zealand
      soute/fret et Norwegian cabine/soute deviennent quatre ouvertures sourcées sous conditions. */
   /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : 177 → 188. */
-  check(`politiques réelles en accepted_with_conditions : 188 après l'audit exhaustif — mesuré : ${cond}`, cond === 188);
+  /* MOUVEMENT NOMMÉ (16/09/2026, ré-arbitrage Aer Lingus) : 188 → 187 ; le canal soute
+     accompagnée devient un refus prouvé, sans toucher aux deux autres canaux. */
+  check(`politiques réelles en accepted_with_conditions : 187 après le ré-arbitrage Aer Lingus — mesuré : ${cond}`, cond === 187);
   /* RE-FONDÉ (15/09/2026) : le plafond Eurowings n'est plus une règle orpheline. Il appartient
      à la politique cabine et à la même citation que l'acceptation ; 32 kg sont donc refusés sur
      cette preuve, sans passer par une règle parallèle. */
