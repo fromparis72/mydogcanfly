@@ -28,6 +28,8 @@
  * il ne construit aucune page, il s'exécute avant le build et ne change rien à ce qui est produit.
  */
 import { execFileSync } from "node:child_process";
+import { appendFileSync, mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 const git = (...args) => execFileSync("git", args, { encoding: "utf8" }).trim();
 const dire = (s) => process.stdout.write(s + "\n");
@@ -70,8 +72,24 @@ for (const raison of refus) dire(`  · ${raison}`);
 dire("");
 
 if (derogation) {
+  /* Une trace qui n'existe que dans un terminal disparaît avec la fenêtre. Celle-ci est écrite
+     dans le dépôt, à l'endroit où vivent déjà les mesures, pour que la décision puisse être
+     commitée et retrouvée le jour où il faudra comprendre ce qui est parti en production. */
+  /* Le journal appartient au dépôt INSPECTÉ, pas au répertoire du script : c'est ce qui permet
+     au témoin de l'éprouver sur un dépôt de fixture sans salir celui du projet. */
+  const journal = resolve(git("rev-parse", "--show-toplevel"), "mesures/deploiements-hors-main.log");
+  const ligne = `${new Date().toISOString()}\tbranche=${branche}\tHEAD=${tete}\torigin/main=${reference}\t${derogation}\n`;
+  let ecrit = true;
+  try {
+    mkdirSync(dirname(journal), { recursive: true });
+    appendFileSync(journal, ligne, "utf8");
+  } catch {
+    ecrit = false;
+  }
   dire(`  DÉROGATION ACCEPTÉE : « ${derogation} »`);
-  dire("  Le déploiement continue. Cette ligne est la trace de la décision.");
+  dire(ecrit
+    ? "  Consignée dans mesures/deploiements-hors-main.log — à commiter avec le reste."
+    : "  ⚠ le journal n'a pas pu être écrit : cette sortie de terminal est la seule trace.");
   dire("");
   process.exit(0);
 }
