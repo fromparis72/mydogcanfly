@@ -69,11 +69,38 @@ if (!JETON) {
   process.exit(0);
 }
 
-const reponse = await fetch(`https://api.cloudflare.com/client/v4/zones/${ZONE}/purge_cache`, {
-  method: "POST",
-  headers: { Authorization: `Bearer ${JETON}`, "Content-Type": "application/json" },
-  body: JSON.stringify({ purge_everything: true }),
-}).catch((e) => ({ ok: false, status: 0, json: async () => ({ errors: [{ message: e.message }] }) }));
+// TROIS TENTATIVES ET LA CAUSE RÉELLE (17/09/2026). Le premier passage de la chaîne automatique
+// (exécution CI n° 275) a échoué ici avec pour toute explication « fetch failed » — le message
+// générique de `fetch` en Node, qui cache la cause réelle dans `e.cause` (DNS, TLS, délai…).
+// Deux corrections : on réessaie deux fois, avec une pause croissante, parce qu'une purge est
+// idempotente et qu'un incident réseau de quelques secondes ne doit pas laisser le bord servir
+// l'ancienne version ; et si les trois essais échouent, on imprime la cause, pas l'emballage.
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+const decrireCause = (e) => {
+  const c = e?.cause;
+  if (!c) return e?.message ?? String(e);
+  return `${e.message} — cause : ${c.code ?? c.name ?? ""} ${c.message ?? ""}`.trim();
+};
+
+let reponse;
+for (let tentative = 1; tentative <= 3; tentative += 1) {
+  try {
+    reponse = await fetch(`https://api.cloudflare.com/client/v4/zones/${ZONE}/purge_cache`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${JETON}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ purge_everything: true }),
+    });
+    break;
+  } catch (e) {
+    const detail = decrireCause(e);
+    if (tentative < 3) {
+      dire(`  tentative ${tentative}/3 sans réponse de l'API (${detail}) — nouvel essai dans ${5 * tentative} s`);
+      await pause(5000 * tentative);
+      continue;
+    }
+    reponse = { ok: false, status: 0, json: async () => ({ errors: [{ message: detail }] }) };
+  }
+}
 
 const corps = await reponse.json().catch(() => ({}));
 
