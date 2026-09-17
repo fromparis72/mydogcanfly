@@ -462,6 +462,25 @@ jobs:
       - name: Installation reproductible
         run: npm ci
 
+      # DIAGNOSTIC AVANT D'AGIR (17/09/2026). Trois déploiements de suite ont échoué sur
+      # « Authentication error [code: 10000] », un code que Cloudflare rend aussi bien pour un
+      # jeton inconnu que pour un jeton sans la permission voulue — et le journal ne dit pas
+      # lequel. `wrangler whoami` tranche : il imprime le compte reconnu et LA LISTE DES
+      # PERMISSIONS que Cloudflare attribue au jeton, sans jamais imprimer le jeton lui-même.
+      # Si cette étape échoue, la valeur du secret est en cause ; si elle réussit et que le
+      # déploiement échoue ensuite, c'est une permission qui manque, et elle est nommée juste
+      # au-dessus. L'étape reste après diagnostic : elle coûte deux secondes et rend chaque
+      # échec futur lisible au premier coup d'œil.
+      - name: Ce que Cloudflare reconnaît au jeton (permissions, sans la valeur)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "longueur du jeton : ${#CLOUDFLARE_API_TOKEN} caractères"
+          echo "longueur de l'identifiant de compte : ${#CLOUDFLARE_ACCOUNT_ID} caractères"
+          printf '%s' "$CLOUDFLARE_API_TOKEN" | LC_ALL=C grep -q '[^A-Za-z0-9_-]' && echo "⚠ le jeton contient un caractère hors [A-Za-z0-9_-] (espace, retour à la ligne ?)" || echo "jeton : alphabet attendu"
+          npx wrangler whoami
+
       # BUILD_SHA n'est pas décoratif : c'est lui que `/v1/health` renverra, et c'est la seule
       # façon de savoir quelle version du moteur répond réellement.
       - name: Worker de production, épinglé sur le commit fusionné
