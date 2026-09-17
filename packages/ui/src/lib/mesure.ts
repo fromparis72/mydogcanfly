@@ -25,7 +25,7 @@
  */
 
 /** ID de mesure GA4 (forme `G-XXXXXXXXXX`), lu dans Administration → Flux de données. */
-export const GA4_ID = "G-6H7KB5LR48";
+export const GA4_ID: string = "G-6H7KB5LR48";
 
 /** Jeton du beacon Cloudflare Web Analytics, site « mydogcanfly.com » créé le 17/09/2026. */
-export const CF_BEACON_TOKEN = "10692df64e244f9eacd6459f94399030";
+export const CF_BEACON_TOKEN: string = "10692df64e244f9eacd6459f94399030";
