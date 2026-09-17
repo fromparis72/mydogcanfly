@@ -388,3 +388,143 @@ jobs:
       # éprouvées, ce qui est exactement ce que ce catalogue existe pour interdire.
       - name: Contre-épreuves du site complet (sans reconstruire)
         run: npm run contre-epreuves -- --dist-complet
+
+  # ─────────────────────────────────────────────────────────────────────────────────────────────
+  # DÉPLOIEMENT EN PRODUCTION — troisième job, et le seul qui écrive quelque part.
+  #
+  # POURQUOI IL EXISTE (16/09/2026). Jusqu'ici la production partait d'un ordinateur portable :
+  # `npm run release` lancé à la main, depuis l'un des deux clones du dépôt, avec un jeton de purge
+  # dans un `.zshrc`. Trois incidents en une semaine ont montré le coût de cette dépendance — une
+  # soirée perdue sur des points de suspension collés dans une variable d'environnement, un clone
+  # laissé sur une branche non fusionnée à trois commits de `main`, et un cache de bord servant
+  # l'ancienne version parce que la purge n'avait pas suivi le déploiement. Aucun n'était une faute
+  # d'inattention isolée : tous venaient de ce que le déploiement vivait sur une machine au lieu de
+  # vivre dans le dépôt.
+  #
+  # CE QUI GARANTIT QU'ON NE DÉPLOIE PAS N'IMPORTE QUOI. `needs: [verify, site-complet]` — les deux
+  # jobs doivent être verts, sur CE commit. La condition `push` sur `refs/heads/main` exclut les
+  # pull requests : on ne déploie que ce qui a été fusionné. La porte locale `porte-deploiement.mjs`
+  # n'est volontairement PAS appelée ici : elle protège un poste de travail contre son propre état
+  # (mauvaise branche, arbre sale, retard sur origin), trois situations qui n'existent pas sur un
+  # runner qui vient de cloner `main` au SHA exact.
+  #
+  # SON PROPRE GROUPE DE CONCURRENCE, sans annulation. Le groupe global de ce fichier annule les
+  # exécutions en cours quand un nouveau commit arrive — souhaitable pour des vérifications,
+  # dangereux pour un déploiement : un `wrangler` interrompu entre le Worker et les Pages laisserait
+  # le moteur et le site sur deux versions différentes. Les déploiements se font donc à la queue leu
+  # leu, jamais en parallèle, jamais annulés.
+  #
+  # L'ORDRE EST CELUI-CI ET PAS UN AUTRE. Le Worker d'abord : il porte la donnée canonique du
+  # Finder, et un site neuf interrogeant un moteur ancien afficherait des réponses périmées, tandis
+  # que l'inverse — un moteur en avance servi à un site ancien — ne produit qu'une page qui ignore
+  # une amélioration. On vérifie ensuite que le Worker SERVI est bien celui qu'on vient de publier,
+  # avant de toucher aux pages : sans ce contrôle, `wrangler deploy` dit « publié » et on le croit.
+  # Les Pages ensuite, puis la purge — sans elle, le bord peut servir l'ancienne version 24 h.
+  #
+  # LES SECRETS NE SONT PAS DANS CE FICHIER ET N'ONT PAS À L'ÊTRE. Deux suffisent, définis dans
+  # Settings → Secrets and variables → Actions :
+  #   CLOUDFLARE_API_TOKEN     permissions « Workers Scripts:Edit », « Cloudflare Pages:Edit »
+  #                            et « Zone · Cache Purge:Purge » sur la zone mydogcanfly.com
+  #   CLOUDFLARE_ACCOUNT_ID    visible dans le tableau de bord Cloudflare
+  # L'identifiant de zone n'est pas un secret : il vit déjà en clair dans `purger-cache.mjs`.
+  #
+  # `environment: production` donne à ces secrets une portée nommée, et offre l'endroit où exiger
+  # une approbation manuelle avant chaque mise en ligne le jour où ce sera souhaitable.
+  deploiement:
+    name: Déploiement en production
+    needs: [verify, site-complet]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment: production
+    concurrency:
+      group: deploiement-production
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # Le runner de ce job est neuf : rien de ce que `verify` ou `site-complet` ont installé ne
+      # survit d'un job à l'autre. L'installation se refait donc ici, depuis le seul lockfile —
+      # et ce commentaire n'est pas décoratif : les contre-épreuves du catalogue ancrent leurs
+      # mutations sur le bloc « Node 22 → Installation reproductible » des deux jobs de contrôle,
+      # et exigent que chaque ancre soit UNIQUE dans le fichier. Sans cette ligne, le bloc du job
+      # de déploiement serait textuellement identique à celui de `site-complet`, et deux mutations
+      # ne sauraient plus laquelle viser (constaté sur la PR #75, run #270).
+      - name: Installation reproductible
+        run: npm ci
+
+      # DIAGNOSTIC AVANT D'AGIR (17/09/2026). Trois déploiements de suite ont échoué sur
+      # « Authentication error [code: 10000] », un code que Cloudflare rend aussi bien pour un
+      # jeton inconnu que pour un jeton sans la permission voulue — et le journal ne dit pas
+      # lequel. `wrangler whoami` tranche : il imprime le compte reconnu et LA LISTE DES
+      # PERMISSIONS que Cloudflare attribue au jeton, sans jamais imprimer le jeton lui-même.
+      # Si cette étape échoue, la valeur du secret est en cause ; si elle réussit et que le
+      # déploiement échoue ensuite, c'est une permission qui manque, et elle est nommée juste
+      # au-dessus. L'étape reste après diagnostic : elle coûte deux secondes et rend chaque
+      # échec futur lisible au premier coup d'œil.
+      - name: Ce que Cloudflare reconnaît au jeton (permissions, sans la valeur)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "longueur du jeton : ${#CLOUDFLARE_API_TOKEN} caractères"
+          echo "longueur de l'identifiant de compte : ${#CLOUDFLARE_ACCOUNT_ID} caractères"
+          printf '%s' "$CLOUDFLARE_API_TOKEN" | LC_ALL=C grep -q '[^A-Za-z0-9_-]' && echo "⚠ le jeton contient un caractère hors [A-Za-z0-9_-] (espace, retour à la ligne ?)" || echo "jeton : alphabet attendu"
+          npx wrangler whoami
+
+      # BUILD_SHA n'est pas décoratif : c'est lui que `/v1/health` renverra, et c'est la seule
+      # façon de savoir quelle version du moteur répond réellement.
+      - name: Worker de production, épinglé sur le commit fusionné
+        working-directory: packages/workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --env production --var BUILD_SHA:${{ github.sha }}
+
+      # `wrangler deploy` annonce une publication ; il ne dit pas quelle version le bord SERT. La
+      # propagation prend quelques secondes, d'où les tentatives — mais un désaccord persistant
+      # arrête tout AVANT que les pages ne partent, plutôt que de laisser le site et le moteur
+      # diverger en silence.
+      - name: Le moteur servi est bien celui qu'on vient de publier
+        run: |
+          for tentative in $(seq 1 12); do
+            reponse=$(curl -fsS https://mydogcanfly.com/v1/health || true)
+            servi=$(printf '%s' "$reponse" | node -e 'let e="";process.stdin.on("data",d=>e+=d).on("end",()=>{try{process.stdout.write(String(JSON.parse(e).sha??""))}catch{}})')
+            if [ "$servi" = "${{ github.sha }}" ]; then
+              echo "✓ /v1/health répond ${servi}"
+              printf '%s' "$reponse" | tr ',' '\n' | grep -i worker_version_id || true
+              exit 0
+            fi
+            echo "tentative ${tentative}/12 — servi « ${servi:-?} », attendu « ${{ github.sha }} »"
+            sleep 10
+          done
+          echo "✗ le Worker servi ne correspond pas au commit déployé — les pages ne partiront pas."
+          exit 1
+
+      - name: Build de production
+        run: npm run build:prod
+
+      - name: Vérification d'indexation
+        run: npm run verify:index
+
+      - name: Pages de production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main
+
+      # Le seul échec de cette étape qui ne soit pas bloquant est l'absence de jeton, et il ne peut
+      # pas se produire ici : le jeton est le même que celui qui vient de déployer.
+      - name: Purge du cache de bord
+        env:
+          CLOUDFLARE_PURGE_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npm run purge:cache

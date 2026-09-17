@@ -1,0 +1,105 @@
+---
+/**
+ * MESURE D'AUDIENCE ET BANDEAU DE CONSENTEMENT — rendu en fin de `<body>`, sur toutes les pages.
+ *
+ * Deux régimes, décrits dans `lib/mesure.ts` : Cloudflare Web Analytics part sans consentement
+ * parce qu'il n'écrit rien sur l'appareil ; Google Analytics 4 n'est chargé qu'après un clic sur
+ * « Accepter ». Tant que `GA4_ID` est vide, le bandeau n'existe pas : il n'y a rien à consentir.
+ *
+ * CE QUE LE BANDEAU RESPECTE, parce que la page Cookies l'a promis avant même qu'il existe :
+ *   · refus par défaut — aucune requête vers Google avant le clic, pas même un ping sans cookie ;
+ *   · « Refuser » aussi visible que « Accepter », même taille, même rang ;
+ *   · le choix est gardé six mois (`localStorage`, clé `mdcf_consent`), puis redemandé ;
+ *   · il se rouvre à tout moment : `window.mdcfConsent.open()`, appelé depuis la page Cookies.
+ *
+ * PRODUCTION SEULEMENT. Les prévisualisations et le poste de travail ne mesurent rien et
+ * n'affichent pas de bandeau : les contrôles navigateur de la CI lisent le build de preview,
+ * et un bandeau qui recouvre le pied de page y ferait échouer des captures sans rien prouver.
+ */
+import { inlineT } from "@mydogcanfly/knowledge";
+import { IS_PRODUCTION } from "../lib/env";
+import { GA4_ID, CF_BEACON_TOKEN } from "../lib/mesure";
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const T = inlineT(locale);
+const base = locale === "en" ? "" : `/${locale}`;
+const actif = IS_PRODUCTION;
+const avecGa = actif && GA4_ID !== "";
+const avecCf = actif && CF_BEACON_TOKEN !== "";
+const beacon = JSON.stringify({ token: CF_BEACON_TOKEN });
+---
+{avecCf && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={beacon} is:inline></script>}
+{avecGa && (
+  <div id="mdcf-consent" class="cst" role="dialog" aria-labelledby="mdcf-consent-t" aria-describedby="mdcf-consent-d" hidden>
+    <div class="cst__box">
+      <p id="mdcf-consent-t" class="cst__t">{T("Audience measurement", "Mesure d'audience", "Medición de audiencia")}</p>
+      <p id="mdcf-consent-d" class="cst__d">{T(
+        "With your consent, we use Google Analytics to understand which guides help you. Refusing changes nothing about how the site works, and you can change your mind at any time from the Cookies page.",
+        "Avec votre accord, nous utilisons Google Analytics pour comprendre quels guides vous sont utiles. Refuser ne change rien au fonctionnement du site, et vous pouvez revenir sur votre choix à tout moment depuis la page Cookies.",
+        "Con tu consentimiento, utilizamos Google Analytics para entender qué guías te resultan útiles. Rechazar no cambia nada en el funcionamiento del sitio, y puedes cambiar de opinión en cualquier momento desde la página Cookies.",
+      )}{" "}<a href={`${base}/cookies/`}>{T("Learn more", "En savoir plus", "Más información")}</a></p>
+      <div class="cst__b">
+        <button type="button" class="cst__btn" data-refuser>{T("Refuse", "Refuser", "Rechazar")}</button>
+        <button type="button" class="cst__btn cst__btn--ok" data-accepter>{T("Accept", "Accepter", "Aceptar")}</button>
+      </div>
+    </div>
+  </div>
+)}
+{avecGa && (
+  <script is:inline define:vars={{ GA: GA4_ID }}>
+    (function () {
+      var CLE = "mdcf_consent", SIX_MOIS = 182 * 24 * 3600 * 1000;
+      function lire() {
+        try {
+          var v = JSON.parse(localStorage.getItem(CLE) || "null");
+          if (!v || !v.t || Date.now() - v.t > SIX_MOIS) return null;
+          return v.c === "granted" ? "granted" : v.c === "denied" ? "denied" : null;
+        } catch (e) { return null; }
+      }
+      function ecrire(c) { try { localStorage.setItem(CLE, JSON.stringify({ c: c, t: Date.now() })); } catch (e) {} }
+      function chargerGa() {
+        if (window.__mdcfGa) return;
+        window.__mdcfGa = true;
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "granted" });
+        gtag("js", new Date());
+        gtag("config", GA);
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA);
+        document.head.appendChild(s);
+      }
+      var b = document.getElementById("mdcf-consent");
+      if (!b) return;
+      function ouvrir() { b.hidden = false; }
+      function fermer() { b.hidden = true; }
+      window.mdcfConsent = { open: ouvrir, state: lire };
+      b.querySelector("[data-accepter]").addEventListener("click", function () { ecrire("granted"); fermer(); chargerGa(); });
+      b.querySelector("[data-refuser]").addEventListener("click", function () { ecrire("denied"); fermer(); });
+      var c = lire();
+      if (c === "granted") chargerGa();
+      else if (c === null) ouvrir();
+    })();
+  </script>
+)}
+<style>
+  .cst { position: fixed; inset: auto 0 0 0; z-index: 60; padding: 0 12px 12px; pointer-events: none; }
+  .cst[hidden] { display: none; }
+  .cst__box {
+    pointer-events: auto; max-width: 720px; margin: 0 auto; background: var(--mdcf-surface); color: var(--mdcf-ink);
+    border: 1px solid var(--mdcf-line); border-radius: var(--mdcf-radius); box-shadow: var(--mdcf-shadow-lg);
+    padding: 16px 18px; font-family: var(--mdcf-font);
+  }
+  .cst__t { margin: 0 0 6px; font-weight: 700; font-size: 15px; }
+  .cst__d { margin: 0 0 12px; font-size: 14px; line-height: 1.5; color: var(--mdcf-ink-soft); }
+  .cst__d a { color: var(--mdcf-link); text-decoration: underline; }
+  .cst__b { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+  .cst__btn {
+    font: inherit; font-size: 14px; font-weight: 600; padding: 9px 16px; border-radius: var(--mdcf-radius-sm); cursor: pointer;
+    border: 1px solid var(--mdcf-navy); background: var(--mdcf-surface); color: var(--mdcf-navy); min-width: 120px;
+  }
+  .cst__btn--ok { background: var(--mdcf-navy); color: #fff; }
+  .cst__btn:focus-visible { outline: 3px solid var(--mdcf-accent); outline-offset: 2px; }
+</style>

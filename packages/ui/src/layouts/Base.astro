@@ -2,6 +2,7 @@
 import "../styles/tokens.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Mesure from "../components/Mesure.astro";
 import { localizedPath, LOCALES, isPreviewLocale } from "../lib/routes";
 import { IS_PRODUCTION } from "../lib/env";
 import { LEGAL, OFFICIAL_PROFILES, postalAddressLd } from "../lib/legal";
@@ -336,5 +337,6 @@ const headLd = [orgLd, siteLd, ...jsonLd];
     <Header locale={locale} switcherPath={switcherPath} />
     <main><slot /></main>
     <Footer locale={locale} />
+    <Mesure locale={locale} />
   </body>
 </html>
