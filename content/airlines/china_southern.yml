@@ -7,10 +7,10 @@ titleH1:
   es: Viajar con perro en China Southern
   pt: "Voar com um cachorro na China Southern"
 metaDesc:
-  en: "China Southern pet policy: hold-only carriage, fares by weight, breed limits and official sources."
-  fr: "Politique animaux China Southern : transport en soute uniquement, tarifs au poids, restrictions de races et sources officielles."
-  es: "Política de mascotas de China Southern: transporte solo en bodega, tarifas por peso, límites de raza y fuentes oficiales."
-  pt: "Política de animais da China Southern: transporte somente no porão, tarifas por peso, limites de raça e fontes oficiais."
+  en: "China Southern pet policy: hold carriage by weight, a disputed paid cabin product, breed limits and official sources."
+  fr: "Politique animaux China Southern : transport en soute au poids, produit cabine payant contesté, restrictions de races et sources officielles."
+  es: "Política de mascotas de China Southern: transporte en bodega por peso, producto de cabina de pago en disputa, límites de raza y fuentes oficiales."
+  pt: "Política de animais da China Southern: transporte no porão por peso, produto pago de cabine em disputa, limites de raça e fontes oficiais."
 chips:
   - icon: 📍
     label:
@@ -32,20 +32,24 @@ verdict:
     es: Difícil
     pt: "Difícil"
 verdictNote:
-  en: No cabin pets except service dogs; cats, dogs & birds travel as checked baggage in the hold.
-  fr: Pas d'animaux en cabine sauf chiens d'assistance ; chats, chiens et oiseaux en bagage enregistré en soute.
-  es: Sin mascotas en cabina salvo perros de servicio; gatos, perros y aves viajan como equipaje facturado en bodega.
-  pt: "Nenhum animal na cabine, exceto cães de assistência; gatos, cachorros e aves viajam como bagagem despachada no porão."
+  en: "Two official pages disagree about the cabin: a paid in-cabin product on designated direct flights against an FAQ that refuses pets. The hold is open to cats, dogs and birds as checked baggage."
+  fr: "Deux pages officielles se contredisent sur la cabine : un produit payant sur les vols directs désignés, contre une FAQ qui refuse les animaux. La soute, elle, accepte chats, chiens et oiseaux en bagage enregistré."
+  es: "Dos páginas oficiales se contradicen sobre la cabina: un producto de pago en vuelos directos designados frente a una FAQ que rechaza las mascotas. La bodega sí admite gatos, perros y aves como equipaje facturado."
+  pt: "Duas páginas oficiais contradizem-se quanto à cabine: um produto pago em voos diretos designados contra uma FAQ que recusa animais. O porão aceita gatos, cães e aves como bagagem despachada."
 ladder:
-  - flex: 8
-    color: "#8a94a3"
+  - flex: 20
+    color: "#9a6410"
     label:
       en: Cabin
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    sub: —
-  - flex: 72
+    sub:
+      en: designated flights
+      fr: vols désignés
+      es: vuelos designados
+      pt: "voos designados"
+  - flex: 60
     color: "#1f5fa8"
     label:
       en: Hold

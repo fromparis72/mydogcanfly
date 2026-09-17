@@ -896,11 +896,21 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
       const { source: _sourceRetiree, ...sansSource } = decision;
       return { ...sansSource, status: "confirmation_required" };
     }),
+    /* MOUVEMENT NOMMÉ (17/09/2026) : EL AL porte désormais neuf lignes tarifaires soute prouvées
+       (elal.com/fra/baggage/pets), et le volet des preuves les cite au même titre que les canaux.
+       La mutation vide donc AUSSI les résolutions tarifaires — en gardant leur forme, une par canal,
+       parce que le contrat de forme du Finder (`rapportComplet`) l'exige — : le témoin doit rester une
+       carte sans aucune source, sinon le contrôle attrape le tarif et non la racine qu'il vise. */
+    fare_resolutions: (carteTemoinOriginale.fare_resolutions ?? []).map((x) => ({
+      ...x,
+      resolution: Object.fromEntries(Object.entries(x?.resolution ?? {}).map(([k, v]) => [k, Array.isArray(v) ? [] : v])),
+    })),
   } : null;
   const cartes2 = [carteThaiRapport, carteTemoinRapport];
   check(`la mutation ${TEMOIN_SANS_SOURCE} part d'une carte servie et lui retire tous ses canaux sourcés`,
     !!cartes2[1] && (carteTemoinOriginale?.placement_decisions ?? []).some((d) => !!d.source)
-      && (cartes2[1].placement_decisions ?? []).every((d) => !d.source));
+      && (cartes2[1].placement_decisions ?? []).every((d) => !d.source)
+      && (cartes2[1].fare_resolutions ?? []).every((x) => Object.values(x?.resolution ?? {}).every((v) => !Array.isArray(v) || v.length === 0)));
   const racineTemoin = kb.airlines.get(TEMOIN_SANS_SOURCE)?.source?.url ?? "";
   check(`et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper`,
     racineTemoin !== "" && new URL(racineTemoin).pathname.replace(/\/$/, "") === "",

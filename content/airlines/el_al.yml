@@ -100,6 +100,212 @@ policies:
       quote: 'כאשר בעל החיים שוקל מעל 9 ק"ג ועד 100 ק"ג ביחד עם הכלוב - ניתן לרוב להטיסו ככבודה בתא המטען.'
       quote_language: he
       locator: 'sections « הטסת חיית מחמד לחו"ל » et « …לישראל »'
+    # GRILLE TARIFAIRE OFFICIELLE (16/09/2026). Neuf lignes : trois paliers de poids × trois zones,
+    # dans la devise que la page publie pour chacune — dollars pour l'international, shekels pour
+    # Eilat. Aucune conversion, le contrat l'interdit.
+    #
+    # ELLE NE COUVRE QUE LA SOUTE, et c'est le titre de la section qui le dit : « Si votre animal
+    # voyage en soute ». La page ne publie AUCUN tarif de cabine, pas même pour la tranche de moins
+    # de 9 kg — celle qui, d'usage, voyage précisément en cabine. Un relevé tiers annonçait « 100 USD
+    # en cabine, toutes liaisons » : c'est la première case de ce tableau, qui parle de la soute.
+    # Reporter ce montant en cabine reviendrait à inventer un prix.
+    #
+    # LE PALIER SE MESURE SAC COMPRIS — « le tarif de transport est déterminé selon le poids total de
+    # l'animal, son sac de transport et la nourriture apportés » — donc sur une grandeur que le
+    # moteur ne connaît pas. Pas d'`applies_when` : ces montants se montrent comme grille.
+    #
+    # `per_one_way` : la page facture par direction, et précise qu'un billet ouvert doit régler
+    # l'aller et le retour même si la date de retour est inconnue.
+    fares:
+      - id: fare_el_al_hold_euro_me_moins9_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 100
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Europe et Moyen-Orient, animal et cage de moins de 9 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Europe et Moyen Orient … moins de 9kg … $100"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_euro_me_9_50_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 200
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Europe et Moyen-Orient, animal et cage de 9 à 50 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Europe et Moyen Orient … entre 9 et 50kg … $200"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_euro_me_50_100_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 400
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Europe et Moyen-Orient, animal et cage de 50 à 100 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Europe et Moyen Orient … entre 50 et 100kg … $400"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_am_asie_moins9_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 150
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Amérique du Nord et Asie, animal et cage de moins de 9 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Amérique du Nord et Asie … moins de 9kg … $150"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_am_asie_9_50_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 250
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Amérique du Nord et Asie, animal et cage de 9 à 50 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Amérique du Nord et Asie … entre 9 et 50kg … $250"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_am_asie_50_100_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 450
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Amérique du Nord et Asie, animal et cage de 50 à 100 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Amérique du Nord et Asie … entre 50 et 100kg … $450"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_eilat_moins9_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 50
+              currency: ILS
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Eilat, animal et cage de moins de 9 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Eilat … moins de 9kg … 50 ILS"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_eilat_9_50_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 150
+              currency: ILS
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Eilat, animal et cage de 9 à 50 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Eilat … entre 9 et 50kg … 150 ILS"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
+      - id: fare_el_al_hold_eilat_50_100_2026_09_16
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 200
+              currency: ILS
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Eilat, animal et cage de 50 à 100 kg"
+        source:
+          url: "https://www.elal.com/fra/baggage/pets"
+          source_type: official_website
+          verified_date: "2026-09-16"
+          review_due: "2026-12-15"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "Eilat … entre 50 et 100kg … 200 ILS"
+          quote_language: fr
+          locator: "Quels tarifs pour faire voyager son animal ? → Si votre animal voyage en soute"
   cargo:
     availability: offered
     min_weight_kg: 100

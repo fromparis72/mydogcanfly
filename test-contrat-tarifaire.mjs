@@ -702,9 +702,20 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      MOUVEMENT NOMMÉ (13/09/2026, fret + Aerolíneas) : onze lignes officielles
      Aerolíneas entrent sur deux canaux ; l'unique ligne cargo Virgin Atlantic
      sort, car le produit officiel est déclaré indisponible. Bilan net : +10
-     lignes, +1 canal, 70 compagnies tarifées inchangées. */
-  check("l'import verrouillé porte exactement 224 lignes sur 121 canaux et 70 compagnies — Aerolíneas entre et le tarif cargo Virgin indisponible sort sans perte muette",
-    avecTarifs === 121 && lignesTarifaires === 224 && compagnies.size === 70,
+     lignes, +1 canal, 70 compagnies tarifées inchangées.
+     MOUVEMENT NOMMÉ (16/09/2026, trois grilles officielles). LATAM cabine : sept
+     lignes, une par portée publiée derrière le dépliant « Transport Fees », les
+     vols intérieurs dans leur devise nationale et les vols régionaux et
+     long-courriers en dollars. Korean Air : douze lignes, quatre en cabine et huit
+     en soute — la page facture au poids TOTAL et à la distance, jamais au canal
+     (« les frais basés sur la méthode de transport sont les mêmes »), mais la bande
+     « 33 à 45 kg » ne peut pas exister en cabine, dont le plafond est de 7 kg
+     contenant compris. EL AL soute : neuf lignes, trois paliers × trois zones ; la
+     page ne publie aucun tarif de cabine, pas même pour la tranche de moins de 9 kg
+     qui voyage pourtant en cabine d'usage, et rien n'y est reporté. Bilan net :
+     +28 lignes, +4 canaux, +3 compagnies. */
+  check("l'import verrouillé porte exactement 252 lignes sur 125 canaux et 73 compagnies — les grilles LATAM cabine, Korean Air et EL AL soute entrent sans perte muette",
+    avecTarifs === 125 && lignesTarifaires === 252 && compagnies.size === 73,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

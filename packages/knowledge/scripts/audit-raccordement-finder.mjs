@@ -84,6 +84,14 @@ for (const filename of readdirSync(CONTENT).filter((name) => name.endsWith(".yml
      s'exécute donc sur la FICHE SOURCE et non sur le HTML construit : un contrôle du rendu aurait
      été vert ce jour-là, et aveugle à la classe entière.
 
+     `case_by_case` EST DANS LE PÉRIMÈTRE, AU MÊME TITRE QU'`offered` (16/09/2026). China Southern
+     portait une cabine `case_by_case` — deux pages officielles vivantes qui se contredisent, un
+     produit cabine payant contre une FAQ de refus — et une frise qui la peignait du gris
+     d'indisponibilité à 8 %, sans libellé. Un canal au cas par cas n'est pas un refus : le gris en
+     affirme un, que la politique ne dit pas. C'est la même règle que celle qui interdit déjà à une
+     carte rouge de coexister avec `case_by_case`, appliquée à l'autre représentation du même fait.
+     Mesuré avant d'être posé : deux fiches concernées, China Southern et British Airways.
+
      ELLE NE LIT PAS LA PROSE, ET C'EST DÉLIBÉRÉ. Une première version cherchait des formules de
      refus (« hold-only », « soute uniquement ») dans `metaDesc` et `verdictNote`. Mesurée sur les
      102 fiches, elle a levé 36 alertes sur 13 compagnies dont la quasi-totalité étaient fausses :
@@ -102,15 +110,16 @@ for (const filename of readdirSync(CONTENT).filter((name) => name.endsWith(".yml
   for (const segment of fiche.ladder ?? []) {
     const canal = segment.label?.en?.toLowerCase();
     const placement = canal === "cabin" ? "cabin" : canal === "hold" ? "hold" : null;
-    if (!placement || fichePolicies[placement]?.availability !== "offered") continue;
+    const disponibilite = fichePolicies[placement ?? ""]?.availability;
+    if (!placement || (disponibilite !== "offered" && disponibilite !== "case_by_case")) continue;
     if (segment.color === GRIS_INDISPONIBLE) {
       add("LADDER_GREY_ON_OFFERED", id, placement,
-        "la frise peint le canal en gris d'indisponibilité alors que la politique l'offre");
+        `la frise peint le canal en gris d'indisponibilité alors que la politique dit « ${disponibilite} »`);
     }
     const sousTitre = typeof segment.sub === "string" ? segment.sub : segment.sub?.en;
     if (LIBELLE_MUET.has((sousTitre ?? "").trim())) {
       add("LADDER_MUTE_ON_OFFERED", id, placement,
-        "la frise laisse le canal sans libellé alors que la politique l'offre");
+        `la frise laisse le canal sans libellé alors que la politique dit « ${disponibilite} »`);
     }
   }
 
