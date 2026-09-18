@@ -127,6 +127,7 @@ policies:
         placement: hold
         price:
           kind: formula
+          amounts: []
         billing_subject: pet_or_container
         journey_basis: per_segment
         scope_label: "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié"
