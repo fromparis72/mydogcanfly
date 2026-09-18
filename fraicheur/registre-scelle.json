@@ -2292,6 +2292,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_icelandair].premium.policy.hold.fares[fare_icelandair_hold_islande_2026_09_18].source",
+      "empreinte_source": "b80a90e2d512d80ee92d99362740075ff5b6333fb4cfbab0055dfd30e0ede76d"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_icelandair].premium.policy.hold.source",
       "empreinte_source": "5780a9249d1e0bf3ed2b87599fd620a4228656242f0c4c4d71569f29a44f6083"
     },
@@ -3269,6 +3274,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_saudia].premium.policy.cargo.source",
       "empreinte_source": "306bab69b5b516700592d5d07774a6076d3522bde43a8b2e6fec91630338348d"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_saudia].premium.policy.hold.fares[fare_saudia_hold_300usd_2026_09_18].source",
+      "empreinte_source": "460aa2ea19881e0eab19cb76639dfd905f85f83fa3053de712e7cd6274a550dd"
     },
     {
       "famille": "airlines",
@@ -8722,9 +8732,9 @@
     }
   ],
   "empreintes": {
-    "globale": "85cd4c0cf6f48f55e17ebc991c9351511b04c1f94719e500315156fb0af99a14",
+    "globale": "d01b6c82f1230bd5d8f67360a0f2255132113c1555ed4b3539c82e5fb84a4a08",
     "par_famille": {
-      "airlines": "cfeeeaeb5119e75f043a69dfef3740a987a8c779ae490505669ec7466251eed1",
+      "airlines": "8207f7082ebb2b59398fcd2a864f8681f8d905b8c53235f854efe878634ab690",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

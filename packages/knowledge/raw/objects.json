@@ -41790,6 +41790,36 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_icelandair_hold_islande_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 7500,
+                      "currency": "ISK"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024",
+                "source": {
+                  "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la page officielle transmise par Philippe",
+                  "history": [],
+                  "quote": "The fee for animal transport is 7,500 ISK per crate. · Animal transport is charged per crate. · Due to changes to our fleet, we are unable to transport animals in the hold on any international flights from November 1, 2024. We will continue transporting animals in the hold on flights within Iceland.",
+                  "quote_language": "en",
+                  "locator": "Animal transportation → Traveling with animals in Iceland → Prices ; encadré « Changes to our animal transportation service »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.icelandair.com/is-is/adstod/seradstod/ferdast-med-dyr-i-farangursrymi/",
               "source_type": "official_website",
@@ -52242,6 +52272,36 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_saudia_hold_300usd_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas",
+                "source": {
+                  "url": "https://www.saudia.com/book/flight-information/travelling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la page officielle transmise par Philippe",
+                  "history": [],
+                  "quote": "Saudia charges $100 USD for cabin transport or $300 USD for cargo hold transport on domestic and international flights (excluding USA & Canada). · Fees apply to pets (up to 5 kg including the container) travelling in the cabin or cargo hold. · For flights to/from the USA and Canada, please check the specific fees on the respective regional pages.",
+                  "quote_language": "en",
+                  "locator": "Travelling with pets → Fees & Charges"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
