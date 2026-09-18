@@ -902,6 +902,26 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.cabin.fares[fare_asiana_cabin_asie_autres_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.cabin.fares[fare_asiana_cabin_coree_asie_nord_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.cabin.fares[fare_asiana_cabin_domestique_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.cabin.fares[fare_asiana_cabin_longs_courriers_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_asiana].premium.policy.cabin.source",
       "empreinte_source": "c1ac4e03bb45eea3cf53758fe30fbd9ea4a79418711ee9db1bfa650267ac2230"
     },
@@ -909,6 +929,46 @@
       "famille": "airlines",
       "locator": "airlines[airline_asiana].premium.policy.cargo.source",
       "empreinte_source": "24d5bc29ef8c5263db6372955981fba21e1a1d3dbbcc27c552ea4d51b92d7ec5"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_asie_autres_e3245_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_asie_autres_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_coree_asie_nord_e3245_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_coree_asie_nord_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_domestique_e3245_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_domestique_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_longs_courriers_e3245_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_asiana].premium.policy.hold.fares[fare_asiana_hold_longs_courriers_j32_2026_09_18].source",
+      "empreinte_source": "19bc45ae6f6f5250d9ac4807c717b7dfcb8a2c53564c6ca297dbc5c8c0c8b8cc"
     },
     {
       "famille": "airlines",
@@ -8662,9 +8722,9 @@
     }
   ],
   "empreintes": {
-    "globale": "f182ed4e1daa9a5b0447273246985040e022c4dc07db9a7850e184ba699dc8c5",
+    "globale": "85cd4c0cf6f48f55e17ebc991c9351511b04c1f94719e500315156fb0af99a14",
     "par_famille": {
-      "airlines": "4322a3ae5dcf1a1674f4544451962dcfaa01db9d0435c707b30fc273ebb8911e",
+      "airlines": "cfeeeaeb5119e75f043a69dfef3740a987a8c779ae490505669ec7466251eed1",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

@@ -28355,6 +28355,132 @@
             "availability": "offered",
             "max_weight_kg": 7,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_asiana_cabin_domestique_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 30000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Up to 32 kg (including cage) : KRW 30,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_coree_asie_nord_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 140000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Up to 32 kg (including cage) : KRW 140,000 (USD 140)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_asie_autres_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 210000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 210,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Up to 32 kg (including cage) : KRW 210,000 (USD 210)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_longs_courriers_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Up to 32 kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              }
+            ],
             "source": {
               "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
@@ -28374,6 +28500,256 @@
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_asiana_hold_domestique_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 30000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Up to 32 kg (including cage) : KRW 30,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_domestique_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 60000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Between 32kg ~ 45kg (including cage) : KRW 60,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_coree_asie_nord_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 140000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Up to 32 kg (including cage) : KRW 140,000 (USD 140)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_coree_asie_nord_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Between 32kg ~ 45kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_asie_autres_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 210000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 210,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Up to 32 kg (including cage) : KRW 210,000 (USD 210)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_asie_autres_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 440000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 440,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Between 32kg ~ 45kg (including cage) : KRW 440,000 (USD 440)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_longs_courriers_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Up to 32 kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_longs_courriers_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 590000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 590,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Between 32kg ~ 45kg (including cage) : KRW 590,000 (USD 590)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              }
+            ],
             "source": {
               "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
