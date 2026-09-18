@@ -30954,9 +30954,6 @@
         "airport_tpe|airport_vie",
         "airport_tpe|airport_yvr"
       ],
-      "fees": {
-        "hold": "$280–520"
-      },
       "website": "https://www.china-airlines.com",
       "premium": {
         "policy": {
@@ -30978,6 +30975,488 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_china_airlines_hold_t_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 280,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 392,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 280 / CAD 392 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_t_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 350,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 490,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 350 / CAD 490 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_t_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 280,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 392,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 280 / CAD 392 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 320,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 448,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 320 / CAD 448 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 350,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 490,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 350 / CAD 490 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 500,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 700,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 500 / CAD 700 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 500,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 700,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 500 / CAD 700 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 520,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 728,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 520 / CAD 728 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 3 »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport",
               "source_type": "official_website",

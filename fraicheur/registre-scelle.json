@@ -1182,6 +1182,81 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_t_z1_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_t_z2_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_t_z3_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z1_t_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z1_z1_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z1_z2_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z1_z3_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z2_t_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z2_z1_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z2_z2_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z2_z3_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z3_t_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z3_z1_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z3_z2_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_airlines].premium.policy.hold.fares[fare_china_airlines_hold_z3_z3_2026_09_18].source",
+      "empreinte_source": "aa16acd8c937b8704876eaece06875e897c4ff26a25426ddd1183e50aaaf6f59"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_china_airlines].premium.policy.hold.source",
       "empreinte_source": "84172ee46bab96e531133112d1474a4dd60da7751a023de58ebe05dadc6d1f5d"
     },
@@ -8542,9 +8617,9 @@
     }
   ],
   "empreintes": {
-    "globale": "7ac04e071c565409598f76266b044656a21f06d26e03fa6b019f97f8c8f87827",
+    "globale": "87ff79535144fca44abf8423719648d03a18abbf21f51d28ef7b8d7b0e5dd786",
     "par_famille": {
-      "airlines": "e82ebbf54c111fd2952ca9b78d500e3e9e2ce4d4fe4958d25fb4f365511d7a15",
+      "airlines": "234fd5234e4817bd682c23eae6ba264a6e3a6e27383d3903257d0b6f7b585671",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
