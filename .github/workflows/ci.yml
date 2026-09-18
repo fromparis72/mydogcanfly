@@ -293,6 +293,12 @@ jobs:
         run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
 
       # Les fiches d'entités à leur portée réelle : 78 canaux × 4 langues, et non les sentinelles.
+      # LE BLOC TARIFAIRE, sur le site construit (18/09/2026). Il lit le HTML servi, en quatre
+      # langues, et porte ses propres témoins de non-vacuité : au premier essai, trois de ses
+      # contrôles étaient verts sur un `dist` où aucun montant n'était encore rendu.
+      - name: Bloc tarifaire des fiches (montants, unités, conflits, langues)
+        run: npm run test:bloc-tarifaire
+
       - name: Harnais DOM des pages d'entités (78 canaux × 4 langues)
         run: npm run test:entities:complet
 

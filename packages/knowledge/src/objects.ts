@@ -140,6 +140,14 @@ const PlacementPolicyCommon = {
   fares: z.array(Fare).optional(),
   /** Les conflits officiels ouverts sur ce canal : deux pages vivantes, deux montants, aucun tranché. */
   fare_conflicts: z.array(FareConflict).optional(),
+  /** LA PREUVE QU'IL N'Y A RIEN À PROUVER (18/09/2026, demande de Philippe, point 4).
+   *  « La compagnie ne publie aucun montant » et « nous n'avons pas encore regardé » sont deux
+   *  affirmations différentes, et seule la première engage la compagnie. Elle ne peut donc pas se
+   *  déduire d'un tableau vide : elle exige la même citation que n’importe quel tarif — la page
+   *  officielle lue, la phrase qui renvoie ailleurs (service client, agence, fret), sa localisation
+   *  et sa date. Sans ce bloc, l'absence de tarif se dit « pas encore vérifié », et c'est un aveu
+   *  de notre part, pas une description de la compagnie. */
+  no_published_fare: PolicySource.optional(),
   /** LE PLANCHER DE POIDS, avec sa borne (11/09/2026, annexe 51). Il naît de la soute Air France,
    *  dont la phrase citée établit DEUX bornes — « more than 8 kg … and up to 75 kg … with its
    *  carrier » — là où le modèle ne portait que le maximum. Codex a tranché : ne pas afficher

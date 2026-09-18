@@ -14,3 +14,4 @@ export * from "./views";
 export * from "./guides";
 export * from "./i18n";
 export * from "./inline";
+export * from "./etatTarifaire";
