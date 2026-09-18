@@ -10667,7 +10667,25 @@
         ]
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "case_by_case",
+        "source": {
+          "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+          "source_type": "official_website",
+          "verified_date": "2026-09-18",
+          "review_due": "2026-12-17",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [
+            {
+              "date": "2026-09-18",
+              "reviewer": "Codex — official cargo verification",
+              "note": "Supersedes the legacy unreviewed entry derived from https://www.airtransat.com, dated 2026-08-08."
+            }
+          ],
+          "quote": "Larger cages must be shipped via Air Transat cargo and advance arrangements are required.",
+          "quote_language": "en",
+          "locator": "Pets in the checked baggage hold → Restrictions → Kennel specifications"
+        }
       }
     },
     "channels": [
@@ -57874,17 +57892,57 @@
       "cabin": {
         "availability": "offered",
         "source": {
-          "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+          "url": "https://www.westjet.com/en-ca/pets",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-18",
+          "review_due": "2026-12-17",
           "confidence": 4,
           "reviewer": "Codex — direct reading of official airline page",
-          "history": [],
-          "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+          "history": [
+            {
+              "date": "2026-09-18",
+              "reviewer": "Codex — supersession by the current detailed cabin rule",
+              "note": "Previous source read on 2026-09-09: https://www.westjet.com/en-ca/pets/general-entrance-requirements ; quote « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ; replaced by the current fit requirement on the main pets page."
+            }
+          ],
+          "quote": "Your pet must be able to stand, sit, turn around, and lie down comfortably in their kennel to travel in the cabin.",
           "quote_language": "en",
-          "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
-        }
+          "locator": "Pets → In the cabin → Kennel information"
+        },
+        "fares": [
+          {
+            "id": "fare_westjet_cabin_cad_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 50,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 118,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": "Canada/US; outside Canada/US",
+            "source": {
+              "url": "https://www.westjet.com/en-ca/flights/fees",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pet in cabin (each way) | $50-59 | $100-118",
+              "quote_language": "en",
+              "locator": "Optional services and fees → Pets"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -57908,10 +57966,62 @@
         },
         "max_weight_kg": 45,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_westjet_hold_cad_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 100,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 236,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": "Canada/US; outside Canada/US",
+            "source": {
+              "url": "https://www.westjet.com/en-ca/flights/fees",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pet as checked baggage (each way) | $100-118 | $200-236",
+              "quote_language": "en",
+              "locator": "Optional services and fees → Pets"
+            }
+          }
+        ]
       },
       "cargo": {
-        "review_state": "legacy_unreviewed",
+        "availability": "case_by_case",
+        "source": {
+          "url": "https://www.westjet.com/en-ca/pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-18",
+          "review_due": "2026-12-17",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [
+            {
+              "date": "2026-09-18",
+              "reviewer": "Codex — official cargo verification",
+              "note": "Supersedes the legacy unreviewed cargo entry last checked 2026-07-08."
+            }
+          ],
+          "quote": "For all pets destined for London Heathrow (LHR), booking as manifested cargo is mandatory.",
+          "quote_language": "en",
+          "locator": "Pets → WestJet Cargo"
+        },
         "fares": [
           {
             "id": "fare_westjet_cargo_2026_09_10",

@@ -7,6 +7,24 @@ import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 type Ctx = Record<string, string | number | boolean>;
 const PLACEMENTS = ["cabin", "hold", "cargo"] as const;
 
+/**
+ * GARDE-FOU CABINE SANS PLAFOND PUBLIÉ (arbitrage Philippe, 18/09/2026).
+ *
+ * Plusieurs compagnies nord-américaines ne publient pas de poids maximal : elles exigent que le
+ * chien puisse se tenir debout, se retourner et se coucher dans un sac placé SOUS LE SIÈGE. La
+ * première implémentation transformait l'absence de nombre en absence de filtre : Air Canada
+ * répondait ainsi « cabine : oui, sous conditions » pour un malamute de 38 kg. C'était faux.
+ *
+ * Ce seuil n'est JAMAIS présenté comme une règle de la compagnie et n'est jamais injecté dans
+ * `weight_limit_kg`. Il s'agit d'une barrière conservatrice propre à MyDogCanFly : au-delà de
+ * 10 kg, une politique cabine sans plafond chiffré ne peut plus produire une réponse positive.
+ * Les plafonds officiels structurés continuent de décider eux-mêmes, y compris s'ils sont plus
+ * bas. Le service ITA « Large Dog On Board » reste une exception strictement bornée aux vols
+ * intérieurs italiens et à ses règles dédiées. Les chiens d'assistance ne passent pas par cette
+ * barrière : leur accès en cabine relève d'un régime distinct du transport d'un animal ordinaire.
+ */
+export const CABIN_CONSERVATIVE_MAX_WEIGHT_KG = 10;
+
 // Great-circle distance (km) — used by the connection-plausibility ("maximum permitted detour") filter.
 function greatCircleKm(a: { lat: number; lon: number }, b: { lat: number; lon: number }): number {
   const rad = (d: number) => (d * Math.PI) / 180;
@@ -562,6 +580,24 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         /* LA BORNE (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur — Air Austral, « inférieur à
            8 kg » : 8,0 kg est refusé, 7,9 ne l'est pas ; `lte` ou absent l'inclut : 8,0 passe, 8,1 est refusé. */
         && (pol.weight_limit_bound === "lt" ? poidsChien >= pol.max_weight_kg : poidsChien > pol.max_weight_kg);
+      /* GARDE-FOU CABINE SANS PLAFOND PUBLIÉ (18/09/2026). Certaines compagnies décrivent
+         seulement un « petit chien » dans un contenant sous le siège. L'absence de nombre dans
+         leur page ne doit jamais devenir une autorisation implicite pour un chien de 15, 38 ou
+         50 kg. Au-delà de 10 kg, le Finder ferme donc la cabine pour un animal de compagnie
+         ordinaire lorsque la politique ne fournit aucun plafond exploitable.
+
+         Important : 10 kg est une BORNE DE SÉCURITÉ DU MOTEUR, pas une règle attribuée à la
+         compagnie. Elle ne descend donc jamais dans `weight_limit_kg` ni dans la preuve affichée.
+         Le service ITA « Large Dog », limité à certains vols intérieurs italiens et soumis à
+         confirmation, reste l'unique exception documentée. Les chiens d'assistance sont hors de
+         ce garde-fou : leur transport relève d'un régime juridique et produit distinct. */
+      const exceptionItaGrandChienDomestique = a.id === "airline_ita_airways"
+        && originCountry === "country_it" && destCountry === "country_it";
+      const seuilCabineConservateurDepasse = p === "cabin"
+        && req.travel_type !== "service_dog"
+        && poidsChien > CABIN_CONSERVATIVE_MAX_WEIGHT_KG
+        && !(typeof pol?.max_weight_kg === "number" && typeof pol?.weight_includes_carrier === "boolean")
+        && !exceptionItaGrandChienDomestique;
       /* LE PLANCHER DÉLIMITE LA PORTÉE DE L'AUTORISATION, PAS UN REFUS. « Au-delà de 32 kg, le
          transport se fera via le fret » prouve le fret au-dessus de 32 kg ; il ne prouve pas que
          le fret accepte aussi 20 kg, ni qu'il le refuse. Sous la borne, le seul verdict fidèle
@@ -576,6 +612,9 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       if (denyDecisifs.length > 0) {
         status = "denied";
       } else if (seuilDepasse) {
+        status = "denied";
+        weightDeny = true;
+      } else if (seuilCabineConservateurDepasse) {
         status = "denied";
         weightDeny = true;
       } else if (pol?.status === "denied") {

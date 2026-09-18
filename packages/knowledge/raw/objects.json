@@ -26309,17 +26309,25 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "case_by_case",
             "source": {
-              "url": "https://www.airtransat.com",
+              "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [
+                {
+                  "date": "2026-09-18",
+                  "reviewer": "Codex — official cargo verification",
+                  "note": "Supersedes the legacy unreviewed entry derived from https://www.airtransat.com, dated 2026-08-08."
+                }
+              ],
+              "quote": "Larger cages must be shipped via Air Transat cargo and advance arrangements are required.",
+              "quote_language": "en",
+              "locator": "Pets in the checked baggage hold → Restrictions → Kennel specifications"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -58789,21 +58797,21 @@
       ],
       "premium": {
         "summary": {
-          "en": "WestJet accepts small dogs in the cabin (soft carrier that fits under the seat) and larger dogs as checked baggage up to 45 kg combined with the kennel. Pets cannot be booked online.",
-          "fr": "WestJet accepte les petits chiens en cabine (sac souple tenant sous le siège) et les chiens plus grands en bagage enregistré jusqu'à 45 kg avec la caisse. La réservation d'un animal ne se fait pas en ligne."
+          "en": "WestJet accepts small dogs in the cabin (soft carrier that fits under the seat) and larger dogs as checked baggage up to 45 kg combined with the kennel. Pet space can be reserved online or by phone.",
+          "fr": "WestJet accepte les petits chiens en cabine (sac souple tenant sous le siège) et les chiens plus grands en bagage enregistré jusqu'à 45 kg avec la caisse. La place de l'animal peut être réservée en ligne ou par téléphone."
         },
         "summary_source": {
           "url": "https://www.westjet.com/en-ca/pets",
           "source_type": "official_website",
-          "verified_date": "2026-07-08",
-          "review_due": "2026-10-06",
+          "verified_date": "2026-09-18",
+          "review_due": "2026-12-17",
           "confidence": 4,
-          "reviewer": "MyDogCanFly Data Team",
+          "reviewer": "Codex — direct reading of official airline page",
           "history": [
             {
-              "date": "2026-07-08",
-              "reviewer": "MyDogCanFly Data Team",
-              "note": "Verified against the WestJet pets page."
+              "date": "2026-09-18",
+              "reviewer": "Codex — current policy re-verification",
+              "note": "Supersedes the summary last checked 2026-07-08."
             }
           ]
         },
@@ -58815,17 +58823,57 @@
               "fr": "Petits animaux uniquement : le chien doit tenir dans un sac souple placé entièrement sous le siège (max 41 × 21,5 × 25,4 cm) et pouvoir se tenir debout, se retourner et se coucher. Un animal par passager. Pas de limite de poids publiée, mais la taille du sac limite de fait la cabine aux petits chiens."
             },
             "source": {
-              "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+              "url": "https://www.westjet.com/en-ca/pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
               "confidence": 4,
               "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+              "history": [
+                {
+                  "date": "2026-09-18",
+                  "reviewer": "Codex — supersession by the current detailed cabin rule",
+                  "note": "Previous source read on 2026-09-09: https://www.westjet.com/en-ca/pets/general-entrance-requirements ; quote « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ; replaced by the current fit requirement on the main pets page."
+                }
+              ],
+              "quote": "Your pet must be able to stand, sit, turn around, and lie down comfortably in their kennel to travel in the cabin.",
               "quote_language": "en",
-              "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
-            }
+              "locator": "Pets → In the cabin → Kennel information"
+            },
+            "fares": [
+              {
+                "id": "fare_westjet_cabin_cad_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "range",
+                  "amounts": [
+                    {
+                      "amount": 50,
+                      "currency": "CAD"
+                    },
+                    {
+                      "amount": 118,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet",
+                "journey_basis": "per_one_way",
+                "scope_label": "Canada/US; outside Canada/US",
+                "source": {
+                  "url": "https://www.westjet.com/en-ca/flights/fees",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Codex — direct reading of official airline page",
+                  "history": [],
+                  "quote": "Pet in cabin (each way) | $50-59 | $100-118",
+                  "quote_language": "en",
+                  "locator": "Optional services and fees → Pets"
+                }
+              }
+            ]
           },
           "hold": {
             "availability": "offered",
@@ -58853,28 +58901,65 @@
             },
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
-            "weight_limit_bound": "lte"
+            "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_westjet_hold_cad_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "range",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "CAD"
+                    },
+                    {
+                      "amount": 236,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet",
+                "journey_basis": "per_one_way",
+                "scope_label": "Canada/US; outside Canada/US",
+                "source": {
+                  "url": "https://www.westjet.com/en-ca/flights/fees",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Codex — direct reading of official airline page",
+                  "history": [],
+                  "quote": "Pet as checked baggage (each way) | $100-118 | $200-236",
+                  "quote_language": "en",
+                  "locator": "Optional services and fees → Pets"
+                }
+              }
+            ]
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "case_by_case",
             "conditions": {
-              "en": "Available via WestJet Cargo where checked-baggage carriage is not possible.",
-              "fr": "Disponible via WestJet Cargo lorsque le transport en bagage enregistré n'est pas possible."
+              "en": "Contact WestJet Cargo to confirm route availability, acceptance and price. Pets destined for London Heathrow must travel as manifested cargo.",
+              "fr": "Contacte WestJet Cargo pour confirmer la route, l'acceptation et le tarif. Les animaux à destination de Londres-Heathrow doivent obligatoirement voyager comme fret manifesté."
             },
             "source": {
               "url": "https://www.westjet.com/en-ca/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
+              "reviewer": "Codex — direct reading of official airline page",
               "history": [
                 {
-                  "date": "2026-07-08",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Verified against the WestJet pets page."
+                  "date": "2026-09-18",
+                  "reviewer": "Codex — official cargo verification",
+                  "note": "Supersedes the legacy unreviewed cargo entry last checked 2026-07-08."
                 }
-              ]
+              ],
+              "quote": "For all pets destined for London Heathrow (LHR), booking as manifested cargo is mandatory.",
+              "quote_language": "en",
+              "locator": "Pets → WestJet Cargo"
             },
             "fares": [
               {
@@ -58905,23 +58990,26 @@
         },
         "booking": {
           "text": {
-            "en": "Pets cannot be added online — call WestJet at 1-888-937-8538 to add a pet to your booking.",
-            "fr": "Impossible d'ajouter un animal en ligne — appelle WestJet au 1-888-937-8538 pour ajouter un animal à ta réservation."
+            "en": "Reserve space for your pet online or by phone as soon as your booking is complete, ideally at least 48 hours before departure.",
+            "fr": "Réserve la place de ton animal en ligne ou par téléphone dès que ta réservation est terminée, idéalement au moins 48 heures avant le départ."
           },
           "source": {
             "url": "https://www.westjet.com/en-ca/pets",
             "source_type": "official_website",
-            "verified_date": "2026-07-08",
-            "review_due": "2026-10-06",
+            "verified_date": "2026-09-18",
+            "review_due": "2026-12-17",
             "confidence": 4,
-            "reviewer": "MyDogCanFly Data Team",
+            "reviewer": "Codex — direct reading of official airline page",
             "history": [
               {
-                "date": "2026-07-08",
-                "reviewer": "MyDogCanFly Data Team",
-                "note": "Verified against the WestJet pets page."
+                "date": "2026-09-18",
+                "reviewer": "Codex — current booking flow verification",
+                "note": "Replaces the stale statement that pets could not be added online, last checked 2026-07-08."
               }
-            ]
+            ],
+            "quote": "Space for pets can be reserved online or by phone.",
+            "quote_language": "en",
+            "locator": "Pets → In the cabin → Reservations and fees"
           }
         },
         "history": [],
@@ -58929,11 +59017,11 @@
         "examples": [],
         "tips": [],
         "precedents": [],
-        "last_reviewed": "2026-07-08"
+        "last_reviewed": "2026-09-18"
       },
       "fees": {
-        "cabin": "$40–90",
-        "hold": "$80–185"
+        "cabin": "CA$50–118",
+        "hold": "CA$100–236"
       },
       "website": "https://www.westjet.com/",
       "rating": {

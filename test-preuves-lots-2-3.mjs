@@ -153,12 +153,12 @@ console.log("\n=== Étage 2 — Madrid → Bogotá : Air Europa (chien seul), Av
     avH?.status === "accepted_with_conditions" && avH?.weight_limit_kg === 70 && avHb?.status === "accepted_with_conditions", JSON.stringify({ avH, avHb }));
   check("Avianca fret : désormais sous conditions sur la citation officielle Avianca Cargo",
     canal(g, "airline_avianca", "cargo")?.status === "accepted_with_conditions");
-  /* La politique citée d'Air Canada cabine ne publie aucun nombre. Aucun plafond n'est donc
-     inventé : la décision reste sous conditions, quel que soit le poids, et la source visible
-     porte la restriction qualitative « small dog ». */
+  /* La politique citée d'Air Canada cabine ne publie aucun nombre. Aucun plafond COMPAGNIE n'est
+     donc inventé ; le garde-fou conservateur du moteur refuse néanmoins une réponse positive
+     au-dessus de 10 kg, tandis qu'un petit chien reste sous conditions. */
   const acG = canal(g, "airline_air_canada", "cabin"), acC = canal(c, "airline_air_canada", "cabin");
-  check("Air Canada cabine (citée sans plafond chiffré), Golden 32 kg : aucun refus ni plafond inventé — sous conditions qualitatives",
-    acG?.status === "accepted_with_conditions" && acG?.weight_limit_kg === undefined, JSON.stringify(acG));
+  check("Air Canada cabine (citée sans plafond chiffré), Golden 32 kg : refus conservateur, sans faux plafond attribué à la compagnie",
+    acG?.status === "denied" && acG?.weight_limit_kg === undefined, JSON.stringify(acG));
   check("Air Canada cabine, Cavalier 6 kg : sous conditions SANS plafond transporté", acC?.status === "accepted_with_conditions" && acC?.weight_limit_kg === undefined, JSON.stringify(acC));
   const rep = explain(c, "fr");
   const carteAE = rep.airlines.find((a) => a.airline_id === "airline_air_europa");
@@ -196,8 +196,8 @@ console.log("\n=== Étage 2 — Paris → Tokyo et Londres → Hong Kong : ANA, 
   check("ANA soute, Golden 32 kg : sous conditions", canal(nrt, "airline_ana", "hold")?.status === "accepted_with_conditions");
   check("ANA fret : désormais sous conditions sur la page officielle ANA Cargo",
     canal(nrt, "airline_ana", "cargo")?.status === "accepted_with_conditions");
-  check("JAL soute : sous conditions ; JAL cabine et fret volontairement NON décidés → à confirmer",
-    canal(nrt, "airline_jal", "hold")?.status === "accepted_with_conditions" && canal(nrt, "airline_jal", "cabin")?.status === "confirmation_required" && canal(nrt, "airline_jal", "cargo")?.status === "confirmation_required");
+  check("JAL soute : sous conditions ; sa cabine non chiffrée est fermée au grand chien par garde-fou ; fret à confirmer",
+    canal(nrt, "airline_jal", "hold")?.status === "accepted_with_conditions" && canal(nrt, "airline_jal", "cabin")?.status === "denied" && canal(nrt, "airline_jal", "cargo")?.status === "confirmation_required");
   check("Cathay cabine et soute refusées sur leurs citations ; fret RÉACTIVÉ sur citation → sous conditions",
     canal(nrt, "airline_cathay_pacific", "cabin")?.status === "denied" && canal(nrt, "airline_cathay_pacific", "cargo")?.status === "accepted_with_conditions" && canal(nrt, "airline_cathay_pacific", "hold")?.status === "denied");
   check("EVA Air cabine refusée ; soute sous conditions", canal(nrt, "airline_eva_air", "cabin")?.status === "denied" && canal(nrt, "airline_eva_air", "hold")?.status === "accepted_with_conditions");
@@ -219,17 +219,19 @@ console.log("\n=== Étage 2 — Paris → Montréal et New York → Los Angeles 
   const yul = decide("airport_cdg", "airport_yul", GOLDEN_32), yulC = decide("airport_cdg", "airport_yul", CAVALIER_6);
   check("Air Transat cabine, Golden 32 kg refusé ; Cavalier 6 kg sous conditions (8 kg contenant compris) ; soute sous conditions",
     canal(yul, "airline_air_transat", "cabin")?.status === "denied" && canal(yulC, "airline_air_transat", "cabin")?.status === "accepted_with_conditions" && canal(yul, "airline_air_transat", "hold")?.status === "accepted_with_conditions");
-  check("Air Transat fret : volontairement NON décidé → à confirmer", canal(yul, "airline_air_transat", "cargo")?.status === "confirmation_required");
+  check("Air Transat fret : organisation préalable officielle, donc à confirmer",
+    canal(yul, "airline_air_transat", "cargo")?.status === "confirmation_required"
+      && canal(yul, "airline_air_transat", "cargo")?.confirmation_causes?.some((c) => c.code === "airline_approval"));
   const lax = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);
-  check("Delta cabine, Golden 32 kg : aucun refus ni plafond inventé — sous conditions qualitatives citées",
-    canal(lax, "airline_delta", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_delta", "cabin")?.weight_limit_kg === undefined, JSON.stringify(canal(lax, "airline_delta", "cabin")));
+  check("Delta cabine, Golden 32 kg : refus conservateur, sans faux plafond attribué à la compagnie",
+    canal(lax, "airline_delta", "cabin")?.status === "denied" && canal(lax, "airline_delta", "cabin")?.weight_limit_kg === undefined, JSON.stringify(canal(lax, "airline_delta", "cabin")));
   check("Delta cabine, Cavalier 6 kg : sous conditions SANS plafond", canal(laxC, "airline_delta", "cabin")?.status === "accepted_with_conditions" && canal(laxC, "airline_delta", "cabin")?.weight_limit_kg === undefined);
   /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : Delta et JetBlue soute quittent
      `intentionally_unset` sur leurs refus officiels respectifs. */
   check("Delta soute : refusée sur la citation officielle réservant ce canal aux militaires éligibles",
     canal(lax, "airline_delta", "hold")?.status === "denied");
-  check("JetBlue cabine : sous conditions sans plafond chiffré pour les deux chiens ; soute refusée sur citation",
-    canal(laxC, "airline_jetblue", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_jetblue", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_jetblue", "hold")?.status === "denied");
+  check("JetBlue cabine : petit chien sous conditions, grand chien refusé par garde-fou ; soute refusée sur citation",
+    canal(laxC, "airline_jetblue", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_jetblue", "cabin")?.status === "denied" && canal(lax, "airline_jetblue", "hold")?.status === "denied");
 }
 
 console.log("\n=== Ce que les lots n'ont PAS fait ===");
@@ -237,8 +239,8 @@ console.log("\n=== Ce que les lots n'ont PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
-  const unset = [["airline_air_transat", "cargo"], ["airline_air_europa", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"]];
-  check("les 5 canaux encore `intentionally_unset` des deux lots n'ont reçu aucune citation",
+  const unset = [["airline_air_europa", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"]];
+  check("les 4 canaux encore `intentionally_unset` des deux lots n'ont reçu aucune citation",
     unset.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(unset.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
 }
 

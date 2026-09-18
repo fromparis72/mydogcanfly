@@ -134,6 +134,9 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_cathay_pacific|cargo",
   "airline_air_india|cargo",
   "airline_ethiopian|cargo",
+  /* 18/09/2026 : Air Transat publie le recours au fret pour les grandes caisses avec
+     organisation préalable. Le canal devient `case_by_case`, jamais une acceptation. */
+  "airline_air_transat|cargo",
   /* 13/09/2026 : la page internationale Air New Zealand établit désormais le fret animalier. */
   "airline_air_new_zealand|cargo",
   /* Lot 4 (09/09/2026) : Emirates fret (« …pets must be carried either as cargo or as checked
@@ -344,6 +347,7 @@ for (const r of rows) {
       "airline_south_african_airways|hold",
       "airline_aer_lingus|cargo",
       "airline_aeromexico|cargo",
+      "airline_air_transat|cargo",
     ].includes(k) && p.availability === "case_by_case";
     const dispoAdmise = p.availability === "offered" || p.availability === "not_offered" || caseByCaseCite;
     if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);

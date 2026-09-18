@@ -76,16 +76,46 @@ policies:
     # Effet attendu : WestJet cabin is a documented conditional route, not an itinerary-specific acceptance confirmation.
     # Portée nommée : Small pets only, on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.
     source:
-      url: "https://www.westjet.com/en-ca/pets/general-entrance-requirements"
+      url: "https://www.westjet.com/en-ca/pets"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-18"
+      review_due: "2026-12-17"
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "WestJet accepts small pets in the cabin and as checked kennel on most international flights."
+      history:
+        - date: "2026-09-18"
+          reviewer: "Codex — supersession by the current detailed cabin rule"
+          note: >-
+            Previous source read on 2026-09-09: https://www.westjet.com/en-ca/pets/general-entrance-requirements ;
+            quote « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ;
+            replaced by the current fit requirement on the main pets page.
+      quote: "Your pet must be able to stand, sit, turn around, and lie down comfortably in their kennel to travel in the cabin."
       quote_language: en
-      locator: "General entrance requirements for guests travelling with pets → opening policy statement"
+      locator: "Pets → In the cabin → Kennel information"
+    fares:
+      - id: fare_westjet_cabin_cad_2026_09_18
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 50
+              currency: CAD
+            - amount: 118
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Canada/US; outside Canada/US
+        source:
+          url: https://www.westjet.com/en-ca/flights/fees
+          source_type: official_website
+          verified_date: 2026-09-18
+          review_due: 2026-12-17
+          confidence: 4
+          reviewer: Codex — direct reading of official airline page
+          history: []
+          quote: Pet in cabin (each way) | $50-59 | $100-118
+          quote_language: en
+          locator: Optional services and fees → Pets
   hold:
     availability: offered
     max_weight_kg: 45
@@ -112,6 +142,30 @@ policies:
       quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb)."
       quote_language: en
       locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage"
+    fares:
+      - id: fare_westjet_hold_cad_2026_09_18
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 100
+              currency: CAD
+            - amount: 236
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Canada/US; outside Canada/US
+        source:
+          url: https://www.westjet.com/en-ca/flights/fees
+          source_type: official_website
+          verified_date: 2026-09-18
+          review_due: 2026-12-17
+          confidence: 4
+          reviewer: Codex — direct reading of official airline page
+          history: []
+          quote: Pet as checked baggage (each way) | $100-118 | $200-236
+          quote_language: en
+          locator: Optional services and fees → Pets
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -134,9 +188,23 @@ policies:
           quote: contact WestJet Cargo
           quote_language: en
           locator: Cargo referral
-    # Le renvoi vers WestJet Cargo ne suffit pas à prouver l'acceptation d'un
-    # chien sur une expédition donnée.
-    review_state: legacy_unreviewed
+    # Le renvoi vers WestJet Cargo prouve l'existence du canal, jamais son acceptation
+    # pour une expédition précise : confirmation obligatoire.
+    availability: case_by_case
+    source:
+      url: https://www.westjet.com/en-ca/pets
+      source_type: official_website
+      verified_date: 2026-09-18
+      review_due: 2026-12-17
+      confidence: 4
+      reviewer: Codex — direct reading of official airline page
+      history:
+        - date: 2026-09-18
+          reviewer: Codex — official cargo verification
+          note: Supersedes the legacy unreviewed cargo entry last checked 2026-07-08.
+      quote: For all pets destined for London Heathrow (LHR), booking as manifested cargo is mandatory.
+      quote_language: en
+      locator: Pets → WestJet Cargo
 channels:
   - placement: cabin
     icon: 🐾
