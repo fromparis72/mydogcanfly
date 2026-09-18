@@ -108,6 +108,88 @@ policies:
       quote: "možete ih prevesti u kabini zrakoplova, ako su zadovoljeni svi uvjeti (težina s kavezom do 8 kg, zbroj dimenzija može biti maksimalno do 115 cm)"
       quote_language: hr
       locator: "Životinje → prijevoz u putničkoj kabini"
+    # TARIF (relevé du 18/09/2026, page anglaise « Baggage → Animals »). La compagnie publie DEUX
+    # grilles distinctes, lues directement dans les tableaux de la page : la cabine par type de vol,
+    # la soute par taille de caisse ET par type de vol. Aucun montant n'est déduit d'un barème.
+    #
+    # LA TVA EST ANNONCÉE EN SUS SUR LES VOLS INTÉRIEURS, et seulement sur eux : la page écrit
+    # « 32 € + 25 % VAT ». On publie 32 €, le montant que la compagnie écrit, et la portée dit que
+    # 25 % de TVA s'y ajoutent. Calculer 40 € à sa place serait inventer un prix qu'elle n'affiche
+    # nulle part.
+    #
+    # LE SUPPLÉMENT DE 10 € DU JOUR DU DÉPART est repris dans la portée et dans la citation des
+    # lignes internationales, parce que c'est un montant que le voyageur paie réellement. Il ne
+    # devient pas une ligne à lui : ce n'est pas un tarif, c'est une majoration conditionnelle.
+    #
+    # DIVERGENCE ENTRE LES VERSIONS LINGUISTIQUES, signalée et non tranchée : la page croate limite
+    # le sac à 115 cm cumulés, la page anglaise à 118 cm. Cela ne touche aucun montant et ne relève
+    # pas de ce lot ; c'est noté ici pour que la prochaine revue des dimensions le sache.
+    #
+    # La base de trajet n'est écrite sur aucune des deux grilles : `per_one_way` est une lecture.
+    fares:
+      - id: fare_croatia_airlines_cabin_domestique_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 32
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "Transporter | Sum of dimensions up to 118cm · Domestic flights 32 € + 25 % VAT"
+          quote_language: en
+          locator: "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
+      - id: fare_croatia_airlines_cabin_europe_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 50
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "Transporter | Sum of dimensions up to 118cm · International flights (within Europe) 50 € — For animal transport in the passenger cabin on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
+      - id: fare_croatia_airlines_cabin_hors_europe_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 70
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "Transporter | Sum of dimensions up to 118cm · International flights (outside Europe) 70€ — For animal transport in the passenger cabin on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 9).
@@ -124,6 +206,137 @@ policies:
       quote: "Charge for PET in hold- LARGE (dogs and cats only, breed must be specified)"
       quote_language: en
       locator: "PET IN HOLD (AVIH-LARGE) → Service description and purpose"
+    # TARIF (relevé du 18/09/2026, même page). Six cases : deux tailles de caisse — « catégories :
+    # medium et large », dit la page — croisées avec trois types de vol. La facturation porte sur le
+    # CONTENANT et non sur l'animal, la page étant explicite : « leur transport est facturé selon la
+    # taille du contenant et le type de vol ». D'où `billing_subject: container`.
+    fares:
+      - id: fare_croatia_airlines_hold_moyenne_domestique_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 40
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · Domestic flights 40 € + 25 % VAT (80x55x55 cm)"
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+      - id: fare_croatia_airlines_hold_moyenne_europe_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 100
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · International flights (within Europe) 100 € (80x55x55 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+      - id: fare_croatia_airlines_hold_moyenne_hors_europe_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 150
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · International flights (outside Europe) 150 € (80x55x55 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+      - id: fare_croatia_airlines_hold_grande_domestique_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 56
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · Domestic flights 56 € + 25 % VAT (125x75x85 cm)"
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+      - id: fare_croatia_airlines_hold_grande_europe_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 200
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · International flights (within Europe) 200 € (125x75x85 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+      - id: fare_croatia_airlines_hold_grande_hors_europe_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 300
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        source:
+          url: "https://www.croatiaairlines.com/Baggage/Animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des deux grilles tarifaires officielles"
+          history: []
+          quote: "80x55x55 cm | 125x75x85 cm · International flights (outside Europe) 300 € (125x75x85 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply."
+          quote_language: en
+          locator: "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
   cargo:
     review_state: legacy_unreviewed
 channels:

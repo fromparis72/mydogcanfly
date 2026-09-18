@@ -116,6 +116,48 @@ policies:
       quote: "يجب نقل الكلاب في مخازن الطائرة (المخازن مجهزة بأنظمة تهوية)."
       quote_language: ar
       locator: section « اللوائح والتنظيمات », liste
+    # TARIF (relevé du 18/09/2026, page anglaise). La page annonce DEUX prix dans la même phrase :
+    # « Saudia charges $100 USD for cabin transport or $300 USD for cargo hold transport on domestic
+    # and international flights (excluding USA & Canada). » UN SEUL EST REPRIS, ET C'EST DÉLIBÉRÉ :
+    # la même page écrit plus haut « Dogs must be transported in the cargo hold » et réserve la
+    # cabine aux chats et aux petits oiseaux. Sur un site qui parle de chiens, publier les 100 $ en
+    # cabine serait afficher le prix d'un service qui n'existe pas pour eux. Le canal cabine porte
+    # d'ailleurs déjà ce refus, cité en arabe.
+    #
+    # LA PORTÉE EXCLUT L'AMÉRIQUE DU NORD, et la page le dit sans donner les montants : « For
+    # flights to/from the USA and Canada, please check the specific fees on the respective regional
+    # pages. » Ces grilles régionales ne sont pas publiées ici ; on ne les invente pas, et la portée
+    # dit l'exclusion plutôt que de la taire.
+    #
+    # UNE INCOHÉRENCE DE LA SOURCE, transcrite et non corrigée : la phrase qui introduit les tarifs
+    # dit « Fees apply to pets (up to 5 kg including the container) travelling in the cabin or cargo
+    # hold », alors que 5 kg est la limite que la page fixe ailleurs aux CHATS en cabine. Appliquer
+    # ce plafond à la soute rendrait le tarif absurde pour un chien ; l'ignorer serait réécrire la
+    # page. Il est donc cité tel quel et signalé, comme l'anomalie Edelweiss.
+    #
+    # La base de trajet n'est pas écrite : `per_one_way` est une lecture, signalée.
+    fares:
+      - id: fare_saudia_hold_300usd_2026_09_18
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 300
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas"
+        source:
+          url: "https://www.saudia.com/book/flight-information/travelling-with-pets"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — relevé de la page officielle transmise par Philippe"
+          history: []
+          quote: "Saudia charges $100 USD for cabin transport or $300 USD for cargo hold transport on domestic and international flights (excluding USA & Canada). · Fees apply to pets (up to 5 kg including the container) travelling in the cabin or cargo hold. · For flights to/from the USA and Canada, please check the specific fees on the respective regional pages."
+          quote_language: en
+          locator: "Travelling with pets → Fees & Charges"
   cargo:
     review_state: legacy_unreviewed
 channels:

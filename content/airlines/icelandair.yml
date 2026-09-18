@@ -71,6 +71,46 @@ policies:
       quote: "Dýr eru velkomin í farangursrými í innanlands."
       quote_language: is
       locator: section « Dýr í farangursrými → Innanlandsflug »
+    # TARIF (relevé du 18/09/2026, page anglaise). Icelandair était jusqu'ici la compagnie qu'on
+    # citait comme ne publiant aucun prix — c'était faux, et la page anglaise le dit en une ligne :
+    # « The fee for animal transport is 7,500 ISK per crate. » Elle ne figurait pas sur la page
+    # islandaise qui servait de source au canal.
+    #
+    # LA FACTURATION PORTE SUR LA CAISSE, ET LA PAGE PREND LA PEINE DE LE DIRE DEUX FOIS : « Animal
+    # transport is charged per crate. The same weight and size limits apply to each crate, whether
+    # transporting one or two animals. » Deux chiens dans une même caisse paient donc un seul
+    # tarif. D'où `billing_subject: container`, et non `pet`.
+    #
+    # LA PORTÉE EST ÉTROITE ET C'EST L'ESSENTIEL : depuis le 1er novembre 2024, la compagnie ne
+    # transporte plus d'animal en soute sur AUCUN vol international — « Due to changes to our fleet,
+    # we are unable to transport animals in the hold on any international flights from November 1,
+    # 2024 » — et poursuit uniquement à l'intérieur de l'Islande. Ce prix ne vaut que là. Le publier
+    # sans cette portée laisserait croire qu'on peut emmener son chien en soute de Reykjavik à
+    # Paris pour 7 500 ISK.
+    #
+    # La base de trajet n'est pas écrite : `per_one_way` est une lecture, signalée.
+    fares:
+      - id: fare_icelandair_hold_islande_2026_09_18
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 7500
+              currency: ISK
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024"
+        source:
+          url: "https://www.icelandair.com/support/special-assistance/animal-transportation/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — relevé de la page officielle transmise par Philippe"
+          history: []
+          quote: "The fee for animal transport is 7,500 ISK per crate. · Animal transport is charged per crate. · Due to changes to our fleet, we are unable to transport animals in the hold on any international flights from November 1, 2024. We will continue transporting animals in the hold on flights within Iceland."
+          quote_language: en
+          locator: "Animal transportation → Traveling with animals in Iceland → Prices ; encadré « Changes to our animal transportation service »"
   cargo:
     review_state: legacy_unreviewed
 channels:

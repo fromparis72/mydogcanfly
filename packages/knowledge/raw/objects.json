@@ -28355,6 +28355,132 @@
             "availability": "offered",
             "max_weight_kg": 7,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_asiana_cabin_domestique_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 30000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Up to 32 kg (including cage) : KRW 30,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_coree_asie_nord_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 140000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Up to 32 kg (including cage) : KRW 140,000 (USD 140)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_asie_autres_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 210000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 210,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Up to 32 kg (including cage) : KRW 210,000 (USD 210)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_cabin_longs_courriers_j32_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Up to 32 kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              }
+            ],
             "source": {
               "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
@@ -28374,6 +28500,256 @@
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_asiana_hold_domestique_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 30000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Up to 32 kg (including cage) : KRW 30,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_domestique_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 60000,
+                      "currency": "KRW"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Domestic Flights · Between 32kg ~ 45kg (including cage) : KRW 60,000",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_coree_asie_nord_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 140000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Up to 32 kg (including cage) : KRW 140,000 (USD 140)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_coree_asie_nord_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_round_trip",
+                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Korea Round-Trip ↔ Japan/China/Taiwan/Hong Kong/Mongolia · Between 32kg ~ 45kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_asie_autres_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 210000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 210,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Up to 32 kg (including cage) : KRW 210,000 (USD 210)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_asie_autres_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 440000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 440,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "Other routes within Asia (Including Guam/Saipan) · Between 32kg ~ 45kg (including cage) : KRW 440,000 (USD 440)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_longs_courriers_j32_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Up to 32 kg (including cage) : KRW 290,000 (USD 290)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Up to 32 kg (including cage) »"
+                }
+              },
+              {
+                "id": "fare_asiana_hold_longs_courriers_e3245_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 590000,
+                      "currency": "KRW"
+                    },
+                    {
+                      "amount": 590,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise",
+                "source": {
+                  "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la grille officielle affichée par Philippe (site fermé à la lecture automatisée)",
+                  "history": [],
+                  "quote": "U.S. Routes/Europe/Oceania · Between 32kg ~ 45kg (including cage) : KRW 590,000 (USD 590)",
+                  "quote_language": "en",
+                  "locator": "Pet Fare Table → fenêtre « Fees », colonne « Between 32kg ~ 45kg (including cage) »"
+                }
+              }
+            ],
             "source": {
               "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
@@ -30954,9 +31330,6 @@
         "airport_tpe|airport_vie",
         "airport_tpe|airport_yvr"
       ],
-      "fees": {
-        "hold": "$280–520"
-      },
       "website": "https://www.china-airlines.com",
       "premium": {
         "policy": {
@@ -30978,6 +31351,488 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_china_airlines_hold_t_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 280,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 392,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 280 / CAD 392 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_t_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 350,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 490,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 350 / CAD 490 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_t_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Taiwan », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 280,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 392,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 280 / CAD 392 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 320,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 448,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 320 / CAD 448 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z1_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 1 », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 350,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 490,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 350 / CAD 490 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z2_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 500,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 700,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 500 / CAD 700 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 2 », arrivée « Zone 3 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_t_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 560,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 400 / CAD 560 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Taiwan »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 460,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 644,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 460 / CAD 644 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 1 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z2_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 500,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 700,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 500 / CAD 700 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 2 »"
+                }
+              },
+              {
+                "id": "fare_china_airlines_hold_z3_z3_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 520,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 728,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "source": {
+                  "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — interrogation directe de la grille zonale officielle",
+                  "history": [],
+                  "quote": "Fixed rates for pets under 32KG: USD 520 / CAD 728 (Per Piece)",
+                  "quote_language": "en",
+                  "locator": "Charge for Pet Transportation → Zone Definitions, départ « Zone 3 », arrivée « Zone 3 »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport",
               "source_type": "official_website",
@@ -32529,6 +33384,92 @@
             "max_weight_kg": 8,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_croatia_airlines_cabin_domestique_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 32,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "Transporter | Sum of dimensions up to 118cm · Domestic flights 32 € + 25 % VAT",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_cabin_europe_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 50,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "Transporter | Sum of dimensions up to 118cm · International flights (within Europe) 50 € — For animal transport in the passenger cabin on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_cabin_hors_europe_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 70,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "Transporter | Sum of dimensions up to 118cm · International flights (outside Europe) 70€ — For animal transport in the passenger cabin on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the passenger cabin → tableau « Transporter | Sum of dimensions up to 118cm »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.croatiaairlines.com/hr/Prtljaga/zivotinje",
               "source_type": "official_website",
@@ -32551,6 +33492,176 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_croatia_airlines_hold_moyenne_domestique_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 40,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · Domestic flights 40 € + 25 % VAT (80x55x55 cm)",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_hold_moyenne_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · International flights (within Europe) 100 € (80x55x55 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_hold_moyenne_hors_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · International flights (outside Europe) 150 € (80x55x55 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_hold_grande_domestique_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 56,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · Domestic flights 56 € + 25 % VAT (125x75x85 cm)",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_hold_grande_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · International flights (within Europe) 200 € (125x75x85 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              },
+              {
+                "id": "fare_croatia_airlines_hold_grande_hors_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+                "source": {
+                  "url": "https://www.croatiaairlines.com/Baggage/Animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles tarifaires officielles",
+                  "history": [],
+                  "quote": "80x55x55 cm | 125x75x85 cm · International flights (outside Europe) 300 € (125x75x85 cm) — For animal transport in the baggage compartment on international flights bought on the day of departure in Croatia and Bosnia and Herzegovina an additional charge of 10 EUR will apply.",
+                  "quote_language": "en",
+                  "locator": "Transfer charges for pets in the baggage compartment → tableau « 80x55x55 cm | 125x75x85 cm »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.croatiaairlines.com/resources/dokumenti/ou-emd-distribution---services-policy--aaas--for-ouand-ta-oct19.pdf.pdf",
               "source_type": "official_website",
@@ -40679,6 +41790,36 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_icelandair_hold_islande_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 7500,
+                      "currency": "ISK"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024",
+                "source": {
+                  "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la page officielle transmise par Philippe",
+                  "history": [],
+                  "quote": "The fee for animal transport is 7,500 ISK per crate. · Animal transport is charged per crate. · Due to changes to our fleet, we are unable to transport animals in the hold on any international flights from November 1, 2024. We will continue transporting animals in the hold on flights within Iceland.",
+                  "quote_language": "en",
+                  "locator": "Animal transportation → Traveling with animals in Iceland → Prices ; encadré « Changes to our animal transportation service »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.icelandair.com/is-is/adstod/seradstod/ferdast-med-dyr-i-farangursrymi/",
               "source_type": "official_website",
@@ -51131,6 +52272,36 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_saudia_hold_300usd_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas",
+                "source": {
+                  "url": "https://www.saudia.com/book/flight-information/travelling-with-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — relevé de la page officielle transmise par Philippe",
+                  "history": [],
+                  "quote": "Saudia charges $100 USD for cabin transport or $300 USD for cargo hold transport on domestic and international flights (excluding USA & Canada). · Fees apply to pets (up to 5 kg including the container) travelling in the cabin or cargo hold. · For flights to/from the USA and Canada, please check the specific fees on the respective regional pages.",
+                  "quote_language": "en",
+                  "locator": "Travelling with pets → Fees & Charges"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.saudia.com/ar-SA/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
