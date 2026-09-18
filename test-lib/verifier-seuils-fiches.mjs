@@ -56,7 +56,7 @@ const ANCIENNE_META = /fares|restrictions|tarifs|official sources|fuentes oficia
 const BRACHY = new RegExp(entree.classif[0], entree.classif[1]);
 const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0,
   zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0, fuitesDev: [],
-  canaux: [], servicesSpeciaux: [], faitsRetires: 0, citationsRetirees: 0, citationsBalisage: [] };
+  canaux: [], servicesSpeciaux: [], faitsRetires: 0, citationsRetirees: 0, citationsBalisage: [], preuvesTarifaires: [] };
 
 for (const tache of entree.taches) {
   const abs = path.join(entree.dist, tache.rel);
@@ -190,6 +190,37 @@ for (const tache of entree.taches) {
       });
       if (resume) resume.remove();
       if (citation) citation.remove();
+    }
+
+    /* ── LA LIGNE TARIFAIRE SORT DE L'EXAMEN — et revient pour être contre-prouvée ────────────
+       DÉFAUT TROUVÉ EN CI LE 18/09/2026, sur la section « Tarifs pour voyager avec un chien ».
+       Aegean est une fiche « à confirmer », et elle a rougi deux fois : sur « μέχρι 8kg », le seuil
+       que la compagnie écrit elle-même dans la phrase citée sous sa grille, puis sur « 8–25 kg »,
+       la portée que NOUS écrivons pour dire à quelle caisse s'applique quel prix. Le contrôle avait
+       raison de les voir et tort de les accuser — c'est la distinction que ce fichier tient depuis
+       le 11/09 pour `.fait` et `.proof-q` : ce qui reste interdit, ce n'est pas un nombre, c'est un
+       nombre publié HORS de son rattachement.
+
+       DEUX SURFACES, DEUX RÉGIMES, ET C'EST VOULU. La citation (`.tc-q` dans `details.tc-pr`) est la
+       phrase de la compagnie : on exige qu'elle vienne avec son lien officiel. La portée (`.tc-p`)
+       est notre formulation : on exige que CHAQUE nombre qu'elle avance se retrouve dans la citation
+       de LA MÊME ligne. Une portée qui inventerait un kilo, ou qu'une traduction déplacerait, serait
+       refusée. Le reste de la ligne — montant, unité de facturation — demeure examiné. */
+    for (const ligne of doc.querySelectorAll("li.tc-i")) {
+      const portee = ligne.querySelector(".tc-p");
+      const citation = ligne.querySelector("details.tc-pr .tc-q");
+      const lien = ligne.querySelector("details.tc-pr .tc-meta a[href]");
+      const nombres = (t) => (String(t ?? "").match(/\d+(?:[.,]\d+)?/g) ?? []).map((x) => x.replace(",", "."));
+      sortie.preuvesTarifaires.push({
+        slug: tache.slug, langue: tache.langue,
+        portee: portee ? portee.textContent.replace(/\s+/g, " ").trim() : null,
+        porteeNombres: portee ? nombres(portee.textContent) : [],
+        phrase: citation ? citation.textContent.replace(/\s+/g, " ").trim() : null,
+        citationNombres: citation ? nombres(citation.textContent) : [],
+        url: lien ? lien.getAttribute("href") : null,
+      });
+      if (portee) portee.remove();
+      ligne.querySelector("details.tc-pr")?.remove();
     }
 
     /* ── LA MÊME CITATION, DANS LE BALISAGE LU PAR LES MACHINES ─────────────────────────────

@@ -86,7 +86,7 @@ console.log("\n=== 2. Un canal refusé n'affiche aucun tarif ===");
       const pol = a.premium?.policy?.[p];
       if (!pol || !REFUS.has(pol.availability ?? "")) continue;
       temoins++;
-      if (doc.querySelector(`.tc[data-placement="${p}"]`)) fautes.push(`${a.id}/${p}`);
+      if (doc.querySelector(`.tc[data-canal-tarif="${p}"]`)) fautes.push(`${a.id}/${p}`);
     }
   }
   check("aucune section tarifaire sur un canal refusé", fautes.length === 0, fautes.slice(0, 3).join(" | "));
@@ -107,7 +107,7 @@ console.log("\n=== 3. La fiche et le Finder lisent la même donnée ===");
       const conflit = (pol.fare_conflicts ?? []).length > 0;
       const chiffrees = (pol.fares ?? []).filter((f) => (f.price?.amounts?.length ?? 0) > 0).length;
       const cible = conflit ? attendu - chiffrees : attendu;
-      const rendu = doc.querySelectorAll(`.tc[data-placement="${p}"] .tc-i`).length;
+      const rendu = doc.querySelectorAll(`.tc[data-canal-tarif="${p}"] .tc-i`).length;
       if (rendu !== cible) ecarts.push(`${a.id}/${p} : ${rendu} rendu(s) pour ${cible} attendu(s)`);
     }
   }
@@ -137,7 +137,7 @@ console.log("\n=== 5. Un conflit éteint les montants exacts ===");
     if (!doc) continue;
     for (const p of PLACEMENTS) {
       if ((a.premium?.policy?.[p]?.fare_conflicts ?? []).length === 0) continue;
-      const chiffres = doc.querySelectorAll(`.tc[data-placement="${p}"] .tc-m[data-montants]`).length;
+      const chiffres = doc.querySelectorAll(`.tc[data-canal-tarif="${p}"] .tc-m[data-montants]`).length;
       if (chiffres > 0) fautes.push(`${a.id}/${p} : ${chiffres} montant(s) survivant(s)`);
     }
   }

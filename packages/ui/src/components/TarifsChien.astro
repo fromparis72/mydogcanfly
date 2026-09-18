@@ -25,6 +25,7 @@
  */
 import { inlineT, lireEtatTarifaire, dateFormatter } from "@mydogcanfly/knowledge";
 import type { EtatTarifaire } from "@mydogcanfly/knowledge";
+import { moneyText } from "../lib/farePresentation";
 
 interface Props { locale: string; policy: any; airlineName: string }
 const { locale, policy, airlineName } = Astro.props;
@@ -68,12 +69,12 @@ const BASE = {
 
 /* Le montant est écrit tel que la compagnie le publie : chaque devise annoncée, aucune conversion,
    aucun arrondi. Une ligne qui porte quatre devises en porte quatre à l'écran. */
+/* LE FORMATAGE MONÉTAIRE N'EST PAS RECOPIÉ ICI. Il vient de `farePresentation`, qui l'écrit déjà
+   pour la ligne tarifaire des blocs de canaux. Deux copies suffiraient à faire diverger d'une
+   espace insécable le texte rendu et le texte attendu par `test-montants-publies.mjs`, qui exige
+   que tout montant visible sur une fiche descende du tarif canonique de son canal. */
 const montant = (amounts: readonly { amount: number; currency: string }[]) =>
-  amounts.map((a) => {
-    try {
-      return new Intl.NumberFormat(locale, { style: "currency", currency: a.currency, maximumFractionDigits: Number.isInteger(a.amount) ? 0 : 2 }).format(a.amount);
-    } catch { return `${a.amount} ${a.currency}`; }
-  }).join(" / ");
+  amounts.map((a) => moneyText(a.amount, a.currency, locale)).join(" / ");
 
 const canaux = CANAUX.map((c) => {
   const p = policy?.[c.placement];
@@ -94,7 +95,12 @@ const canaux = CANAUX.map((c) => {
       "Cada importe a continuación lo publica la propia aerolínea y se cita desde su página. El Buscador muestra la tarifa aplicable al trayecto buscado; esta página presenta todas las tarifas oficiales verificadas.",
     )}</p>
     {canaux.map((c) => (
-      <section class="tc" data-placement={c.placement} data-etat={c.lecture.etat}>
+      <!-- PAS `data-placement` ICI, ET C'EST UN DÉFAUT TROUVÉ EN CI (18/09/2026). Cet attribut est
+           déjà la marque des blocs « Où voyage ton chien ? » : le harnais des pages d'entités exige
+           UN SEUL bloc par placement et a compté le double, et `test-tarifs.mjs` délimite le bloc
+           d'un canal d'un `data-placement` au suivant — une seconde occurrence aurait déplacé ses
+           frontières. La section tarifaire porte donc sa propre marque, `data-canal-tarif`. -->
+      <section class="tc" data-canal-tarif={c.placement} data-etat={c.lecture.etat}>
         <div class="tc-h">
           <span class="tc-nm">{c.icon} {c.nom}</span>
           <span class="tc-etat">{LIBELLE_ETAT[c.lecture.etat]}</span>

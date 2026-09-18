@@ -29,7 +29,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { compter, trouver, zonesDe } from "./test-lib/montants.mjs";
-import { presentNumericFares } from "./packages/ui/src/lib/farePresentation.ts";
+import { presentNumericFares, moneyText } from "./packages/ui/src/lib/farePresentation.ts";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
 if (!DIST || !existsSync(DIST)) {
@@ -94,6 +94,56 @@ function divDepuis(html, debut) {
     if (profondeur === 0) return html.slice(debut, m.index + m[0].length);
   }
   return null;
+}
+
+/* LA SECTION TARIFAIRE DES FICHES N'EST PAS UN `<div>`. Les extracteurs ci-dessus datent d'un
+   moment où toutes les zones à lire en étaient ; la section « Tarifs pour voyager avec un chien »
+   est une `<section>` dont les lignes sont des `<li>`. On généralise la même mécanique de
+   profondeur plutôt que d'instancier un second DOM par page — la raison invoquée plus haut (4 Go
+   en CI sur 408 pages) n'a pas changé. */
+function elementDepuis(html, debut, tag) {
+  const balise = new RegExp(`</?${tag}\\b[^>]*>`, "gi");
+  balise.lastIndex = debut;
+  let profondeur = 0;
+  for (const m of html.matchAll(balise)) {
+    if (m.index < debut) continue;
+    if (!m[0].startsWith("</")) profondeur++;
+    else profondeur--;
+    if (profondeur === 0) return html.slice(debut, m.index + m[0].length);
+  }
+  return null;
+}
+
+/** La section tarifaire d'un canal, repérée par sa marque propre `data-canal-tarif`. */
+function sectionTarifaire(html, canal) {
+  const marqueur = html.indexOf(`data-canal-tarif="${canal}"`);
+  if (marqueur < 0) return null;
+  const debut = html.lastIndexOf("<section", marqueur);
+  return debut < 0 ? null : elementDepuis(html, debut, "section");
+}
+
+/** Les lignes `<li class="tc-i">` d'une section, dans l'ordre où le gabarit les rend. */
+function lignesTarifaires(section) {
+  const lignes = [];
+  const ouverture = /<li\b[^>]*class="([^"]*)"[^>]*>/gi;
+  for (const m of String(section ?? "").matchAll(ouverture)) {
+    if (!m[1].split(/\s+/).includes("tc-i")) continue;
+    const bloc = elementDepuis(section, m.index, "li");
+    if (bloc) lignes.push(bloc);
+  }
+  return lignes;
+}
+
+/** Le texte d'un élément d'une classe donnée, quel que soit son nom de balise. */
+function texteDeClasse(html, classe) {
+  const ouverture = /<(\w+)\b[^>]*class="([^"]*)"[^>]*>/gi;
+  const morceaux = [];
+  for (const m of String(html ?? "").matchAll(ouverture)) {
+    if (!m[2].split(/\s+/).includes(classe)) continue;
+    const bloc = elementDepuis(html, m.index, m[1]);
+    if (bloc) morceaux.push(texteHtml(bloc));
+  }
+  return morceaux.join(" ");
 }
 
 function divDeClasse(html, classe) {
@@ -187,6 +237,76 @@ function texteHtml(html) {
         + `[${preuveInventee.join(", ")}] sans ce montant dans la citation ou le localisateur`);
       total += montantsPreuve.length;
       permisDansCorps.push(...montantsPreuve);
+
+      /* ── LA SECTION « TARIFS POUR VOYAGER AVEC UN CHIEN » (18/09/2026) ────────────────────────
+         Elle publie, canal par canal, TOUS les tarifs officiels vérifiés — là où le bloc ci-dessus
+         n'en présente qu'une synthèse. Elle doit donc passer la même épreuve, et non être exemptée :
+         chaque montant affiché descend d'une ligne canonique de ce canal, et chaque montant d'une
+         citation existe dans la phrase ou le localisateur de CETTE ligne.
+
+         Le rapprochement se fait par l'ORDRE : le gabarit rend les lignes dans l'ordre de la liste
+         canonique filtrée, et `data-kind` le recoupe. Une ligne de trop, une ligne manquante ou une
+         nature déplacée casse l'alignement et rougit ici — c'est voulu : un rendu qui ne suivrait
+         plus sa donnée ne doit pas pouvoir se rattraper sur un multiensemble global. */
+      const section = sectionTarifaire(html, canal);
+      if (section) {
+        /* Les mêmes deux filtres que le gabarit : un canal refusé n'a pas de section, et un conflit
+           ouvert éteint les natures chiffrées AVANT le rendu. */
+        const enConflit = (politique.fare_conflicts?.length ?? 0) > 0;
+        const CHIFFREES = new Set(["exact", "minimum", "range", "matrix"]);
+        const attendues = (politique.fares ?? []).filter((f) => !(enConflit && CHIFFREES.has(f.price?.kind ?? "")));
+        const lignes = lignesTarifaires(section);
+        if (lignes.length !== attendues.length) {
+          fautives.push(`${f.langue}/${f.slug}/${canal} : la section tarifaire rend ${lignes.length} ligne(s) `
+            + `pour ${attendues.length} tarif(s) canonique(s)`);
+        }
+        lignes.forEach((ligne, i) => {
+          const fare = attendues[i];
+          if (!fare) return;
+          const nature = ligne.match(/data-kind="([^"]*)"/)?.[1] ?? null;
+          if (nature !== (fare.price?.kind ?? null)) {
+            fautives.push(`${f.langue}/${f.slug}/${canal} : ligne ${i + 1} annoncée « ${nature} » `
+              + `pour un tarif « ${fare.price?.kind ?? "—"} »`);
+            return;
+          }
+          const affiches = liste(texteDeClasse(ligne, "tc-m"));
+          /* On repasse le texte canonique par le MÊME détecteur que le texte lu : « CA$175 » rendu
+             est vu « A$175 » par `trouver`, et comparer une sortie brute à une sortie détectée
+             ferait rougir un rendu juste. Une garde qui accuse à tort finit par être désactivée. */
+          const canoniques = liste((fare.price?.amounts ?? []).map((a) => moneyText(a.amount, a.currency, f.langue)).join(" / "));
+          const inventes = excedents(affiches, canoniques);
+          if (inventes.length) {
+            fautives.push(`${f.langue}/${f.slug}/${canal} : la section affiche [${inventes.join(", ")}] `
+              + `hors du tarif canonique de sa ligne`);
+          }
+          total += affiches.length;
+          permisDansCorps.push(...affiches);
+
+          /* La citation est verbatim : ses montants viennent de la source de CETTE ligne. */
+          /* LE LOCALISATEUR COMPTE AUTANT QUE LA PHRASE, et c'est un défaut trouvé le 18/09 : chez
+             Smartwings, « colonnes Kód | Popis služby | EUR | USD1/ | CZK » publie un montant hors
+             de la citation elle-même. Il est affiché, donc il est jugé. */
+          const cites = liste(`${texteDeClasse(ligne, "tc-q")} ${texteDeClasse(ligne, "tc-meta")}`);
+          const sourceLigne = liste(`${fare.source?.quote ?? ""} ${fare.source?.locator ?? ""} ${fare.scope_label ?? ""}`);
+          const citesInventes = excedents(cites, sourceLigne);
+          if (citesInventes.length) {
+            fautives.push(`${f.langue}/${f.slug}/${canal} : la citation de la ligne ${i + 1} affiche `
+              + `[${citesInventes.join(", ")}] sans ce montant dans sa source`);
+          }
+          total += cites.length;
+          permisDansCorps.push(...cites);
+
+          /* La portée est NOTRE formulation : ses montants doivent eux aussi venir de la source. */
+          const portee = liste(texteDeClasse(ligne, "tc-p"));
+          const porteeInventee = excedents(portee, sourceLigne);
+          if (porteeInventee.length) {
+            fautives.push(`${f.langue}/${f.slug}/${canal} : la portée de la ligne ${i + 1} avance `
+              + `[${porteeInventee.join(", ")}] sans ce montant dans sa source`);
+          }
+          total += portee.length;
+          permisDansCorps.push(...portee);
+        });
+      }
     }
 
     /* Le multiensemble du corps ne peut dépasser celui des lignes tarifaires et des preuves :
