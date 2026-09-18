@@ -1422,6 +1422,31 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_europe_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_intercont_court_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_intercont_long_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_intercont_moyen_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_levant_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_edelweiss].premium.policy.cabin.source",
       "empreinte_source": "2ff3562ee767cb090077e80fc62ab072776358196e2f469e59640b8192249c9b"
     },
@@ -1429,6 +1454,56 @@
       "famille": "airlines",
       "locator": "airlines[airline_edelweiss].premium.policy.cargo.source",
       "empreinte_source": "689428038d7625707abbfe2239dc0ded2237807a74ed8a34fc527a9537c76562"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_europe_kennel1_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_europe_kennel25_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_court_kennel1_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_court_kennel25_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_long_kennel1_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_long_kennel25_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_moyen_kennel1_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_intercont_moyen_kennel25_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_levant_kennel1_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_levant_kennel25_2026_09_18].source",
+      "empreinte_source": "ecfa29e2deab260f435fba837b18f5c91de58ca8ea348997f7d2373bdc9ba7e2"
     },
     {
       "famille": "airlines",
@@ -1629,6 +1704,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_etihad].source",
       "empreinte_source": "94d6572de09ecaae7b7117768a8398325f046f82a40d24d189d04360080da6ef"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_eurowings].premium.policy.cabin.fares[fare_eurowings_cabin_plancher_2026_09_18].source",
+      "empreinte_source": "06507054cf90902af841c51dd24d8fc3c8a2767ac5108df223a7884a6fd07513"
     },
     {
       "famille": "airlines",
@@ -8462,9 +8542,9 @@
     }
   ],
   "empreintes": {
-    "globale": "b60e68b23ede8580479973848205c9f35ed3a5d6efc700a73de18855c8e2535b",
+    "globale": "7ac04e071c565409598f76266b044656a21f06d26e03fa6b019f97f8c8f87827",
     "par_famille": {
-      "airlines": "dfa9f3506304a8309414898d739e93a4cefbc784c847eecc6239852b60e8cb7a",
+      "airlines": "e82ebbf54c111fd2952ca9b78d500e3e9e2ce4d4fe4958d25fb4f365511d7a15",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

@@ -74,6 +74,32 @@ policies:
       quote: Eurowings transportiert nur kleine Hunde und Katzen (bis zu 8 kg inklusive Tasche) und diese auch nur in der Kabine.
       quote_language: de
       locator: corps de page, bloc d'introduction
+    # TARIF (relevé du 18/09/2026, page allemande). La compagnie ne publie qu'un PLANCHER — « ab 60 € »,
+    # à partir de 60 € — pour un animal jusqu'à 8 kg ; aucune grille par route, aucun prix ferme.
+    # D'où une nature `minimum` et non `exact` : dire 60 € tout court ferait passer un plancher pour
+    # un prix. La page ne dit ni le segment ni le sens : `per_one_way` est une lecture.
+    fares:
+      - id: fare_eurowings_cabin_plancher_2026_09_18
+        placement: cabin
+        price:
+          kind: minimum
+          amounts:
+            - amount: 60
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route"
+        source:
+          url: "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Die Mitnahme von Haustieren von bis zu 8 kg kostet ab 60 €."
+          quote_language: de
+          locator: "Wie viel kostet die Mitnahme meines Haustiers an Bord?"
   hold:
     availability: not_offered
     source:
