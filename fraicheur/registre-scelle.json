@@ -2657,6 +2657,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_qantas].premium.policy.cargo.fares[fare_qantas_cargo_formule_2026_09_18].source",
+      "empreinte_source": "1d1d6824e7bd1441dc84ef454cf197d914ef9e820ef45a9df3312d4704c32b1e"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_qantas].premium.policy.cargo.source",
       "empreinte_source": "c4de71d52f22ba5739c6c969fd1792b75c8f40d92687311df11d72ce109e7bdb"
     },
@@ -8292,9 +8297,9 @@
     }
   ],
   "empreintes": {
-    "globale": "2db2714bccb4f55e2311932d56097166adc8165c3111c8896e421b26aca043d9",
+    "globale": "9504d386e573a447745e5fd564bc314cd0ff7bfdcd0c32b92418dc899b32a52b",
     "par_famille": {
-      "airlines": "6b5e8dd3056db32e363b997e5c28836e379571ecd8a5c62bc712167dd96c0a9a",
+      "airlines": "cf2bcf8b0b32d068ddd3e6f7279480ff44ff3cc10509f1746497f7da939600da",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

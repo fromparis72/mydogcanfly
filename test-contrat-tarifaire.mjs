@@ -718,9 +718,13 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      dimensions combinés animal + cage, chacun dit en USD et en CAD sur la même
      ligne (deux devises publiées, aucune conversion) ; le quatrième palier renvoie
      au fret manifesté et n'est pas un tarif. La cabine est refusée, rien n'y est
-     reporté. Bilan net : +3 lignes, +1 canal, +1 compagnie. */
-  check("l'import verrouillé porte exactement 255 lignes sur 126 canaux et 74 compagnies — la grille Emirates soute entre sans perte muette",
-    avecTarifs === 126 && lignesTarifaires === 255 && compagnies.size === 74,
+     reporté. Bilan net : +3 lignes, +1 canal, +1 compagnie.
+     MOUVEMENT NOMMÉ (18/09/2026, Qantas fret). Aucun montant publié : la FAQ de
+     Qantas Freight dit la règle (poids de l'animal et taille de la caisse), pas le
+     chiffre — une ligne `formula` sur le fret, rien sur la soute conditionnelle.
+     Bilan net : +1 ligne, +1 canal, +1 compagnie. */
+  check("l'import verrouillé porte exactement 256 lignes sur 127 canaux et 75 compagnies — la formule Qantas fret entre sans perte muette",
+    avecTarifs === 127 && lignesTarifaires === 256 && compagnies.size === 75,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

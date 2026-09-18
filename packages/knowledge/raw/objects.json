@@ -46444,6 +46444,31 @@
           },
           "cargo": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_qantas_cargo_formule_2026_09_18",
+                "placement": "cargo",
+                "price": {
+                  "kind": "formula",
+                  "amounts": []
+                },
+                "billing_subject": "shipment",
+                "journey_basis": "per_one_way",
+                "scope_label": "Réservation Qantas Freight — prix au poids de l'animal et à la taille de la caisse",
+                "source": {
+                  "url": "https://freight.qantas.com/en-au/pets/pet-travel-faqs",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la FAQ officielle Qantas Freight",
+                  "history": [],
+                  "quote": "Just like all other air freight items, how much your pet weighs as well as the size of the crate will determine the cost.",
+                  "quote_language": "en",
+                  "locator": "Pet travel FAQs → How do I calculate the cost of my pet's travel?"
+                }
+              }
+            ],
             "source": {
               "url": "https://freight.qantas.com/au-en/pets.html",
               "source_type": "official_website",
