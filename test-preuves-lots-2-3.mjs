@@ -196,8 +196,14 @@ console.log("\n=== Étage 2 — Paris → Tokyo et Londres → Hong Kong : ANA, 
   check("ANA soute, Golden 32 kg : sous conditions", canal(nrt, "airline_ana", "hold")?.status === "accepted_with_conditions");
   check("ANA fret : désormais sous conditions sur la page officielle ANA Cargo",
     canal(nrt, "airline_ana", "cargo")?.status === "accepted_with_conditions");
-  check("JAL soute : sous conditions ; sa cabine non chiffrée est fermée au grand chien par garde-fou ; fret à confirmer",
-    canal(nrt, "airline_jal", "hold")?.status === "accepted_with_conditions" && canal(nrt, "airline_jal", "cabin")?.status === "denied" && canal(nrt, "airline_jal", "cargo")?.status === "confirmation_required");
+  /* ARBITRAGE DE PHILIPPE, 18/09/2026 — LE GARDE-FOU NE FERME QU'UNE PORTE OUVERTE. La cabine de
+     JAL n'a jamais été relue : elle ne dit pas « oui », elle dit « à confirmer », et le défaut que
+     le garde-fou corrige — une acceptation obtenue faute de nombre publié — n'existe donc pas ici.
+     Prononcer un refus sur un canal qu'on n'a pas lu reviendrait à prêter à la compagnie une
+     décision qu'on n'a pas vérifiée. Ce témoin dit donc la même chose qu'avant le correctif, et
+     c'est voulu. */
+  check("JAL soute : sous conditions ; JAL cabine et fret volontairement NON décidés → à confirmer",
+    canal(nrt, "airline_jal", "hold")?.status === "accepted_with_conditions" && canal(nrt, "airline_jal", "cabin")?.status === "confirmation_required" && canal(nrt, "airline_jal", "cargo")?.status === "confirmation_required");
   check("Cathay cabine et soute refusées sur leurs citations ; fret RÉACTIVÉ sur citation → sous conditions",
     canal(nrt, "airline_cathay_pacific", "cabin")?.status === "denied" && canal(nrt, "airline_cathay_pacific", "cargo")?.status === "accepted_with_conditions" && canal(nrt, "airline_cathay_pacific", "hold")?.status === "denied");
   check("EVA Air cabine refusée ; soute sous conditions", canal(nrt, "airline_eva_air", "cabin")?.status === "denied" && canal(nrt, "airline_eva_air", "hold")?.status === "accepted_with_conditions");

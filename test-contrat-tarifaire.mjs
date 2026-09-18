@@ -745,8 +745,8 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      Eurowings ne publie qu'un plancher, « ab 60 € » : une ligne de nature `minimum`,
      car dire 60 € tout court ferait passer un plancher pour un prix ferme.
      Bilan net : +16 lignes, +3 canaux, +2 compagnies. */
-  check("l'import verrouillé porte exactement 343 lignes sur 145 canaux et 86 compagnies — China Airlines, Croatia Airlines, Asiana, Icelandair et Saudia entrent sans perte muette",
-    avecTarifs === 145 && lignesTarifaires === 343 && compagnies.size === 86,
+  check("l'import verrouillé porte exactement 345 lignes sur 147 canaux et 86 compagnies — la consolidation canadienne ajoute la cabine et le fret de WestJet aux canaux tarifés",
+    avecTarifs === 147 && lignesTarifaires === 345 && compagnies.size === 86,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

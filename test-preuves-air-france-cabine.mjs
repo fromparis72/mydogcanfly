@@ -72,7 +72,10 @@ console.log("=== Étage 1 — le fait de Codex, dans la donnée à l'octet près
   /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif des raccordements) : les 102
      compagnies portent désormais toutes leurs trois politiques ; 251 sur 306
      disposent d'une citation de canal admissible. */
-  check("251 politiques citées sur 306 — Air France cabine et SAS soute en font partie", citees === 251 && politiques === 306, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet cabine reçoit la phrase
+     opposable de la page officielle en remplacement d'une phrase commerciale, et WestJet fret
+     quitte la non-décision sur l'obligation bornée à Heathrow ; 251 → 253 canaux cités. */
+  check("253 politiques citées sur 306 — Air France cabine et SAS soute en font partie", citees === 253 && politiques === 306, `${citees} / ${politiques}`);
 }
 
 console.log("\n=== Étage 2 — Paris CDG → New York JFK, chihuahua de 3 kg, 7,9 kg, 8 kg, 9 kg ; Golden 32 kg ===");

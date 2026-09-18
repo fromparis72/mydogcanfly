@@ -115,12 +115,27 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       "airline_emirates.cargo": { url: "https://www.skycargo.com/products/live/pets/", quote: "Pets strictly follows IATA's Live Animal Regulations (LAR) and considers all relevant country and operator-specific rules", quote_language: "en", locator: "section presentation du produit Pets" },
       "airline_qantas.cargo": { url: "https://freight.qantas.com/au-en/pets.html", quote: "Pets include dogs (excluding service dogs), cats, rabbits, guinea pigs, domestic fish with no aeration requirements, and domestic birds that don't need a travel permit.", quote_language: "en", locator: "section « Pet travel »" },
     }[cle];
-    const supersedee = cle === "airline_westjet.hold" ? {
-      url: "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
-      quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
-      quote_language: "en", locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage",
-      verified_date: "2026-09-15", review_due: "2026-12-14", history_date: "2026-09-15",
-    } : undefined;
+    /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne). WestJet cabine était encore prouvée
+       par une phrase COMMERCIALE — « WestJet accepts small pets in the cabin and as checked kennel
+       on most international flights » — qui annonce un service sans énoncer aucune condition. La
+       page officielle en énonce une, vérifiable et opposable : l'animal doit pouvoir se tenir
+       debout, s'asseoir, se retourner et se coucher dans sa caisse. C'est cette phrase qui prouve
+       désormais le canal. La précédente reste dans l'historique, comme pour la soute. */
+    const SUPERSEDEES = {
+      "airline_westjet.hold": {
+        url: "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
+        quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
+        quote_language: "en", locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage",
+        verified_date: "2026-09-15", review_due: "2026-12-14", history_date: "2026-09-15",
+      },
+      "airline_westjet.cabin": {
+        url: "https://www.westjet.com/en-ca/pets",
+        quote: "Your pet must be able to stand, sit, turn around, and lie down comfortably in their kennel to travel in the cabin.",
+        quote_language: "en", locator: "Pets → In the cabin → Kennel information",
+        verified_date: "2026-09-18", review_due: "2026-12-17", history_date: "2026-09-18",
+      },
+    };
+    const supersedee = SUPERSEDEES[cle];
     const sourceAttendue = supersedee ?? fretRafraichi ?? f;
     const dateAttendue = supersedee?.verified_date ?? (fretRafraichi ? "2026-09-12" : f.verified_date);
     const echeanceAttendue = supersedee?.review_due ?? (fretRafraichi ? "2026-12-11" : "2026-12-08");
@@ -150,6 +165,16 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     if (u.airline_id === "airline_swiss" && u.placement === "cargo") {
       check("SWISS fret quitte la non-décision sur sa page officielle Swiss WorldCargo",
         !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "accepted_with_conditions");
+      continue;
+    }
+    if (u.airline_id === "airline_westjet" && u.placement === "cargo") {
+      /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : le fret WestJet quitte la
+         non-décision sur une phrase officielle qui n'ouvre rien mais IMPOSE le fret sur une
+         destination — Heathrow. Une obligation bornée n'est ni un oui ni un refus : le canal
+         reste « à confirmer », et c'est bien ce qu'on exige ici. */
+      check("WestJet fret quitte la non-décision sur une obligation officielle bornée à Heathrow",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
+        JSON.stringify({ quote: pol?.source?.quote }));
       continue;
     }
     if (u.airline_id === "airline_aer_lingus" && u.placement === "cargo") {
@@ -228,17 +253,33 @@ console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londre
   check("ITA soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
     canal(fcoG, "airline_ita_airways", "hold")?.status === "accepted_with_conditions" && canal(fcoG, "airline_ita_airways", "cargo")?.status === "confirmation_required");
   const laxG = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);
-  check("American cabine : les deux chiens restent sous conditions, sans plafond chiffré inventé",
-    canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "cabin")?.status === "accepted_with_conditions"
-      && canal(laxG, "airline_american", "cabin")?.weight_limit_kg === undefined);
+  /* RE-FONDÉ LE 18/09/2026 (garde-fou cabine). Ce témoin exigeait que le Golden de 32 kg reste
+     « sous conditions » en cabine : c'était précisément le défaut que ce lot corrige. American ne
+     publie aucun plafond, et une absence de nombre ne peut plus valoir autorisation pour un chien
+     de 32 kg. Ce qui reste vrai, et qu'on continue de vérifier, c'est qu'AUCUN plafond chiffré
+     n'est inventé — ni dans l'acceptation du petit chien, ni dans le refus du grand. */
+  check("American cabine, Cavalier 6 kg : sous conditions, sans plafond chiffré inventé",
+    canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions"
+      && canal(laxC, "airline_american", "cabin")?.weight_limit_kg === undefined, JSON.stringify(canal(laxC, "airline_american", "cabin")));
+  check("American cabine, Golden 32 kg : refusé par le garde-fou interne, sans plafond compagnie inventé",
+    canal(laxG, "airline_american", "cabin")?.status === "denied"
+      && canal(laxG, "airline_american", "cabin")?.weight_limit_kg === undefined
+      && (laxG.airlines.find((x) => x.airline_id === "airline_american")?.deny_reasons ?? []).includes("cabin_no_published_limit"),
+    JSON.stringify(canal(laxG, "airline_american", "cabin")));
   check("American fret (PetEmbark), Golden 32 kg : preuve présente mais confirmation climatique en juillet ; soute refusée aux voyageurs ordinaires",
     canal(laxG, "airline_american", "cargo")?.status === "confirmation_required"
       && (canal(laxG, "airline_american", "cargo")?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_american_cargo_heat_official_2026_09_12")
       && canal(laxG, "airline_american", "hold")?.status === "denied");
   const lhrG = decide("airport_lhr", "airport_lax", GOLDEN_32), lhrC = decide("airport_lhr", "airport_lax", CAVALIER_6);
-  check("WestJet soute, Golden 32 kg : sous conditions avec plafond 45 kg ; cabine sous conditions qualitatives sans plafond inventé",
-    canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "hold")?.weight_limit_kg === 45
-      && canal(lhrG, "airline_westjet", "cabin")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "cabin")?.weight_limit_kg === undefined);
+  /* MÊME RE-FONDATION QU'AMERICAN, et le contraste avec la soute est ce qui la rend probante :
+     WestJet PUBLIE 45 kg pour la soute, donc la soute décide elle-même et transporte son plafond ;
+     elle ne publie rien pour la cabine, donc c'est notre garde-fou qui ferme, sans chiffre. */
+  check("WestJet soute, Golden 32 kg : sous conditions avec son plafond officiel de 45 kg",
+    canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions"
+      && canal(lhrG, "airline_westjet", "hold")?.weight_limit_kg === 45, JSON.stringify(canal(lhrG, "airline_westjet", "hold")));
+  check("WestJet cabine, Golden 32 kg : refusé par le garde-fou interne, sans plafond compagnie inventé",
+    canal(lhrG, "airline_westjet", "cabin")?.status === "denied"
+      && canal(lhrG, "airline_westjet", "cabin")?.weight_limit_kg === undefined, JSON.stringify(canal(lhrG, "airline_westjet", "cabin")));
   check("WestJet cabine, Cavalier 6 kg : sous conditions ; fret non décidé → à confirmer",
     canal(lhrC, "airline_westjet", "cabin")?.status === "accepted_with_conditions" && canal(lhrC, "airline_westjet", "cargo")?.status === "confirmation_required", JSON.stringify(canal(lhrC, "airline_westjet", "cabin")));
   const seaG = decide("airport_sea", "airport_lax", GOLDEN_32), seaC = decide("airport_sea", "airport_lax", CAVALIER_6);

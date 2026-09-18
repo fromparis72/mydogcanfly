@@ -235,16 +235,28 @@ console.log("\n=== Étage 2 — Madrid → Santiago, Londres → Newark : LATAM 
   const sclC = decide("airport_mad", "airport_scl", CAVALIER_6), sclG = decide("airport_mad", "airport_scl", GOLDEN_32);
   check("LATAM cabine, soute et fret : sous conditions sur leurs preuves propres",
     canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "accepted_with_conditions");
-  /* La preuve cabine LATAM ne publie aucun nombre. Aucun plafond global n'est donc inventé. */
+  /* RE-FONDÉ LE 18/09/2026 (garde-fou cabine). La preuve cabine LATAM ne publie aucun nombre, et ce
+     témoin en concluait que le Golden de 32 kg devait rester « sous conditions ». C'était le défaut
+     même : une page sans chiffre devenait une autorisation. Ce qui reste vrai — et reste vérifié —
+     c'est qu'aucun plafond n'est inventé, ni dans l'acceptation ni dans le refus. */
   const lg = canal(sclG, "airline_latam", "cabin");
-  check("LATAM cabine, Golden 32 kg : sous conditions qualitatives, sans refus ni plafond chiffré inventé",
-    lg?.status === "accepted_with_conditions" && lg?.weight_limit_kg === undefined && !(lg?.confirmation_causes ?? []).some((x) => x.rule_id), JSON.stringify(lg));
+  check("LATAM cabine, Golden 32 kg : refusé par le garde-fou interne, sans plafond compagnie inventé",
+    lg?.status === "denied" && lg?.weight_limit_kg === undefined, JSON.stringify(lg));
   const ewrC = decide("airport_lhr", "airport_ewr", CAVALIER_6), ewrG = decide("airport_lhr", "airport_ewr", GOLDEN_32);
   check("United cabine, Cavalier 6 kg : sous conditions ; soute et fret refusés sur leurs citations",
     canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "denied" && canal(ewrC, "airline_united", "cargo")?.status === "denied");
+  /* RE-FONDÉ LE 18/09/2026, ET C'EST LE CAS LE PLUS INSTRUCTIF DU LOT. United publie explicitement
+     qu'elle ne fixe AUCUNE limite de poids — elle exige seulement que l'animal tienne dans un
+     contenant sous le siège. Ce témoin en tirait une acceptation pour un chien de 32 kg. Mais
+     « aucune limite écrite » n'est pas « aucune limite » : la condition de place, elle, est
+     publiée, et un Golden ne tient pas sous un siège. Le refus vient donc de notre garde-fou, et il
+     doit le dire — jamais d'un plafond United, qui n'existe pas. */
   const ug = canal(ewrG, "airline_united", "cabin");
-  check("United cabine, Golden 32 kg : sous conditions sans plafond inventé — la page publie explicitement l'absence de limite de poids",
-    ug?.status === "accepted_with_conditions" && ug?.weight_limit_kg === undefined && !(ug?.confirmation_causes ?? []).some((x) => x.rule_id), JSON.stringify(ug));
+  check("United cabine, Golden 32 kg : refusé par le garde-fou interne, sans plafond compagnie inventé",
+    ug?.status === "denied" && ug?.weight_limit_kg === undefined, JSON.stringify(ug));
+  check("United : le motif affiché nomme le garde-fou, jamais une « limite publiée » qu'United dit ne pas avoir",
+    (ewrG.airlines.find((x) => x.airline_id === "airline_united")?.deny_reasons ?? []).includes("cabin_no_published_limit"),
+    JSON.stringify(ewrG.airlines.find((x) => x.airline_id === "airline_united")?.deny_reasons));
 }
 
 console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johannesburg → Le Cap ; Paris → Bahreïn ===");
@@ -256,8 +268,13 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
     canal(ruh, "airline_saudia", "hold")?.status === "accepted_with_conditions" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
   const pek = decide("airport_cdg", "airport_pek", GOLDEN_32), pekC = decide("airport_cdg", "airport_pek", CAVALIER_6);
   const acC = canal(pekC, "airline_air_china", "cabin");
-  check("Air China cabine : Cavalier et Golden sous conditions, sans plafond global non cité",
-    acC?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.weight_limit_kg === undefined, JSON.stringify(acC));
+  /* RE-FONDÉ LE 18/09/2026 (garde-fou cabine) : le petit chien reste sous conditions, le grand est
+     fermé, et aucun plafond n'est écrit dans l'un ni l'autre cas. */
+  check("Air China cabine : Cavalier sous conditions, Golden fermé par le garde-fou, sans plafond global inventé",
+    acC?.status === "accepted_with_conditions" && acC?.weight_limit_kg === undefined
+      && canal(pek, "airline_air_china", "cabin")?.status === "denied"
+      && canal(pek, "airline_air_china", "cabin")?.weight_limit_kg === undefined,
+    JSON.stringify({ cavalier: acC, golden: canal(pek, "airline_air_china", "cabin") }));
   check("Air China soute, Golden 32 kg : sous conditions (demande préalable citée) ; fret non décidé → à confirmer",
     canal(pek, "airline_air_china", "hold")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cargo")?.status === "confirmation_required");
   const nbo = decide("airport_cdg", "airport_nbo", GOLDEN_32), nboC = decide("airport_cdg", "airport_nbo", CAVALIER_6);

@@ -84,5 +84,68 @@ console.log("\n=== Exception ITA bornée ===");
   check("ITA 20 kg international : refus", itaInternational?.status === "denied", JSON.stringify(itaInternational));
 }
 
+console.log("\n=== Ce que le garde-fou DIT au voyageur ===");
+{
+  /* LE MOTIF AFFICHÉ EST LE VRAI SUJET DE CE CORRECTIF, et il a failli lui échapper.
+     « weight_limit » se dit, dans les quatre langues, « poids au-delà de la limite publiée ». Or le
+     garde-fou ne s'applique QUE lorsque la compagnie n'en publie aucune : lui prêter ce motif
+     faisait dire au Finder qu'une limite publiée avait été dépassée chez Delta et United, qui n'en
+     publient pas. Le refus était juste, sa justification était fausse. */
+  /* Chaque compagnie est interrogee sur SA route temoin : United ne dessert pas JFK depuis Accra,
+     et un temoin absent rendrait le controle vrai faute de matiere. */
+  const routes = { airline_delta: ["airport_acc", "airport_jfk"], airline_united: ["airport_acc", "airport_iad"] };
+  let temoins = 0;
+  for (const [id, [origin, destination]] of Object.entries(routes)) {
+    const dec = evaluate(kb, FinderRequest.parse({
+      origin, destination, dog: { breed_id: "breed_labrador_retriever", weight_kg: 25 }, date,
+    }));
+    const a = airline(dec, id);
+    if (!a) { check(`${id} : presente dans le resultat temoin`, false); continue; }
+    temoins++;
+    check(`${id} : le motif affiche est celui du garde-fou, pas « limite publiee »`,
+      (a.deny_reasons ?? []).includes("cabin_no_published_limit")
+        && !(a.deny_reasons ?? []).includes("weight_limit"),
+      JSON.stringify(a.deny_reasons));
+  }
+  check(`temoin : le motif a ete eprouve sur des compagnies reellement refusees (${temoins})`, temoins === 2);
+}
+
+console.log("\n=== Un plafond publie garde SON motif ===");
+{
+  /* Contre-epreuve du controle precedent : si les deux refus portaient desormais le meme motif
+     « garde-fou », on aurait corrige un mensonge en en ecrivant un autre. Air Transat publie 8 kg,
+     son refus doit continuer de se dire « au-dela de la limite publiee ». */
+  const dec = decide("airport_yul", "airport_cdg", 38, "breed_alaskan_malamute");
+  const a = airline(dec, "airline_air_transat");
+  check("Air Transat : le refus par plafond officiel porte toujours « weight_limit »",
+    (a?.deny_reasons ?? []).includes("weight_limit")
+      && !(a?.deny_reasons ?? []).includes("cabin_no_published_limit"),
+    JSON.stringify(a?.deny_reasons));
+}
+
+console.log("\n=== La borne est franche, et elle est a 10 kg exactement ===");
+{
+  /* 10,0 kg ne doit PAS etre refuse : la regle dit « au-dela de 10 kg ». Un garde-fou dont la borne
+     glisserait d'un dixieme refuserait des chiens que la compagnie accepte. */
+  const dix = decide("airport_yul", "airport_cdg", 10);
+  const dixUn = decide("airport_yul", "airport_cdg", 10.1);
+  for (const id of ["airline_air_canada", "airline_westjet"]) {
+    check(`${id} : 10,0 kg n'est pas refuse par le garde-fou`,
+      placement(dix, id, "cabin")?.status !== "denied", JSON.stringify(placement(dix, id, "cabin")));
+    check(`${id} : 10,1 kg l'est`,
+      placement(dixUn, id, "cabin")?.status === "denied", JSON.stringify(placement(dixUn, id, "cabin")));
+  }
+}
+
+console.log("\n=== Le garde-fou ne deborde pas sur les autres canaux ===");
+{
+  /* Il vise la cabine et elle seule. Un chien de 38 kg accepte en soute chez Air Canada doit le
+     rester : refuser la soute « par prudence » serait inventer une contrainte que personne ne pose. */
+  const dec = decide("airport_yul", "airport_cdg", 38, "breed_alaskan_malamute");
+  const soute = placement(dec, "airline_air_canada", "hold");
+  check("Air Canada : la soute reste acceptee sous conditions a 38 kg, avec son plafond officiel de 45 kg",
+    soute?.status === "accepted_with_conditions" && soute?.weight_limit_kg === 45, JSON.stringify(soute));
+}
+
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);
 process.exit(fail ? 1 : 0);

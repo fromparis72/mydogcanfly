@@ -173,9 +173,23 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
   /* Le témoin inverse : sans `weight_includes_carrier`, le seuil n'est pas qualifié et le moteur
      ne refuse PAS au seuil. Les anciennes règles parallèles ont été retirées : la politique
      citée reste simplement ouverte sous conditions, sans inventer ce que pèse le plafond. */
-  const sans = stOf(REQ(GOLDEN_32, kbCiteeSansSeuil), "airline_air_france", "cabin");
-  check("même politique SANS `weight_includes_carrier` → JAMAIS un refus au seuil",
-    sans?.status !== "denied" && sans?.status !== "allowed", JSON.stringify(sans));
+  /* CE TÉMOIN A ÉTÉ RE-FONDÉ LE 18/09/2026, PAS ABAISSÉ. Il disait « sans qualification du sujet
+     pesé, le moteur ne refuse pas » et le vérifiait par l'absence de refus — ce qui était le seul
+     moyen de le dire tant que rien d'autre ne pouvait refuser. Depuis le garde-fou cabine, un
+     golden de 32 kg est refusé, mais par NOUS et non par le plafond non qualifié : l'affirmation
+     d'origine tient toujours, et c'est elle qu'on vérifie désormais directement. Le motif porté
+     par le refus est justement ce qui distingue les deux, et le confondre serait reprendre le
+     défaut d'affichage que ce lot corrige. */
+  const decSans = REQ(GOLDEN_32, kbCiteeSansSeuil);
+  const sans = stOf(decSans, "airline_air_france", "cabin");
+  const motifsSans = decSans.airlines.find((x) => x.airline_id === "airline_air_france")?.deny_reasons ?? [];
+  check("même politique SANS `weight_includes_carrier` → le plafond non qualifié ne refuse toujours pas",
+    !motifsSans.includes("weight_limit"), JSON.stringify({ sans, motifsSans }));
+  check("…et le refus qui subsiste est celui du garde-fou interne, nommé comme tel",
+    sans?.status !== "allowed" && (sans?.status !== "denied" || motifsSans.includes("cabin_no_published_limit")),
+    JSON.stringify({ sans, motifsSans }));
+  check("…sans jamais exposer de plafond compagnie inventé",
+    sans?.weight_limit_kg === undefined, JSON.stringify(sans));
   /* LOT 2 : `weight_includes_carrier: false` EXPLICITE = plafond du chien seul (Air Europa cabine).
      Le chien seul au-dessus est refusé sûrement, et la décision dit que le contenant s'ajoute. */
   {

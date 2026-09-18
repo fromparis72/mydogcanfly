@@ -708,7 +708,7 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_air_transat].premium.policy.cargo.source",
-      "empreinte_source": "525cf514bc064bb21846c20ca7490e1b440e3012e6614e399b553132ba060ca9"
+      "empreinte_source": "50d1933037c7bcd6b998fabfc96a1750d8b27251f5c148944d5fd8d916bc0cfe"
     },
     {
       "famille": "airlines",
@@ -3908,12 +3908,17 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_westjet].premium.booking.source",
-      "empreinte_source": "dc2a3f60e0bc414defd4e2b87b1f51a5632dec70d5fe6090731f6078f41f7547"
+      "empreinte_source": "e2a57af4426895ff75f2cba98497216bdd43bbd82e461932dd0fe68313ed2ebd"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_westjet].premium.policy.cabin.fares[fare_westjet_cabin_cad_2026_09_18].source",
+      "empreinte_source": "c6d932e8cfd245546396cb8af7c43c10b65a3df80b5118ec9249564f4bf1648b"
     },
     {
       "famille": "airlines",
       "locator": "airlines[airline_westjet].premium.policy.cabin.source",
-      "empreinte_source": "490f293e01c5fd4266b5e41d17f3503cf6cb6b3a411cfa0043c096261a98d8b4"
+      "empreinte_source": "c0808f76070e142023fcb28ba8bf4c167b60451f9a55e225b33d5011d96c8d8f"
     },
     {
       "famille": "airlines",
@@ -3923,7 +3928,12 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_westjet].premium.policy.cargo.source",
-      "empreinte_source": "dc2a3f60e0bc414defd4e2b87b1f51a5632dec70d5fe6090731f6078f41f7547"
+      "empreinte_source": "e1baa29f619f825487d822e848b8c4bbb56a97d527930f7c1b31c2474cb6aaff"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_westjet].premium.policy.hold.fares[fare_westjet_hold_cad_2026_09_18].source",
+      "empreinte_source": "c6d932e8cfd245546396cb8af7c43c10b65a3df80b5118ec9249564f4bf1648b"
     },
     {
       "famille": "airlines",
@@ -3933,7 +3943,7 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_westjet].premium.summary_source",
-      "empreinte_source": "dc2a3f60e0bc414defd4e2b87b1f51a5632dec70d5fe6090731f6078f41f7547"
+      "empreinte_source": "c70086e4743c68f086218a19926e238ee21b756bcedb1d6f0649234e5a4dd594"
     },
     {
       "famille": "airlines",
@@ -8732,9 +8742,9 @@
     }
   ],
   "empreintes": {
-    "globale": "d01b6c82f1230bd5d8f67360a0f2255132113c1555ed4b3539c82e5fb84a4a08",
+    "globale": "3df1d674793414b672d1907e9eff63bc6d251cbd54c1004474c8bfdc8bba7899",
     "par_famille": {
-      "airlines": "8207f7082ebb2b59398fcd2a864f8681f8d905b8c53235f854efe878634ab690",
+      "airlines": "50c4629182aa69d890de50d6623334048b605578cc213ce049a075a35ef0002a",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
