@@ -737,9 +737,16 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      la portée les énumère (la grille n'est pas symétrique et ce regroupement ne
      l'aplatit pas). Air Algérie publie trois portées — domestique, Zone A, Zone B —
      chacune dite en plusieurs devises sur la même ligne : six lignes.
-     Bilan net : +29 lignes, +4 canaux, +2 compagnies. */
-  check("l'import verrouillé porte exactement 289 lignes sur 135 canaux et 79 compagnies — les grilles Royal Jordanian et Air Algérie entrent sans perte muette",
-    avecTarifs === 135 && lignesTarifaires === 289 && compagnies.size === 79,
+     Bilan net : +29 lignes, +4 canaux, +2 compagnies.
+     MOUVEMENT NOMMÉ (18/09/2026, Edelweiss et Eurowings). Edelweiss publie cinq
+     zones en cinq devises, pour la cabine et pour la soute où le prix dépend en
+     outre de la classe de caisse : quinze lignes, reprises de la grille en vigueur
+     depuis le 1er décembre 2025 et non de l'ancienne, que la page affiche encore.
+     Eurowings ne publie qu'un plancher, « ab 60 € » : une ligne de nature `minimum`,
+     car dire 60 € tout court ferait passer un plancher pour un prix ferme.
+     Bilan net : +16 lignes, +3 canaux, +2 compagnies. */
+  check("l'import verrouillé porte exactement 305 lignes sur 138 canaux et 81 compagnies — les grilles Edelweiss et le plancher Eurowings entrent sans perte muette",
+    avecTarifs === 138 && lignesTarifaires === 305 && compagnies.size === 81,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

@@ -34249,6 +34249,228 @@
             "availability": "offered",
             "max_weight_kg": 8,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_edelweiss_cabin_europe_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 110,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 115,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 105,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine — Europe (Maroc et Tunisie compris)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Cabin … Europe (incl. Morocco and Tunisia) … CHF 110 EUR 100 USD 115 GBP 105 CAD 130",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_cabin_levant_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 125,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 120,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 119,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine — Levant et Égypte",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Cabin … Levant and Egypt … CHF 125 EUR 120 USD 130 GBP 119 CAD 155",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_cabin_intercont_court_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 135,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 125,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 129,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Cabin … Short-haul intercontinental (Dominican Republic, Jamaica, Cape Verde, and Oman) … CHF 135 EUR 125 USD 140 GBP 129 CAD 170",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_cabin_intercont_moyen_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 135,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 145,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 185,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Cabin … Medium-haul intercontinental (Eastern Canada, Sri Lanka, Tanzania, and Eastern United States) … CHF 150 EUR 135 USD 155 GBP 145 CAD 185",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_cabin_intercont_long_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 160,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 145,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 165,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Cabin … Long-haul intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, and Western United States) … CHF 160 EUR 145 USD 165 GBP 155 CAD 200",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/regulations.html",
               "source_type": "official_website",
@@ -34265,6 +34487,448 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_edelweiss_hold_europe_kennel1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 115,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 110,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 120,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 150,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisse 1 — Europe (Maroc et Tunisie compris)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Europe (incl. Morocco and Tunisia) … Price kennel 1 … CHF 115 EUR 100 GBP 110 USD 120 CAD 150",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_levant_kennel1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 195,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisse 1 — Levant et Égypte",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Levant and Egypt … Price kennel 1 … CHF 150 EUR 130 GBP 140 USD 155 CAD 195",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_court_kennel1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 170,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 150,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 160,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 175,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 225,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisse 1 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Short-haul intercontinental (Dominican Republic, Jamaica, Cape Verde, and Oman) … Price kennel 1 … CHF 170 EUR 150 GBP 160 USD 175 CAD 225",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_moyen_kennel1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 195,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 185,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 225,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisse 1 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Medium-haul intercontinental (Eastern Canada, Sri Lanka, Tanzania, and Eastern United States) … Price kennel 1 … CHF 195 EUR 170 GBP 185 USD 200 CAD 225",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_long_kennel1_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 220,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 190,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 210,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 225,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 285,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisse 1 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Long-haul intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, and Western United States) … Price kennel 1 … CHF 220 EUR 190 GBP 210 USD 225 CAD 285",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_europe_kennel25_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 230,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 220,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 235,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 300,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisses 2 à 5 — Europe (Maroc et Tunisie compris)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Europe (incl. Morocco and Tunisia) … Price kennel 2-5 … CHF 230 EUR 200 GBP 220 USD 235 CAD 300",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_levant_kennel25_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 260,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 285,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 305,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 390,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisses 2 à 5 — Levant et Égypte",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Levant and Egypt … Price kennel 2-5 … CHF 300 EUR 260 GBP 285 USD 305 CAD 390",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_court_kennel25_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 345,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 300,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 325,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 350,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 450,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisses 2 à 5 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Short-haul intercontinental (Dominican Republic, Jamaica, Cape Verde, and Oman) … Price kennel 2-5 … CHF 345 EUR 300 GBP 325 USD 350 CAD 450",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_moyen_kennel25_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 390,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 340,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 370,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 395,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 510,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisses 2 à 5 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Medium-haul intercontinental (Eastern Canada, Sri Lanka, Tanzania, and Eastern United States) … Price kennel 2-5 … CHF 390 EUR 340 GBP 370 USD 395 CAD 510",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              },
+              {
+                "id": "fare_edelweiss_hold_intercont_long_kennel25_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 440,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 380,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 415,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 445,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 570,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute, caisses 2 à 5 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "source": {
+                  "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Dogs and Cats in Hold … Long-haul intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, and Western United States) … Price kennel 2-5 … CHF 440 EUR 380 GBP 415 USD 445 CAD 570",
+                  "quote_language": "en",
+                  "locator": "Charges for transporting animals → Prices from 1. December 2025"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html",
               "source_type": "official_website",
@@ -36472,9 +37136,6 @@
         "airport_str",
         "airport_ber"
       ],
-      "fees": {
-        "cabin": "from €60"
-      },
       "rating": {
         "score": 2.8,
         "points": 56
@@ -36659,6 +37320,36 @@
             "max_weight_kg": 8,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_eurowings_cabin_plancher_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 60,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route",
+                "source": {
+                  "url": "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+                  "history": [],
+                  "quote": "Die Mitnahme von Haustieren von bis zu 8 kg kostet ab 60 €.",
+                  "quote_language": "de",
+                  "locator": "Wie viel kostet die Mitnahme meines Haustiers an Bord?"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html",
               "source_type": "official_website",
