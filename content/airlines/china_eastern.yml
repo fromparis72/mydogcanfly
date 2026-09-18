@@ -110,6 +110,37 @@ policies:
       quote: "每个独立包装的小动物及其容器合计重量(含食物和水)不得超过32千克（kg）。"
       quote_language: zh-CN
       locator: "八、乘机须知 1 > a et b（4）小动物容器尺寸及重量"
+    # TARIF (relevé du 18/09/2026, page anglaise « Small Animals »). Même situation qu'Air China, et
+    # même traitement : aucun montant publié, mais une RÈGLE publiée — « Fees will be collected at
+    # the airport based on the combined weight of the animal, container, and any food carried, in
+    # accordance with excess baggage and other applicable regulations. » Nature `formula`.
+    #
+    # LA RÈGLE EST PLUS PRÉCISE QUE CELLE D'AIR CHINA et mérite d'être dite telle quelle : c'est le
+    # poids CUMULÉ de l'animal, du contenant ET de la nourriture emportée qui sert d'assiette. Un
+    # voyageur qui glisse deux kilos de croquettes dans la caisse paie dessus.
+    #
+    # La page ne parle que d'animaux ENREGISTRÉS, en soute équipée d'oxygène ; elle ne mentionne
+    # jamais la cabine. Aucune ligne n'y est donc écrite, et le refus de cabine déjà porté par la
+    # fiche n'est pas touché.
+    fares:
+      - id: fare_china_eastern_hold_bareme_2026_09_18
+        placement: hold
+        price:
+          kind: formula
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié"
+        source:
+          url: "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "Fees will be collected at the airport based on the combined weight of the animal, container, and any food carried, in accordance with excess baggage and other applicable regulations."
+          quote_language: en
+          locator: "Small Animals → VIII. Conditions of Carriage"
   cargo:
     review_state: legacy_unreviewed
 channels:

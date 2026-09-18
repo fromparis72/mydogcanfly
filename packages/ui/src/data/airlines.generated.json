@@ -5686,7 +5686,32 @@
         },
         "max_weight_kg": 32,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_air_china_hold_bareme_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_segment",
+            "scope_label": "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page",
+            "source": {
+              "url": "https://webresource.airchina.com.cn/en-US/content/c/2022-10-10/2329.shtml",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Pet transportation services are charged according to the special baggage fee schedule and must be paid on the spot at check-in. Please see Fee Schedules for Excess Special Baggage.",
+              "quote_language": "en",
+              "locator": "Pet Transportation → VII. Fee schedules"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -20198,7 +20223,32 @@
         },
         "max_weight_kg": 32,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_china_eastern_hold_bareme_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_segment",
+            "scope_label": "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié",
+            "source": {
+              "url": "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Fees will be collected at the airport based on the combined weight of the animal, container, and any food carried, in accordance with excess baggage and other applicable regulations.",
+              "quote_language": "en",
+              "locator": "Small Animals → VIII. Conditions of Carriage"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"

@@ -131,6 +131,39 @@ policies:
       quote: "每只小动物（包含包装容器以及容器内的水及食物），不得超过32公斤。"
       quote_language: zh
       locator: "小动物托运 → 五、运输要求"
+    # TARIF (relevé du 18/09/2026, page anglaise « Pet Transportation »). La compagnie ne publie
+    # AUCUN montant : elle publie une RÈGLE, et la règle renvoie à un autre barème — « Pet
+    # transportation services are charged according to the special baggage fee schedule and must be
+    # paid on the spot at check-in. » D'où une nature `formula`, sans montant.
+    #
+    # POURQUOI PAS « PAS ENCORE VÉRIFIÉ ». La différence tient en une phrase : « nous n'avons pas
+    # regardé » n'engage que nous, tandis qu'ici la compagnie DIT comment son prix se forme. Le
+    # voyageur apprend quelque chose d'utile et de sourcé — que le tarif suit le barème des bagages
+    # spéciaux et se paie au comptoir —, ce qu'un « tarif à confirmer » lui cachait.
+    #
+    # ON NE VA PAS CHERCHER LE BARÈME DES BAGAGES SPÉCIAUX pour en tirer un chiffre : il dépend de
+    # la route, de la classe et du poids, et la page tarifaire ne dit pas lequel s'applique à un
+    # animal. Reconstituer un prix par recoupement serait un calcul de notre main, pas une
+    # publication de la compagnie.
+    fares:
+      - id: fare_air_china_hold_bareme_2026_09_18
+        placement: hold
+        price:
+          kind: formula
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page"
+        source:
+          url: "https://webresource.airchina.com.cn/en-US/content/c/2022-10-10/2329.shtml"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "Pet transportation services are charged according to the special baggage fee schedule and must be paid on the spot at check-in. Please see Fee Schedules for Excess Special Baggage."
+          quote_language: en
+          locator: "Pet Transportation → VII. Fee schedules"
   cargo:
     review_state: legacy_unreviewed
 channels:

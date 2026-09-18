@@ -367,6 +367,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_china].premium.policy.hold.fares[fare_air_china_hold_bareme_2026_09_18].source",
+      "empreinte_source": "338aaaed1e2b53fd4c253d478da7df29e617bbe39035b66247fbf3d2075b1e19"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_china].premium.policy.hold.source",
       "empreinte_source": "eee1d59bf31ccf9f1dd38ad3bc416e96db803b2741059ab723a285c0986ecdc7"
     },
@@ -1414,6 +1419,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_china_eastern].premium.policy.cargo.source",
       "empreinte_source": "eb2f3ceef17e744c2bf8e01e6eafb8519b214190372d08b6c9f1a77c95b58cca"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_eastern].premium.policy.hold.fares[fare_china_eastern_hold_bareme_2026_09_18].source",
+      "empreinte_source": "a950f321182326c14ac4f38a2c9b84638adc376a5627017beb4a7a5c3089e0fa"
     },
     {
       "famille": "airlines",
@@ -8817,9 +8827,9 @@
     }
   ],
   "empreintes": {
-    "globale": "03633f979b56e92d89fc951e56a8a4c0df291558a23749a29dde6cf452a57a3f",
+    "globale": "a86b53e9878c7d543222a76051c88bbc73bd6f81a854df86004b14b23ead4333",
     "par_famille": {
-      "airlines": "cac179822b41440b7630cb16da265b3097f27e72e2b194db3017c6eda8739d97",
+      "airlines": "4f5aebd69983fc754cf8a55c08e921bebcadbb5d4eb7646d2ffed121d88569b9",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
