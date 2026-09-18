@@ -114,6 +114,32 @@ policies:
       quote: "Le poids total de l'animal et la cage ne devrait pas dépasser 8 kg. Les dimensions maximales de la cage ne devraient pas dépasser 55 x 40 x 20 cm (Longueur, largeur, hauteur)."
       quote_language: fr
       locator: "Le transport des animaux dans les cabines de passagers"
+    # TARIF (relevé du 18/09/2026). La compagnie ne publie AUCUN montant propre à l'animal : elle
+    # publie la RÈGLE — l'animal et sa cage sortent de la franchise et se paient au barème de
+    # l'excédent de bagages. Reporter ici les montants de la grille d'excédent reviendrait à
+    # composer deux pages officielles pour produire un chiffre qu'aucune des deux n'écrit ; c'est
+    # donc une ligne de nature « formule », qui dit le mécanisme et le prouve, sans chiffre.
+    # La base de trajet n'est pas écrite non plus : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_egyptair_cabin_excedent_2026_09_18
+        placement: cabin
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Hors franchise : facturé au barème de l'excédent de bagages"
+        source:
+          url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "The weight of accompanied pets including the weight of containers and food carried shall not be included in the free baggage allowance of the customer."
+          quote_language: en
+          locator: "EGYPTAIR accepts live animals for carriage according to the following conditions"
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 11).
@@ -130,6 +156,32 @@ policies:
       quote: "Egyptair accepte les animaux vivants en soute ou en cabine comme suit : Le Transport des Animaux dans les Cales d’Avion"
       quote_language: fr
       locator: "Le Transport des Animaux dans les Cales d’Avion"
+    # TARIF (relevé du 18/09/2026). La compagnie ne publie AUCUN montant propre à l'animal : elle
+    # publie la RÈGLE — l'animal et sa cage sortent de la franchise et se paient au barème de
+    # l'excédent de bagages. Reporter ici les montants de la grille d'excédent reviendrait à
+    # composer deux pages officielles pour produire un chiffre qu'aucune des deux n'écrit ; c'est
+    # donc une ligne de nature « formule », qui dit le mécanisme et le prouve, sans chiffre.
+    # La base de trajet n'est pas écrite non plus : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_egyptair_hold_excedent_2026_09_18
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Hors franchise : compté et facturé en pièces d'excédent de bagages"
+        source:
+          url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "Animals over that weight (23Kgs) must travel individually and will be counted and charged as two pieces."
+          quote_language: en
+          locator: "EGYPTAIR accepts live animals for carriage according to the following conditions"
   cargo:
     review_state: legacy_unreviewed
 channels:

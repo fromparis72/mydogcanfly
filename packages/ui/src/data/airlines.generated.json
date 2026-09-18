@@ -23056,7 +23056,32 @@
           "l": 55,
           "w": 40,
           "h": 20
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_egyptair_cabin_excedent_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé au barème de l'excédent de bagages",
+            "source": {
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "The weight of accompanied pets including the weight of containers and food carried shall not be included in the free baggage allowance of the customer.",
+              "quote_language": "en",
+              "locator": "EGYPTAIR accepts live animals for carriage according to the following conditions"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -23071,7 +23096,32 @@
           "quote": "Egyptair accepte les animaux vivants en soute ou en cabine comme suit : Le Transport des Animaux dans les Cales d’Avion",
           "quote_language": "fr",
           "locator": "Le Transport des Animaux dans les Cales d’Avion"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_egyptair_hold_excedent_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : compté et facturé en pièces d'excédent de bagages",
+            "source": {
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Animals over that weight (23Kgs) must travel individually and will be counted and charged as two pieces.",
+              "quote_language": "en",
+              "locator": "EGYPTAIR accepts live animals for carriage according to the following conditions"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -50943,7 +50993,32 @@
           "locator": "Conditions générales de transport → 10.2.1 Animaux voyageant en cabine"
         },
         "max_weight_kg": 8,
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_tunisair_cabin_excedent_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "source": {
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages.",
+              "quote_language": "fr",
+              "locator": "Préparez vos bagages → Particularités et exceptions franchise bagages"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -50967,7 +51042,32 @@
         },
         "max_weight_kg": 32,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_tunisair_hold_excedent_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "source": {
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages.",
+              "quote_language": "fr",
+              "locator": "Préparez vos bagages → Particularités et exceptions franchise bagages"
+            }
+          }
+        ]
       },
       "cargo": {
         "availability": "offered",

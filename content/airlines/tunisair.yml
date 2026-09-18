@@ -81,6 +81,32 @@ policies:
       quote: "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture"
       quote_language: fr
       locator: "Conditions générales de transport → 10.2.1 Animaux voyageant en cabine"
+    # TARIF (relevé du 18/09/2026). La compagnie ne publie AUCUN montant propre à l'animal : elle
+    # publie la RÈGLE — l'animal et sa cage sortent de la franchise et se paient au barème de
+    # l'excédent de bagages. Reporter ici les montants de la grille d'excédent reviendrait à
+    # composer deux pages officielles pour produire un chiffre qu'aucune des deux n'écrit ; c'est
+    # donc une ligne de nature « formule », qui dit le mécanisme et le prouve, sans chiffre.
+    # La base de trajet n'est pas écrite non plus : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_tunisair_cabin_excedent_2026_09_18
+        placement: cabin
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Hors franchise : facturé comme excédent de bagages"
+        source:
+          url: "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages."
+          quote_language: fr
+          locator: "Préparez vos bagages → Particularités et exceptions franchise bagages"
   hold:
     availability: offered
     max_weight_kg: 32
@@ -106,6 +132,32 @@ policies:
       quote: "Toute pièce de plus de 32Kg doit être obligatoirement prise en charge par le service Fret."
       quote_language: fr
       locator: "Préparez vos bagages → limitation de poids par pièce"
+    # TARIF (relevé du 18/09/2026). La compagnie ne publie AUCUN montant propre à l'animal : elle
+    # publie la RÈGLE — l'animal et sa cage sortent de la franchise et se paient au barème de
+    # l'excédent de bagages. Reporter ici les montants de la grille d'excédent reviendrait à
+    # composer deux pages officielles pour produire un chiffre qu'aucune des deux n'écrit ; c'est
+    # donc une ligne de nature « formule », qui dit le mécanisme et le prouve, sans chiffre.
+    # La base de trajet n'est pas écrite non plus : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_tunisair_hold_excedent_2026_09_18
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Hors franchise : facturé comme excédent de bagages"
+        source:
+          url: "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle"
+          history: []
+          quote: "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages."
+          quote_language: fr
+          locator: "Préparez vos bagages → Particularités et exceptions franchise bagages"
   cargo:
     availability: offered
     min_weight_kg: 32
