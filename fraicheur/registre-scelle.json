@@ -1507,6 +1507,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_emirates].premium.policy.hold.fares[fare_emirates_hold_23kg_2026_09_18].source",
+      "empreinte_source": "af5d09d9499de070c376025e4b07494f2e836d0714f0550f8aead1b65c1f491f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_emirates].premium.policy.hold.fares[fare_emirates_hold_24_32kg_2026_09_18].source",
+      "empreinte_source": "af5d09d9499de070c376025e4b07494f2e836d0714f0550f8aead1b65c1f491f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_emirates].premium.policy.hold.fares[fare_emirates_hold_plus32kg_2026_09_18].source",
+      "empreinte_source": "af5d09d9499de070c376025e4b07494f2e836d0714f0550f8aead1b65c1f491f"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_emirates].premium.policy.hold.source",
       "empreinte_source": "c10f27dda3ce0079be08bf2a03b4128b261e910caebdef2e2345fadfd6f140e9"
     },
@@ -8277,9 +8292,9 @@
     }
   ],
   "empreintes": {
-    "globale": "3e9701eeab73a06b0cb77091ecf9660c9acc4be6eec01802c91691bc7a61ab48",
+    "globale": "2db2714bccb4f55e2311932d56097166adc8165c3111c8896e421b26aca043d9",
     "par_famille": {
-      "airlines": "7e28d609b1e8ee58cc26514664bfe43b8d02a6851f9768763d452a00d5620c5b",
+      "airlines": "6b5e8dd3056db32e363b997e5c28836e379571ecd8a5c62bc712167dd96c0a9a",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
