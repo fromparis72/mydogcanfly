@@ -35,6 +35,7 @@
     "test:fetch-couvertures": "node test-fetch-couvertures.mjs",
     "preuve:migration-categories": "node preuve-migration-categories.mjs",
     "test:entities": "tsx test-entity-pages-harness.mjs",
+    "test:bloc-tarifaire": "tsx test-bloc-tarifaire.mjs",
     "test:entities:complet": "HARNAIS_PORTEE=complet NODE_OPTIONS=--max-old-space-size=1024 tsx test-entity-pages-harness.mjs",
     "build": "node packages/knowledge/scripts/lib/require-node.mjs \"le build\" && npm -w @mydogcanfly/ui run build",
     "build:preview": "node packages/knowledge/scripts/build-preview.mjs",

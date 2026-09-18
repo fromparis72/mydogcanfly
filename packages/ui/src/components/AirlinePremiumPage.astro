@@ -17,6 +17,7 @@ import { syntheseAttestee, nomDeLangue } from "../lib/syntheseAttestee";
 import { faitsAttestes } from "@mydogcanfly/knowledge";
 import { presentNumericFares } from "../lib/farePresentation";
 import { compagnieIndexable, preuvesDeCompagnie } from "../lib/compagnieEtat";
+import TarifsChien from "./TarifsChien.astro";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -428,6 +429,11 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         <a class="cratecta cratecta--finder" data-carry="breed" href={`${base}/#flight-finder?air=${id}`}>🔎 {tt(locale, "premium.cta.find_flight")} →</a>
       </div>
     </div>
+
+    {/* LA SECTION TARIFAIRE, juste après « Où voyage ton chien ? » (demande du 18/09/2026).
+        Elle lit la politique canonique — la même que les cartes ci-dessus et que le Finder — et
+        n'a aucune donnée à elle. */}
+    <TarifsChien locale={locale} policy={kbAir?.premium?.policy} airlineName={d.name} />
 
     {/* L'ANCIENNE GRILLE LIBRE « TARIFS PAR ZONE » reste non rendue. Les tarifs migrés vers le
         contrat structuré et sourcé sont désormais affichés dans le canal concerné ci-dessus ;

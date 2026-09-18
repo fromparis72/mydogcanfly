@@ -18,7 +18,12 @@ export interface FarePresentationOptions {
   minimumLabel: string;
 }
 
-const money = (amount: number, currency: string, locale: string): string => {
+/* EXPORTÉ DEPUIS LE 18/09/2026. La section tarifaire des fiches (`TarifsChien.astro`) écrivait sa
+   propre copie de ce formatage, et `test-montants-publies.mjs` — qui exige que tout montant visible
+   descende du tarif canonique — devait alors deviner laquelle des deux avait produit le texte lu.
+   Deux formats qui divergent d'une espace insécable suffiraient à rendre la garde inopérante ou
+   bruyante. Il n'y a donc plus qu'une fonction, appelée par le gabarit comme par le contrôle. */
+export const moneyText = (amount: number, currency: string, locale: string): string => {
   try {
     return new Intl.NumberFormat(locale, {
       style: "currency",
@@ -29,6 +34,8 @@ const money = (amount: number, currency: string, locale: string): string => {
     return `${amount} ${currency}`;
   }
 };
+
+const money = moneyText;
 
 const preferredCurrency = (fares: FareLike[], locale: string): string | null => {
   const coverage = new Map<string, number>();
