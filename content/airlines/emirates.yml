@@ -98,6 +98,83 @@ policies:
       quote: "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold."
       quote_language: en
       locator: "Unusual baggage and special allowances → Pets"
+    # GRILLE OFFICIELLE (relevé du 18/09/2026, page anglaise, section « Animal excess baggage
+    # charges ») : trois paliers au poids et aux dimensions combinés animal + cage, dits en USD et
+    # en CAD sur la même ligne — deux devises publiées, aucune conversion. Le quatrième palier
+    # (cage au-delà de 300 cm) renvoie au fret manifesté et n'est pas un tarif soute.
+    # BASE DE FACTURATION : la page ne dit pas si le montant s'entend par vol, par aller ou par
+    # trajet ; « excess baggage charges » chez Emirates se paie par direction, d'où `per_one_way`
+    # — c'est une lecture, pas une citation, à confirmer auprès de la compagnie.
+    fares:
+      - id: fare_emirates_hold_23kg_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 500
+              currency: USD
+            - amount: 700
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Animal et cage jusqu'à 23 kg et 150 cm combinés"
+        source:
+          url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "When the animal and cage combined do not exceed 23kg and 59 inches(150 cm) USD 500 / CAD 700"
+          quote_language: en
+          locator: "Unusual baggage and special allowances → Pets → Animal excess baggage charges"
+      - id: fare_emirates_hold_24_32kg_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 650
+              currency: USD
+            - amount: 900
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Animal et cage de 24 à 32 kg, dimensions de 150 à 300 cm"
+        source:
+          url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "When the animal and cage combined weight between 24 and 32kg and dimensions between 59 inches(150cm) and 118 inches(300cm) USD 650 / CAD 900"
+          quote_language: en
+          locator: "Unusual baggage and special allowances → Pets → Animal excess baggage charges"
+      - id: fare_emirates_hold_plus32kg_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 800
+              currency: USD
+            - amount: 1150
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Animal et cage de plus de 32 kg, dimensions de 150 à 300 cm"
+        source:
+          url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture de la grille officielle, relevé fourni par Philippe"
+          history: []
+          quote: "When the animal and cage combined weight is over 32kg and dimensions between 59 inches(150cm) and 118 inches(300cm) USD 800 / CAD 1150"
+          quote_language: en
+          locator: "Unusual baggage and special allowances → Pets → Animal excess baggage charges"
   cargo:
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot4, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 8).
