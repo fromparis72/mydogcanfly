@@ -145,11 +145,20 @@ channels:
       fr: Petits chiens et chats ≤ 8 kg (animal + sac) dans un sac souple étanche/résistant sous le siège (max 55 × 40 × 23 cm) ; 2 par sac, min 12 semaines. Court/moyen-courrier seulement. Formulaire à l'enregistrement.
       es: Perros y gatos pequeños ≤ 8 kg (mascota + bolso) en un bolso blando estanco y resistente a mordeduras bajo el asiento (máx. 55 × 40 × 23 cm); 2 por bolso, mín. 12 semanas. Solo corto/medio radio. Formulario en el check-in.
       pt: "Cachorros e gatos pequenos ≤ 8 kg (animal + bolsa) em uma bolsa flexível, à prova de vazamento e de mordida, embaixo do assento (máx. 55 × 40 × 23 cm); 2 por bolsa, mín. 12 semanas. Somente curta/média distância. Formulário no check-in."
+    # LE CHAMP `fee` HÉRITÉ EST ÉTEINT ICI (18/09/2026), et lui seul. Il disait « from €60 » — très
+    # exactement ce que la grille canonique publie désormais depuis la ligne `minimum` sourcée
+    # ci-dessus. Le garde-fou `test-tarifs.mjs` cherche chaque ancienne valeur CHIFFRÉE dans le bloc
+    # de son canal ; il ne peut pas distinguer à l'œil une fuite de la dette d'une coïncidence avec
+    # le rendu canonique, et il a donc rougi — à raison de méthode, à tort sur le fond. Plutôt que
+    # d'élargir l'exemption du contrôle, on éteint la dette : le canal porte maintenant sa preuve,
+    # la vieille chaîne libre n'a plus rien à dire. Le champ reste présent parce que le schéma
+    # éditorial l'exige, avec le même tiret que la soute et le fret ; il n'est lu par aucune surface
+    # (contrôles 1, 1bis et 2 de `test-tarifs.mjs`), sa valeur n'est donc jamais publiée.
     fee:
-      en: from €60
-      fr: dès 60 €
-      es: desde 60 €
-      pt: "a partir de 60 €"
+      en: —
+      fr: —
+      es: —
+      pt: "—"
   - placement: hold
     icon: 🧳
     name:
