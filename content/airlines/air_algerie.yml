@@ -88,6 +88,87 @@ policies:
       quote: Les animaux domestiques admis en cabine ne doivent pas excéder un poids maximum de 06 kg (animal + contenant de transport).
       quote_language: fr
       locator: Voyage des animaux domestiques en cabine
+    # GRILLE OFFICIELLE (relevé du 18/09/2026, page nationale). Trois portées publiées — réseau
+    # domestique, Zone A, Zone B — chacune dite dans plusieurs devises sur la même ligne, sans
+    # conversion de notre part. Au-delà de 23 kg la page renvoie à l'excédent de poids puis, au-delà
+    # de 32 kg, au fret : ces deux régimes n'ont pas de montant publié et ne sont donc pas repris.
+    # La base de trajet n'est pas écrite : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_air_algerie_cabin_domestique_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 1500
+              currency: DZD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Réseau domestique algérien, animal et contenant jusqu'à 6 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Réseau domestique algérien … En Cabine(PETC) <=06kg … 1500 DZD"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau domestique algérien"
+      - id: fare_air_algerie_cabin_zone_a_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 7000
+              currency: DZD
+            - amount: 50
+              currency: EUR
+            - amount: 50
+              currency: CHF
+            - amount: 45
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Zone A … En Cabine(PETC) <=06kg … 7000 DZD 50 EUR / 50 CHF 45 GBP"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau International"
+      - id: fare_air_algerie_cabin_zone_b_2026_09_18
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - amount: 18000
+              currency: DZD
+            - amount: 120
+              currency: EUR
+            - amount: 130
+              currency: USD
+            - amount: 175
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Zone B … En Cabine(PETC) <=06kg … 18 000 DZD 120 EUR / 130 USD 175 CAD"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau International"
   hold:
     availability: offered
     max_weight_kg: 32
@@ -110,6 +191,87 @@ policies:
       quote: Les animaux en soute sont acceptés d’un poids allant jusqu’à un maximum de 32 kg. Au-delà de 32 kg le transport se fera via le fret.
       quote_language: fr
       locator: Voyage des animaux domestiques en soute
+    # GRILLE OFFICIELLE (relevé du 18/09/2026, page nationale). Trois portées publiées — réseau
+    # domestique, Zone A, Zone B — chacune dite dans plusieurs devises sur la même ligne, sans
+    # conversion de notre part. Au-delà de 23 kg la page renvoie à l'excédent de poids puis, au-delà
+    # de 32 kg, au fret : ces deux régimes n'ont pas de montant publié et ne sont donc pas repris.
+    # La base de trajet n'est pas écrite : `per_one_way` est une lecture, pas une citation.
+    fares:
+      - id: fare_air_algerie_hold_domestique_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 3000
+              currency: DZD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Réseau domestique algérien, animal jusqu'à 23 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Réseau domestique algérien … En Soute (AVIH) <= 23kg … 3000 DZD"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau domestique algérien"
+      - id: fare_air_algerie_hold_zone_a_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 15000
+              currency: DZD
+            - amount: 100
+              currency: EUR
+            - amount: 100
+              currency: CHF
+            - amount: 90
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Zone A … En Soute (AVIH) <= 23kg … 15 000 DZD 100 EUR / 100 CHF 90 GBP"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau International"
+      - id: fare_air_algerie_hold_zone_b_2026_09_18
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - amount: 24000
+              currency: DZD
+            - amount: 150
+              currency: EUR
+            - amount: 160
+              currency: USD
+            - amount: 220
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg"
+        source:
+          url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille tarifaire officielle"
+          history: []
+          quote: "Zone B … En Soute (AVIH) <= 23kg … 24 000 DZD 150 EUR / 160 USD 220 CAD"
+          quote_language: fr
+          locator: "Voyage des animaux domestiques → Réseau International"
   cargo:
     availability: offered
     min_weight_kg: 32
