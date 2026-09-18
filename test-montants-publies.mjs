@@ -287,7 +287,11 @@ function texteHtml(html) {
              Smartwings, « colonnes Kód | Popis služby | EUR | USD1/ | CZK » publie un montant hors
              de la citation elle-même. Il est affiché, donc il est jugé. */
           const cites = liste(`${texteDeClasse(ligne, "tc-q")} ${texteDeClasse(ligne, "tc-meta")}`);
-          const sourceLigne = liste(`${fare.source?.quote ?? ""} ${fare.source?.locator ?? ""} ${fare.scope_label ?? ""}`);
+          /* LA PORTÉE N'EST PAS SA PROPRE PREUVE. La première rédaction incluait `scope_label` dans
+             la source de référence — donc un montant écrit par nous dans la portée se justifiait
+             tout seul, et le contrôle d'en dessous ne pouvait plus rougir. Une garde vraie faute
+             de matière est pire qu'une garde absente : elle rassure. La référence est la SOURCE. */
+          const sourceLigne = liste(`${fare.source?.quote ?? ""} ${fare.source?.locator ?? ""}`);
           const citesInventes = excedents(cites, sourceLigne);
           if (citesInventes.length) {
             fautives.push(`${f.langue}/${f.slug}/${canal} : la citation de la ligne ${i + 1} affiche `
@@ -296,9 +300,20 @@ function texteHtml(html) {
           total += cites.length;
           permisDansCorps.push(...cites);
 
-          /* La portée est NOTRE formulation : ses montants doivent eux aussi venir de la source. */
+          /* La portée est NOTRE formulation : ses montants doivent eux aussi venir de la source —
+             mais comparés en VALEUR, pas en forme rendue. « 35 € » et « €35 » sont le même montant
+             écrit par deux conventions, et exiger la même chaîne accuserait une portée exacte dès
+             que la langue déplace le symbole. Le rapprochement porte donc sur le nombre. */
           const portee = liste(texteDeClasse(ligne, "tc-p"));
-          const porteeInventee = excedents(portee, sourceLigne);
+          const valeurs = (v) => v.map((x) => (x.match(/\d+(?:[.,]\d+)?/) ?? [""])[0].replace(",", "."));
+          /* Et les nombres de la source sont lus DANS SON TEXTE, pas à travers le détecteur de
+             montants : la citation de Qatar Airways est en arabe, « 450 دولاراً أمريكياً » n'est
+             reconnu comme une somme par aucun motif, et la portée exacte qui en descend aurait été
+             accusée d'invention. Ce qui est demandé ici, c'est qu'un nombre avancé par nous existe
+             dans ce que la compagnie écrit — pas qu'un analyseur sache le nommer. */
+          const sourceNombres = (`${fare.source?.quote ?? ""} ${fare.source?.locator ?? ""}`
+            .match(/\d+(?:[.,]\d+)?/g) ?? []).map((x) => x.replace(",", "."));
+          const porteeInventee = excedents(valeurs(portee), sourceNombres);
           if (porteeInventee.length) {
             fautives.push(`${f.langue}/${f.slug}/${canal} : la portée de la ligne ${i + 1} avance `
               + `[${porteeInventee.join(", ")}] sans ce montant dans sa source`);
