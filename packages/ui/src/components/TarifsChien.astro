@@ -1,0 +1,168 @@
+---
+/**
+ * « TARIFS POUR VOYAGER AVEC UN CHIEN » — la section demandée par Philippe le 18/09/2026 (point 3).
+ *
+ * CE QU'ELLE MONTRE, ET D'OÙ ELLE LE TIENT. Rien d'autre que le contrat tarifaire structuré :
+ * la MÊME donnée que celle dont le moteur tire les cartes du Finder, lue au même endroit. Il
+ * n'existe pas de seconde base tarifaire réservée aux fiches, et ce fichier n'en crée pas une —
+ * il ne recalcule rien, ne convertit aucune devise, ne choisit aucune zone.
+ *
+ * LA DIFFÉRENCE DE RÔLE AVEC LE FINDER, qui est délibérée. Le Finder connaît un trajet : il
+ * affiche le tarif APPLICABLE à ce trajet. La fiche ne connaît aucun trajet : elle publie donc
+ * l'ENSEMBLE des tarifs officiels vérifiés, chacun avec sa portée écrite. Deux lectures d'une
+ * seule vérité, jamais deux vérités.
+ *
+ * CE QU'ELLE REFUSE D'AFFICHER, et c'est le plus important :
+ *   · un canal refusé — un tarif sous un refus est un contresens, la section saute le canal ;
+ *   · un montant exact sur un canal en conflit — `lireEtatTarifaire` l'éteint, les mécanismes
+ *     publiés restent ;
+ *   · un montant sans citation — le contrat l'interdit en amont, et le rendu le redit ici en
+ *     n'affichant une ligne que si sa source porte une phrase.
+ *
+ * L'ÉTAT N'EST PAS ÉCRIT ICI. Il vient de `lireEtatTarifaire`, dans le paquet `knowledge`, pour
+ * que la fiche et le Finder ne puissent pas diverger. L'interface traduit une clé ; elle
+ * n'invente pas une nomenclature.
+ */
+import { inlineT, lireEtatTarifaire, dateFormatter } from "@mydogcanfly/knowledge";
+import type { EtatTarifaire } from "@mydogcanfly/knowledge";
+import { moneyText } from "../lib/farePresentation";
+
+interface Props { locale: string; policy: any; airlineName: string }
+const { locale, policy, airlineName } = Astro.props;
+const T = inlineT(locale);
+const fmtDate = dateFormatter(locale);
+
+const CANAUX = [
+  { placement: "cabin", icon: "🐾", nom: T("Cabin", "Cabine", "Cabina") },
+  { placement: "hold", icon: "🧳", nom: T("Hold", "Soute", "Bodega") },
+  { placement: "cargo", icon: "✈️", nom: T("Cargo", "Fret", "Carga") },
+] as const;
+
+const LIBELLE_ETAT: Record<EtatTarifaire, string> = {
+  canal_refuse: "",
+  conflit: T("Official sources disagree — no exact amount published", "Sources officielles contradictoires — aucun montant exact publié", "Fuentes oficiales contradictorias: ningún importe exacto publicado"),
+  publie: T("Official published fare", "Tarif officiel publié", "Tarifa oficial publicada"),
+  plancher_ou_fourchette: T("Published floor or range", "Prix minimum ou fourchette publiés", "Precio mínimo o rango publicados"),
+  calculateur: T("Official calculator", "Calculateur officiel", "Calculadora oficial"),
+  bareme: T("Official pricing rule", "Barème ou formule officielle", "Baremo o fórmula oficial"),
+  a_la_reservation: T("Amount shown during booking only", "Montant affiché uniquement pendant la réservation", "Importe mostrado solo durante la reserva"),
+  sur_devis: T("Cargo or carriage on quotation", "Fret ou transport sur devis", "Carga o transporte bajo presupuesto"),
+  aucun_montant_publie: T("The airline publishes no amount", "La compagnie ne publie aucun montant", "La aerolínea no publica ningún importe"),
+  non_verifie: T("Fare not yet verified by MyDogCanFly", "Tarif pas encore vérifié par MyDogCanFly", "Tarifa aún no verificada por MyDogCanFly"),
+};
+
+const SUJET = {
+  pet: T("per dog", "par chien", "por perro"),
+  container: T("per container", "par contenant", "por contenedor"),
+  pet_or_container: T("per dog and container", "par chien et contenant", "por perro y contenedor"),
+  booking: T("per booking", "par réservation", "por reserva"),
+  shipment: T("per shipment", "par expédition", "por envío"),
+  kilogram: T("per kilogram", "par kilogramme", "por kilogramo"),
+} as Record<string, string>;
+
+const BASE = {
+  per_segment: T("per flight", "par vol", "por vuelo"),
+  per_one_way: T("per one-way", "par aller simple", "por trayecto de ida"),
+  per_journey: T("per journey", "par trajet", "por viaje"),
+  per_round_trip: T("per round trip", "par aller-retour", "por ida y vuelta"),
+} as Record<string, string>;
+
+/* Le montant est écrit tel que la compagnie le publie : chaque devise annoncée, aucune conversion,
+   aucun arrondi. Une ligne qui porte quatre devises en porte quatre à l'écran. */
+/* LE FORMATAGE MONÉTAIRE N'EST PAS RECOPIÉ ICI. Il vient de `farePresentation`, qui l'écrit déjà
+   pour la ligne tarifaire des blocs de canaux. Deux copies suffiraient à faire diverger d'une
+   espace insécable le texte rendu et le texte attendu par `test-montants-publies.mjs`, qui exige
+   que tout montant visible sur une fiche descende du tarif canonique de son canal. */
+const montant = (amounts: readonly { amount: number; currency: string }[]) =>
+  amounts.map((a) => moneyText(a.amount, a.currency, locale)).join(" / ");
+
+const canaux = CANAUX.map((c) => {
+  const p = policy?.[c.placement];
+  const lecture = lireEtatTarifaire(p);
+  /* Un montant exact éteint par un conflit ne doit pas réapparaître par la porte de derrière :
+     on retire les lignes chiffrées AVANT le rendu, plutôt que de les masquer en CSS. */
+  const tarifs = (p?.fares ?? []).filter((f: any) =>
+    !(lecture.montantsExactsSupprimes && (f.price?.amounts?.length ?? 0) > 0));
+  return { ...c, lecture, tarifs, politique: p };
+}).filter((c) => c.lecture.etat !== "canal_refuse");
+---
+{canaux.length > 0 && (
+  <div class="card" data-bloc="tarifs-chien">
+    <h2>💶 {T("Fares for travelling with a dog", "Tarifs pour voyager avec un chien", "Tarifas para viajar con un perro")}</h2>
+    <p class="tc-intro">{T(
+      "Every amount below is published by the airline itself and quoted from its own page. The Flight Finder shows the fare that applies to the trip you searched; this page lists all the official fares we have verified.",
+      "Chaque montant ci-dessous est publié par la compagnie elle-même et cité depuis sa propre page. Le Finder affiche le tarif applicable au trajet recherché ; cette page présente l'ensemble des tarifs officiels que nous avons vérifiés.",
+      "Cada importe a continuación lo publica la propia aerolínea y se cita desde su página. El Buscador muestra la tarifa aplicable al trayecto buscado; esta página presenta todas las tarifas oficiales verificadas.",
+    )}</p>
+    {canaux.map((c) => (
+      <!-- PAS `data-placement` ICI, ET C'EST UN DÉFAUT TROUVÉ EN CI (18/09/2026). Cet attribut est
+           déjà la marque des blocs « Où voyage ton chien ? » : le harnais des pages d'entités exige
+           UN SEUL bloc par placement et a compté le double, et `test-tarifs.mjs` délimite le bloc
+           d'un canal d'un `data-placement` au suivant — une seconde occurrence aurait déplacé ses
+           frontières. La section tarifaire porte donc sa propre marque, `data-canal-tarif`. -->
+      <section class="tc" data-canal-tarif={c.placement} data-etat={c.lecture.etat}>
+        <div class="tc-h">
+          <span class="tc-nm">{c.icon} {c.nom}</span>
+          <span class="tc-etat">{LIBELLE_ETAT[c.lecture.etat]}</span>
+        </div>
+        {c.tarifs.length === 0 && c.lecture.etat === "non_verifie" && (
+          <p class="tc-vide">{T(
+            "We have not yet found an official amount for this channel. Rather than show a number we cannot source, we say so.",
+            "Nous n'avons pas encore trouvé de montant officiel pour ce canal. Plutôt que d'afficher un chiffre que nous ne pouvons pas sourcer, nous le disons.",
+            "Aún no hemos encontrado un importe oficial para este canal. En lugar de mostrar una cifra que no podemos citar, lo decimos.",
+          )}</p>
+        )}
+        {c.lecture.etat === "aucun_montant_publie" && c.politique?.no_published_fare?.quote && (
+          <blockquote class="tc-q" lang={c.politique.no_published_fare.quote_language}>« {c.politique.no_published_fare.quote} »</blockquote>
+        )}
+        <ul class="tc-l">
+          {c.tarifs.map((f: any) => (
+            <li class="tc-i" data-kind={f.price.kind} data-sujet={f.billing_subject} data-base={f.journey_basis}>
+              <div class="tc-r">
+                {/* `data-montants` porte les montants BRUTS, dans l'ordre publié et sans mise en forme :
+                    c'est lui qui permet d'exiger, en quatre langues, que la traduction n'ait déplacé
+                    ni un chiffre ni une devise. Le texte visible, lui, reste formaté par la locale. */}
+                {(f.price.amounts?.length ?? 0) > 0
+                  ? <span class="tc-m" data-montants={f.price.amounts.map((a: any) => `${a.amount} ${a.currency}`).join("|")}>{f.price.kind === "minimum" ? `${T("from", "à partir de", "desde")} ` : ""}{montant(f.price.amounts)}</span>
+                  : <span class="tc-m tc-m--sans">{LIBELLE_ETAT[c.lecture.etat]}</span>}
+                {/* L'UNITÉ DE FACTURATION RESTE VISIBLE : « 500 $ » sans « par chien et contenant,
+                    par aller simple » n'est pas un tarif, c'est un chiffre. */}
+                <span class="tc-u">{[SUJET[f.billing_subject], BASE[f.journey_basis]].filter(Boolean).join(" · ")}</span>
+              </div>
+              {f.scope_label && <div class="tc-p">{f.scope_label}</div>}
+              <details class="tc-pr">
+                <summary>{T("See the source", "Voir la source", "Ver la fuente")}</summary>
+                <blockquote class="tc-q" lang={f.source.quote_language}>« {f.source.quote} »</blockquote>
+                <div class="tc-meta">
+                  {f.source.locator && <span>{f.source.locator}</span>}
+                  <span>{T("verified on", "vérifié le", "verificado el")} {fmtDate(f.source.verified_date)}</span>
+                  <a href={f.source.url} rel="nofollow noopener" target="_blank">{T("Official page", "Page officielle", "Página oficial")} →</a>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+)}
+<style>
+  .tc-intro { color: var(--mdcf-muted); font-size: 14px; margin: 6px 0 14px; }
+  .tc { border-top: 1px solid var(--mdcf-line); padding: 12px 0; }
+  .tc:first-of-type { border-top: 0; }
+  .tc-h { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .tc-nm { font-weight: 700; }
+  .tc-etat { font-size: 13px; color: var(--mdcf-ink-soft); }
+  .tc-vide { font-size: 14px; color: var(--mdcf-muted); margin: 6px 0 0; }
+  .tc-l { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
+  .tc-i { background: var(--mdcf-subtle); border-radius: var(--mdcf-radius-sm); padding: 10px 12px; }
+  .tc-r { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .tc-m { font-weight: 700; }
+  .tc-m--sans { font-weight: 600; color: var(--mdcf-ink-soft); }
+  .tc-u { font-size: 13px; color: var(--mdcf-muted); }
+  .tc-p { font-size: 13px; color: var(--mdcf-ink-soft); margin-top: 2px; }
+  .tc-pr { margin-top: 6px; font-size: 13px; }
+  .tc-pr summary { cursor: pointer; color: var(--mdcf-accent); }
+  .tc-q { margin: 6px 0; padding-left: 10px; border-left: 3px solid var(--mdcf-line); font-style: italic; }
+  .tc-meta { display: flex; gap: 10px; flex-wrap: wrap; color: var(--mdcf-muted); }
+</style>

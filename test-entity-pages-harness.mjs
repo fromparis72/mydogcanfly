@@ -317,6 +317,26 @@ console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, di
     }
     check(`aucune fiche sentinelle ne publie de seuil, dimension, date ou refus non prouvé`,
       res2.fuites.length === 0, `${res2.fuites.length} fuite(s)`);
+    /* L'EXCLUSION DES PANNEAUX DE PREUVE TARIFAIRE EST CONTRE-PROUVÉE ICI, pas seulement consentie.
+       Le lecteur retire `details.tc-pr` du texte examiné parce qu'un chiffre y est rattaché à la
+       page qui le publie. Encore faut-il que ce rattachement existe vraiment : on exige que chaque
+       panneau retiré porte une phrase citée ET un lien officiel, et qu'il y en ait eu — sans quoi
+       l'exclusion serait vraie faute de matière, comme elle l'a été une fois sur le bloc tarifaire. */
+    const lignesTarif = res2.preuvesTarifaires ?? [];
+    const muettes = lignesTarif.filter((x) => !x.phrase || !x.url);
+    check(`chaque ligne tarifaire retirée porte sa citation et son lien officiel (${lignesTarif.length} ligne(s))`,
+      lignesTarif.length > 0 && muettes.length === 0,
+      muettes.slice(0, 3).map((x) => `${x.slug}/${x.langue}`).join(" | ") || "aucune ligne lue — l'exclusion ne porte sur rien");
+    /* LE NOMBRE AVANCÉ PAR NOTRE PORTÉE DOIT VENIR DE LA CITATION DE LA MÊME LIGNE. C'est ce qui
+       distingue une portée d'une invention, et c'est réfutable : déplacer un kilo dans une des
+       quatre langues fait rougir ici. */
+    const porteesInventees = lignesTarif.filter((x) =>
+      (x.porteeNombres ?? []).some((n) => !(x.citationNombres ?? []).includes(n)));
+    const avecPortee = lignesTarif.filter((x) => (x.porteeNombres ?? []).length > 0);
+    check(`aucune portée tarifaire n'avance un nombre absent de sa propre citation (${avecPortee.length} portée(s) chiffrée(s) confrontée(s))`,
+      avecPortee.length > 0 && porteesInventees.length === 0,
+      porteesInventees.slice(0, 3).map((x) => `${x.slug}/${x.langue} : « ${x.portee} »`).join(" | ")
+        || "aucune portée chiffrée — la confrontation ne porte sur rien");
     /* ── ET AUCUN TEXTE DE DÉVELOPPEMENT (contre-test navigateur du 06/09/2026) ─────────────
        Un commentaire que j'avais écrit pour expliquer une correction s'est publié lui-même, sur
        toutes les fiches et dans les quatre langues, parce qu'il citait la syntaxe de commentaire
