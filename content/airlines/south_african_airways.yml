@@ -112,6 +112,43 @@ policies:
       fr: La soute est documentée uniquement sur les vols intérieurs sud-africains ; à l’international, l’animal doit voyager en fret manifeste.
       es: La bodega solo está documentada en vuelos nacionales sudafricanos; en vuelos internacionales el animal debe viajar como carga manifiesta.
       pt: O porão só está documentado em voos domésticos sul-africanos; em voos internacionais o animal deve viajar como carga manifestada.
+    # TARIF (relevé du 18/09/2026, page officielle « Travelling with Animals », onglet dépliant
+    # « Domestic Travel within South Africa »). Un seul montant est publié, et il est étroitement
+    # borné : « Excess charge of ZAR 300 inclusive of VAT is payable, irrespective of class of
+    # travel. » Il ne vaut QUE pour les vols intérieurs sud-africains.
+    #
+    # À L'INTERNATIONAL, LA SOUTE PASSAGERS N'EXISTE PAS : l'onglet « International Travel to & from
+    # South Africa » dit que tout animal doit voyager « as manifested cargo under an Air Waybill »,
+    # et ne publie aucun prix. Aucune ligne n'est donc écrite pour ces trajets : un tarif intérieur
+    # étendu à l'international serait une invention, et un silence vaut mieux qu'un chiffre faux.
+    #
+    # UNE CONTRADICTION DE LA PAGE, transcrite et signalée : le même onglet écrit, quelques lignes
+    # plus bas, « The applicable excess baggage rate will be charged for the dog and the container ».
+    # Un forfait de 300 ZAR et un tarif d'excédent au poids ne peuvent pas être vrais ensemble. On
+    # publie le montant explicite, le seul chiffré, et la citation porte les deux phrases pour que
+    # le lecteur voie la contradiction plutôt que de la découvrir au comptoir.
+    fares:
+      - id: fare_south_african_airways_hold_domestique_2026_09_18
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 300
+              currency: ZAR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien"
+        source:
+          url: "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals"
+          source_type: official_website
+          verified_date: "2026-09-18"
+          review_due: "2026-12-17"
+          confidence: 4
+          reviewer: "Claude — lecture directe des onglets dépliants de la page officielle"
+          history: []
+          quote: "Excess charge of ZAR 300 inclusive of VAT is payable, irrespective of class of travel. · The specifications of cage shall not exceed 1m X 1m & maximum weight of 23kg. · The applicable excess baggage rate will be charged for the dog and the container and will not be included in the free baggage allowance. · All animals (Pets) and animal products are not allowed via the security check point & must be transported as manifested cargo under an Air Waybill."
+          quote_language: en
+          locator: "Travelling with Animals → onglets « Domestic Travel within South Africa » et « International Travel to & from South Africa »"
   cargo:
     availability: offered
     source:

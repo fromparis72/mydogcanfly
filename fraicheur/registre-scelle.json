@@ -367,6 +367,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_china].premium.policy.hold.fares[fare_air_china_hold_bareme_2026_09_18].source",
+      "empreinte_source": "338aaaed1e2b53fd4c253d478da7df29e617bbe39035b66247fbf3d2075b1e19"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_china].premium.policy.hold.source",
       "empreinte_source": "eee1d59bf31ccf9f1dd38ad3bc416e96db803b2741059ab723a285c0986ecdc7"
     },
@@ -1057,6 +1062,46 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_amerique_nord_centrale_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_amerique_sud_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_canada_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_colombie_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_depuis_europe_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_equateur_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_guatemala_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.cabin.fares[fare_avianca_cabin_vers_europe_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_avianca].premium.policy.cabin.source",
       "empreinte_source": "9e0c4ea247ec8af49638f13b1c9ba69dd81696a5a36d38141fab1c4845a8acb4"
     },
@@ -1064,6 +1109,46 @@
       "famille": "airlines",
       "locator": "airlines[airline_avianca].premium.policy.cargo.source",
       "empreinte_source": "cfe851890ba6e42e7b9d667bb9dbc0dc3cd8ed44bbf65c9429af968aa8a0069c"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_amerique_nord_centrale_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_amerique_sud_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_canada_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_colombie_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_depuis_europe_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_equateur_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_guatemala_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_avianca].premium.policy.hold.fares[fare_avianca_hold_vers_europe_2026_09_18].source",
+      "empreinte_source": "b3dfe6c5b66db1c83841ace18a2f950e16d87f5a869ef7b9df0b7c221c8ab615"
     },
     {
       "famille": "airlines",
@@ -1334,6 +1419,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_china_eastern].premium.policy.cargo.source",
       "empreinte_source": "eb2f3ceef17e744c2bf8e01e6eafb8519b214190372d08b6c9f1a77c95b58cca"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_eastern].premium.policy.hold.fares[fare_china_eastern_hold_bareme_2026_09_18].source",
+      "empreinte_source": "a950f321182326c14ac4f38a2c9b84638adc376a5627017beb4a7a5c3089e0fa"
     },
     {
       "famille": "airlines",
@@ -3379,6 +3469,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_south_african_airways].premium.policy.cargo.source",
       "empreinte_source": "eb13337bae74516808d8ec633fca6a4b07967567e677dd0c8c4ebae675d15f68"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_south_african_airways].premium.policy.hold.fares[fare_south_african_airways_hold_domestique_2026_09_18].source",
+      "empreinte_source": "5414ccc221beb100966f9e405b90ffa39843ecb54c8f5f6ed5ec2a66311193ad"
     },
     {
       "famille": "airlines",
@@ -8742,9 +8837,9 @@
     }
   ],
   "empreintes": {
-    "globale": "3df1d674793414b672d1907e9eff63bc6d251cbd54c1004474c8bfdc8bba7899",
+    "globale": "b826296d73dc7b5a21a64bb9aca1ff97d048ee8b1ee6f8ae12ad07be970f1396",
     "par_famille": {
-      "airlines": "50c4629182aa69d890de50d6623334048b605578cc213ce049a075a35ef0002a",
+      "airlines": "1f4ae203ca3ddcb2a98f09dd4d2abcb4bdc39773a8c4cae41e3fbddc21354289",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

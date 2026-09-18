@@ -23216,6 +23216,31 @@
             "max_weight_kg": 32,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_air_china_hold_bareme_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "formula",
+                  "amounts": []
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_segment",
+                "scope_label": "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page",
+                "source": {
+                  "url": "https://webresource.airchina.com.cn/en-US/content/c/2022-10-10/2329.shtml",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Pet transportation services are charged according to the special baggage fee schedule and must be paid on the spot at check-in. Please see Fee Schedules for Excess Special Baggage.",
+                  "quote_language": "en",
+                  "locator": "Pet Transportation → VII. Fee schedules"
+                }
+              }
+            ],
             "source": {
               "url": "https://m.airchina.com.cn/ac/c/invoke/animalInstruction%40pgzhcn",
               "source_type": "official_website",
@@ -29623,6 +29648,236 @@
             "availability": "offered",
             "max_weight_kg": 10,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_avianca_cabin_colombie_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 80000,
+                      "currency": "COP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · In Colombia : From COP 80.000 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_equateur_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 45,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · In Ecuador : From USD 45 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_guatemala_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 45,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · In Guatemala : From USD 45 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_canada_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 235,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : au départ du Canada — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · From Canada : From CAD 235 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_amerique_sud_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · Between South America : From USD 200 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_amerique_nord_centrale_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 170,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · Between North America, Central America, and the Caribbean : From USD 170 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_vers_europe_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 220,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : à destination de l'Europe — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · To Europe : From USD 220 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              },
+              {
+                "id": "fare_avianca_cabin_depuis_europe_2026_09_18",
+                "placement": "cabin",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 220,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 220,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Cabine : au départ de l'Europe — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the cabin · From Europe : From EUR 220 / From GBP 220 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the cabin »"
+                }
+              }
+            ],
             "source": {
               "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
               "source_type": "official_website",
@@ -29641,6 +29896,236 @@
             "availability": "offered",
             "max_weight_kg": 70,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_avianca_hold_colombie_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 225000,
+                      "currency": "COP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · In Colombia : From COP 225.000 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_equateur_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 70,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · In Ecuador : From USD 70 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_guatemala_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 70,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · In Guatemala : From USD 70 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_canada_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 345,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : au départ du Canada — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · From Canada : From CAD 345 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_amerique_sud_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 280,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · Between South America : From USD 280 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_amerique_nord_centrale_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 250,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · Between North America, Central America, and the Caribbean : From USD 250 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_vers_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 290,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : à destination de l'Europe — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · To Europe : From USD 290 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              },
+              {
+                "id": "fare_avianca_hold_depuis_europe_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 290,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : au départ de l'Europe — prix plancher, taxes comprises",
+                "source": {
+                  "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des deux grilles officielles",
+                  "history": [],
+                  "quote": "Pets in the hold · From Europe : From EUR 290 / From GBP 290 · For pets in the cabin and in the hold, the fares listed in the table include taxes.",
+                  "quote_language": "en",
+                  "locator": "How much does it cost to fly with my pet? → tableau « Pets in the hold »"
+                }
+              }
+            ],
             "source": {
               "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
               "source_type": "official_website",
@@ -32109,6 +32594,31 @@
             "max_weight_kg": 32,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_china_eastern_hold_bareme_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "formula",
+                  "amounts": []
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_segment",
+                "scope_label": "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié",
+                "source": {
+                  "url": "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Fees will be collected at the airport based on the combined weight of the animal, container, and any food carried, in accordance with excess baggage and other applicable regulations.",
+                  "quote_language": "en",
+                  "locator": "Small Animals → VIII. Conditions of Carriage"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
               "source_type": "official_website",
@@ -53213,6 +53723,36 @@
               "es": "La bodega solo está documentada en vuelos nacionales sudafricanos; en vuelos internacionales el animal debe viajar como carga manifiesta.",
               "pt": "O porão só está documentado em voos domésticos sul-africanos; em voos internacionais o animal deve viajar como carga manifestada."
             },
+            "fares": [
+              {
+                "id": "fare_south_african_airways_hold_domestique_2026_09_18",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "ZAR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien",
+                "source": {
+                  "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-18",
+                  "review_due": "2026-12-17",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe des onglets dépliants de la page officielle",
+                  "history": [],
+                  "quote": "Excess charge of ZAR 300 inclusive of VAT is payable, irrespective of class of travel. · The specifications of cage shall not exceed 1m X 1m & maximum weight of 23kg. · The applicable excess baggage rate will be charged for the dog and the container and will not be included in the free baggage allowance. · All animals (Pets) and animal products are not allowed via the security check point & must be transported as manifested cargo under an Air Waybill.",
+                  "quote_language": "en",
+                  "locator": "Travelling with Animals → onglets « Domestic Travel within South Africa » et « International Travel to & from South Africa »"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals",
               "source_type": "official_website",
