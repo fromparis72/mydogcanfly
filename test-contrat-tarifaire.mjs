@@ -722,9 +722,24 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      MOUVEMENT NOMMÉ (18/09/2026, Qantas fret). Aucun montant publié : la FAQ de
      Qantas Freight dit la règle (poids de l'animal et taille de la caisse), pas le
      chiffre — une ligne `formula` sur le fret, rien sur la soute conditionnelle.
-     Bilan net : +1 ligne, +1 canal, +1 compagnie. */
-  check("l'import verrouillé porte exactement 256 lignes sur 127 canaux et 75 compagnies — la formule Qantas fret entre sans perte muette",
-    avecTarifs === 127 && lignesTarifaires === 256 && compagnies.size === 75,
+     Bilan net : +1 ligne, +1 canal, +1 compagnie.
+     MOUVEMENT NOMMÉ (18/09/2026, EgyptAir et Tunisair). Deux compagnies qui ne
+     publient aucun montant propre à l'animal mais publient la RÈGLE : l'animal et sa
+     cage sortent de la franchise et se paient au barème de l'excédent de bagages.
+     Deux lignes `formula` chacune, cabine et soute ; reporter les montants de la
+     grille d'excédent aurait composé deux pages pour produire un chiffre qu'aucune
+     n'écrit. Bilan net : +4 lignes, +4 canaux, +2 compagnies.
+     MOUVEMENT NOMMÉ (18/09/2026, Royal Jordanian et Air Algérie). Deux grilles
+     chiffrées, et les plus détaillées du corpus à ce jour. Royal Jordanian publie
+     quatre matrices origine × destination en dollars — trois classes de caisse en
+     soute, une en cabine — plus les prix propres à l'escale d'Aqaba et à Beyrouth :
+     vingt-trois lignes, obtenues en regroupant les cellules de même montant, dont
+     la portée les énumère (la grille n'est pas symétrique et ce regroupement ne
+     l'aplatit pas). Air Algérie publie trois portées — domestique, Zone A, Zone B —
+     chacune dite en plusieurs devises sur la même ligne : six lignes.
+     Bilan net : +29 lignes, +4 canaux, +2 compagnies. */
+  check("l'import verrouillé porte exactement 289 lignes sur 135 canaux et 79 compagnies — les grilles Royal Jordanian et Air Algérie entrent sans perte muette",
+    avecTarifs === 135 && lignesTarifaires === 289 && compagnies.size === 79,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

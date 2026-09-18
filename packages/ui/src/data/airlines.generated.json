@@ -2689,7 +2689,117 @@
         },
         "max_weight_kg": 6,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_air_algerie_cabin_domestique_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 1500,
+                  "currency": "DZD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Réseau domestique algérien, animal et contenant jusqu'à 6 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Réseau domestique algérien … En Cabine(PETC) <=06kg … 1500 DZD",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau domestique algérien"
+            }
+          },
+          {
+            "id": "fare_air_algerie_cabin_zone_a_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 7000,
+                  "currency": "DZD"
+                },
+                {
+                  "amount": 50,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 50,
+                  "currency": "CHF"
+                },
+                {
+                  "amount": 45,
+                  "currency": "GBP"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Zone A … En Cabine(PETC) <=06kg … 7000 DZD 50 EUR / 50 CHF 45 GBP",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau International"
+            }
+          },
+          {
+            "id": "fare_air_algerie_cabin_zone_b_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 18000,
+                  "currency": "DZD"
+                },
+                {
+                  "amount": 120,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 130,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 175,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Zone B … En Cabine(PETC) <=06kg … 18 000 DZD 120 EUR / 130 USD 175 CAD",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau International"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -2713,7 +2823,117 @@
         },
         "max_weight_kg": 32,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": false
+        "weight_includes_carrier": false,
+        "fares": [
+          {
+            "id": "fare_air_algerie_hold_domestique_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 3000,
+                  "currency": "DZD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Réseau domestique algérien, animal jusqu'à 23 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Réseau domestique algérien … En Soute (AVIH) <= 23kg … 3000 DZD",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau domestique algérien"
+            }
+          },
+          {
+            "id": "fare_air_algerie_hold_zone_a_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 15000,
+                  "currency": "DZD"
+                },
+                {
+                  "amount": 100,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 100,
+                  "currency": "CHF"
+                },
+                {
+                  "amount": 90,
+                  "currency": "GBP"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Zone A … En Soute (AVIH) <= 23kg … 15 000 DZD 100 EUR / 100 CHF 90 GBP",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau International"
+            }
+          },
+          {
+            "id": "fare_air_algerie_hold_zone_b_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 24000,
+                  "currency": "DZD"
+                },
+                {
+                  "amount": 150,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 160,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 220,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg",
+            "source": {
+              "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Zone B … En Soute (AVIH) <= 23kg … 24 000 DZD 150 EUR / 160 USD 220 CAD",
+              "quote_language": "fr",
+              "locator": "Voyage des animaux domestiques → Réseau International"
+            }
+          }
+        ]
       },
       "cargo": {
         "availability": "offered",
@@ -23056,7 +23276,32 @@
           "l": 55,
           "w": 40,
           "h": 20
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_egyptair_cabin_excedent_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé au barème de l'excédent de bagages",
+            "source": {
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "The weight of accompanied pets including the weight of containers and food carried shall not be included in the free baggage allowance of the customer.",
+              "quote_language": "en",
+              "locator": "EGYPTAIR accepts live animals for carriage according to the following conditions"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -23071,7 +23316,32 @@
           "quote": "Egyptair accepte les animaux vivants en soute ou en cabine comme suit : Le Transport des Animaux dans les Cales d’Avion",
           "quote_language": "fr",
           "locator": "Le Transport des Animaux dans les Cales d’Avion"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_egyptair_hold_excedent_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : compté et facturé en pièces d'excédent de bagages",
+            "source": {
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Animals over that weight (23Kgs) must travel individually and will be counted and charged as two pieces.",
+              "quote_language": "en",
+              "locator": "EGYPTAIR accepts live animals for carriage according to the following conditions"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -42981,7 +43251,233 @@
         },
         "max_weight_kg": 7,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_royal_jordanian_cabin_85_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 85,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Moyen-Orient",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $85",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_100_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 100,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 1 (Athènes, Istanbul, Larnaca), Moyen-Orient→Europe 1 (Athènes, Istanbul, Larnaca)",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $100",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_135_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 135,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Moyen-Orient",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $135",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_160_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 160,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Europe 2 et TAS",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $160",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_180_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 180,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 2 et TAS, Europe 2 et TAS→Europe 1 (Athènes, Istanbul, Larnaca)",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $180",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_185_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 185,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 2 et TAS→Moyen-Orient, Europe 2 et TAS→Europe 2 et TAS",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Travel Crates with Pet (PETC) | Up to 07kg (L40XW50XH26) … $185",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_beyrouth_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 75,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC) : Jordanie↔Beyrouth",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Jordan - Beirut and vice versa: 75$",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_cabin_aqaba_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 60,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Cabine (PETC) : escale d'Aqaba (AQJ depuis ou vers Amman)",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "PETC for Aqaba Station: 60$",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -42996,7 +43492,429 @@
           "quote": "Pets such as dogs, cats accompanying a passenger on the same flight may be accepted as checked baggage.",
           "quote_language": "en",
           "locator": "Flying with Pets → Pets Checked as Baggage"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_royal_jordanian_hold_small_175_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 175,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Kennel with Pet | Weight: 23 KG up to 32kg (70lb); Length: 203cm (80in) … $175",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_small_250_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 250,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Kennel with Pet | Weight: 23 KG up to 32kg (70lb); Length: 203cm (80in) … $250",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_small_300_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 300,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Europe, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Europe, Extrême-Orient→Moyen-Orient et Europe 1, Extrême-Orient→Extrême-Orient",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Kennel with Pet | Weight: 23 KG up to 32kg (70lb); Length: 203cm (80in) … $300",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_small_400_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 400,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Kennel with Pet | Weight: 23 KG up to 32kg (70lb); Length: 203cm (80in) … $400",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_medium_275_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 275,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Medium Kennel with Pet | Over 32kg up to 45Kg / 100lb; Below 203cm (80in) … $275",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_medium_400_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 400,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Medium Kennel with Pet | Over 32kg up to 45Kg / 100lb; Below 203cm (80in) … $400",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_medium_450_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 450,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Medium Kennel with Pet | Over 32kg up to 45Kg / 100lb; Below 203cm (80in) … $450",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_medium_600_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 600,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Medium Kennel with Pet | Over 32kg up to 45Kg / 100lb; Below 203cm (80in) … $600",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_large_400_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 400,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Large Kennel with Pet | Over 32kg up to 45Kg / 100lb; Over 203cm (80in) up to 250cm (100in) … $400",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_large_500_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 500,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Large Kennel with Pet | Over 32kg up to 45Kg / 100lb; Over 203cm (80in) up to 250cm (100in) … $500",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_large_600_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 600,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Large Kennel with Pet | Over 32kg up to 45Kg / 100lb; Over 203cm (80in) up to 250cm (100in) … $600",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_large_800_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 800,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Large Kennel with Pet | Over 32kg up to 45Kg / 100lb; Over 203cm (80in) up to 250cm (100in) … $800",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_small_aqaba_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 60,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), small",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Small Kennel for Aqaba Station: 60$",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_medium_aqaba_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 90,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), medium",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Medium Kennel for Aqaba Station: 90$",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          },
+          {
+            "id": "fare_royal_jordanian_hold_large_aqaba_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 120,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), large",
+            "source": {
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille tarifaire officielle",
+              "history": [],
+              "quote": "Large Kennel for Aqaba Station: 120$",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Charges for pet's carriage"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -50943,7 +51861,32 @@
           "locator": "Conditions générales de transport → 10.2.1 Animaux voyageant en cabine"
         },
         "max_weight_kg": 8,
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_tunisair_cabin_excedent_2026_09_18",
+            "placement": "cabin",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "source": {
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages.",
+              "quote_language": "fr",
+              "locator": "Préparez vos bagages → Particularités et exceptions franchise bagages"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -50967,7 +51910,32 @@
         },
         "max_weight_kg": 32,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_tunisair_hold_excedent_2026_09_18",
+            "placement": "hold",
+            "price": {
+              "kind": "formula",
+              "amounts": []
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "source": {
+              "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
+              "source_type": "official_website",
+              "verified_date": "2026-09-18",
+              "review_due": "2026-12-17",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [],
+              "quote": "Le poids de l'animal et de sa cage sera facturé comme excédent de bagages.",
+              "quote_language": "fr",
+              "locator": "Préparez vos bagages → Particularités et exceptions franchise bagages"
+            }
+          }
+        ]
       },
       "cargo": {
         "availability": "offered",

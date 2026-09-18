@@ -167,6 +167,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.cabin.fares[fare_air_algerie_cabin_domestique_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.cabin.fares[fare_air_algerie_cabin_zone_a_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.cabin.fares[fare_air_algerie_cabin_zone_b_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_algerie].premium.policy.cabin.source",
       "empreinte_source": "211ccde04e9ec7308d09d4687ab5f15d667ac1dfe571b848fd285a8e72dc547c"
     },
@@ -174,6 +189,21 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_algerie].premium.policy.cargo.source",
       "empreinte_source": "9cb96f09b156d5f184154e03dd536bf025b5d8791f3e7c6363d4a3844c208fe4"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.hold.fares[fare_air_algerie_hold_domestique_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.hold.fares[fare_air_algerie_hold_zone_a_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_algerie].premium.policy.hold.fares[fare_air_algerie_hold_zone_b_2026_09_18].source",
+      "empreinte_source": "4d5dd4930830591087bf227fc875568df32b27d24778d87f7e02c42b2fedaf9c"
     },
     {
       "famille": "airlines",
@@ -1412,6 +1442,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_egyptair].premium.policy.cabin.fares[fare_egyptair_cabin_excedent_2026_09_18].source",
+      "empreinte_source": "d79ed2785115054156eeb1f948c9b54a0591859b84b2761bffec7a019e13a0e8"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_egyptair].premium.policy.cabin.source",
       "empreinte_source": "2abf085378143e1264cdc5621f11300dc8fe265abac2b7d2d43861412e0eea3e"
     },
@@ -1419,6 +1454,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_egyptair].premium.policy.cargo.source",
       "empreinte_source": "19cc0ebafe13719ce60d19ea1da2be9b78f4365807ca634ebd7fc8d564144b22"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_egyptair].premium.policy.hold.fares[fare_egyptair_hold_excedent_2026_09_18].source",
+      "empreinte_source": "d79ed2785115054156eeb1f948c9b54a0591859b84b2761bffec7a019e13a0e8"
     },
     {
       "famille": "airlines",
@@ -2747,6 +2787,46 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_100_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_135_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_160_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_180_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_185_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_85_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_aqaba_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_beyrouth_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.source",
       "empreinte_source": "3d8df0c217902330aeb5fa27465a63ef827b739f55312fff0051f56bb4a106b2"
     },
@@ -2754,6 +2834,81 @@
       "famille": "airlines",
       "locator": "airlines[airline_royal_jordanian].premium.policy.cargo.source",
       "empreinte_source": "1abc07f89bc28e65e974eafd87df56fafe4fb5c219c9022cbac7ded08df816ac"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_large_400_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_large_500_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_large_600_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_large_800_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_large_aqaba_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_medium_275_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_medium_400_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_medium_450_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_medium_600_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_medium_aqaba_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_small_175_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_small_250_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_small_300_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_small_400_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_small_aqaba_2026_09_18].source",
+      "empreinte_source": "893d39b596152b3b7e9118edda43dd6e26d3679016965ed3ad043d0a5d58efa7"
     },
     {
       "famille": "airlines",
@@ -3217,6 +3372,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_tunisair].premium.policy.cabin.fares[fare_tunisair_cabin_excedent_2026_09_18].source",
+      "empreinte_source": "d81ddba6caae3c72df6eb0842e984d85334b966686e8fa31b279a50997847970"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_tunisair].premium.policy.cabin.source",
       "empreinte_source": "14908f58c6308eb2f3090a8a9e36d587ab69041a39e4e0a9c00b01b0c9c2d7cd"
     },
@@ -3224,6 +3384,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_tunisair].premium.policy.cargo.source",
       "empreinte_source": "5a6051c6cf78facc5790f743fa07246c36997cbcb6a6d65df1cf48c7eba28e0b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tunisair].premium.policy.hold.fares[fare_tunisair_hold_excedent_2026_09_18].source",
+      "empreinte_source": "d81ddba6caae3c72df6eb0842e984d85334b966686e8fa31b279a50997847970"
     },
     {
       "famille": "airlines",
@@ -8297,9 +8462,9 @@
     }
   ],
   "empreintes": {
-    "globale": "9504d386e573a447745e5fd564bc314cd0ff7bfdcd0c32b92418dc899b32a52b",
+    "globale": "b60e68b23ede8580479973848205c9f35ed3a5d6efc700a73de18855c8e2535b",
     "par_famille": {
-      "airlines": "cf2bcf8b0b32d068ddd3e6f7279480ff44ff3cc10509f1746497f7da939600da",
+      "airlines": "dfa9f3506304a8309414898d739e93a4cefbc784c847eecc6239852b60e8cb7a",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
