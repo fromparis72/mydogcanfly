@@ -1412,6 +1412,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_egyptair].premium.policy.cabin.fares[fare_egyptair_cabin_excedent_2026_09_18].source",
+      "empreinte_source": "d79ed2785115054156eeb1f948c9b54a0591859b84b2761bffec7a019e13a0e8"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_egyptair].premium.policy.cabin.source",
       "empreinte_source": "2abf085378143e1264cdc5621f11300dc8fe265abac2b7d2d43861412e0eea3e"
     },
@@ -1419,6 +1424,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_egyptair].premium.policy.cargo.source",
       "empreinte_source": "19cc0ebafe13719ce60d19ea1da2be9b78f4365807ca634ebd7fc8d564144b22"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_egyptair].premium.policy.hold.fares[fare_egyptair_hold_excedent_2026_09_18].source",
+      "empreinte_source": "d79ed2785115054156eeb1f948c9b54a0591859b84b2761bffec7a019e13a0e8"
     },
     {
       "famille": "airlines",
@@ -3217,6 +3227,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_tunisair].premium.policy.cabin.fares[fare_tunisair_cabin_excedent_2026_09_18].source",
+      "empreinte_source": "d81ddba6caae3c72df6eb0842e984d85334b966686e8fa31b279a50997847970"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_tunisair].premium.policy.cabin.source",
       "empreinte_source": "14908f58c6308eb2f3090a8a9e36d587ab69041a39e4e0a9c00b01b0c9c2d7cd"
     },
@@ -3224,6 +3239,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_tunisair].premium.policy.cargo.source",
       "empreinte_source": "5a6051c6cf78facc5790f743fa07246c36997cbcb6a6d65df1cf48c7eba28e0b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tunisair].premium.policy.hold.fares[fare_tunisair_hold_excedent_2026_09_18].source",
+      "empreinte_source": "d81ddba6caae3c72df6eb0842e984d85334b966686e8fa31b279a50997847970"
     },
     {
       "famille": "airlines",
@@ -8297,9 +8317,9 @@
     }
   ],
   "empreintes": {
-    "globale": "9504d386e573a447745e5fd564bc314cd0ff7bfdcd0c32b92418dc899b32a52b",
+    "globale": "1536a4628f02e98ba0022ca3b130e26fc69792b85bea6aa863cbe4e0b5561efc",
     "par_famille": {
-      "airlines": "cf2bcf8b0b32d068ddd3e6f7279480ff44ff3cc10509f1746497f7da939600da",
+      "airlines": "783e1068763eadc6888f5accc13d38380cd0720d91966ce9e4357b85d38f6039",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
