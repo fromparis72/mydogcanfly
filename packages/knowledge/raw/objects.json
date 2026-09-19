@@ -59501,6 +59501,11 @@
                       "date": "2026-09-19",
                       "reviewer": "Claude — séparation des zones tarifaires",
                       "note": "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Codex — tarif international déposé, transmis à Claude",
+                      "note": "BASE DE FACTURATION ÉTABLIE, la réserve initiale est levée. La page des frais ne dit que « Fees apply to both directions of travel », dont `per_one_way` n'était qu'une lecture ; le tarif international la nomme explicitement, Rule 65, page imprimée 55 : « Fees are charged once per kennel per direction of travel. » Le montant affiché est donc bien celui d'un aller simple, à doubler pour un aller-retour. https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSI_EN_FE_2026-06-18.pdf"
                     }
                   ],
                   "quote": "Flights within Canada and the U.S. $50 - $59",
@@ -59544,6 +59549,11 @@
                       "date": "2026-09-19",
                       "reviewer": "Claude — séparation des zones tarifaires",
                       "note": "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Codex — tarif international déposé, transmis à Claude",
+                      "note": "BASE DE FACTURATION ÉTABLIE, la réserve initiale est levée. La page des frais ne dit que « Fees apply to both directions of travel », dont `per_one_way` n'était qu'une lecture ; le tarif international la nomme explicitement, Rule 65, page imprimée 55 : « Fees are charged once per kennel per direction of travel. » Le montant affiché est donc bien celui d'un aller simple, à doubler pour un aller-retour. https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSI_EN_FE_2026-06-18.pdf"
                     }
                   ],
                   "quote": "Flights outside of Canada and the U.S. $100 - $118",
@@ -59556,8 +59566,8 @@
           "hold": {
             "availability": "offered",
             "conditions": {
-              "en": "Dogs travel as checked baggage in the hold; combined pet + kennel up to 45 kg (100 lb); maximum crate 101 × 68 × 81 cm.",
-              "fr": "Les chiens voyagent en bagage enregistré en soute ; animal + caisse jusqu'à 45 kg (100 lb) ; caisse maximale 101 × 68 × 81 cm."
+              "en": "Dogs travel as checked baggage in the hold; combined pet + kennel up to 45 kg (100 lb). WestJet publishes two different maximum crate heights: 101 × 68 × 81 cm on its pet page, and 76 cm in its filed tariffs. Plan for 76 cm to be safe; if your crate stands between 76 and 81 cm high, confirm directly with WestJet before booking.",
+              "fr": "Les chiens voyagent en bagage enregistré en soute ; animal + caisse jusqu'à 45 kg (100 lb). WestJet publie deux hauteurs maximales de caisse différentes : 101 × 68 × 81 cm sur sa page animaux, et 76 cm dans ses tarifs déposés. Prévoir 76 cm par prudence ; si la caisse mesure entre 76 et 81 cm de haut, confirmer directement auprès de WestJet avant de réserver."
             },
             "source": {
               "url": "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
@@ -59571,11 +59581,21 @@
                   "date": "2026-09-15",
                   "reviewer": "Codex — supersession par le tarif domestique officiel chiffré",
                   "note": "Source précédente vérifiée le 2026-09-09 : https://www.westjet.com/en-ca/pets/general-entrance-requirements ; citation « WestJet accepts small pets in the cabin and as checked kennel on most international flights. » ; localisateur « General entrance requirements for guests travelling with pets → opening policy statement ». Remplacée par la limite de poids publiée dans le tarif officiel en vigueur."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Codex — relecture des deux tarifs déposés, transmise à Claude",
+                  "note": "CORRECTION DE LOCALISATEUR. Le plafond de 45 kg était juste, sa référence ne l'était pas : « Rule 90(B)(b) » traite de la responsabilité du transporteur, pas des animaux. La valeur figure en Rule 65(D)(3)(b)(ii), page imprimée 52 du tarif domestique et page 54 du tarif international, et la citation enregistrée a été remplacée par la formulation exacte du PDF."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Codex — relecture des deux tarifs déposés, transmise à Claude",
+                  "note": "HAUTEUR DE CAISSE CONTESTÉE, volontairement NON résolue en plafond structuré. Les deux tarifs déposés disent, en Rule 65(D)(3)(b)(i) — page imprimée 52 au domestique, 54 à l'international : « (i) Maximum Size: 101 cm long x 68 cm wide x 76 cm high ». La page animaux publie au même moment « 101 cm L x 68 cm W x 81 cm H (40 in. L x 27 in. W x 32 in. H) », sous le titre « Kennel information for pets in the aircraft hold » (https://www.westjet.com/en-ca/pets, relu par Claude le 19/09/2026). Arbitrage Codex/Philippe : le tarif déposé est le document contractuel et fixe la consigne de préparation à 76 cm, la page reste publiée comme seconde valeur, et entre 76 et 81 cm la réponse est une confirmation à demander à WestJet, jamais un refus. `carrier_dims_cm` ne sait représenter qu'un triplet unique sans source ni borne : il reste donc VIDE, et l'écart est expliqué en clair dans les conditions de la fiche. Tarif international : https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSI_EN_FE_2026-06-18.pdf"
                 }
               ],
-              "quote": "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
+              "quote": "(ii) Maximum Weight (kennel and animal combined): 45 kg (100 lb)",
               "quote_language": "en",
-              "locator": "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage"
+              "locator": "Domestic Tariff → Rule 65 Animals → D) Kennel Requirements → 3) Animals as Checked Baggage → (b)(ii), page imprimée 52"
             },
             "max_weight_kg": 45,
             "weight_includes_carrier": true,
@@ -59617,6 +59637,11 @@
                       "date": "2026-09-19",
                       "reviewer": "Claude — séparation des zones tarifaires",
                       "note": "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Codex — tarif international déposé, transmis à Claude",
+                      "note": "BASE DE FACTURATION ÉTABLIE, la réserve initiale est levée. La page des frais ne dit que « Fees apply to both directions of travel », dont `per_one_way` n'était qu'une lecture ; le tarif international la nomme explicitement, Rule 65, page imprimée 55 : « Fees are charged once per kennel per direction of travel. » Le montant affiché est donc bien celui d'un aller simple, à doubler pour un aller-retour. https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSI_EN_FE_2026-06-18.pdf"
                     }
                   ],
                   "quote": "Flights within Canada and the U.S. $100 - $118",
@@ -59660,6 +59685,11 @@
                       "date": "2026-09-19",
                       "reviewer": "Claude — séparation des zones tarifaires",
                       "note": "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Codex — tarif international déposé, transmis à Claude",
+                      "note": "BASE DE FACTURATION ÉTABLIE, la réserve initiale est levée. La page des frais ne dit que « Fees apply to both directions of travel », dont `per_one_way` n'était qu'une lecture ; le tarif international la nomme explicitement, Rule 65, page imprimée 55 : « Fees are charged once per kennel per direction of travel. » Le montant affiché est donc bien celui d'un aller simple, à doubler pour un aller-retour. https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSI_EN_FE_2026-06-18.pdf"
                     }
                   ],
                   "quote": "Flights outside of Canada and the U.S. $200 - $236",

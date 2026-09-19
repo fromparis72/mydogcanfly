@@ -122,10 +122,16 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
        debout, s'asseoir, se retourner et se coucher dans sa caisse. C'est cette phrase qui prouve
        désormais le canal. La précédente reste dans l'historique, comme pour la soute. */
     const SUPERSEDEES = {
+      /* CORRECTION DU 19/09/2026 — le plafond n'a pas bougé, sa référence était fausse. La preuve
+         citait « Rule 90(B)(b) », qui traite de la responsabilité du transporteur ; les 45 kg sont
+         en Rule 65(D)(3)(b)(ii), page imprimée 52. La citation approximative a cédé la place à la
+         formulation exacte du PDF. C'est bien le rôle de cette attente scellée d'avoir refusé le
+         changement tant qu'il n'était pas assumé ici. */
       "airline_westjet.hold": {
         url: "https://www.westjet.com/content/dam/westjet/documents/en/tariffs/WSD_EN_FE_2026-06-18.pdf",
-        quote: "The combined weight of the animal and kennel must not exceed 45 kg (100 lb).",
-        quote_language: "en", locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage",
+        quote: "(ii) Maximum Weight (kennel and animal combined): 45 kg (100 lb)",
+        quote_language: "en",
+        locator: "Domestic Tariff → Rule 65 Animals → D) Kennel Requirements → 3) Animals as Checked Baggage → (b)(ii), page imprimée 52",
         verified_date: "2026-09-15", review_due: "2026-12-14", history_date: "2026-09-15",
       },
       "airline_westjet.cabin": {
