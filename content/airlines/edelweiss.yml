@@ -116,7 +116,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine — Europe (Maroc et Tunisie compris)"
+        scope_label:
+          en: "Cabin — Europe (including Morocco and Tunisia)"
+          fr: "Cabine — Europe (Maroc et Tunisie compris)"
+          es: "Cabina — Europa (Marruecos y Túnez incluidos)"
+          pt: "Cabine — Europa (incluindo Marrocos e Tunísia)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -145,7 +149,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine — Levant et Égypte"
+        scope_label:
+          en: "Cabin — Levant and Egypt"
+          fr: "Cabine — Levant et Égypte"
+          es: "Cabina — Levante y Egipto"
+          pt: "Cabine — Levante e Egito"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -174,7 +182,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+        scope_label:
+          en: "Cabin — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)"
+          fr: "Cabine — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+          es: "Cabina — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)"
+          pt: "Cabine — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -203,7 +215,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+        scope_label:
+          en: "Cabin — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)"
+          fr: "Cabine — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+          es: "Cabina — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)"
+          pt: "Cabine — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -232,7 +248,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+        scope_label:
+          en: "Cabin — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)"
+          fr: "Cabine — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+          es: "Cabina — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)"
+          pt: "Cabine — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -282,7 +302,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse 1 — Europe (Maroc et Tunisie compris)"
+        scope_label:
+          en: "Hold, crate 1 — Europe (including Morocco and Tunisia)"
+          fr: "Soute, caisse 1 — Europe (Maroc et Tunisie compris)"
+          es: "Bodega, jaula 1 — Europa (Marruecos y Túnez incluidos)"
+          pt: "Porão, caixa 1 — Europa (incluindo Marrocos e Tunísia)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -311,7 +335,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse 1 — Levant et Égypte"
+        scope_label:
+          en: "Hold, crate 1 — Levant and Egypt"
+          fr: "Soute, caisse 1 — Levant et Égypte"
+          es: "Bodega, jaula 1 — Levante y Egipto"
+          pt: "Porão, caixa 1 — Levante e Egito"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -340,7 +368,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse 1 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+        scope_label:
+          en: "Hold, crate 1 — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)"
+          fr: "Soute, caisse 1 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+          es: "Bodega, jaula 1 — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)"
+          pt: "Porão, caixa 1 — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -369,7 +401,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse 1 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+        scope_label:
+          en: "Hold, crate 1 — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)"
+          fr: "Soute, caisse 1 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+          es: "Bodega, jaula 1 — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)"
+          pt: "Porão, caixa 1 — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -398,7 +434,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse 1 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+        scope_label:
+          en: "Hold, crate 1 — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)"
+          fr: "Soute, caisse 1 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+          es: "Bodega, jaula 1 — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)"
+          pt: "Porão, caixa 1 — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -427,7 +467,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisses 2 à 5 — Europe (Maroc et Tunisie compris)"
+        scope_label:
+          en: "Hold, crates 2 to 5 — Europe (including Morocco and Tunisia)"
+          fr: "Soute, caisses 2 à 5 — Europe (Maroc et Tunisie compris)"
+          es: "Bodega, jaulas 2 a 5 — Europa (Marruecos y Túnez incluidos)"
+          pt: "Porão, caixas 2 a 5 — Europa (incluindo Marrocos e Tunísia)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -456,7 +500,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisses 2 à 5 — Levant et Égypte"
+        scope_label:
+          en: "Hold, crates 2 to 5 — Levant and Egypt"
+          fr: "Soute, caisses 2 à 5 — Levant et Égypte"
+          es: "Bodega, jaulas 2 a 5 — Levante y Egipto"
+          pt: "Porão, caixas 2 a 5 — Levante e Egito"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -485,7 +533,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisses 2 à 5 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+        scope_label:
+          en: "Hold, crates 2 to 5 — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)"
+          fr: "Soute, caisses 2 à 5 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)"
+          es: "Bodega, jaulas 2 a 5 — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)"
+          pt: "Porão, caixas 2 a 5 — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -514,7 +566,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisses 2 à 5 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+        scope_label:
+          en: "Hold, crates 2 to 5 — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)"
+          fr: "Soute, caisses 2 à 5 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)"
+          es: "Bodega, jaulas 2 a 5 — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)"
+          pt: "Porão, caixas 2 a 5 — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website
@@ -543,7 +599,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisses 2 à 5 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+        scope_label:
+          en: "Hold, crates 2 to 5 — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)"
+          fr: "Soute, caisses 2 à 5 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)"
+          es: "Bodega, jaulas 2 a 5 — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)"
+          pt: "Porão, caixas 2 a 5 — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
         source:
           url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html"
           source_type: official_website

@@ -106,70 +106,110 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 80, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Autriche · caisse ≤ 60 × 45 × 40 cm
+        scope_label:
+          en: "Austria · crate ≤ 60 × 45 × 40 cm"
+          fr: "Autriche · caisse ≤ 60 × 45 × 40 cm"
+          es: "Austria · jaula ≤ 60 × 45 × 40 cm"
+          pt: "Áustria · caixa ≤ 60 × 45 × 40 cm"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "80 EUR 160 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols domestiques → colonne caisse ≤ 60 × 45 × 40 cm" }
       - id: fare_austrian_hold_domestic_large_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 160, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Autriche · caisse > 60 × 45 × 40 cm
+        scope_label:
+          en: "Austria · crate > 60 × 45 × 40 cm"
+          fr: "Autriche · caisse > 60 × 45 × 40 cm"
+          es: "Austria · jaula > 60 × 45 × 40 cm"
+          pt: "Áustria · caixa > 60 × 45 × 40 cm"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "80 EUR 160 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols domestiques → colonne caisse > 60 × 45 × 40 cm" }
       - id: fare_austrian_hold_europe_small_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 100, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm
+        scope_label:
+          en: "Europe, Morocco, Armenia · crate ≤ 60 × 45 × 40 cm"
+          fr: "Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm"
+          es: "Europa, Marruecos, Armenia · jaula ≤ 60 × 45 × 40 cm"
+          pt: "Europa, Marrocos, Armênia · caixa ≤ 60 × 45 × 40 cm"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "100 EUR 200 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse ≤ 60 × 45 × 40 cm" }
       - id: fare_austrian_hold_europe_large_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 200, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm
+        scope_label:
+          en: "Europe, Morocco, Armenia · crate > 60 × 45 × 40 cm"
+          fr: "Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm"
+          es: "Europa, Marruecos, Armenia · jaula > 60 × 45 × 40 cm"
+          pt: "Europa, Marrocos, Armênia · caixa > 60 × 45 × 40 cm"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "100 EUR 200 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse > 60 × 45 × 40 cm" }
       - id: fare_austrian_hold_short_intercontinental_small_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 130, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse
+        scope_label:
+          en: "Europe ↔ Jordan, Egypt, Iran, Iraq, Israel · small crate"
+          fr: "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse"
+          es: "Europa ↔ Jordania, Egipto, Irán, Irak, Israel · jaula pequeña"
+          pt: "Europa ↔ Jordânia, Egito, Irã, Iraque, Israel · caixa pequena"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "130 EUR 260 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Intercontinental court-courrier → colonne petite caisse" }
       - id: fare_austrian_hold_short_intercontinental_large_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 260, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse
+        scope_label:
+          en: "Europe ↔ Jordan, Egypt, Iran, Iraq, Israel · large crate"
+          fr: "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse"
+          es: "Europa ↔ Jordania, Egipto, Irán, Irak, Israel · jaula grande"
+          pt: "Europa ↔ Jordânia, Egito, Irã, Iraque, Israel · caixa grande"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "130 EUR 260 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Intercontinental court-courrier → colonne grande caisse" }
       - id: fare_austrian_hold_medium_intercontinental_small_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 170, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse
+        scope_label:
+          en: "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · small crate"
+          fr: "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse"
+          es: "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nueva York, Washington · jaula pequeña"
+          pt: "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nova York, Washington · caixa pequena"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "170 EUR 340 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne petite caisse" }
       - id: fare_austrian_hold_medium_intercontinental_large_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 340, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse
+        scope_label:
+          en: "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · large crate"
+          fr: "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse"
+          es: "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nueva York, Washington · jaula grande"
+          pt: "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nova York, Washington · caixa grande"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "170 EUR 340 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne grande caisse" }
       - id: fare_austrian_hold_long_intercontinental_small_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 190, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse
+        scope_label:
+          en: "Europe ↔ Thailand, South Africa, Los Angeles, Mauritius, China, Japan · small crate"
+          fr: "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse"
+          es: "Europa ↔ Tailandia, Sudáfrica, Los Ángeles, Mauricio, China, Japón · jaula pequeña"
+          pt: "Europa ↔ Tailândia, África do Sul, Los Angeles, Maurício, China, Japão · caixa pequena"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "190 EUR 380 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne petite caisse" }
       - id: fare_austrian_hold_long_intercontinental_large_2026_09_11
         placement: hold
         price: { kind: matrix, amounts: [{ amount: 380, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse
+        scope_label:
+          en: "Europe ↔ Thailand, South Africa, Los Angeles, Mauritius, China, Japan · large crate"
+          fr: "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse"
+          es: "Europa ↔ Tailandia, Sudáfrica, Los Ángeles, Mauricio, China, Japón · jaula grande"
+          pt: "Europa ↔ Tailândia, África do Sul, Los Angeles, Maurício, China, Japão · caixa grande"
         source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "190 EUR 380 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne grande caisse" }
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 1).
@@ -196,7 +236,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: countries requiring freight; unaccompanied
+        scope_label:
+          en: "countries requiring freight; unaccompanied"
+          fr: "pays exigeant le fret ; non accompagné"
+          es: "países que exigen carga; no acompañado"
+          pt: "países que exigem carga; não acompanhado"
         source:
           url: https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals
           source_type: official_website

@@ -120,7 +120,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Korean domestic flights, pet and crate up to 32 kg"
+          fr: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+          es: "Vuelos nacionales coreanos, animal y jaula hasta 32 kg"
+          pt: "Voos domésticos coreanos, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -141,7 +145,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Short-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de corto radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de curta distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -162,7 +170,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Medium-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de medio radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de média distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -183,7 +195,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Long-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de largo radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de longa distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -243,7 +259,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Korean domestic flights, pet and crate up to 32 kg"
+          fr: "Vols intérieurs coréens, animal et cage au plus 32 kg"
+          es: "Vuelos nacionales coreanos, animal y jaula hasta 32 kg"
+          pt: "Voos domésticos coreanos, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -264,7 +284,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Short-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux court-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de corto radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de curta distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -285,7 +309,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Medium-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux moyen-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de medio radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de média distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -306,7 +334,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+        scope_label:
+          en: "Long-haul international flights, pet and crate up to 32 kg"
+          fr: "Vols internationaux long-courriers, animal et cage au plus 32 kg"
+          es: "Vuelos internacionales de largo radio, animal y jaula hasta 32 kg"
+          pt: "Voos internacionais de longa distância, animal e caixa até 32 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -327,7 +359,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols intérieurs coréens, animal et cage de 33 à 45 kg"
+        scope_label:
+          en: "Korean domestic flights, pet and crate from 33 to 45 kg"
+          fr: "Vols intérieurs coréens, animal et cage de 33 à 45 kg"
+          es: "Vuelos nacionales coreanos, animal y jaula de 33 a 45 kg"
+          pt: "Voos domésticos coreanos, animal e caixa de 33 a 45 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -348,7 +384,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux court-courriers, animal et cage de 33 à 45 kg"
+        scope_label:
+          en: "Short-haul international flights, pet and crate from 33 to 45 kg"
+          fr: "Vols internationaux court-courriers, animal et cage de 33 à 45 kg"
+          es: "Vuelos internacionales de corto radio, animal y jaula de 33 a 45 kg"
+          pt: "Voos internacionais de curta distância, animal e caixa de 33 a 45 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -369,7 +409,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux moyen-courriers, animal et cage de 33 à 45 kg"
+        scope_label:
+          en: "Medium-haul international flights, pet and crate from 33 to 45 kg"
+          fr: "Vols internationaux moyen-courriers, animal et cage de 33 à 45 kg"
+          es: "Vuelos internacionales de medio radio, animal y jaula de 33 a 45 kg"
+          pt: "Voos internacionais de média distância, animal e caixa de 33 a 45 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website
@@ -390,7 +434,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Vols internationaux long-courriers, animal et cage de 33 à 45 kg"
+        scope_label:
+          en: "Long-haul international flights, pet and crate from 33 to 45 kg"
+          fr: "Vols internationaux long-courriers, animal et cage de 33 à 45 kg"
+          es: "Vuelos internacionales de largo radio, animal y jaula de 33 a 45 kg"
+          pt: "Voos internacionais de longa distância, animal e caixa de 33 a 45 kg"
         source:
           url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr"
           source_type: official_website

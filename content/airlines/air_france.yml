@@ -84,7 +84,11 @@ policies:
           amounts: [{ amount: 70, currency: EUR }]
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Vols en France métropolitaine
+        scope_label:
+          en: "Flights within metropolitan France"
+          fr: "Vols en France métropolitaine"
+          es: "Vuelos en la Francia metropolitana"
+          pt: "Voos na França metropolitana"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -103,7 +107,11 @@ policies:
           amounts: [{ amount: 125, currency: EUR }]
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Vols intra Caraïbes
+        scope_label:
+          en: "Flights within the Caribbean"
+          fr: "Vols intra Caraïbes"
+          es: "Vuelos dentro del Caribe"
+          pt: "Voos dentro do Caribe"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -122,7 +130,11 @@ policies:
           amounts: [{ amount: 125, currency: EUR }]
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Europe ou Europe–Afrique du Nord
+        scope_label:
+          en: "Europe, or Europe–North Africa"
+          fr: "Europe ou Europe–Afrique du Nord"
+          es: "Europa, o Europa–Norte de África"
+          pt: "Europa, ou Europa–Norte da África"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -141,7 +153,11 @@ policies:
           amounts: [{ amount: 125, currency: EUR }]
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: France métropolitaine ↔ Cayenne, Antilles ou La Réunion
+        scope_label:
+          en: "Metropolitan France ↔ Cayenne, the French Antilles or Réunion"
+          fr: "France métropolitaine ↔ Cayenne, Antilles ou La Réunion"
+          es: "Francia metropolitana ↔ Cayena, Antillas o La Reunión"
+          pt: "França metropolitana ↔ Caiena, Antilhas ou Reunião"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -163,7 +179,11 @@ policies:
             - { amount: 200, currency: CAD }
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: États-Unis/Canada ↔ Europe et destinations listées
+        scope_label:
+          en: "United States/Canada ↔ Europe and listed destinations"
+          fr: "États-Unis/Canada ↔ Europe et destinations listées"
+          es: "Estados Unidos/Canadá ↔ Europa y destinos indicados"
+          pt: "Estados Unidos/Canadá ↔ Europa e destinos listados"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -185,7 +205,11 @@ policies:
             - { amount: 250, currency: CAD }
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: États-Unis/Canada ↔ reste du monde
+        scope_label:
+          en: "United States/Canada ↔ rest of the world"
+          fr: "États-Unis/Canada ↔ reste du monde"
+          es: "Estados Unidos/Canadá ↔ resto del mundo"
+          pt: "Estados Unidos/Canadá ↔ resto do mundo"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -204,7 +228,11 @@ policies:
           amounts: [{ amount: 200, currency: EUR }]
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Autres vols
+        scope_label:
+          en: "Other flights"
+          fr: "Autres vols"
+          es: "Otros vuelos"
+          pt: "Outros voos"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -264,7 +292,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: Vols en France métropolitaine · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "Flights within metropolitan France · up to 24 h before departure"
+          fr: "Vols en France métropolitaine · jusqu'à 24 h avant le départ"
+          es: "Vuelos en la Francia metropolitana · hasta 24 h antes de la salida"
+          pt: "Voos na França metropolitana · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -284,7 +316,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: Vols intra Caraïbes · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "Flights within the Caribbean · up to 24 h before departure"
+          fr: "Vols intra Caraïbes · jusqu'à 24 h avant le départ"
+          es: "Vuelos dentro del Caribe · hasta 24 h antes de la salida"
+          pt: "Voos dentro do Caribe · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -304,7 +340,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "Europe, or Europe–North Africa · up to 24 h before departure"
+          fr: "Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ"
+          es: "Europa, o Europa–Norte de África · hasta 24 h antes de la salida"
+          pt: "Europa, ou Europa–Norte da África · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -324,7 +364,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "Metropolitan France ↔ Cayenne, the French Antilles or Réunion · up to 24 h before departure"
+          fr: "France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ"
+          es: "Francia metropolitana ↔ Cayena, Antillas o La Reunión · hasta 24 h antes de la salida"
+          pt: "França metropolitana ↔ Caiena, Antilhas ou Reunião · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -347,7 +391,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "United States/Canada ↔ Europe and listed destinations · up to 24 h before departure"
+          fr: "États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ"
+          es: "Estados Unidos/Canadá ↔ Europa y destinos indicados · hasta 24 h antes de la salida"
+          pt: "Estados Unidos/Canadá ↔ Europa e destinos listados · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -370,7 +418,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "United States/Canada ↔ rest of the world · up to 24 h before departure"
+          fr: "États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ"
+          es: "Estados Unidos/Canadá ↔ resto del mundo · hasta 24 h antes de la salida"
+          pt: "Estados Unidos/Canadá ↔ resto do mundo · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
@@ -390,7 +442,11 @@ policies:
         billing_subject: container
         journey_basis: per_one_way
         purchase_window: { min_days_before_departure: 1 }
-        scope_label: Autres vols · jusqu'à 24 h avant le départ
+        scope_label:
+          en: "Other flights · up to 24 h before departure"
+          fr: "Autres vols · jusqu'à 24 h avant le départ"
+          es: "Otros vuelos · hasta 24 h antes de la salida"
+          pt: "Outros voos · até 24 h antes da partida"
         source:
           url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
           source_type: official_website
