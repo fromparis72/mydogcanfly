@@ -84,6 +84,10 @@ const MECANISMES: ReadonlyArray<[string, MecanismeTarifaire]> = [
   ["quote", "sur_devis"],
 ];
 
+/** La nature d'une ligne SANS montant, dite pour elle-même : « sur devis », « au barème »… Les
+ *  interfaces s'en servent pour expliquer une ligne vide sans répéter l'état du canal. */
+export const CLE_MECANISME: Readonly<Record<string, MecanismeTarifaire>> = Object.fromEntries(MECANISMES);
+
 /**
  * LA DÉRIVATION. L'ordre des tests est l'ordre des priorités, et il est délibéré :
  *   1. un canal refusé n'a pas de tarif, quoi que porte le reste ;

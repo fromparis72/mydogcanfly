@@ -79,29 +79,69 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_air_canada_cabin_cad_2026_09_10
+    # LES DEUX ZONES SONT SÉPARÉES (19/09/2026, arbitrage de Philippe). La grille officielle publie
+    # DEUX fourchettes distinctes et la fiche les écrasait en une seule, de 50 à 120. Aucun tarif
+    # Air Canada ne vaut 80 $ : une fourchette continue laissait croire à des prix intermédiaires
+    # qui n'existent pas. Deux lignes, deux portées, comme la page les écrit.
+    #
+    # LA DEVISE EST DITE UNE FOIS. La page écrit « CA/US $ » : des dollars canadiens ou américains
+    # selon le point de vente, un même nombre pour deux monnaies. On publie le CAD, comme la ligne
+    # précédente ; en ajouter un second au taux du jour serait une conversion, que le contrat
+    # interdit.
+      - id: fare_air_canada_cabin_domestique_2026_09_19
         placement: cabin
         price:
           kind: range
           amounts:
             - amount: 50
               currency: CAD
+            - amount: 60
+              currency: CAD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label:
+          en: "Within Canada and between Canada and the U.S."
+          fr: "Au Canada et entre le Canada et les États-Unis"
+          es: "Dentro de Canadá y entre Canadá y Estados Unidos"
+          pt: "No Canadá e entre o Canadá e os Estados Unidos"
+        source:
+          url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
+          source_type: official_website
+          verified_date: "2026-09-19"
+          review_due: "2026-12-18"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle, grille séparée par zone"
+          history: []
+          quote: "Within Canada and Canada/U.S.: CA/US $50.00-$60.00 · International: CA/US $100.00-$120.00"
+          quote_language: en
+          locator: "Travelling with your Pet → In the Cabin → Charges (charge for one-way travel)"
+      - id: fare_air_canada_cabin_international_2026_09_19
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 100
+              currency: CAD
             - amount: 120
               currency: CAD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Canada/US except Hawaii; all other
+        scope_label:
+          en: "International flights"
+          fr: "Vols internationaux"
+          es: "Vuelos internacionales"
+          pt: "Voos internacionais"
         source:
-          url: https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html
+          url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
           source_type: official_website
-          verified_date: 2026-09-12
-          review_due: 2026-12-11
+          verified_date: "2026-09-19"
+          review_due: "2026-12-18"
           confidence: 4
-          reviewer: Codex — lecture directe de la page canadienne officielle
+          reviewer: "Claude — lecture directe de la page officielle, grille séparée par zone"
           history: []
-          quote: "Au Canada et entre le Canada et les États-Unis : 50,00 $ - 60,00 $ CA/US. International : 100,00 $ - 120,00 $ CA/US."
-          quote_language: fr
-          locator: "Voyage avec un animal de compagnie → Dans la cabine → Frais"
+          quote: "Within Canada and Canada/U.S.: CA/US $50.00-$60.00 · International: CA/US $100.00-$120.00"
+          quote_language: en
+          locator: "Travelling with your Pet → In the Cabin → Charges (charge for one-way travel)"
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 0).
     # Effet attendu : A small dog is a conditional cabin lead. Do not infer that a 30 kg dog fits the carrier.
@@ -120,29 +160,60 @@ policies:
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_air_canada_hold_cad_2026_09_10
+      - id: fare_air_canada_hold_domestique_2026_09_19
         placement: hold
         price:
           kind: range
           amounts:
             - amount: 105
               currency: CAD
+            - amount: 126
+              currency: CAD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label:
+          en: "Within Canada and between Canada and the U.S."
+          fr: "Au Canada et entre le Canada et les États-Unis"
+          es: "Dentro de Canadá y entre Canadá y Estados Unidos"
+          pt: "No Canadá e entre o Canadá e os Estados Unidos"
+        source:
+          url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
+          source_type: official_website
+          verified_date: "2026-09-19"
+          review_due: "2026-12-18"
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle, grille séparée par zone"
+          history: []
+          quote: "Within Canada and Canada/U.S. CA/US $105.00-$126.00 · International CA/US $270.00-$324.00"
+          quote_language: en
+          locator: "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions? And what will it cost?"
+      - id: fare_air_canada_hold_international_2026_09_19
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 270
+              currency: CAD
             - amount: 324
               currency: CAD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Canada/US except Hawaii; all other
+        scope_label:
+          en: "International flights"
+          fr: "Vols internationaux"
+          es: "Vuelos internacionales"
+          pt: "Voos internacionais"
         source:
-          url: https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html
+          url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
           source_type: official_website
-          verified_date: 2026-09-12
-          review_due: 2026-12-11
+          verified_date: "2026-09-19"
+          review_due: "2026-12-18"
           confidence: 4
-          reviewer: Codex — lecture directe de la page canadienne officielle
+          reviewer: "Claude — lecture directe de la page officielle, grille séparée par zone"
           history: []
-          quote: "Au Canada et entre le Canada et les États-Unis : 105,00 $ - 126,00 $ CA/US. Réseau international : 270,00 $ - 324,00 $ CA/US."
-          quote_language: fr
-          locator: "Voyage avec un animal de compagnie → Dans la soute → Frais"
+          quote: "Within Canada and Canada/U.S. CA/US $105.00-$126.00 · International CA/US $270.00-$324.00"
+          quote_language: en
+          locator: "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions? And what will it cost?"
     availability: offered
     max_weight_kg: 45
     weight_limit_bound: lte

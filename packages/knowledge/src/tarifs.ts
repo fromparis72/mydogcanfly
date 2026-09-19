@@ -239,6 +239,39 @@ export const PurchaseWindow = z.object({
   });
 export type PurchaseWindow = z.infer<typeof PurchaseWindow>;
 
+/**
+ * LA PORTÉE VISIBLE, ET DANS QUELLE LANGUE (19/09/2026).
+ *
+ * `scope_label` était une chaîne unique, donc rendue telle qu'elle avait été écrite : les fiches
+ * anglaises affichaient « Cabine (PETC), sac de transport jusqu'à 118 cm cumulés », les fiches
+ * françaises « Canada/US; outside Canada/US ». Le site est quadrilingue ; ce champ ne l'était pas.
+ *
+ * Il accepte désormais les DEUX formes, et c'est délibéré : 353 portées existent déjà, écrites
+ * pour la plupart en français. Exiger l'objet d'un coup obligerait à traduire plus de mille
+ * chaînes avant de pouvoir livrer la moindre correction. Une chaîne reste donc valide — elle est
+ * simplement affichée telle quelle, dans toutes les langues, ce qui est l'état actuel — et chaque
+ * portée passe à l'objet au fil de l'eau. Le jour où il n'en reste plus aucune, la branche chaîne
+ * pourra être retirée ; d'ici là, elle nomme une dette plutôt qu'elle ne la cache.
+ */
+export const ScopeLabel = z.union([
+  z.string().min(1),
+  z.object({
+    en: z.string().min(1),
+    fr: z.string().min(1).optional(),
+    es: z.string().min(1).optional(),
+    pt: z.string().min(1).optional(),
+  }).strict(),
+]);
+export type ScopeLabelEcrit = string | { en: string; fr?: string; es?: string; pt?: string };
+
+/** Rend la portée dans la langue de la page ; une chaîne simple sort telle quelle, et l'anglais
+ *  sert de repli quand une langue manque — jamais une chaîne vide, qui effacerait l'information. */
+export function lirePortee(valeur: ScopeLabelEcrit | undefined, locale: string): string {
+  if (!valeur) return "";
+  if (typeof valeur === "string") return valeur;
+  return valeur[locale as "fr" | "es" | "pt"] ?? valeur.en;
+}
+
 export const Fare = z.object({
   /** Identifiant stable, pour que deux lots ne réécrivent pas la même ligne sans le dire. */
   id: z.string().min(3),
@@ -250,7 +283,7 @@ export const Fare = z.object({
    *  montre comme grille, jamais comme le prix de CE voyage. */
   applies_when: Predicate.optional(),
   /** La portée telle que la page l'écrit — pour l'œil du visiteur. Ne décide jamais. */
-  scope_label: z.string().min(1).optional(),
+  scope_label: ScopeLabel.optional(),
   purchase_window: PurchaseWindow.optional(),
   /** LA PREUVE DU PRIX, sous le contrat strict du dépôt. La phrase qui prouve qu'un canal existe
    *  ne prouve pas son montant : deux citations distinctes, deux champs distincts. Et une phrase
@@ -308,7 +341,7 @@ export type FareEcrit = {
   billing_subject: BillingSubject;
   journey_basis: JourneyBasis;
   applies_when?: Predicate;
-  scope_label?: string;
+  scope_label?: ScopeLabelEcrit;
   purchase_window?: PurchaseWindow;
   source: FareAuditSource;
 };
@@ -388,7 +421,7 @@ export const FareConflict = z.object({
   id: z.string().min(3),
   placement: Placement,
   applies_when: Predicate.optional(),
-  scope_label: z.string().min(1).optional(),
+  scope_label: ScopeLabel.optional(),
   /**
    * LES AXES COMMUNS, OBLIGATOIRES (P0-2).
    *
@@ -448,7 +481,7 @@ export type FareConflictEcrit = {
   id: string;
   placement: PlacementType;
   applies_when?: Predicate;
-  scope_label?: string;
+  scope_label?: ScopeLabelEcrit;
   billing_subject: BillingSubject;
   journey_basis: JourneyBasis;
   purchase_window?: PurchaseWindow;

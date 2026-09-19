@@ -287,8 +287,13 @@
     },
     {
       "famille": "airlines",
-      "locator": "airlines[airline_air_canada].premium.policy.cabin.fares[fare_air_canada_cabin_cad_2026_09_10].source",
-      "empreinte_source": "b3f51370f83694eb1589c477b3adbc0605c0758da06a393731678030dcff35cc"
+      "locator": "airlines[airline_air_canada].premium.policy.cabin.fares[fare_air_canada_cabin_domestique_2026_09_19].source",
+      "empreinte_source": "e350582c712f8a9d73edc9ec1a74770b5eb5162d9d0f4e11cf7e4b41cdde68a9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_canada].premium.policy.cabin.fares[fare_air_canada_cabin_international_2026_09_19].source",
+      "empreinte_source": "e350582c712f8a9d73edc9ec1a74770b5eb5162d9d0f4e11cf7e4b41cdde68a9"
     },
     {
       "famille": "airlines",
@@ -302,8 +307,13 @@
     },
     {
       "famille": "airlines",
-      "locator": "airlines[airline_air_canada].premium.policy.hold.fares[fare_air_canada_hold_cad_2026_09_10].source",
-      "empreinte_source": "b3f51370f83694eb1589c477b3adbc0605c0758da06a393731678030dcff35cc"
+      "locator": "airlines[airline_air_canada].premium.policy.hold.fares[fare_air_canada_hold_domestique_2026_09_19].source",
+      "empreinte_source": "e350582c712f8a9d73edc9ec1a74770b5eb5162d9d0f4e11cf7e4b41cdde68a9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_canada].premium.policy.hold.fares[fare_air_canada_hold_international_2026_09_19].source",
+      "empreinte_source": "e350582c712f8a9d73edc9ec1a74770b5eb5162d9d0f4e11cf7e4b41cdde68a9"
     },
     {
       "famille": "airlines",
@@ -4007,8 +4017,13 @@
     },
     {
       "famille": "airlines",
-      "locator": "airlines[airline_westjet].premium.policy.cabin.fares[fare_westjet_cabin_cad_2026_09_18].source",
-      "empreinte_source": "c6d932e8cfd245546396cb8af7c43c10b65a3df80b5118ec9249564f4bf1648b"
+      "locator": "airlines[airline_westjet].premium.policy.cabin.fares[fare_westjet_cabin_domestique_2026_09_19].source",
+      "empreinte_source": "b4b9ffe1e18aa6805df7240b6487caf314a7328ddf64db6aa4816969a4703a7f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_westjet].premium.policy.cabin.fares[fare_westjet_cabin_international_2026_09_19].source",
+      "empreinte_source": "b4b9ffe1e18aa6805df7240b6487caf314a7328ddf64db6aa4816969a4703a7f"
     },
     {
       "famille": "airlines",
@@ -4027,8 +4042,13 @@
     },
     {
       "famille": "airlines",
-      "locator": "airlines[airline_westjet].premium.policy.hold.fares[fare_westjet_hold_cad_2026_09_18].source",
-      "empreinte_source": "c6d932e8cfd245546396cb8af7c43c10b65a3df80b5118ec9249564f4bf1648b"
+      "locator": "airlines[airline_westjet].premium.policy.hold.fares[fare_westjet_hold_domestique_2026_09_19].source",
+      "empreinte_source": "c71b17676876aa55aa4a7817d69a6466c7d13a57730f6a95996265a5d63529c5"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_westjet].premium.policy.hold.fares[fare_westjet_hold_international_2026_09_19].source",
+      "empreinte_source": "c71b17676876aa55aa4a7817d69a6466c7d13a57730f6a95996265a5d63529c5"
     },
     {
       "famille": "airlines",
@@ -8837,9 +8857,9 @@
     }
   ],
   "empreintes": {
-    "globale": "b826296d73dc7b5a21a64bb9aca1ff97d048ee8b1ee6f8ae12ad07be970f1396",
+    "globale": "8aef8def49dab84152950aec4ae4cbf4695d07524167665658a04e2dc7f3fc88",
     "par_famille": {
-      "airlines": "1f4ae203ca3ddcb2a98f09dd4d2abcb4bdc39773a8c4cae41e3fbddc21354289",
+      "airlines": "f10fc3f32393354cccb6d1d3918dcf60e783a4b5dac85d00882ffe5da9b1ddd2",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

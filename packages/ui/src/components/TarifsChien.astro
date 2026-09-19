@@ -23,7 +23,7 @@
  * que la fiche et le Finder ne puissent pas diverger. L'interface traduit une clé ; elle
  * n'invente pas une nomenclature.
  */
-import { inlineT, lireEtatTarifaire, dateFormatter } from "@mydogcanfly/knowledge";
+import { inlineT, lireEtatTarifaire, dateFormatter, CLE_MECANISME, lirePortee } from "@mydogcanfly/knowledge";
 import type { EtatTarifaire } from "@mydogcanfly/knowledge";
 import { moneyText } from "../lib/farePresentation";
 
@@ -73,8 +73,21 @@ const BASE = {
    pour la ligne tarifaire des blocs de canaux. Deux copies suffiraient à faire diverger d'une
    espace insécable le texte rendu et le texte attendu par `test-montants-publies.mjs`, qui exige
    que tout montant visible sur une fiche descende du tarif canonique de son canal. */
-const montant = (amounts: readonly { amount: number; currency: string }[]) =>
-  amounts.map((a) => moneyText(a.amount, a.currency, locale)).join(" / ");
+const montants = (amounts: readonly { amount: number; currency: string }[]) =>
+  amounts.map((a) => moneyText(a.amount, a.currency, locale));
+
+/* UNE FOURCHETTE N'EST PAS UNE LISTE DE PRIX, ET LA CONFONDRE SE VOYAIT (19/09/2026). La première
+   rédaction joignait TOUS les montants par une barre oblique, quelle que soit la nature du tarif :
+   Air Canada cabine s'affichait « CA$50 / CA$120 », ce qui se lit « deux tarifs existent » alors
+   que la compagnie publie « entre 50 et 120 ». Le bloc des canaux, lui, écrivait déjà un tiret —
+   deux endroits de la même page se contredisaient donc. Une `range` porte désormais son tiret, et
+   les autres natures gardent la barre, qui dit bien ce qu'elle dit : le même prix en plusieurs
+   devises, ou plusieurs montants distincts de la même ligne. */
+const montant = (kind: string, amounts: readonly { amount: number; currency: string }[]) => {
+  const rendus = montants(amounts);
+  if (kind === "range" && rendus.length >= 2) return `${rendus[0]} – ${rendus[rendus.length - 1]}`;
+  return rendus.join(" / ");
+};
 
 const canaux = CANAUX.map((c) => {
   const p = policy?.[c.placement];
@@ -123,13 +136,21 @@ const canaux = CANAUX.map((c) => {
                     c'est lui qui permet d'exiger, en quatre langues, que la traduction n'ait déplacé
                     ni un chiffre ni une devise. Le texte visible, lui, reste formaté par la locale. */}
                 {(f.price.amounts?.length ?? 0) > 0
-                  ? <span class="tc-m" data-montants={f.price.amounts.map((a: any) => `${a.amount} ${a.currency}`).join("|")}>{f.price.kind === "minimum" ? `${T("from", "à partir de", "desde")} ` : ""}{montant(f.price.amounts)}</span>
-                  : <span class="tc-m tc-m--sans">{LIBELLE_ETAT[c.lecture.etat]}</span>}
+                  ? <span class="tc-m" data-montants={f.price.amounts.map((a: any) => `${a.amount} ${a.currency}`).join("|")}>{f.price.kind === "minimum" ? `${T("from", "à partir de", "desde")} ` : ""}{montant(f.price.kind, f.price.amounts)}</span>
+                  /* SANS MONTANT, ON NE RÉPÈTE PAS L'ÉTAT DÉJÀ AFFICHÉ EN TÊTE DU CANAL (19/09/2026).
+                     Le fret WestJet montrait « Fret ou transport sur devis » deux fois de suite, une
+                     fois comme état du canal et une fois comme montant. Quand la ligne ne porte pas
+                     de chiffre, ce qui l'explique est son MÉCANISME, pas l'état répété : « sur
+                     devis », « au barème », « à la réservation » — et rien si la nature ne le dit
+                     pas, plutôt qu'un écho. */
+                  : <span class="tc-m tc-m--sans">{CLE_MECANISME[f.price.kind] ? LIBELLE_ETAT[CLE_MECANISME[f.price.kind]] : ""}</span>}
                 {/* L'UNITÉ DE FACTURATION RESTE VISIBLE : « 500 $ » sans « par chien et contenant,
                     par aller simple » n'est pas un tarif, c'est un chiffre. */}
                 <span class="tc-u">{[SUJET[f.billing_subject], BASE[f.journey_basis]].filter(Boolean).join(" · ")}</span>
               </div>
-              {f.scope_label && <div class="tc-p">{f.scope_label}</div>}
+              {/* LA PORTÉE SUIT LA LANGUE DE LA PAGE quand la donnée la porte en quatre langues, et reste
+                  telle qu'écrite quand elle est encore une chaîne unique — la dette est visible, pas cachée. */}
+              {lirePortee(f.scope_label, locale) && <div class="tc-p">{lirePortee(f.scope_label, locale)}</div>}
               <details class="tc-pr">
                 <summary>{T("See the source", "Voir la source", "Ver la fuente")}</summary>
                 <blockquote class="tc-q" lang={f.source.quote_language}>« {f.source.quote} »</blockquote>

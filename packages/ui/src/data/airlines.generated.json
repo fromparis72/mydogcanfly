@@ -4483,13 +4483,50 @@
         },
         "fares": [
           {
-            "id": "fare_air_canada_cabin_cad_2026_09_10",
+            "id": "fare_air_canada_cabin_domestique_2026_09_19",
             "placement": "cabin",
             "price": {
               "kind": "range",
               "amounts": [
                 {
                   "amount": 50,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 60,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_one_way",
+            "scope_label": {
+              "en": "Within Canada and between Canada and the U.S.",
+              "fr": "Au Canada et entre le Canada et les États-Unis",
+              "es": "Dentro de Canadá y entre Canadá y Estados Unidos",
+              "pt": "No Canadá e entre o Canadá e os Estados Unidos"
+            },
+            "source": {
+              "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle, grille séparée par zone",
+              "history": [],
+              "quote": "Within Canada and Canada/U.S.: CA/US $50.00-$60.00 · International: CA/US $100.00-$120.00",
+              "quote_language": "en",
+              "locator": "Travelling with your Pet → In the Cabin → Charges (charge for one-way travel)"
+            }
+          },
+          {
+            "id": "fare_air_canada_cabin_international_2026_09_19",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 100,
                   "currency": "CAD"
                 },
                 {
@@ -4500,18 +4537,23 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Canada/US except Hawaii; all other",
+            "scope_label": {
+              "en": "International flights",
+              "fr": "Vols internationaux",
+              "es": "Vuelos internacionales",
+              "pt": "Voos internacionais"
+            },
             "source": {
-              "url": "https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html",
+              "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-12",
-              "review_due": "2026-12-11",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la page canadienne officielle",
+              "reviewer": "Claude — lecture directe de la page officielle, grille séparée par zone",
               "history": [],
-              "quote": "Au Canada et entre le Canada et les États-Unis : 50,00 $ - 60,00 $ CA/US. International : 100,00 $ - 120,00 $ CA/US.",
-              "quote_language": "fr",
-              "locator": "Voyage avec un animal de compagnie → Dans la cabine → Frais"
+              "quote": "Within Canada and Canada/U.S.: CA/US $50.00-$60.00 · International: CA/US $100.00-$120.00",
+              "quote_language": "en",
+              "locator": "Travelling with your Pet → In the Cabin → Charges (charge for one-way travel)"
             }
           }
         ]
@@ -4541,13 +4583,50 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_air_canada_hold_cad_2026_09_10",
+            "id": "fare_air_canada_hold_domestique_2026_09_19",
             "placement": "hold",
             "price": {
               "kind": "range",
               "amounts": [
                 {
                   "amount": 105,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 126,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_one_way",
+            "scope_label": {
+              "en": "Within Canada and between Canada and the U.S.",
+              "fr": "Au Canada et entre le Canada et les États-Unis",
+              "es": "Dentro de Canadá y entre Canadá y Estados Unidos",
+              "pt": "No Canadá e entre o Canadá e os Estados Unidos"
+            },
+            "source": {
+              "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle, grille séparée par zone",
+              "history": [],
+              "quote": "Within Canada and Canada/U.S. CA/US $105.00-$126.00 · International CA/US $270.00-$324.00",
+              "quote_language": "en",
+              "locator": "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions? And what will it cost?"
+            }
+          },
+          {
+            "id": "fare_air_canada_hold_international_2026_09_19",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 270,
                   "currency": "CAD"
                 },
                 {
@@ -4558,18 +4637,23 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Canada/US except Hawaii; all other",
+            "scope_label": {
+              "en": "International flights",
+              "fr": "Vols internationaux",
+              "es": "Vuelos internacionales",
+              "pt": "Voos internacionais"
+            },
             "source": {
-              "url": "https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html",
+              "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-12",
-              "review_due": "2026-12-11",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la page canadienne officielle",
+              "reviewer": "Claude — lecture directe de la page officielle, grille séparée par zone",
               "history": [],
-              "quote": "Au Canada et entre le Canada et les États-Unis : 105,00 $ - 126,00 $ CA/US. Réseau international : 270,00 $ - 324,00 $ CA/US.",
-              "quote_language": "fr",
-              "locator": "Voyage avec un animal de compagnie → Dans la soute → Frais"
+              "quote": "Within Canada and Canada/U.S. CA/US $105.00-$126.00 · International CA/US $270.00-$324.00",
+              "quote_language": "en",
+              "locator": "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions? And what will it cost?"
             }
           }
         ]
@@ -58451,13 +58535,56 @@
         },
         "fares": [
           {
-            "id": "fare_westjet_cabin_cad_2026_09_18",
+            "id": "fare_westjet_cabin_domestique_2026_09_19",
             "placement": "cabin",
             "price": {
               "kind": "range",
               "amounts": [
                 {
                   "amount": 50,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 59,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": {
+              "en": "Flights within Canada and the U.S.",
+              "fr": "Vols au Canada et aux États-Unis",
+              "es": "Vuelos dentro de Canadá y Estados Unidos",
+              "pt": "Voos no Canadá e nos Estados Unidos"
+            },
+            "source": {
+              "url": "https://www.westjet.com/en-ca/flights/fees",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle des frais",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — séparation des zones tarifaires",
+                  "note": "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+                }
+              ],
+              "quote": "Flights within Canada and the U.S. $50 - $59",
+              "quote_language": "en",
+              "locator": "Additional items → Travelling with pets and kennels → Pets in the cabin (personal item)"
+            }
+          },
+          {
+            "id": "fare_westjet_cabin_international_2026_09_19",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 100,
                   "currency": "CAD"
                 },
                 {
@@ -58468,18 +58595,29 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Canada/US; outside Canada/US",
+            "scope_label": {
+              "en": "Flights outside of Canada and the U.S.",
+              "fr": "Vols hors du Canada et des États-Unis",
+              "es": "Vuelos fuera de Canadá y Estados Unidos",
+              "pt": "Voos fora do Canadá e dos Estados Unidos"
+            },
             "source": {
               "url": "https://www.westjet.com/en-ca/flights/fees",
               "source_type": "official_website",
-              "verified_date": "2026-09-18",
-              "review_due": "2026-12-17",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Pet in cabin (each way) | $50-59 | $100-118",
+              "reviewer": "Claude — lecture directe de la page officielle des frais",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — séparation des zones tarifaires",
+                  "note": "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+                }
+              ],
+              "quote": "Flights outside of Canada and the U.S. $100 - $118",
               "quote_language": "en",
-              "locator": "Optional services and fees → Pets"
+              "locator": "Additional items → Travelling with pets and kennels → Pets in the cabin (personal item)"
             }
           }
         ]
@@ -58509,13 +58647,56 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_westjet_hold_cad_2026_09_18",
+            "id": "fare_westjet_hold_domestique_2026_09_19",
             "placement": "hold",
             "price": {
               "kind": "range",
               "amounts": [
                 {
                   "amount": 100,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 118,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": {
+              "en": "Flights within Canada and the U.S.",
+              "fr": "Vols au Canada et aux États-Unis",
+              "es": "Vuelos dentro de Canadá y Estados Unidos",
+              "pt": "Voos no Canadá e nos Estados Unidos"
+            },
+            "source": {
+              "url": "https://www.westjet.com/en-ca/flights/fees",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle des frais",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — séparation des zones tarifaires",
+                  "note": "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+                }
+              ],
+              "quote": "Flights within Canada and the U.S. $100 - $118",
+              "quote_language": "en",
+              "locator": "Additional items → Travelling with pets and kennels → Pets as checked baggage"
+            }
+          },
+          {
+            "id": "fare_westjet_hold_international_2026_09_19",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 200,
                   "currency": "CAD"
                 },
                 {
@@ -58526,18 +58707,29 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Canada/US; outside Canada/US",
+            "scope_label": {
+              "en": "Flights outside of Canada and the U.S.",
+              "fr": "Vols hors du Canada et des États-Unis",
+              "es": "Vuelos fuera de Canadá y Estados Unidos",
+              "pt": "Voos fora do Canadá e dos Estados Unidos"
+            },
             "source": {
               "url": "https://www.westjet.com/en-ca/flights/fees",
               "source_type": "official_website",
-              "verified_date": "2026-09-18",
-              "review_due": "2026-12-17",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Pet as checked baggage (each way) | $100-118 | $200-236",
+              "reviewer": "Claude — lecture directe de la page officielle des frais",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — séparation des zones tarifaires",
+                  "note": "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+                }
+              ],
+              "quote": "Flights outside of Canada and the U.S. $200 - $236",
               "quote_language": "en",
-              "locator": "Optional services and fees → Pets"
+              "locator": "Additional items → Travelling with pets and kennels → Pets as checked baggage"
             }
           }
         ]
