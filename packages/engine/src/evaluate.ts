@@ -7,6 +7,24 @@ import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 type Ctx = Record<string, string | number | boolean>;
 const PLACEMENTS = ["cabin", "hold", "cargo"] as const;
 
+/**
+ * GARDE-FOU CABINE SANS PLAFOND PUBLIÉ (arbitrage Philippe, 18/09/2026).
+ *
+ * Plusieurs compagnies nord-américaines ne publient pas de poids maximal : elles exigent que le
+ * chien puisse se tenir debout, se retourner et se coucher dans un sac placé SOUS LE SIÈGE. La
+ * première implémentation transformait l'absence de nombre en absence de filtre : Air Canada
+ * répondait ainsi « cabine : oui, sous conditions » pour un malamute de 38 kg. C'était faux.
+ *
+ * Ce seuil n'est JAMAIS présenté comme une règle de la compagnie et n'est jamais injecté dans
+ * `weight_limit_kg`. Il s'agit d'une barrière conservatrice propre à MyDogCanFly : au-delà de
+ * 10 kg, une politique cabine sans plafond chiffré ne peut plus produire une réponse positive.
+ * Les plafonds officiels structurés continuent de décider eux-mêmes, y compris s'ils sont plus
+ * bas. Le service ITA « Large Dog On Board » reste une exception strictement bornée aux vols
+ * intérieurs italiens et à ses règles dédiées. Les chiens d'assistance ne passent pas par cette
+ * barrière : leur accès en cabine relève d'un régime distinct du transport d'un animal ordinaire.
+ */
+export const CABIN_CONSERVATIVE_MAX_WEIGHT_KG = 10;
+
 // Great-circle distance (km) — used by the connection-plausibility ("maximum permitted detour") filter.
 function greatCircleKm(a: { lat: number; lon: number }, b: { lat: number; lon: number }): number {
   const rad = (d: number) => (d * Math.PI) / 180;
@@ -86,13 +104,18 @@ const REASON_BY_CATEGORY: Record<string, string> = {
   hold_weight: "weight_limit",
 };
 /** Ordre d'affichage : d'abord ce qui tient au chien, ensuite ce que la compagnie ne propose pas. */
-const REASON_ORDER = ["breed_restricted", "weight_limit", "cabin_unavailable", "hold_unavailable", "cargo_unavailable"];
-function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDeny?: boolean; weightDeny?: boolean }[]): string[] {
+const REASON_ORDER = ["breed_restricted", "weight_limit", "cabin_no_published_limit", "cabin_unavailable", "hold_unavailable", "cargo_unavailable"];
+function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDeny?: boolean; weightDeny?: boolean; weightDenyConservateur?: boolean }[]): string[] {
   const found = new Set<string>();
-  for (const { breedDeny, weightDeny } of perPlacement) {
-    /* Un refus prononcé par le SEUIL DE LA POLITIQUE (chien + contenant, 08/09/2026) porte le
-       motif « poids au-delà de la limite publiée », comme un refus par règle de poids. */
-    if (weightDeny) found.add("weight_limit");
+  for (const { breedDeny, weightDeny, weightDenyConservateur } of perPlacement) {
+    /* DEUX REFUS DE POIDS, DEUX MOTIFS — et les confondre serait mentir (18/09/2026).
+       « weight_limit » se dit « poids au-delà de la limite publiée » : il suppose qu'une limite
+       EST publiée, ce qui est vrai d'un seuil lu dans la politique. Le garde-fou cabine, lui,
+       ne s'applique QUE lorsque la compagnie n'en publie aucune ; lui prêter le même motif ferait
+       dire au Finder « au-delà de la limite publiée » d'une compagnie qui n'en publie pas — très
+       exactement ce que l'arbitrage interdit. Il porte donc son propre motif. */
+    if (weightDeny && !weightDenyConservateur) found.add("weight_limit");
+    if (weightDenyConservateur) found.add("cabin_no_published_limit");
     /* Un refus prononcé par une RESTRICTION DE RACE porte le même motif qu'un refus prononcé par
        une règle `breed_ban` : le visiteur lit pourquoi son chien est refusé, pas quel objet du
        référentiel l'a décidé. Sans cette ligne, une compagnie refusant la soute sur un fait de
@@ -562,6 +585,32 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         /* LA BORNE (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur — Air Austral, « inférieur à
            8 kg » : 8,0 kg est refusé, 7,9 ne l'est pas ; `lte` ou absent l'inclut : 8,0 passe, 8,1 est refusé. */
         && (pol.weight_limit_bound === "lt" ? poidsChien >= pol.max_weight_kg : poidsChien > pol.max_weight_kg);
+      /* GARDE-FOU CABINE SANS PLAFOND PUBLIÉ (18/09/2026). Certaines compagnies décrivent
+         seulement un « petit chien » dans un contenant sous le siège. L'absence de nombre dans
+         leur page ne doit jamais devenir une autorisation implicite pour un chien de 15, 38 ou
+         50 kg. Au-delà de 10 kg, le Finder ferme donc la cabine pour un animal de compagnie
+         ordinaire lorsque la politique ne fournit aucun plafond exploitable.
+
+         Important : 10 kg est une BORNE DE SÉCURITÉ DU MOTEUR, pas une règle attribuée à la
+         compagnie. Elle ne descend donc jamais dans `weight_limit_kg` ni dans la preuve affichée.
+         Le service ITA « Large Dog », limité à certains vols intérieurs italiens et soumis à
+         confirmation, reste l'unique exception documentée. Les chiens d'assistance sont hors de
+         ce garde-fou : leur transport relève d'un régime juridique et produit distinct. */
+      const exceptionItaGrandChienDomestique = a.id === "airline_ita_airways"
+        && originCountry === "country_it" && destCountry === "country_it";
+      const seuilCabineConservateurDepasse = p === "cabin"
+        /* LE GARDE-FOU NE FERME QU'UNE PORTE RÉELLEMENT OUVERTE (ajouté le 18/09/2026 en relisant
+           les sentinelles). Sans cette condition il s'appliquait aussi aux cabines qui ne sont pas
+           décidées — Garuda, `legacy_unreviewed` — et transformait « nous ne savons pas » en
+           « refusé ». C'est l'inverse de la règle que ce moteur tient partout ailleurs, et le
+           défaut corrigé ici n'existe pas dans ce cas : une politique non décidée ne dit jamais
+           « oui » à un chien de 38 kg, elle dit déjà « à confirmer ». Ce qu'il fallait fermer,
+           c'est l'acceptation obtenue faute de nombre — rien d'autre. */
+        && (pol?.status === "allowed" || pol?.status === "accepted_with_conditions")
+        && req.travel_type !== "service_dog"
+        && poidsChien > CABIN_CONSERVATIVE_MAX_WEIGHT_KG
+        && !(typeof pol.max_weight_kg === "number" && typeof pol.weight_includes_carrier === "boolean")
+        && !exceptionItaGrandChienDomestique;
       /* LE PLANCHER DÉLIMITE LA PORTÉE DE L'AUTORISATION, PAS UN REFUS. « Au-delà de 32 kg, le
          transport se fera via le fret » prouve le fret au-dessus de 32 kg ; il ne prouve pas que
          le fret accepte aussi 20 kg, ni qu'il le refuse. Sous la borne, le seul verdict fidèle
@@ -573,11 +622,18 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         && typeof qualificationPlancher === "boolean" && typeof pol.min_weight_kg === "number"
         && (pol.weight_min_bound === "gt" ? poidsChien <= pol.min_weight_kg : poidsChien < pol.min_weight_kg);
       let weightDeny = false;
+      /* Distingue le refus prononcé par NOTRE garde-fou de celui prononcé par un plafond publié :
+         le premier ne peut pas se dire « au-delà de la limite publiée ». */
+      let weightDenyConservateur = false;
       if (denyDecisifs.length > 0) {
         status = "denied";
       } else if (seuilDepasse) {
         status = "denied";
         weightDeny = true;
+      } else if (seuilCabineConservateurDepasse) {
+        status = "denied";
+        weightDeny = true;
+        weightDenyConservateur = true;
       } else if (pol?.status === "denied") {
         /* UN REFUS DE POLITIQUE EST PROUVÉ, PAR CONSTRUCTION. Depuis la frontière,
            `projectPlacementPolicy` n'émet `denied` que sur une provenance citée : le laisser
@@ -680,7 +736,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
           race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.max_weight_kg : undefined,
           race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_includes_carrier : undefined,
           race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_limit_bound : undefined),
-        fires: allFires, breedDeny: race.denied_by_breed, weightDeny,
+        fires: allFires, breedDeny: race.denied_by_breed, weightDeny, weightDenyConservateur,
       };
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
@@ -896,7 +952,8 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          point d'appel : une soute fermée par un fait de race audité sortait avec `deny_reasons`
          absent — un refus sans motif, exactement le défaut que ce champ existe pour empêcher. */
       deny_reasons: denyReasonsOf(perPlacement.map((x) => ({
-        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny }))),
+        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny,
+        weightDenyConservateur: x.weightDenyConservateur }))),
       connect_airport_id,
       detour_km,
       origin_airport_id,

@@ -160,9 +160,12 @@ const MUTATIONS = [
     id: "un-refus-de-race-ne-porte-plus-son-motif",
     fichier: "packages/engine/src/evaluate.ts",
     /* Ligne suivie (08/09/2026) : `weightDeny` s'est ajouté à côté de `breedDeny` (seuil chien +
-       contenant). La mutation retire toujours le SEUL motif de race ; le poids reste transporté. */
-    cherche: "        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny }))),",
-    remplace: "        placement: x.decision.placement, fires: x.fires, weightDeny: x.weightDeny }))),",
+       contenant). La mutation retire toujours le SEUL motif de race ; le poids reste transporté.
+       SUIVIE À NOUVEAU LE 18/09/2026 : `weightDenyConservateur` s'y ajoute — le garde-fou cabine
+       porte son propre motif — et l'appel tient désormais sur deux lignes. L'ancre est mise à jour
+       plutôt que la mutation élargie : ce qu'elle éprouve reste le retrait du seul motif de race. */
+    cherche: "        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny,",
+    remplace: "        placement: x.decision.placement, fires: x.fires, weightDeny: x.weightDeny,",
     harnais: "test-t0b3a-moteur-race.mjs",
     attendu: "motif `breed_restricted`",
   },

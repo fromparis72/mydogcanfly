@@ -323,8 +323,12 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (15/09/2026, audit exhaustif fiche ↔ Finder) : 71 → 55. Les citations
      propres réactivent les décisions documentées ; les décisions sans phrase restent
      explicitement non revues. La liste complète est contrôlée par test:raccordement-finder. */
-  check("55 politiques émettent legacy_unreviewed après l'audit exhaustif des 306 canaux",
-    porteuses === 55, String(porteuses));
+  /* MOUVEMENT NOMMÉ (18/09/2026, revue canadienne) : 55 → 53. Les canaux fret d'Air Transat
+     et de WestJet quittent la dette historique sur une citation officielle et passent à
+     `airline_approval`. Le nombre total de politiques à confirmer reste inchangé : seule leur
+     cause devient explicite et opposable. */
+  check("53 politiques émettent legacy_unreviewed après la revue canadienne",
+    porteuses === 53, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -442,9 +446,9 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
     /* MOUVEMENT NOMMÉ (15/09/2026) : French bee fret SORT — la page nationale établit le
        passage au fret au-delà de 75 kg, contenant compris. */
     "airline_virgin_australia.hold",
-    /* WestJet Cargo conserve une page officielle et un simple renvoi commercial, sans phrase
-       établissant l'acceptation d'un animal : la source reste visible mais non décisionnelle. */
-    "airline_westjet.cargo",
+    /* MOUVEMENT NOMMÉ (18/09/2026) : WestJet Cargo SORT de cette dette. La page officielle
+       établit désormais que le transport doit être organisé avec WestJet Cargo ; le canal est
+       servi en `confirmation_required` avec la cause explicite `airline_approval`. */
   ];
   /* L'ensemble OBSERVÉ, recalculé sur la base — pas relu de la liste ci-dessus. */
   const observees = [];

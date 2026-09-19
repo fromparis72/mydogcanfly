@@ -161,7 +161,21 @@ policies:
       quote_language: fr
       locator: "Animaux en soute → Restrictions → Spécifications minimales de la cage"
   cargo:
-    review_state: legacy_unreviewed
+    availability: case_by_case
+    source:
+      url: https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs
+      source_type: official_website
+      verified_date: 2026-09-18
+      review_due: 2026-12-17
+      confidence: 4
+      reviewer: Codex — direct reading of official airline page
+      history:
+        - date: 2026-09-18
+          reviewer: Codex — official cargo verification
+          note: Supersedes the legacy unreviewed entry derived from https://www.airtransat.com, dated 2026-08-08.
+      quote: Larger cages must be shipped via Air Transat cargo and advance arrangements are required.
+      quote_language: en
+      locator: Pets in the checked baggage hold → Restrictions → Kennel specifications
 channels:
   - placement: cabin
     icon: 🐾

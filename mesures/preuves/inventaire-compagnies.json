@@ -1,14 +1,14 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "e5b25602b949918d7140d902eac5d343dc2b64103166a2167e2683a492dc3667",
+    "empreinte_donnees_sha256": "044d0db3c51f68edb18e7e32307cb9e67548a456b60558762d2b8c9a664c3872",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 306,
     "par_categorie": {
-      "A": 252,
+      "A": 254,
       "A_incomplete": 0,
-      "B": 11,
-      "C": 43,
+      "B": 10,
+      "C": 42,
       "D": 0
     },
     "par_canal": {
@@ -27,10 +27,10 @@
         "D": 0
       },
       "cargo": {
-        "A": 60,
+        "A": 62,
         "A_incomplete": 0,
-        "B": 5,
-        "C": 37,
+        "B": 4,
+        "C": 36,
         "D": 0
       }
     },
@@ -81,6 +81,7 @@
       "airline_air_tahiti_nui#cargo (politique)",
       "airline_air_transat#cabin (politique)",
       "airline_air_transat#hold (politique)",
+      "airline_air_transat#cargo (politique)",
       "airline_airbaltic#cabin (politique)",
       "airline_airbaltic#hold (politique)",
       "airline_airbaltic#cargo (politique)",
@@ -285,34 +286,34 @@
       "airline_vueling#cargo (politique)",
       "airline_westjet#cabin (politique)",
       "airline_westjet#hold (politique)",
+      "airline_westjet#cargo (politique)",
       "airline_wizz_air#cabin (politique)",
       "airline_wizz_air#hold (politique)"
     ],
     "A_incomplete": [],
     "D": [],
     "B_par_piste": {
-      "politique": 6,
+      "politique": 5,
       "regle": 5
     },
     "B_par_regle_gov_uk_seul": 5,
     "priorite_B": {
       "availability": {
-        "null": 11
+        "null": 10
       },
       "derived_from_fiche": {
-        "false": 1,
         "true": 10
       },
       "source_derived": {
-        "false": 6,
+        "false": 5,
         "true": 5
       },
       "review_state": {
-        "legacy_unreviewed": 11
+        "legacy_unreviewed": 10
       },
       "history": {
         "0": 5,
-        "1": 6
+        "1": 5
       },
       "hotes": {
         "asianacargo.com": 1,
@@ -320,26 +321,25 @@
         "condor.com": 1,
         "gov.uk": 5,
         "maskargo.com": 1,
-        "virginaustralia.com": 1,
-        "westjet.com": 1
+        "virginaustralia.com": 1
       }
     },
     "priorite_C": {
       "availability": {
-        "null": 43
+        "null": 42
       },
       "review_state": {
-        "legacy_unreviewed": 43
+        "legacy_unreviewed": 42
       },
       "avec_regles_auto_citees": 1
     },
     "coherence_niveau_de_preuve": {
       "paires": {
         "A ↔ aucune": 1,
-        "A ↔ citee": 251,
+        "A ↔ citee": 253,
         "B ↔ aucune": 5,
-        "B ↔ officielle_non_citee": 6,
-        "C ↔ aucune": 43
+        "B ↔ officielle_non_citee": 5,
+        "C ↔ aucune": 42
       },
       "ecarts": {
         "B_par_regle_sur_politique_aucune": 5,
@@ -1764,22 +1764,22 @@
       "airline_id": "airline_air_transat",
       "name": "Air Transat",
       "canal": "cargo",
-      "categorie": "C",
-      "piste": "valeur_heritee",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": null,
-      "hote": null,
-      "verified_date": null,
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+      "hote": "airtransat.com",
+      "verified_date": "2026-09-18",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": null,
+        "availability": "case_by_case",
         "derived_from_fiche": true,
-        "source_derived": true,
-        "review_state": "legacy_unreviewed",
-        "history": 0,
-        "url_politique": "https://www.airtransat.com",
+        "source_derived": false,
+        "review_state": null,
+        "history": 1,
+        "url_politique": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
         "hote_politique": "airtransat.com",
-        "url_fabriquee": true,
+        "url_fabriquee": false,
         "regles": [],
         "regles_officielles": [],
         "hotes_regles": []
@@ -8479,17 +8479,17 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+      "url": "https://www.westjet.com/en-ca/pets",
       "hote": "westjet.com",
-      "verified_date": "2026-09-09",
+      "verified_date": "2026-09-18",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": false,
         "source_derived": false,
         "review_state": null,
-        "history": 0,
-        "url_politique": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+        "history": 1,
+        "url_politique": "https://www.westjet.com/en-ca/pets",
         "hote_politique": "westjet.com",
         "url_fabriquee": false,
         "regles": [],
@@ -8526,18 +8526,18 @@
       "airline_id": "airline_westjet",
       "name": "WestJet",
       "canal": "cargo",
-      "categorie": "B",
+      "categorie": "A",
       "piste": "politique",
       "manques": [],
       "url": "https://www.westjet.com/en-ca/pets",
       "hote": "westjet.com",
-      "verified_date": "2026-07-08",
-      "niveau_de_preuve_politique": "officielle_non_citee",
+      "verified_date": "2026-09-18",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": null,
+        "availability": "case_by_case",
         "derived_from_fiche": false,
         "source_derived": false,
-        "review_state": "legacy_unreviewed",
+        "review_state": null,
         "history": 1,
         "url_politique": "https://www.westjet.com/en-ca/pets",
         "hote_politique": "westjet.com",

@@ -103,10 +103,18 @@ console.log("\n=== 3 et 4. Deux règles héritées non citées retirées ; les r
     canal(pek, "airline_air_china", "cabin")?.status === "accepted_with_conditions" && /airchina\.com\.cn/.test(canal(pek, "airline_air_china", "cabin")?.source?.url ?? ""));
   const pekG = decide("airport_cdg", "airport_pek", { breed_id: "breed_golden_retriever", weight_kg: 32 });
   const airChinaGolden = canal(pekG, "airline_air_china", "cabin");
-  check("Air China cabine, Golden 32 kg : canal publié sous conditions, sans plafond ni refus de poids inventé",
-    airChinaGolden?.status === "accepted_with_conditions"
+  /* RE-FONDÉ LE 18/09/2026 (garde-fou cabine). Ce témoin naît d'un défaut ancien : une règle
+     globale `rule_global_cabin_weight_cap` inventait un plafond mondial que personne ne publiait.
+     Il vérifiait donc qu'aucun refus de poids ne s'appliquait faute de chiffre cité — et il avait
+     raison contre CETTE règle. Le garde-fou de ce lot n'est pas son retour : il ne fabrique aucun
+     plafond, n'attribue rien à la compagnie, et se nomme dans le motif affiché. Ce qui reste
+     interdit, et qu'on continue d'exiger, c'est le plafond inventé et la règle globale. */
+  check("Air China cabine, Golden 32 kg : fermé par le garde-fou, sans plafond ni règle globale inventés",
+    airChinaGolden?.status === "denied"
       && airChinaGolden?.weight_limit_kg === undefined
-      && !(airChinaGolden?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"));
+      && !(airChinaGolden?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap")
+      && (pekG.airlines.find((x) => x.airline_id === "airline_air_china")?.deny_reasons ?? []).includes("cabin_no_published_limit"),
+    JSON.stringify(airChinaGolden));
 }
 
 console.log("\n=== Ce que la réconciliation n'a PAS fait ===");

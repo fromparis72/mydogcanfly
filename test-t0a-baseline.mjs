@@ -1923,12 +1923,15 @@ console.log("=== Couverture DIRECTE : les 306 politiques, hors des 72 scénarios
      passagers. La page officielle refuse explicitement les animaux présentés au check-in :
      Aer Lingus soute passe donc de sous conditions à refusée. 40 des 72 scénarios de la
      baseline bougent sur cette seule compagnie ; les 66 confirmations restent inchangées. */
+  /* MOUVEMENT NOMMÉ (18/09/2026, audit canadien) : Air Transat et WestJet fret restent à
+     confirmer, mais la cause devient `airline_approval` sur citation officielle. La répartition
+     des 66 confirmations ne bouge pas : deux causes seulement gagnent une preuve exploitable. */
   check("répartition runtime : 0 allowed · 187 sous conditions · 53 denied · 66 à confirmer",
     !parStatut.allowed && parStatut.accepted_with_conditions === 187 && parStatut.denied === 53 && parStatut.confirmation_required === 66,
     JSON.stringify(parStatut));
-  check("causes : 55 legacy_unreviewed · 0 official_source_unquoted · 0 policy_unpublished · 11 airline_approval",
-    parCause.legacy_unreviewed === 55 && !parCause.official_source_unquoted
-      && !parCause.policy_unpublished && parCause.airline_approval === 11, JSON.stringify(parCause));
+  check("causes : 53 legacy_unreviewed · 0 official_source_unquoted · 0 policy_unpublished · 13 airline_approval",
+    parCause.legacy_unreviewed === 53 && !parCause.official_source_unquoted
+      && !parCause.policy_unpublished && parCause.airline_approval === 13, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

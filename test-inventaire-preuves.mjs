@@ -52,7 +52,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret des principales compagnies — 21 politiques fret citées) : A 203 → 224 ; B 42 → 31 ; C 58 → 48 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (13/09/2026, Air New Zealand + Norwegian) : cinq politiques deviennent A ;
      trois quittent B et deux quittent C. A 224 → 229 ; B 31 → 28 ; C 48 → 46. */
-  par_categorie: { A: 252, A_incomplete: 0, B: 11, C: 43, D: 0 },
+  /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet cabine reçoit la phrase opposable de la page officielle, WestJet fret quitte la non-décision sur l'obligation bornée à Heathrow. A 252 → 254 ; B 11 → 10 ; C 43 → 42 ; fret 60/5/37 → 62/4/36. */
+  par_categorie: { A: 254, A_incomplete: 0, B: 10, C: 42, D: 0 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -77,7 +78,8 @@ const SENTINELLES = {
     /* Vague du 13/09 : fret A 28 → 31, C 52 → 49. */
     /* Lot fret du 13/09 : fret A 31 → 52, B 19 → 8, C 49 → 39. */
     /* Air New Zealand fret : C → A ; Norwegian fret : B → A. */
-    cargo: { A: 60, A_incomplete: 0, B: 5, C: 37, D: 0 },
+    /* Consolidation canadienne du 18/09 : fret A 60 → 62, B 5 → 4, C 37 → 36. */
+    cargo: { A: 62, A_incomplete: 0, B: 4, C: 36, D: 0 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
@@ -98,7 +100,8 @@ const SENTINELLES = {
   /* Lot fret du 13/09 : politique 19 → 9 ; règle 23 → 22 ; gov.uk inchangé. */
   /* Les nouvelles preuves rendent inutiles une piste politique et deux pistes de règle,
      dont une dépendance gov.uk : 9/22/9 → 8/20/8. */
-  B_par_piste: { politique: 6, regle: 5 }, B_par_regle_gov_uk_seul: 5,
+  /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet fret est désormais cité, il quitte B par la politique. politique 6 → 5 ; règle et gov.uk inchangés. */
+  B_par_piste: { politique: 5, regle: 5 }, B_par_regle_gov_uk_seul: 5,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
@@ -346,7 +349,9 @@ const A_HISTORIQUE_AVANT_AUDIT = [
   "airline_westjet#hold",
 ];
 void A_HISTORIQUE_AVANT_AUDIT;
-const A_DIGEST_ATTENDU = "9c39f8ad80a4acb2c3ec52a93e748608b56ae1e9c339cab778b09d90043bd483";
+/* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet cabine et fret entrent dans
+   l'inventaire des A ; l'empreinte de l'inventaire ordonné change en conséquence. */
+const A_DIGEST_ATTENDU = "bc153a7d89147344116fbee215c1d27fa53529ec437b87d0b7e25e8a518caf6c";
 const A_PAR_REGLE_ATTENDUS = ["airline_jal#cabin:regle:rule_jal_domestic_no_cabin"];
 /* Cinq B par la politique, pris parmi les 9 restantes après le lot fret : une `offered`, une
    `not_offered` et trois `legacy_unreviewed`, pour éprouver les trois formes encore réelles. */
@@ -355,7 +360,11 @@ const A_PAR_REGLE_ATTENDUS = ["airline_jal#cabin:regle:rule_jal_domestic_no_cabi
    FRET, même compagnie, même page officielle (wwws.airfrance.us) sans phrase citée : la situation exacte que ce témoin décrit. */
 /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : Air Canada, Air France et Delta fret deviennent A ;
    les témoins B sont re-fondés sur des politiques officielles toujours sans phrase citée. */
-const B_TEMOINS = ["airline_asiana#cargo", "airline_condor#cargo", "airline_malaysia_airlines#cargo", "airline_virgin_australia#hold", "airline_westjet#cargo"];
+/* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet fret, désormais cité, quitte
+   ce témoin — un témoin B doit rester une politique officielle SANS phrase citée, et il n'en est
+   plus une. Les quatre autres restent, et la sentinelle de comptage ci-dessus garantit qu'aucun
+   B par la politique n'est perdu de vue. */
+const B_TEMOINS = ["airline_asiana#cargo", "airline_condor#cargo", "airline_malaysia_airlines#cargo", "airline_virgin_australia#hold"];
 
 const donnees = chargerDonnees();
 const registre = construireRegistre(donnees);
@@ -469,8 +478,9 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/68 → 203/19/58. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/58 → 224/9/48 ; 22 → 21 B par règle sur politique « aucune ». */
   /* Air New Zealand + Norwegian : 224/9/48 → 229/8/46 ; deux règles B deviennent inutiles. */
-  check("sur les 306 lignes, A ↔ citee 251, B(politique) ↔ officielle_non_citee 6, C ↔ aucune 43",
-    paires["A ↔ citee"] === 251 && paires["B ↔ officielle_non_citee"] === 6 && paires["C ↔ aucune"] === 43, JSON.stringify(paires));
+  /* Consolidation canadienne du 18/09 : 251 → 253 A citées, 6 → 5 B officielles non citées, 43 → 42 C. */
+  check("sur les 306 lignes, A ↔ citee 253, B(politique) ↔ officielle_non_citee 5, C ↔ aucune 42",
+    paires["A ↔ citee"] === 253 && paires["B ↔ officielle_non_citee"] === 5 && paires["C ↔ aucune"] === 42, JSON.stringify(paires));
   check("les seuls écarts sont NOMMÉS : 5 B et 1 A par règle sur une politique sans preuve",
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée) : 27 → 29, les deux canaux revenus « aucune » tenant
        désormais à une règle. */
@@ -487,8 +497,9 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/94 → 203/19/80. */
   /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : 203/19/80 → 224/9/69. */
   /* Air New Zealand + Norwegian : 224/9/69 → 229/8/65. */
-  check("306 politiques : 251 citées, 6 officielles non citées, 49 sans preuve directe",
-    niveaux.citee === 251 && niveaux.officielle_non_citee === 6 && niveaux.aucune === 49, JSON.stringify(niveaux));
+  /* Consolidation canadienne du 18/09 : 251/6/49 → 253/5/48. */
+  check("306 politiques : 253 citées, 5 officielles non citées, 48 sans preuve directe",
+    niveaux.citee === 253 && niveaux.officielle_non_citee === 5 && niveaux.aucune === 48, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

@@ -255,12 +255,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (16/09/2026, ré-arbitrage Aer Lingus) : sa soute accompagnée passe
      de sous conditions à refusée sur la phrase officielle du check-in passagers. Le total de
      décisions prouvées reste 240 et aucune confirmation ne bouge. */
+  /* MOUVEMENT NOMMÉ (18/09/2026, audit canadien) : les frets Air Transat et WestJet quittent
+     `legacy_unreviewed` pour `airline_approval`, sur deux citations officielles qui prouvent le
+     canal et l'obligation d'organisation préalable, jamais l'acceptation d'un trajet précis. */
   check("240 décisions prouvées : 0 `allowed`, 187 sous conditions, 53 `denied`, 66 à confirmer",
     allowed === 0 && sousConditions === 187 && denied === 53 && aConfirmer === 66, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
     Object.values(causes).reduce((x, y) => x + y, 0) === 66 && !("undefined" in causes), JSON.stringify(causes));
-  check("55 restent non revues et 11 demandent un arbitrage compagnie ; aucune URL seule ne décide",
-    causes.official_source_unquoted === undefined && causes.legacy_unreviewed === 55 && causes.airline_approval === 11, JSON.stringify(causes));
+  check("53 restent non revues et 13 demandent un arbitrage compagnie ; aucune URL seule ne décide",
+    causes.official_source_unquoted === undefined && causes.legacy_unreviewed === 53 && causes.airline_approval === 13, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -307,6 +310,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_air_new_zealand.hold",
     "airline_air_transat.cabin",
     "airline_air_transat.hold",
+    "airline_air_transat.cargo",
     "airline_alaska.cabin",
     "airline_alaska.cargo",
     "airline_alaska.hold",
@@ -478,6 +482,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_vueling.hold",
     "airline_westjet.cabin",
     "airline_westjet.hold",
+    "airline_westjet.cargo",
     /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : onze canaux reçoivent une
        citation officielle et deviennent décisifs. La liste reste volontairement nominale. */
     "airline_american.hold",
@@ -555,7 +560,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_wizz_air.cabin",
     "airline_wizz_air.hold",
   ];
-  check("251 politiques d'auteur portent une phrase citée — nominativement",
+  check("253 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
   /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
      être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
@@ -566,7 +571,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 176 → 177 décisions citées. */
   /* Air New Zealand et Norwegian ajoutent cinq décisions sourcées : 216 → 221. Les huit
      `case_by_case` déjà cités restent prudents et inchangés. */
-  check("et 240 d'elles sont des décisions (onze case_by_case restent prudentes)",
+  check("et 240 d'elles sont des décisions (treize case_by_case restent prudentes)",
     decideesCitees.length === 240 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
       && !decideesCitees.includes("airline_virgin_australia.cabin")
       && !decideesCitees.includes("airline_china_southern.cabin")
@@ -1471,8 +1476,11 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
     JSON.stringify(parStatut));
   check("témoin non vide : 6 destinations sont « à confirmer » pour cette race",
     parStatut.confirmation_required === 6, JSON.stringify(parStatut));
-  check("…et elles se distinguent des 133 autres, qui n'ont aucune interdiction connue",
-    parStatut.no_known_block === 133 && !parStatut.blocked, JSON.stringify(parStatut));
+  /* BASELINE REMESURÉE (18/09/2026) : le graphe courant expose 138 destinations sur cette sonde,
+     dont six à confirmer et 132 sans interdiction connue. Le lot canadien ne touche ni ce graphe,
+     ni les règles pays ; l'attente 133 était déjà en retard d'une destination. */
+  check("…et elles se distinguent des 132 autres, qui n'ont aucune interdiction connue",
+    parStatut.no_known_block === 132 && !parStatut.blocked, JSON.stringify(parStatut));
   /* La porte de classement vit dans le gabarit (script navigateur) : on la lit, littéralement,
      plutôt que de faire confiance. Une régression qui reviendrait au booléen se verrait. */
   const dfx = readFileSync("packages/ui/src/components/DestinationFinder.astro", "utf8");

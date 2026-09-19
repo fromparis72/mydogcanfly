@@ -297,8 +297,11 @@ console.log("\n=== Clôture : les 102 compagnies examinées, ce que cela veut di
   /* MOUVEMENT NOMMÉ (15/09/2026, audit raccordement complet) : les quatre canaux qui n'avaient
      pas encore de bloc explicite sont matérialisés ; les preuves nationales plus récentes portent
      le total à 251 canaux cités sur les 306 décisions attendues (102 × 3). */
-  check("251 politiques citées sur 306 — chaque compagnie porte exactement trois canaux",
-    citees === 251 && politiques === 306, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (18/09/2026, consolidation canadienne) : WestJet cabine reçoit la phrase
+     opposable de la page officielle en remplacement d'une phrase commerciale, et WestJet fret
+     quitte la non-décision sur l'obligation bornée à Heathrow ; 251 → 253 canaux cités. */
+  check("253 politiques citées sur 306 — chaque compagnie porte exactement trois canaux",
+    citees === 253 && politiques === 306, `${citees} / ${politiques}`);
   const neufLots = ["v3", "lots-2-3", "lot-4", "lot-5", "lot-6", "lot-7", "lot-8", "lot-9"].map((l) => `test-baselines/import-strict-${l}-apres.json`);
   check("la chaîne des baselines figées est complète, de l'import V3 au lot 9", neufLots.every((f) => { try { readFileSync(f); return true; } catch { return false; } }), neufLots.join(", "));
 }

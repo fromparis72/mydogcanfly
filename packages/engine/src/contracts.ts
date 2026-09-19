@@ -605,7 +605,11 @@ export interface AirlineDecision {
   itinerary_confidence?: "direct_documented" | "direct_assumed" | "connection_documented" | "connection_unverified";
   /* Motifs du refus, LUS sur les règles qui ont réellement refusé chaque placement (leur catégorie
      et les placements qu'elles visent), jamais déduits d'une absence de mode accepté.
-     Codes : breed_restricted · weight_limit · cabin_unavailable · hold_unavailable · cargo_unavailable. */
+     Codes : breed_restricted · weight_limit · cabin_no_published_limit · cabin_unavailable ·
+     hold_unavailable · cargo_unavailable.
+     `weight_limit` suppose une limite PUBLIÉE par la compagnie ; `cabin_no_published_limit` dit le
+     refus prononcé par le garde-fou interne, qui ne s'applique justement qu'en l'absence de
+     plafond publié. Les confondre attribuerait à la compagnie un chiffre qu'elle n'écrit pas. */
   deny_reasons?: string[];
   connect_airport_id?: string;     // for a connection, the airline hub the itinerary plausibly routes through
   detour_km?: number;              // extra distance vs the direct great-circle (0 for a direct) — ranks/trims connections
