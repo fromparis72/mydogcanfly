@@ -308,7 +308,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: WestJet Cargo routes
+        scope_label:
+          en: "WestJet Cargo routes"
+          fr: "Routes WestJet Cargo"
+          es: "Rutas WestJet Cargo"
+          pt: "Rotas WestJet Cargo"
         source:
           url: https://www.westjet.com/en-bb/flights/fees
           source_type: official_website

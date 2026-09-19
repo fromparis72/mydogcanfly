@@ -88,7 +88,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Zones 1 / 2 / 3
+        scope_label:
+          en: "Zones 1 / 2 / 3"
+          fr: "Zones 1 / 2 / 3"
+          es: "Zonas 1 / 2 / 3"
+          pt: "Zonas 1 / 2 / 3"
         source:
           url: https://www.tarom.ro/en/passenger-information/special-baggage
           source_type: official_website
@@ -130,7 +134,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Zones 1 / 2 / 3; no AVIH on A320
+        scope_label:
+          en: "Zones 1 / 2 / 3; no AVIH on A320"
+          fr: "Zones 1 / 2 / 3 ; pas d'AVIH sur A320"
+          es: "Zonas 1 / 2 / 3; sin AVIH en A320"
+          pt: "Zonas 1 / 2 / 3; sem AVIH no A320"
         source:
           url: https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold
           source_type: official_website

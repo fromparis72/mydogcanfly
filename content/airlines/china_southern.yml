@@ -100,7 +100,11 @@ policies:
               currency: CNY
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Selon la distance du tronçon · produit cabine éligible
+        scope_label:
+          en: "Depending on sector distance · eligible cabin product"
+          fr: "Selon la distance du tronçon · produit cabine éligible"
+          es: "Según la distancia del tramo · producto de cabina elegible"
+          pt: "Conforme a distância do trecho · produto de cabine elegível"
         source:
           url: https://m.csair.com/FTPCMS/mcms/CN/zh/2024/20241205_1/images/tu11-250411b.jpg
           source_type: official_website

@@ -79,7 +79,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Court-courrier ou transatlantique · moyen-courrier non publié
+        scope_label:
+          en: "Short-haul or transatlantic · medium-haul not published"
+          fr: "Court-courrier ou transatlantique · moyen-courrier non publié"
+          es: "Corto radio o transatlántico · medio radio no publicado"
+          pt: "Curta distância ou transatlântico · média distância não publicada"
         source:
           url: https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux
           source_type: official_website
@@ -125,7 +129,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Vol court ou transatlantique · moyen-courrier non publié
+        scope_label:
+          en: "Short flight or transatlantic · medium-haul not published"
+          fr: "Vol court ou transatlantique · moyen-courrier non publié"
+          es: "Vuelo corto o transatlántico · medio radio no publicado"
+          pt: "Voo curto ou transatlântico · média distância não publicada"
         source:
           url: https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux
           source_type: official_website

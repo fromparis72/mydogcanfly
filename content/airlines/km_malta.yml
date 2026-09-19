@@ -83,7 +83,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Par contenant et par trajet
+        scope_label:
+          en: "Per container and per journey"
+          fr: "Par contenant et par trajet"
+          es: "Por contenedor y por trayecto"
+          pt: "Por recipiente e por trajeto"
         source:
           url: https://kmmaltairlines.com/mt/travelling-with-pets
           source_type: official_website
@@ -129,7 +133,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Selon le poids animal + contenant · ajouter 10 EUR de frais administratifs
+        scope_label:
+          en: "Depending on pet + container weight · add 10 EUR administrative fee"
+          fr: "Selon le poids animal + contenant · ajouter 10 EUR de frais administratifs"
+          es: "Según el peso animal + contenedor · añadir 10 EUR de gastos administrativos"
+          pt: "Conforme o peso animal + recipiente · acrescentar 10 EUR de taxas administrativas"
         source:
           url: https://kmmaltairlines.com/en/travelling-with-pets
           source_type: official_website

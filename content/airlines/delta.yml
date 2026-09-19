@@ -92,7 +92,11 @@ policies:
             - { amount: 150, currency: CAD }
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025
+        scope_label:
+          en: "United States, Canada, Puerto Rico and the U.S. Virgin Islands · tickets issued on or after 8 April 2025"
+          fr: "États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025"
+          es: "Estados Unidos, Canadá, Puerto Rico e Islas Vírgenes de EE. UU. · billetes emitidos desde el 8 de abril de 2025"
+          pt: "Estados Unidos, Canadá, Porto Rico e Ilhas Virgens Americanas · bilhetes emitidos desde 8 de abril de 2025"
         source:
           url: https://www.delta.com/us/en/pet-travel/overview
           source_type: official_website
@@ -114,7 +118,11 @@ policies:
             - { amount: 200, currency: EUR }
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Vols internationaux éligibles
+        scope_label:
+          en: "Eligible international flights"
+          fr: "Vols internationaux éligibles"
+          es: "Vuelos internacionales elegibles"
+          pt: "Voos internacionais elegíveis"
         source:
           url: https://www.delta.com/us/en/pet-travel/overview
           source_type: official_website

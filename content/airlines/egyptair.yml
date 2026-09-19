@@ -128,7 +128,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Hors franchise : facturé au barème de l'excédent de bagages"
+        scope_label:
+          en: "Outside the allowance: charged at the excess baggage rate"
+          fr: "Hors franchise : facturé au barème de l'excédent de bagages"
+          es: "Fuera de la franquicia: facturado según la tarifa de exceso de equipaje"
+          pt: "Fora da franquia: cobrado conforme a tabela de excesso de bagagem"
         source:
           url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
           source_type: official_website
@@ -170,7 +174,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Hors franchise : compté et facturé en pièces d'excédent de bagages"
+        scope_label:
+          en: "Outside the allowance: counted and charged as excess baggage pieces"
+          fr: "Hors franchise : compté et facturé en pièces d'excédent de bagages"
+          es: "Fuera de la franquicia: contabilizado y facturado como piezas de exceso de equipaje"
+          pt: "Fora da franquia: contado e cobrado como peças de excesso de bagagem"
         source:
           url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
           source_type: official_website

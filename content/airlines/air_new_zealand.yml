@@ -104,7 +104,11 @@ policies:
               currency: NZD
         billing_subject: container
         journey_basis: per_journey
-        scope_label: domestic New Zealand
+        scope_label:
+          en: "domestic New Zealand"
+          fr: "Nouvelle-Zélande intérieure"
+          es: "Nueva Zelanda nacional"
+          pt: "Nova Zelândia doméstica"
         source:
           url: https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets
           source_type: official_website

@@ -80,7 +80,11 @@ policies:
               currency: CAD
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Air Transat-operated sectors
+        scope_label:
+          en: "Air Transat-operated sectors"
+          fr: "Tronçons opérés par Air Transat"
+          es: "Tramos operados por Air Transat"
+          pt: "Trechos operados pela Air Transat"
         source:
           url: https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs
           source_type: official_website
@@ -124,7 +128,11 @@ policies:
               currency: CAD
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Air Transat-operated sectors
+        scope_label:
+          en: "Air Transat-operated sectors"
+          fr: "Tronçons opérés par Air Transat"
+          es: "Tramos operados por Air Transat"
+          pt: "Trechos operados pela Air Transat"
         source:
           url: https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs
           source_type: official_website

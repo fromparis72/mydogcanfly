@@ -86,7 +86,11 @@ policies:
           amounts: []
         billing_subject: booking
         journey_basis: per_journey
-        scope_label: marché/route → marché/route
+        scope_label:
+          en: "market/route → market/route"
+          fr: "marché/route → marché/route"
+          es: "mercado/ruta → mercado/ruta"
+          pt: "mercado/rota → mercado/rota"
         source:
           url: https://www.lot.com/cn/en/journey/special-services/traveling-with-pets/pet-in-cabin
           source_type: official_website
@@ -123,7 +127,11 @@ policies:
           amounts: []
         billing_subject: booking
         journey_basis: per_journey
-        scope_label: marché/route → marché/route
+        scope_label:
+          en: "market/route → market/route"
+          fr: "marché/route → marché/route"
+          es: "mercado/ruta → mercado/ruta"
+          pt: "mercado/rota → mercado/rota"
         source:
           url: https://www.lot.com/us/en/journey/special-services/traveling-with-pets
           source_type: official_website

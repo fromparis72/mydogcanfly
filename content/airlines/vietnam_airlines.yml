@@ -86,7 +86,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: Zones A–D; domestic Vietnam
+        scope_label:
+          en: "Zones A–D; domestic Vietnam"
+          fr: "Zones A–D ; Vietnam intérieur"
+          es: "Zonas A–D; Vietnam nacional"
+          pt: "Zonas A–D; Vietnã doméstico"
         source:
           url: https://www.vietnamairlines.com/in/en/travel-information/special-services/traveling-with-pet/petc-charge
           source_type: official_website
@@ -137,7 +141,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: Zones A–D and weight <=9, 9–16, 16–32kg
+        scope_label:
+          en: "Zones A–D and weight <=9, 9–16, 16–32kg"
+          fr: "Zones A–D et poids <=9, 9–16, 16–32kg"
+          es: "Zonas A–D y peso <=9, 9–16, 16–32kg"
+          pt: "Zonas A–D e peso <=9, 9–16, 16–32kg"
         source:
           url: https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge
           source_type: official_website
@@ -184,7 +192,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: Above 32kg and cargo cases
+        scope_label:
+          en: "Above 32kg and cargo cases"
+          fr: "Plus de 32 kg et cas relevant du fret"
+          es: "Más de 32 kg y casos de carga"
+          pt: "Acima de 32 kg e casos de carga"
         source:
           url: https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge
           source_type: official_website

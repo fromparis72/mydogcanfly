@@ -99,7 +99,11 @@ policies:
               currency: ISK
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024"
+        scope_label:
+          en: "Hold, per crate: domestic flights within Iceland only — no pets in the hold on international flights since 1 November 2024"
+          fr: "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024"
+          es: "Bodega, por jaula: solo vuelos nacionales en Islandia — ningún animal en bodega en vuelos internacionales desde el 1 de noviembre de 2024"
+          pt: "Porão, por caixa: apenas voos domésticos na Islândia — nenhum animal no porão em voos internacionais desde 1 de novembro de 2024"
         source:
           url: "https://www.icelandair.com/support/special-assistance/animal-transportation/"
           source_type: official_website

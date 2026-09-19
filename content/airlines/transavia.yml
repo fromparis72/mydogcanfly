@@ -66,7 +66,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Transavia Netherlands versus France/route
+        scope_label:
+          en: "Transavia Netherlands versus France/route"
+          fr: "Transavia Pays-Bas contre France/route"
+          es: "Transavia Países Bajos frente a Francia/ruta"
+          pt: "Transavia Países Baixos versus França/rota"
         source:
           url: https://www.transavia.com/hilfe/de-de/kinder-haustiere-gruppen/haustiere-im-flugzeug/kabine
           source_type: official_website

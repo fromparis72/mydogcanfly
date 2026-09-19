@@ -81,7 +81,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: all destinations
+        scope_label:
+          en: "all destinations"
+          fr: "toutes destinations"
+          es: "todos los destinos"
+          pt: "todos os destinos"
         source:
           url: https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal
           source_type: official_website
@@ -124,7 +128,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: all destinations
+        scope_label:
+          en: "all destinations"
+          fr: "toutes destinations"
+          es: "todos los destinos"
+          pt: "todos os destinos"
         source:
           url: https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal
           source_type: official_website

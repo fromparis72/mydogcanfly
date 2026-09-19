@@ -80,7 +80,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: zones publiées → zones publiées
+        scope_label:
+          en: "published zones → published zones"
+          fr: "zones publiées → zones publiées"
+          es: "zonas publicadas → zonas publicadas"
+          pt: "zonas publicadas → zonas publicadas"
         source:
           url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
           source_type: official_website
@@ -101,7 +105,11 @@ policies:
               currency: GBP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: zones publiées → zones publiées
+        scope_label:
+          en: "published zones → published zones"
+          fr: "zones publiées → zones publiées"
+          es: "zonas publicadas → zonas publicadas"
+          pt: "zonas publicadas → zonas publicadas"
         source:
           url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
           source_type: official_website
@@ -122,7 +130,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: zones publiées → zones publiées
+        scope_label:
+          en: "published zones → published zones"
+          fr: "zones publiées → zones publiées"
+          es: "zonas publicadas → zonas publicadas"
+          pt: "zonas publicadas → zonas publicadas"
         source:
           url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
           source_type: official_website

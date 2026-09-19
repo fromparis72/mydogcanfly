@@ -70,7 +70,11 @@ policies:
               currency: AUD
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Eligible Australian domestic routes/dates
+        scope_label:
+          en: "Eligible Australian domestic routes/dates"
+          fr: "Routes et dates intérieures australiennes éligibles"
+          es: "Rutas y fechas nacionales australianas elegibles"
+          pt: "Rotas e datas domésticas australianas elegíveis"
         source:
           url: https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/
           source_type: official_website
@@ -124,7 +128,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: Cargo transport where available
+        scope_label:
+          en: "Cargo transport where available"
+          fr: "Transport en fret là où il est proposé"
+          es: "Transporte en carga donde esté disponible"
+          pt: "Transporte em carga onde disponível"
         source:
           url: https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/
           source_type: official_website

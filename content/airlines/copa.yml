@@ -84,7 +84,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: Panama ou international → Panama ou international
+        scope_label:
+          en: "Panama or international → Panama or international"
+          fr: "Panama ou international → Panama ou international"
+          es: "Panamá o internacional → Panamá o internacional"
+          pt: "Panamá ou internacional → Panamá ou internacional"
         source:
           url: https://www.copaair.com/assets/ENG-COM-24-001-Update-Service-or-Emotional-Support-Dog-and-Pet-in-Cabin-Transportation-Policy.pdf
           source_type: official_website

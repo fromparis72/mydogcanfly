@@ -72,7 +72,11 @@ policies:
               currency: XPF
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: specified operated sectors
+        scope_label:
+          en: "specified operated sectors"
+          fr: "tronçons opérés désignés"
+          es: "tramos operados designados"
+          pt: "trechos operados designados"
         source:
           url: https://us.airtahitinui.com/our-optional-services-and-fees
           source_type: official_website
@@ -93,7 +97,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: specified operated sectors
+        scope_label:
+          en: "specified operated sectors"
+          fr: "tronçons opérés désignés"
+          es: "tramos operados designados"
+          pt: "trechos operados designados"
         source:
           url: https://us.airtahitinui.com/our-optional-services-and-fees
           source_type: official_website
@@ -114,7 +122,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: specified operated sectors
+        scope_label:
+          en: "specified operated sectors"
+          fr: "tronçons opérés désignés"
+          es: "tramos operados designados"
+          pt: "trechos operados designados"
         source:
           url: https://us.airtahitinui.com/our-optional-services-and-fees
           source_type: official_website

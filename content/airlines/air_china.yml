@@ -153,7 +153,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page"
+        scope_label:
+          en: "Hold: charged at the official special-baggage rate, paid at the check-in counter — the airline publishes no amount on this page"
+          fr: "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page"
+          es: "Bodega: facturado según la tarifa oficial de equipaje especial, pagado en el mostrador de facturación — la aerolínea no publica ningún importe en esta página"
+          pt: "Porão: cobrado conforme a tabela oficial de bagagem especial, pago no balcão de check-in — a companhia não publica nenhum valor nesta página"
         source:
           url: "https://webresource.airchina.com.cn/en-US/content/c/2022-10-10/2329.shtml"
           source_type: official_website

@@ -103,7 +103,11 @@ policies:
               currency: INR
         billing_subject: container
         journey_basis: per_segment
-        scope_label: domestic / international
+        scope_label:
+          en: "domestic / international"
+          fr: "intérieur / international"
+          es: "nacional / internacional"
+          pt: "doméstico / internacional"
         source:
           url: https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html
           source_type: official_website
@@ -124,7 +128,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_segment
-        scope_label: domestic / international
+        scope_label:
+          en: "domestic / international"
+          fr: "intérieur / international"
+          es: "nacional / internacional"
+          pt: "doméstico / internacional"
         source:
           url: https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html
           source_type: official_website

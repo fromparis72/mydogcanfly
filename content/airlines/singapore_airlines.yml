@@ -91,7 +91,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Network; special piece treatment to/from USA
+        scope_label:
+          en: "Network; special piece treatment to/from USA"
+          fr: "Réseau ; traitement par pièce spécifique depuis ou vers les États-Unis"
+          es: "Red; tratamiento por pieza específico desde o hacia Estados Unidos"
+          pt: "Rede; tratamento por peça específico de ou para os Estados Unidos"
         source:
           url: https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/
           source_type: official_website
@@ -128,7 +132,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: Typically >32kg or non-passenger cases
+        scope_label:
+          en: "Typically >32kg or non-passenger cases"
+          fr: "Typiquement au-delà de 32 kg, ou hors accompagnement passager"
+          es: "Habitualmente más de 32 kg, o casos sin pasajero acompañante"
+          pt: "Normalmente acima de 32 kg, ou casos sem passageiro acompanhante"
         source:
           url: https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/
           source_type: official_website

@@ -127,7 +127,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_one_way
-        scope_label: "Réservation Qantas Freight — prix au poids de l'animal et à la taille de la caisse"
+        scope_label:
+          en: "Qantas Freight booking — priced by pet weight and crate size"
+          fr: "Réservation Qantas Freight — prix au poids de l'animal et à la taille de la caisse"
+          es: "Reserva Qantas Freight — precio según el peso del animal y el tamaño de la jaula"
+          pt: "Reserva Qantas Freight — preço conforme o peso do animal e o tamanho da caixa"
         source:
           url: "https://freight.qantas.com/en-au/pets/pet-travel-faqs"
           source_type: official_website

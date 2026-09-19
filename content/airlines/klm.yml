@@ -86,7 +86,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: aéroport départ → destination
+        scope_label:
+          en: "departure airport → destination"
+          fr: "aéroport départ → destination"
+          es: "aeropuerto de salida → destino"
+          pt: "aeroporto de partida → destino"
         source:
           url: https://www.klm.nl/information/pets/reservation
           source_type: official_website
@@ -136,7 +140,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: aéroport départ → destination
+        scope_label:
+          en: "departure airport → destination"
+          fr: "aéroport départ → destination"
+          es: "aeropuerto de salida → destino"
+          pt: "aeroporto de partida → destino"
         source:
           url: https://www.klm.nl/information/pets/reservation
           source_type: official_website

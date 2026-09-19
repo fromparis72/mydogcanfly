@@ -95,7 +95,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Hors franchise : facturé comme excédent de bagages"
+        scope_label:
+          en: "Outside the allowance: charged as excess baggage"
+          fr: "Hors franchise : facturé comme excédent de bagages"
+          es: "Fuera de la franquicia: facturado como exceso de equipaje"
+          pt: "Fora da franquia: cobrado como excesso de bagagem"
         source:
           url: "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages"
           source_type: official_website
@@ -146,7 +150,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Hors franchise : facturé comme excédent de bagages"
+        scope_label:
+          en: "Outside the allowance: charged as excess baggage"
+          fr: "Hors franchise : facturé comme excédent de bagages"
+          es: "Fuera de la franquicia: facturado como exceso de equipaje"
+          pt: "Fora da franquia: cobrado como excesso de bagagem"
         source:
           url: "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages"
           source_type: official_website

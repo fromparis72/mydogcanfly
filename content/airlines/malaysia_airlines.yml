@@ -114,7 +114,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: MASkargo network
+        scope_label:
+          en: "MASkargo network"
+          fr: "Réseau MASkargo"
+          es: "Red MASkargo"
+          pt: "Rede MASkargo"
         source:
           url: https://www.maskargo.com/content/mk/en/products-and-services/products/mk-live.html
           source_type: official_website

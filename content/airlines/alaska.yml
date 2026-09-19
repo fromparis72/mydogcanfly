@@ -96,7 +96,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Alaska/Hawaiian operated travel
+        scope_label:
+          en: "Alaska/Hawaiian operated travel"
+          fr: "Trajets opérés par Alaska ou Hawaiian"
+          es: "Trayectos operados por Alaska o Hawaiian"
+          pt: "Trajetos operados pela Alaska ou Hawaiian"
         source:
           url: https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/
           source_type: official_website
@@ -144,7 +148,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Alaska/Hawaiian operated travel
+        scope_label:
+          en: "Alaska/Hawaiian operated travel"
+          fr: "Trajets opérés par Alaska ou Hawaiian"
+          es: "Trayectos operados por Alaska o Hawaiian"
+          pt: "Trajetos operados pela Alaska ou Hawaiian"
         source:
           url: https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/
           source_type: official_website

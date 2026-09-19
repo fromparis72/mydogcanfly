@@ -104,7 +104,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Domestic Thailand versus international; weight bands
+        scope_label:
+          en: "Domestic Thailand versus international; weight bands"
+          fr: "Thaïlande intérieure contre international ; tranches de poids"
+          es: "Tailandia nacional frente a internacional; tramos de peso"
+          pt: "Tailândia doméstica versus internacional; faixas de peso"
         source:
           url: https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/
           source_type: official_website
@@ -141,7 +145,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: Thai Cargo cases
+        scope_label:
+          en: "Thai Cargo cases"
+          fr: "Cas relevant de Thai Cargo"
+          es: "Casos de Thai Cargo"
+          pt: "Casos da Thai Cargo"
         source:
           url: https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/
           source_type: official_website
