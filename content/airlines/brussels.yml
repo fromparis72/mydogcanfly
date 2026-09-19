@@ -89,7 +89,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: Vols intra-Europe ou intra-Afrique uniquement
+        scope_label:
+          en: "Flights within Europe or within Africa only"
+          fr: "Vols intra-Europe ou intra-Afrique uniquement"
+          es: "Solo vuelos dentro de Europa o dentro de África"
+          pt: "Apenas voos dentro da Europa ou dentro da África"
         source:
           url: https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-small-dogs-in-the-cabin
           source_type: official_website

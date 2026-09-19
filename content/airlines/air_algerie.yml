@@ -103,7 +103,11 @@ policies:
               currency: DZD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Réseau domestique algérien, animal et contenant jusqu'à 6 kg"
+        scope_label:
+          en: "Algerian domestic network, pet and carrier up to 6 kg"
+          fr: "Réseau domestique algérien, animal et contenant jusqu'à 6 kg"
+          es: "Red nacional argelina, animal y transportín hasta 6 kg"
+          pt: "Rede doméstica argelina, animal e bolsa até 6 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website
@@ -130,7 +134,11 @@ policies:
               currency: GBP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg"
+        scope_label:
+          en: "Zone A (France, Europe excluding Russia and Türkiye), pet and carrier up to 6 kg"
+          fr: "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg"
+          es: "Zona A (Francia, Europa excepto Rusia y Turquía), animal y transportín hasta 6 kg"
+          pt: "Zona A (França, Europa exceto Rússia e Turquia), animal e bolsa até 6 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website
@@ -157,7 +165,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg"
+        scope_label:
+          en: "Zone B (Gulf, Near East, Türkiye, Africa, Montreal, Beijing), pet and carrier up to 6 kg"
+          fr: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg"
+          es: "Zona B (Golfo, Próximo Oriente, Turquía, África, Montreal, Pekín), animal y transportín hasta 6 kg"
+          pt: "Zona B (Golfo, Oriente Próximo, Turquia, África, Montreal, Pequim), animal e bolsa até 6 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website
@@ -206,7 +218,11 @@ policies:
               currency: DZD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Réseau domestique algérien, animal jusqu'à 23 kg"
+        scope_label:
+          en: "Algerian domestic network, pet up to 23 kg"
+          fr: "Réseau domestique algérien, animal jusqu'à 23 kg"
+          es: "Red nacional argelina, animal hasta 23 kg"
+          pt: "Rede doméstica argelina, animal até 23 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website
@@ -233,7 +249,11 @@ policies:
               currency: GBP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg"
+        scope_label:
+          en: "Zone A (France, Europe excluding Russia and Türkiye), pet up to 23 kg"
+          fr: "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg"
+          es: "Zona A (Francia, Europa excepto Rusia y Turquía), animal hasta 23 kg"
+          pt: "Zona A (França, Europa exceto Rússia e Turquia), animal até 23 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website
@@ -260,7 +280,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg"
+        scope_label:
+          en: "Zone B (Gulf, Near East, Türkiye, Africa, Montreal, Beijing), pet up to 23 kg"
+          fr: "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg"
+          es: "Zona B (Golfo, Próximo Oriente, Turquía, África, Montreal, Pekín), animal hasta 23 kg"
+          pt: "Zona B (Golfo, Oriente Próximo, Turquia, África, Montreal, Pequim), animal até 23 kg"
         source:
           url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/"
           source_type: official_website

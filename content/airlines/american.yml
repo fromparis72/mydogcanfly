@@ -92,7 +92,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: US/Canada/Mexico/Central America/Caribbean eligible routes
+        scope_label:
+          en: "US/Canada/Mexico/Central America/Caribbean eligible routes"
+          fr: "Routes éligibles États-Unis/Canada/Mexique/Amérique centrale/Caraïbes"
+          es: "Rutas elegibles Estados Unidos/Canadá/México/América Central/Caribe"
+          pt: "Rotas elegíveis Estados Unidos/Canadá/México/América Central/Caribe"
         source:
           url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
           source_type: official_website
@@ -133,7 +137,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: listed regions; active-duty military/State Department orders only
+        scope_label:
+          en: "listed regions; active-duty military/State Department orders only"
+          fr: "régions listées ; uniquement sur ordre de mission militaire d'active ou du Département d'État"
+          es: "regiones indicadas; solo con orden militar en activo o del Departamento de Estado"
+          pt: "regiões listadas; apenas com ordem militar da ativa ou do Departamento de Estado"
         source:
           url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
           source_type: official_website
@@ -167,7 +175,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: PetEmbark routes
+        scope_label:
+          en: "PetEmbark routes"
+          fr: "Routes PetEmbark"
+          es: "Rutas PetEmbark"
+          pt: "Rotas PetEmbark"
         source:
           url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
           source_type: official_website

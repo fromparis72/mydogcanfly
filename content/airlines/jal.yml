@@ -94,7 +94,11 @@ policies:
               currency: JPY
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Japon ou zones internationales → Japon ou zones internationales
+        scope_label:
+          en: "Japan or international zones → Japan or international zones"
+          fr: "Japon ou zones internationales → Japon ou zones internationales"
+          es: "Japón o zonas internacionales → Japón o zonas internacionales"
+          pt: "Japão ou zonas internacionais → Japão ou zonas internacionais"
         source:
           url: https://www.jal.co.jp/jp/en/dom/fare/f_pet/index.html | https://www.jal.co.jp/jp/en/inter/baggage/checked/
           source_type: official_website

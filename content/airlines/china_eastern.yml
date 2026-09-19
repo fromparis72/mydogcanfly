@@ -130,7 +130,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié"
+        scope_label:
+          en: "Hold: charged on the combined weight of the pet, the container and the food, at the excess baggage rate — paid at the airport, no amount published"
+          fr: "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié"
+          es: "Bodega: facturado según el peso acumulado del animal, el contenedor y la comida, conforme a la tarifa de exceso de equipaje — pagado en el aeropuerto, ningún importe publicado"
+          pt: "Porão: cobrado pelo peso acumulado do animal, do recipiente e da comida, conforme a tabela de excesso de bagagem — pago no aeroporto, nenhum valor publicado"
         source:
           url: "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
           source_type: official_website

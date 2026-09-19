@@ -86,7 +86,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: 60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation
+        scope_label:
+          en: "60–65 € in Europe · 120–130 € on long-haul · depending on how early you book"
+          fr: "60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation"
+          es: "60–65 € en Europa · 120–130 € en larga distancia · según la antelación"
+          pt: "60–65 € na Europa · 120–130 € em longo curso · conforme a antecedência"
         source:
           url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
           source_type: official_website
@@ -110,7 +114,11 @@ policies:
             - { amount: 140, currency: USD }
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: Long-courrier · selon l'anticipation
+        scope_label:
+          en: "Long-haul · depending on how early you book"
+          fr: "Long-courrier · selon l'anticipation"
+          es: "Larga distancia · según la antelación"
+          pt: "Longo curso · conforme a antecedência"
         source:
           url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
           source_type: official_website
@@ -151,7 +159,11 @@ policies:
             - { amount: 600, currency: EUR }
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: 120 € en Europe · 600 € sur long-courrier
+        scope_label:
+          en: "120 € in Europe · 600 € on long-haul"
+          fr: "120 € en Europe · 600 € sur long-courrier"
+          es: "120 € en Europa · 600 € en larga distancia"
+          pt: "120 € na Europa · 600 € em longo curso"
         source:
           url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
           source_type: official_website
@@ -173,7 +185,11 @@ policies:
           amounts: [{ amount: 650, currency: USD }]
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: Long-courrier au départ d'un marché facturé en dollars
+        scope_label:
+          en: "Long-haul departing from a market billed in dollars"
+          fr: "Long-courrier au départ d'un marché facturé en dollars"
+          es: "Larga distancia con salida desde un mercado facturado en dólares"
+          pt: "Longo curso com partida de um mercado faturado em dólares"
         source:
           url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
           source_type: official_website

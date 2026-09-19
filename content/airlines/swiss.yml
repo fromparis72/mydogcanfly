@@ -84,7 +84,11 @@ policies:
               currency: CHF
         billing_subject: container
         journey_basis: per_journey
-        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        scope_label:
+          en: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+          fr: "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon"
+          es: "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón"
+          pt: "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website
@@ -105,7 +109,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_journey
-        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        scope_label:
+          en: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+          fr: "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon"
+          es: "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón"
+          pt: "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website
@@ -126,7 +134,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_journey
-        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        scope_label:
+          en: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+          fr: "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon"
+          es: "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón"
+          pt: "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website
@@ -168,7 +180,11 @@ policies:
               currency: CHF
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        scope_label:
+          en: "Same 7 zones; small/large container; transfer surcharge possible"
+          fr: "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible"
+          es: "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión"
+          pt: "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website
@@ -189,7 +205,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        scope_label:
+          en: "Same 7 zones; small/large container; transfer surcharge possible"
+          fr: "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible"
+          es: "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión"
+          pt: "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website
@@ -210,7 +230,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        scope_label:
+          en: "Same 7 zones; small/large container; transfer surcharge possible"
+          fr: "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible"
+          es: "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión"
+          pt: "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
         source:
           url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
           source_type: official_website

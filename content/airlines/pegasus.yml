@@ -76,7 +76,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Domestic Turkey; Northern Cyprus; international
+        scope_label:
+          en: "Domestic Turkey; Northern Cyprus; international"
+          fr: "Turquie intérieure ; Chypre du Nord ; international"
+          es: "Turquía nacional; Chipre del Norte; internacional"
+          pt: "Turquia doméstica; Chipre do Norte; internacional"
         source:
           url: https://www.flypgs.com/fr/informations-utiles/autres-informations/tarifs-des-services-complementaires
           source_type: official_website
@@ -117,7 +121,11 @@ policies:
               currency: TRY
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Only domestic Turkey and Northern Cyprus; international not allowed
+        scope_label:
+          en: "Only domestic Turkey and Northern Cyprus; international not allowed"
+          fr: "Turquie intérieure et Chypre du Nord uniquement ; international non autorisé"
+          es: "Solo Turquía nacional y Chipre del Norte; internacional no permitido"
+          pt: "Apenas Turquia doméstica e Chipre do Norte; internacional não permitido"
         source:
           url: https://www.flypgs.com/en/useful-info/other-info/extra-services-price-table%20
           source_type: official_website

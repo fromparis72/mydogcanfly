@@ -86,7 +86,11 @@ policies:
             - { amount: 1910, currency: MXN }
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Vols nationaux au Mexique · basse ou haute saison · taxes comprises
+        scope_label:
+          en: "Domestic flights within Mexico · low or high season · taxes included"
+          fr: "Vols nationaux au Mexique · basse ou haute saison · taxes comprises"
+          es: "Vuelos nacionales en México · temporada baja o alta · impuestos incluidos"
+          pt: "Voos domésticos no México · baixa ou alta temporada · impostos incluídos"
         source:
           url: https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina
           source_type: official_website
@@ -107,7 +111,11 @@ policies:
             - { amount: 3820, currency: MXN }
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Vols internationaux · basse ou haute saison · taxes comprises
+        scope_label:
+          en: "International flights · low or high season · taxes included"
+          fr: "Vols internationaux · basse ou haute saison · taxes comprises"
+          es: "Vuelos internacionales · temporada baja o alta · impuestos incluidos"
+          pt: "Voos internacionais · baixa ou alta temporada · impostos incluídos"
         source:
           url: https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina
           source_type: official_website

@@ -87,7 +87,11 @@ policies:
               currency: GBP
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: 40–180 EUR selon la zone · paiement à l’aéroport
+        scope_label:
+          en: "40–180 EUR depending on zone · paid at the airport"
+          fr: "40–180 EUR selon la zone · paiement à l’aéroport"
+          es: "40–180 EUR según la zona · pago en el aeropuerto"
+          pt: "40–180 EUR conforme a zona · pagamento no aeroporto"
         source:
           url: https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas
           source_type: official_website
@@ -141,7 +145,11 @@ policies:
               currency: GBP
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: 100–360 EUR selon le poids et la zone · paiement à l’aéroport
+        scope_label:
+          en: "100–360 EUR depending on weight and zone · paid at the airport"
+          fr: "100–360 EUR selon le poids et la zone · paiement à l’aéroport"
+          es: "100–360 EUR según el peso y la zona · pago en el aeropuerto"
+          pt: "100–360 EUR conforme o peso e a zona · pagamento no aeroporto"
         source:
           url: https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas
           source_type: official_website

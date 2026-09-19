@@ -134,7 +134,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: Ireland–North America and other accepted cargo routes
+        scope_label:
+          en: "Ireland–North America and other accepted cargo routes"
+          fr: "Irlande–Amérique du Nord et autres routes fret acceptées"
+          es: "Irlanda–América del Norte y otras rutas de carga aceptadas"
+          pt: "Irlanda–América do Norte e outras rotas de carga aceitas"
         source:
           url: https://www.aerlingus.com/localized/en/modals/baggage-information.html
           source_type: official_website

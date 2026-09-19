@@ -83,7 +83,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: airBaltic-operated flight
+        scope_label:
+          en: "airBaltic-operated flight"
+          fr: "vol opéré par airBaltic"
+          es: "vuelo operado por airBaltic"
+          pt: "voo operado pela airBaltic"
         source:
           url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
           source_type: official_website
@@ -123,7 +127,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: airBaltic-operated flight
+        scope_label:
+          en: "airBaltic-operated flight"
+          fr: "vol opéré par airBaltic"
+          es: "vuelo operado por airBaltic"
+          pt: "voo operado pela airBaltic"
         source:
           url: https://www.airbaltic.com/en/assisted-travel/travelling-with-pets
           source_type: official_website

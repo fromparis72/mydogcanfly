@@ -87,7 +87,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Eligible Norwegian routes
+        scope_label:
+          en: "Eligible Norwegian routes"
+          fr: "Routes Norwegian éligibles"
+          es: "Rutas Norwegian elegibles"
+          pt: "Rotas Norwegian elegíveis"
         source:
           url: https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/
           source_type: official_website
@@ -125,7 +129,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Eligible Norwegian routes
+        scope_label:
+          en: "Eligible Norwegian routes"
+          fr: "Routes Norwegian éligibles"
+          es: "Rutas Norwegian elegibles"
+          pt: "Rotas Norwegian elegíveis"
         source:
           url: https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/
           source_type: official_website

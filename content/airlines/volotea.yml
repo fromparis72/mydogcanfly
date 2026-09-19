@@ -71,7 +71,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: 39 EUR en ligne ou par téléphone · 60 EUR à l’aéroport
+        scope_label:
+          en: "39 EUR online or by phone · 60 EUR at the airport"
+          fr: "39 EUR en ligne ou par téléphone · 60 EUR à l’aéroport"
+          es: "39 EUR en línea o por teléfono · 60 EUR en el aeropuerto"
+          pt: "39 EUR online ou por telefone · 60 EUR no aeroporto"
         source:
           url: https://www.volotea.com/es/tarifas/
           source_type: official_website

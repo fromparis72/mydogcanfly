@@ -117,7 +117,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Animal et cage jusqu'à 23 kg et 150 cm combinés"
+        scope_label:
+          en: "Pet and crate up to 23 kg and 150 cm combined"
+          fr: "Animal et cage jusqu'à 23 kg et 150 cm combinés"
+          es: "Animal y jaula hasta 23 kg y 150 cm combinados"
+          pt: "Animal e caixa até 23 kg e 150 cm combinados"
         source:
           url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
           source_type: official_website
@@ -140,7 +144,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Animal et cage de 24 à 32 kg, dimensions de 150 à 300 cm"
+        scope_label:
+          en: "Pet and crate from 24 to 32 kg, dimensions 150 to 300 cm"
+          fr: "Animal et cage de 24 à 32 kg, dimensions de 150 à 300 cm"
+          es: "Animal y jaula de 24 a 32 kg, dimensiones de 150 a 300 cm"
+          pt: "Animal e caixa de 24 a 32 kg, dimensões de 150 a 300 cm"
         source:
           url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
           source_type: official_website
@@ -163,7 +171,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Animal et cage de plus de 32 kg, dimensions de 150 à 300 cm"
+        scope_label:
+          en: "Pet and crate over 32 kg, dimensions 150 to 300 cm"
+          fr: "Animal et cage de plus de 32 kg, dimensions de 150 à 300 cm"
+          es: "Animal y jaula de más de 32 kg, dimensiones de 150 a 300 cm"
+          pt: "Animal e caixa de mais de 32 kg, dimensões de 150 a 300 cm"
         source:
           url: "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
           source_type: official_website

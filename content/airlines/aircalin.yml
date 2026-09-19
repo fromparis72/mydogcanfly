@@ -120,6 +120,29 @@ policies:
       quote: "Le transport des animaux s’effectue en fret uniquement."
       quote_language: fr
       locator: "Transport d'animaux"
+    # AUCUN MONTANT PUBLIÉ (19/09/2026) — première instance peuplée du mécanisme.
+    # La page officielle envoie l'intégralité du transport animalier au fret et n'y attache
+    # aucun prix, aucune grille, aucun renvoi vers un barème. Ce n'est donc PAS un tarif sur
+    # devis, qui suppose une demande de cotation identifiée : c'est une absence de montant,
+    # et la fiche doit le dire au lieu de laisser le canal vide, que le lecteur lirait comme
+    # « pas encore vérifié ».
+    no_published_fare:
+      url: "https://www.aircalin.com/fr/animaux"
+      source_type: official_website
+      verified_date: 2026-09-19
+      review_due: 2026-12-18
+      confidence: 4
+      reviewer: "Claude — lecture directe de la page officielle"
+      history:
+        - date: 2026-09-19
+          reviewer: "Claude — qualification de l'absence"
+          note: >-
+            L'absence est PROUVÉE par la page elle-même : elle énonce la règle de transport,
+            les délais de notification et les restrictions de race, et ne publie aucun montant.
+            Relue intégralement le 19/09/2026.
+      quote: "Le transport des animaux s’effectue en fret uniquement."
+      quote_language: fr
+      locator: "Transport d'animaux → première phrase de la section"
 channels:
   - placement: cabin
     icon: 🐾

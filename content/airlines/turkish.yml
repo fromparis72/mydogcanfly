@@ -78,7 +78,11 @@ policies:
           amounts: []
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Route-based calculator; <=8kg PETC
+        scope_label:
+          en: "Route-based calculator; <=8kg PETC"
+          fr: "Calculateur par route ; PETC <=8kg"
+          es: "Calculadora por ruta; PETC <=8kg"
+          pt: "Calculadora por rota; PETC <=8kg"
         source:
           url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
           source_type: official_website
@@ -97,7 +101,11 @@ policies:
           amounts: [{ amount: 75, currency: USD }]
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg
+        scope_label:
+          en: "Interline arriving in, departing from or transiting Türkiye · PETC 0–8 kg"
+          fr: "Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg"
+          es: "Interline con llegada, salida o tránsito por Turquía · PETC 0–8 kg"
+          pt: "Interline com chegada, partida ou trânsito pela Turquia · PETC 0–8 kg"
         source:
           url: https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/
           source_type: official_website
@@ -137,7 +145,11 @@ policies:
           amounts: []
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Route calculator; 0–23, 24–32, 33+kg
+        scope_label:
+          en: "Route calculator; 0–23, 24–32, 33+kg"
+          fr: "Calculateur par route ; 0–23, 24–32, 33+kg"
+          es: "Calculadora por ruta; 0–23, 24–32, 33+kg"
+          pt: "Calculadora por rota; 0–23, 24–32, 33+kg"
         source:
           url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
           source_type: official_website
@@ -156,7 +168,11 @@ policies:
           amounts: [{ amount: 150, currency: USD }]
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés
+        scope_label:
+          en: "Interline arriving in, departing from or transiting Türkiye · AVIH, all published weights"
+          fr: "Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés"
+          es: "Interline con llegada, salida o tránsito por Turquía · AVIH, todos los pesos publicados"
+          pt: "Interline com chegada, partida ou trânsito pela Turquia · AVIH, todos os pesos publicados"
         source:
           url: https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/
           source_type: official_website

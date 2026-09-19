@@ -90,7 +90,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_journey
-        scope_label: 35 € en Grèce · 65 € à l'international · par caisse et par trajet
+        scope_label:
+          en: "35 € in Greece · 65 € international · per crate and per journey"
+          fr: "35 € en Grèce · 65 € à l'international · par caisse et par trajet"
+          es: "35 € en Grecia · 65 € internacional · por jaula y por trayecto"
+          pt: "35 € na Grécia · 65 € internacional · por caixa e por trajeto"
         source:
           url: https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/
           source_type: official_website
@@ -131,7 +135,11 @@ policies:
             - { amount: 120, currency: EUR }
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Caisse moyenne, 8–25 kg avec l'animal · selon trajet direct/correspondance et destination
+        scope_label:
+          en: "Medium crate, 8–25 kg including the pet · depending on direct/connecting routing and destination"
+          fr: "Caisse moyenne, 8–25 kg avec l'animal · selon trajet direct/correspondance et destination"
+          es: "Jaula mediana, 8–25 kg con el animal · según trayecto directo/con conexión y destino"
+          pt: "Caixa média, 8–25 kg com o animal · conforme trajeto direto/com conexão e destino"
         source:
           url: https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/
           source_type: official_website
@@ -152,7 +160,11 @@ policies:
             - { amount: 190, currency: EUR }
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Grande caisse, plus de 25 kg avec l'animal · selon trajet direct/correspondance et destination
+        scope_label:
+          en: "Large crate, over 25 kg including the pet · depending on direct/connecting routing and destination"
+          fr: "Grande caisse, plus de 25 kg avec l'animal · selon trajet direct/correspondance et destination"
+          es: "Jaula grande, más de 25 kg con el animal · según trayecto directo/con conexión y destino"
+          pt: "Caixa grande, mais de 25 kg com o animal · conforme trajeto direto/com conexão e destino"
         source:
           url: https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/
           source_type: official_website

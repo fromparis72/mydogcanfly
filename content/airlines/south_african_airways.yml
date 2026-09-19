@@ -137,7 +137,11 @@ policies:
               currency: ZAR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien"
+        scope_label:
+          en: "Hold: South African domestic flights only, VAT included, whatever the cabin class — crate up to 1 m × 1 m and 23 kg; internationally, the pet must travel as freight under an air waybill"
+          fr: "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien"
+          es: "Bodega: solo vuelos nacionales en Sudáfrica, IVA incluido, sea cual sea la clase — jaula hasta 1 m × 1 m y 23 kg; a nivel internacional, el animal debe viajar como carga con carta de porte aéreo"
+          pt: "Porão: apenas voos domésticos na África do Sul, IVA incluído, qualquer que seja a classe — caixa até 1 m × 1 m e 23 kg; no internacional, o animal deve viajar como carga sob conhecimento aéreo"
         source:
           url: "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals"
           source_type: official_website

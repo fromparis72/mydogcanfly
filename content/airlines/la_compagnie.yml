@@ -78,7 +78,11 @@ policies:
               currency: USD
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Réseau La Compagnie · par trajet
+        scope_label:
+          en: "La Compagnie network · per journey"
+          fr: "Réseau La Compagnie · par trajet"
+          es: "Red La Compagnie · por trayecto"
+          pt: "Rede La Compagnie · por trajeto"
         source:
           url: https://www.lacompagnie.com/fr/plan/special-services
           source_type: official_website

@@ -69,7 +69,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: zones Condor → zones Condor
+        scope_label:
+          en: "Condor zones → Condor zones"
+          fr: "zones Condor → zones Condor"
+          es: "zonas Condor → zonas Condor"
+          pt: "zonas Condor → zonas Condor"
         source:
           url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
           source_type: official_website
@@ -107,7 +111,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: zones Condor → zones Condor
+        scope_label:
+          en: "Condor zones → Condor zones"
+          fr: "zones Condor → zones Condor"
+          es: "zonas Condor → zonas Condor"
+          pt: "zonas Condor → zonas Condor"
         source:
           url: https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cargo-hold.jsp
           source_type: official_website

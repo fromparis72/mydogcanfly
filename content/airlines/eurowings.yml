@@ -88,7 +88,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route"
+        scope_label:
+          en: "Cabin, pet and carrier up to 8 kg — floor price, no per-route grid"
+          fr: "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route"
+          es: "Cabina, animal y transportín hasta 8 kg — precio mínimo, sin cuadro por ruta"
+          pt: "Cabine, animal e bolsa até 8 kg — preço mínimo, sem grade por rota"
         source:
           url: "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html"
           source_type: official_website

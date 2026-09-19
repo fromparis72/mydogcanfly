@@ -140,7 +140,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "35 € en Grèce · 65 € à l'international · par caisse et par trajet",
+            "scope_label": {
+              "en": "35 € in Greece · 65 € international · per crate and per journey",
+              "fr": "35 € en Grèce · 65 € à l'international · par caisse et par trajet",
+              "es": "35 € en Grecia · 65 € internacional · por jaula y por trayecto",
+              "pt": "35 € na Grécia · 65 € internacional · por caixa e por trajeto"
+            },
             "source": {
               "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
               "source_type": "official_website",
@@ -192,7 +197,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Caisse moyenne, 8–25 kg avec l'animal · selon trajet direct/correspondance et destination",
+            "scope_label": {
+              "en": "Medium crate, 8–25 kg including the pet · depending on direct/connecting routing and destination",
+              "fr": "Caisse moyenne, 8–25 kg avec l'animal · selon trajet direct/correspondance et destination",
+              "es": "Jaula mediana, 8–25 kg con el animal · según trayecto directo/con conexión y destino",
+              "pt": "Caixa média, 8–25 kg com o animal · conforme trajeto direto/com conexão e destino"
+            },
             "source": {
               "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
               "source_type": "official_website",
@@ -224,7 +234,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Grande caisse, plus de 25 kg avec l'animal · selon trajet direct/correspondance et destination",
+            "scope_label": {
+              "en": "Large crate, over 25 kg including the pet · depending on direct/connecting routing and destination",
+              "fr": "Grande caisse, plus de 25 kg avec l'animal · selon trajet direct/correspondance et destination",
+              "es": "Jaula grande, más de 25 kg con el animal · según trayecto directo/con conexión y destino",
+              "pt": "Caixa grande, mais de 25 kg com o animal · conforme trajeto direto/com conexão e destino"
+            },
             "source": {
               "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
               "source_type": "official_website",
@@ -786,7 +801,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Ireland–North America and other accepted cargo routes",
+            "scope_label": {
+              "en": "Ireland–North America and other accepted cargo routes",
+              "fr": "Irlande–Amérique du Nord et autres routes fret acceptées",
+              "es": "Irlanda–América del Norte y otras rutas de carga aceptadas",
+              "pt": "Irlanda–América do Norte e outras rotas de carga aceitas"
+            },
             "source": {
               "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
               "source_type": "official_website",
@@ -2201,7 +2221,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Vols nationaux au Mexique · basse ou haute saison · taxes comprises",
+            "scope_label": {
+              "en": "Domestic flights within Mexico · low or high season · taxes included",
+              "fr": "Vols nationaux au Mexique · basse ou haute saison · taxes comprises",
+              "es": "Vuelos nacionales en México · temporada baja o alta · impuestos incluidos",
+              "pt": "Voos domésticos no México · baixa ou alta temporada · impostos incluídos"
+            },
             "source": {
               "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina",
               "source_type": "official_website",
@@ -2233,7 +2258,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Vols internationaux · basse ou haute saison · taxes comprises",
+            "scope_label": {
+              "en": "International flights · low or high season · taxes included",
+              "fr": "Vols internationaux · basse ou haute saison · taxes comprises",
+              "es": "Vuelos internacionales · temporada baja o alta · impuestos incluidos",
+              "pt": "Voos internacionais · baixa ou alta temporada · impostos incluídos"
+            },
             "source": {
               "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina",
               "source_type": "official_website",
@@ -2760,7 +2790,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Réseau domestique algérien, animal et contenant jusqu'à 6 kg",
+            "scope_label": {
+              "en": "Algerian domestic network, pet and carrier up to 6 kg",
+              "fr": "Réseau domestique algérien, animal et contenant jusqu'à 6 kg",
+              "es": "Red nacional argelina, animal y transportín hasta 6 kg",
+              "pt": "Rede doméstica argelina, animal e bolsa até 6 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -2800,7 +2835,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg",
+            "scope_label": {
+              "en": "Zone A (France, Europe excluding Russia and Türkiye), pet and carrier up to 6 kg",
+              "fr": "Zone A (France, Europe hors Russie et Turquie), animal et contenant jusqu'à 6 kg",
+              "es": "Zona A (Francia, Europa excepto Rusia y Turquía), animal y transportín hasta 6 kg",
+              "pt": "Zona A (França, Europa exceto Rússia e Turquia), animal e bolsa até 6 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -2840,7 +2880,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg",
+            "scope_label": {
+              "en": "Zone B (Gulf, Near East, Türkiye, Africa, Montreal, Beijing), pet and carrier up to 6 kg",
+              "fr": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal et contenant jusqu'à 6 kg",
+              "es": "Zona B (Golfo, Próximo Oriente, Turquía, África, Montreal, Pekín), animal y transportín hasta 6 kg",
+              "pt": "Zona B (Golfo, Oriente Próximo, Turquia, África, Montreal, Pequim), animal e bolsa até 6 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -2894,7 +2939,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Réseau domestique algérien, animal jusqu'à 23 kg",
+            "scope_label": {
+              "en": "Algerian domestic network, pet up to 23 kg",
+              "fr": "Réseau domestique algérien, animal jusqu'à 23 kg",
+              "es": "Red nacional argelina, animal hasta 23 kg",
+              "pt": "Rede doméstica argelina, animal até 23 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -2934,7 +2984,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg",
+            "scope_label": {
+              "en": "Zone A (France, Europe excluding Russia and Türkiye), pet up to 23 kg",
+              "fr": "Zone A (France, Europe hors Russie et Turquie), animal jusqu'à 23 kg",
+              "es": "Zona A (Francia, Europa excepto Rusia y Turquía), animal hasta 23 kg",
+              "pt": "Zona A (França, Europa exceto Rússia e Turquia), animal até 23 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -2974,7 +3029,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg",
+            "scope_label": {
+              "en": "Zone B (Gulf, Near East, Türkiye, Africa, Montreal, Beijing), pet up to 23 kg",
+              "fr": "Zone B (Golfe, Proche-Orient, Turquie, Afrique, Montréal, Pékin), animal jusqu'à 23 kg",
+              "es": "Zona B (Golfo, Próximo Oriente, Turquía, África, Montreal, Pekín), animal hasta 23 kg",
+              "pt": "Zona B (Golfo, Oriente Próximo, Turquia, África, Montreal, Pequim), animal até 23 kg"
+            },
             "source": {
               "url": "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
               "source_type": "official_website",
@@ -3448,7 +3508,12 @@
             },
             "billing_subject": "kilogram",
             "journey_basis": "per_journey",
-            "scope_label": "depends destination",
+            "scope_label": {
+              "en": "depends destination",
+              "fr": "selon la destination",
+              "es": "según el destino",
+              "pt": "conforme o destino"
+            },
             "source": {
               "url": "https://tengri.airastana.com/media/zmyk2204/tengri_20250301.pdf",
               "source_type": "official_website",
@@ -3497,7 +3562,12 @@
             },
             "billing_subject": "kilogram",
             "journey_basis": "per_journey",
-            "scope_label": "depends destination",
+            "scope_label": {
+              "en": "depends destination",
+              "fr": "selon la destination",
+              "es": "según el destino",
+              "pt": "conforme o destino"
+            },
             "source": {
               "url": "https://tengri.airastana.com/media/zmyk2204/tengri_20250301.pdf",
               "source_type": "official_website",
@@ -3971,7 +4041,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "all destinations",
+            "scope_label": {
+              "en": "all destinations",
+              "fr": "toutes destinations",
+              "es": "todos los destinos",
+              "pt": "todos os destinos"
+            },
             "source": {
               "url": "https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal",
               "source_type": "official_website",
@@ -4025,7 +4100,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "all destinations",
+            "scope_label": {
+              "en": "all destinations",
+              "fr": "toutes destinations",
+              "es": "todos los destinos",
+              "pt": "todos os destinos"
+            },
             "source": {
               "url": "https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal",
               "source_type": "official_website",
@@ -5226,7 +5306,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Court-courrier ou transatlantique · moyen-courrier non publié",
+            "scope_label": {
+              "en": "Short-haul or transatlantic · medium-haul not published",
+              "fr": "Court-courrier ou transatlantique · moyen-courrier non publié",
+              "es": "Corto radio o transatlántico · medio radio no publicado",
+              "pt": "Curta distância ou transatlântico · média distância não publicada"
+            },
             "source": {
               "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
               "source_type": "official_website",
@@ -5284,7 +5369,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Vol court ou transatlantique · moyen-courrier non publié",
+            "scope_label": {
+              "en": "Short flight or transatlantic · medium-haul not published",
+              "fr": "Vol court ou transatlantique · moyen-courrier non publié",
+              "es": "Vuelo corto o transatlántico · medio radio no publicado",
+              "pt": "Voo curto ou transatlântico · média distância não publicada"
+            },
             "source": {
               "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
               "source_type": "official_website",
@@ -5836,7 +5926,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page",
+            "scope_label": {
+              "en": "Hold: charged at the official special-baggage rate, paid at the check-in counter — the airline publishes no amount on this page",
+              "fr": "Soute : facturé au barème officiel des bagages spéciaux, réglé au comptoir d'enregistrement — la compagnie ne publie pas de montant sur cette page",
+              "es": "Bodega: facturado según la tarifa oficial de equipaje especial, pagado en el mostrador de facturación — la aerolínea no publica ningún importe en esta página",
+              "pt": "Porão: cobrado conforme a tabela oficial de bagagem especial, pago no balcão de check-in — a companhia não publica nenhum valor nesta página"
+            },
             "source": {
               "url": "https://webresource.airchina.com.cn/en-US/content/c/2022-10-10/2329.shtml",
               "source_type": "official_website",
@@ -6328,7 +6423,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Espagne péninsulaire et Baléares",
+            "scope_label": {
+              "en": "Mainland Spain and the Balearics",
+              "fr": "Espagne péninsulaire et Baléares",
+              "es": "España peninsular y Baleares",
+              "pt": "Espanha peninsular e Baleares"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6368,7 +6468,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Canaries, Europe, Afrique et intra-Amérique",
+            "scope_label": {
+              "en": "Canaries, Europe, Africa and within the Americas",
+              "fr": "Canaries, Europe, Afrique et intra-Amérique",
+              "es": "Canarias, Europa, África e intra-América",
+              "pt": "Canárias, Europa, África e intra-América"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6408,7 +6513,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Longue distance · MIA/SDQ/NYC/PUJ/SJO",
+            "scope_label": {
+              "en": "Long distance · MIA/SDQ/NYC/PUJ/SJO",
+              "fr": "Longue distance · MIA/SDQ/NYC/PUJ/SJO",
+              "es": "Larga distancia · MIA/SDQ/NYC/PUJ/SJO",
+              "pt": "Longa distância · MIA/SDQ/NYC/PUJ/SJO"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6448,7 +6558,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Longue distance · autres routes",
+            "scope_label": {
+              "en": "Long distance · other routes",
+              "fr": "Longue distance · autres routes",
+              "es": "Larga distancia · otras rutas",
+              "pt": "Longa distância · outras rotas"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6514,7 +6629,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Espagne péninsulaire et Baléares",
+            "scope_label": {
+              "en": "Mainland Spain and the Balearics",
+              "fr": "Espagne péninsulaire et Baléares",
+              "es": "España peninsular y Baleares",
+              "pt": "Espanha peninsular e Baleares"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6554,7 +6674,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Canaries, Europe, Afrique et intra-Amérique",
+            "scope_label": {
+              "en": "Canaries, Europe, Africa and within the Americas",
+              "fr": "Canaries, Europe, Afrique et intra-Amérique",
+              "es": "Canarias, Europa, África e intra-América",
+              "pt": "Canárias, Europa, África e intra-América"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6594,7 +6719,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Long-courrier · MIA/SDQ/NYC/PUJ",
+            "scope_label": {
+              "en": "Long-haul · MIA/SDQ/NYC/PUJ",
+              "fr": "Long-courrier · MIA/SDQ/NYC/PUJ",
+              "es": "Larga distancia · MIA/SDQ/NYC/PUJ",
+              "pt": "Longo curso · MIA/SDQ/NYC/PUJ"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -6634,7 +6764,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Long-courrier · autres routes",
+            "scope_label": {
+              "en": "Long-haul · other routes",
+              "fr": "Long-courrier · autres routes",
+              "es": "Larga distancia · otras rutas",
+              "pt": "Longo curso · outras rotas"
+            },
             "source": {
               "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
               "source_type": "official_website",
@@ -8316,7 +8451,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "domestic / international",
+            "scope_label": {
+              "en": "domestic / international",
+              "fr": "intérieur / international",
+              "es": "nacional / internacional",
+              "pt": "doméstico / internacional"
+            },
             "source": {
               "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
               "source_type": "official_website",
@@ -8344,7 +8484,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "domestic / international",
+            "scope_label": {
+              "en": "domestic / international",
+              "fr": "intérieur / international",
+              "es": "nacional / internacional",
+              "pt": "doméstico / internacional"
+            },
             "source": {
               "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
               "source_type": "official_website",
@@ -8866,7 +9011,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "from Mauritius; subject route acceptance",
+            "scope_label": {
+              "en": "from Mauritius; subject route acceptance",
+              "fr": "au départ de Maurice ; sous réserve d'acceptation de la route",
+              "es": "con salida desde Mauricio; sujeto a la aceptación de la ruta",
+              "pt": "com partida de Maurício; sujeito à aceitação da rota"
+            },
             "source": {
               "url": "https://www.airmauritius.com/en-fr/before-you-fly/travel-information/assistance-and-health/travelling-with-pets",
               "source_type": "official_website",
@@ -8906,7 +9056,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "cargo network",
+            "scope_label": {
+              "en": "cargo network",
+              "fr": "réseau fret",
+              "es": "red de carga",
+              "pt": "rede de carga"
+            },
             "source": {
               "url": "https://my.airmauritius.com/en-gb/help/faq/cargo-queries",
               "source_type": "official_website",
@@ -9366,7 +9521,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "domestic New Zealand",
+            "scope_label": {
+              "en": "domestic New Zealand",
+              "fr": "Nouvelle-Zélande intérieure",
+              "es": "Nueva Zelanda nacional",
+              "pt": "Nova Zelândia doméstica"
+            },
             "source": {
               "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
               "source_type": "official_website",
@@ -9831,7 +9991,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "listed destination groups",
+            "scope_label": {
+              "en": "listed destination groups",
+              "fr": "groupes de destinations listés",
+              "es": "grupos de destinos indicados",
+              "pt": "grupos de destinos listados"
+            },
             "source": {
               "url": "https://www.airserbia.com/en/info-and-help/travel-guidelines/traveling-with-your-pets",
               "source_type": "official_website",
@@ -10266,7 +10431,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "specified operated sectors",
+            "scope_label": {
+              "en": "specified operated sectors",
+              "fr": "tronçons opérés désignés",
+              "es": "tramos operados designados",
+              "pt": "trechos operados designados"
+            },
             "source": {
               "url": "https://us.airtahitinui.com/our-optional-services-and-fees",
               "source_type": "official_website",
@@ -10294,7 +10464,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "specified operated sectors",
+            "scope_label": {
+              "en": "specified operated sectors",
+              "fr": "tronçons opérés désignés",
+              "es": "tramos operados designados",
+              "pt": "trechos operados designados"
+            },
             "source": {
               "url": "https://us.airtahitinui.com/our-optional-services-and-fees",
               "source_type": "official_website",
@@ -10322,7 +10497,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "specified operated sectors",
+            "scope_label": {
+              "en": "specified operated sectors",
+              "fr": "tronçons opérés désignés",
+              "es": "tramos operados designados",
+              "pt": "trechos operados designados"
+            },
             "source": {
               "url": "https://us.airtahitinui.com/our-optional-services-and-fees",
               "source_type": "official_website",
@@ -10826,7 +11006,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Air Transat-operated sectors",
+            "scope_label": {
+              "en": "Air Transat-operated sectors",
+              "fr": "Tronçons opérés par Air Transat",
+              "es": "Tramos operados por Air Transat",
+              "pt": "Trechos operados pela Air Transat"
+            },
             "source": {
               "url": "https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs",
               "source_type": "official_website",
@@ -10884,7 +11069,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Air Transat-operated sectors",
+            "scope_label": {
+              "en": "Air Transat-operated sectors",
+              "fr": "Tronçons opérés par Air Transat",
+              "es": "Tramos operados por Air Transat",
+              "pt": "Trechos operados pela Air Transat"
+            },
             "source": {
               "url": "https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs",
               "source_type": "official_website",
@@ -11454,7 +11644,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "airBaltic-operated flight",
+            "scope_label": {
+              "en": "airBaltic-operated flight",
+              "fr": "vol opéré par airBaltic",
+              "es": "vuelo operado por airBaltic",
+              "pt": "voo operado pela airBaltic"
+            },
             "source": {
               "url": "https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem",
               "source_type": "official_website",
@@ -11506,7 +11701,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "airBaltic-operated flight",
+            "scope_label": {
+              "en": "airBaltic-operated flight",
+              "fr": "vol opéré par airBaltic",
+              "es": "vuelo operado por airBaltic",
+              "pt": "voo operado pela airBaltic"
+            },
             "source": {
               "url": "https://www.airbaltic.com/en/assisted-travel/travelling-with-pets",
               "source_type": "official_website",
@@ -11981,6 +12181,24 @@
           "quote": "Le transport des animaux s’effectue en fret uniquement.",
           "quote_language": "fr",
           "locator": "Transport d'animaux"
+        },
+        "no_published_fare": {
+          "url": "https://www.aircalin.com/fr/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-19",
+          "review_due": "2026-12-18",
+          "confidence": 4,
+          "reviewer": "Claude — lecture directe de la page officielle",
+          "history": [
+            {
+              "date": "2026-09-19",
+              "reviewer": "Claude — qualification de l'absence",
+              "note": "L'absence est PROUVÉE par la page elle-même : elle énonce la règle de transport, les délais de notification et les restrictions de race, et ne publie aucun montant. Relue intégralement le 19/09/2026."
+            }
+          ],
+          "quote": "Le transport des animaux s’effectue en fret uniquement.",
+          "quote_language": "fr",
+          "locator": "Transport d'animaux → première phrase de la section"
         }
       }
     },
@@ -12427,7 +12645,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Alaska/Hawaiian operated travel",
+            "scope_label": {
+              "en": "Alaska/Hawaiian operated travel",
+              "fr": "Trajets opérés par Alaska ou Hawaiian",
+              "es": "Trayectos operados por Alaska o Hawaiian",
+              "pt": "Trajetos operados pela Alaska ou Hawaiian"
+            },
             "source": {
               "url": "https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/",
               "source_type": "official_website",
@@ -12472,7 +12695,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Alaska/Hawaiian operated travel",
+            "scope_label": {
+              "en": "Alaska/Hawaiian operated travel",
+              "fr": "Trajets opérés par Alaska ou Hawaiian",
+              "es": "Trayectos operados por Alaska o Hawaiian",
+              "pt": "Trajetos operados pela Alaska ou Hawaiian"
+            },
             "source": {
               "url": "https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/",
               "source_type": "official_website",
@@ -12981,7 +13209,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "US/Canada/Mexico/Central America/Caribbean eligible routes",
+            "scope_label": {
+              "en": "US/Canada/Mexico/Central America/Caribbean eligible routes",
+              "fr": "Routes éligibles États-Unis/Canada/Mexique/Amérique centrale/Caraïbes",
+              "es": "Rutas elegibles Estados Unidos/Canadá/México/América Central/Caribe",
+              "pt": "Rotas elegíveis Estados Unidos/Canadá/México/América Central/Caribe"
+            },
             "source": {
               "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
               "source_type": "official_website",
@@ -13030,7 +13263,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "listed regions; active-duty military/State Department orders only",
+            "scope_label": {
+              "en": "listed regions; active-duty military/State Department orders only",
+              "fr": "régions listées ; uniquement sur ordre de mission militaire d'active ou du Département d'État",
+              "es": "regiones indicadas; solo con orden militar en activo o del Departamento de Estado",
+              "pt": "regiões listadas; apenas com ordem militar da ativa ou do Departamento de Estado"
+            },
             "source": {
               "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
               "source_type": "official_website",
@@ -13070,7 +13308,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "PetEmbark routes",
+            "scope_label": {
+              "en": "PetEmbark routes",
+              "fr": "Routes PetEmbark",
+              "es": "Rutas PetEmbark",
+              "pt": "Rotas PetEmbark"
+            },
             "source": {
               "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
               "source_type": "official_website",
@@ -13615,7 +13858,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Vols intérieurs au Japon, par cage et par trajet",
+            "scope_label": {
+              "en": "Japan domestic flights, per crate and per journey",
+              "fr": "Vols intérieurs au Japon, par cage et par trajet",
+              "es": "Vuelos nacionales en Japón, por jaula y por trayecto",
+              "pt": "Voos domésticos no Japão, por caixa e por trajeto"
+            },
             "source": {
               "url": "https://www.ana.co.jp/ja/jp/guide/reservation/support/domestic/pets/",
               "source_type": "official_website",
@@ -13653,7 +13901,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "international area grid; Japan domestic",
+            "scope_label": {
+              "en": "international area grid; Japan domestic",
+              "fr": "grille par zones internationales ; intérieur Japon",
+              "es": "cuadro por zonas internacionales; nacional Japón",
+              "pt": "grade por zonas internacionais; doméstico Japão"
+            },
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
               "source_type": "official_website",
@@ -13685,7 +13938,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "international area grid; Japan domestic",
+            "scope_label": {
+              "en": "international area grid; Japan domestic",
+              "fr": "grille par zones internationales ; intérieur Japon",
+              "es": "cuadro por zonas internacionales; nacional Japón",
+              "pt": "grade por zonas internacionais; doméstico Japão"
+            },
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
               "source_type": "official_website",
@@ -13717,7 +13975,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "international area grid; Japan domestic",
+            "scope_label": {
+              "en": "international area grid; Japan domestic",
+              "fr": "grille par zones internationales ; intérieur Japon",
+              "es": "cuadro por zonas internacionales; nacional Japón",
+              "pt": "grade por zonas internacionais; doméstico Japão"
+            },
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
               "source_type": "official_website",
@@ -17037,7 +17300,165 @@
           "fr": "Chiens et chats vivants en fret spécial (AVI) sur Airbus et ATR72, liaisons intérieures uniquement, sauf Bangkok–Krabi et Chiang Mai–Krabi ; toutes les escales internationales sont refusées ; réservation préalable, certificat sanitaire, caisse, race et capacité sous conditions.",
           "es": "Perros y gatos vivos como carga especial (AVI) en Airbus y ATR72, solo rutas nacionales, excepto Bangkok–Krabi y Chiang Mai–Krabi; todas las escalas internacionales se rechazan; reserva previa, certificado sanitario, jaula, raza y capacidad sujetos a condiciones.",
           "pt": "Cães e gatos vivos como carga especial (AVI) em Airbus e ATR72, apenas rotas domésticas, exceto Bangkok–Krabi e Chiang Mai–Krabi; todas as escalas internacionais são recusadas; reserva prévia, certificado sanitário, caixa, raça e capacidade sujeitos a condições."
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_bangkok_airways_cargo_1_10_2026_09_19",
+            "placement": "cargo",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 1000,
+                  "currency": "THB"
+                }
+              ]
+            },
+            "billing_subject": "shipment",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Domestic routes only, 1 to 10 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+              "fr": "Liaisons intérieures uniquement, 1 à 10 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+              "es": "Solo rutas nacionales, 1 a 10 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+              "pt": "Apenas rotas domésticas, 1 a 10 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+            },
+            "source": {
+              "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille officielle du fret",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                  "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                }
+              ],
+              "quote": "1-10 KG. = 1,000 THB",
+              "quote_language": "en",
+              "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+            }
+          },
+          {
+            "id": "fare_bangkok_airways_cargo_11_20_2026_09_19",
+            "placement": "cargo",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 1500,
+                  "currency": "THB"
+                }
+              ]
+            },
+            "billing_subject": "shipment",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Domestic routes only, 11 to 20 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+              "fr": "Liaisons intérieures uniquement, 11 à 20 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+              "es": "Solo rutas nacionales, 11 a 20 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+              "pt": "Apenas rotas domésticas, 11 a 20 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+            },
+            "source": {
+              "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille officielle du fret",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                  "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                }
+              ],
+              "quote": "11-20 KG. = 1,500 THB",
+              "quote_language": "en",
+              "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+            }
+          },
+          {
+            "id": "fare_bangkok_airways_cargo_21_30_2026_09_19",
+            "placement": "cargo",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 2000,
+                  "currency": "THB"
+                }
+              ]
+            },
+            "billing_subject": "shipment",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Domestic routes only, 21 to 30 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+              "fr": "Liaisons intérieures uniquement, 21 à 30 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+              "es": "Solo rutas nacionales, 21 a 30 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+              "pt": "Apenas rotas domésticas, 21 a 30 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+            },
+            "source": {
+              "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille officielle du fret",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                  "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                }
+              ],
+              "quote": "21-30 KG. = 2,000 THB",
+              "quote_language": "en",
+              "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+            }
+          },
+          {
+            "id": "fare_bangkok_airways_cargo_31_60_2026_09_19",
+            "placement": "cargo",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 2500,
+                  "currency": "THB"
+                }
+              ]
+            },
+            "billing_subject": "shipment",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Domestic routes only, 31 to 60 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+              "fr": "Liaisons intérieures uniquement, 31 à 60 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+              "es": "Solo rutas nacionales, 31 a 60 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+              "pt": "Apenas rotas domésticas, 31 a 60 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+            },
+            "source": {
+              "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la grille officielle du fret",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                  "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                }
+              ],
+              "quote": "31-60 KG. = 2,500 THB",
+              "quote_language": "en",
+              "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+            }
+          }
+        ]
       }
     },
     "channels": [
@@ -18211,7 +18632,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "accepted IAG Cargo routes",
+            "scope_label": {
+              "en": "accepted IAG Cargo routes",
+              "fr": "routes IAG Cargo acceptées",
+              "es": "rutas IAG Cargo aceptadas",
+              "pt": "rotas IAG Cargo aceitas"
+            },
             "source": {
               "url": "https://www.britishairways.com/content/en/us/information/legal/us-optional-extras",
               "source_type": "official_website",
@@ -18683,7 +19109,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Vols intra-Europe ou intra-Afrique uniquement",
+            "scope_label": {
+              "en": "Flights within Europe or within Africa only",
+              "fr": "Vols intra-Europe ou intra-Afrique uniquement",
+              "es": "Solo vuelos dentro de Europa o dentro de África",
+              "pt": "Apenas voos dentro da Europa ou dentro da África"
+            },
             "source": {
               "url": "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-small-dogs-in-the-cabin",
               "source_type": "official_website",
@@ -19219,7 +19650,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Cathay Cargo network",
+            "scope_label": {
+              "en": "Cathay Cargo network",
+              "fr": "Réseau Cathay Cargo",
+              "es": "Red Cathay Cargo",
+              "pt": "Rede Cathay Cargo"
+            },
             "source": {
               "url": "https://www.cathaypacific.com/cx/en_JP/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
               "source_type": "official_website",
@@ -20731,7 +21167,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié",
+            "scope_label": {
+              "en": "Hold: charged on the combined weight of the pet, the container and the food, at the excess baggage rate — paid at the airport, no amount published",
+              "fr": "Soute : facturé au poids cumulé de l'animal, du contenant et de la nourriture, selon le barème d'excédent de bagages — réglé à l'aéroport, aucun montant publié",
+              "es": "Bodega: facturado según el peso acumulado del animal, el contenedor y la comida, conforme a la tarifa de exceso de equipaje — pagado en el aeropuerto, ningún importe publicado",
+              "pt": "Porão: cobrado pelo peso acumulado do animal, do recipiente e da comida, conforme a tabela de excesso de bagagem — pago no aeroporto, nenhum valor publicado"
+            },
             "source": {
               "url": "https://www.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
               "source_type": "official_website",
@@ -21210,7 +21651,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Selon la distance du tronçon · produit cabine éligible",
+            "scope_label": {
+              "en": "Depending on sector distance · eligible cabin product",
+              "fr": "Selon la distance du tronçon · produit cabine éligible",
+              "es": "Según la distancia del tramo · producto de cabina elegible",
+              "pt": "Conforme a distância do trecho · produto de cabine elegível"
+            },
             "source": {
               "url": "https://m.csair.com/FTPCMS/mcms/CN/zh/2024/20241205_1/images/tu11-250411b.jpg",
               "source_type": "official_website",
@@ -21733,7 +22179,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "zones Condor → zones Condor",
+            "scope_label": {
+              "en": "Condor zones → Condor zones",
+              "fr": "zones Condor → zones Condor",
+              "es": "zonas Condor → zonas Condor",
+              "pt": "zonas Condor → zonas Condor"
+            },
             "source": {
               "url": "https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp",
               "source_type": "official_website",
@@ -21778,7 +22229,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "zones Condor → zones Condor",
+            "scope_label": {
+              "en": "Condor zones → Condor zones",
+              "fr": "zones Condor → zones Condor",
+              "es": "zonas Condor → zonas Condor",
+              "pt": "zonas Condor → zonas Condor"
+            },
             "source": {
               "url": "https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cargo-hold.jsp",
               "source_type": "official_website",
@@ -22267,7 +22723,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Panama ou international → Panama ou international",
+            "scope_label": {
+              "en": "Panama or international → Panama or international",
+              "fr": "Panama ou international → Panama ou international",
+              "es": "Panamá o internacional → Panamá o internacional",
+              "pt": "Panamá ou internacional → Panamá ou internacional"
+            },
             "source": {
               "url": "https://www.copaair.com/assets/ENG-COM-24-001-Update-Service-or-Emotional-Support-Dog-and-Pet-in-Cabin-Transportation-Policy.pdf",
               "source_type": "official_website",
@@ -22762,7 +23223,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Selon la zone desservie depuis Paris",
+            "scope_label": {
+              "en": "Depending on the zone served from Paris",
+              "fr": "Selon la zone desservie depuis Paris",
+              "es": "Según la zona servida desde París",
+              "pt": "Conforme a zona servida a partir de Paris"
+            },
             "source": {
               "url": "https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie",
               "source_type": "official_website",
@@ -22820,7 +23286,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Selon la zone desservie depuis Paris",
+            "scope_label": {
+              "en": "Depending on the zone served from Paris",
+              "fr": "Selon la zone desservie depuis Paris",
+              "es": "Según la zona servida desde París",
+              "pt": "Conforme a zona servida a partir de Paris"
+            },
             "source": {
               "url": "https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie",
               "source_type": "official_website",
@@ -23383,7 +23854,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus",
+            "scope_label": {
+              "en": "Cabin (PETC), carrier up to 118 cm total, pet and carrier up to 8 kg: domestic flights — 25 % VAT announced on top",
+              "fr": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus",
+              "es": "Cabina (PETC), transportín hasta 118 cm sumados, animal y transportín hasta 8 kg: vuelos nacionales — 25 % de IVA anunciado aparte",
+              "pt": "Cabine (PETC), bolsa até 118 cm somados, animal e bolsa até 8 kg: voos domésticos — 25 % de IVA anunciado à parte"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23411,7 +23887,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Cabin (PETC), carrier up to 118 cm total: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Cabina (PETC), transportín hasta 118 cm sumados: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Cabine (PETC), bolsa até 118 cm somados: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23439,7 +23920,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Cabin (PETC), carrier up to 118 cm total: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Cabina (PETC), transportín hasta 118 cm sumados: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Cabine (PETC), bolsa até 118 cm somados: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23484,7 +23970,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+            "scope_label": {
+              "en": "Hold (AVIH), medium crate 80x55x55 cm: domestic flights — 25 % VAT announced on top",
+              "fr": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+              "es": "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos nacionales — 25 % de IVA anunciado aparte",
+              "pt": "Porão (AVIH), caixa média 80x55x55 cm: voos domésticos — 25 % de IVA anunciado à parte"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23512,7 +24003,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Hold (AVIH), medium crate 80x55x55 cm: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Porão (AVIH), caixa média 80x55x55 cm: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23540,7 +24036,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Hold (AVIH), medium crate 80x55x55 cm: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Porão (AVIH), caixa média 80x55x55 cm: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23568,7 +24069,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+            "scope_label": {
+              "en": "Hold (AVIH), large crate 125x75x85 cm: domestic flights — 25 % VAT announced on top",
+              "fr": "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus",
+              "es": "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos nacionales — 25 % de IVA anunciado aparte",
+              "pt": "Porão (AVIH), caixa grande 125x75x85 cm: voos domésticos — 25 % de IVA anunciado à parte"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23596,7 +24102,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Hold (AVIH), large crate 125x75x85 cm: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Porão (AVIH), caixa grande 125x75x85 cm: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -23624,7 +24135,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+            "scope_label": {
+              "en": "Hold (AVIH), large crate 125x75x85 cm: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina",
+              "fr": "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine",
+              "es": "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina",
+              "pt": "Porão (AVIH), caixa grande 125x75x85 cm: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
+            },
             "source": {
               "url": "https://www.croatiaairlines.com/Baggage/Animals",
               "source_type": "official_website",
@@ -24035,7 +24551,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025",
+            "scope_label": {
+              "en": "United States, Canada, Puerto Rico and the U.S. Virgin Islands · tickets issued on or after 8 April 2025",
+              "fr": "États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025",
+              "es": "Estados Unidos, Canadá, Puerto Rico e Islas Vírgenes de EE. UU. · billetes emitidos desde el 8 de abril de 2025",
+              "pt": "Estados Unidos, Canadá, Porto Rico e Ilhas Virgens Americanas · bilhetes emitidos desde 8 de abril de 2025"
+            },
             "source": {
               "url": "https://www.delta.com/us/en/pet-travel/overview",
               "source_type": "official_website",
@@ -24071,7 +24592,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Vols internationaux éligibles",
+            "scope_label": {
+              "en": "Eligible international flights",
+              "fr": "Vols internationaux éligibles",
+              "es": "Vuelos internacionales elegibles",
+              "pt": "Voos internacionais elegíveis"
+            },
             "source": {
               "url": "https://www.delta.com/us/en/pet-travel/overview",
               "source_type": "official_website",
@@ -26147,7 +26673,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Hors franchise : facturé au barème de l'excédent de bagages",
+            "scope_label": {
+              "en": "Outside the allowance: charged at the excess baggage rate",
+              "fr": "Hors franchise : facturé au barème de l'excédent de bagages",
+              "es": "Fuera de la franquicia: facturado según la tarifa de exceso de equipaje",
+              "pt": "Fora da franquia: cobrado conforme a tabela de excesso de bagagem"
+            },
             "source": {
               "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
               "source_type": "official_website",
@@ -26187,7 +26718,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Hors franchise : compté et facturé en pièces d'excédent de bagages",
+            "scope_label": {
+              "en": "Outside the allowance: counted and charged as excess baggage pieces",
+              "fr": "Hors franchise : compté et facturé en pièces d'excédent de bagages",
+              "es": "Fuera de la franquicia: contabilizado y facturado como piezas de exceso de equipaje",
+              "pt": "Fora da franquia: contado e cobrado como peças de excesso de bagagem"
+            },
             "source": {
               "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
               "source_type": "official_website",
@@ -26679,7 +27215,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Europe et Moyen-Orient, animal et cage de moins de 9 kg",
+            "scope_label": {
+              "en": "Europe and the Middle East, pet and crate under 9 kg",
+              "fr": "Europe et Moyen-Orient, animal et cage de moins de 9 kg",
+              "es": "Europa y Oriente Medio, animal y jaula de menos de 9 kg",
+              "pt": "Europa e Oriente Médio, animal e caixa de menos de 9 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26707,7 +27248,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Europe et Moyen-Orient, animal et cage de 9 à 50 kg",
+            "scope_label": {
+              "en": "Europe and the Middle East, pet and crate from 9 to 50 kg",
+              "fr": "Europe et Moyen-Orient, animal et cage de 9 à 50 kg",
+              "es": "Europa y Oriente Medio, animal y jaula de 9 a 50 kg",
+              "pt": "Europa e Oriente Médio, animal e caixa de 9 a 50 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26735,7 +27281,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Europe et Moyen-Orient, animal et cage de 50 à 100 kg",
+            "scope_label": {
+              "en": "Europe and the Middle East, pet and crate from 50 to 100 kg",
+              "fr": "Europe et Moyen-Orient, animal et cage de 50 à 100 kg",
+              "es": "Europa y Oriente Medio, animal y jaula de 50 a 100 kg",
+              "pt": "Europa e Oriente Médio, animal e caixa de 50 a 100 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26763,7 +27314,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Amérique du Nord et Asie, animal et cage de moins de 9 kg",
+            "scope_label": {
+              "en": "North America and Asia, pet and crate under 9 kg",
+              "fr": "Amérique du Nord et Asie, animal et cage de moins de 9 kg",
+              "es": "América del Norte y Asia, animal y jaula de menos de 9 kg",
+              "pt": "América do Norte e Ásia, animal e caixa de menos de 9 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26791,7 +27347,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Amérique du Nord et Asie, animal et cage de 9 à 50 kg",
+            "scope_label": {
+              "en": "North America and Asia, pet and crate from 9 to 50 kg",
+              "fr": "Amérique du Nord et Asie, animal et cage de 9 à 50 kg",
+              "es": "América del Norte y Asia, animal y jaula de 9 a 50 kg",
+              "pt": "América do Norte e Ásia, animal e caixa de 9 a 50 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26819,7 +27380,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Amérique du Nord et Asie, animal et cage de 50 à 100 kg",
+            "scope_label": {
+              "en": "North America and Asia, pet and crate from 50 to 100 kg",
+              "fr": "Amérique du Nord et Asie, animal et cage de 50 à 100 kg",
+              "es": "América del Norte y Asia, animal y jaula de 50 a 100 kg",
+              "pt": "América do Norte e Ásia, animal e caixa de 50 a 100 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26847,7 +27413,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Eilat, animal et cage de moins de 9 kg",
+            "scope_label": {
+              "en": "Eilat, pet and crate under 9 kg",
+              "fr": "Eilat, animal et cage de moins de 9 kg",
+              "es": "Eilat, animal y jaula de menos de 9 kg",
+              "pt": "Eilat, animal e caixa de menos de 9 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26875,7 +27446,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Eilat, animal et cage de 9 à 50 kg",
+            "scope_label": {
+              "en": "Eilat, pet and crate from 9 to 50 kg",
+              "fr": "Eilat, animal et cage de 9 à 50 kg",
+              "es": "Eilat, animal y jaula de 9 a 50 kg",
+              "pt": "Eilat, animal e caixa de 9 a 50 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -26903,7 +27479,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Eilat, animal et cage de 50 à 100 kg",
+            "scope_label": {
+              "en": "Eilat, pet and crate from 50 to 100 kg",
+              "fr": "Eilat, animal et cage de 50 à 100 kg",
+              "es": "Eilat, animal y jaula de 50 a 100 kg",
+              "pt": "Eilat, animal e caixa de 50 a 100 kg"
+            },
             "source": {
               "url": "https://www.elal.com/fra/baggage/pets",
               "source_type": "official_website",
@@ -27411,7 +27992,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Animal et cage jusqu'à 23 kg et 150 cm combinés",
+            "scope_label": {
+              "en": "Pet and crate up to 23 kg and 150 cm combined",
+              "fr": "Animal et cage jusqu'à 23 kg et 150 cm combinés",
+              "es": "Animal y jaula hasta 23 kg y 150 cm combinados",
+              "pt": "Animal e caixa até 23 kg e 150 cm combinados"
+            },
             "source": {
               "url": "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
@@ -27443,7 +28029,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Animal et cage de 24 à 32 kg, dimensions de 150 à 300 cm",
+            "scope_label": {
+              "en": "Pet and crate from 24 to 32 kg, dimensions 150 to 300 cm",
+              "fr": "Animal et cage de 24 à 32 kg, dimensions de 150 à 300 cm",
+              "es": "Animal y jaula de 24 a 32 kg, dimensiones de 150 a 300 cm",
+              "pt": "Animal e caixa de 24 a 32 kg, dimensões de 150 a 300 cm"
+            },
             "source": {
               "url": "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
@@ -27475,7 +28066,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Animal et cage de plus de 32 kg, dimensions de 150 à 300 cm",
+            "scope_label": {
+              "en": "Pet and crate over 32 kg, dimensions 150 to 300 cm",
+              "fr": "Animal et cage de plus de 32 kg, dimensions de 150 à 300 cm",
+              "es": "Animal y jaula de más de 32 kg, dimensiones de 150 a 300 cm",
+              "pt": "Animal e caixa de mais de 32 kg, dimensões de 150 a 300 cm"
+            },
             "source": {
               "url": "https://www.emirates.com/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
@@ -27962,7 +28558,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "zones publiées → zones publiées",
+            "scope_label": {
+              "en": "published zones → published zones",
+              "fr": "zones publiées → zones publiées",
+              "es": "zonas publicadas → zonas publicadas",
+              "pt": "zonas publicadas → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges",
               "source_type": "official_website",
@@ -27990,7 +28591,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "zones publiées → zones publiées",
+            "scope_label": {
+              "en": "published zones → published zones",
+              "fr": "zones publiées → zones publiées",
+              "es": "zonas publicadas → zonas publicadas",
+              "pt": "zonas publicadas → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges",
               "source_type": "official_website",
@@ -28018,7 +28624,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "zones publiées → zones publiées",
+            "scope_label": {
+              "en": "published zones → published zones",
+              "fr": "zones publiées → zones publiées",
+              "es": "zonas publicadas → zonas publicadas",
+              "pt": "zonas publicadas → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges",
               "source_type": "official_website",
@@ -28512,7 +29123,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Tarif de base ; siège supplémentaire requis dans certains cas",
+            "scope_label": {
+              "en": "Base fare; an extra seat is required in some cases",
+              "fr": "Tarif de base ; siège supplémentaire requis dans certains cas",
+              "es": "Tarifa base; en algunos casos se exige un asiento adicional",
+              "pt": "Tarifa base; em alguns casos é exigido um assento adicional"
+            },
             "source": {
               "url": "https://www.etihad.com/ar-ae/plan/travel-companion/travelling-with-pets",
               "source_type": "official_website",
@@ -29011,7 +29627,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route",
+            "scope_label": {
+              "en": "Cabin, pet and carrier up to 8 kg — floor price, no per-route grid",
+              "fr": "Cabine, animal et contenant jusqu'à 8 kg — prix plancher, sans grille par route",
+              "es": "Cabina, animal y transportín hasta 8 kg — precio mínimo, sin cuadro por ruta",
+              "pt": "Cabine, animal e bolsa até 8 kg — preço mínimo, sem grade por rota"
+            },
             "source": {
               "url": "https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html",
               "source_type": "official_website",
@@ -29505,7 +30126,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "international EVA/UNI → international EVA/UNI",
+            "scope_label": {
+              "en": "international EVA/UNI → international EVA/UNI",
+              "fr": "international EVA/UNI → international EVA/UNI",
+              "es": "internacional EVA/UNI → internacional EVA/UNI",
+              "pt": "internacional EVA/UNI → internacional EVA/UNI"
+            },
             "source": {
               "url": "https://www.evaair.com/en-global/fly-prepare/baggage/travelling-with-pets/",
               "source_type": "official_website",
@@ -29975,7 +30601,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation",
+            "scope_label": {
+              "en": "60–65 € in Europe · 120–130 € on long-haul · depending on how early you book",
+              "fr": "60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation",
+              "es": "60–65 € en Europa · 120–130 € en larga distancia · según la antelación",
+              "pt": "60–65 € na Europa · 120–130 € em longo curso · conforme a antecedência"
+            },
             "source": {
               "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
               "source_type": "official_website",
@@ -30013,7 +30644,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Long-courrier · selon l'anticipation",
+            "scope_label": {
+              "en": "Long-haul · depending on how early you book",
+              "fr": "Long-courrier · selon l'anticipation",
+              "es": "Larga distancia · según la antelación",
+              "pt": "Longo curso · conforme a antecedência"
+            },
             "source": {
               "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
               "source_type": "official_website",
@@ -30064,7 +30700,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "120 € en Europe · 600 € sur long-courrier",
+            "scope_label": {
+              "en": "120 € in Europe · 600 € on long-haul",
+              "fr": "120 € en Europe · 600 € sur long-courrier",
+              "es": "120 € en Europa · 600 € en larga distancia",
+              "pt": "120 € na Europa · 600 € em longo curso"
+            },
             "source": {
               "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
               "source_type": "official_website",
@@ -30098,7 +30739,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Long-courrier au départ d'un marché facturé en dollars",
+            "scope_label": {
+              "en": "Long-haul departing from a market billed in dollars",
+              "fr": "Long-courrier au départ d'un marché facturé en dollars",
+              "es": "Larga distancia con salida desde un mercado facturado en dólares",
+              "pt": "Longo curso com partida de um mercado faturado em dólares"
+            },
             "source": {
               "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
               "source_type": "official_website",
@@ -30580,7 +31226,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Marchés EUR/XPF · non remboursable",
+            "scope_label": {
+              "en": "EUR/XPF markets · non-refundable",
+              "fr": "Marchés EUR/XPF · non remboursable",
+              "es": "Mercados EUR/XPF · no reembolsable",
+              "pt": "Mercados EUR/XPF · não reembolsável"
+            },
             "source": {
               "url": "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
               "source_type": "official_website",
@@ -30608,7 +31259,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché anglophone/réseau admissible → marché anglophone/réseau admissible",
+            "scope_label": {
+              "en": "English-speaking market/eligible network → English-speaking market/eligible network",
+              "fr": "marché anglophone/réseau admissible → marché anglophone/réseau admissible",
+              "es": "mercado anglófono/red admisible → mercado anglófono/red admisible",
+              "pt": "mercado anglófono/rede elegível → mercado anglófono/rede elegível"
+            },
             "source": {
               "url": "https://www.frenchbee.com/en/optional-services",
               "source_type": "official_website",
@@ -30666,7 +31322,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Marchés EUR/XPF · non remboursable",
+            "scope_label": {
+              "en": "EUR/XPF markets · non-refundable",
+              "fr": "Marchés EUR/XPF · non remboursable",
+              "es": "Mercados EUR/XPF · no reembolsable",
+              "pt": "Mercados EUR/XPF · não reembolsável"
+            },
             "source": {
               "url": "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
               "source_type": "official_website",
@@ -30694,7 +31355,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché anglophone/réseau admissible → hors Tahiti",
+            "scope_label": {
+              "en": "English-speaking market/eligible network → excluding Tahiti",
+              "fr": "marché anglophone/réseau admissible → hors Tahiti",
+              "es": "mercado anglófono/red admisible → excepto Tahití",
+              "pt": "mercado anglófono/rede elegível → exceto Taiti"
+            },
             "source": {
               "url": "https://www.frenchbee.com/en/optional-services",
               "source_type": "official_website",
@@ -31192,6 +31858,24 @@
           "quote": "Garuda Indonesia Cargo service is ready to make your pets or live animals comfortable on the plane until they arrive at their destination.",
           "quote_language": "en",
           "locator": "CargoWeb → Live Animals"
+        },
+        "no_published_fare": {
+          "url": "https://cargo.garuda-indonesia.com/Live-Animals",
+          "source_type": "official_website",
+          "verified_date": "2026-09-19",
+          "review_due": "2026-12-18",
+          "confidence": 4,
+          "reviewer": "Claude — lecture directe de la page officielle",
+          "history": [
+            {
+              "date": "2026-09-19",
+              "reviewer": "Claude — qualification de l'absence",
+              "note": "Relue intégralement le 19/09/2026 : la section « Regulations » détaille cinq obligations d'expédition sans jamais chiffrer le transport."
+            }
+          ],
+          "quote": "Please make sure your animals can be shipped. We do not ship some animal species, such as dolphins and sharks.",
+          "quote_language": "en",
+          "locator": "Live Animals → Regulations"
         }
       }
     },
@@ -33848,7 +34532,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "40–180 EUR selon la zone · paiement à l’aéroport",
+            "scope_label": {
+              "en": "40–180 EUR depending on zone · paid at the airport",
+              "fr": "40–180 EUR selon la zone · paiement à l’aéroport",
+              "es": "40–180 EUR según la zona · pago en el aeropuerto",
+              "pt": "40–180 EUR conforme a zona · pagamento no aeroporto"
+            },
             "source": {
               "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
               "source_type": "official_website",
@@ -33922,7 +34611,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "100–360 EUR selon le poids et la zone · paiement à l’aéroport",
+            "scope_label": {
+              "en": "100–360 EUR depending on weight and zone · paid at the airport",
+              "fr": "100–360 EUR selon le poids et la zone · paiement à l’aéroport",
+              "es": "100–360 EUR según el peso y la zona · pago en el aeropuerto",
+              "pt": "100–360 EUR conforme o peso e a zona · pagamento no aeroporto"
+            },
             "source": {
               "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
               "source_type": "official_website",
@@ -34395,7 +35089,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024",
+            "scope_label": {
+              "en": "Hold, per crate: domestic flights within Iceland only — no pets in the hold on international flights since 1 November 2024",
+              "fr": "Soute, par caisse : vols intérieurs en Islande uniquement — plus aucun animal en soute sur les vols internationaux depuis le 1er novembre 2024",
+              "es": "Bodega, por jaula: solo vuelos nacionales en Islandia — ningún animal en bodega en vuelos internacionales desde el 1 de noviembre de 2024",
+              "pt": "Porão, por caixa: apenas voos domésticos na Islândia — nenhum animal no porão em voos internacionais desde 1 de novembro de 2024"
+            },
             "source": {
               "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
               "source_type": "official_website",
@@ -35199,7 +35898,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché de départ → zones publiées",
+            "scope_label": {
+              "en": "departure market → published zones",
+              "fr": "marché de départ → zones publiées",
+              "es": "mercado de salida → zonas publicadas",
+              "pt": "mercado de partida → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
@@ -35231,7 +35935,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché de départ → zones publiées",
+            "scope_label": {
+              "en": "departure market → published zones",
+              "fr": "marché de départ → zones publiées",
+              "es": "mercado de salida → zonas publicadas",
+              "pt": "mercado de partida → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
@@ -35280,7 +35989,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché de départ → zones publiées",
+            "scope_label": {
+              "en": "departure market → published zones",
+              "fr": "marché de départ → zones publiées",
+              "es": "mercado de salida → zonas publicadas",
+              "pt": "mercado de partida → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
@@ -35312,7 +36026,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "marché de départ → zones publiées",
+            "scope_label": {
+              "en": "departure market → published zones",
+              "fr": "marché de départ → zones publiées",
+              "es": "mercado de salida → zonas publicadas",
+              "pt": "mercado de partida → zonas publicadas"
+            },
             "source": {
               "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
@@ -35887,7 +36606,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Japon ou zones internationales → Japon ou zones internationales",
+            "scope_label": {
+              "en": "Japan or international zones → Japan or international zones",
+              "fr": "Japon ou zones internationales → Japon ou zones internationales",
+              "es": "Japón o zonas internacionales → Japón o zonas internacionales",
+              "pt": "Japão ou zonas internacionais → Japão ou zonas internacionais"
+            },
             "source": {
               "url": "https://www.jal.co.jp/jp/en/dom/fare/f_pet/index.html | https://www.jal.co.jp/jp/en/inter/baggage/checked/",
               "source_type": "official_website",
@@ -36369,7 +37093,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Animal en cabine · par animal et par trajet",
+            "scope_label": {
+              "en": "Pet in cabin · per pet and per journey",
+              "fr": "Animal en cabine · par animal et par trajet",
+              "es": "Animal en cabina · por animal y por trayecto",
+              "pt": "Animal na cabine · por animal e por trajeto"
+            },
             "source": {
               "url": "https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf",
               "source_type": "official_website",
@@ -36884,7 +37613,12 @@
             },
             "billing_subject": "kilogram",
             "journey_basis": "per_journey",
-            "scope_label": "Nairobi → New York",
+            "scope_label": {
+              "en": "Nairobi → New York",
+              "fr": "Nairobi → New York",
+              "es": "Nairobi → Nueva York",
+              "pt": "Nairóbi → Nova York"
+            },
             "source": {
               "url": "https://www.kenya-airways.com/en-nl/policies/optional-fees/",
               "source_type": "official_website",
@@ -37416,7 +38150,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "aéroport départ → destination",
+            "scope_label": {
+              "en": "departure airport → destination",
+              "fr": "aéroport départ → destination",
+              "es": "aeropuerto de salida → destino",
+              "pt": "aeroporto de partida → destino"
+            },
             "source": {
               "url": "https://www.klm.nl/information/pets/reservation",
               "source_type": "official_website",
@@ -37473,7 +38212,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "aéroport départ → destination",
+            "scope_label": {
+              "en": "departure airport → destination",
+              "fr": "aéroport départ → destination",
+              "es": "aeropuerto de salida → destino",
+              "pt": "aeroporto de partida → destino"
+            },
             "source": {
               "url": "https://www.klm.nl/information/pets/reservation",
               "source_type": "official_website",
@@ -38014,7 +38758,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Par contenant et par trajet",
+            "scope_label": {
+              "en": "Per container and per journey",
+              "fr": "Par contenant et par trajet",
+              "es": "Por contenedor y por trayecto",
+              "pt": "Por recipiente e por trajeto"
+            },
             "source": {
               "url": "https://kmmaltairlines.com/mt/travelling-with-pets",
               "source_type": "official_website",
@@ -38072,7 +38821,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "Selon le poids animal + contenant · ajouter 10 EUR de frais administratifs",
+            "scope_label": {
+              "en": "Depending on pet + container weight · add 10 EUR administrative fee",
+              "fr": "Selon le poids animal + contenant · ajouter 10 EUR de frais administratifs",
+              "es": "Según el peso animal + contenedor · añadir 10 EUR de gastos administrativos",
+              "pt": "Conforme o peso animal + recipiente · acrescentar 10 EUR de taxas administrativas"
+            },
             "source": {
               "url": "https://kmmaltairlines.com/en/travelling-with-pets",
               "source_type": "official_website",
@@ -39522,7 +40276,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Réseau La Compagnie · par trajet",
+            "scope_label": {
+              "en": "La Compagnie network · per journey",
+              "fr": "Réseau La Compagnie · par trajet",
+              "es": "Red La Compagnie · por trayecto",
+              "pt": "Rede La Compagnie · por trajeto"
+            },
             "source": {
               "url": "https://www.lacompagnie.com/fr/plan/special-services",
               "source_type": "official_website",
@@ -40023,7 +40782,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols intérieurs au Brésil",
+            "scope_label": {
+              "en": "Domestic flights within Brazil",
+              "fr": "Vols intérieurs au Brésil",
+              "es": "Vuelos nacionales en Brasil",
+              "pt": "Voos domésticos no Brasil"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40051,7 +40815,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols intérieurs au Chili, île de Pâques exceptée",
+            "scope_label": {
+              "en": "Domestic flights within Chile, excluding Easter Island",
+              "fr": "Vols intérieurs au Chili, île de Pâques exceptée",
+              "es": "Vuelos nacionales en Chile, excepto Isla de Pascua",
+              "pt": "Voos domésticos no Chile, exceto Ilha de Páscoa"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40079,7 +40848,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols intérieurs en Colombie",
+            "scope_label": {
+              "en": "Domestic flights within Colombia",
+              "fr": "Vols intérieurs en Colombie",
+              "es": "Vuelos nacionales en Colombia",
+              "pt": "Voos domésticos na Colômbia"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40107,7 +40881,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols intérieurs en Équateur",
+            "scope_label": {
+              "en": "Domestic flights within Ecuador",
+              "fr": "Vols intérieurs en Équateur",
+              "es": "Vuelos nacionales en Ecuador",
+              "pt": "Voos domésticos no Equador"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40135,7 +40914,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols intérieurs au Pérou",
+            "scope_label": {
+              "en": "Domestic flights within Peru",
+              "fr": "Vols intérieurs au Pérou",
+              "es": "Vuelos nacionales en Perú",
+              "pt": "Voos domésticos no Peru"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40163,7 +40947,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols régionaux : entre pays d'Amérique du Sud, et entre l'Amérique du Sud et l'Amérique centrale ou Cancún ; Punta Cana–Miami et Santiago–île de Pâques inclus",
+            "scope_label": {
+              "en": "Regional flights: between South American countries, and between South America and Central America or Cancún; including Punta Cana–Miami and Santiago–Easter Island",
+              "fr": "Vols régionaux : entre pays d'Amérique du Sud, et entre l'Amérique du Sud et l'Amérique centrale ou Cancún ; Punta Cana–Miami et Santiago–île de Pâques inclus",
+              "es": "Vuelos regionales: entre países de América del Sur, y entre América del Sur y América Central o Cancún; incluidos Punta Cana–Miami y Santiago–Isla de Pascua",
+              "pt": "Voos regionais: entre países da América do Sul, e entre a América do Sul e a América Central ou Cancún; incluindo Punta Cana–Miami e Santiago–Ilha de Páscoa"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40191,7 +40980,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Vols long-courriers : entre l'Amérique du Sud et l'Europe ou l'Amérique du Nord",
+            "scope_label": {
+              "en": "Long-haul flights: between South America and Europe or North America",
+              "fr": "Vols long-courriers : entre l'Amérique du Sud et l'Europe ou l'Amérique du Nord",
+              "es": "Vuelos de larga distancia: entre América del Sur y Europa o América del Norte",
+              "pt": "Voos de longo curso: entre a América do Sul e a Europa ou a América do Norte"
+            },
             "source": {
               "url": "https://www.latamairlines.com/us/en/experience/prepare-your-trip/pets-transportation/cabin",
               "source_type": "official_website",
@@ -40717,7 +41511,12 @@
             },
             "billing_subject": "booking",
             "journey_basis": "per_journey",
-            "scope_label": "marché/route → marché/route",
+            "scope_label": {
+              "en": "market/route → market/route",
+              "fr": "marché/route → marché/route",
+              "es": "mercado/ruta → mercado/ruta",
+              "pt": "mercado/rota → mercado/rota"
+            },
             "source": {
               "url": "https://www.lot.com/cn/en/journey/special-services/traveling-with-pets/pet-in-cabin",
               "source_type": "official_website",
@@ -40757,7 +41556,12 @@
             },
             "billing_subject": "booking",
             "journey_basis": "per_journey",
-            "scope_label": "marché/route → marché/route",
+            "scope_label": {
+              "en": "market/route → market/route",
+              "fr": "marché/route → marché/route",
+              "es": "mercado/ruta → mercado/ruta",
+              "pt": "mercado/rota → mercado/rota"
+            },
             "source": {
               "url": "https://www.lot.com/us/en/journey/special-services/traveling-with-pets",
               "source_type": "official_website",
@@ -41218,7 +42022,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_one_way",
-            "scope_label": "aéroport départ → destination",
+            "scope_label": {
+              "en": "departure airport → destination",
+              "fr": "aéroport départ → destination",
+              "es": "aeropuerto de salida → destino",
+              "pt": "aeroporto de partida → destino"
+            },
             "source": {
               "url": "https://www.lufthansa.com/de/en/animals-as-additional-carry-on-baggage",
               "source_type": "official_website",
@@ -41261,7 +42070,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "trajet et taille du conteneur",
+            "scope_label": {
+              "en": "journey and container size",
+              "fr": "trajet et taille du conteneur",
+              "es": "trayecto y tamaño del contenedor",
+              "pt": "trajeto e tamanho do recipiente"
+            },
             "source": {
               "url": "https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck",
               "source_type": "official_website",
@@ -41830,7 +42644,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Classe économique · gratuit en classe affaires",
+            "scope_label": {
+              "en": "Economy class · free in business class",
+              "fr": "Classe économique · gratuit en classe affaires",
+              "es": "Clase económica · gratuito en clase ejecutiva",
+              "pt": "Classe econômica · gratuito na classe executiva"
+            },
             "source": {
               "url": "https://www.luxair.lu/fr/informations/voyager-avec-des-animaux/",
               "source_type": "official_website",
@@ -42386,7 +43205,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "MASkargo network",
+            "scope_label": {
+              "en": "MASkargo network",
+              "fr": "Réseau MASkargo",
+              "es": "Red MASkargo",
+              "pt": "Rede MASkargo"
+            },
             "source": {
               "url": "https://www.maskargo.com/content/mk/en/products-and-services/products/mk-live.html",
               "source_type": "official_website",
@@ -43266,7 +44090,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Eligible Norwegian routes",
+            "scope_label": {
+              "en": "Eligible Norwegian routes",
+              "fr": "Routes Norwegian éligibles",
+              "es": "Rutas Norwegian elegibles",
+              "pt": "Rotas Norwegian elegíveis"
+            },
             "source": {
               "url": "https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/",
               "source_type": "official_website",
@@ -43315,7 +44144,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Eligible Norwegian routes",
+            "scope_label": {
+              "en": "Eligible Norwegian routes",
+              "fr": "Routes Norwegian éligibles",
+              "es": "Rutas Norwegian elegibles",
+              "pt": "Rotas Norwegian elegíveis"
+            },
             "source": {
               "url": "https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/",
               "source_type": "official_website",
@@ -43774,7 +44608,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic Turkey; Northern Cyprus; international",
+            "scope_label": {
+              "en": "Domestic Turkey; Northern Cyprus; international",
+              "fr": "Turquie intérieure ; Chypre du Nord ; international",
+              "es": "Turquía nacional; Chipre del Norte; internacional",
+              "pt": "Turquia doméstica; Chipre do Norte; internacional"
+            },
             "source": {
               "url": "https://www.flypgs.com/fr/informations-utiles/autres-informations/tarifs-des-services-complementaires",
               "source_type": "official_website",
@@ -43811,7 +44650,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Only domestic Turkey and Northern Cyprus; international not allowed",
+            "scope_label": {
+              "en": "Only domestic Turkey and Northern Cyprus; international not allowed",
+              "fr": "Turquie intérieure et Chypre du Nord uniquement ; international non autorisé",
+              "es": "Solo Turquía nacional y Chipre del Norte; internacional no permitido",
+              "pt": "Apenas Turquia doméstica e Chipre do Norte; internacional não permitido"
+            },
             "source": {
               "url": "https://www.flypgs.com/en/useful-info/other-info/extra-services-price-table%20",
               "source_type": "official_website",
@@ -44180,7 +45024,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "FurPAL · vols intérieurs · tarif à partir de",
+            "scope_label": {
+              "en": "FurPAL · domestic flights · starting price",
+              "fr": "FurPAL · vols intérieurs · tarif à partir de",
+              "es": "FurPAL · vuelos nacionales · precio desde",
+              "pt": "FurPAL · voos domésticos · preço a partir de"
+            },
             "source": {
               "url": "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html",
               "source_type": "official_website",
@@ -44238,7 +45087,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "PAL Cargo; commonly >32kg",
+            "scope_label": {
+              "en": "PAL Cargo; commonly >32kg",
+              "fr": "PAL Cargo ; généralement au-delà de 32 kg",
+              "es": "PAL Cargo; habitualmente más de 32 kg",
+              "pt": "PAL Cargo; normalmente acima de 32 kg"
+            },
             "source": {
               "url": "https://www.philippineairlines.com/ph/en/before-you-fly/baggage-information/special-baggage/pets.html",
               "source_type": "official_website",
@@ -44727,7 +45581,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_one_way",
-            "scope_label": "Réservation Qantas Freight — prix au poids de l'animal et à la taille de la caisse",
+            "scope_label": {
+              "en": "Qantas Freight booking — priced by pet weight and crate size",
+              "fr": "Réservation Qantas Freight — prix au poids de l'animal et à la taille de la caisse",
+              "es": "Reserva Qantas Freight — precio según el peso del animal y el tamaño de la jaula",
+              "pt": "Reserva Qantas Freight — preço conforme o peso do animal e o tamanho da caixa"
+            },
             "source": {
               "url": "https://freight.qantas.com/en-au/pets/pet-travel-faqs",
               "source_type": "official_website",
@@ -45234,7 +46093,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "200–450 USD selon le poids total et le trajet",
+            "scope_label": {
+              "en": "200–450 USD depending on total weight and journey",
+              "fr": "200–450 USD selon le poids total et le trajet",
+              "es": "200–450 USD según el peso total y el trayecto",
+              "pt": "200–450 USD conforme o peso total e o trajeto"
+            },
             "source": {
               "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
               "source_type": "official_website",
@@ -45266,7 +46130,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "260–590 CAD selon le poids total et le trajet",
+            "scope_label": {
+              "en": "260–590 CAD depending on total weight and journey",
+              "fr": "260–590 CAD selon le poids total et le trajet",
+              "es": "260–590 CAD según el peso total y el trayecto",
+              "pt": "260–590 CAD conforme o peso total e o trajeto"
+            },
             "source": {
               "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
               "source_type": "official_website",
@@ -45784,7 +46653,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Vol intérieur, Europe/Maghreb ou long-courrier, selon la route",
+            "scope_label": {
+              "en": "Domestic, Europe/Maghreb or long-haul, depending on the route",
+              "fr": "Vol intérieur, Europe/Maghreb ou long-courrier, selon la route",
+              "es": "Vuelo nacional, Europa/Magreb o larga distancia, según la ruta",
+              "pt": "Voo doméstico, Europa/Magrebe ou longo curso, conforme a rota"
+            },
             "source": {
               "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
@@ -45816,7 +46690,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Europe/Maghreb ou long-courrier, selon la route",
+            "scope_label": {
+              "en": "Europe/Maghreb or long-haul, depending on the route",
+              "fr": "Europe/Maghreb ou long-courrier, selon la route",
+              "es": "Europa/Magreb o larga distancia, según la ruta",
+              "pt": "Europa/Magrebe ou longo curso, conforme a rota"
+            },
             "source": {
               "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
@@ -45868,7 +46747,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
+            "scope_label": {
+              "en": "Depending on the zone and weight band, up to 70 kg",
+              "fr": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
+              "es": "Según la zona y el tramo de peso, hasta 70 kg",
+              "pt": "Conforme a zona e a faixa de peso, até 70 kg"
+            },
             "source": {
               "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
@@ -45900,7 +46784,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
+            "scope_label": {
+              "en": "Depending on the zone and weight band, up to 70 kg",
+              "fr": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
+              "es": "Según la zona y el tramo de peso, hasta 70 kg",
+              "pt": "Conforme a zona e a faixa de peso, até 70 kg"
+            },
             "source": {
               "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
@@ -48127,7 +49016,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Inrikes",
+            "scope_label": {
+              "en": "Domestic",
+              "fr": "Vols intérieurs",
+              "es": "Vuelos nacionales",
+              "pt": "Voos domésticos"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48171,7 +49065,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Skandinavien, Europa och Mellanöstern",
+            "scope_label": {
+              "en": "Scandinavia, Europe and the Middle East",
+              "fr": "Scandinavie, Europe et Moyen-Orient",
+              "es": "Escandinavia, Europa y Oriente Medio",
+              "pt": "Escandinávia, Europa e Oriente Médio"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48215,7 +49114,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Asien, Kanada och USA",
+            "scope_label": {
+              "en": "Asia, Canada and the United States",
+              "fr": "Asie, Canada et États-Unis",
+              "es": "Asia, Canadá y Estados Unidos",
+              "pt": "Ásia, Canadá e Estados Unidos"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48259,7 +49163,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Kina",
+            "scope_label": {
+              "en": "China",
+              "fr": "Chine",
+              "es": "China",
+              "pt": "China"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48322,7 +49231,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Inrikes",
+            "scope_label": {
+              "en": "Domestic",
+              "fr": "Vols intérieurs",
+              "es": "Vuelos nacionales",
+              "pt": "Voos domésticos"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48366,7 +49280,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Skandinavien, Europa och Mellanöstern",
+            "scope_label": {
+              "en": "Scandinavia, Europe and the Middle East",
+              "fr": "Scandinavie, Europe et Moyen-Orient",
+              "es": "Escandinavia, Europa y Oriente Medio",
+              "pt": "Escandinávia, Europa e Oriente Médio"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48410,7 +49329,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Asien, Kanada och USA",
+            "scope_label": {
+              "en": "Asia, Canada and the United States",
+              "fr": "Asie, Canada et États-Unis",
+              "es": "Asia, Canadá y Estados Unidos",
+              "pt": "Ásia, Canadá e Estados Unidos"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48454,7 +49378,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Kina",
+            "scope_label": {
+              "en": "China",
+              "fr": "Chine",
+              "es": "China",
+              "pt": "China"
+            },
             "source": {
               "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
               "source_type": "official_website",
@@ -48943,7 +49872,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas",
+            "scope_label": {
+              "en": "Hold: domestic and international flights, excluding the United States and Canada — for those the page refers to regional grids it does not publish",
+              "fr": "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas",
+              "es": "Bodega: vuelos nacionales e internacionales, excepto Estados Unidos y Canadá — para estos la página remite a cuadros regionales que no publica",
+              "pt": "Porão: voos domésticos e internacionais, exceto Estados Unidos e Canadá — para esses a página remete a grades regionais que não publica"
+            },
             "source": {
               "url": "https://www.saudia.com/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
@@ -49429,7 +50363,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Network; special piece treatment to/from USA",
+            "scope_label": {
+              "en": "Network; special piece treatment to/from USA",
+              "fr": "Réseau ; traitement par pièce spécifique depuis ou vers les États-Unis",
+              "es": "Red; tratamiento por pieza específico desde o hacia Estados Unidos",
+              "pt": "Rede; tratamento por peça específico de ou para os Estados Unidos"
+            },
             "source": {
               "url": "https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/",
               "source_type": "official_website",
@@ -49472,7 +50411,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Typically >32kg or non-passenger cases",
+            "scope_label": {
+              "en": "Typically >32kg or non-passenger cases",
+              "fr": "Typiquement au-delà de 32 kg, ou hors accompagnement passager",
+              "es": "Habitualmente más de 32 kg, o casos sin pasajero acompañante",
+              "pt": "Normalmente acima de 32 kg, ou casos sem passageiro acompanhante"
+            },
             "source": {
               "url": "https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/",
               "source_type": "official_website",
@@ -49910,7 +50854,97 @@
         },
         "max_weight_kg": 8,
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_sky_express_cabin_domestique_2026_09_19",
+            "placement": "cabin",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 35,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Cabin, pet and crate up to 8 kg: domestic flights within Greece",
+              "fr": "Cabine, animal et cage jusqu'à 8 kg : vols intérieurs en Grèce",
+              "es": "Cabina, animal y jaula hasta 8 kg: vuelos nacionales en Grecia",
+              "pt": "Cabine, animal e caixa até 8 kg: voos domésticos na Grécia"
+            },
+            "source": {
+              "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page grecque officielle",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur la base de voyage",
+                  "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — contrôle de coïncidence",
+                  "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                }
+              ],
+              "quote": "Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€",
+              "quote_language": "el",
+              "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
+            }
+          },
+          {
+            "id": "fare_sky_express_cabin_international_2026_09_19",
+            "placement": "cabin",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 65,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Cabin, pet and crate up to 8 kg: international flights",
+              "fr": "Cabine, animal et cage jusqu'à 8 kg : vols internationaux",
+              "es": "Cabina, animal y jaula hasta 8 kg: vuelos internacionales",
+              "pt": "Cabine, animal e caixa até 8 kg: voos internacionais"
+            },
+            "source": {
+              "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page grecque officielle",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur la base de voyage",
+                  "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — contrôle de coïncidence",
+                  "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                }
+              ],
+              "quote": "Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€",
+              "quote_language": "el",
+              "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
@@ -49936,7 +50970,53 @@
         "min_weight_kg": 8,
         "weight_min_bound": "gt",
         "weight_limit_bound": "lte",
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_sky_express_hold_2026_09_19",
+            "placement": "hold",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 50,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_segment",
+            "scope_label": {
+              "en": "Hold, pet and crate from 8 to 25 kg — cats and dogs only",
+              "fr": "Soute, animal et cage de 8 à 25 kg — chats et chiens uniquement",
+              "es": "Bodega, animal y jaula de 8 a 25 kg — solo gatos y perros",
+              "pt": "Porão, animal e caixa de 8 a 25 kg — apenas gatos e cães"
+            },
+            "source": {
+              "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page grecque officielle",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — réserve sur la base de voyage",
+                  "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — contrôle de coïncidence",
+                  "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                }
+              ],
+              "quote": "Χρέωση μεταφορας: 50€",
+              "quote_language": "el",
+              "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στον χώρο αποθήκευσης"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -50830,7 +51910,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien",
+            "scope_label": {
+              "en": "Hold: South African domestic flights only, VAT included, whatever the cabin class — crate up to 1 m × 1 m and 23 kg; internationally, the pet must travel as freight under an air waybill",
+              "fr": "Soute : vols intérieurs en Afrique du Sud uniquement, TVA comprise, quelle que soit la classe — caisse jusqu'à 1 m × 1 m et 23 kg ; à l'international, l'animal doit voyager en fret sous lettre de transport aérien",
+              "es": "Bodega: solo vuelos nacionales en Sudáfrica, IVA incluido, sea cual sea la clase — jaula hasta 1 m × 1 m y 23 kg; a nivel internacional, el animal debe viajar como carga con carta de porte aéreo",
+              "pt": "Porão: apenas voos domésticos na África do Sul, IVA incluído, qualquer que seja a classe — caixa até 1 m × 1 m e 23 kg; no internacional, o animal deve viajar como carga sob conhecimento aéreo"
+            },
             "source": {
               "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals",
               "source_type": "official_website",
@@ -51343,7 +52428,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Vol international · tarif à partir de",
+            "scope_label": {
+              "en": "International flight · starting price",
+              "fr": "Vol international · tarif à partir de",
+              "es": "Vuelo internacional · precio desde",
+              "pt": "Voo internacional · preço a partir de"
+            },
             "source": {
               "url": "https://www.sunexpress.com/tr-tr/information/bagaj/evcil-hayvanlarin-tasinmasi/",
               "source_type": "official_website",
@@ -51395,7 +52485,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "International hors Ercan · prépayé ou aéroport",
+            "scope_label": {
+              "en": "International excluding Ercan · prepaid or at the airport",
+              "fr": "International hors Ercan · prépayé ou aéroport",
+              "es": "Internacional excepto Ercan · prepago o en el aeropuerto",
+              "pt": "Internacional exceto Ercan · pré-pago ou no aeroporto"
+            },
             "source": {
               "url": "https://www.sunexpress.com/tr-tr/information/bagaj/evcil-hayvanlarin-tasinmasi/",
               "source_type": "official_website",
@@ -51744,7 +52839,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+            "scope_label": {
+              "en": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+              "fr": "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon",
+              "es": "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón",
+              "pt": "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -51772,7 +52872,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+            "scope_label": {
+              "en": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+              "fr": "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon",
+              "es": "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón",
+              "pt": "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -51800,7 +52905,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+            "scope_label": {
+              "en": "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan",
+              "fr": "7 zones : Suisse, Europe, Levant/Afrique du Nord, intercontinental court/moyen/long, Japon",
+              "es": "7 zonas: Suiza, Europa, Levante/Norte de África, intercontinental corto/medio/largo, Japón",
+              "pt": "7 zonas: Suíça, Europa, Levante/Norte da África, intercontinental curto/médio/longo, Japão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -51848,7 +52958,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Same 7 zones; small/large container; transfer surcharge possible",
+            "scope_label": {
+              "en": "Same 7 zones; small/large container; transfer surcharge possible",
+              "fr": "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible",
+              "es": "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión",
+              "pt": "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -51876,7 +52991,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Same 7 zones; small/large container; transfer surcharge possible",
+            "scope_label": {
+              "en": "Same 7 zones; small/large container; transfer surcharge possible",
+              "fr": "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible",
+              "es": "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión",
+              "pt": "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -51904,7 +53024,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Same 7 zones; small/large container; transfer surcharge possible",
+            "scope_label": {
+              "en": "Same 7 zones; small/large container; transfer surcharge possible",
+              "fr": "Mêmes 7 zones ; petit/grand contenant ; supplément de correspondance possible",
+              "es": "Mismas 7 zonas; contenedor pequeño/grande; posible recargo por conexión",
+              "pt": "Mesmas 7 zonas; recipiente pequeno/grande; possível sobretaxa de conexão"
+            },
             "source": {
               "url": "https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html",
               "source_type": "official_website",
@@ -52419,7 +53544,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "À partir de 40 EUR · vol domestique · basse saison · achat en ligne",
+            "scope_label": {
+              "en": "From 40 EUR · domestic flight · low season · online purchase",
+              "fr": "À partir de 40 EUR · vol domestique · basse saison · achat en ligne",
+              "es": "Desde 40 EUR · vuelo nacional · temporada baja · compra en línea",
+              "pt": "A partir de 40 EUR · voo doméstico · baixa temporada · compra online"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -52447,7 +53577,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "À partir de 51 USD · vol domestique · basse saison · achat en ligne",
+            "scope_label": {
+              "en": "From 51 USD · domestic flight · low season · online purchase",
+              "fr": "À partir de 51 USD · vol domestique · basse saison · achat en ligne",
+              "es": "Desde 51 USD · vuelo nacional · temporada baja · compra en línea",
+              "pt": "A partir de 51 USD · voo doméstico · baixa temporada · compra online"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -52475,7 +53610,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "À partir de 70 CAD · vol domestique · basse saison · achat en ligne",
+            "scope_label": {
+              "en": "From 70 CAD · domestic flight · low season · online purchase",
+              "fr": "À partir de 70 CAD · vol domestique · basse saison · achat en ligne",
+              "es": "Desde 70 CAD · vuelo nacional · temporada baja · compra en línea",
+              "pt": "A partir de 70 CAD · voo doméstico · baixa temporada · compra online"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -52520,7 +53660,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Route, weight, season and purchase channel",
+            "scope_label": {
+              "en": "Route, weight, season and purchase channel",
+              "fr": "Route, poids, saison et canal d'achat",
+              "es": "Ruta, peso, temporada y canal de compra",
+              "pt": "Rota, peso, temporada e canal de compra"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -52548,7 +53693,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Route, weight, season and purchase channel",
+            "scope_label": {
+              "en": "Route, weight, season and purchase channel",
+              "fr": "Route, poids, saison et canal d'achat",
+              "es": "Ruta, peso, temporada y canal de compra",
+              "pt": "Rota, peso, temporada e canal de compra"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -52576,7 +53726,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Route, weight, season and purchase channel",
+            "scope_label": {
+              "en": "Route, weight, season and purchase channel",
+              "fr": "Route, poids, saison et canal d'achat",
+              "es": "Ruta, peso, temporada y canal de compra",
+              "pt": "Rota, peso, temporada e canal de compra"
+            },
             "source": {
               "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
@@ -53070,7 +54225,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Zones 1 / 2 / 3",
+            "scope_label": {
+              "en": "Zones 1 / 2 / 3",
+              "fr": "Zones 1 / 2 / 3",
+              "es": "Zonas 1 / 2 / 3",
+              "pt": "Zonas 1 / 2 / 3"
+            },
             "source": {
               "url": "https://www.tarom.ro/en/passenger-information/special-baggage",
               "source_type": "official_website",
@@ -53127,7 +54287,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "Zones 1 / 2 / 3; no AVIH on A320",
+            "scope_label": {
+              "en": "Zones 1 / 2 / 3; no AVIH on A320",
+              "fr": "Zones 1 / 2 / 3 ; pas d'AVIH sur A320",
+              "es": "Zonas 1 / 2 / 3; sin AVIH en A320",
+              "pt": "Zonas 1 / 2 / 3; sem AVIH no A320"
+            },
             "source": {
               "url": "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
               "source_type": "official_website",
@@ -53656,7 +54821,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic Thailand versus international; weight bands",
+            "scope_label": {
+              "en": "Domestic Thailand versus international; weight bands",
+              "fr": "Thaïlande intérieure contre international ; tranches de poids",
+              "es": "Tailandia nacional frente a internacional; tramos de peso",
+              "pt": "Tailândia doméstica versus internacional; faixas de peso"
+            },
             "source": {
               "url": "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
               "source_type": "official_website",
@@ -53696,7 +54866,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Thai Cargo cases",
+            "scope_label": {
+              "en": "Thai Cargo cases",
+              "fr": "Cas relevant de Thai Cargo",
+              "es": "Casos de Thai Cargo",
+              "pt": "Casos da Thai Cargo"
+            },
             "source": {
               "url": "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
               "source_type": "official_website",
@@ -54148,7 +55323,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Transavia Netherlands versus France/route",
+            "scope_label": {
+              "en": "Transavia Netherlands versus France/route",
+              "fr": "Transavia Pays-Bas contre France/route",
+              "es": "Transavia Países Bajos frente a Francia/ruta",
+              "pt": "Transavia Países Baixos versus França/rota"
+            },
             "source": {
               "url": "https://www.transavia.com/hilfe/de-de/kinder-haustiere-gruppen/haustiere-im-flugzeug/kabine",
               "source_type": "official_website",
@@ -54728,7 +55908,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "ECS Group cargo",
+            "scope_label": {
+              "en": "ECS Group cargo",
+              "fr": "Fret ECS Group",
+              "es": "Carga ECS Group",
+              "pt": "Carga ECS Group"
+            },
             "source": {
               "url": "https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me",
               "source_type": "official_website",
@@ -55177,7 +56362,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "scope_label": {
+              "en": "Outside the allowance: charged as excess baggage",
+              "fr": "Hors franchise : facturé comme excédent de bagages",
+              "es": "Fuera de la franquicia: facturado como exceso de equipaje",
+              "pt": "Fora da franquia: cobrado como excesso de bagagem"
+            },
             "source": {
               "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
               "source_type": "official_website",
@@ -55226,7 +56416,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Hors franchise : facturé comme excédent de bagages",
+            "scope_label": {
+              "en": "Outside the allowance: charged as excess baggage",
+              "fr": "Hors franchise : facturé comme excédent de bagages",
+              "es": "Fuera de la franquicia: facturado como exceso de equipaje",
+              "pt": "Fora da franquia: cobrado como excesso de bagagem"
+            },
             "source": {
               "url": "https://www.tunisair.com/fr/guide-utilisateur/preparez-vos-bagages",
               "source_type": "official_website",
@@ -55716,7 +56911,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Route-based calculator; <=8kg PETC",
+            "scope_label": {
+              "en": "Route-based calculator; <=8kg PETC",
+              "fr": "Calculateur par route ; PETC <=8kg",
+              "es": "Calculadora por ruta; PETC <=8kg",
+              "pt": "Calculadora por rota; PETC <=8kg"
+            },
             "source": {
               "url": "https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/",
               "source_type": "official_website",
@@ -55744,7 +56944,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg",
+            "scope_label": {
+              "en": "Interline arriving in, departing from or transiting Türkiye · PETC 0–8 kg",
+              "fr": "Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg",
+              "es": "Interline con llegada, salida o tránsito por Turquía · PETC 0–8 kg",
+              "pt": "Interline com chegada, partida ou trânsito pela Turquia · PETC 0–8 kg"
+            },
             "source": {
               "url": "https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/",
               "source_type": "official_website",
@@ -55786,7 +56991,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Route calculator; 0–23, 24–32, 33+kg",
+            "scope_label": {
+              "en": "Route calculator; 0–23, 24–32, 33+kg",
+              "fr": "Calculateur par route ; 0–23, 24–32, 33+kg",
+              "es": "Calculadora por ruta; 0–23, 24–32, 33+kg",
+              "pt": "Calculadora por rota; 0–23, 24–32, 33+kg"
+            },
             "source": {
               "url": "https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/",
               "source_type": "official_website",
@@ -55814,7 +57024,12 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_segment",
-            "scope_label": "Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés",
+            "scope_label": {
+              "en": "Interline arriving in, departing from or transiting Türkiye · AVIH, all published weights",
+              "fr": "Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés",
+              "es": "Interline con llegada, salida o tránsito por Turquía · AVIH, todos los pesos publicados",
+              "pt": "Interline com chegada, partida ou trânsito pela Turquia · AVIH, todos os pesos publicados"
+            },
             "source": {
               "url": "https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/",
               "source_type": "official_website",
@@ -56347,7 +57562,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "Animal en cabine · par trajet",
+            "scope_label": {
+              "en": "Pet in cabin · per journey",
+              "fr": "Animal en cabine · par trajet",
+              "es": "Animal en cabina · por trayecto",
+              "pt": "Animal na cabine · por trajeto"
+            },
             "source": {
               "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
               "source_type": "official_website",
@@ -56856,7 +58076,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Zones A–D; domestic Vietnam",
+            "scope_label": {
+              "en": "Zones A–D; domestic Vietnam",
+              "fr": "Zones A–D ; Vietnam intérieur",
+              "es": "Zonas A–D; Vietnam nacional",
+              "pt": "Zonas A–D; Vietnã doméstico"
+            },
             "source": {
               "url": "https://www.vietnamairlines.com/in/en/travel-information/special-services/traveling-with-pet/petc-charge",
               "source_type": "official_website",
@@ -56914,7 +58139,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Zones A–D and weight <=9, 9–16, 16–32kg",
+            "scope_label": {
+              "en": "Zones A–D and weight <=9, 9–16, 16–32kg",
+              "fr": "Zones A–D et poids <=9, 9–16, 16–32kg",
+              "es": "Zonas A–D y peso <=9, 9–16, 16–32kg",
+              "pt": "Zonas A–D e peso <=9, 9–16, 16–32kg"
+            },
             "source": {
               "url": "https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge",
               "source_type": "official_website",
@@ -56942,7 +58172,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Above 32kg and cargo cases",
+            "scope_label": {
+              "en": "Above 32kg and cargo cases",
+              "fr": "Plus de 32 kg et cas relevant du fret",
+              "es": "Más de 32 kg y casos de carga",
+              "pt": "Acima de 32 kg e casos de carga"
+            },
             "source": {
               "url": "https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge",
               "source_type": "official_website",
@@ -57871,7 +59106,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_segment",
-            "scope_label": "Eligible Australian domestic routes/dates",
+            "scope_label": {
+              "en": "Eligible Australian domestic routes/dates",
+              "fr": "Routes et dates intérieures australiennes éligibles",
+              "es": "Rutas y fechas nacionales australianas elegibles",
+              "pt": "Rotas e datas domésticas australianas elegíveis"
+            },
             "source": {
               "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
               "source_type": "official_website",
@@ -57923,7 +59163,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "Cargo transport where available",
+            "scope_label": {
+              "en": "Cargo transport where available",
+              "fr": "Transport en fret là où il est proposé",
+              "es": "Transporte en carga donde esté disponible",
+              "pt": "Transporte em carga onde disponível"
+            },
             "source": {
               "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
               "source_type": "official_website",
@@ -58380,7 +59625,12 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "39 EUR en ligne ou par téléphone · 60 EUR à l’aéroport",
+            "scope_label": {
+              "en": "39 EUR online or by phone · 60 EUR at the airport",
+              "fr": "39 EUR en ligne ou par téléphone · 60 EUR à l’aéroport",
+              "es": "39 EUR en línea o por teléfono · 60 EUR en el aeropuerto",
+              "pt": "39 EUR online ou por telefone · 60 EUR no aeroporto"
+            },
             "source": {
               "url": "https://www.volotea.com/es/tarifas/",
               "source_type": "official_website",
@@ -58844,7 +60094,12 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
-            "scope_label": "Domestic Spain; international and Canary",
+            "scope_label": {
+              "en": "Domestic Spain; international and Canary",
+              "fr": "Espagne intérieure ; international et Canaries",
+              "es": "España nacional; internacional y Canarias",
+              "pt": "Espanha doméstica; internacional e Canárias"
+            },
             "source": {
               "url": "https://www.vueling.com/faq/html/ancillary-products.html",
               "source_type": "official_website",
@@ -59589,7 +60844,12 @@
             },
             "billing_subject": "shipment",
             "journey_basis": "per_journey",
-            "scope_label": "WestJet Cargo routes",
+            "scope_label": {
+              "en": "WestJet Cargo routes",
+              "fr": "Routes WestJet Cargo",
+              "es": "Rutas WestJet Cargo",
+              "pt": "Rotas WestJet Cargo"
+            },
             "source": {
               "url": "https://www.westjet.com/en-bb/flights/fees",
               "source_type": "official_website",

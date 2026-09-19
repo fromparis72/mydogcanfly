@@ -81,7 +81,11 @@ policies:
               currency: PHP
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: FurPAL · vols intérieurs · tarif à partir de
+        scope_label:
+          en: "FurPAL · domestic flights · starting price"
+          fr: "FurPAL · vols intérieurs · tarif à partir de"
+          es: "FurPAL · vuelos nacionales · precio desde"
+          pt: "FurPAL · voos domésticos · preço a partir de"
         source:
           url: https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html
           source_type: official_website
@@ -133,7 +137,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: PAL Cargo; commonly >32kg
+        scope_label:
+          en: "PAL Cargo; commonly >32kg"
+          fr: "PAL Cargo ; généralement au-delà de 32 kg"
+          es: "PAL Cargo; habitualmente más de 32 kg"
+          pt: "PAL Cargo; normalmente acima de 32 kg"
         source:
           url: https://www.philippineairlines.com/ph/en/before-you-fly/baggage-information/special-baggage/pets.html
           source_type: official_website

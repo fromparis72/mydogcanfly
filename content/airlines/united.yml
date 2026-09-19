@@ -89,7 +89,11 @@ policies:
           amounts: [{ amount: 150, currency: USD }]
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Animal en cabine · par trajet
+        scope_label:
+          en: "Pet in cabin · per journey"
+          fr: "Animal en cabine · par trajet"
+          es: "Animal en cabina · por trayecto"
+          pt: "Animal na cabine · por trajeto"
         source:
           url: https://www.united.com/en/us/fly/travel/traveling-with-pets.html
           source_type: official_website

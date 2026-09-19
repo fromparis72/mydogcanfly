@@ -121,7 +121,11 @@ policies:
               currency: USD
         billing_subject: kilogram
         journey_basis: per_journey
-        scope_label: Nairobi → New York
+        scope_label:
+          en: "Nairobi → New York"
+          fr: "Nairobi → New York"
+          es: "Nairobi → Nueva York"
+          pt: "Nairóbi → Nova York"
         source:
           url: https://www.kenya-airways.com/en-nl/policies/optional-fees/
           source_type: official_website

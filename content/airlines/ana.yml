@@ -102,7 +102,11 @@ policies:
               currency: JPY
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Vols intérieurs au Japon, par cage et par trajet
+        scope_label:
+          en: "Japan domestic flights, per crate and per journey"
+          fr: "Vols intérieurs au Japon, par cage et par trajet"
+          es: "Vuelos nacionales en Japón, por jaula y por trayecto"
+          pt: "Voos domésticos no Japão, por caixa e por trajeto"
         source:
           url: https://www.ana.co.jp/ja/jp/guide/reservation/support/domestic/pets/
           source_type: official_website
@@ -128,7 +132,11 @@ policies:
               currency: USD
         billing_subject: container
         journey_basis: per_segment
-        scope_label: international area grid; Japan domestic
+        scope_label:
+          en: "international area grid; Japan domestic"
+          fr: "grille par zones internationales ; intérieur Japon"
+          es: "cuadro por zonas internacionales; nacional Japón"
+          pt: "grade por zonas internacionais; doméstico Japão"
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
           source_type: official_website
@@ -151,7 +159,11 @@ policies:
               currency: CAD
         billing_subject: container
         journey_basis: per_segment
-        scope_label: international area grid; Japan domestic
+        scope_label:
+          en: "international area grid; Japan domestic"
+          fr: "grille par zones internationales ; intérieur Japon"
+          es: "cuadro por zonas internacionales; nacional Japón"
+          pt: "grade por zonas internacionais; doméstico Japão"
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
           source_type: official_website
@@ -174,7 +186,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_segment
-        scope_label: international area grid; Japan domestic
+        scope_label:
+          en: "international area grid; Japan domestic"
+          fr: "grille par zones internationales ; intérieur Japon"
+          es: "cuadro por zonas internacionales; nacional Japón"
+          pt: "grade por zonas internacionais; doméstico Japão"
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
           source_type: official_website

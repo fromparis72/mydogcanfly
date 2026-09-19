@@ -146,7 +146,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas"
+        scope_label:
+          en: "Hold: domestic and international flights, excluding the United States and Canada — for those the page refers to regional grids it does not publish"
+          fr: "Soute : vols intérieurs et internationaux, États-Unis et Canada exclus — la page renvoie pour eux à des grilles régionales qu'elle ne publie pas"
+          es: "Bodega: vuelos nacionales e internacionales, excepto Estados Unidos y Canadá — para estos la página remite a cuadros regionales que no publica"
+          pt: "Porão: voos domésticos e internacionais, exceto Estados Unidos e Canadá — para esses a página remete a grades regionais que não publica"
         source:
           url: "https://www.saudia.com/book/flight-information/travelling-with-pets"
           source_type: official_website

@@ -88,7 +88,11 @@ policies:
             - { amount: 60, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Inrikes
+        scope_label:
+          en: "Domestic"
+          fr: "Vols intérieurs"
+          es: "Vuelos nacionales"
+          pt: "Voos domésticos"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -112,7 +116,11 @@ policies:
             - { amount: 80, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Skandinavien, Europa och Mellanöstern
+        scope_label:
+          en: "Scandinavia, Europe and the Middle East"
+          fr: "Scandinavie, Europe et Moyen-Orient"
+          es: "Escandinavia, Europa y Oriente Medio"
+          pt: "Escandinávia, Europa e Oriente Médio"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -136,7 +144,11 @@ policies:
             - { amount: 105, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Asien, Kanada och USA
+        scope_label:
+          en: "Asia, Canada and the United States"
+          fr: "Asie, Canada et États-Unis"
+          es: "Asia, Canadá y Estados Unidos"
+          pt: "Ásia, Canadá e Estados Unidos"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -160,7 +172,11 @@ policies:
             - { amount: 159, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Kina
+        scope_label:
+          en: "China"
+          fr: "Chine"
+          es: "China"
+          pt: "China"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -212,7 +228,11 @@ policies:
             - { amount: 100, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Inrikes
+        scope_label:
+          en: "Domestic"
+          fr: "Vols intérieurs"
+          es: "Vuelos nacionales"
+          pt: "Voos domésticos"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -236,7 +256,11 @@ policies:
             - { amount: 195, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Skandinavien, Europa och Mellanöstern
+        scope_label:
+          en: "Scandinavia, Europe and the Middle East"
+          fr: "Scandinavie, Europe et Moyen-Orient"
+          es: "Escandinavia, Europa y Oriente Medio"
+          pt: "Escandinávia, Europa e Oriente Médio"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -260,7 +284,11 @@ policies:
             - { amount: 370, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Asien, Kanada och USA
+        scope_label:
+          en: "Asia, Canada and the United States"
+          fr: "Asie, Canada et États-Unis"
+          es: "Asia, Canadá y Estados Unidos"
+          pt: "Ásia, Canadá e Estados Unidos"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website
@@ -284,7 +312,11 @@ policies:
             - { amount: 775, currency: USD }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Kina
+        scope_label:
+          en: "China"
+          fr: "Chine"
+          es: "China"
+          pt: "China"
         source:
           url: https://www.sas.se/reseinfo/resa-med-djur/kabin
           source_type: official_website

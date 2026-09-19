@@ -96,7 +96,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: from Mauritius; subject route acceptance
+        scope_label:
+          en: "from Mauritius; subject route acceptance"
+          fr: "au départ de Maurice ; sous réserve d'acceptation de la route"
+          es: "con salida desde Mauricio; sujeto a la aceptación de la ruta"
+          pt: "com partida de Maurício; sujeito à aceitação da rota"
         source:
           url: https://www.airmauritius.com/en-fr/before-you-fly/travel-information/assistance-and-health/travelling-with-pets
           source_type: official_website
@@ -133,7 +137,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: cargo network
+        scope_label:
+          en: "cargo network"
+          fr: "réseau fret"
+          es: "red de carga"
+          pt: "rede de carga"
         source:
           url: https://my.airmauritius.com/en-gb/help/faq/cargo-queries
           source_type: official_website

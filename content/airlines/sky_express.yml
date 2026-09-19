@@ -82,6 +82,85 @@ policies:
       quote: ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς
       quote_language: el
       locator: encart chiffre de la section cabine
+    fares:
+      - id: fare_sky_express_cabin_domestique_2026_09_19
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 35
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label:
+          en: "Cabin, pet and crate up to 8 kg: domestic flights within Greece"
+          fr: "Cabine, animal et cage jusqu'à 8 kg : vols intérieurs en Grèce"
+          es: "Cabina, animal y jaula hasta 8 kg: vuelos nacionales en Grecia"
+          pt: "Cabine, animal e caixa até 8 kg: voos domésticos na Grécia"
+        source:
+          url: https://www.skyexpress.gr/el/sky-experience/sky-pets
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page grecque officielle"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur la base de voyage"
+              note: >-
+                La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont
+                facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus
+                prudente de cette phrase, pas une mention explicite. À confirmer par une source
+                qui nomme la base.
+            - date: 2026-09-19
+              reviewer: "Claude — contrôle de coïncidence"
+              note: >-
+                35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle
+                entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur
+                une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et
+                « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ ».
+          quote_language: el
+          quote: "Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€"
+          locator: "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
+      - id: fare_sky_express_cabin_international_2026_09_19
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 65
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label:
+          en: "Cabin, pet and crate up to 8 kg: international flights"
+          fr: "Cabine, animal et cage jusqu'à 8 kg : vols internationaux"
+          es: "Cabina, animal y jaula hasta 8 kg: vuelos internacionales"
+          pt: "Cabine, animal e caixa até 8 kg: voos internacionais"
+        source:
+          url: https://www.skyexpress.gr/el/sky-experience/sky-pets
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page grecque officielle"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur la base de voyage"
+              note: >-
+                La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont
+                facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus
+                prudente de cette phrase, pas une mention explicite. À confirmer par une source
+                qui nomme la base.
+            - date: 2026-09-19
+              reviewer: "Claude — contrôle de coïncidence"
+              note: >-
+                35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle
+                entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur
+                une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et
+                « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ ».
+          quote_language: el
+          quote: "Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€"
+          locator: "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
   hold:
     availability: offered
     min_weight_kg: 8
@@ -106,6 +185,46 @@ policies:
       quote: ΕΩΣ / 8KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στην καμπίνα. ΕΩΣ / 25KG / Μέγιστο βάρος με το κλουβί μεταφοράς / Στον χώρο αποθήκευσης / (μόνο γάτες και σκύλοι)
       quote_language: el
       locator: tableau « Βάρος κατοικιδίων », colonne soute
+    fares:
+      - id: fare_sky_express_hold_2026_09_19
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 50
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label:
+          en: "Hold, pet and crate from 8 to 25 kg — cats and dogs only"
+          fr: "Soute, animal et cage de 8 à 25 kg — chats et chiens uniquement"
+          es: "Bodega, animal y jaula de 8 a 25 kg — solo gatos y perros"
+          pt: "Porão, animal e caixa de 8 a 25 kg — apenas gatos e cães"
+        source:
+          url: https://www.skyexpress.gr/el/sky-experience/sky-pets
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page grecque officielle"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur la base de voyage"
+              note: >-
+                La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont
+                facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus
+                prudente de cette phrase, pas une mention explicite. À confirmer par une source
+                qui nomme la base.
+            - date: 2026-09-19
+              reviewer: "Claude — contrôle de coïncidence"
+              note: >-
+                35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle
+                entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur
+                une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et
+                « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ ».
+          quote_language: el
+          quote: "Χρέωση μεταφορας: 50€"
+          locator: "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στον χώρο αποθήκευσης"
   cargo:
     review_state: legacy_unreviewed
 channels:

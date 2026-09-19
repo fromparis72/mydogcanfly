@@ -66,7 +66,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: listed destination groups
+        scope_label:
+          en: "listed destination groups"
+          fr: "groupes de destinations listés"
+          es: "grupos de destinos indicados"
+          pt: "grupos de destinos listados"
         source:
           url: https://www.airserbia.com/en/info-and-help/travel-guidelines/traveling-with-your-pets
           source_type: official_website

@@ -75,7 +75,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Selon la zone desservie depuis Paris
+        scope_label:
+          en: "Depending on the zone served from Paris"
+          fr: "Selon la zone desservie depuis Paris"
+          es: "Según la zona servida desde París"
+          pt: "Conforme a zona servida a partir de Paris"
         source:
           url: https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie
           source_type: official_website
@@ -121,7 +125,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Selon la zone desservie depuis Paris
+        scope_label:
+          en: "Depending on the zone served from Paris"
+          fr: "Selon la zone desservie depuis Paris"
+          es: "Según la zona servida desde París"
+          pt: "Conforme a zona servida a partir de Paris"
         source:
           url: https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie
           source_type: official_website

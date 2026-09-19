@@ -75,7 +75,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: Vol international · tarif à partir de
+        scope_label:
+          en: "International flight · starting price"
+          fr: "Vol international · tarif à partir de"
+          es: "Vuelo internacional · precio desde"
+          pt: "Voo internacional · preço a partir de"
         source:
           url: https://www.sunexpress.com/tr-tr/information/bagaj/evcil-hayvanlarin-tasinmasi/
           source_type: official_website
@@ -129,7 +133,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: International hors Ercan · prépayé ou aéroport
+        scope_label:
+          en: "International excluding Ercan · prepaid or at the airport"
+          fr: "International hors Ercan · prépayé ou aéroport"
+          es: "Internacional excepto Ercan · prepago o en el aeropuerto"
+          pt: "Internacional exceto Ercan · pré-pago ou no aeroporto"
         source:
           url: https://www.sunexpress.com/tr-tr/information/bagaj/evcil-hayvanlarin-tasinmasi/
           source_type: official_website

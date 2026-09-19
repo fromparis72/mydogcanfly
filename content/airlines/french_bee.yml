@@ -75,7 +75,11 @@ policies:
               currency: XPF
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Marchés EUR/XPF · non remboursable
+        scope_label:
+          en: "EUR/XPF markets · non-refundable"
+          fr: "Marchés EUR/XPF · non remboursable"
+          es: "Mercados EUR/XPF · no reembolsable"
+          pt: "Mercados EUR/XPF · não reembolsável"
         source:
           url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
           source_type: official_website
@@ -96,7 +100,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché anglophone/réseau admissible → marché anglophone/réseau admissible
+        scope_label:
+          en: "English-speaking market/eligible network → English-speaking market/eligible network"
+          fr: "marché anglophone/réseau admissible → marché anglophone/réseau admissible"
+          es: "mercado anglófono/red admisible → mercado anglófono/red admisible"
+          pt: "mercado anglófono/rede elegível → mercado anglófono/rede elegível"
         source:
           url: https://www.frenchbee.com/en/optional-services
           source_type: official_website
@@ -142,7 +150,11 @@ policies:
               currency: XPF
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Marchés EUR/XPF · non remboursable
+        scope_label:
+          en: "EUR/XPF markets · non-refundable"
+          fr: "Marchés EUR/XPF · non remboursable"
+          es: "Mercados EUR/XPF · no reembolsable"
+          pt: "Mercados EUR/XPF · não reembolsável"
         source:
           url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
           source_type: official_website
@@ -163,7 +175,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché anglophone/réseau admissible → hors Tahiti
+        scope_label:
+          en: "English-speaking market/eligible network → excluding Tahiti"
+          fr: "marché anglophone/réseau admissible → hors Tahiti"
+          es: "mercado anglófono/red admisible → excepto Tahití"
+          pt: "mercado anglófono/rede elegível → exceto Taiti"
         source:
           url: https://www.frenchbee.com/en/optional-services
           source_type: official_website

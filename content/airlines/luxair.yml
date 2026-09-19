@@ -71,7 +71,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_segment
-        scope_label: Classe économique · gratuit en classe affaires
+        scope_label:
+          en: "Economy class · free in business class"
+          fr: "Classe économique · gratuit en classe affaires"
+          es: "Clase económica · gratuito en clase ejecutiva"
+          pt: "Classe econômica · gratuito na classe executiva"
         source:
           url: https://www.luxair.lu/fr/informations/voyager-avec-des-animaux/
           source_type: official_website

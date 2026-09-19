@@ -107,7 +107,11 @@ policies:
           amounts: []
         billing_subject: shipment
         journey_basis: per_journey
-        scope_label: ECS Group cargo
+        scope_label:
+          en: "ECS Group cargo"
+          fr: "Fret ECS Group"
+          es: "Carga ECS Group"
+          pt: "Carga ECS Group"
         source:
           url: https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me
           source_type: official_website

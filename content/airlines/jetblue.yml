@@ -72,7 +72,11 @@ policies:
           amounts: [{ amount: 125, currency: USD }]
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Animal en cabine · par animal et par trajet
+        scope_label:
+          en: "Pet in cabin · per pet and per journey"
+          fr: "Animal en cabine · par animal et par trajet"
+          es: "Animal en cabina · por animal y por trayecto"
+          pt: "Animal na cabine · por animal e por trajeto"
         source:
           url: https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf
           source_type: official_website
