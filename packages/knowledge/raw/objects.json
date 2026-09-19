@@ -46020,7 +46020,7 @@
           "hold": {
             "availability": "offered",
             "max_weight_kg": 32,
-            "weight_includes_carrier": false,
+            "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
             "fares": [
               {
@@ -46064,20 +46064,25 @@
             "source": {
               "url": "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
+              "reviewer": "Claude — relecture de la page officielle, sur signalement de Codex",
               "history": [
                 {
                   "date": "2026-09-15",
                   "reviewer": "Codex — supersession par la page officielle courante",
                   "note": "Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ; citation « Dogs and cats weighing up to 32kg » ; localisateur « Travelling with Pets → Pet as Checked Baggage ». Remplacée par la phrase complète de la surface officielle courante."
+                },
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — qualification du sujet pesé, sur signalement de Codex",
+                  "note": "Citation précédente : « Dogs and cats weighing up to 32kg can be placed in our aircraft's hold. » Elle établissait le plafond mais PAS ce qui est pesé, ce qui laissait `weight_includes_carrier` affirmé sans preuve. Remplacée par la phrase qui nomme le sujet pesé. Le plafond de 32 kg, lui, est inchangé."
                 }
               ],
-              "quote": "Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.",
+              "quote": "The maximum combined weight of the pet and container must not exceed 32 kg.",
               "quote_language": "en",
-              "locator": "Travelling with Pets → Pet as Checked Baggage"
+              "locator": "Travelling with Pets → Pet as Accompanied Checked-in Baggage → weight rule"
             },
             "derived_from_fiche": true
           },
