@@ -56,7 +56,10 @@ const SEUILS = {
   "airline_sky_express.cabin": { max: 8, incl: true },
   "airline_sky_express.hold": { min: 8, max: 25, incl: true },
   "airline_km_malta.cabin": { max: 10, incl: true },
-  "airline_km_malta.hold": { max: 32, incl: false },
+  /* CORRIGÉ le 19/09/2026 : `incl` valait false sans preuve. La page dit « the maximum combined
+     weight of the pet and container must not exceed 32 kg » ; le plafond ne bouge pas, le sujet
+     pesé oui. L'attente scellée a refusé le changement tant qu'il n'était pas assumé ici. */
+  "airline_km_malta.hold": { max: 32, incl: true },
   "airline_sunexpress.cabin": { max: 8, incl: true },
   "airline_sunexpress.hold": { min: 8, incl: false },
   "airline_smartwings.cabin": { max: 8, incl: true },
@@ -85,8 +88,8 @@ const SOURCES_REMPLACEES = {
   },
   "airline_km_malta.hold": {
     url: "https://passaggi.kmmaltairlines.com/en/travelling-with-pets",
-    quote: "Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.",
-    language: "en", locator: "Travelling with Pets → Pet as Checked Baggage",
+    quote: "The maximum combined weight of the pet and container must not exceed 32 kg.",
+    language: "en", locator: "Travelling with Pets → Pet as Accompanied Checked-in Baggage → weight rule",
   },
   "airline_smartwings.hold": {
     url: "https://www.smartwings.com/en/fees-and-charges/?layout=default",

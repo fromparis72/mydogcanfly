@@ -152,14 +152,24 @@ policies:
     availability: offered
     max_weight_kg: 32
     weight_limit_bound: lte
-    weight_includes_carrier: false
+    # LE SEUIL INCLUT LA CAISSE (19/09/2026, défaut signalé par Codex et confirmé à la source).
+    # La valeur était `false`, et rien ne l'étayait : la citation retenue — « Dogs and cats weighing
+    # up to 32kg » — ne dit pas ce qui est pesé. La page le dit ailleurs, et la fiche le citait déjà
+    # dans la preuve de son propre tarif : « depending on the weight of your pet (including the
+    # container) », puis « Large AVIH: Animals weighing between 21-32kg ». La politique contredisait
+    # donc une citation présente à quelques lignes d'elle.
+    # L'erreur allait dans le sens dangereux : avec `false`, le moteur lit 32 kg comme le poids du
+    # CHIEN SEUL et accepte un chien de 31 kg dans une caisse de 8 kg, soit 39 kg réels, que la
+    # compagnie refuserait au comptoir. L'inverse aurait produit un refus injuste ; ici c'est une
+    # acceptation fausse, qui ne se découvre qu'à l'aéroport.
+    weight_includes_carrier: true
     source:
       url: https://passaggi.kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
-      verified_date: 2026-09-09
-      review_due: 2026-12-08
+      verified_date: 2026-09-19
+      review_due: 2026-12-18
       confidence: 4
-      reviewer: Codex — direct reading of official airline page
+      reviewer: "Claude — relecture de la page officielle, sur signalement de Codex"
       history:
         - date: "2026-09-15"
           reviewer: "Codex — supersession par la page officielle courante"
@@ -167,9 +177,16 @@ policies:
             Source précédente vérifiée le 2026-09-09 : https://kmmaltairlines.com/en/travelling-with-pets ;
             citation « Dogs and cats weighing up to 32kg » ; localisateur « Travelling with Pets → Pet as Checked Baggage ».
             Remplacée par la phrase complète de la surface officielle courante.
-      quote: Dogs and cats weighing up to 32kg can be placed in our aircraft's hold.
+        - date: "2026-09-19"
+          reviewer: "Claude — qualification du sujet pesé, sur signalement de Codex"
+          note: >-
+            Citation précédente : « Dogs and cats weighing up to 32kg can be placed in our aircraft's
+            hold. » Elle établissait le plafond mais PAS ce qui est pesé, ce qui laissait
+            `weight_includes_carrier` affirmé sans preuve. Remplacée par la phrase qui nomme le sujet
+            pesé. Le plafond de 32 kg, lui, est inchangé.
+      quote: "The maximum combined weight of the pet and container must not exceed 32 kg."
       quote_language: en
-      locator: Travelling with Pets → Pet as Checked Baggage
+      locator: "Travelling with Pets → Pet as Accompanied Checked-in Baggage → weight rule"
   cargo:
     fares:
       - id: fare_km_malta_cargo_2026_09_10
