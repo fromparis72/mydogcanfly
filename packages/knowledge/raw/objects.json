@@ -20448,7 +20448,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Argentine hors Terre de Feu",
+                "scope_label": {
+                  "en": "Argentina excluding Tierra del Fuego",
+                  "fr": "Argentine hors Terre de Feu",
+                  "es": "Argentina excepto Tierra del Fuego",
+                  "pt": "Argentina exceto Terra do Fogo"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20476,7 +20481,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "origine ou destination Terre de Feu",
+                "scope_label": {
+                  "en": "to or from Tierra del Fuego",
+                  "fr": "origine ou destination Terre de Feu",
+                  "es": "origen o destino Tierra del Fuego",
+                  "pt": "origem ou destino Terra do Fogo"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20504,7 +20514,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Argentine, Brésil, Chili, Paraguay ou Uruguay ↔ Amérique du Sud",
+                "scope_label": {
+                  "en": "Argentina, Brazil, Chile, Paraguay or Uruguay ↔ South America",
+                  "fr": "Argentine, Brésil, Chili, Paraguay ou Uruguay ↔ Amérique du Sud",
+                  "es": "Argentina, Brasil, Chile, Paraguay o Uruguay ↔ América del Sur",
+                  "pt": "Argentina, Brasil, Chile, Paraguai ou Uruguai ↔ América do Sul"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20536,7 +20551,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Colombie ↔ Europe",
+                "scope_label": {
+                  "en": "Colombia ↔ Europe",
+                  "fr": "Colombie ↔ Europe",
+                  "es": "Colombia ↔ Europa",
+                  "pt": "Colômbia ↔ Europa"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20568,7 +20588,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Amérique du Sud",
+                "scope_label": {
+                  "en": "Europe ↔ South America",
+                  "fr": "Europe ↔ Amérique du Sud",
+                  "es": "Europa ↔ América del Sur",
+                  "pt": "Europa ↔ América do Sul"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20620,7 +20645,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "intérieur hors Terre de Feu · caisse ≤ 60 × 40 × 45 cm",
+                "scope_label": {
+                  "en": "domestic excluding Tierra del Fuego · crate ≤ 60 × 40 × 45 cm",
+                  "fr": "intérieur hors Terre de Feu · caisse ≤ 60 × 40 × 45 cm",
+                  "es": "nacional excepto Tierra del Fuego · jaula ≤ 60 × 40 × 45 cm",
+                  "pt": "doméstico exceto Terra do Fogo · caixa ≤ 60 × 40 × 45 cm"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20648,7 +20678,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "intérieur hors Terre de Feu · caisse ≤ 100 × 70 × 80 cm",
+                "scope_label": {
+                  "en": "domestic excluding Tierra del Fuego · crate ≤ 100 × 70 × 80 cm",
+                  "fr": "intérieur hors Terre de Feu · caisse ≤ 100 × 70 × 80 cm",
+                  "es": "nacional excepto Tierra del Fuego · jaula ≤ 100 × 70 × 80 cm",
+                  "pt": "doméstico exceto Terra do Fogo · caixa ≤ 100 × 70 × 80 cm"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20676,7 +20711,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Argentine, Brésil, Chili, Paraguay ou Uruguay → Amérique du Sud · petite caisse",
+                "scope_label": {
+                  "en": "Argentina, Brazil, Chile, Paraguay or Uruguay → South America · small crate",
+                  "fr": "Argentine, Brésil, Chili, Paraguay ou Uruguay → Amérique du Sud · petite caisse",
+                  "es": "Argentina, Brasil, Chile, Paraguay o Uruguay → América del Sur · jaula pequeña",
+                  "pt": "Argentina, Brasil, Chile, Paraguai ou Uruguai → América do Sul · caixa pequena"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20704,7 +20744,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Pérou → République dominicaine, Mexique, Cuba ou États-Unis · grande caisse",
+                "scope_label": {
+                  "en": "Peru → Dominican Republic, Mexico, Cuba or the United States · large crate",
+                  "fr": "Pérou → République dominicaine, Mexique, Cuba ou États-Unis · grande caisse",
+                  "es": "Perú → República Dominicana, México, Cuba o Estados Unidos · jaula grande",
+                  "pt": "Peru → República Dominicana, México, Cuba ou Estados Unidos · caixa grande"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20736,7 +20781,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Amérique du Sud · caisse ≤ 80 × 55 × 60 cm",
+                "scope_label": {
+                  "en": "Europe ↔ South America · crate ≤ 80 × 55 × 60 cm",
+                  "fr": "Europe ↔ Amérique du Sud · caisse ≤ 80 × 55 × 60 cm",
+                  "es": "Europa ↔ América del Sur · jaula ≤ 80 × 55 × 60 cm",
+                  "pt": "Europa ↔ América do Sul · caixa ≤ 80 × 55 × 60 cm"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -20768,7 +20818,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Pérou ↔ Europe · caisse ≤ 100 × 70 × 80 cm",
+                "scope_label": {
+                  "en": "Peru ↔ Europe · crate ≤ 100 × 70 × 80 cm",
+                  "fr": "Pérou ↔ Europe · caisse ≤ 100 × 70 × 80 cm",
+                  "es": "Perú ↔ Europa · jaula ≤ 100 × 70 × 80 cm",
+                  "pt": "Peru ↔ Europa · caixa ≤ 100 × 70 × 80 cm"
+                },
                 "source": {
                   "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
                   "source_type": "official_website",
@@ -28557,7 +28612,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Cabin: domestic flights — up to 32 kg, crate included",
+                  "fr": "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                  "es": "Cabina: vuelos nacionales — hasta 32 kg, jaula incluida",
+                  "pt": "Cabine: voos domésticos — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28589,7 +28649,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_round_trip",
-                "scope_label": "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Cabin: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — up to 32 kg, crate included",
+                  "fr": "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                  "es": "Cabina: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — hasta 32 kg, jaula incluida",
+                  "pt": "Cabine: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28621,7 +28686,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Cabin: other routes within Asia, including Guam and Saipan — up to 32 kg, crate included",
+                  "fr": "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                  "es": "Cabina: otras rutas en Asia, incluidos Guam y Saipán — hasta 32 kg, jaula incluida",
+                  "pt": "Cabine: outras rotas na Ásia, incluindo Guam e Saipan — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28653,7 +28723,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Cabin: United States, Europe and Oceania — up to 32 kg, crate included",
+                  "fr": "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                  "es": "Cabina: Estados Unidos, Europa y Oceanía — hasta 32 kg, jaula incluida",
+                  "pt": "Cabine: Estados Unidos, Europa e Oceania — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28702,7 +28777,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: domestic flights — up to 32 kg, crate included",
+                  "fr": "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise",
+                  "es": "Bodega: vuelos nacionales — hasta 32 kg, jaula incluida",
+                  "pt": "Porão: voos domésticos — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28730,7 +28810,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : vols intérieurs — de 32 à 45 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: domestic flights — 32 to 45 kg, crate included",
+                  "fr": "Soute : vols intérieurs — de 32 à 45 kg, cage comprise",
+                  "es": "Bodega: vuelos nacionales — de 32 a 45 kg, jaula incluida",
+                  "pt": "Porão: voos domésticos — de 32 a 45 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28762,7 +28847,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_round_trip",
-                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — up to 32 kg, crate included",
+                  "fr": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise",
+                  "es": "Bodega: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — hasta 32 kg, jaula incluida",
+                  "pt": "Porão: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28794,7 +28884,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_round_trip",
-                "scope_label": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — 32 to 45 kg, crate included",
+                  "fr": "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise",
+                  "es": "Bodega: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — de 32 a 45 kg, jaula incluida",
+                  "pt": "Porão: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — de 32 a 45 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28826,7 +28921,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: other routes within Asia, including Guam and Saipan — up to 32 kg, crate included",
+                  "fr": "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise",
+                  "es": "Bodega: otras rutas en Asia, incluidos Guam y Saipán — hasta 32 kg, jaula incluida",
+                  "pt": "Porão: outras rotas na Ásia, incluindo Guam e Saipan — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28858,7 +28958,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: other routes within Asia, including Guam and Saipan — 32 to 45 kg, crate included",
+                  "fr": "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise",
+                  "es": "Bodega: otras rutas en Asia, incluidos Guam y Saipán — de 32 a 45 kg, jaula incluida",
+                  "pt": "Porão: outras rotas na Ásia, incluindo Guam e Saipan — de 32 a 45 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28890,7 +28995,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: United States, Europe and Oceania — up to 32 kg, crate included",
+                  "fr": "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise",
+                  "es": "Bodega: Estados Unidos, Europa y Oceanía — hasta 32 kg, jaula incluida",
+                  "pt": "Porão: Estados Unidos, Europa e Oceania — até 32 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -28922,7 +29032,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise",
+                "scope_label": {
+                  "en": "Hold: United States, Europe and Oceania — 32 to 45 kg, crate included",
+                  "fr": "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise",
+                  "es": "Bodega: Estados Unidos, Europa y Oceanía — de 32 a 45 kg, jaula incluida",
+                  "pt": "Porão: Estados Unidos, Europa e Oceania — de 32 a 45 kg, caixa incluída"
+                },
                 "source": {
                   "url": "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets",
                   "source_type": "official_website",
@@ -29318,7 +29433,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Autriche · caisse ≤ 60 × 45 × 40 cm",
+                "scope_label": {
+                  "en": "Austria · crate ≤ 60 × 45 × 40 cm",
+                  "fr": "Autriche · caisse ≤ 60 × 45 × 40 cm",
+                  "es": "Austria · jaula ≤ 60 × 45 × 40 cm",
+                  "pt": "Áustria · caixa ≤ 60 × 45 × 40 cm"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29346,7 +29466,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Autriche · caisse > 60 × 45 × 40 cm",
+                "scope_label": {
+                  "en": "Austria · crate > 60 × 45 × 40 cm",
+                  "fr": "Autriche · caisse > 60 × 45 × 40 cm",
+                  "es": "Austria · jaula > 60 × 45 × 40 cm",
+                  "pt": "Áustria · caixa > 60 × 45 × 40 cm"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29374,7 +29499,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm",
+                "scope_label": {
+                  "en": "Europe, Morocco, Armenia · crate ≤ 60 × 45 × 40 cm",
+                  "fr": "Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm",
+                  "es": "Europa, Marruecos, Armenia · jaula ≤ 60 × 45 × 40 cm",
+                  "pt": "Europa, Marrocos, Armênia · caixa ≤ 60 × 45 × 40 cm"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29402,7 +29532,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm",
+                "scope_label": {
+                  "en": "Europe, Morocco, Armenia · crate > 60 × 45 × 40 cm",
+                  "fr": "Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm",
+                  "es": "Europa, Marruecos, Armenia · jaula > 60 × 45 × 40 cm",
+                  "pt": "Europa, Marrocos, Armênia · caixa > 60 × 45 × 40 cm"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29430,7 +29565,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Jordan, Egypt, Iran, Iraq, Israel · small crate",
+                  "fr": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse",
+                  "es": "Europa ↔ Jordania, Egipto, Irán, Irak, Israel · jaula pequeña",
+                  "pt": "Europa ↔ Jordânia, Egito, Irã, Iraque, Israel · caixa pequena"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29458,7 +29598,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Jordan, Egypt, Iran, Iraq, Israel · large crate",
+                  "fr": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse",
+                  "es": "Europa ↔ Jordania, Egipto, Irán, Irak, Israel · jaula grande",
+                  "pt": "Europa ↔ Jordânia, Egito, Irã, Iraque, Israel · caixa grande"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29486,7 +29631,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · small crate",
+                  "fr": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse",
+                  "es": "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nueva York, Washington · jaula pequeña",
+                  "pt": "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nova York, Washington · caixa pequena"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29514,7 +29664,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · large crate",
+                  "fr": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse",
+                  "es": "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nueva York, Washington · jaula grande",
+                  "pt": "Europa ↔ Chicago, Maldivas, Miami, Canadá, Nova York, Washington · caixa grande"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29542,7 +29697,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Thailand, South Africa, Los Angeles, Mauritius, China, Japan · small crate",
+                  "fr": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse",
+                  "es": "Europa ↔ Tailandia, Sudáfrica, Los Ángeles, Mauricio, China, Japón · jaula pequeña",
+                  "pt": "Europa ↔ Tailândia, África do Sul, Los Angeles, Maurício, China, Japão · caixa pequena"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29570,7 +29730,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_segment",
-                "scope_label": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse",
+                "scope_label": {
+                  "en": "Europe ↔ Thailand, South Africa, Los Angeles, Mauritius, China, Japan · large crate",
+                  "fr": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse",
+                  "es": "Europa ↔ Tailandia, Sudáfrica, Los Ángeles, Mauricio, China, Japón · jaula grande",
+                  "pt": "Europa ↔ Tailândia, África do Sul, Los Angeles, Maurício, China, Japão · caixa grande"
+                },
                 "source": {
                   "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
                   "source_type": "official_website",
@@ -29611,7 +29776,12 @@
                 },
                 "billing_subject": "shipment",
                 "journey_basis": "per_journey",
-                "scope_label": "countries requiring freight; unaccompanied",
+                "scope_label": {
+                  "en": "countries requiring freight; unaccompanied",
+                  "fr": "pays exigeant le fret ; non accompagné",
+                  "es": "países que exigen carga; no acompañado",
+                  "pt": "países que exigem carga; não acompanhado"
+                },
                 "source": {
                   "url": "https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals",
                   "source_type": "official_website",
@@ -45456,7 +45626,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols intérieurs coréens, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Korean domestic flights, pet and crate up to 32 kg",
+                  "fr": "Vols intérieurs coréens, animal et cage au plus 32 kg",
+                  "es": "Vuelos nacionales coreanos, animal y jaula hasta 32 kg",
+                  "pt": "Voos domésticos coreanos, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45484,7 +45659,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux court-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Short-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux court-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de corto radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de curta distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45512,7 +45692,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux moyen-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Medium-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux moyen-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de medio radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de média distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45540,7 +45725,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux long-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Long-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux long-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de largo radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de longa distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45588,7 +45778,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols intérieurs coréens, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Korean domestic flights, pet and crate up to 32 kg",
+                  "fr": "Vols intérieurs coréens, animal et cage au plus 32 kg",
+                  "es": "Vuelos nacionales coreanos, animal y jaula hasta 32 kg",
+                  "pt": "Voos domésticos coreanos, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45616,7 +45811,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux court-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Short-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux court-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de corto radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de curta distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45644,7 +45844,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux moyen-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Medium-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux moyen-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de medio radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de média distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45672,7 +45877,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux long-courriers, animal et cage au plus 32 kg",
+                "scope_label": {
+                  "en": "Long-haul international flights, pet and crate up to 32 kg",
+                  "fr": "Vols internationaux long-courriers, animal et cage au plus 32 kg",
+                  "es": "Vuelos internacionales de largo radio, animal y jaula hasta 32 kg",
+                  "pt": "Voos internacionais de longa distância, animal e caixa até 32 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45700,7 +45910,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols intérieurs coréens, animal et cage de 33 à 45 kg",
+                "scope_label": {
+                  "en": "Korean domestic flights, pet and crate from 33 to 45 kg",
+                  "fr": "Vols intérieurs coréens, animal et cage de 33 à 45 kg",
+                  "es": "Vuelos nacionales coreanos, animal y jaula de 33 a 45 kg",
+                  "pt": "Voos domésticos coreanos, animal e caixa de 33 a 45 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45728,7 +45943,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux court-courriers, animal et cage de 33 à 45 kg",
+                "scope_label": {
+                  "en": "Short-haul international flights, pet and crate from 33 to 45 kg",
+                  "fr": "Vols internationaux court-courriers, animal et cage de 33 à 45 kg",
+                  "es": "Vuelos internacionales de corto radio, animal y jaula de 33 a 45 kg",
+                  "pt": "Voos internacionais de curta distância, animal e caixa de 33 a 45 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45756,7 +45976,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux moyen-courriers, animal et cage de 33 à 45 kg",
+                "scope_label": {
+                  "en": "Medium-haul international flights, pet and crate from 33 to 45 kg",
+                  "fr": "Vols internationaux moyen-courriers, animal et cage de 33 à 45 kg",
+                  "es": "Vuelos internacionales de medio radio, animal y jaula de 33 a 45 kg",
+                  "pt": "Voos internacionais de média distância, animal e caixa de 33 a 45 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -45784,7 +46009,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols internationaux long-courriers, animal et cage de 33 à 45 kg",
+                "scope_label": {
+                  "en": "Long-haul international flights, pet and crate from 33 to 45 kg",
+                  "fr": "Vols internationaux long-courriers, animal et cage de 33 à 45 kg",
+                  "es": "Vuelos internacionales de largo radio, animal y jaula de 33 a 45 kg",
+                  "pt": "Voos internacionais de longa distância, animal e caixa de 33 a 45 kg"
+                },
                 "source": {
                   "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=fr",
                   "source_type": "official_website",
@@ -50591,7 +50821,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Moyen-Orient",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Middle East→Middle East",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Moyen-Orient",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Oriente Medio→Oriente Medio",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Oriente Médio→Oriente Médio"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50619,7 +50854,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 1 (Athènes, Istanbul, Larnaca), Moyen-Orient→Europe 1 (Athènes, Istanbul, Larnaca)",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Europe 1 (Athens, Istanbul, Larnaca), Middle East→Europe 1 (Athens, Istanbul, Larnaca)",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 1 (Athènes, Istanbul, Larnaca), Moyen-Orient→Europe 1 (Athènes, Istanbul, Larnaca)",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Europa 1 (Atenas, Estambul, Lárnaca), Oriente Medio→Europa 1 (Atenas, Estambul, Lárnaca)",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Europa 1 (Atenas, Istambul, Lárnaca), Oriente Médio→Europa 1 (Atenas, Istambul, Lárnaca)"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50647,7 +50887,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Moyen-Orient",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Middle East",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Moyen-Orient",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Oriente Medio",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Oriente Médio"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50675,7 +50920,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Europe 2 et TAS",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Middle East→Europe 2 and TAS",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Europe 2 et TAS",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Oriente Medio→Europa 2 y TAS",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Oriente Médio→Europa 2 e TAS"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50703,7 +50953,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 2 et TAS, Europe 2 et TAS→Europe 1 (Athènes, Istanbul, Larnaca)",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Europe 2 and TAS, Europe 2 and TAS→Europe 1 (Athens, Istanbul, Larnaca)",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 2 et TAS, Europe 2 et TAS→Europe 1 (Athènes, Istanbul, Larnaca)",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Europa 2 y TAS, Europa 2 y TAS→Europa 1 (Atenas, Estambul, Lárnaca)",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Europa 2 e TAS, Europa 2 e TAS→Europa 1 (Atenas, Istambul, Lárnaca)"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50731,7 +50986,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 2 et TAS→Moyen-Orient, Europe 2 et TAS→Europe 2 et TAS",
+                "scope_label": {
+                  "en": "Cabin (PETC, pet and carrier up to 7 kg): Europe 2 and TAS→Middle East, Europe 2 and TAS→Europe 2 and TAS",
+                  "fr": "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 2 et TAS→Moyen-Orient, Europe 2 et TAS→Europe 2 et TAS",
+                  "es": "Cabina (PETC, animal y transportín hasta 7 kg): Europa 2 y TAS→Oriente Medio, Europa 2 y TAS→Europa 2 y TAS",
+                  "pt": "Cabine (PETC, animal e bolsa até 7 kg): Europa 2 e TAS→Oriente Médio, Europa 2 e TAS→Europa 2 e TAS"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50759,7 +51019,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC) : Jordanie↔Beyrouth",
+                "scope_label": {
+                  "en": "Cabin (PETC): Jordan↔Beirut",
+                  "fr": "Cabine (PETC) : Jordanie↔Beyrouth",
+                  "es": "Cabina (PETC): Jordania↔Beirut",
+                  "pt": "Cabine (PETC): Jordânia↔Beirute"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50787,7 +51052,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine (PETC) : escale d'Aqaba (AQJ depuis ou vers Amman)",
+                "scope_label": {
+                  "en": "Cabin (PETC): Aqaba stopover (AQJ to or from Amman)",
+                  "fr": "Cabine (PETC) : escale d'Aqaba (AQJ depuis ou vers Amman)",
+                  "es": "Cabina (PETC): escala de Aqaba (AQJ desde o hacia Ammán)",
+                  "pt": "Cabine (PETC): escala de Aqaba (AQJ de ou para Amã)"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50839,7 +51109,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, small crate (23 to 32 kg, up to 203 cm): Middle East and Europe 1→Middle East and Europe 1",
+                  "fr": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa pequena (23 a 32 kg, até 203 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50867,7 +51142,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→Middle East and Europe 1",
+                  "fr": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50895,7 +51175,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Europe, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Europe, Extrême-Orient→Moyen-Orient et Europe 1, Extrême-Orient→Extrême-Orient",
+                "scope_label": {
+                  "en": "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→Europe, Europe→Far East, Middle East and Europe 1→Europe, Middle East and Europe 1→Far East, Far East→Europe, Far East→Middle East and Europe 1, Far East→Far East",
+                  "fr": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Europe, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Europe, Extrême-Orient→Moyen-Orient et Europe 1, Extrême-Orient→Extrême-Orient",
+                  "es": "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Europa, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Europa, Extremo Oriente→Oriente Medio y Europa 1, Extremo Oriente→Extremo Oriente",
+                  "pt": "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Europa, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Europa, Extremo Oriente→Oriente Médio e Europa 1, Extremo Oriente→Extremo Oriente"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50923,7 +51208,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                "scope_label": {
+                  "en": "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States",
+                  "fr": "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                  "es": "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos",
+                  "pt": "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50951,7 +51241,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Middle East and Europe 1→Middle East and Europe 1",
+                  "fr": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -50979,7 +51274,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Middle East and Europe 1→Far East, Far East→Middle East and Europe 1",
+                  "fr": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51007,7 +51307,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+                "scope_label": {
+                  "en": "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Europe→Europe, Europe→Middle East and Europe 1, Europe→Far East, Middle East and Europe 1→Europe, Far East→Europe, Far East→Far East",
+                  "fr": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+                  "es": "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Europa→Europa, Europa→Oriente Medio y Europa 1, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente",
+                  "pt": "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Europa→Europa, Europa→Oriente Médio e Europa 1, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51035,7 +51340,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                "scope_label": {
+                  "en": "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States",
+                  "fr": "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                  "es": "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos",
+                  "pt": "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51063,7 +51373,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Middle East and Europe 1→Middle East and Europe 1",
+                  "fr": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51091,7 +51406,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+                "scope_label": {
+                  "en": "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Middle East and Europe 1→Far East, Far East→Middle East and Europe 1",
+                  "fr": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1",
+                  "es": "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Oriente Medio y Europa 1",
+                  "pt": "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Oriente Médio e Europa 1"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51119,7 +51439,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+                "scope_label": {
+                  "en": "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Europe→Europe, Europe→Middle East and Europe 1, Europe→Far East, Middle East and Europe 1→Europe, Far East→Europe, Far East→Far East",
+                  "fr": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient",
+                  "es": "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Europa→Europa, Europa→Oriente Medio y Europa 1, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente",
+                  "pt": "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Europa→Europa, Europa→Oriente Médio e Europa 1, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51147,7 +51472,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                "scope_label": {
+                  "en": "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States",
+                  "fr": "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis",
+                  "es": "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos",
+                  "pt": "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51175,7 +51505,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), small",
+                "scope_label": {
+                  "en": "Hold, Aqaba stopover (AQJ to or from Amman), small",
+                  "fr": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), small",
+                  "es": "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), pequeña",
+                  "pt": "Porão, escala de Aqaba (AQJ de ou para Amã), pequena"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51203,7 +51538,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), medium",
+                "scope_label": {
+                  "en": "Hold, Aqaba stopover (AQJ to or from Amman), medium",
+                  "fr": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), medium",
+                  "es": "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), mediana",
+                  "pt": "Porão, escala de Aqaba (AQJ de ou para Amã), média"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",
@@ -51231,7 +51571,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), large",
+                "scope_label": {
+                  "en": "Hold, Aqaba stopover (AQJ to or from Amman), large",
+                  "fr": "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), large",
+                  "es": "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), grande",
+                  "pt": "Porão, escala de Aqaba (AQJ de ou para Amã), grande"
+                },
                 "source": {
                   "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
                   "source_type": "official_website",

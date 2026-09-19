@@ -123,7 +123,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Cabin: domestic flights — up to 32 kg, crate included"
+          fr: "Cabine : vols intérieurs — jusqu'à 32 kg, cage comprise"
+          es: "Cabina: vuelos nacionales — hasta 32 kg, jaula incluida"
+          pt: "Cabine: voos domésticos — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -146,7 +150,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_round_trip
-        scope_label: "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Cabin: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — up to 32 kg, crate included"
+          fr: "Cabine : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise"
+          es: "Cabina: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — hasta 32 kg, jaula incluida"
+          pt: "Cabine: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -169,7 +177,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Cabin: other routes within Asia, including Guam and Saipan — up to 32 kg, crate included"
+          fr: "Cabine : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise"
+          es: "Cabina: otras rutas en Asia, incluidos Guam y Saipán — hasta 32 kg, jaula incluida"
+          pt: "Cabine: outras rotas na Ásia, incluindo Guam e Saipan — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -192,7 +204,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Cabin: United States, Europe and Oceania — up to 32 kg, crate included"
+          fr: "Cabine : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise"
+          es: "Cabina: Estados Unidos, Europa y Oceanía — hasta 32 kg, jaula incluida"
+          pt: "Cabine: Estados Unidos, Europa e Oceania — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -240,7 +256,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Hold: domestic flights — up to 32 kg, crate included"
+          fr: "Soute : vols intérieurs — jusqu'à 32 kg, cage comprise"
+          es: "Bodega: vuelos nacionales — hasta 32 kg, jaula incluida"
+          pt: "Porão: voos domésticos — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -261,7 +281,11 @@ policies:
               currency: KRW
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs — de 32 à 45 kg, cage comprise"
+        scope_label:
+          en: "Hold: domestic flights — 32 to 45 kg, crate included"
+          fr: "Soute : vols intérieurs — de 32 à 45 kg, cage comprise"
+          es: "Bodega: vuelos nacionales — de 32 a 45 kg, jaula incluida"
+          pt: "Porão: voos domésticos — de 32 a 45 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -284,7 +308,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_round_trip
-        scope_label: "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Hold: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — up to 32 kg, crate included"
+          fr: "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — jusqu'à 32 kg, cage comprise"
+          es: "Bodega: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — hasta 32 kg, jaula incluida"
+          pt: "Porão: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -307,7 +335,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_round_trip
-        scope_label: "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise"
+        scope_label:
+          en: "Hold: round trip Korea ↔ Japan, China, Taiwan, Hong Kong, Mongolia — 32 to 45 kg, crate included"
+          fr: "Soute : aller-retour Corée ↔ Japon, Chine, Taïwan, Hong Kong, Mongolie — de 32 à 45 kg, cage comprise"
+          es: "Bodega: ida y vuelta Corea ↔ Japón, China, Taiwán, Hong Kong, Mongolia — de 32 a 45 kg, jaula incluida"
+          pt: "Porão: ida e volta Coreia ↔ Japão, China, Taiwan, Hong Kong, Mongólia — de 32 a 45 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -330,7 +362,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Hold: other routes within Asia, including Guam and Saipan — up to 32 kg, crate included"
+          fr: "Soute : autres liaisons en Asie, Guam et Saipan compris — jusqu'à 32 kg, cage comprise"
+          es: "Bodega: otras rutas en Asia, incluidos Guam y Saipán — hasta 32 kg, jaula incluida"
+          pt: "Porão: outras rotas na Ásia, incluindo Guam e Saipan — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -353,7 +389,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise"
+        scope_label:
+          en: "Hold: other routes within Asia, including Guam and Saipan — 32 to 45 kg, crate included"
+          fr: "Soute : autres liaisons en Asie, Guam et Saipan compris — de 32 à 45 kg, cage comprise"
+          es: "Bodega: otras rutas en Asia, incluidos Guam y Saipán — de 32 a 45 kg, jaula incluida"
+          pt: "Porão: outras rotas na Ásia, incluindo Guam e Saipan — de 32 a 45 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -376,7 +416,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise"
+        scope_label:
+          en: "Hold: United States, Europe and Oceania — up to 32 kg, crate included"
+          fr: "Soute : États-Unis, Europe et Océanie — jusqu'à 32 kg, cage comprise"
+          es: "Bodega: Estados Unidos, Europa y Oceanía — hasta 32 kg, jaula incluida"
+          pt: "Porão: Estados Unidos, Europa e Oceania — até 32 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website
@@ -399,7 +443,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise"
+        scope_label:
+          en: "Hold: United States, Europe and Oceania — 32 to 45 kg, crate included"
+          fr: "Soute : États-Unis, Europe et Océanie — de 32 à 45 kg, cage comprise"
+          es: "Bodega: Estados Unidos, Europa y Oceanía — de 32 a 45 kg, jaula incluida"
+          pt: "Porão: Estados Unidos, Europa e Oceania — de 32 a 45 kg, caixa incluída"
         source:
           url: "https://flyasiana.com/C/KR/EN/contents/traveling-with-pets"
           source_type: official_website

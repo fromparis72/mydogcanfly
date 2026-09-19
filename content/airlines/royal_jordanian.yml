@@ -115,7 +115,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Moyen-Orient"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Middle East→Middle East"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Moyen-Orient"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Oriente Medio→Oriente Medio"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Oriente Médio→Oriente Médio"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -136,7 +140,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 1 (Athènes, Istanbul, Larnaca), Moyen-Orient→Europe 1 (Athènes, Istanbul, Larnaca)"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Europe 1 (Athens, Istanbul, Larnaca), Middle East→Europe 1 (Athens, Istanbul, Larnaca)"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 1 (Athènes, Istanbul, Larnaca), Moyen-Orient→Europe 1 (Athènes, Istanbul, Larnaca)"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Europa 1 (Atenas, Estambul, Lárnaca), Oriente Medio→Europa 1 (Atenas, Estambul, Lárnaca)"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Europa 1 (Atenas, Istambul, Lárnaca), Oriente Médio→Europa 1 (Atenas, Istambul, Lárnaca)"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -157,7 +165,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Moyen-Orient"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Middle East"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Moyen-Orient"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Oriente Medio"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Oriente Médio"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -178,7 +190,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Europe 2 et TAS"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Middle East→Europe 2 and TAS"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Moyen-Orient→Europe 2 et TAS"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Oriente Medio→Europa 2 y TAS"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Oriente Médio→Europa 2 e TAS"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -199,7 +215,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 2 et TAS, Europe 2 et TAS→Europe 1 (Athènes, Istanbul, Larnaca)"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Europe 1 (Athens, Istanbul, Larnaca)→Europe 2 and TAS, Europe 2 and TAS→Europe 1 (Athens, Istanbul, Larnaca)"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 1 (Athènes, Istanbul, Larnaca)→Europe 2 et TAS, Europe 2 et TAS→Europe 1 (Athènes, Istanbul, Larnaca)"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Europa 1 (Atenas, Estambul, Lárnaca)→Europa 2 y TAS, Europa 2 y TAS→Europa 1 (Atenas, Estambul, Lárnaca)"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Europa 1 (Atenas, Istambul, Lárnaca)→Europa 2 e TAS, Europa 2 e TAS→Europa 1 (Atenas, Istambul, Lárnaca)"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -220,7 +240,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 2 et TAS→Moyen-Orient, Europe 2 et TAS→Europe 2 et TAS"
+        scope_label:
+          en: "Cabin (PETC, pet and carrier up to 7 kg): Europe 2 and TAS→Middle East, Europe 2 and TAS→Europe 2 and TAS"
+          fr: "Cabine (PETC, animal et contenant jusqu'à 7 kg) : Europe 2 et TAS→Moyen-Orient, Europe 2 et TAS→Europe 2 et TAS"
+          es: "Cabina (PETC, animal y transportín hasta 7 kg): Europa 2 y TAS→Oriente Medio, Europa 2 y TAS→Europa 2 y TAS"
+          pt: "Cabine (PETC, animal e bolsa até 7 kg): Europa 2 e TAS→Oriente Médio, Europa 2 e TAS→Europa 2 e TAS"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -241,7 +265,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC) : Jordanie↔Beyrouth"
+        scope_label:
+          en: "Cabin (PETC): Jordan↔Beirut"
+          fr: "Cabine (PETC) : Jordanie↔Beyrouth"
+          es: "Cabina (PETC): Jordania↔Beirut"
+          pt: "Cabine (PETC): Jordânia↔Beirute"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -262,7 +290,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC) : escale d'Aqaba (AQJ depuis ou vers Amman)"
+        scope_label:
+          en: "Cabin (PETC): Aqaba stopover (AQJ to or from Amman)"
+          fr: "Cabine (PETC) : escale d'Aqaba (AQJ depuis ou vers Amman)"
+          es: "Cabina (PETC): escala de Aqaba (AQJ desde o hacia Ammán)"
+          pt: "Cabine (PETC): escala de Aqaba (AQJ de ou para Amã)"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -303,7 +335,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, small crate (23 to 32 kg, up to 203 cm): Middle East and Europe 1→Middle East and Europe 1"
+          fr: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1"
+          pt: "Porão, caixa pequena (23 a 32 kg, até 203 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -324,7 +360,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→Middle East and Europe 1"
+          fr: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Oriente Medio y Europa 1"
+          pt: "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -345,7 +385,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Europe, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Europe, Extrême-Orient→Moyen-Orient et Europe 1, Extrême-Orient→Extrême-Orient"
+        scope_label:
+          en: "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→Europe, Europe→Far East, Middle East and Europe 1→Europe, Middle East and Europe 1→Far East, Far East→Europe, Far East→Middle East and Europe 1, Far East→Far East"
+          fr: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→Europe, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Europe, Extrême-Orient→Moyen-Orient et Europe 1, Extrême-Orient→Extrême-Orient"
+          es: "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Europa, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Europa, Extremo Oriente→Oriente Medio y Europa 1, Extremo Oriente→Extremo Oriente"
+          pt: "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Europa, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Europa, Extremo Oriente→Oriente Médio e Europa 1, Extremo Oriente→Extremo Oriente"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -366,7 +410,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+        scope_label:
+          en: "Hold, small crate (23 to 32 kg, up to 203 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States"
+          fr: "Soute, petite caisse (23 à 32 kg, jusqu'à 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+          es: "Bodega, jaula pequeña (23 a 32 kg, hasta 203 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+          pt: "Porão, caixa pequena (23 a 32 kg, até 203 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -387,7 +435,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Middle East and Europe 1→Middle East and Europe 1"
+          fr: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1"
+          pt: "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -408,7 +460,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Middle East and Europe 1→Far East, Far East→Middle East and Europe 1"
+          fr: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Oriente Medio y Europa 1"
+          pt: "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -429,7 +485,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient"
+        scope_label:
+          en: "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Europe→Europe, Europe→Middle East and Europe 1, Europe→Far East, Middle East and Europe 1→Europe, Far East→Europe, Far East→Far East"
+          fr: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient"
+          es: "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Europa→Europa, Europa→Oriente Medio y Europa 1, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
+          pt: "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Europa→Europa, Europa→Oriente Médio e Europa 1, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -450,7 +510,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+        scope_label:
+          en: "Hold, medium crate (over 32 kg up to 45 kg, under 203 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States"
+          fr: "Soute, caisse moyenne (plus de 32 kg jusqu'à 45 kg, moins de 203 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+          es: "Bodega, jaula mediana (más de 32 kg hasta 45 kg, menos de 203 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+          pt: "Porão, caixa média (mais de 32 kg até 45 kg, menos de 203 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -471,7 +535,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Middle East and Europe 1→Middle East and Europe 1"
+          fr: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Oriente Medio y Europa 1→Oriente Medio y Europa 1"
+          pt: "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Oriente Médio e Europa 1→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -492,7 +560,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1"
+        scope_label:
+          en: "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Middle East and Europe 1→Far East, Far East→Middle East and Europe 1"
+          fr: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Moyen-Orient et Europe 1→Extrême-Orient, Extrême-Orient→Moyen-Orient et Europe 1"
+          es: "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Oriente Medio y Europa 1→Extremo Oriente, Extremo Oriente→Oriente Medio y Europa 1"
+          pt: "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Oriente Médio e Europa 1→Extremo Oriente, Extremo Oriente→Oriente Médio e Europa 1"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -513,7 +585,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient"
+        scope_label:
+          en: "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Europe→Europe, Europe→Middle East and Europe 1, Europe→Far East, Middle East and Europe 1→Europe, Far East→Europe, Far East→Far East"
+          fr: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→Europe, Europe→Moyen-Orient et Europe 1, Europe→Extrême-Orient, Moyen-Orient et Europe 1→Europe, Extrême-Orient→Europe, Extrême-Orient→Extrême-Orient"
+          es: "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Europa→Europa, Europa→Oriente Medio y Europa 1, Europa→Extremo Oriente, Oriente Medio y Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
+          pt: "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Europa→Europa, Europa→Oriente Médio e Europa 1, Europa→Extremo Oriente, Oriente Médio e Europa 1→Europa, Extremo Oriente→Europa, Extremo Oriente→Extremo Oriente"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -534,7 +610,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+        scope_label:
+          en: "Hold, large crate (over 32 kg up to 45 kg, 203 to 250 cm): Europe→United States, Middle East and Europe 1→United States, Far East→United States, United States→Europe, United States→Middle East and Europe 1, United States→Far East, United States→United States"
+          fr: "Soute, grande caisse (plus de 32 kg jusqu'à 45 kg, de 203 à 250 cm) : Europe→États-Unis, Moyen-Orient et Europe 1→États-Unis, Extrême-Orient→États-Unis, États-Unis→Europe, États-Unis→Moyen-Orient et Europe 1, États-Unis→Extrême-Orient, États-Unis→États-Unis"
+          es: "Bodega, jaula grande (más de 32 kg hasta 45 kg, de 203 a 250 cm): Europa→Estados Unidos, Oriente Medio y Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Medio y Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
+          pt: "Porão, caixa grande (mais de 32 kg até 45 kg, de 203 a 250 cm): Europa→Estados Unidos, Oriente Médio e Europa 1→Estados Unidos, Extremo Oriente→Estados Unidos, Estados Unidos→Europa, Estados Unidos→Oriente Médio e Europa 1, Estados Unidos→Extremo Oriente, Estados Unidos→Estados Unidos"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -555,7 +635,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), small"
+        scope_label:
+          en: "Hold, Aqaba stopover (AQJ to or from Amman), small"
+          fr: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), small"
+          es: "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), pequeña"
+          pt: "Porão, escala de Aqaba (AQJ de ou para Amã), pequena"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -576,7 +660,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), medium"
+        scope_label:
+          en: "Hold, Aqaba stopover (AQJ to or from Amman), medium"
+          fr: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), medium"
+          es: "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), mediana"
+          pt: "Porão, escala de Aqaba (AQJ de ou para Amã), média"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website
@@ -597,7 +685,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), large"
+        scope_label:
+          en: "Hold, Aqaba stopover (AQJ to or from Amman), large"
+          fr: "Soute, escale d'Aqaba (AQJ depuis ou vers Amman), large"
+          es: "Bodega, escala de Aqaba (AQJ desde o hacia Ammán), grande"
+          pt: "Porão, escala de Aqaba (AQJ de ou para Amã), grande"
         source:
           url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
           source_type: official_website

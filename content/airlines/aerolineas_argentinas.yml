@@ -86,35 +86,55 @@ policies:
         price: { kind: exact, amounts: [{ amount: 54450, currency: ARS }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Argentine hors Terre de Feu
+        scope_label:
+          en: "Argentina excluding Tierra del Fuego"
+          fr: "Argentine hors Terre de Feu"
+          es: "Argentina excepto Tierra del Fuego"
+          pt: "Argentina exceto Terra do Fogo"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "Dentro de Argentina (excepto Tierra del Fuego) $54.450", quote_language: es, locator: "tarifs cabine → routes → Argentine hors Terre de Feu" }
       - id: fare_aerolineas_cabin_tierra_del_fuego_ars_2026_09_13
         placement: cabin
         price: { kind: exact, amounts: [{ amount: 45000, currency: ARS }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: origine ou destination Terre de Feu
+        scope_label:
+          en: "to or from Tierra del Fuego"
+          fr: "origine ou destination Terre de Feu"
+          es: "origen o destino Tierra del Fuego"
+          pt: "origem ou destino Terra do Fogo"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "Entre Origen / Destino Tierra del Fuego $45.000", quote_language: es, locator: "tarifs cabine → routes → Terre de Feu" }
       - id: fare_aerolineas_cabin_south_america_usd_2026_09_13
         placement: cabin
         price: { kind: exact, amounts: [{ amount: 150, currency: USD }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Argentine, Brésil, Chili, Paraguay ou Uruguay ↔ Amérique du Sud
+        scope_label:
+          en: "Argentina, Brazil, Chile, Paraguay or Uruguay ↔ South America"
+          fr: "Argentine, Brésil, Chili, Paraguay ou Uruguay ↔ Amérique du Sud"
+          es: "Argentina, Brasil, Chile, Paraguay o Uruguay ↔ América del Sur"
+          pt: "Argentina, Brasil, Chile, Paraguai ou Uruguai ↔ América do Sul"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "Entre Argentina / Brasil / Chile / Paraguay / Uruguay y Sudamérica USD 150", quote_language: es, locator: "tarifs cabine → routes → Amérique du Sud" }
       - id: fare_aerolineas_cabin_colombia_europe_2026_09_13
         placement: cabin
         price: { kind: exact, amounts: [{ amount: 298, currency: USD }, { amount: 238, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Colombie ↔ Europe
+        scope_label:
+          en: "Colombia ↔ Europe"
+          fr: "Colombie ↔ Europe"
+          es: "Colombia ↔ Europa"
+          pt: "Colômbia ↔ Europa"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "Entre Colombia y Europa USD 298 / EUR 238", quote_language: es, locator: "tarifs cabine → routes → Colombie et Europe" }
       - id: fare_aerolineas_cabin_europe_south_america_2026_09_13
         placement: cabin
         price: { kind: exact, amounts: [{ amount: 250, currency: USD }, { amount: 200, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Amérique du Sud
+        scope_label:
+          en: "Europe ↔ South America"
+          fr: "Europe ↔ Amérique du Sud"
+          es: "Europa ↔ América del Sur"
+          pt: "Europa ↔ América do Sul"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "Entre Europa y Sudamérica USD 250 / EUR 200", quote_language: es, locator: "tarifs cabine → routes → Europe et Amérique du Sud" }
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 0).
@@ -146,42 +166,66 @@ policies:
         price: { kind: exact, amounts: [{ amount: 229900, currency: ARS }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: intérieur hors Terre de Feu · caisse ≤ 60 × 40 × 45 cm
+        scope_label:
+          en: "domestic excluding Tierra del Fuego · crate ≤ 60 × 40 × 45 cm"
+          fr: "intérieur hors Terre de Feu · caisse ≤ 60 × 40 × 45 cm"
+          es: "nacional excepto Tierra del Fuego · jaula ≤ 60 × 40 × 45 cm"
+          pt: "doméstico exceto Terra do Fogo · caixa ≤ 60 × 40 × 45 cm"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "ARS 229.900", quote_language: es, locator: "tarifs soute → Argentine → caisse jusqu'à 60 × 40 × 45 cm" }
       - id: fare_aerolineas_hold_domestic_large_ars_2026_09_13
         placement: hold
         price: { kind: exact, amounts: [{ amount: 338800, currency: ARS }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: intérieur hors Terre de Feu · caisse ≤ 100 × 70 × 80 cm
+        scope_label:
+          en: "domestic excluding Tierra del Fuego · crate ≤ 100 × 70 × 80 cm"
+          fr: "intérieur hors Terre de Feu · caisse ≤ 100 × 70 × 80 cm"
+          es: "nacional excepto Tierra del Fuego · jaula ≤ 100 × 70 × 80 cm"
+          pt: "doméstico exceto Terra do Fogo · caixa ≤ 100 × 70 × 80 cm"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "ARS 338.800", quote_language: es, locator: "tarifs soute → Argentine → caisse jusqu'à 100 × 70 × 80 cm" }
       - id: fare_aerolineas_hold_south_america_small_usd_2026_09_13
         placement: hold
         price: { kind: exact, amounts: [{ amount: 330, currency: USD }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Argentine, Brésil, Chili, Paraguay ou Uruguay → Amérique du Sud · petite caisse
+        scope_label:
+          en: "Argentina, Brazil, Chile, Paraguay or Uruguay → South America · small crate"
+          fr: "Argentine, Brésil, Chili, Paraguay ou Uruguay → Amérique du Sud · petite caisse"
+          es: "Argentina, Brasil, Chile, Paraguay o Uruguay → América del Sur · jaula pequeña"
+          pt: "Argentina, Brasil, Chile, Paraguai ou Uruguai → América do Sul · caixa pequena"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "From Argentina, Brasil, Chile, Paraguay y Uruguay to Sudamérica — USD 330", quote_language: es, locator: "tarifs soute → Amérique du Sud → jusqu'à 80 × 55 × 60 cm" }
       - id: fare_aerolineas_hold_peru_long_large_usd_2026_09_13
         placement: hold
         price: { kind: exact, amounts: [{ amount: 1356, currency: USD }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Pérou → République dominicaine, Mexique, Cuba ou États-Unis · grande caisse
+        scope_label:
+          en: "Peru → Dominican Republic, Mexico, Cuba or the United States · large crate"
+          fr: "Pérou → République dominicaine, Mexique, Cuba ou États-Unis · grande caisse"
+          es: "Perú → República Dominicana, México, Cuba o Estados Unidos · jaula grande"
+          pt: "Peru → República Dominicana, México, Cuba ou Estados Unidos · caixa grande"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "From Perú a República Dominicana, México, Cuba and Estados Unidos — USD 1.356", quote_language: es, locator: "tarifs soute → Pérou vers Caraïbes/Mexique/États-Unis → jusqu'à 100 × 70 × 80 cm" }
       - id: fare_aerolineas_hold_europe_small_2026_09_13
         placement: hold
         price: { kind: exact, amounts: [{ amount: 499, currency: USD }, { amount: 419, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Europe ↔ Amérique du Sud · caisse ≤ 80 × 55 × 60 cm
+        scope_label:
+          en: "Europe ↔ South America · crate ≤ 80 × 55 × 60 cm"
+          fr: "Europe ↔ Amérique du Sud · caisse ≤ 80 × 55 × 60 cm"
+          es: "Europa ↔ América del Sur · jaula ≤ 80 × 55 × 60 cm"
+          pt: "Europa ↔ América do Sul · caixa ≤ 80 × 55 × 60 cm"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "USD 499 / EUR 419", quote_language: es, locator: "tarifs soute → Europe et Amérique du Sud → jusqu'à 80 × 55 × 60 cm" }
       - id: fare_aerolineas_hold_peru_europe_large_2026_09_13
         placement: hold
         price: { kind: exact, amounts: [{ amount: 1356, currency: USD }, { amount: 1143, currency: EUR }] }
         billing_subject: container
         journey_basis: per_segment
-        scope_label: Pérou ↔ Europe · caisse ≤ 100 × 70 × 80 cm
+        scope_label:
+          en: "Peru ↔ Europe · crate ≤ 100 × 70 × 80 cm"
+          fr: "Pérou ↔ Europe · caisse ≤ 100 × 70 × 80 cm"
+          es: "Perú ↔ Europa · jaula ≤ 100 × 70 × 80 cm"
+          pt: "Peru ↔ Europa · caixa ≤ 100 × 70 × 80 cm"
         source: { url: "https://www.aerolineas.com.ar/en-us/useful-information/pets", source_type: official_website, verified_date: 2026-09-13, review_due: 2026-12-12, confidence: 4, reviewer: "Codex — lecture de la grille officielle capturée par Philippe", history: [], quote: "USD 1.356 / EUR 1.143", quote_language: es, locator: "tarifs soute → Pérou et Europe → jusqu'à 100 × 70 × 80 cm" }
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 1).
