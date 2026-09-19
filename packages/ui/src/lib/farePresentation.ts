@@ -7,10 +7,14 @@
  * des préfixes de vol différents (Transavia HV / TO).
  */
 
+import { lirePortee } from "@mydogcanfly/knowledge";
+
 type MonetaryAmount = { amount: number; currency: string };
 type FareLike = {
   price?: { kind?: string; amounts?: MonetaryAmount[] };
-  scope_label?: string;
+  /* La portée peut être une chaîne unique (forme héritée) ou un objet à quatre langues ; les deux
+     sont lues par `lirePortee`, qui prend la langue de la page et retombe sur l'anglais. */
+  scope_label?: string | { en: string; fr?: string; es?: string; pt?: string };
 };
 
 export interface FarePresentationOptions {
@@ -74,7 +78,7 @@ export function presentNumericFares(fares: FareLike[], options: FarePresentation
     const cb = b.price?.amounts?.[0]?.currency ?? "";
     return Number(cb === currency) - Number(ca === currency) || ca.localeCompare(cb);
   });
-  const scopes = ordered.map((fare) => fare.scope_label?.trim() ?? "");
+  const scopes = ordered.map((fare) => lirePortee(fare.scope_label, options.locale).trim());
   const showScopes = (ordered.length > 1 && scopes.every((scope) => scope.length > 0 && scope.length <= 24)
     && new Set(scopes).size === ordered.length)
     /* Les codes de vols et d'aéroports ne demandent aucune traduction. Cette branche permet de

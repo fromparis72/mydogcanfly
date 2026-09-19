@@ -94,29 +94,66 @@ policies:
       quote_language: en
       locator: "Pets → In the cabin → Kennel information"
     fares:
-      - id: fare_westjet_cabin_cad_2026_09_18
+      - id: fare_westjet_cabin_domestique_2026_09_19
         placement: cabin
         price:
           kind: range
           amounts:
             - amount: 50
               currency: CAD
+            - amount: 59
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label:
+          en: "Flights within Canada and the U.S."
+          fr: "Vols au Canada et aux États-Unis"
+          es: "Vuelos dentro de Canadá y Estados Unidos"
+          pt: "Voos no Canadá e nos Estados Unidos"
+        source:
+          url: https://www.westjet.com/en-ca/flights/fees
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle des frais"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — séparation des zones tarifaires"
+              note: "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+          quote: "Flights within Canada and the U.S. $50 - $59"
+          quote_language: en
+          locator: "Additional items → Travelling with pets and kennels → Pets in the cabin (personal item)"
+      - id: fare_westjet_cabin_international_2026_09_19
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 100
+              currency: CAD
             - amount: 118
               currency: CAD
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Canada/US; outside Canada/US
+        scope_label:
+          en: "Flights outside of Canada and the U.S."
+          fr: "Vols hors du Canada et des États-Unis"
+          es: "Vuelos fuera de Canadá y Estados Unidos"
+          pt: "Voos fora do Canadá e dos Estados Unidos"
         source:
           url: https://www.westjet.com/en-ca/flights/fees
           source_type: official_website
-          verified_date: 2026-09-18
-          review_due: 2026-12-17
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
           confidence: 4
-          reviewer: Codex — direct reading of official airline page
-          history: []
-          quote: Pet in cabin (each way) | $50-59 | $100-118
+          reviewer: "Claude — lecture directe de la page officielle des frais"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — séparation des zones tarifaires"
+              note: "Remplace la fourchette agrégée 50-118 CAD par deux lignes de portée distincte."
+          quote: "Flights outside of Canada and the U.S. $100 - $118"
           quote_language: en
-          locator: Optional services and fees → Pets
+          locator: "Additional items → Travelling with pets and kennels → Pets in the cabin (personal item)"
   hold:
     availability: offered
     max_weight_kg: 45
@@ -144,29 +181,66 @@ policies:
       quote_language: en
       locator: "Domestic Tariff → Rule 90(B)(b) → Pets as checked baggage"
     fares:
-      - id: fare_westjet_hold_cad_2026_09_18
+      - id: fare_westjet_hold_domestique_2026_09_19
         placement: hold
         price:
           kind: range
           amounts:
             - amount: 100
               currency: CAD
+            - amount: 118
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label:
+          en: "Flights within Canada and the U.S."
+          fr: "Vols au Canada et aux États-Unis"
+          es: "Vuelos dentro de Canadá y Estados Unidos"
+          pt: "Voos no Canadá e nos Estados Unidos"
+        source:
+          url: https://www.westjet.com/en-ca/flights/fees
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la page officielle des frais"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — séparation des zones tarifaires"
+              note: "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+          quote: "Flights within Canada and the U.S. $100 - $118"
+          quote_language: en
+          locator: "Additional items → Travelling with pets and kennels → Pets as checked baggage"
+      - id: fare_westjet_hold_international_2026_09_19
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 200
+              currency: CAD
             - amount: 236
               currency: CAD
         billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Canada/US; outside Canada/US
+        scope_label:
+          en: "Flights outside of Canada and the U.S."
+          fr: "Vols hors du Canada et des États-Unis"
+          es: "Vuelos fuera de Canadá y Estados Unidos"
+          pt: "Voos fora do Canadá e dos Estados Unidos"
         source:
           url: https://www.westjet.com/en-ca/flights/fees
           source_type: official_website
-          verified_date: 2026-09-18
-          review_due: 2026-12-17
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
           confidence: 4
-          reviewer: Codex — direct reading of official airline page
-          history: []
-          quote: Pet as checked baggage (each way) | $100-118 | $200-236
+          reviewer: "Claude — lecture directe de la page officielle des frais"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — séparation des zones tarifaires"
+              note: "Remplace la fourchette agrégée 100-236 CAD par deux lignes de portée distincte."
+          quote: "Flights outside of Canada and the U.S. $200 - $236"
           quote_language: en
-          locator: Optional services and fees → Pets
+          locator: "Additional items → Travelling with pets and kennels → Pets as checked baggage"
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:

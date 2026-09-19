@@ -745,12 +745,13 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      Eurowings ne publie qu'un plancher, « ab 60 € » : une ligne de nature `minimum`,
      car dire 60 € tout court ferait passer un plancher pour un prix ferme.
      Bilan net : +16 lignes, +3 canaux, +2 compagnies. */
-  /* FUSION DE DEUX MOUVEMENTS (18/09/2026) : le lot tarifaire Avianca / South African Airways /
-     Air China / China Eastern porte le compteur à 362 lignes sur 150 canaux et 90 compagnies ; la
-     consolidation canadienne y ajoute la cabine et le fret de WestJet, soit deux canaux et deux
-     lignes de plus. Le chiffre exact est REMESURÉ, jamais additionné à la main. */
-  check("l'import verrouillé porte exactement 364 lignes sur 152 canaux et 90 compagnies — le lot tarifaire et la consolidation canadienne entrent ensemble, sans perte muette",
-    avecTarifs === 152 && lignesTarifaires === 364 && compagnies.size === 90,
+  /* SÉPARATION DES ZONES (19/09/2026) : Air Canada et WestJet publiaient chacun UNE fourchette
+     agrégée par canal, qui écrasait deux zones tarifaires distinctes sous un seul intervalle.
+     Chaque canal porte désormais sa ligne domestique et sa ligne internationale, soit quatre
+     lignes de plus sans canal ni compagnie supplémentaire : 364 → 368 sur les mêmes 152 canaux
+     et 90 compagnies. Le chiffre exact est REMESURÉ, jamais additionné à la main. */
+  check("l'import verrouillé porte exactement 368 lignes sur 152 canaux et 90 compagnies — la séparation des zones canadiennes ajoute quatre lignes, sans perte muette ni canal fantôme",
+    avecTarifs === 152 && lignesTarifaires === 368 && compagnies.size === 90,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",
