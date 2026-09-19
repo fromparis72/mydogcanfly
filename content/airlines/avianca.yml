@@ -122,7 +122,11 @@ policies:
               currency: COP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : vols intérieurs en Colombie — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: domestic flights within Colombia — floor price, taxes included"
+          fr: "Cabine : vols intérieurs en Colombie — prix plancher, taxes comprises"
+          es: "Cabina: vuelos nacionales en Colombia — precio mínimo, impuestos incluidos"
+          pt: "Cabine: voos domésticos na Colômbia — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -143,7 +147,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : vols intérieurs en Équateur — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: domestic flights within Ecuador — floor price, taxes included"
+          fr: "Cabine : vols intérieurs en Équateur — prix plancher, taxes comprises"
+          es: "Cabina: vuelos nacionales en Ecuador — precio mínimo, impuestos incluidos"
+          pt: "Cabine: voos domésticos no Equador — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -164,7 +172,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : vols intérieurs au Guatemala — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: domestic flights within Guatemala — floor price, taxes included"
+          fr: "Cabine : vols intérieurs au Guatemala — prix plancher, taxes comprises"
+          es: "Cabina: vuelos nacionales en Guatemala — precio mínimo, impuestos incluidos"
+          pt: "Cabine: voos domésticos na Guatemala — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -185,7 +197,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : au départ du Canada — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: departing from Canada — floor price, taxes included"
+          fr: "Cabine : au départ du Canada — prix plancher, taxes comprises"
+          es: "Cabina: con salida desde Canadá — precio mínimo, impuestos incluidos"
+          pt: "Cabine: com partida do Canadá — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -206,7 +222,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : entre pays d'Amérique du Sud — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: between South American countries — floor price, taxes included"
+          fr: "Cabine : entre pays d'Amérique du Sud — prix plancher, taxes comprises"
+          es: "Cabina: entre países de América del Sur — precio mínimo, impuestos incluidos"
+          pt: "Cabine: entre países da América do Sul — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -227,7 +247,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: between North America, Central America and the Caribbean — floor price, taxes included"
+          fr: "Cabine : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises"
+          es: "Cabina: entre América del Norte, América Central y el Caribe — precio mínimo, impuestos incluidos"
+          pt: "Cabine: entre América do Norte, América Central e Caribe — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -248,7 +272,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : à destination de l'Europe — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: to Europe — floor price, taxes included"
+          fr: "Cabine : à destination de l'Europe — prix plancher, taxes comprises"
+          es: "Cabina: con destino a Europa — precio mínimo, impuestos incluidos"
+          pt: "Cabine: com destino à Europa — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -271,7 +299,11 @@ policies:
               currency: GBP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine : au départ de l'Europe — prix plancher, taxes comprises"
+        scope_label:
+          en: "Cabin: departing from Europe — floor price, taxes included"
+          fr: "Cabine : au départ de l'Europe — prix plancher, taxes comprises"
+          es: "Cabina: con salida desde Europa — precio mínimo, impuestos incluidos"
+          pt: "Cabine: com partida da Europa — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -312,7 +344,11 @@ policies:
               currency: COP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs en Colombie — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: domestic flights within Colombia — floor price, taxes included"
+          fr: "Soute : vols intérieurs en Colombie — prix plancher, taxes comprises"
+          es: "Bodega: vuelos nacionales en Colombia — precio mínimo, impuestos incluidos"
+          pt: "Porão: voos domésticos na Colômbia — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -333,7 +369,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs en Équateur — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: domestic flights within Ecuador — floor price, taxes included"
+          fr: "Soute : vols intérieurs en Équateur — prix plancher, taxes comprises"
+          es: "Bodega: vuelos nacionales en Ecuador — precio mínimo, impuestos incluidos"
+          pt: "Porão: voos domésticos no Equador — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -354,7 +394,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : vols intérieurs au Guatemala — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: domestic flights within Guatemala — floor price, taxes included"
+          fr: "Soute : vols intérieurs au Guatemala — prix plancher, taxes comprises"
+          es: "Bodega: vuelos nacionales en Guatemala — precio mínimo, impuestos incluidos"
+          pt: "Porão: voos domésticos na Guatemala — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -375,7 +419,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : au départ du Canada — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: departing from Canada — floor price, taxes included"
+          fr: "Soute : au départ du Canada — prix plancher, taxes comprises"
+          es: "Bodega: con salida desde Canadá — precio mínimo, impuestos incluidos"
+          pt: "Porão: com partida do Canadá — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -396,7 +444,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : entre pays d'Amérique du Sud — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: between South American countries — floor price, taxes included"
+          fr: "Soute : entre pays d'Amérique du Sud — prix plancher, taxes comprises"
+          es: "Bodega: entre países de América del Sur — precio mínimo, impuestos incluidos"
+          pt: "Porão: entre países da América do Sul — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -417,7 +469,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: between North America, Central America and the Caribbean — floor price, taxes included"
+          fr: "Soute : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises"
+          es: "Bodega: entre América del Norte, América Central y el Caribe — precio mínimo, impuestos incluidos"
+          pt: "Porão: entre América do Norte, América Central e Caribe — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -438,7 +494,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : à destination de l'Europe — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: to Europe — floor price, taxes included"
+          fr: "Soute : à destination de l'Europe — prix plancher, taxes comprises"
+          es: "Bodega: con destino a Europa — precio mínimo, impuestos incluidos"
+          pt: "Porão: com destino à Europa — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website
@@ -461,7 +521,11 @@ policies:
               currency: GBP
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute : au départ de l'Europe — prix plancher, taxes comprises"
+        scope_label:
+          en: "Hold: departing from Europe — floor price, taxes included"
+          fr: "Soute : au départ de l'Europe — prix plancher, taxes comprises"
+          es: "Bodega: con salida desde Europa — precio mínimo, impuestos incluidos"
+          pt: "Porão: com partida da Europa — preço mínimo, impostos incluídos"
         source:
           url: "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet"
           source_type: official_website

@@ -24081,7 +24081,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols en France métropolitaine",
+                "scope_label": {
+                  "en": "Flights within metropolitan France",
+                  "fr": "Vols en France métropolitaine",
+                  "es": "Vuelos en la Francia metropolitana",
+                  "pt": "Voos na França metropolitana"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24109,7 +24114,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols intra Caraïbes",
+                "scope_label": {
+                  "en": "Flights within the Caribbean",
+                  "fr": "Vols intra Caraïbes",
+                  "es": "Vuelos dentro del Caribe",
+                  "pt": "Voos dentro do Caribe"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24137,7 +24147,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Europe ou Europe–Afrique du Nord",
+                "scope_label": {
+                  "en": "Europe, or Europe–North Africa",
+                  "fr": "Europe ou Europe–Afrique du Nord",
+                  "es": "Europa, o Europa–Norte de África",
+                  "pt": "Europa, ou Europa–Norte da África"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24165,7 +24180,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion",
+                "scope_label": {
+                  "en": "Metropolitan France ↔ Cayenne, the French Antilles or Réunion",
+                  "fr": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion",
+                  "es": "Francia metropolitana ↔ Cayena, Antillas o La Reunión",
+                  "pt": "França metropolitana ↔ Caiena, Antilhas ou Reunião"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24201,7 +24221,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "États-Unis/Canada ↔ Europe et destinations listées",
+                "scope_label": {
+                  "en": "United States/Canada ↔ Europe and listed destinations",
+                  "fr": "États-Unis/Canada ↔ Europe et destinations listées",
+                  "es": "Estados Unidos/Canadá ↔ Europa y destinos indicados",
+                  "pt": "Estados Unidos/Canadá ↔ Europa e destinos listados"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24237,7 +24262,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "États-Unis/Canada ↔ reste du monde",
+                "scope_label": {
+                  "en": "United States/Canada ↔ rest of the world",
+                  "fr": "États-Unis/Canada ↔ reste du monde",
+                  "es": "Estados Unidos/Canadá ↔ resto del mundo",
+                  "pt": "Estados Unidos/Canadá ↔ resto do mundo"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24265,7 +24295,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Autres vols",
+                "scope_label": {
+                  "en": "Other flights",
+                  "fr": "Autres vols",
+                  "es": "Otros vuelos",
+                  "pt": "Outros voos"
+                },
                 "source": {
                   "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
                   "source_type": "official_website",
@@ -24344,7 +24379,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols en France métropolitaine · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "Flights within metropolitan France · up to 24 h before departure",
+                  "fr": "Vols en France métropolitaine · jusqu'à 24 h avant le départ",
+                  "es": "Vuelos en la Francia metropolitana · hasta 24 h antes de la salida",
+                  "pt": "Voos na França metropolitana · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24375,7 +24415,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Vols intra Caraïbes · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "Flights within the Caribbean · up to 24 h before departure",
+                  "fr": "Vols intra Caraïbes · jusqu'à 24 h avant le départ",
+                  "es": "Vuelos dentro del Caribe · hasta 24 h antes de la salida",
+                  "pt": "Voos dentro do Caribe · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24406,7 +24451,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "Europe, or Europe–North Africa · up to 24 h before departure",
+                  "fr": "Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ",
+                  "es": "Europa, o Europa–Norte de África · hasta 24 h antes de la salida",
+                  "pt": "Europa, ou Europa–Norte da África · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24437,7 +24487,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "Metropolitan France ↔ Cayenne, the French Antilles or Réunion · up to 24 h before departure",
+                  "fr": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ",
+                  "es": "Francia metropolitana ↔ Cayena, Antillas o La Reunión · hasta 24 h antes de la salida",
+                  "pt": "França metropolitana ↔ Caiena, Antilhas ou Reunião · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24476,7 +24531,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "United States/Canada ↔ Europe and listed destinations · up to 24 h before departure",
+                  "fr": "États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ",
+                  "es": "Estados Unidos/Canadá ↔ Europa y destinos indicados · hasta 24 h antes de la salida",
+                  "pt": "Estados Unidos/Canadá ↔ Europa e destinos listados · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24515,7 +24575,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "United States/Canada ↔ rest of the world · up to 24 h before departure",
+                  "fr": "États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ",
+                  "es": "Estados Unidos/Canadá ↔ resto del mundo · hasta 24 h antes de la salida",
+                  "pt": "Estados Unidos/Canadá ↔ resto do mundo · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -24546,7 +24611,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Autres vols · jusqu'à 24 h avant le départ",
+                "scope_label": {
+                  "en": "Other flights · up to 24 h before departure",
+                  "fr": "Autres vols · jusqu'à 24 h avant le départ",
+                  "es": "Otros vuelos · hasta 24 h antes de la salida",
+                  "pt": "Outros voos · até 24 h antes da partida"
+                },
                 "purchase_window": {
                   "min_days_before_departure": 1
                 },
@@ -29747,7 +29817,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: domestic flights within Colombia — floor price, taxes included",
+                  "fr": "Cabine : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                  "es": "Cabina: vuelos nacionales en Colombia — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: voos domésticos na Colômbia — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29775,7 +29850,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: domestic flights within Ecuador — floor price, taxes included",
+                  "fr": "Cabine : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                  "es": "Cabina: vuelos nacionales en Ecuador — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: voos domésticos no Equador — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29803,7 +29883,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: domestic flights within Guatemala — floor price, taxes included",
+                  "fr": "Cabine : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                  "es": "Cabina: vuelos nacionales en Guatemala — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: voos domésticos na Guatemala — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29831,7 +29916,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : au départ du Canada — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: departing from Canada — floor price, taxes included",
+                  "fr": "Cabine : au départ du Canada — prix plancher, taxes comprises",
+                  "es": "Cabina: con salida desde Canadá — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: com partida do Canadá — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29859,7 +29949,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: between South American countries — floor price, taxes included",
+                  "fr": "Cabine : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                  "es": "Cabina: entre países de América del Sur — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: entre países da América do Sul — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29887,7 +29982,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: between North America, Central America and the Caribbean — floor price, taxes included",
+                  "fr": "Cabine : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                  "es": "Cabina: entre América del Norte, América Central y el Caribe — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: entre América do Norte, América Central e Caribe — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29915,7 +30015,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : à destination de l'Europe — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: to Europe — floor price, taxes included",
+                  "fr": "Cabine : à destination de l'Europe — prix plancher, taxes comprises",
+                  "es": "Cabina: con destino a Europa — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: com destino à Europa — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29947,7 +30052,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine : au départ de l'Europe — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Cabin: departing from Europe — floor price, taxes included",
+                  "fr": "Cabine : au départ de l'Europe — prix plancher, taxes comprises",
+                  "es": "Cabina: con salida desde Europa — precio mínimo, impuestos incluidos",
+                  "pt": "Cabine: com partida da Europa — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -29995,7 +30105,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: domestic flights within Colombia — floor price, taxes included",
+                  "fr": "Soute : vols intérieurs en Colombie — prix plancher, taxes comprises",
+                  "es": "Bodega: vuelos nacionales en Colombia — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: voos domésticos na Colômbia — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30023,7 +30138,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: domestic flights within Ecuador — floor price, taxes included",
+                  "fr": "Soute : vols intérieurs en Équateur — prix plancher, taxes comprises",
+                  "es": "Bodega: vuelos nacionales en Ecuador — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: voos domésticos no Equador — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30051,7 +30171,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: domestic flights within Guatemala — floor price, taxes included",
+                  "fr": "Soute : vols intérieurs au Guatemala — prix plancher, taxes comprises",
+                  "es": "Bodega: vuelos nacionales en Guatemala — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: voos domésticos na Guatemala — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30079,7 +30204,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : au départ du Canada — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: departing from Canada — floor price, taxes included",
+                  "fr": "Soute : au départ du Canada — prix plancher, taxes comprises",
+                  "es": "Bodega: con salida desde Canadá — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: com partida do Canadá — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30107,7 +30237,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: between South American countries — floor price, taxes included",
+                  "fr": "Soute : entre pays d'Amérique du Sud — prix plancher, taxes comprises",
+                  "es": "Bodega: entre países de América del Sur — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: entre países da América do Sul — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30135,7 +30270,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: between North America, Central America and the Caribbean — floor price, taxes included",
+                  "fr": "Soute : entre Amérique du Nord, Amérique centrale et Caraïbes — prix plancher, taxes comprises",
+                  "es": "Bodega: entre América del Norte, América Central y el Caribe — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: entre América do Norte, América Central e Caribe — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30163,7 +30303,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : à destination de l'Europe — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: to Europe — floor price, taxes included",
+                  "fr": "Soute : à destination de l'Europe — prix plancher, taxes comprises",
+                  "es": "Bodega: con destino a Europa — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: com destino à Europa — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -30195,7 +30340,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute : au départ de l'Europe — prix plancher, taxes comprises",
+                "scope_label": {
+                  "en": "Hold: departing from Europe — floor price, taxes included",
+                  "fr": "Soute : au départ de l'Europe — prix plancher, taxes comprises",
+                  "es": "Bodega: con salida desde Europa — precio mínimo, impuestos incluidos",
+                  "pt": "Porão: com partida da Europa — preço mínimo, impostos incluídos"
+                },
                 "source": {
                   "url": "https://ayuda.avianca.com/hc/en-us/articles/13770433013659-How-much-does-it-cost-to-fly-with-my-pet",
                   "source_type": "official_website",
@@ -31947,7 +32097,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -31979,7 +32134,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 2 (Myanmar, Australia, New Zealand, India)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32011,7 +32171,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32043,7 +32208,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Taiwan",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Taiwán",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Taiwan"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32075,7 +32245,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32107,7 +32282,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 2 (Myanmar, Australia, New Zealand, India)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32139,7 +32319,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32171,7 +32356,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Taiwan",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Taiwán",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Taiwan"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32203,7 +32393,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32235,7 +32430,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 2 (Myanmar, Australia, New Zealand, India)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32267,7 +32467,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32299,7 +32504,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Taiwan",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Taiwán",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Taiwan"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32331,7 +32541,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32363,7 +32578,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 2 (Myanmar, Australia, New Zealand, India)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -32395,7 +32615,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                "scope_label": {
+                  "en": "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)",
+                  "fr": "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)",
+                  "es": "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)",
+                  "pt": "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
+                },
                 "source": {
                   "url": "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport",
                   "source_type": "official_website",
@@ -35993,7 +36218,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine — Europe (Maroc et Tunisie compris)",
+                "scope_label": {
+                  "en": "Cabin — Europe (including Morocco and Tunisia)",
+                  "fr": "Cabine — Europe (Maroc et Tunisie compris)",
+                  "es": "Cabina — Europa (Marruecos y Túnez incluidos)",
+                  "pt": "Cabine — Europa (incluindo Marrocos e Tunísia)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36037,7 +36267,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine — Levant et Égypte",
+                "scope_label": {
+                  "en": "Cabin — Levant and Egypt",
+                  "fr": "Cabine — Levant et Égypte",
+                  "es": "Cabina — Levante y Egipto",
+                  "pt": "Cabine — Levante e Egito"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36081,7 +36316,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "scope_label": {
+                  "en": "Cabin — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)",
+                  "fr": "Cabine — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                  "es": "Cabina — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)",
+                  "pt": "Cabine — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36125,7 +36365,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "scope_label": {
+                  "en": "Cabin — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)",
+                  "fr": "Cabine — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                  "es": "Cabina — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)",
+                  "pt": "Cabine — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36169,7 +36414,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Cabine — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "scope_label": {
+                  "en": "Cabin — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)",
+                  "fr": "Cabine — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                  "es": "Cabina — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)",
+                  "pt": "Cabine — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36231,7 +36481,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse 1 — Europe (Maroc et Tunisie compris)",
+                "scope_label": {
+                  "en": "Hold, crate 1 — Europe (including Morocco and Tunisia)",
+                  "fr": "Soute, caisse 1 — Europe (Maroc et Tunisie compris)",
+                  "es": "Bodega, jaula 1 — Europa (Marruecos y Túnez incluidos)",
+                  "pt": "Porão, caixa 1 — Europa (incluindo Marrocos e Tunísia)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36275,7 +36530,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse 1 — Levant et Égypte",
+                "scope_label": {
+                  "en": "Hold, crate 1 — Levant and Egypt",
+                  "fr": "Soute, caisse 1 — Levant et Égypte",
+                  "es": "Bodega, jaula 1 — Levante y Egipto",
+                  "pt": "Porão, caixa 1 — Levante e Egito"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36319,7 +36579,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse 1 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "scope_label": {
+                  "en": "Hold, crate 1 — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)",
+                  "fr": "Soute, caisse 1 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                  "es": "Bodega, jaula 1 — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)",
+                  "pt": "Porão, caixa 1 — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36363,7 +36628,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse 1 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "scope_label": {
+                  "en": "Hold, crate 1 — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)",
+                  "fr": "Soute, caisse 1 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                  "es": "Bodega, jaula 1 — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)",
+                  "pt": "Porão, caixa 1 — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36407,7 +36677,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisse 1 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "scope_label": {
+                  "en": "Hold, crate 1 — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)",
+                  "fr": "Soute, caisse 1 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                  "es": "Bodega, jaula 1 — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)",
+                  "pt": "Porão, caixa 1 — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36451,7 +36726,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisses 2 à 5 — Europe (Maroc et Tunisie compris)",
+                "scope_label": {
+                  "en": "Hold, crates 2 to 5 — Europe (including Morocco and Tunisia)",
+                  "fr": "Soute, caisses 2 à 5 — Europe (Maroc et Tunisie compris)",
+                  "es": "Bodega, jaulas 2 a 5 — Europa (Marruecos y Túnez incluidos)",
+                  "pt": "Porão, caixas 2 a 5 — Europa (incluindo Marrocos e Tunísia)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36495,7 +36775,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisses 2 à 5 — Levant et Égypte",
+                "scope_label": {
+                  "en": "Hold, crates 2 to 5 — Levant and Egypt",
+                  "fr": "Soute, caisses 2 à 5 — Levant et Égypte",
+                  "es": "Bodega, jaulas 2 a 5 — Levante y Egipto",
+                  "pt": "Porão, caixas 2 a 5 — Levante e Egito"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36539,7 +36824,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisses 2 à 5 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                "scope_label": {
+                  "en": "Hold, crates 2 to 5 — Short intercontinental (Dominican Republic, Jamaica, Cape Verde, Oman)",
+                  "fr": "Soute, caisses 2 à 5 — Intercontinental court (République dominicaine, Jamaïque, Cap-Vert, Oman)",
+                  "es": "Bodega, jaulas 2 a 5 — Intercontinental corto (República Dominicana, Jamaica, Cabo Verde, Omán)",
+                  "pt": "Porão, caixas 2 a 5 — Intercontinental curto (República Dominicana, Jamaica, Cabo Verde, Omã)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36583,7 +36873,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisses 2 à 5 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                "scope_label": {
+                  "en": "Hold, crates 2 to 5 — Medium intercontinental (Eastern Canada, Sri Lanka, Tanzania, Eastern United States)",
+                  "fr": "Soute, caisses 2 à 5 — Intercontinental moyen (Canada de l'Est, Sri Lanka, Tanzanie, États-Unis de l'Est)",
+                  "es": "Bodega, jaulas 2 a 5 — Intercontinental medio (Canadá oriental, Sri Lanka, Tanzania, Estados Unidos oriental)",
+                  "pt": "Porão, caixas 2 a 5 — Intercontinental médio (Canadá Oriental, Sri Lanka, Tanzânia, Estados Unidos Oriental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -36627,7 +36922,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Soute, caisses 2 à 5 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                "scope_label": {
+                  "en": "Hold, crates 2 to 5 — Long intercontinental (Costa Rica, Western Canada, Colombia, Mexico, Namibia, South Africa, Thailand, Western United States)",
+                  "fr": "Soute, caisses 2 à 5 — Intercontinental long (Costa Rica, Canada de l'Ouest, Colombie, Mexique, Namibie, Afrique du Sud, Thaïlande, États-Unis de l'Ouest)",
+                  "es": "Bodega, jaulas 2 a 5 — Intercontinental largo (Costa Rica, Canadá occidental, Colombia, México, Namibia, Sudáfrica, Tailandia, Estados Unidos occidental)",
+                  "pt": "Porão, caixas 2 a 5 — Intercontinental longo (Costa Rica, Canadá Ocidental, Colômbia, México, Namíbia, África do Sul, Tailândia, Estados Unidos Ocidental)"
+                },
                 "source": {
                   "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html",
                   "source_type": "official_website",
@@ -40666,7 +40966,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Espagne hors Canaries · direct · en ligne",
+                "scope_label": {
+                  "en": "Spain excluding the Canaries · direct · online",
+                  "fr": "Espagne hors Canaries · direct · en ligne",
+                  "es": "España excepto Canarias · directo · en línea",
+                  "pt": "Espanha exceto Canárias · direto · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40702,7 +41007,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Espagne hors Canaries · direct · aéroport",
+                "scope_label": {
+                  "en": "Spain excluding the Canaries · direct · airport",
+                  "fr": "Espagne hors Canaries · direct · aéroport",
+                  "es": "España excepto Canarias · directo · aeropuerto",
+                  "pt": "Espanha exceto Canárias · direto · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40738,7 +41048,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · direct · en ligne",
+                "scope_label": {
+                  "en": "Canaries, Europe, North Africa, Israel · direct · online",
+                  "fr": "Canaries, Europe, Afrique du Nord, Israël · direct · en ligne",
+                  "es": "Canarias, Europa, Norte de África, Israel · directo · en línea",
+                  "pt": "Canárias, Europa, Norte da África, Israel · direto · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40774,7 +41089,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · direct · aéroport",
+                "scope_label": {
+                  "en": "Canaries, Europe, North Africa, Israel · direct · airport",
+                  "fr": "Canaries, Europe, Afrique du Nord, Israël · direct · aéroport",
+                  "es": "Canarias, Europa, Norte de África, Israel · directo · aeropuerto",
+                  "pt": "Canárias, Europa, Norte da África, Israel · direto · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40810,7 +41130,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Amériques, Asie, Qatar · direct · en ligne",
+                "scope_label": {
+                  "en": "Americas, Asia, Qatar · direct · online",
+                  "fr": "Amériques, Asie, Qatar · direct · en ligne",
+                  "es": "Américas, Asia, Catar · directo · en línea",
+                  "pt": "Américas, Ásia, Catar · direto · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40846,7 +41171,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Amériques, Asie, Qatar · direct · aéroport",
+                "scope_label": {
+                  "en": "Americas, Asia, Qatar · direct · airport",
+                  "fr": "Amériques, Asie, Qatar · direct · aéroport",
+                  "es": "Américas, Asia, Catar · directo · aeropuerto",
+                  "pt": "Américas, Ásia, Catar · direto · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40882,7 +41212,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Espagne hors Canaries · correspondance · en ligne",
+                "scope_label": {
+                  "en": "Spain excluding the Canaries · connecting · online",
+                  "fr": "Espagne hors Canaries · correspondance · en ligne",
+                  "es": "España excepto Canarias · con conexión · en línea",
+                  "pt": "Espanha exceto Canárias · com conexão · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40918,7 +41253,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Espagne hors Canaries · correspondance · aéroport",
+                "scope_label": {
+                  "en": "Spain excluding the Canaries · connecting · airport",
+                  "fr": "Espagne hors Canaries · correspondance · aéroport",
+                  "es": "España excepto Canarias · con conexión · aeropuerto",
+                  "pt": "Espanha exceto Canárias · com conexão · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40954,7 +41294,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · correspondance · en ligne",
+                "scope_label": {
+                  "en": "Canaries, Europe, North Africa, Israel · connecting · online",
+                  "fr": "Canaries, Europe, Afrique du Nord, Israël · correspondance · en ligne",
+                  "es": "Canarias, Europa, Norte de África, Israel · con conexión · en línea",
+                  "pt": "Canárias, Europa, Norte da África, Israel · com conexão · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -40990,7 +41335,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · correspondance · aéroport",
+                "scope_label": {
+                  "en": "Canaries, Europe, North Africa, Israel · connecting · airport",
+                  "fr": "Canaries, Europe, Afrique du Nord, Israël · correspondance · aéroport",
+                  "es": "Canarias, Europa, Norte de África, Israel · con conexión · aeropuerto",
+                  "pt": "Canárias, Europa, Norte da África, Israel · com conexão · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41026,7 +41376,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Amériques, Asie, Qatar · correspondance · en ligne",
+                "scope_label": {
+                  "en": "Americas, Asia, Qatar · connecting · online",
+                  "fr": "Amériques, Asie, Qatar · correspondance · en ligne",
+                  "es": "Américas, Asia, Catar · con conexión · en línea",
+                  "pt": "Américas, Ásia, Catar · com conexão · online"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41062,7 +41417,12 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_journey",
-                "scope_label": "Amériques, Asie, Qatar · correspondance · aéroport",
+                "scope_label": {
+                  "en": "Americas, Asia, Qatar · connecting · airport",
+                  "fr": "Amériques, Asie, Qatar · correspondance · aéroport",
+                  "es": "Américas, Asia, Catar · con conexión · aeropuerto",
+                  "pt": "Américas, Ásia, Catar · com conexão · aeroporto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41125,7 +41485,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Espagne hors Canaries · direct",
+                "scope_label": {
+                  "en": "≤10 kg · Spain excluding the Canaries · direct",
+                  "fr": "≤10 kg · Espagne hors Canaries · direct",
+                  "es": "≤10 kg · España excepto Canarias · directo",
+                  "pt": "≤10 kg · Espanha exceto Canárias · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41161,7 +41526,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Espagne hors Canaries · correspondance",
+                "scope_label": {
+                  "en": "≤10 kg · Spain excluding the Canaries · connecting",
+                  "fr": "≤10 kg · Espagne hors Canaries · correspondance",
+                  "es": "≤10 kg · España excepto Canarias · con conexión",
+                  "pt": "≤10 kg · Espanha exceto Canárias · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41197,7 +41567,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "scope_label": {
+                  "en": "≤10 kg · Canaries, Europe, North Africa, Israel · direct",
+                  "fr": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                  "es": "≤10 kg · Canarias, Europa, Norte de África, Israel · directo",
+                  "pt": "≤10 kg · Canárias, Europa, Norte da África, Israel · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41233,7 +41608,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "scope_label": {
+                  "en": "≤10 kg · Canaries, Europe, North Africa, Israel · connecting",
+                  "fr": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                  "es": "≤10 kg · Canarias, Europa, Norte de África, Israel · con conexión",
+                  "pt": "≤10 kg · Canárias, Europa, Norte da África, Israel · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41269,7 +41649,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Amériques, Asie, Qatar · direct",
+                "scope_label": {
+                  "en": "≤10 kg · Americas, Asia, Qatar · direct",
+                  "fr": "≤10 kg · Amériques, Asie, Qatar · direct",
+                  "es": "≤10 kg · Américas, Asia, Catar · directo",
+                  "pt": "≤10 kg · Américas, Ásia, Catar · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41305,7 +41690,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "≤10 kg · Amériques, Asie, Qatar · correspondance",
+                "scope_label": {
+                  "en": "≤10 kg · Americas, Asia, Qatar · connecting",
+                  "fr": "≤10 kg · Amériques, Asie, Qatar · correspondance",
+                  "es": "≤10 kg · Américas, Asia, Catar · con conexión",
+                  "pt": "≤10 kg · Américas, Ásia, Catar · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41341,7 +41731,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Espagne hors Canaries · direct",
+                "scope_label": {
+                  "en": "11–25 kg · Spain excluding the Canaries · direct",
+                  "fr": "11–25 kg · Espagne hors Canaries · direct",
+                  "es": "11–25 kg · España excepto Canarias · directo",
+                  "pt": "11–25 kg · Espanha exceto Canárias · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41377,7 +41772,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Espagne hors Canaries · correspondance",
+                "scope_label": {
+                  "en": "11–25 kg · Spain excluding the Canaries · connecting",
+                  "fr": "11–25 kg · Espagne hors Canaries · correspondance",
+                  "es": "11–25 kg · España excepto Canarias · con conexión",
+                  "pt": "11–25 kg · Espanha exceto Canárias · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41413,7 +41813,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "scope_label": {
+                  "en": "11–25 kg · Canaries, Europe, North Africa, Israel · direct",
+                  "fr": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                  "es": "11–25 kg · Canarias, Europa, Norte de África, Israel · directo",
+                  "pt": "11–25 kg · Canárias, Europa, Norte da África, Israel · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41449,7 +41854,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "scope_label": {
+                  "en": "11–25 kg · Canaries, Europe, North Africa, Israel · connecting",
+                  "fr": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                  "es": "11–25 kg · Canarias, Europa, Norte de África, Israel · con conexión",
+                  "pt": "11–25 kg · Canárias, Europa, Norte da África, Israel · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41485,7 +41895,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Amériques, Asie, Qatar · direct",
+                "scope_label": {
+                  "en": "11–25 kg · Americas, Asia, Qatar · direct",
+                  "fr": "11–25 kg · Amériques, Asie, Qatar · direct",
+                  "es": "11–25 kg · Américas, Asia, Catar · directo",
+                  "pt": "11–25 kg · Américas, Ásia, Catar · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41521,7 +41936,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "11–25 kg · Amériques, Asie, Qatar · correspondance",
+                "scope_label": {
+                  "en": "11–25 kg · Americas, Asia, Qatar · connecting",
+                  "fr": "11–25 kg · Amériques, Asie, Qatar · correspondance",
+                  "es": "11–25 kg · Américas, Asia, Catar · con conexión",
+                  "pt": "11–25 kg · Américas, Ásia, Catar · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41557,7 +41977,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Espagne hors Canaries · direct",
+                "scope_label": {
+                  "en": "26–45 kg · Spain excluding the Canaries · direct",
+                  "fr": "26–45 kg · Espagne hors Canaries · direct",
+                  "es": "26–45 kg · España excepto Canarias · directo",
+                  "pt": "26–45 kg · Espanha exceto Canárias · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41593,7 +42018,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Espagne hors Canaries · correspondance",
+                "scope_label": {
+                  "en": "26–45 kg · Spain excluding the Canaries · connecting",
+                  "fr": "26–45 kg · Espagne hors Canaries · correspondance",
+                  "es": "26–45 kg · España excepto Canarias · con conexión",
+                  "pt": "26–45 kg · Espanha exceto Canárias · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41629,7 +42059,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "scope_label": {
+                  "en": "26–45 kg · Canaries, Europe, North Africa, Israel · direct",
+                  "fr": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                  "es": "26–45 kg · Canarias, Europa, Norte de África, Israel · directo",
+                  "pt": "26–45 kg · Canárias, Europa, Norte da África, Israel · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41665,7 +42100,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "scope_label": {
+                  "en": "26–45 kg · Canaries, Europe, North Africa, Israel · connecting",
+                  "fr": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                  "es": "26–45 kg · Canarias, Europa, Norte de África, Israel · con conexión",
+                  "pt": "26–45 kg · Canárias, Europa, Norte da África, Israel · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41701,7 +42141,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Amériques, Asie, Qatar · direct",
+                "scope_label": {
+                  "en": "26–45 kg · Americas, Asia, Qatar · direct",
+                  "fr": "26–45 kg · Amériques, Asie, Qatar · direct",
+                  "es": "26–45 kg · Américas, Asia, Catar · directo",
+                  "pt": "26–45 kg · Américas, Ásia, Catar · direto"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
@@ -41737,7 +42182,12 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_journey",
-                "scope_label": "26–45 kg · Amériques, Asie, Qatar · correspondance",
+                "scope_label": {
+                  "en": "26–45 kg · Americas, Asia, Qatar · connecting",
+                  "fr": "26–45 kg · Amériques, Asie, Qatar · correspondance",
+                  "es": "26–45 kg · Américas, Asia, Catar · con conexión",
+                  "pt": "26–45 kg · Américas, Ásia, Catar · com conexão"
+                },
                 "source": {
                   "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",

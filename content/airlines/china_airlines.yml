@@ -141,7 +141,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -164,7 +168,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 2 (Myanmar, Australia, New Zealand, India)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -187,7 +195,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Taiwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Taïwan → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Taiwán → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Taiwan → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -210,7 +222,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Taiwan"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Taïwan"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Taiwán"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Taiwan"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -233,7 +249,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -256,7 +276,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 2 (Myanmar, Australia, New Zealand, India)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -279,7 +303,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -302,7 +330,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Taiwan"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Taïwan"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Taiwán"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Taiwan"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -325,7 +357,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -348,7 +384,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 2 (Myanmar, Australia, New Zealand, India)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -371,7 +411,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 2 (Myanmar, Australia, New Zealand, India) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 2 (Myanmar, Australia, Nueva Zelanda, India) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -394,7 +438,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Taiwan"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Taïwan"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Taiwán"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Taiwan"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -417,7 +465,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 1 (Japan, Korea, Palau, Guam, Hong Kong, China, the Philippines, Thailand, Malaysia, Singapore, Indonesia, Vietnam, Cambodia)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 1 (Japon, Corée, Palaos, Guam, Hong Kong, Chine, Philippines, Thaïlande, Malaisie, Singapour, Indonésie, Vietnam, Cambodge)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 1 (Japón, Corea, Palaos, Guam, Hong Kong, China, Filipinas, Tailandia, Malasia, Singapur, Indonesia, Vietnam, Camboya)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 1 (Japão, Coreia, Palau, Guam, Hong Kong, China, Filipinas, Tailândia, Malásia, Singapura, Indonésia, Vietnã, Camboja)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -440,7 +492,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 2 (Myanmar, Australia, New Zealand, India)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 2 (Myanmar, Australie, Nouvelle-Zélande, Inde)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 2 (Myanmar, Australia, Nueva Zelanda, India)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 2 (Myanmar, Austrália, Nova Zelândia, Índia)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
@@ -463,7 +519,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+        scope_label:
+          en: "Hold (AVIH), pet and crate up to 32 kg, per piece: Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaii, Amsterdam, Frankfurt, Vienna, Rome, London, Prague)"
+          fr: "Soute (AVIH), animal et caisse jusqu'à 32 kg, par pièce : Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague) → Zone 3 (Los Angeles, Ontario, San Francisco, Seattle, New York, Vancouver, Phoenix, Hawaï, Amsterdam, Francfort, Vienne, Rome, Londres, Prague)"
+          es: "Bodega (AVIH), animal y jaula hasta 32 kg, por pieza: Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga) → Zona 3 (Los Ángeles, Ontario, San Francisco, Seattle, Nueva York, Vancouver, Phoenix, Hawái, Ámsterdam, Fráncfort, Viena, Roma, Londres, Praga)"
+          pt: "Porão (AVIH), animal e caixa até 32 kg, por peça: Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga) → Zona 3 (Los Angeles, Ontário, São Francisco, Seattle, Nova York, Vancouver, Phoenix, Havaí, Amsterdã, Frankfurt, Viena, Roma, Londres, Praga)"
         source:
           url: "https://www.china-airlines.com/us/en/prepare-for-the-fly/information/baggage/pet-transport"
           source_type: official_website
