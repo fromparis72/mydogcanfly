@@ -93,6 +93,25 @@ policies:
       quote: Garuda Indonesia Cargo service is ready to make your pets or live animals comfortable on the plane until they arrive at their destination.
       quote_language: en
       locator: CargoWeb → Live Animals
+    # AUCUN MONTANT PUBLIÉ (19/09/2026) — même qualification qu'Aircalin.
+    # La page fret énumère les règles d'expédition — espèces exclues, documents, quarantaine,
+    # emballage, assurance — et ne publie ni tarif ni grille ni renvoi vers un barème.
+    no_published_fare:
+      url: "https://cargo.garuda-indonesia.com/Live-Animals"
+      source_type: official_website
+      verified_date: 2026-09-19
+      review_due: 2026-12-18
+      confidence: 4
+      reviewer: "Claude — lecture directe de la page officielle"
+      history:
+        - date: 2026-09-19
+          reviewer: "Claude — qualification de l'absence"
+          note: >-
+            Relue intégralement le 19/09/2026 : la section « Regulations » détaille cinq
+            obligations d'expédition sans jamais chiffrer le transport.
+      quote: "Please make sure your animals can be shipped. We do not ship some animal species, such as dolphins and sharks."
+      quote_language: en
+      locator: "Live Animals → Regulations"
 channels:
   - placement: cabin
     icon: 🐾

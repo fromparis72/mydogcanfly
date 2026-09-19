@@ -777,6 +777,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_aircalin].premium.policy.cargo.no_published_fare",
+      "empreinte_source": "1d6592713a4879719ed18b5556b352cc517d4c50bab6b341a9b56e104bc7b6ce"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_aircalin].premium.policy.cargo.source",
       "empreinte_source": "f694e9b4c12ffb05bd2cc27d9a69282a3cc11e945ee4987529a07b565c17e994"
     },
@@ -1174,6 +1179,26 @@
       "famille": "airlines",
       "locator": "airlines[airline_bangkok_airways].premium.policy.cabin.source",
       "empreinte_source": "06354468490b5ced89e122b1f59a285c27bafe8aa5a07e48c4dacf004b50fcfc"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_bangkok_airways].premium.policy.cargo.fares[fare_bangkok_airways_cargo_11_20_2026_09_19].source",
+      "empreinte_source": "849e7081c28adc7a68c7f6bc74c2ce3fbcfb801dba78a08291f68e90d3d370b6"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_bangkok_airways].premium.policy.cargo.fares[fare_bangkok_airways_cargo_1_10_2026_09_19].source",
+      "empreinte_source": "849e7081c28adc7a68c7f6bc74c2ce3fbcfb801dba78a08291f68e90d3d370b6"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_bangkok_airways].premium.policy.cargo.fares[fare_bangkok_airways_cargo_21_30_2026_09_19].source",
+      "empreinte_source": "849e7081c28adc7a68c7f6bc74c2ce3fbcfb801dba78a08291f68e90d3d370b6"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_bangkok_airways].premium.policy.cargo.fares[fare_bangkok_airways_cargo_31_60_2026_09_19].source",
+      "empreinte_source": "849e7081c28adc7a68c7f6bc74c2ce3fbcfb801dba78a08291f68e90d3d370b6"
     },
     {
       "famille": "airlines",
@@ -2124,6 +2149,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_garuda_indonesia].premium.policy.cabin.source",
       "empreinte_source": "84fa27b4eaf4c3b26a0294e4d26f7e470629fe8581d052b5fd9eb4d3b7247263"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_garuda_indonesia].premium.policy.cargo.no_published_fare",
+      "empreinte_source": "29ade0fd2077a136a5d6f2607e699ab7ec98a1c3e0f7e44a9e36c1f5ad64942f"
     },
     {
       "famille": "airlines",
@@ -3422,6 +3452,16 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_sky_express].premium.policy.cabin.fares[fare_sky_express_cabin_domestique_2026_09_19].source",
+      "empreinte_source": "54e7eed03781c297911830c6fe4facf09fc98ad6f6b9e038669e0ca11af81d03"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sky_express].premium.policy.cabin.fares[fare_sky_express_cabin_international_2026_09_19].source",
+      "empreinte_source": "54e7eed03781c297911830c6fe4facf09fc98ad6f6b9e038669e0ca11af81d03"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_sky_express].premium.policy.cabin.source",
       "empreinte_source": "b7bbbb4ae4a16099330b1b08363ad4924c41b06ed79726791aece2d04b752e3f"
     },
@@ -3429,6 +3469,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_sky_express].premium.policy.cargo.source",
       "empreinte_source": "a215dd38a3d0a95bd6535ae564a807da1a674941778f55642def55de4929979f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sky_express].premium.policy.hold.fares[fare_sky_express_hold_2026_09_19].source",
+      "empreinte_source": "54e7eed03781c297911830c6fe4facf09fc98ad6f6b9e038669e0ca11af81d03"
     },
     {
       "famille": "airlines",
@@ -8857,9 +8902,9 @@
     }
   ],
   "empreintes": {
-    "globale": "5e3b776ef25b9f437cc3362b8739ba214702f8ecc07af0f77685b3ce7a7952fb",
+    "globale": "e1807ebf7042b2595e6b7e53cedd537409f4949beae21bd8790ed342c2e49f55",
     "par_famille": {
-      "airlines": "5fb3dd7a33f3dcf75f187f6ff951d1eb44a14d1568ad6612a6568f30b3cc7cb5",
+      "airlines": "73e623e2f88278ad10c49f9aad75b3ab3cecff17de63d96936c3902d0cf59bbf",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

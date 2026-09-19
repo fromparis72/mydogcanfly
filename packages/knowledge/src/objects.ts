@@ -360,8 +360,15 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
   /* `fares` et `fare_conflicts` ajoutés à cette liste LE JOUR MÊME de leur entrée au schéma (10/09/2026) — la leçon
      du 08/09 ci-dessus, deux fois apprise : un champ absent d'ici est perdu par la projection, et le moteur ne le
      voit jamais. Le témoin `test-contrat-tarifaire.mjs` l'exige explicitement. */
-  const { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  /* `no_published_fare` ajouté le 19/09/2026 — la MÊME leçon, une quatrième fois, et cette fois
+     elle explique une anomalie qu'on se racontait autrement. Le champ existait au schéma depuis
+     l'origine et `lireEtatTarifaire` savait en faire l'état « aucun montant publié », traduit dans
+     les quatre langues. On en déduisait qu'aucune compagnie n'y correspondait. C'était faux :
+     il manquait l'entrée de fiche À L'INGESTION *et* ce champ ICI, si bien qu'une preuve écrite
+     n'aurait de toute façon jamais atteint l'interface. Aircalin et Garuda l'ont montré en
+     continuant d'afficher « pas encore vérifié » sur le site construit, preuve en main. */
+  const { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche, no_published_fare } = authored;
+  const common = { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, min_weight_includes_carrier, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche, no_published_fare };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

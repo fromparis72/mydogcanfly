@@ -127,6 +127,143 @@ policies:
       quote: "Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes:"
       quote_language: en
       locator: "Cargo Service → Pet Carriage Service → Domestic Routes / International Routes"
+    fares:
+      - id: fare_bangkok_airways_cargo_1_10_2026_09_19
+        placement: cargo
+        price:
+          kind: exact
+          amounts:
+            - amount: 1000
+              currency: THB
+        billing_subject: shipment
+        journey_basis: per_segment
+        scope_label:
+          en: "Domestic routes only, 1 to 10 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi"
+          fr: "Liaisons intérieures uniquement, 1 à 10 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi"
+          es: "Solo rutas nacionales, 1 a 10 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi"
+          pt: "Apenas rotas domésticas, 1 a 10 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+        source:
+          url: "https://www.bangkokair.com/cargo-service/pet_carriage"
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille officielle du fret"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur le sujet facturé et la base"
+              note: >-
+                La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont
+                libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de
+                l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment`
+                sont les lectures les plus prudentes d'un tarif de fret, pas des mentions
+                explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend
+                `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo.
+          quote: "1-10 KG. = 1,000 THB"
+          quote_language: en
+          locator: "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+      - id: fare_bangkok_airways_cargo_11_20_2026_09_19
+        placement: cargo
+        price:
+          kind: exact
+          amounts:
+            - amount: 1500
+              currency: THB
+        billing_subject: shipment
+        journey_basis: per_segment
+        scope_label:
+          en: "Domestic routes only, 11 to 20 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi"
+          fr: "Liaisons intérieures uniquement, 11 à 20 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi"
+          es: "Solo rutas nacionales, 11 a 20 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi"
+          pt: "Apenas rotas domésticas, 11 a 20 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+        source:
+          url: "https://www.bangkokair.com/cargo-service/pet_carriage"
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille officielle du fret"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur le sujet facturé et la base"
+              note: >-
+                La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont
+                libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de
+                l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment`
+                sont les lectures les plus prudentes d'un tarif de fret, pas des mentions
+                explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend
+                `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo.
+          quote: "11-20 KG. = 1,500 THB"
+          quote_language: en
+          locator: "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+      - id: fare_bangkok_airways_cargo_21_30_2026_09_19
+        placement: cargo
+        price:
+          kind: exact
+          amounts:
+            - amount: 2000
+              currency: THB
+        billing_subject: shipment
+        journey_basis: per_segment
+        scope_label:
+          en: "Domestic routes only, 21 to 30 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi"
+          fr: "Liaisons intérieures uniquement, 21 à 30 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi"
+          es: "Solo rutas nacionales, 21 a 30 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi"
+          pt: "Apenas rotas domésticas, 21 a 30 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+        source:
+          url: "https://www.bangkokair.com/cargo-service/pet_carriage"
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille officielle du fret"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur le sujet facturé et la base"
+              note: >-
+                La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont
+                libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de
+                l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment`
+                sont les lectures les plus prudentes d'un tarif de fret, pas des mentions
+                explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend
+                `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo.
+          quote: "21-30 KG. = 2,000 THB"
+          quote_language: en
+          locator: "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+      - id: fare_bangkok_airways_cargo_31_60_2026_09_19
+        placement: cargo
+        price:
+          kind: exact
+          amounts:
+            - amount: 2500
+              currency: THB
+        billing_subject: shipment
+        journey_basis: per_segment
+        scope_label:
+          en: "Domestic routes only, 31 to 60 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi"
+          fr: "Liaisons intérieures uniquement, 31 à 60 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi"
+          es: "Solo rutas nacionales, 31 a 60 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi"
+          pt: "Apenas rotas domésticas, 31 a 60 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+        source:
+          url: "https://www.bangkokair.com/cargo-service/pet_carriage"
+          source_type: official_website
+          verified_date: 2026-09-19
+          review_due: 2026-12-18
+          confidence: 4
+          reviewer: "Claude — lecture directe de la grille officielle du fret"
+          history:
+            - date: 2026-09-19
+              reviewer: "Claude — réserve sur le sujet facturé et la base"
+              note: >-
+                La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont
+                libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de
+                l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment`
+                sont les lectures les plus prudentes d'un tarif de fret, pas des mentions
+                explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend
+                `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo.
+          quote: "31-60 KG. = 2,500 THB"
+          quote_language: en
+          locator: "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
 channels:
   - placement: cabin
     icon: 🐾

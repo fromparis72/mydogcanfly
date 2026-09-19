@@ -745,13 +745,16 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      Eurowings ne publie qu'un plancher, « ab 60 € » : une ligne de nature `minimum`,
      car dire 60 € tout court ferait passer un plancher pour un prix ferme.
      Bilan net : +16 lignes, +3 canaux, +2 compagnies. */
-  /* SÉPARATION DES ZONES (19/09/2026) : Air Canada et WestJet publiaient chacun UNE fourchette
-     agrégée par canal, qui écrasait deux zones tarifaires distinctes sous un seul intervalle.
-     Chaque canal porte désormais sa ligne domestique et sa ligne internationale, soit quatre
-     lignes de plus sans canal ni compagnie supplémentaire : 364 → 368 sur les mêmes 152 canaux
-     et 90 compagnies. Le chiffre exact est REMESURÉ, jamais additionné à la main. */
-  check("l'import verrouillé porte exactement 368 lignes sur 152 canaux et 90 compagnies — la séparation des zones canadiennes ajoute quatre lignes, sans perte muette ni canal fantôme",
-    avecTarifs === 152 && lignesTarifaires === 368 && compagnies.size === 90,
+  /* DERNIÈRES COMPAGNIES SANS LIGNE PROUVÉE (19/09/2026). Sky Express entre avec trois montants
+     relus sur sa page GRECQUE (35 € cabine intérieur, 65 € cabine international, 50 € soute) et
+     Bangkok Airways avec les quatre tranches THB de sa grille de fret. Soit sept lignes, trois
+     canaux et deux compagnies de plus : 368 → 375, 152 → 155, 90 → 92.
+     Aircalin et Garuda n'ajoutent AUCUNE ligne et c'est le résultat attendu : elles ne publient
+     aucun montant, fait désormais prouvé par `no_published_fare` plutôt que laissé en silence.
+     Une absence documentée n'est pas un tarif, et ne doit pas gonfler ce compteur.
+     Le chiffre exact est REMESURÉ, jamais additionné à la main. */
+  check("l'import verrouillé porte exactement 375 lignes sur 155 canaux et 92 compagnies — Sky Express et Bangkok Airways entrent, Aircalin et Garuda n'ajoutent rien",
+    avecTarifs === 155 && lignesTarifaires === 375 && compagnies.size === 92,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
   check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",

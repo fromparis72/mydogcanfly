@@ -159,6 +159,17 @@ const DecisionPlacement = z.union([
      *  recopiée ici, qui dériverait le jour où l'un des deux bouge. */
     fares: z.array(Fare).optional(),
     fare_conflicts: z.array(FareConflict).optional(),
+    /** L'ABSENCE DE MONTANT, PROUVÉE (19/09/2026). Le contrat canonique portait ce champ depuis
+     *  l'origine et l'interface savait déjà l'afficher — « la compagnie ne publie aucun montant »,
+     *  traduit dans les quatre langues — mais l'entrée de fiche manquait, exactement comme pour
+     *  `carrier_dims_cm` avant EgyptAir. Le mécanisme est donc resté sans aucune instance peuplée,
+     *  non parce qu'aucune compagnie n'y correspondait, mais parce qu'AUCUN CHEMIN D'ÉCRITURE ne
+     *  permettait de l'atteindre. Aircalin et Garuda le peuplent les premiers.
+     *  Ce n'est pas `quote` : un tarif sur devis suppose une cotation qu'on peut demander ;
+     *  ici la compagnie route vers le fret et ne chiffre rien du tout.
+     *  Écrit SEULEMENT dans la branche relue : un canal `legacy_unreviewed` n'a, par définition,
+     *  vérifié aucune absence — il n'a rien vérifié du tout. */
+    no_published_fare: T0bAuditSource.optional(),
   /* LA GARDE DU RATTACHEMENT fait → preuve, branchée ICI et pas seulement sur le schéma canonique.
      ERREUR NOMMÉE (11/09/2026) : les deux contre-épreuves de Codex — preuve permutée entre deux
      canaux, dimension absente de la citation — passaient l'ingestion et écrivaient `objects.json`.
@@ -674,7 +685,7 @@ for (const a of (objects.airlines || [])) {
          après le retrait de la preuve UAT de Saudia, `max_weight_kg: 5` survivait dans le Finder
          alors qu'il n'existait plus dans la fiche. Une suppression est une modification, pas un
          silence à combler avec l'historique. */
-      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "min_weight_includes_carrier", "carrier_dims_cm", "attestations", "fares", "fare_conflicts"]) {
+      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "min_weight_includes_carrier", "carrier_dims_cm", "attestations", "fares", "fare_conflicts", "no_published_fare"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
         else delete enrichissements[k];
       }
@@ -738,6 +749,7 @@ for (const a of (objects.airlines || [])) {
       ...(d.attestations?.length ? { attestations: d.attestations } : {}),
       ...(d.fares?.length ? { fares: d.fares } : {}),
       ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),
+      ...(d.no_published_fare ? { no_published_fare: d.no_published_fare } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),
       derived_from_fiche: true,

@@ -27205,6 +27205,24 @@
           },
           "cargo": {
             "availability": "offered",
+            "no_published_fare": {
+              "url": "https://www.aircalin.com/fr/animaux",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — qualification de l'absence",
+                  "note": "L'absence est PROUVÉE par la page elle-même : elle énonce la règle de transport, les délais de notification et les restrictions de race, et ne publie aucun montant. Relue intégralement le 19/09/2026."
+                }
+              ],
+              "quote": "Le transport des animaux s’effectue en fret uniquement.",
+              "quote_language": "fr",
+              "locator": "Transport d'animaux → première phrase de la section"
+            },
             "source": {
               "url": "https://www.aircalin.com/fr/animaux",
               "source_type": "official_website",
@@ -30892,6 +30910,164 @@
               "es": "Perros y gatos vivos como carga especial (AVI) en Airbus y ATR72, solo rutas nacionales, excepto Bangkok–Krabi y Chiang Mai–Krabi; todas las escalas internacionales se rechazan; reserva previa, certificado sanitario, jaula, raza y capacidad sujetos a condiciones.",
               "pt": "Cães e gatos vivos como carga especial (AVI) em Airbus e ATR72, apenas rotas domésticas, exceto Bangkok–Krabi e Chiang Mai–Krabi; todas as escalas internacionais são recusadas; reserva prévia, certificado sanitário, caixa, raça e capacidade sujeitos a condições."
             },
+            "fares": [
+              {
+                "id": "fare_bangkok_airways_cargo_1_10_2026_09_19",
+                "placement": "cargo",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 1000,
+                      "currency": "THB"
+                    }
+                  ]
+                },
+                "billing_subject": "shipment",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Domestic routes only, 1 to 10 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+                  "fr": "Liaisons intérieures uniquement, 1 à 10 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+                  "es": "Solo rutas nacionales, 1 a 10 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+                  "pt": "Apenas rotas domésticas, 1 a 10 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+                },
+                "source": {
+                  "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille officielle du fret",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                      "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                    }
+                  ],
+                  "quote": "1-10 KG. = 1,000 THB",
+                  "quote_language": "en",
+                  "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+                }
+              },
+              {
+                "id": "fare_bangkok_airways_cargo_11_20_2026_09_19",
+                "placement": "cargo",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 1500,
+                      "currency": "THB"
+                    }
+                  ]
+                },
+                "billing_subject": "shipment",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Domestic routes only, 11 to 20 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+                  "fr": "Liaisons intérieures uniquement, 11 à 20 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+                  "es": "Solo rutas nacionales, 11 a 20 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+                  "pt": "Apenas rotas domésticas, 11 a 20 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+                },
+                "source": {
+                  "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille officielle du fret",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                      "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                    }
+                  ],
+                  "quote": "11-20 KG. = 1,500 THB",
+                  "quote_language": "en",
+                  "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+                }
+              },
+              {
+                "id": "fare_bangkok_airways_cargo_21_30_2026_09_19",
+                "placement": "cargo",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 2000,
+                      "currency": "THB"
+                    }
+                  ]
+                },
+                "billing_subject": "shipment",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Domestic routes only, 21 to 30 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+                  "fr": "Liaisons intérieures uniquement, 21 à 30 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+                  "es": "Solo rutas nacionales, 21 a 30 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+                  "pt": "Apenas rotas domésticas, 21 a 30 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+                },
+                "source": {
+                  "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille officielle du fret",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                      "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                    }
+                  ],
+                  "quote": "21-30 KG. = 2,000 THB",
+                  "quote_language": "en",
+                  "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+                }
+              },
+              {
+                "id": "fare_bangkok_airways_cargo_31_60_2026_09_19",
+                "placement": "cargo",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 2500,
+                      "currency": "THB"
+                    }
+                  ]
+                },
+                "billing_subject": "shipment",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Domestic routes only, 31 to 60 kg — excluding Bangkok–Krabi and Chiang Mai–Krabi",
+                  "fr": "Liaisons intérieures uniquement, 31 à 60 kg — sauf Bangkok–Krabi et Chiang Mai–Krabi",
+                  "es": "Solo rutas nacionales, 31 a 60 kg — excepto Bangkok–Krabi y Chiang Mai–Krabi",
+                  "pt": "Apenas rotas domésticas, 31 a 60 kg — exceto Bangkok–Krabi e Chiang Mai–Krabi"
+                },
+                "source": {
+                  "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la grille officielle du fret",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur le sujet facturé et la base",
+                      "note": "La grille est intitulée « SCR 1000: Live animals dog, cat » et ses tranches sont libellées en kilogrammes, sans dire si le poids est celui de l'animal seul ou de l'envoi avec sa caisse, ni si le montant vaut par vol. `shipment` et `per_segment` sont les lectures les plus prudentes d'un tarif de fret, pas des mentions explicites. La page autorise par ailleurs trois animaux par caisse, ce qui rend `pet` insoutenable sans confirmation. À confirmer auprès de Bangkok Airways Cargo."
+                    }
+                  ],
+                  "quote": "31-60 KG. = 2,500 THB",
+                  "quote_language": "en",
+                  "locator": "Cargo Service → Pet Carriage Service → SCR 1000: Live animals dog, cat"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
               "source_type": "official_website",
@@ -41256,6 +41432,24 @@
           },
           "cargo": {
             "availability": "offered",
+            "no_published_fare": {
+              "url": "https://cargo.garuda-indonesia.com/Live-Animals",
+              "source_type": "official_website",
+              "verified_date": "2026-09-19",
+              "review_due": "2026-12-18",
+              "confidence": 4,
+              "reviewer": "Claude — lecture directe de la page officielle",
+              "history": [
+                {
+                  "date": "2026-09-19",
+                  "reviewer": "Claude — qualification de l'absence",
+                  "note": "Relue intégralement le 19/09/2026 : la section « Regulations » détaille cinq obligations d'expédition sans jamais chiffrer le transport."
+                }
+              ],
+              "quote": "Please make sure your animals can be shipped. We do not ship some animal species, such as dolphins and sharks.",
+              "quote_language": "en",
+              "locator": "Live Animals → Regulations"
+            },
             "source": {
               "url": "https://cargo.garuda-indonesia.com/Live-Animals",
               "source_type": "official_website",
@@ -54905,6 +55099,96 @@
             "max_weight_kg": 8,
             "weight_includes_carrier": true,
             "weight_limit_bound": "lte",
+            "fares": [
+              {
+                "id": "fare_sky_express_cabin_domestique_2026_09_19",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 35,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Cabin, pet and crate up to 8 kg: domestic flights within Greece",
+                  "fr": "Cabine, animal et cage jusqu'à 8 kg : vols intérieurs en Grèce",
+                  "es": "Cabina, animal y jaula hasta 8 kg: vuelos nacionales en Grecia",
+                  "pt": "Cabine, animal e caixa até 8 kg: voos domésticos na Grécia"
+                },
+                "source": {
+                  "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la page grecque officielle",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur la base de voyage",
+                      "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — contrôle de coïncidence",
+                      "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                    }
+                  ],
+                  "quote": "Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€",
+                  "quote_language": "el",
+                  "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
+                }
+              },
+              {
+                "id": "fare_sky_express_cabin_international_2026_09_19",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 65,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Cabin, pet and crate up to 8 kg: international flights",
+                  "fr": "Cabine, animal et cage jusqu'à 8 kg : vols internationaux",
+                  "es": "Cabina, animal y jaula hasta 8 kg: vuelos internacionales",
+                  "pt": "Cabine, animal e caixa até 8 kg: voos internacionais"
+                },
+                "source": {
+                  "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la page grecque officielle",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur la base de voyage",
+                      "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — contrôle de coïncidence",
+                      "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                    }
+                  ],
+                  "quote": "Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€",
+                  "quote_language": "el",
+                  "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στην καμπίνα"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
               "source_type": "official_website",
@@ -54932,6 +55216,52 @@
             "weight_limit_bound": "lte",
             "min_weight_kg": 8,
             "weight_min_bound": "gt",
+            "fares": [
+              {
+                "id": "fare_sky_express_hold_2026_09_19",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 50,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "pet",
+                "journey_basis": "per_segment",
+                "scope_label": {
+                  "en": "Hold, pet and crate from 8 to 25 kg — cats and dogs only",
+                  "fr": "Soute, animal et cage de 8 à 25 kg — chats et chiens uniquement",
+                  "es": "Bodega, animal y jaula de 8 a 25 kg — solo gatos y perros",
+                  "pt": "Porão, animal e caixa de 8 a 25 kg — apenas gatos e cães"
+                },
+                "source": {
+                  "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-19",
+                  "review_due": "2026-12-18",
+                  "confidence": 4,
+                  "reviewer": "Claude — lecture directe de la page grecque officielle",
+                  "history": [
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — réserve sur la base de voyage",
+                      "note": "La page ne nomme PAS la base : elle dit seulement que l'animal et sa cage sont facturés comme des bagages supplémentaires. `per_segment` est la lecture la plus prudente de cette phrase, pas une mention explicite. À confirmer par une source qui nomme la base."
+                    },
+                    {
+                      "date": "2026-09-19",
+                      "reviewer": "Claude — contrôle de coïncidence",
+                      "note": "35 € et 65 € sont AUSSI les montants d'Aegean déjà enregistrés. Coïncidence réelle entre deux compagnies grecques, vérifiée sur la page grecque d'origine et non sur une traduction : « Χρέωση μεταφοράς σε πτήσεις εσωτερικού: 35€ » et « Χρέωση μεταφοράς σε πτήσεις εξωτερικού: 65€ »."
+                    }
+                  ],
+                  "quote": "Χρέωση μεταφορας: 50€",
+                  "quote_language": "el",
+                  "locator": "SKY Pets → Χρεώσεις για τη μεταφορά κατοικιδίων → Στον χώρο αποθήκευσης"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.skyexpress.gr/el/sky-experience/sky-pets",
               "source_type": "official_website",
