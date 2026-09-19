@@ -126,7 +126,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Europe et Moyen-Orient, animal et cage de moins de 9 kg"
+        scope_label:
+          en: "Europe and the Middle East, pet and crate under 9 kg"
+          fr: "Europe et Moyen-Orient, animal et cage de moins de 9 kg"
+          es: "Europa y Oriente Medio, animal y jaula de menos de 9 kg"
+          pt: "Europa e Oriente Médio, animal e caixa de menos de 9 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -147,7 +151,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Europe et Moyen-Orient, animal et cage de 9 à 50 kg"
+        scope_label:
+          en: "Europe and the Middle East, pet and crate from 9 to 50 kg"
+          fr: "Europe et Moyen-Orient, animal et cage de 9 à 50 kg"
+          es: "Europa y Oriente Medio, animal y jaula de 9 a 50 kg"
+          pt: "Europa e Oriente Médio, animal e caixa de 9 a 50 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -168,7 +176,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Europe et Moyen-Orient, animal et cage de 50 à 100 kg"
+        scope_label:
+          en: "Europe and the Middle East, pet and crate from 50 to 100 kg"
+          fr: "Europe et Moyen-Orient, animal et cage de 50 à 100 kg"
+          es: "Europa y Oriente Medio, animal y jaula de 50 a 100 kg"
+          pt: "Europa e Oriente Médio, animal e caixa de 50 a 100 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -189,7 +201,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Amérique du Nord et Asie, animal et cage de moins de 9 kg"
+        scope_label:
+          en: "North America and Asia, pet and crate under 9 kg"
+          fr: "Amérique du Nord et Asie, animal et cage de moins de 9 kg"
+          es: "América del Norte y Asia, animal y jaula de menos de 9 kg"
+          pt: "América do Norte e Ásia, animal e caixa de menos de 9 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -210,7 +226,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Amérique du Nord et Asie, animal et cage de 9 à 50 kg"
+        scope_label:
+          en: "North America and Asia, pet and crate from 9 to 50 kg"
+          fr: "Amérique du Nord et Asie, animal et cage de 9 à 50 kg"
+          es: "América del Norte y Asia, animal y jaula de 9 a 50 kg"
+          pt: "América do Norte e Ásia, animal e caixa de 9 a 50 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -231,7 +251,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Amérique du Nord et Asie, animal et cage de 50 à 100 kg"
+        scope_label:
+          en: "North America and Asia, pet and crate from 50 to 100 kg"
+          fr: "Amérique du Nord et Asie, animal et cage de 50 à 100 kg"
+          es: "América del Norte y Asia, animal y jaula de 50 a 100 kg"
+          pt: "América do Norte e Ásia, animal e caixa de 50 a 100 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -252,7 +276,11 @@ policies:
               currency: ILS
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Eilat, animal et cage de moins de 9 kg"
+        scope_label:
+          en: "Eilat, pet and crate under 9 kg"
+          fr: "Eilat, animal et cage de moins de 9 kg"
+          es: "Eilat, animal y jaula de menos de 9 kg"
+          pt: "Eilat, animal e caixa de menos de 9 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -273,7 +301,11 @@ policies:
               currency: ILS
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Eilat, animal et cage de 9 à 50 kg"
+        scope_label:
+          en: "Eilat, pet and crate from 9 to 50 kg"
+          fr: "Eilat, animal et cage de 9 à 50 kg"
+          es: "Eilat, animal y jaula de 9 a 50 kg"
+          pt: "Eilat, animal e caixa de 9 a 50 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website
@@ -294,7 +326,11 @@ policies:
               currency: ILS
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Eilat, animal et cage de 50 à 100 kg"
+        scope_label:
+          en: "Eilat, pet and crate from 50 to 100 kg"
+          fr: "Eilat, animal et cage de 50 à 100 kg"
+          es: "Eilat, animal y jaula de 50 a 100 kg"
+          pt: "Eilat, animal e caixa de 50 a 100 kg"
         source:
           url: "https://www.elal.com/fra/baggage/pets"
           source_type: official_website

@@ -86,7 +86,11 @@ policies:
               currency: MAD
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Vol intérieur, Europe/Maghreb ou long-courrier, selon la route
+        scope_label:
+          en: "Domestic, Europe/Maghreb or long-haul, depending on the route"
+          fr: "Vol intérieur, Europe/Maghreb ou long-courrier, selon la route"
+          es: "Vuelo nacional, Europa/Magreb o larga distancia, según la ruta"
+          pt: "Voo doméstico, Europa/Magrebe ou longo curso, conforme a rota"
         source:
           url: https://www.royalairmaroc.com/ma-fr/information/animaux
           source_type: official_website
@@ -109,7 +113,11 @@ policies:
               currency: EUR
         billing_subject: pet
         journey_basis: per_journey
-        scope_label: Europe/Maghreb ou long-courrier, selon la route
+        scope_label:
+          en: "Europe/Maghreb or long-haul, depending on the route"
+          fr: "Europe/Maghreb ou long-courrier, selon la route"
+          es: "Europa/Magreb o larga distancia, según la ruta"
+          pt: "Europa/Magrebe ou longo curso, conforme a rota"
         source:
           url: https://www.royalairmaroc.com/ma-fr/information/animaux
           source_type: official_website
@@ -150,7 +158,11 @@ policies:
               currency: MAD
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Selon la zone et la tranche de poids, jusqu'à 70 kg
+        scope_label:
+          en: "Depending on the zone and weight band, up to 70 kg"
+          fr: "Selon la zone et la tranche de poids, jusqu'à 70 kg"
+          es: "Según la zona y el tramo de peso, hasta 70 kg"
+          pt: "Conforme a zona e a faixa de peso, até 70 kg"
         source:
           url: https://www.royalairmaroc.com/ma-fr/information/animaux
           source_type: official_website
@@ -173,7 +185,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_journey
-        scope_label: Selon la zone et la tranche de poids, jusqu'à 70 kg
+        scope_label:
+          en: "Depending on the zone and weight band, up to 70 kg"
+          fr: "Selon la zone et la tranche de poids, jusqu'à 70 kg"
+          es: "Según la zona y el tramo de peso, hasta 70 kg"
+          pt: "Conforme a zona e a faixa de peso, até 70 kg"
         source:
           url: https://www.royalairmaroc.com/ma-fr/information/animaux
           source_type: official_website

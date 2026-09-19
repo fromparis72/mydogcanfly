@@ -82,7 +82,11 @@ policies:
           amounts: []
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: aéroport départ → destination
+        scope_label:
+          en: "departure airport → destination"
+          fr: "aéroport départ → destination"
+          es: "aeropuerto de salida → destino"
+          pt: "aeroporto de partida → destino"
         source:
           url: https://www.lufthansa.com/de/en/animals-as-additional-carry-on-baggage
           source_type: official_website
@@ -124,7 +128,11 @@ policies:
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: trajet et taille du conteneur
+        scope_label:
+          en: "journey and container size"
+          fr: "trajet et taille du conteneur"
+          es: "trayecto y tamaño del contenedor"
+          pt: "trajeto e tamanho do recipiente"
         source:
           url: https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck
           source_type: official_website

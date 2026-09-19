@@ -85,7 +85,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 35, currency: EUR }, { amount: 36, currency: USD }, { amount: 30, currency: GBP }, { amount: 35, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Espagne péninsulaire et Baléares
+        scope_label:
+          en: "Mainland Spain and the Balearics"
+          fr: "Espagne péninsulaire et Baléares"
+          es: "España peninsular y Baleares"
+          pt: "Espanha peninsular e Baleares"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -102,7 +106,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 50, currency: EUR }, { amount: 52, currency: USD }, { amount: 43, currency: GBP }, { amount: 49, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Canaries, Europe, Afrique et intra-Amérique
+        scope_label:
+          en: "Canaries, Europe, Africa and within the Americas"
+          fr: "Canaries, Europe, Afrique et intra-Amérique"
+          es: "Canarias, Europa, África e intra-América"
+          pt: "Canárias, Europa, África e intra-América"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -119,7 +127,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 150, currency: EUR }, { amount: 155, currency: USD }, { amount: 130, currency: GBP }, { amount: 148, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Longue distance · MIA/SDQ/NYC/PUJ/SJO
+        scope_label:
+          en: "Long distance · MIA/SDQ/NYC/PUJ/SJO"
+          fr: "Longue distance · MIA/SDQ/NYC/PUJ/SJO"
+          es: "Larga distancia · MIA/SDQ/NYC/PUJ/SJO"
+          pt: "Longa distância · MIA/SDQ/NYC/PUJ/SJO"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -136,7 +148,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 175, currency: EUR }, { amount: 181, currency: USD }, { amount: 152, currency: GBP }, { amount: 173, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Longue distance · autres routes
+        scope_label:
+          en: "Long distance · other routes"
+          fr: "Longue distance · autres routes"
+          es: "Larga distancia · otras rutas"
+          pt: "Longa distância · outras rotas"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -173,7 +189,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 90, currency: EUR }, { amount: 93, currency: USD }, { amount: 78, currency: GBP }, { amount: 89, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Espagne péninsulaire et Baléares
+        scope_label:
+          en: "Mainland Spain and the Balearics"
+          fr: "Espagne péninsulaire et Baléares"
+          es: "España peninsular y Baleares"
+          pt: "Espanha peninsular e Baleares"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -190,7 +210,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 150, currency: EUR }, { amount: 155, currency: USD }, { amount: 130, currency: GBP }, { amount: 148, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Canaries, Europe, Afrique et intra-Amérique
+        scope_label:
+          en: "Canaries, Europe, Africa and within the Americas"
+          fr: "Canaries, Europe, Afrique et intra-Amérique"
+          es: "Canarias, Europa, África e intra-América"
+          pt: "Canárias, Europa, África e intra-América"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -207,7 +231,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 300, currency: EUR }, { amount: 310, currency: USD }, { amount: 261, currency: GBP }, { amount: 296, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Long-courrier · MIA/SDQ/NYC/PUJ
+        scope_label:
+          en: "Long-haul · MIA/SDQ/NYC/PUJ"
+          fr: "Long-courrier · MIA/SDQ/NYC/PUJ"
+          es: "Larga distancia · MIA/SDQ/NYC/PUJ"
+          pt: "Longo curso · MIA/SDQ/NYC/PUJ"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website
@@ -224,7 +252,11 @@ policies:
         price: { kind: matrix, amounts: [{ amount: 350, currency: EUR }, { amount: 361, currency: USD }, { amount: 304, currency: GBP }, { amount: 345, currency: CHF }] }
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Long-courrier · autres routes
+        scope_label:
+          en: "Long-haul · other routes"
+          fr: "Long-courrier · autres routes"
+          es: "Larga distancia · otras rutas"
+          pt: "Longo curso · outras rotas"
         source:
           url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
           source_type: official_website

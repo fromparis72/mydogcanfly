@@ -88,7 +88,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: À partir de 40 EUR · vol domestique · basse saison · achat en ligne
+        scope_label:
+          en: "From 40 EUR · domestic flight · low season · online purchase"
+          fr: "À partir de 40 EUR · vol domestique · basse saison · achat en ligne"
+          es: "Desde 40 EUR · vuelo nacional · temporada baja · compra en línea"
+          pt: "A partir de 40 EUR · voo doméstico · baixa temporada · compra online"
         source:
           url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
@@ -109,7 +113,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: À partir de 51 USD · vol domestique · basse saison · achat en ligne
+        scope_label:
+          en: "From 51 USD · domestic flight · low season · online purchase"
+          fr: "À partir de 51 USD · vol domestique · basse saison · achat en ligne"
+          es: "Desde 51 USD · vuelo nacional · temporada baja · compra en línea"
+          pt: "A partir de 51 USD · voo doméstico · baixa temporada · compra online"
         source:
           url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
@@ -130,7 +138,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: À partir de 70 CAD · vol domestique · basse saison · achat en ligne
+        scope_label:
+          en: "From 70 CAD · domestic flight · low season · online purchase"
+          fr: "À partir de 70 CAD · vol domestique · basse saison · achat en ligne"
+          es: "Desde 70 CAD · vuelo nacional · temporada baja · compra en línea"
+          pt: "A partir de 70 CAD · voo doméstico · baixa temporada · compra online"
         source:
           url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
@@ -172,7 +184,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Route, weight, season and purchase channel
+        scope_label:
+          en: "Route, weight, season and purchase channel"
+          fr: "Route, poids, saison et canal d'achat"
+          es: "Ruta, peso, temporada y canal de compra"
+          pt: "Rota, peso, temporada e canal de compra"
         source:
           url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
@@ -193,7 +209,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Route, weight, season and purchase channel
+        scope_label:
+          en: "Route, weight, season and purchase channel"
+          fr: "Route, poids, saison et canal d'achat"
+          es: "Ruta, peso, temporada y canal de compra"
+          pt: "Rota, peso, temporada e canal de compra"
         source:
           url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
@@ -214,7 +234,11 @@ policies:
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Route, weight, season and purchase channel
+        scope_label:
+          en: "Route, weight, season and purchase channel"
+          fr: "Route, poids, saison et canal d'achat"
+          es: "Ruta, peso, temporada y canal de compra"
+          pt: "Rota, peso, temporada e canal de compra"
         source:
           url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website

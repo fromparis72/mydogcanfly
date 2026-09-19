@@ -82,7 +82,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché de départ → zones publiées
+        scope_label:
+          en: "departure market → published zones"
+          fr: "marché de départ → zones publiées"
+          es: "mercado de salida → zonas publicadas"
+          pt: "mercado de partida → zonas publicadas"
         source:
           url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website
@@ -105,7 +109,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché de départ → zones publiées
+        scope_label:
+          en: "departure market → published zones"
+          fr: "marché de départ → zones publiées"
+          es: "mercado de salida → zonas publicadas"
+          pt: "mercado de partida → zonas publicadas"
         source:
           url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website
@@ -145,7 +153,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché de départ → zones publiées
+        scope_label:
+          en: "departure market → published zones"
+          fr: "marché de départ → zones publiées"
+          es: "mercado de salida → zonas publicadas"
+          pt: "mercado de partida → zonas publicadas"
         source:
           url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website
@@ -168,7 +180,11 @@ policies:
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
-        scope_label: marché de départ → zones publiées
+        scope_label:
+          en: "departure market → published zones"
+          fr: "marché de départ → zones publiées"
+          es: "mercado de salida → zonas publicadas"
+          pt: "mercado de partida → zonas publicadas"
         source:
           url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website

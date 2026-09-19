@@ -136,7 +136,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus"
+        scope_label:
+          en: "Cabin (PETC), carrier up to 118 cm total, pet and carrier up to 8 kg: domestic flights — 25 % VAT announced on top"
+          fr: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés, animal et sac jusqu'à 8 kg : vols intérieurs — 25 % de TVA annoncés en sus"
+          es: "Cabina (PETC), transportín hasta 118 cm sumados, animal y transportín hasta 8 kg: vuelos nacionales — 25 % de IVA anunciado aparte"
+          pt: "Cabine (PETC), bolsa até 118 cm somados, animal e bolsa até 8 kg: voos domésticos — 25 % de IVA anunciado à parte"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -157,7 +161,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Cabin (PETC), carrier up to 118 cm total: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Cabina (PETC), transportín hasta 118 cm sumados: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Cabine (PETC), bolsa até 118 cm somados: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -178,7 +186,11 @@ policies:
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Cabin (PETC), carrier up to 118 cm total: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Cabine (PETC), sac de transport jusqu'à 118 cm cumulés : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Cabina (PETC), transportín hasta 118 cm sumados: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Cabine (PETC), bolsa até 118 cm somados: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -220,7 +232,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+        scope_label:
+          en: "Hold (AVIH), medium crate 80x55x55 cm: domestic flights — 25 % VAT announced on top"
+          fr: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+          es: "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos nacionales — 25 % de IVA anunciado aparte"
+          pt: "Porão (AVIH), caixa média 80x55x55 cm: voos domésticos — 25 % de IVA anunciado à parte"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -241,7 +257,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Hold (AVIH), medium crate 80x55x55 cm: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Porão (AVIH), caixa média 80x55x55 cm: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -262,7 +282,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Hold (AVIH), medium crate 80x55x55 cm: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Soute (AVIH), caisse moyenne 80x55x55 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Bodega (AVIH), jaula mediana 80x55x55 cm: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Porão (AVIH), caixa média 80x55x55 cm: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -283,7 +307,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+        scope_label:
+          en: "Hold (AVIH), large crate 125x75x85 cm: domestic flights — 25 % VAT announced on top"
+          fr: "Soute (AVIH), grande caisse 125x75x85 cm : vols intérieurs — 25 % de TVA annoncés en sus"
+          es: "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos nacionales — 25 % de IVA anunciado aparte"
+          pt: "Porão (AVIH), caixa grande 125x75x85 cm: voos domésticos — 25 % de IVA anunciado à parte"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -304,7 +332,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Hold (AVIH), large crate 125x75x85 cm: international flights within Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux en Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos internacionales en Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Porão (AVIH), caixa grande 125x75x85 cm: voos internacionais na Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
@@ -325,7 +357,11 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+        scope_label:
+          en: "Hold (AVIH), large crate 125x75x85 cm: international flights outside Europe — 10 € extra if the ticket is bought on the day of departure in Croatia or Bosnia and Herzegovina"
+          fr: "Soute (AVIH), grande caisse 125x75x85 cm : vols internationaux hors d'Europe — 10 € en sus si le billet est acheté le jour du départ en Croatie ou en Bosnie-Herzégovine"
+          es: "Bodega (AVIH), jaula grande 125x75x85 cm: vuelos internacionales fuera de Europa — 10 € adicionales si el billete se compra el día de la salida en Croacia o Bosnia y Herzegovina"
+          pt: "Porão (AVIH), caixa grande 125x75x85 cm: voos internacionais fora da Europa — 10 € adicionais se o bilhete for comprado no dia da partida na Croácia ou na Bósnia e Herzegovina"
         source:
           url: "https://www.croatiaairlines.com/Baggage/Animals"
           source_type: official_website
